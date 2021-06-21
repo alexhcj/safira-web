@@ -7,7 +7,7 @@ function App() {
 		<div className='app'>
 			<Header />
 			<Switch>
-				<Route path='/'>
+				<Route path='/' exact>
 					<Home />
 				</Route>
 				<Route path='/shop'>
