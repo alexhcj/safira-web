@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
-import { Home, Shop, Blog, Cart, Checkout, Product } from './pages/Home'
-import { Header } from './components/Header'
+import { Home, Shop, Blog, Cart, Checkout, Product } from './pages'
+import { Header, Footer } from './components'
 
 function App() {
 	return (
@@ -26,6 +26,7 @@ function App() {
 					<Product />
 				</Route>
 			</Switch>
+			<Footer />
 		</div>
 	)
 }

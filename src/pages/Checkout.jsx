@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react'
 
-export const Blog = () => {
-  return <h1>Checkout</h1>;
-};
+export const Checkout = () => {
+	return <h1>Checkout</h1>
+}
