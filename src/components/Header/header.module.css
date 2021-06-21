@@ -1,3 +1,4 @@
-.slider {
-  color: black;
+.nav__link {
+  text-decoration: none;
+  margin-right: 30px;
 }
