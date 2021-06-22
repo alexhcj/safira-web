@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { sliderAPI } from '../../api'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import { Slide } from './Slide'
 import s from './mainslider.module.css'
 
 export const MainSlider = () => {
@@ -43,9 +42,18 @@ export const MainSlider = () => {
 	return (
 		<Carousel responsive={responsive} infinite={true} swipeable={true} draggable={true}>
 			{slides.map((slide) => {
-				const { id } = slide
+				const { id, title, subTitle, text, img } = slide
 
-				return <Slide slide={slide} key={id} />
+				return (
+					<div className={s.item} key={id}>
+						<img className={s.img} src={img} alt={title} />
+						<div className={s.inner}>
+							<h1>{title}</h1>
+							<h5>{subTitle}</h5>
+							<p>{text}</p>
+						</div>
+					</div>
+				)
 			})}
 		</Carousel>
 	)
