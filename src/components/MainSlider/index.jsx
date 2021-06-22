@@ -40,17 +40,19 @@ export const MainSlider = () => {
 	}
 
 	return (
-		<Carousel responsive={responsive} infinite={true} swipeable={true} draggable={true}>
+		<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
 			{slides.map((slide) => {
 				const { id, title, subTitle, text, img } = slide
 
 				return (
-					<div className={s.item} key={id}>
-						<img className={s.img} src={img} alt={title} />
-						<div className={s.inner}>
-							<h1>{title}</h1>
-							<h5>{subTitle}</h5>
-							<p>{text}</p>
+					<div className='container'>
+						<div className={s.item} key={id}>
+							<img className={s.img} src={img} alt={title} />
+							<div className={s.inner}>
+								<h1 className={s.title}>{title}</h1>
+								<h5 className={s.subTitle}>{subTitle}</h5>
+								<p className={s.text}>{text}</p>
+							</div>
 						</div>
 					</div>
 				)
