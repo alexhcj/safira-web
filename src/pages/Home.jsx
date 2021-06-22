@@ -1,5 +1,10 @@
 import React from 'react'
+import { MainSlider } from '../components'
 
 export const Home = () => {
-	return <h1>Home Page</h1>
+	return (
+        <div>
+            <MainSlider />
+        </div>
+    )
 }
