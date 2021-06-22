@@ -9,21 +9,21 @@
             "title": "Vegetables big sale",
             "subTitle": "Fresh farm products",
             "text": "10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!",
-            "img": "http://localhost:5000/assets/images/slider-1__bg.jpg"
+            "img": "http://localhost:5000/assets/images/slider/1.jpg"
         },
 		{
 			"id": 2,
 			"title": "Fresh vegetables",
 			"subTitle": "Natural farm products",
 			"text": "Widest range of farm-fresh Vegetables, Fruits & seasonal produce",
-			"img": "http://localhost:5000/assets/images/slider-2__bg.jpg"
+			"img": "http://localhost:5000/assets/images/slider/2.jpg"
 		},
 		{
 			"id": 3,
 			"title": "Fresh tomatoes",
 			"subTitle": "Natural farm products",
 			"text": "Natural organic tomatoes make your health stronger. Put your information here",
-			"img": "http://localhost:5000/assets/images/slider-3__bg.jpg"
+			"img": "http://localhost:5000/assets/images/slider/3.jpg"
 		}
 	]
 }
