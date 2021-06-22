@@ -1,10 +1,11 @@
 import React from 'react'
-import { MainSlider } from '../components'
+import { MainSlider, OfferLinks} from '../components'
 
 export const Home = () => {
 	return (
         <div>
             <MainSlider />
+            <OfferLinks />
         </div>
     )
 }

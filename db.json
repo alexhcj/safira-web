@@ -25,5 +25,16 @@
 			"text": "Natural organic tomatoes make your health stronger. Put your information here",
 			"img": "http://localhost:5000/assets/images/slider/3.jpg"
 		}
+		
+	],
+	"offers": [
+        {
+            "id": 1,
+            "img": "http://localhost:5000/assets/images/offerlinks/1.png"
+        },
+		{
+            "id": 12,
+            "img": "http://localhost:5000/assets/images/offerlinks/2.png"
+        }
 	]
 }
