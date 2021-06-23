@@ -1,12 +1,9 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    width: 1170px;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+.section {
     margin-top: 70px;
 }
-.img__link {
-    margin-left: 39px;
+.link {
+    margin-right: 39px;
+}
+.block {
+    display: flex;
 }

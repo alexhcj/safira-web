@@ -1,0 +1,36 @@
+.section {
+    padding-top: 80px;
+    padding-top: 70px;
+}
+.block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.above__heading {
+    font-family: Playfair Display;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 24px;
+    color: #000000;
+}
+.heading {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 35px;
+    letter-spacing: 0.02em;
+    color: #222222;
+    margin-top: 2px;
+}
+.slide {
+    width: 33%;
+}
+.h1 {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+}
