@@ -44,7 +44,7 @@ export const MainSlider = () => {
 		<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
 			{slides.map((slide) => {
 				const { id, title, subTitle, text, img } = slide
-
+				
 				return (
 					<div className={s.item} key={id}>
 						<img className={s.img} src={img} alt={title} />

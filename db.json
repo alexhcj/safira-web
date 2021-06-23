@@ -28,6 +28,7 @@
 	],
 	"offers": [
 		{
+<<<<<<< HEAD
 			"id": 1,
 			"img": "http://localhost:5000/assets/images/offerlinks/1.png"
 		},
@@ -35,5 +36,60 @@
 			"id": 12,
 			"img": "http://localhost:5000/assets/images/offerlinks/2.png"
 		}
+=======
+            "id": 12,
+            "img": "http://localhost:5000/assets/images/offerlinks/2.png"
+        }
+	],
+	"blogPosts": [
+        {
+            "id": 1,
+			"title": "Funny Story",
+			"date": "23/6/2021",
+            "img": "http://localhost:5000/assets/images/posts/1.png",
+			"tags": ["specials", "holiday"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        },
+		{
+            "id": 2,
+			"title": "About Fruits",
+			"date": "24/6/2021",
+            "img": "http://localhost:5000/assets/images/posts/2.png",
+			"tags": ["specials"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        },
+		{
+            "id": 3,
+			"title": "Special!",
+			"date": "25/6/2021",
+            "img": "http://localhost:5000/assets/images/posts/3.png",
+			"tags": ["halloween", "holiday"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        },
+		{
+            "id": 4,
+			"title": "Check Description",
+			"date": "29/6/2021",
+            "img": "http://localhost:5000/assets/images/posts/1.png",
+			"tags": ["New Year", "holiday"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        },
+		{
+            "id": 5,
+			"title": "New Products",
+			"date": "02/7/2021",
+            "img": "http://localhost:5000/assets/images/posts/2.png",
+			"tags": ["specials", "holiday"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        },
+		{
+            "id": 6,
+			"title": "Halloweeeeen!",
+			"date": "04/7/2021",
+            "img": "http://localhost:5000/assets/images/posts/3.png",
+			"tags": ["Free"],
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
+        }
+>>>>>>> 22c26d89c9d616dfc72a686c28144f145c070ae4
 	]
 }

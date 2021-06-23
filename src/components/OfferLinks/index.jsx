@@ -19,19 +19,33 @@ export const OfferLinks = () => {
 		fetchData()
 	}, [])
 
-	return (
-		<div className={s.container}>
-			{offers.map((offer) => {
-				const { id, img } = offer
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await offersAPI.getOffers()
+				setOffers(data)
+			} catch (e) {
+				console.log(e)
+			}
+		}
 
-				return (
-					<div className={s.img__link}>
-						<NavLink className={s.nav__link} to='/shop'>
-							<img key={id} src={img} alt='' />
-						</NavLink>
-					</div>
-				)
-			})}
+		fetchData()
+	}, [])
+    
+	return (
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.block}>
+					{offers.map((offer) => {
+						const { id, img } = offer
+						return (
+							<NavLink className={s.link} to='/shop'>
+								<img key={id} src={img} alt='' />
+							</NavLink>
+						)
+					})}
+				</div>
+			</div>
 		</div>
 	)
 }
