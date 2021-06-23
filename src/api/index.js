@@ -5,6 +5,5 @@ export const instance = axios.create({
 	withCredentials: true,
 })
 
-
-export {sliderAPI} from './slider-api'
-export {offersAPI} from './offers-api'
+export { sliderAPI } from './slider-api'
+export { offersAPI } from './offers-api'

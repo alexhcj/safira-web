@@ -3,6 +3,7 @@ import { sliderAPI } from '../../api'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './mainslider.module.css'
+import { Button } from '../Button'
 
 export const MainSlider = () => {
 	const [slides, setSlides] = useState([])
@@ -45,13 +46,16 @@ export const MainSlider = () => {
 				const { id, title, subTitle, text, img } = slide
 
 				return (
-					<div className='container'>
-						<div className={s.item} key={id}>
-							<img className={s.img} src={img} alt={title} />
-							<div className={s.inner}>
-								<h1 className={s.title}>{title}</h1>
-								<h5 className={s.subTitle}>{subTitle}</h5>
-								<p className={s.text}>{text}</p>
+					<div className={s.item} key={id}>
+						<img className={s.img} src={img} alt={title} />
+						<div className={s.inner}>
+							<div className='container'>
+								<div className={s.content}>
+									<h1 className={s.title}>{title}</h1>
+									<h5 className={s.subTitle}>{subTitle}</h5>
+									<p className={s.text}>{text}</p>
+									<Button to='/shop' />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -62,4 +66,7 @@ export const MainSlider = () => {
 }
 
 // TODO: title and subtitle each word CAP
-// TODO: i react slider
+// TODO: add font
+// TODO: change bnt paddings in figma
+// BUG: fix appearence of 2nd slide when refresh page
+// TODO: check animation speed atc of slider

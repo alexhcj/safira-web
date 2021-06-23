@@ -3,15 +3,21 @@
     user-select: none;
 }
 
-.img {
-    object-fit: cover;
-}
-
 .inner {
     position: absolute;
-    top: 50%;
+    top: 0;
+    right: 0;
     left: 0;
-    transform: translateY(-50%);
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 480px;
+    height: 100%;
 }
 
 .title {
@@ -19,7 +25,6 @@
     line-height: 48px;
     font-size: 48px;
     font-weight: 600;
-    color: var(--color-dark);
 }
 
 .subTitle {
@@ -27,11 +32,11 @@
     line-height: 36px;
     font-size: 36px;
     font-weight: 300;
-    color: var(--color-dark);
 }
 
 .text {
+    margin-bottom: 40px;
+    max-width: 400px;
     line-height: 22px;
     font-size: 16px;
-    color: var(--color-dark);
 }

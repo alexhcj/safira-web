@@ -4,13 +4,13 @@
 		{ "id": 2, "title": "json-server", "desc": "typicode", "img": "123", "price": "123", "reviews": "52" }
 	],
 	"slider": [
-        {
-            "id": 1,
-            "title": "Vegetables big sale",
-            "subTitle": "Fresh farm products",
-            "text": "10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!",
-            "img": "http://localhost:5000/assets/images/slider/1.jpg"
-        },
+		{
+			"id": 1,
+			"title": "Vegetables big sale",
+			"subTitle": "Fresh farm products",
+			"text": "10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!",
+			"img": "http://localhost:5000/assets/images/slider/1.jpg"
+		},
 		{
 			"id": 2,
 			"title": "Fresh vegetables",
@@ -25,16 +25,15 @@
 			"text": "Natural organic tomatoes make your health stronger. Put your information here",
 			"img": "http://localhost:5000/assets/images/slider/3.jpg"
 		}
-		
 	],
 	"offers": [
-        {
-            "id": 1,
-            "img": "http://localhost:5000/assets/images/offerlinks/1.png"
-        },
 		{
-            "id": 12,
-            "img": "http://localhost:5000/assets/images/offerlinks/2.png"
-        }
+			"id": 1,
+			"img": "http://localhost:5000/assets/images/offerlinks/1.png"
+		},
+		{
+			"id": 12,
+			"img": "http://localhost:5000/assets/images/offerlinks/2.png"
+		}
 	]
 }

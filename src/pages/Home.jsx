@@ -1,11 +1,11 @@
 import React from 'react'
-import { MainSlider, OfferLinks} from '../components'
+import { MainSlider, OfferLinks } from '../components'
 
 export const Home = () => {
 	return (
-        <div>
-            <MainSlider />
-            <OfferLinks />
-        </div>
-    )
+		<div>
+			<MainSlider />
+			<OfferLinks />
+		</div>
+	)
 }
