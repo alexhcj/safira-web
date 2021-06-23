@@ -28,16 +28,11 @@
 	],
 	"offers": [
 		{
-<<<<<<< HEAD
-			"id": 1,
-			"img": "http://localhost:5000/assets/images/offerlinks/1.png"
-		},
-		{
-			"id": 12,
-			"img": "http://localhost:5000/assets/images/offerlinks/2.png"
-		}
-=======
             "id": 12,
+            "img": "http://localhost:5000/assets/images/offerlinks/1.png"
+        },
+		{
+            "id": 2,
             "img": "http://localhost:5000/assets/images/offerlinks/2.png"
         }
 	],
@@ -90,6 +85,5 @@
 			"tags": ["Free"],
 			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
         }
->>>>>>> 22c26d89c9d616dfc72a686c28144f145c070ae4
 	]
 }
