@@ -1,6 +1,7 @@
 .section {
     padding-top: 80px;
-    padding-top: 70px;
+    padding-bottom: 70px;
+    background: #F4F4F4;
 }
 .block {
     display: flex;
@@ -24,6 +25,7 @@
     letter-spacing: 0.02em;
     color: #222222;
     margin-top: 2px;
+    margin-bottom: 30px;
 }
 .slide {
     width: 33%;
@@ -33,4 +35,52 @@
     width: 100%;
     height: 100%;
     background-color: #000000;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+}
+.content__wrapper {
+    background-color: #FFF;
+    height: 415px;
+    width: 362px;
+}
+.img {
+    width: 362px;
+    height: 280px;
+}
+.date {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    margin: 24px 0 0 20px;
+}
+.tags {
+    color: #40A944;
+}
+.text {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    margin: 9px 0 17px 20px;
+}
+.link {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    margin-left: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.arrow__img {
+    margin-left: 10px;
 }
