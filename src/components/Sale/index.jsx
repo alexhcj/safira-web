@@ -24,7 +24,7 @@ export const Sale = () => {
     {sale.map((sale) => {
       let { id, title, img, saleInfo, description} = sale
       return (
-        <div className={s.block}>
+        <div key={id} className={s.block}>
           <img className={s.img} src={img}/>
           <div className="container">
             <h3 className={s.title}>{title}</h3>

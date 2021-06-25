@@ -101,8 +101,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "false"
+			"sale": true,
+			"new": false
 		},
 		{
 			"id": 2,
@@ -113,8 +113,8 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-			"sale": "false",
-			"new": "true"
+			"sale": false,
+			"new": true
 		},
 		{
 			"id": 3,
@@ -125,8 +125,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "true"
+			"sale": true,
+			"new": true
 		},
 		{
 			"id": 4,
@@ -137,8 +137,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-			"sale": "false",
-			"new": "false"
+			"sale": false,
+			"new": false
 		},
 		{
 			"id": 5,
@@ -149,8 +149,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "false"
+			"sale": true,
+			"new": false
 		},
 		{
 			"id": 6,
@@ -161,8 +161,8 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-			"sale": "false",
-			"new": "true"
+			"sale": false,
+			"new": true
 		},
 		{
 			"id": 7,
@@ -173,8 +173,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "true"
+			"sale": true,
+			"new": true
 		},
 		{
 			"id": 8,
@@ -185,8 +185,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-			"sale": "false",
-			"new": "false"
+			"sale": false,
+			"new": false
 		},
 		{
 			"id": 9,
@@ -197,8 +197,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "false"
+			"sale": true,
+			"new": false
 		},
 		{
 			"id": 10,
@@ -209,8 +209,8 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-			"sale": "false",
-			"new": "true"
+			"sale": false,
+			"new": true
 		},
 		{
 			"id": 11,
@@ -221,8 +221,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "true"
+			"sale": true,
+			"new": true
 		},
 		{
 			"id": 12,
@@ -233,8 +233,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-			"sale": "false",
-			"new": "false"
+			"sale": false,
+			"new": false
 		},
 		{
 			"id": 13,
@@ -245,8 +245,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "false"
+			"sale": true,
+			"new": false
 		},
 		{
 			"id": 14,
@@ -257,8 +257,8 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-			"sale": "false",
-			"new": "true"
+			"sale": false,
+			"new": true
 		},
 		{
 			"id": 15,
@@ -269,8 +269,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "true"
+			"sale": true,
+			"new": true
 		},
 		{
 			"id": 16,
@@ -281,8 +281,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-			"sale": "false",
-			"new": "false"
+			"sale": false,
+			"new": false
 		},
 		{
 			"id": 17,
@@ -293,8 +293,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "false"
+			"sale": true,
+			"new": false
 		},
 		{
 			"id": 18,
@@ -305,8 +305,8 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-			"sale": "false",
-			"new": "true"
+			"sale": false,
+			"new": true
 		},
 		{
 			"id": 19,
@@ -317,8 +317,8 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"sale": "true",
-			"new": "true"
+			"sale": true,
+			"new": true
 		},
 		{
 			"id": 20,
@@ -329,8 +329,21 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-			"sale": "false",
-			"new": "false"
+			"sale": false,
+			"new": false
+		}
+	],
+	"dealweek": [
+		{
+			"id": 1,
+			"name": "Capusta",
+			"price": "14.88$",
+			"newprice": "10.49$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"category": "Vegetables",
+			"time": 360000,
+			"sale": true,
+			"new": false
 		}
 	]
 }
