@@ -1,3 +1,7 @@
+.list {
+    bottom: 15px;
+}
+
 .item {
     position: relative;
     user-select: none;
@@ -22,6 +26,7 @@
 
 .title {
     margin-bottom: 8px;
+    text-transform: capitalize;
     line-height: 48px;
     font-size: 48px;
     font-weight: 600;
@@ -29,6 +34,7 @@
 
 .subTitle {
     margin-bottom: 18px;
+    text-transform: capitalize;
     line-height: 36px;
     font-size: 36px;
     font-weight: 300;
@@ -36,7 +42,7 @@
 
 .text {
     margin-bottom: 40px;
-    max-width: 400px;
+    max-width: 420px;
     line-height: 22px;
     font-size: 16px;
 }
