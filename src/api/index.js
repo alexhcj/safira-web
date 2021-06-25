@@ -8,3 +8,5 @@ export const instance = axios.create({
 export { sliderAPI } from './slider-api'
 export { offersAPI } from './offers-api'
 export { postsAPI } from './posts-api'
+export { saleAPI } from './sale-api'
+export { dealweekAPI } from './dealweek-api'
