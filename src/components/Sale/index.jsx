@@ -25,8 +25,9 @@ export const Sale = () => {
       let { id, title, img, saleInfo, description} = sale
       return (
         <div key={id} className={s.block}>
-          <img className={s.img} src={img}/>
-          <div className="container">
+          <img alt={title} className={s.img} src={img}/>
+          <div className={"container " + s.wrapper} >
+          
             <h3 className={s.title}>{title}</h3>
             <h2 className={s.sale__info}>{saleInfo}</h2>
             <h4 className={s.decription}>{description}</h4>

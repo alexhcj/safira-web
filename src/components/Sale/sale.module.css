@@ -1,10 +1,9 @@
 .section {
     background-color:var(--color-light);
-    
+    margin-bottom: 65px;
 }
 .img {
-    position: absolute;
-    z-index: 1;
+    margin: 0 auto;
 }
 .title {
     z-index: 2;
@@ -17,10 +16,11 @@
     color: var(--color-primary);
     text-transform: uppercase;
     margin-top: 55px;
+    margin-bottom: 9px;
 }
 .block {
-    height: 317px;
-    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .sale__info {
     font-family: Work Sans;
@@ -31,7 +31,7 @@
     letter-spacing: 0.01em;
     color: var(--color-dark);
 }
-.description {
+.decription {
     font-family: Work Sans;
     font-style: normal;
     font-weight: normal;
@@ -39,6 +39,9 @@
     line-height: 30px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: var(--color-dark);
-    padding-bottom: 45px;
+    margin-bottom: 45px;
+}
+.wrapper {
+    position: absolute;
+    z-index: 2;
 }

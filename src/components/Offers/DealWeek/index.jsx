@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { dealweekAPI } from "../../../api/dealweek-api";
+import { dealweekAPI } from "../../../api/";
 import s from "./dealweek.module.css";
 import { Button } from "../../Button"
 import { Timer } from "../Timer";
@@ -25,15 +25,20 @@ export const DealWeek = () => {
     <div className={s.block}>
       <h3 className={s.heading}>Deals Of The Week</h3>
       {deal.map((theDeal) => {
-        let { id, name, price, newprice, img, sale, category} = theDeal
+        let { id, name, price, newprice, img, sale, category, newP} = theDeal
         let saleTxt = ''
+        let newTxt = ''
         if(sale==true){
           saleTxt = 'SALE'
+        }
+        if(newP==true){
+          newTxt = 'NEW'
         }
 
         return (
           <div>
             <p className={s.sale}>{saleTxt}</p>
+            <p className={s.new}>{newTxt}</p>
             <div key={id} className={s.wrapper}>
                 <img className={s.img} src={img} alt=""/>
               <h2 className={s.name}>{name}</h2>

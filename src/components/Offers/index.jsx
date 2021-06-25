@@ -8,10 +8,16 @@ export const Offers = () => {
     return (
         <div className={s.section}>
             <div className="container">
-                <DealWeek />
-                <SpecialOffer />
-                <BestSellers />
-                <NewProducts />
+                <div className={s.wrapper}>
+                    <div>
+                        <DealWeek />
+                        <SpecialOffer />
+                    </div>
+                    <div>
+                        <BestSellers />
+                        <NewProducts />
+                    </div>
+                </div>
             </div>
         </div>
     )

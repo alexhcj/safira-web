@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainSlider, OfferLinks, OurBlog, Sale, Mostview, Offers} from '../components'
+import { MainSlider, OfferLinks, OurBlog, Sale, Mostview, Offers, FeaturedProducts} from '../components'
 
 export const Home = () => {
 	return (
@@ -10,6 +10,7 @@ export const Home = () => {
             <Sale />
             <Mostview />
             <OurBlog />
+            <FeaturedProducts />
         </div>
     )
 }

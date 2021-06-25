@@ -51,11 +51,11 @@ export const OurBlog = () => {
         <Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
           {slides.map((slide) => {
 				let { id, date, img, text, tags } = slide
-				text = text.substr(0, 75)+'...'
+				text = text.substr(0, 62)+'...'
 				return (
         <div className={s.item} key={id}>
 			<div className={s.content__wrapper}>
-				<img className={s.img} src={img}/>
+				<img alt='post' className={s.img} src={img}/>
 				<p className={s.date}>{date} | <span className={s.tags}>{tags[0] + ' / ' + tags[1]}</span></p>
 				<p className={s.text}>{text}</p>
 				<NavLink className={s.link} to='/blog'>

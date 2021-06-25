@@ -1,0 +1,97 @@
+.section {
+    margin-bottom: 50px;
+}
+.img {
+    width: 212px;
+    height: 212px;
+}
+.block {
+   text-align: center;
+}
+.above_heading {
+    font-family: Playfair Display;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--color-dark);
+    margin-bottom: 2px;
+}
+.heading {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 35px;
+    color: var(--color-dark);
+    margin-bottom: 30px;
+}
+.sale {
+    position: absolute;
+    z-index: 2;
+    margin-top: 20px;
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--color-white);
+    padding: 0 4px;
+    background: var(--color-primary);
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 20px;
+}
+.new {
+    position: absolute;
+    z-index: 2;
+    margin-top: 20px;
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--color-white);
+    padding: 0 4px;
+    background: var(--color-primary);
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 152px;
+}
+.price {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 16px;
+    color: var(--color-primary);
+}
+.oldprice {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 16px;
+    text-decoration-line: line-through;
+    color: var(--color-dark);
+    margin-left: 10px;
+}
+.name {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 15px;
+    color: var(--color-dark);
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+.category {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--color-dark);
+    margin-bottom: 23px;
+}
