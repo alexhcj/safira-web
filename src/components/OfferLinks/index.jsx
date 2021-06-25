@@ -19,20 +19,8 @@ export const OfferLinks = () => {
 		fetchData()
 	}, [])
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await offersAPI.getOffers()
-				setOffers(data)
-			} catch (e) {
-				console.log(e)
-			}
-		}
 
-		fetchData()
-	}, [])
-    
-	return (
+    return (
 		<div className={s.section}>
 			<div className='container'>
 				<div className={s.block}>

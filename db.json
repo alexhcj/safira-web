@@ -1,8 +1,4 @@
 {
-	"products": [
-		{ "id": 1, "title": "json-server", "desc": "typicode", "img": "123", "price": "123", "reviews": "52" },
-		{ "id": 2, "title": "json-server", "desc": "typicode", "img": "123", "price": "123", "reviews": "52" }
-	],
 	"slider": [
 		{
 			"id": 1,
@@ -36,7 +32,7 @@
             "img": "http://localhost:5000/assets/images/offerlinks/2.png"
         }
 	],
-	"blogPosts": [
+	"posts": [
         {
             "id": 1,
 			"title": "Funny Story",
@@ -85,5 +81,256 @@
 			"tags": ["Free"],
 			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
         }
+	],
+	"sale": [
+		{
+			"id": 1,
+			"title": "Black Friday !",
+			"saleInfo": "Sale 50% OFF",
+			"description": "all vegetable products",
+			"img": "http://localhost:5000/assets/images/sale/1.png"
+		}
+	],
+	"products": [
+		{
+			"id": 1,
+			"name": "Cucumber",
+			"description": "trust me, ok? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 23,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "false"
+		},
+		{
+			"id": 2,
+			"name": "Onion",
+			"description": "Don't trust him! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "666.66$",
+			"newprice": "11.11$",
+			"img": "http://localhost:5000/assets/images/products/2.jpg",
+			"quantity": 78,
+			"category": "Fruits",
+			"sale": "false",
+			"new": "true"
+		},
+		{
+			"id": 3,
+			"name": "Carrot",
+			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 7,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "true"
+		},
+		{
+			"id": 4,
+			"name": "Looser",
+			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "14.88$",
+			"newprice": "",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 777,
+			"category": "Vegetables",
+			"sale": "false",
+			"new": "false"
+		},
+		{
+			"id": 5,
+			"name": "Cucumber",
+			"description": "trust me, ok? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 23,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "false"
+		},
+		{
+			"id": 6,
+			"name": "Onion",
+			"description": "Don't trust him! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "666.66$",
+			"newprice": "11.11$",
+			"img": "http://localhost:5000/assets/images/products/2.jpg",
+			"quantity": 78,
+			"category": "Fruits",
+			"sale": "false",
+			"new": "true"
+		},
+		{
+			"id": 7,
+			"name": "Carrot",
+			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 7,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "true"
+		},
+		{
+			"id": 8,
+			"name": "Looser",
+			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "14.88$",
+			"newprice": "",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 777,
+			"category": "Vegetables",
+			"sale": "false",
+			"new": "false"
+		},
+		{
+			"id": 9,
+			"name": "Cucumber",
+			"description": "trust me, ok? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 23,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "false"
+		},
+		{
+			"id": 10,
+			"name": "Onion",
+			"description": "Don't trust him! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "666.66$",
+			"newprice": "11.11$",
+			"img": "http://localhost:5000/assets/images/products/2.jpg",
+			"quantity": 78,
+			"category": "Fruits",
+			"sale": "false",
+			"new": "true"
+		},
+		{
+			"id": 11,
+			"name": "Carrot",
+			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 7,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "true"
+		},
+		{
+			"id": 12,
+			"name": "Looser",
+			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "14.88$",
+			"newprice": "",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 777,
+			"category": "Vegetables",
+			"sale": "false",
+			"new": "false"
+		},
+		{
+			"id": 13,
+			"name": "Cucumber",
+			"description": "trust me, ok? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 23,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "false"
+		},
+		{
+			"id": 14,
+			"name": "Onion",
+			"description": "Don't trust him! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "666.66$",
+			"newprice": "11.11$",
+			"img": "http://localhost:5000/assets/images/products/2.jpg",
+			"quantity": 78,
+			"category": "Fruits",
+			"sale": "false",
+			"new": "true"
+		},
+		{
+			"id": 15,
+			"name": "Carrot",
+			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 7,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "true"
+		},
+		{
+			"id": 16,
+			"name": "Looser",
+			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "14.88$",
+			"newprice": "",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 777,
+			"category": "Vegetables",
+			"sale": "false",
+			"new": "false"
+		},
+		{
+			"id": 17,
+			"name": "Cucumber",
+			"description": "trust me, ok? Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 23,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "false"
+		},
+		{
+			"id": 18,
+			"name": "Onion",
+			"description": "Don't trust him! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "666.66$",
+			"newprice": "11.11$",
+			"img": "http://localhost:5000/assets/images/products/2.jpg",
+			"quantity": 78,
+			"category": "Fruits",
+			"sale": "false",
+			"new": "true"
+		},
+		{
+			"id": 19,
+			"name": "Carrot",
+			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "23.32$",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 7,
+			"category": "Vegetables",
+			"sale": "true",
+			"new": "true"
+		},
+		{
+			"id": 20,
+			"name": "Looser",
+			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"price": "14.88$",
+			"newprice": "",
+			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"quantity": 777,
+			"category": "Vegetables",
+			"sale": "false",
+			"new": "false"
+		}
 	]
 }
