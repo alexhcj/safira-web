@@ -1,22 +1,20 @@
 .section {
-    background-color:var(--color-light);
-    
+    position: relative;
+    margin-bottom: 65px;
+    background-color: var(--color-light); 
 }
 .img {
     position: absolute;
-    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .title {
-    z-index: 2;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
+    font-family: 'Work Sans', sans-serif;
+    text-transform: uppercase;
     line-height: 24px;
+    font-size: 20px;
     letter-spacing: 0.01em;
     color: var(--color-primary);
-    text-transform: uppercase;
-    margin-top: 55px;
 }
 .block {
     height: 317px;

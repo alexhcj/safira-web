@@ -19,13 +19,13 @@ export const OfferLinks = () => {
 		fetchData()
 	}, [])
 
-    return (
+	return (
 		<div className={s.section}>
 			<div className='container'>
 				<div className={s.block}>
 					{offers.map((offer) => {
 						const { id, img } = offer
-                        
+
 						return (
 							<NavLink className={s.link} to='/shop'>
 								<img key={id} src={img} alt='' />

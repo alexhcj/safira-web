@@ -6,16 +6,13 @@ button {
     border-radius: 50%;
     transition: var(--transition-slider-control);
 }
-
 .active {
     background-color: var(--color-primary);
 }
-
 .inactive {
     box-shadow: 0px 0px 0px 2px var(--color-white) inset;
     background-color: var(--color-light);
 }
-
 .inactive:hover {
     box-shadow: 0px 0px 0px 2px var(--color-primary) inset;
     background-color: var(--color-primary);

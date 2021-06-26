@@ -48,15 +48,16 @@ export const MainSlider = () => {
 	return (
 		<Carousel
 			responsive={responsive}
-            // autoPlay={true}
-            // autoPlaySpeed={5000}
-            transitionDuration={300}
+			// autoPlay={true}
+			// autoPlaySpeed={5000}
+			transitionDuration={300}
 			swipeable={true}
 			draggable={true}
 			showDots={true}
-            // infinite={true}
+			// infinite={true}
 			arrows={false}
-            dotListClass={s.list}
+			dotListClass={s.list}
+			containerClass={s.slider}
 			customDot={<Dot />}
 		>
 			{slides.map((slide) => {
@@ -86,5 +87,3 @@ export const MainSlider = () => {
 // : infinite param causes 2nd slide appear when page renders
 // : if add isLoading state => will appear always last slide and no matter of quantity slides in db
 // : if no isLoading state => will appear last - 1 slide
-
-// TODO: check animation speed atc of slider
