@@ -28,59 +28,59 @@
             "img": "http://localhost:5000/assets/images/offerlinks/1.png"
         },
 		{
-            "id": 2,
-            "img": "http://localhost:5000/assets/images/offerlinks/2.png"
-        }
+			"id": 2,
+			"img": "http://localhost:5000/assets/images/offerlinks/2.png"
+		}
 	],
 	"posts": [
-        {
-            "id": 1,
+		{
+			"id": 1,
 			"title": "Funny Story",
 			"date": "23/6/2021",
-            "img": "http://localhost:5000/assets/images/posts/1.png",
+			"img": "http://localhost:5000/assets/images/posts/1.png",
 			"tags": ["specials", "holiday"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        },
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		},
 		{
-            "id": 2,
+			"id": 2,
 			"title": "About Fruits",
 			"date": "24/6/2021",
-            "img": "http://localhost:5000/assets/images/posts/2.png",
+			"img": "http://localhost:5000/assets/images/posts/2.png",
 			"tags": ["specials"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        },
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		},
 		{
-            "id": 3,
+			"id": 3,
 			"title": "Special!",
 			"date": "25/6/2021",
-            "img": "http://localhost:5000/assets/images/posts/3.png",
+			"img": "http://localhost:5000/assets/images/posts/3.png",
 			"tags": ["halloween", "holiday"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        },
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		},
 		{
-            "id": 4,
+			"id": 4,
 			"title": "Check Description",
 			"date": "29/6/2021",
-            "img": "http://localhost:5000/assets/images/posts/1.png",
+			"img": "http://localhost:5000/assets/images/posts/1.png",
 			"tags": ["New Year", "holiday"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        },
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		},
 		{
-            "id": 5,
+			"id": 5,
 			"title": "New Products",
 			"date": "02/7/2021",
-            "img": "http://localhost:5000/assets/images/posts/2.png",
+			"img": "http://localhost:5000/assets/images/posts/2.png",
 			"tags": ["specials", "holiday"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        },
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		},
 		{
-            "id": 6,
+			"id": 6,
 			"title": "Halloweeeeen!",
 			"date": "04/7/2021",
-            "img": "http://localhost:5000/assets/images/posts/3.png",
+			"img": "http://localhost:5000/assets/images/posts/3.png",
 			"tags": ["Free"],
-			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt." 
-        }
+			"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloribus itaque nulla, ratione laboriosam quisquam dolorum expedita libero facere eius repellat qui suscipit illum a fuga odio velit. sint laboriosam explicabo asperiores eaque minus, magnam nesciunt."
+		}
 	],
 	"sale": [
 		{
@@ -102,7 +102,7 @@
 			"quantity": 23,
 			"category": "Vegetables",
 			"sale": true,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 2,
@@ -114,7 +114,7 @@
 			"quantity": 78,
 			"category": "Fruits",
 			"sale": false,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 3,
@@ -122,23 +122,23 @@
 			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "23.32$",
 			"newprice": "13.31$",
-			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"img": "http://localhost:5000/assets/images/products/3.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
 			"sale": true,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 4,
 			"name": "Looser",
 			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "14.88$",
-			"newprice": "",
-			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"newprice": "13.31$",
+			"img": "http://localhost:5000/assets/images/products/4.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
 			"sale": false,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 5,
@@ -150,7 +150,7 @@
 			"quantity": 23,
 			"category": "Vegetables",
 			"sale": true,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 6,
@@ -162,7 +162,7 @@
 			"quantity": 78,
 			"category": "Fruits",
 			"sale": false,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 7,
@@ -170,23 +170,23 @@
 			"description": "Lie is everywhere! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "23.32$",
 			"newprice": "13.31$",
-			"img": "http://localhost:5000/assets/images/products/1.jpg",
+			"img": "http://localhost:5000/assets/images/products/3.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
 			"sale": true,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 8,
 			"name": "Looser",
 			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "14.88$",
-			"newprice": "",
+			"newprice": "13.31$",
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
 			"sale": false,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 9,
@@ -198,7 +198,7 @@
 			"quantity": 23,
 			"category": "Vegetables",
 			"sale": true,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 10,
@@ -210,7 +210,7 @@
 			"quantity": 78,
 			"category": "Fruits",
 			"sale": false,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 11,
@@ -222,19 +222,19 @@
 			"quantity": 7,
 			"category": "Vegetables",
 			"sale": true,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 12,
 			"name": "Looser",
 			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "14.88$",
-			"newprice": "",
+			"newprice": "13.31$",
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
 			"sale": false,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 13,
@@ -246,7 +246,7 @@
 			"quantity": 23,
 			"category": "Vegetables",
 			"sale": true,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 14,
@@ -258,7 +258,7 @@
 			"quantity": 78,
 			"category": "Fruits",
 			"sale": false,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 15,
@@ -270,7 +270,7 @@
 			"quantity": 7,
 			"category": "Vegetables",
 			"sale": true,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 16,
@@ -282,7 +282,7 @@
 			"quantity": 777,
 			"category": "Vegetables",
 			"sale": false,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 17,
@@ -294,7 +294,7 @@
 			"quantity": 23,
 			"category": "Vegetables",
 			"sale": true,
-			"new": false
+			"newProduct": false
 		},
 		{
 			"id": 18,
@@ -306,7 +306,7 @@
 			"quantity": 78,
 			"category": "Fruits",
 			"sale": false,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 19,
@@ -318,19 +318,19 @@
 			"quantity": 7,
 			"category": "Vegetables",
 			"sale": true,
-			"new": true
+			"newProduct": true
 		},
 		{
 			"id": 20,
 			"name": "Looser",
 			"description": "Look at me! Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 			"price": "14.88$",
-			"newprice": "",
+			"newprice": "13.31$",
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
 			"sale": false,
-			"new": false
+			"newProduct": false
 		}
 	],
 	"dealweek": [
@@ -343,7 +343,13 @@
 			"category": "Vegetables",
 			"time": 360000,
 			"sale": true,
-			"new": false
+			"newP": true
+		}
+	],
+	"specialoffer": [
+		{
+			"id": 1,
+			"img": "http://localhost:5000/assets/images/specialOffers/1.png"
 		}
 	]
 }

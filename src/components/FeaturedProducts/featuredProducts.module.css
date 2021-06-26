@@ -1,3 +1,77 @@
-.slider {
-  color: black;
+.section {
+  margin-bottom: 70px;
+  text-align: center;
 }
+.img {
+  width: 120px;
+  height: 120px;
+}
+.above_heading {
+  font-family: Playfair Display;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: var(--color-dark);
+  padding-top: 60px;
+}
+.wrapper {
+  margin-bottom: 70px;
+  border-bottom: 1px solid var(--color-border);
+}
+.heading {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 35px;
+  letter-spacing: 0.02em;
+  
+  margin-bottom: 30px;
+  color: var(--color-dark);
+}
+.price {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 16px;
+  color: var(--color-primary);
+}
+.product {
+  display: flex;
+  margin-bottom: 56px;
+}
+.oldprice {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 16px;
+  text-decoration-line: line-through;
+  color: var(--color-dark);
+  margin-left: 10px;
+}
+.name {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 15px;
+  color: var(--color-dark);
+  margin-bottom: 18px;
+}
+.category {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--color-dark);
+  margin-bottom: 15px;
+}
+.product__info {
+  margin-left: 16px;
+}
+

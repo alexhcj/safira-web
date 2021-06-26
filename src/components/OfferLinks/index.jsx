@@ -28,7 +28,7 @@ export const OfferLinks = () => {
 
 						return (
 							<NavLink className={s.link} to='/shop'>
-								<img key={id} src={img} alt='' />
+								<img key={id} src={img} alt='offer' />
 							</NavLink>
 						)
 					})}

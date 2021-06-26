@@ -2,4 +2,9 @@
     margin-bottom: 65px;
     background-color: var(--color-light);
     padding: 70px 0;
+    margin-bottom: 65px;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
 }

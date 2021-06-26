@@ -17,8 +17,8 @@
     color: var(--color-primary);
 }
 .block {
-    height: 317px;
-    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .sale__info {
     font-family: Work Sans;
@@ -29,7 +29,7 @@
     letter-spacing: 0.01em;
     color: var(--color-dark);
 }
-.description {
+.decription {
     font-family: Work Sans;
     font-style: normal;
     font-weight: normal;
@@ -37,6 +37,9 @@
     line-height: 30px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: var(--color-dark);
-    padding-bottom: 45px;
+    margin-bottom: 45px;
+}
+.wrapper {
+    position: absolute;
+    z-index: 2;
 }
