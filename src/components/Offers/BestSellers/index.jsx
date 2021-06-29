@@ -1,11 +1,11 @@
-import s from "./bestsellers.module.css";
+import s from './bestsellers.module.css'
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../../api'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
 export const BestSellers = () => {
-  const [bestsellers, setBestsellers] = useState([])
+	const [bestsellers, setBestsellers] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -40,38 +40,40 @@ export const BestSellers = () => {
 	}
 
 	return (
-    <div className={s.block}>
-      <h3 className={s.heading}>Best Sellers</h3>
-		<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
-			{bestsellers.map((slide) => {
-				const { id, name, img, category, price, newprice } = slide
-        
-				return (
-					<div className={s.item} key={id}>
-						<div className={s.product}>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-            </div>
-            <div className={s.product}>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-            </div>
-          </div>
-        )
-      
-			})}
-      
-		</Carousel>
-    
-    </div>
+		<div className={s.block}>
+			<h3 className={s.heading}>Best Sellers</h3>
+			<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
+				{bestsellers.map((slide) => {
+					const { id, name, img, category, price, newprice } = slide
+
+					return (
+						<div className={s.item} key={id}>
+							<div className={s.product}>
+								<img className={s.img} src={img} alt={name} />
+								<div className={s.product__info}>
+									<h3 className={s.name}>{name}</h3>
+									<h4 className={s.category}>{category}</h4>
+									<p className={s.price}>
+										{newprice}
+										<span className={s.oldprice}>{price}</span>
+									</p>
+								</div>
+							</div>
+							<div className={s.product}>
+								<img className={s.img} src={img} alt={name} />
+								<div className={s.product__info}>
+									<h3 className={s.name}>{name}</h3>
+									<h4 className={s.category}>{category}</h4>
+									<p className={s.price}>
+										{newprice}
+										<span className={s.oldprice}>{price}</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					)
+				})}
+			</Carousel>
+		</div>
 	)
- 
-};
+}

@@ -1,33 +1,29 @@
 .heading {
-    width: 366px;
     text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    border-radius: 10px 10px 0px 0px;
+    font-family: 'Work Sans', sans-serif;
     color: var(--color-white);
     background-color: var(--color-primary);
-    border-radius: 10px 10px 0px 0px;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 50px;
 }
 .wrapper {
-    background-color: var(--color-white);
-    width: 366px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 620px;
+    padding: 20px 20px 30px;
+    background-color: var(--color-white);
 }
 .img {
+    margin-bottom: 16px;
     width: 326px;
-    padding-top: 20px;
     height: 326px;
 }
 .sale {
     position: absolute;
     z-index: 2;
     margin-top: 39px;
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -40,7 +36,7 @@
     margin-left: 44px;
 }
 .name {
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -49,7 +45,7 @@
     margin-top: 16px;
 }
 .category {
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -58,7 +54,7 @@
     margin-top: 16px;
 }
 .price {
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 17px;
@@ -67,7 +63,7 @@
     margin-top: 12px;
 }
 .newprice {
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -80,7 +76,7 @@
     position: absolute;
     z-index: 2;
     margin-top: 39px;
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
