@@ -35,15 +35,17 @@ export const DealWeek = () => {
 
 				return (
 					<div key={id} className={s.wrapper}>
-						<span className={s.sale}>{saleTxt}</span>
-						<span className={s.new}>{newTxt}</span>
+						<div className={s.tags}>
+							<span className={`${s.tag} ${s.sale}`}>{saleTxt}</span>
+							<span className={`${s.tag} ${s.new}`}>{newTxt}</span>
+						</div>
 						<div className={s.content}>
 							<img className={s.img} src={img} alt='' />
 							<h2 className={s.name}>{name}</h2>
 							<h3 className={s.category}>{category}</h3>
-							<p className={s.price}>
-								{price}
-								<span className={s.newprice}>{newprice}</span>
+							<p className={s.newprice}>
+								{newprice}
+								<span className={s.price}>{price}</span>
 							</p>
 							<Timer />
 							<Button text='add to cart' />
