@@ -23,6 +23,7 @@ export const DealWeek = () => {
 	return (
 		<div className={s.block}>
 			<h3 className={s.heading}>Deals Of The Week</h3>
+
 			{deal.map((theDeal) => {
 				let { id, name, price, newprice, img, category, tags } = theDeal
 
@@ -50,5 +51,3 @@ export const DealWeek = () => {
 		</div>
 	)
 }
-
-// TODO: check letter-spacing

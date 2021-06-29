@@ -1,45 +1,38 @@
 .section {
     position: relative;
+    height: 317px;
     margin-bottom: 65px;
-    background-color: var(--color-light); 
+    background-color: var(--color-light);
 }
 .img {
     position: absolute;
+    height: 100%;
     left: 50%;
     transform: translateX(-50%);
-}
-.title {
-    font-family: 'Work Sans', sans-serif;
-    text-transform: uppercase;
-    line-height: 24px;
-    font-size: 20px;
-    letter-spacing: 0.01em;
-    color: var(--color-primary);
+    object-fit: none;
 }
 .block {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    height: 100%;
+    opacity: .999;
+}
+.title {
+    text-transform: uppercase;
+    line-height: 24px;
+    font-size: 20px;
+    color: var(--color-primary);
 }
 .sale__info {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 46px;
     line-height: 50px;
-    letter-spacing: 0.01em;
+    font-size: 46px;
+    font-weight: 500;
     color: var(--color-dark);
 }
 .decription {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 30px;
-    letter-spacing: 0.01em;
     text-transform: uppercase;
+    line-height: 30px;
+    font-size: 28px;
     margin-bottom: 45px;
-}
-.wrapper {
-    position: absolute;
-    z-index: 2;
 }
