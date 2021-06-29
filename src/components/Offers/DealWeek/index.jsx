@@ -3,6 +3,7 @@ import { dealweekAPI } from '../../../api/'
 import s from './dealweek.module.css'
 import { Button } from '../../Button'
 import { Timer } from '../Timer'
+import { Tag } from '../../UI/Tag'
 
 export const DealWeek = () => {
 	const [deal, setDeal] = useState([])
@@ -23,21 +24,14 @@ export const DealWeek = () => {
 		<div className={s.block}>
 			<h3 className={s.heading}>Deals Of The Week</h3>
 			{deal.map((theDeal) => {
-				let { id, name, price, newprice, img, sale, category, newP } = theDeal
-				let saleTxt = ''
-				let newTxt = ''
-				if (sale === true) {
-					saleTxt = 'SALE'
-				}
-				if (newP === true) {
-					newTxt = 'NEW'
-				}
+				let { id, name, price, newprice, img, category, tags } = theDeal
 
 				return (
 					<div key={id} className={s.wrapper}>
 						<div className={s.tags}>
-							<span className={`${s.tag} ${s.sale}`}>{saleTxt}</span>
-							<span className={`${s.tag} ${s.new}`}>{newTxt}</span>
+							{tags.map((tag, index) => (
+								<Tag text={tag} key={index} />
+							))}
 						</div>
 						<div className={s.content}>
 							<img className={s.img} src={img} alt='' />

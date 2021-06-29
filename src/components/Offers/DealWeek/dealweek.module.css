@@ -21,16 +21,6 @@
     width: 100%;
     padding: 20px 40px 0;
 }
-.tag {
-    text-align: center;
-    min-width: 40px;
-    padding: 0 4px;
-    line-height: 20px;
-    font-size: 12px;
-    border-radius: 5px;
-    color: var(--color-white);
-    background: var(--color-primary);
-}
 .content {
     text-align: center;   
 }

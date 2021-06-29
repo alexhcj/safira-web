@@ -342,8 +342,7 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"category": "Vegetables",
 			"time": 360000,
-			"sale": true,
-			"newP": true
+            "tags": ["new", "sale"]
 		}
 	],
 	"specialoffer": [
