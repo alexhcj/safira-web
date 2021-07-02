@@ -25,8 +25,7 @@ export const DealWeek = () => {
 			<h3 className={s.heading}>Deals Of The Week</h3>
 
 			{deal.map((theDeal) => {
-				let { id, name, price, newprice, img, category, tags } = theDeal
-
+				let { id, name, price, newprice, img, category, tags, time } = theDeal
 				return (
 					<div key={id} className={s.wrapper}>
 						<div className={s.tags}>
@@ -42,7 +41,7 @@ export const DealWeek = () => {
 								{newprice}
 								<span className={s.price}>{price}</span>
 							</p>
-							<Timer />
+							<Timer time={time} />
 							<Button text='add to cart' />
 						</div>
 					</div>
