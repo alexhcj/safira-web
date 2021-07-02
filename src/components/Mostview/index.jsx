@@ -51,10 +51,10 @@ export const Mostview = () => {
         let saleTxt = ''
         let newTxt = ''
         
-        if(sale==true){
+        if(sale===true){
           saleTxt = 'SALE'
         }
-        if(newProduct==true){
+        if(newProduct===true){
           newTxt = 'NEW'
         }
         

@@ -23,13 +23,11 @@ export const Sale = () => {
 		fetchData()
 	}, [])
 
-	console.log(sale)
-
 	let { title, img, saleInfo, description } = sale[0]
 
 	return (
 		<>
-			{!sale ? (
+			{isLoading ? (
 				<div>Loading...</div>
 			) : (
 				<div className={s.section}>
