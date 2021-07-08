@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../../api'
-import { Arrow } from '../../MainSlider/Controls/Arrows'
+import { Arrow } from '../../MainSlider/Controls/Arrow'
 import { Product } from '../../Product'
 import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'

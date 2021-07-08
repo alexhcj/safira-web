@@ -4,7 +4,6 @@ import { Hovermenu } from '../UI/Hovermenu'
 import { Tags } from '../UI/Tags'
 import classNames from 'classnames/bind'
 import s from './product.module.css'
-import { computeHeadingLevel } from '@testing-library/react'
 
 let cx = classNames.bind(s)
 
@@ -43,7 +42,7 @@ export const Product = ({ size, product }) => {
 					<span className={s.oldprice}>{price}</span>
 				</p>
 			</div>
-			{tags.length !== 0 && <Tags tags={tags} />}
+			{tags.length !== 0 && size === 'large' && <Tags tags={tags} />}
 			<Hovermenu menuToggle={menuToggle} size={size} />
 		</div>
 	)

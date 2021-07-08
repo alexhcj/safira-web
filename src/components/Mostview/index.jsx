@@ -4,7 +4,8 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './mostview.module.css'
 import { Product } from '../Product'
-import { Arrow } from '../MainSlider/Controls/Arrows'
+import { Arrow } from '../MainSlider/Controls/Arrow'
+import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
 
 export const Mostview = () => {
 	const [mostview, setMostview] = useState([])
@@ -48,26 +49,26 @@ export const Mostview = () => {
 				<div className={s.block}>
 					<h5 className={s.above_heading}>Recently added our store </h5>
 					<h3 className={s.heading}>Mostview Products</h3>
-					<Carousel
-						responsive={responsive}
-						infinite={true}
-						swipeable={false}
-						draggable={false}
-                        customTransition='transform 250ms ease'
-                        itemClass={s.item}
-						containerClass={s.slider__container}
-						customLeftArrow={<Arrow width={32} height={35} />}
-						customRightArrow={<Arrow width={32} height={35} />}
-					>
-						{mostview.map((product) => {
-							return <Product size='large' key={product.id} product={product} />
-						})}
-					</Carousel>
+					<div className={s.slider}>
+						<Carousel
+							responsive={responsive}
+							infinite={true}
+							swipeable={false}
+							draggable={false}
+							customTransition='transform 250ms ease'
+							containerClass={s.slider__container}
+							itemClass={s.slide}
+							arrows={false}
+							renderButtonGroupOutside={true}
+							customButtonGroup={<ButtonGroup />}
+						>
+							{mostview.map((product) => {
+								return <Product size='large' key={product.id} product={product} />
+							})}
+						</Carousel>
+					</div>
 				</div>
 			</div>
 		</div>
 	)
 }
-
-// TODO: right product margin
-// TODO: product width
