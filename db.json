@@ -167,7 +167,7 @@
 			"img": "http://localhost:5000/assets/images/products/7.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-			"tags": ["new", "sale", "new", "sale"]
+			"tags": ["new", "sale"]
 		},
 		{
 			"id": 8,
