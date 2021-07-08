@@ -24,9 +24,9 @@
 	],
 	"offers": [
 		{
-            "id": 1,
-            "img": "http://localhost:5000/assets/images/offerlinks/1.png"
-        },
+			"id": 1,
+			"img": "http://localhost:5000/assets/images/offerlinks/1.png"
+		},
 		{
 			"id": 2,
 			"img": "http://localhost:5000/assets/images/offerlinks/2.png"
@@ -101,7 +101,7 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"quantity": 23,
 			"category": "Fruits",
-            "tags": ["new"]
+			"tags": ["new"]
 		},
 		{
 			"id": 2,
@@ -112,7 +112,7 @@
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
 			"quantity": 78,
 			"category": "Vegetables",
-            "tags": ["sale"]
+			"tags": ["sale"]
 		},
 		{
 			"id": 3,
@@ -123,7 +123,7 @@
 			"img": "http://localhost:5000/assets/images/products/3.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-            "tags": []
+			"tags": []
 		},
 		{
 			"id": 4,
@@ -134,7 +134,7 @@
 			"img": "http://localhost:5000/assets/images/products/4.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-            "tags": ["new", "sale"]
+			"tags": ["new", "sale"]
 		},
 		{
 			"id": 5,
@@ -145,7 +145,7 @@
 			"img": "http://localhost:5000/assets/images/products/5.jpg",
 			"quantity": 23,
 			"category": "Fruits",
-            "tags": ["new"]
+			"tags": ["new"]
 		},
 		{
 			"id": 6,
@@ -156,7 +156,7 @@
 			"img": "http://localhost:5000/assets/images/products/6.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-            "tags": ["new"]
+			"tags": ["new"]
 		},
 		{
 			"id": 7,
@@ -167,7 +167,7 @@
 			"img": "http://localhost:5000/assets/images/products/7.jpg",
 			"quantity": 7,
 			"category": "Vegetables",
-            "tags": []
+			"tags": ["new", "sale", "new", "sale"]
 		},
 		{
 			"id": 8,
@@ -178,7 +178,7 @@
 			"img": "http://localhost:5000/assets/images/products/8.jpg",
 			"quantity": 92,
 			"category": "Vegetables",
-            "tags": ["new", "sale"]
+			"tags": ["new", "sale"]
 		},
 		{
 			"id": 9,
@@ -189,7 +189,7 @@
 			"img": "http://localhost:5000/assets/images/products/9.jpg",
 			"quantity": 23,
 			"category": "Vegetables",
-            "tags": [ "sale"]
+			"tags": ["sale"]
 		},
 		{
 			"id": 10,
@@ -200,7 +200,7 @@
 			"img": "http://localhost:5000/assets/images/products/10.jpg",
 			"quantity": 78,
 			"category": "Fruits",
-            "tags": []
+			"tags": []
 		},
 		{
 			"id": 11,
@@ -211,7 +211,7 @@
 			"img": "http://localhost:5000/assets/images/products/11.jpg",
 			"quantity": 7,
 			"category": "Fruits",
-            "tags": ["new"]
+			"tags": ["new"]
 		},
 		{
 			"id": 12,
@@ -222,7 +222,7 @@
 			"img": "http://localhost:5000/assets/images/products/12.jpg",
 			"quantity": 777,
 			"category": "Vegetables",
-            "tags": ["sale"]
+			"tags": ["sale"]
 		}
 	],
 	"dealweek": [
@@ -234,7 +234,7 @@
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
 			"category": "Vegetables",
 			"time": 360000,
-            "tags": ["new", "sale"]
+			"tags": ["new", "sale"]
 		}
 	],
 	"specialoffer": [
