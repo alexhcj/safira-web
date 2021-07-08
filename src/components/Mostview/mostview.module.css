@@ -1,97 +1,40 @@
-.section {
-    margin-bottom: 50px;
+.slider__container {
+    padding-right: 32px;
+    padding-left: 32px;
+    /* padding-top: 65px; */
 }
-.img {
-    width: 212px;
-    height: 212px;
+/* slider controls start */
+.slider__container button {
+    top: 26%;
+    left: 0;
+    transform: translateY(-50%);
+}
+.slider__container > button:last-child {
+    right: 0;
+    transform: translateY(-50%) scale(-1);
+}
+.item {
+    padding-right: 20px;
+}
+/* slider controls end */
+.section {
+    margin-bottom: 35px; /* product item mb30px */
 }
 .block {
    text-align: center;
 }
 .above_heading {
-    font-family: Playfair Display;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 24px;
-    color: var(--color-dark);
     margin-bottom: 2px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    line-height: 24px;
+    font-size: 15px;
+    color: var(--color-dark);
 }
 .heading {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 35px;
-    color: var(--color-dark);
     margin-bottom: 30px;
-}
-.sale {
-    position: absolute;
-    z-index: 2;
-    margin-top: 20px;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 20px;
-    color: var(--color-white);
-    padding: 0 4px;
-    background: var(--color-primary);
-    border-radius: 5px;
-    text-align: center;
-    margin-left: 20px;
-}
-.new {
-    position: absolute;
-    z-index: 2;
-    margin-top: 20px;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 20px;
-    color: var(--color-white);
-    padding: 0 4px;
-    background: var(--color-primary);
-    border-radius: 5px;
-    text-align: center;
-    margin-left: 152px;
-}
-.price {
-    font-family: Work Sans;
-    font-style: normal;
     font-weight: 500;
-    font-size: 17px;
-    line-height: 16px;
-    color: var(--color-primary);
-}
-.oldprice {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 16px;
-    text-decoration-line: line-through;
+    line-height: 35px;
+    font-size: 32px;
     color: var(--color-dark);
-    margin-left: 10px;
-}
-.name {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 15px;
-    color: var(--color-dark);
-    margin-bottom: 16px;
-    margin-top: 16px;
-}
-.category {
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 12px;
-    color: var(--color-dark);
-    margin-bottom: 23px;
 }

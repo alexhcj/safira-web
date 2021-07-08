@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import s from './offerlinks.module.css'
-import { offersAPI } from '../../api'
 import { NavLink } from 'react-router-dom'
+import { offersAPI } from '../../api'
+import s from './offerlinks.module.css'
 
 export const OfferLinks = () => {
 	const [offers, setOffers] = useState([])

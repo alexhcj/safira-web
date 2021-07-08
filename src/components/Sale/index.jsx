@@ -1,15 +1,15 @@
 import s from './sale.module.css'
 import { useEffect, useState } from 'react'
 import { saleAPI } from '../../api'
-import { Button } from '../Button'
+import { PrimaryBtn } from '../UI/Buttons'
 
 export const Sale = () => {
 	const [sale, setSale] = useState([''])
-	const [isLoading, setIsLoading] = useState(false)
+	// const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsLoading(true)
+			// setIsLoading(true)
 
 			try {
 				const data = await saleAPI.getSale()
@@ -17,7 +17,7 @@ export const Sale = () => {
 			} catch (e) {
 				console.log(e)
 			}
-			setIsLoading(false)
+			// setIsLoading(false)
 		}
 
 		fetchData()
@@ -26,22 +26,16 @@ export const Sale = () => {
 	let { title, img, saleInfo, description } = sale[0]
 
 	return (
-		<>
-			{isLoading ? (
-				<div>Loading...</div>
-			) : (
-				<div className={s.section}>
-					<img className={s.img} src={img} alt={title} />
-					<div className='container'>
-						<div className={s.block}>
-							<h3 className={s.title}>{title}</h3>
-							<h2 className={s.sale__info}>{saleInfo}</h2>
-							<h4 className={s.decription}>{description}</h4>
-							<Button to='/shop' text='Discover now' />
-						</div>
-					</div>
+		<div className={s.section}>
+			<img className={s.img} src={img} alt={title} />
+			<div className='container'>
+				<div className={s.block}>
+					<h4 className={s.title}>{title}</h4>
+					<h2 className={s.sale__info}>{saleInfo}</h2>
+					<p className={s.decription}>{description}</p>
+					<PrimaryBtn to='/shop' text='Discover now' />
 				</div>
-			)}
-		</>
+			</div>
+		</div>
 	)
 }

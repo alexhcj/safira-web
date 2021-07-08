@@ -1,5 +1,8 @@
 import React from 'react'
 import s from './dot.module.css'
+import classNames from 'classnames/bind'
+
+let cx = classNames.bind(s)
 
 export const Dot = ({ onClick, ...rest }) => {
 	const {
@@ -9,7 +12,9 @@ export const Dot = ({ onClick, ...rest }) => {
 		carouselState: { currentSlide, deviceType },
 	} = rest
 
-	return <button className={active ? `${s.active}` : `${s.inactive}`} onClick={() => onClick()}></button>
+	let btn = cx('btn', { active: active })
+
+	return <button className={btn} onClick={() => onClick()}></button>
 }
 
 // TODO: change contol btn size to 14px

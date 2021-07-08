@@ -1,7 +1,7 @@
 import { instance } from '.'
 
 export const productsAPI = {
-	getBestsellers() {
-		return instance.get('products').then((res) => res.data)
+	getProducts(limit = 2) {
+		return instance.get(`products?_limit=${limit}`).then((res) => res.data)
 	},
 }

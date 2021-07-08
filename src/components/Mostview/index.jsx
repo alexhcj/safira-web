@@ -1,17 +1,20 @@
-import s from "./mostview.module.css";
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../api'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import s from './mostview.module.css'
+import { Product } from '../Product'
+import { Arrow } from '../MainSlider/Controls/Arrows'
 
 export const Mostview = () => {
-  const [bestsellers, setBestsellers] = useState([])
+	const [mostview, setMostview] = useState([])
+	const limit = 10
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getBestsellers()
-				setBestsellers(data)
+				const data = await productsAPI.getProducts(limit)
+				setMostview(data)
 			} catch (e) {
 				console.log(e)
 			}
@@ -40,44 +43,31 @@ export const Mostview = () => {
 	}
 
 	return (
-    <div className={s.section}>
-      <div className="container">
-        <div className={s.block}>
-        <h5 className={s.above_heading}>Recently added our store </h5>
-        <h3 className={s.heading}>Mostview Products</h3>
-		<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
-			{bestsellers.map((slide) => {
-				const { id, name, img, category, price, newprice, newProduct, sale} = slide
-        let saleTxt = ''
-        let newTxt = ''
-        
-        if(sale===true){
-          saleTxt = 'SALE'
-        }
-        if(newProduct===true){
-          newTxt = 'NEW'
-        }
-        
-				return (
-					<div className={s.item} key={id}>
-						
-              <p className={s.sale}>{saleTxt}</p>
-              <p className={s.new}>{newTxt}</p>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-           
-          </div>
-        )
-      
-			})}
-      
-		</Carousel>
-        </div>
-      </div>
-    </div>
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.block}>
+					<h5 className={s.above_heading}>Recently added our store </h5>
+					<h3 className={s.heading}>Mostview Products</h3>
+					<Carousel
+						responsive={responsive}
+						infinite={true}
+						swipeable={false}
+						draggable={false}
+                        customTransition='transform 250ms ease'
+                        itemClass={s.item}
+						containerClass={s.slider__container}
+						customLeftArrow={<Arrow width={32} height={35} />}
+						customRightArrow={<Arrow width={32} height={35} />}
+					>
+						{mostview.map((product) => {
+							return <Product size='large' key={product.id} product={product} />
+						})}
+					</Carousel>
+				</div>
+			</div>
+		</div>
 	)
-};
+}
+
+// TODO: right product margin
+// TODO: product width

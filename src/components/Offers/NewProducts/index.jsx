@@ -1,17 +1,21 @@
-import s from './newproducts.module.css'
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../../api'
+import { Arrow } from '../../MainSlider/Controls/Arrows'
+import { Product } from '../../Product'
+import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import s from './newproducts.module.css'
 
 export const NewProducts = () => {
-	const [bestsellers, setBestsellers] = useState([])
+    const limit = 12
+	const [newProducts, setNewProducts] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getBestsellers()
-				setBestsellers(data)
+				const data = await productsAPI.getProducts(limit)
+				setNewProducts(convertArray(data))
 			} catch (e) {
 				console.log(e)
 			}
@@ -42,48 +46,31 @@ export const NewProducts = () => {
 	return (
 		<div className={s.block}>
 			<h3 className={s.heading}>New Products</h3>
-			<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
-				{bestsellers.map((slide) => {
-					const { id, name, img, category, price, newprice, newProduct, sale } = slide
-					let saleTxt = ''
-
-					if (sale === true) {
-						saleTxt = 'SALE'
-					}
-					if (newProduct === true) {
-						return (
-							<div className={s.item} key={id}>
-								<div className={s.product}>
-									<p className={s.sale}>{saleTxt}</p>
-									<p className={s.new}>NEW</p>
-									<img className={s.img} src={img} alt={name} />
-									<div className={s.product__info}>
-										<h3 className={s.name}>{name}</h3>
-										<h4 className={s.category}>{category}</h4>
-										<p className={s.price}>
-											{newprice}
-											<span className={s.oldprice}>{price}</span>
-										</p>
-									</div>
-								</div>
-								<div className={s.product}>
-									<p className={s.sale}>{saleTxt}</p>
-									<p className={s.new}>NEW</p>
-									<img className={s.img} src={img} alt={name} />
-									<div className={s.product__info}>
-										<h3 className={s.name}>{name}</h3>
-										<h4 className={s.category}>{category}</h4>
-										<p className={s.price}>
-											{newprice}
-											<span className={s.oldprice}>{price}</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						)
-					}
+			<Carousel
+				responsive={responsive}
+				infinite={true}
+				swipeable={false}
+				draggable={false}
+				customTransition='transform 250ms ease'
+				containerClass={s.slider__container}
+                itemClass={s.slide}
+				customLeftArrow={<Arrow />}
+				customRightArrow={<Arrow />}
+			>
+				{newProducts.map((col, index) => {
+					return (
+						<div key={index}>
+							{col.map((product) => {
+								return <Product size='large' key={product.id} product={product} />
+							})}
+						</div>
+					)
 				})}
 			</Carousel>
 		</div>
 	)
 }
+
+// DONE: fix right block padding and product right margin. NOW: margin X axis -10px, itemClass padding X axis 10px
+// TODO: slider container has no strict boundaries. when slide => 10px of padding seen
+// TODO: replace fckg apple 212 on 600

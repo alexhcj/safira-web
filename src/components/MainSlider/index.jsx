@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { sliderAPI } from '../../api'
+import { PrimaryBtn } from '../UI/Buttons'
+import { Dot } from './Controls/Dot'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './mainslider.module.css'
-import { Button } from '../Button'
-import { Dot } from './Dot'
 
 export const MainSlider = () => {
 	const [slides, setSlides] = useState([])
@@ -50,7 +50,6 @@ export const MainSlider = () => {
 			responsive={responsive}
 			// autoPlay={true}
 			// autoPlaySpeed={5000}
-			transitionDuration={300}
 			swipeable={true}
 			draggable={true}
 			showDots={true}
@@ -72,7 +71,7 @@ export const MainSlider = () => {
 									<h1 className={s.title}>{title}</h1>
 									<h5 className={s.subTitle}>{subTitle}</h5>
 									<p className={s.text}>{text}</p>
-									<Button to='/shop' />
+									<PrimaryBtn to='/shop' />
 								</div>
 							</div>
 						</div>

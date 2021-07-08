@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { dealweekAPI } from '../../../api/'
-import s from './dealweek.module.css'
-import { Button } from '../../Button'
+import { PrimaryBtn } from '../../UI/Buttons'
 import { Timer } from '../Timer'
-import { Tag } from '../../UI/Tag'
+import { Tags } from '../../UI/Tags'
+import s from './dealweek.module.css'
 
 export const DealWeek = () => {
 	const [deal, setDeal] = useState([])
@@ -25,15 +25,10 @@ export const DealWeek = () => {
 			<h3 className={s.heading}>Deals Of The Week</h3>
 
 			{deal.map((theDeal) => {
-				let { id, name, price, newprice, img, category, tags } = theDeal
-
+				let { id, name, price, newprice, img, category, tags, time } = theDeal
 				return (
 					<div key={id} className={s.wrapper}>
-						<div className={s.tags}>
-							{tags.map((tag, index) => (
-								<Tag text={tag} key={index} />
-							))}
-						</div>
+                        <Tags tags={tags} />
 						<div className={s.content}>
 							<img className={s.img} src={img} alt='' />
 							<h2 className={s.name}>{name}</h2>
@@ -42,8 +37,8 @@ export const DealWeek = () => {
 								{newprice}
 								<span className={s.price}>{price}</span>
 							</p>
-							<Timer />
-							<Button text='add to cart' />
+							<Timer time={time} />
+							<PrimaryBtn text='add to cart' />
 						</div>
 					</div>
 				)

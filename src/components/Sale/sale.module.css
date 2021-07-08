@@ -1,7 +1,7 @@
 .section {
     position: relative;
-    height: 317px;
     margin-bottom: 65px;
+    height: 317px;
     background-color: var(--color-light);
 }
 .img {
@@ -19,20 +19,22 @@
     opacity: .999;
 }
 .title {
+    margin-bottom: 9px;
     text-transform: uppercase;
     line-height: 24px;
     font-size: 20px;
     color: var(--color-primary);
 }
 .sale__info {
+    text-transform: uppercase;
     line-height: 50px;
     font-size: 46px;
     font-weight: 500;
     color: var(--color-dark);
 }
 .decription {
+    margin-bottom: 45px;
     text-transform: uppercase;
     line-height: 30px;
     font-size: 28px;
-    margin-bottom: 45px;
 }

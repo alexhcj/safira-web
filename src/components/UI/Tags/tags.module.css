@@ -1,3 +1,11 @@
+.tags {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 0;
+    max-width: 326px;
+    width: 100%;
+}
 .tag {
     text-align: center;
     text-transform: uppercase;

@@ -1,0 +1,7 @@
+.arrow {
+    position: absolute;
+    display: inline-flex;
+}
+.arrow:hover svg path {
+    fill: var(--color-primary);
+}

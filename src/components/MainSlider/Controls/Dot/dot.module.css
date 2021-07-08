@@ -1,19 +1,18 @@
-button {
-    margin: 0 3px!important;
+.btn {
+    margin: 0 3px;
     width: 14px;
     height: 14px;
     border: none;
     border-radius: 50%;
+    background-color: var(--color-light);
+    box-shadow: 0px 0px 0px 2px var(--color-white) inset;
     transition: var(--transition-slider-control);
 }
 .active {
     background-color: var(--color-primary);
+    box-shadow: none;
 }
-.inactive {
-    box-shadow: 0px 0px 0px 2px var(--color-white) inset;
-    background-color: var(--color-light);
-}
-.inactive:hover {
+.btn:hover {
     box-shadow: 0px 0px 0px 2px var(--color-primary) inset;
     background-color: var(--color-primary);
 }
