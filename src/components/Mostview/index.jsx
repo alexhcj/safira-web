@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../api'
+import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
+import { Product } from '../Product'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './mostview.module.css'
-import { Product } from '../Product'
-import { Arrow } from '../MainSlider/Controls/Arrow'
-import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
 
 export const Mostview = () => {
 	const [mostview, setMostview] = useState([])
+	const [btnShow, setBtnShow] = useState(false)
 	const limit = 10
 
 	useEffect(() => {
@@ -43,13 +43,17 @@ export const Mostview = () => {
 		},
 	}
 
+	const handleBtnGroupToggle = (e) => {
+		e.type === 'mouseenter' ? setBtnShow(true) : setBtnShow(false)
+	}
+
 	return (
 		<div className={s.section}>
 			<div className='container'>
 				<div className={s.block}>
 					<h5 className={s.above_heading}>Recently added our store </h5>
 					<h3 className={s.heading}>Mostview Products</h3>
-					<div className={s.slider}>
+					<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
 						<Carousel
 							responsive={responsive}
 							infinite={true}
@@ -60,7 +64,7 @@ export const Mostview = () => {
 							itemClass={s.slide}
 							arrows={false}
 							renderButtonGroupOutside={true}
-							customButtonGroup={<ButtonGroup />}
+							customButtonGroup={<ButtonGroup active={btnShow} />}
 						>
 							{mostview.map((product) => {
 								return <Product size='large' key={product.id} product={product} />

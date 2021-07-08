@@ -8,6 +8,7 @@
     --color-white: #fff;
     --color-light: #F4F4F4;
     --color-border: #EDEDED;
+    --transition-default: all .3s ease;
     --transition-btn: background-color .3s ease;
     --transition-slider-control-dot: background-color .3s ease, box-shadow .3s ease;
     --transition-svg: fill .3s ease;

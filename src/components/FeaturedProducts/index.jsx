@@ -10,7 +10,7 @@ export const FeaturedProducts = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getBestsellers()
+				const data = await productsAPI.getProducts()
 				setBestsellers(data)
 			} catch (e) {
 				console.log(e)

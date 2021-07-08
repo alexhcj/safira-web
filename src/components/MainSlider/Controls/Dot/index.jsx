@@ -4,14 +4,7 @@ import classNames from 'classnames/bind'
 
 let cx = classNames.bind(s)
 
-export const Dot = ({ onClick, ...rest }) => {
-	const {
-		onMove,
-		index,
-		active,
-		carouselState: { currentSlide, deviceType },
-	} = rest
-
+export const Dot = ({ onClick, active }) => {
 	let btn = cx('btn', { active: active })
 
 	return <button className={btn} onClick={() => onClick()}></button>

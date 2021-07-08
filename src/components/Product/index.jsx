@@ -47,3 +47,6 @@ export const Product = ({ size, product }) => {
 		</div>
 	)
 }
+
+// TODO: menu last item crops with slider overflow
+// TODO: hover on slider => btns appear. slider paddings includes in triggered zone

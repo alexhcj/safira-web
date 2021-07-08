@@ -27,3 +27,4 @@ export const Hovermenu = ({ menuToggle, size }) => {
 }
 
 // TODO: refactor buttons. add handlers, routes, data flow
+// TODO: when hover on btn => popup appears. expectation: when mouselave from btn => popup disappears. real: if fast hover mouse on appeared popup => it still showed
