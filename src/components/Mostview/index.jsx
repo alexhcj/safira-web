@@ -76,3 +76,5 @@ export const Mostview = () => {
 		</div>
 	)
 }
+
+// TODO: create sliders layout 1.main (fullwidth | big) 2. best && new (column slider) with outdoor controls 3. mostview && ourblog (common)

@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
-import { postsAPI } from '../../api'
-import s from "./ourBlog.module.css";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import { NavLink } from 'react-router-dom'
+import { postsAPI } from '../../api'
+import { MoreBtn } from '../UI/Buttons'
+import Carousel from 'react-multi-carousel'
+import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
+import 'react-multi-carousel/lib/styles.css'
+import s from './ourBlog.module.css'
 
 export const OurBlog = () => {
-  const [slides, setPosts] = useState([])
+	const [slides, setPosts] = useState([])
+	const [btnShow, setBtnShow] = useState(false)
+	const limit = 6
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await postsAPI.getPosts()
+				const data = await postsAPI.getPosts(limit)
 				setPosts(data)
 			} catch (e) {
 				console.log(e)
@@ -21,7 +25,7 @@ export const OurBlog = () => {
 		fetchData()
 	}, [])
 
-  const responsive = {
+	const responsive = {
 		superLargeDesktop: {
 			breakpoint: { max: 4000, min: 3000 },
 			items: 3,
@@ -40,33 +44,67 @@ export const OurBlog = () => {
 		},
 	}
 
-  return (
-    <div className={s.section}>
-      <div className="container">
-        <div className={s.block}>
-          <h3 className={s.above__heading}>Our recent articles about Organic</h3>
-          <h2 className={s.heading}>Our Blog Posts</h2>
-          
-      </div>
-        <Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
-          {slides.map((slide) => {
-				let { id, date, img, text, tags } = slide
-				text = text.substr(0, 62)+'...'
-				return (
-        <div className={s.item} key={id}>
-			<div className={s.content__wrapper}>
-				<img alt='post' className={s.img} src={img}/>
-				<p className={s.date}>{date} | <span className={s.tags}>{tags[0] + ' / ' + tags[1]}</span></p>
-				<p className={s.text}>{text}</p>
-				<NavLink className={s.link} to='/blog'>
-						Show more	<img className={s.arrow__img} src="http://localhost:5000/assets/images/blog-showMore/showmore.png" alt=""/>	
-				</NavLink>
+	const handleBtnGroupToggle = (e) => {
+		e.type === 'mouseenter' ? setBtnShow(true) : setBtnShow(false)
+	}
+
+	return (
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.block}>
+					<h3 className={s.above__heading}>Our recent articles about Organic</h3>
+					<h2 className={s.heading}>Our Blog Posts</h2>
+				</div>
+				<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
+					<Carousel
+						responsive={responsive}
+						infinite={true}
+						swipeable={false}
+						draggable={false}
+						customTransition='transform 250ms ease'
+						containerClass={s.slider__container}
+						itemClass={s.slide}
+						arrows={false}
+						renderButtonGroupOutside={true}
+						onMouseEnter={handleBtnGroupToggle}
+						onMouseLeave={handleBtnGroupToggle}
+						customButtonGroup={<ButtonGroup active={btnShow} />}
+					>
+						{slides.map((slide) => {
+							let { id, date, img, text, tags } = slide
+							text = text.substr(0, 62) + '...'
+							return (
+								<div className={s.item} key={id}>
+									<div className={s.content__wrapper}>
+										<NavLink to='/shop'>
+											<img alt='post' className={s.img} src={img} />
+										</NavLink>
+										<div className={s.body}>
+											<p className={s.meta}>
+												{date}{' '}
+												{tags && (
+													<div className={s.tags}>
+														&nbsp;|&nbsp;
+														{tags.map((tag) => (
+															<NavLink to='/shop' className={s.tag}>
+																{tag}{' '}
+															</NavLink>
+														))}
+													</div>
+												)}
+											</p>
+											<NavLink to='/shop' className={s.text}>
+												{text}
+											</NavLink>
+											<MoreBtn to='/shop' />
+										</div>
+									</div>
+								</div>
+							)
+						})}
+					</Carousel>
+				</div>
 			</div>
-        </div>
-				)
-			})}
-          </Carousel>
-      </div>
-    </div>
-  )
-};
+		</div>
+	)
+}
