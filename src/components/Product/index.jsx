@@ -50,3 +50,5 @@ export const Product = ({ size, product }) => {
 
 // TODO: menu last item crops with slider overflow
 // TODO: hover on slider => btns appear. slider paddings includes in triggered zone
+
+// TODO: fix hover on category

@@ -13,7 +13,7 @@
     --transition-slider-control-dot: background-color .3s ease, box-shadow .3s ease;
     --transition-svg: fill .3s ease;
     --transition-link: color .3s ease;
-    --transition-menu: opacity .3s ease;
+    --transition-menu: opacity .3s ease, transform .3s ease;
     --transition-btn-more-svg: transform .3s ease, fill .3s ease;
 }
 

@@ -21,13 +21,12 @@
     margin-bottom: 18px;
     line-height: 15px;
     font-size: 15px;
-    color: var(--color-dark);
 }
 .category {
     margin-bottom: 15px;
     line-height: 12px;
     font-size: 12px;
-    color: var(--color-dark);
+    z-index: 50;
 }
 .name > a:hover,
 .category > a:hover {

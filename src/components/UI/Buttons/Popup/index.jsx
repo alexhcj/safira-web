@@ -11,3 +11,6 @@ export const Button = ({ to = '/', text = 'Add to Cart', children }) => {
 		</div>
 	)
 }
+
+// TODO: add new popup animation when hover. existing (display none + opacity). Now: add transform + display none when hover on popup with no animation
+// TODO: fix gap when hover on btn (border radius)

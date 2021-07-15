@@ -1,17 +1,22 @@
-import s from "./featuredProducts.module.css";
+import s from './featuredProducts.module.css'
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../api'
+import { convertArray } from '../../utils'
+import { Product } from '../Product'
+import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
 export const FeaturedProducts = () => {
-  const [bestsellers, setBestsellers] = useState([])
+	const [featuredProducts, setFeaturedProducts] = useState([])
+	const [btnShow, setBtnShow] = useState(false)
+	const limit = 12
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts()
-				setBestsellers(data)
+				const data = await productsAPI.getProducts(limit)
+				setFeaturedProducts(convertArray(data, 3))
 			} catch (e) {
 				console.log(e)
 			}
@@ -39,49 +44,46 @@ export const FeaturedProducts = () => {
 		},
 	}
 
+	const handleBtnGroupToggle = (e) => {
+		e.type === 'mouseenter' ? setBtnShow(true) : setBtnShow(false)
+	}
+
 	return (
-    <div className={s.section}>
-    <h5 className={s.above_heading}>Recently added our store</h5>
-      <h3 className={s.heading}>Featured Products</h3>
-      <div className={"container " + s.wrapper}>
-		<Carousel responsive={responsive} infinite={true} swipeable={false} draggable={false}>
-			{bestsellers.map((slide) => {
-				const { id, name, img, category, price, newprice } = slide
-        
-				return (
-					<div className={s.item} key={id}>
-						<div className={s.product}>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-            </div>
-            <div className={s.product}>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-            </div>
-            <div className={s.product}>
-              <img className={s.img} src={img} alt={name}/>
-              <div className={s.product__info}>
-                <h3 className={s.name}>{name}</h3>
-                <h4 className={s.category}>{category}</h4>
-                <p className={s.price}>{newprice}<span className={s.oldprice}>{price}</span></p>
-              </div>
-            </div>
-          </div>
-        )
-      
-			})}
-      
-		</Carousel>
-    </div>
-    </div>
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.header}>
+					<h5 className={s.desc}>Recently added our store</h5>
+					<h3 className={s.title}>Featured Products</h3>
+				</div>
+				<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
+					<Carousel
+						responsive={responsive}
+						infinite={true}
+						swipeable={false}
+						draggable={false}
+						customTransition='transform 250ms ease'
+						containerClass={s.slider__container}
+						itemClass={s.slide}
+						arrows={false}
+						renderButtonGroupOutside={true}
+						onMouseEnter={handleBtnGroupToggle}
+						onMouseLeave={handleBtnGroupToggle}
+						customButtonGroup={<ButtonGroup active={btnShow} />}
+					>
+						{featuredProducts.map((col, index) => {
+							return (
+								<div key={index}>
+									{col.map((product) => {
+										return <Product key={product.id} product={product} />
+									})}
+								</div>
+							)
+						})}
+					</Carousel>
+				</div>
+			</div>
+		</div>
 	)
- 
-};
+}
+
+// TODO: fix Playfair Display font. not like template's font!!!

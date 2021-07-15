@@ -24,10 +24,11 @@
 }
 .popup {
     position: absolute;
+    display: block;
     opacity: 0;
     top: -34px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(15px);
     padding: 6px 10px;
     white-space: pre;
     line-height: 14px;
@@ -48,7 +49,11 @@
     border-width: 6px 5.5px 0 5.5px;
     border-color: var(--color-dark-light) transparent transparent transparent;
 }
+.popup:hover {
+    display: none;
+}
 .wrapper:hover .popup {
     opacity: 1;
     z-index: 20;
+    transform: translateX(-50%) translateY(0);
 }

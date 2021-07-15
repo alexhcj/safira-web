@@ -26,5 +26,39 @@ export const Hovermenu = ({ menuToggle, size }) => {
 	)
 }
 
+
+// const btns = [
+// 	{ id: 1, link: '/shop', text: 'Add to Cart', svg: <CartSVG /> },
+// 	{ id: 2, link: '/shop', text: 'Quick View', svg: <MagnifierSVG /> },
+// 	{ id: 3, link: '/shop', text: 'Add to Wishlist', svg: <HeartSVG /> },
+// 	{ id: 4, link: '/shop', text: 'Add to Compare', svg: <SyncSVG /> },
+// ]
+
+// export const Hovermenu = ({ menuToggle, size }) => {
+// 	const [btnToggle, setBtnToggle] = useState(false)
+
+// 	let menuCN = cx('menu', { active: menuToggle, large: size })
+
+// 	return (
+// 		<div className={menuCN}>
+// 			{btns.map((btn) => {
+// 				const { id, link, text, svg } = btn
+
+// 				return (
+// 					<PopupBtn
+// 						key={id}
+// 						to={link}
+// 						text={text}
+// 						children={svg}
+// 						// onMouseEnter={setBtnToggle(!btnToggle)}
+// 						// onMouseLeave={setBtnToggle(!btnToggle)}
+// 					/>
+// 				)
+// 			})}
+// 		</div>
+// 	)
+// }
+
+
 // TODO: refactor buttons. add handlers, routes, data flow
 // TODO: when hover on btn => popup appears. expectation: when mouselave from btn => popup disappears. real: if fast hover mouse on appeared popup => it still showed

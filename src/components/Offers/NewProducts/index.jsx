@@ -15,7 +15,7 @@ export const NewProducts = () => {
 		const fetchData = async () => {
 			try {
 				const data = await productsAPI.getProducts(limit)
-				setNewProducts(convertArray(data))
+				setNewProducts(convertArray(data, 2))
 			} catch (e) {
 				console.log(e)
 			}

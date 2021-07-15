@@ -80,19 +80,19 @@ export const OurBlog = () => {
 											<img alt='post' className={s.img} src={img} />
 										</NavLink>
 										<div className={s.body}>
-											<p className={s.meta}>
+											<div className={s.meta}>
 												{date}{' '}
 												{tags && (
 													<div className={s.tags}>
 														&nbsp;|&nbsp;
-														{tags.map((tag) => (
-															<NavLink to='/shop' className={s.tag}>
+														{tags.map((tag, index) => (
+															<NavLink to='/shop' key={index} className={s.tag}>
 																{tag}{' '}
 															</NavLink>
 														))}
 													</div>
 												)}
-											</p>
+											</div>
 											<NavLink to='/shop' className={s.text}>
 												{text}
 											</NavLink>
