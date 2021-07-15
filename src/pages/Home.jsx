@@ -1,5 +1,6 @@
 import React from 'react'
 import { MainSlider, OfferLinks, OurBlog, Sale, Mostview, Offers, FeaturedProducts} from '../components'
+import { Divider } from '../components/UI/Divider'
 
 export const Home = () => {
 	return (
@@ -11,6 +12,7 @@ export const Home = () => {
             <Mostview />
             <OurBlog />
             <FeaturedProducts />
+            <Divider />
         </div>
     )
 }
