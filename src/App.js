@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
 import { Home, Shop, Blog, Cart, Checkout, Product } from './pages'
 import { Header, Footer, Copyright } from './components'
+import { Scroll } from './components/UI/Buttons/Scroll'
 
 function App() {
 	return (
@@ -27,7 +28,8 @@ function App() {
 				</Route>
 			</Switch>
 			<Footer />
-            <Copyright />
+			<Copyright />
+			<Scroll />
 		</div>
 	)
 }
