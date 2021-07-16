@@ -1,5 +1,66 @@
-import s from "./footer.module.css";
+import { NavLink } from 'react-router-dom'
+import { PrimaryBtn } from '../UI/Buttons'
+import logo from '../../assets/images/logo.png'
+import s from './footer.module.css'
 
 export const Footer = () => {
-  return <h1 className={s.h1}>Footer component</h1>;
-};
+	return (
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.footer}>
+					<div className={s.meta}>
+						<NavLink to='/'>
+							<img className={s.img} src={logo} alt='' />
+						</NavLink>
+						<div className={s.desc}>
+							We are a team of designers and developers that create high quality eCommerce with MERN stack technology .
+						</div>
+						<div className={s.adress}>
+							Adress:
+							<a target='_blank' rel='noreferrer' href='https://goo.gl/maps/STZQGHm5kxchbajm8'>
+								Saint Petersburg, Russia, 191040
+							</a>
+						</div>
+						<div className={s.email}>
+							Email:
+							<a href='mailto:'>foodstore@eccomrce.com</a>
+						</div>
+						<div className={s.phone}>
+							Call us:
+							<a href='tel:'>+7 (921) 34 777 999</a>
+						</div>
+					</div>
+					<div className={s.info}>
+						<h3 className={s.title}>Information</h3>
+						<div className={s.list}>
+							<a href='/'>About us</a>
+							<a href='/'>Delivery Information</a>
+							<a href='/'>Privacy Policy</a>
+							<a href='/'>Terms & Conditions</a>
+							<a href='/'>Contact us</a>
+						</div>
+					</div>
+					<div className={s.extra}>
+						<h3 className={s.title}>Extras</h3>
+						<div className={s.list}>
+							<a href='/'>Order History</a>
+							<a href='/'>Grift Cards</a>
+							<a href='/'>Specials</a>
+							<a href='/'>Site map</a>
+						</div>
+					</div>
+					<div className={s.newsletter}>
+						<h3 className={s.title}>Sign Up Newsletter</h3>
+						<p>Get updates by subscribe our weekly newsletter</p>
+						<form action='' className={s.form}>
+							<div className={s.input}>
+								<input type='text' placeholder='Enter your email' />
+								<PrimaryBtn text='Subscribe' type='submit' />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}

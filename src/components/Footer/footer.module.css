@@ -1,3 +1,76 @@
-.slider {
-  color: black;
+.footer {
+	display: flex;
+}
+.img {
+	margin-bottom: 24px;
+	width: 118px;
+	height: 28px;
+}
+.meta {
+	width: 31%;
+}
+.meta div {
+	margin-bottom: 6px;
+	line-height: 22px;
+	font-size: 14px;
+}
+.meta div:nth-child(2) {
+	margin-bottom: 22px;
+}
+.adress,
+.email,
+.phone {
+	font-weight: 600;
+}
+.adress a:hover,
+.email a:hover,
+.phone a:hover {
+	color: var(--color-primary);
+}
+.meta div a {
+	margin-left: 5px;
+	font-weight: 400;
+}
+.list {
+	display: flex;
+	flex-direction: column;
+}
+.list a {
+	line-height: 30px;
+}
+.list a:hover {
+	color: var(--color-primary);
+}
+.info,
+.extra {
+	width: 19%;
+	padding-left: 36px;
+}
+.title {
+	margin-bottom: 20px;
+	line-height: 18px;
+	font-size: 17px;
+	font-weight: 500;
+}
+.newsletter {
+	width: 31%;
+}
+.newsletter p {
+	margin-bottom: 22px;
+}
+.input {
+    position: relative;
+    width: 100%;
+    height: 46px;
+}
+.input input {
+    padding-left: 20px;
+    width: 100%;
+	height: 100%;
+    line-height: 22px;
+	border: 1px solid #ededed;
+	border-radius: 30px;
+}
+.input::placeholder {
+    color: #222;
 }
