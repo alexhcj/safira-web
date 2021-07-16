@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 import { Home, Shop, Blog, Cart, Checkout, Product } from './pages'
-import { Header, Footer } from './components'
+import { Header, Footer, Copyright } from './components'
 
 function App() {
 	return (
@@ -27,6 +27,7 @@ function App() {
 				</Route>
 			</Switch>
 			<Footer />
+            <Copyright />
 		</div>
 	)
 }
