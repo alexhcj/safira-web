@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import { PrimaryBtn } from '../UI/Buttons'
-import { Copyright } from '../Copyright'
 import logo from '../../assets/images/logo.png'
 import s from './footer.module.css'
 
@@ -25,11 +24,11 @@ export const Footer = () => {
 						</div>
 						<div className={s.email}>
 							Email:
-							<a href='mailto:'>foodstore@eccomrce.com</a>
+							<a href='mailto:foodstore@eccomrce.com'>foodstore@eccomrce.com</a>
 						</div>
 						<div className={s.phone}>
 							Call us:
-							<a href='tel:'>+7 (921) 34 777 999</a>
+							<a href='tel:792134777999'>(921) 34 777 999</a>
 						</div>
 					</div>
 					<div className={s.info}>

@@ -1,4 +1,5 @@
 export { Header } from './Header'
+export { Navbar } from './Navbar'
 export { Footer } from './Footer'
 export { MainSlider } from './MainSlider'
 export { OfferLinks } from './OfferLinks'

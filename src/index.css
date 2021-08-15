@@ -3,11 +3,12 @@
 
 :root {
     --color-primary: #40A944;
-    --color-dark: #222;
-    --color-dark-light: #333;
-    --color-white: #fff;
+    --color-dark: #222222;
+    --color-dark-light: #333333;
+    --color-white: #ffffff;
     --color-light: #F4F4F4;
     --color-border: #EDEDED;
+    --color-border-dark: #DDDDDD;
     --transition-default: all .3s ease;
     --transition-btn: background-color .3s ease;
     --transition-slider-control-dot: background-color .3s ease, box-shadow .3s ease;

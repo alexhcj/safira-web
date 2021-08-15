@@ -32,7 +32,7 @@ export const Scroll = () => {
 
 	return (
 		<Link to='nav' className={btnCN} onClick={toggleHome} duration={400} spy={true}>
-			<DoubleArrowSVG />{' '}
+			<DoubleArrowSVG />
 		</Link>
 	)
 }

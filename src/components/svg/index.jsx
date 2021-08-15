@@ -1,3 +1,8 @@
+export { Twitter as TwitterSVG } from './Twitter'
+export { GooglePlus as GooglePlusSVG } from './GooglePlus'
+export { Youtube as YoutubeSVG } from './Youtube'
+export { Facebook as FacebookSVG } from './Facebook'
+export { Instagram as InstagramSVG } from './Instagram'
 export { Arrow as ArrowSVG } from './Arrow'
 export { Cart as CartSVG } from './Cart'
 export { Magnifier as MagnifierSVG } from './Magnifier'
