@@ -1,5 +1,7 @@
 .slider {
     margin-bottom: 70px;
+    height: 550px;
+    background-color: var(--color-light);
 }
 .list {
     bottom: 15px;
@@ -42,4 +44,14 @@
     max-width: 420px;
     line-height: 22px;
     font-size: 16px;
+}
+.loading {
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 550px;
+    min-height: 550px;
+    line-height: 550px;
+    font-size: 28px;
+    font-weight: 500;
 }

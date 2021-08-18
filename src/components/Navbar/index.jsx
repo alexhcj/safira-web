@@ -53,5 +53,3 @@ export const Navbar = () => {
 		</div>
 	)
 }
-
-// TODO: add padding when navbar appears
