@@ -1,38 +1,43 @@
 import { useEffect, useState } from 'react'
 import s from './ShopSideBar.module.css'
-import { productsAPI } from '../../api'
+import { shopProductsAPI } from '../../api'
 import { convertArray } from '../../utils'
 
 export const ShopSideBar = () => {
-    const [featuredProducts, setFeaturedProducts] = useState([])
+    const [shopProducts, setShopProducts] = useState([])
+    const [input, setInput] = useState('')
     useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts()
-				setFeaturedProducts(convertArray(data, 3))
+				const data = await shopProductsAPI.getShopProducts(input)
+				setShopProducts(convertArray(data, 3))
+
 			} catch (e) {
 				console.log(e)
 			}
 		}
-
 		fetchData()
-	}, [])
-    function  searchByName(event) {
-        let nameSearch = event.target.value
-        
-        
+	}, [input])
 
-        if(nameSearch.length<=3){
-            let z
-        } else {
-            let x
-        }
+    const searchByName = (event)=>{
 
+        setInput(event.target.value)
     }
+    const debounce = (fn, ms) =>{
+        let timeout
+        return function () {
+            const fnCall = () => { fn.apply(this, arguments) }
 
+            clearTimeout(timeout)
+
+            timeout = setTimeout(fnCall, ms)
+        }
+    }
+     const search = debounce(searchByName, 1000)
     return (
     <section>
-        <input type="text" onInput={searchByName}/>
+        <input type="text" onChange={search}/>
+        {/* {console.log(shopProducts[0][1].name)} */}
     </section>
     )
 }
