@@ -1,7 +1,7 @@
 import s from './sale.module.css'
 import { useEffect, useState } from 'react'
 import { saleAPI } from '../../api'
-import { PrimaryBtn } from '../UI/Buttons'
+import { PrimaryBtn } from '../UI'
 
 export const Sale = () => {
 	const [sale, setSale] = useState([''])

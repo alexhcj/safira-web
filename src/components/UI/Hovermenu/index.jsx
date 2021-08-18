@@ -1,5 +1,5 @@
 import { CartSVG, HeartSVG, MagnifierSVG, SyncSVG } from '../../svg'
-import { PopupBtn } from '../../UI/Buttons'
+import { PopupBtn } from '../../UI'
 import classNames from 'classnames/bind'
 import s from './hovermenu.module.css'
 

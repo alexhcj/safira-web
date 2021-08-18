@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { PrimaryBtn } from '../UI/Buttons'
+import { PrimaryBtn } from '../UI'
 import logo from '../../assets/images/logo.png'
 import s from './footer.module.css'
 

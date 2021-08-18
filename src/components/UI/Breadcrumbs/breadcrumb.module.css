@@ -1,0 +1,23 @@
+.section {
+    margin-bottom: 70px;
+    height: 170px;
+    background: url('../../../assets/images/breadcrumb/1.jpg') no-repeat;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+.title {
+    margin-bottom: 9px;
+    text-transform: capitalize;
+    line-height: 42px;
+    font-size: 50px;
+}
+.breacrumbs {
+    text-transform: capitalize;
+    line-height: 24px;
+    font-size: 14px;
+}

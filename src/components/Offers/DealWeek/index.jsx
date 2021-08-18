@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { dealweekAPI } from '../../../api/'
-import { PrimaryBtn } from '../../UI/Buttons'
+import { Tags, PrimaryBtn } from '../../UI'
 import { Timer } from '../Timer'
-import { Tags } from '../../UI/Tags'
 import s from './dealweek.module.css'
 
 export const DealWeek = () => {

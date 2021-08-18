@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { TwitterSVG, GooglePlusSVG, YoutubeSVG, FacebookSVG, InstagramSVG, CartSVG, HeartSVG } from '../svg'
-import { PrimaryBtn } from '../UI/Buttons'
-import { MetaPopup } from '../UI/MetaPopup'
+import { MetaPopup, PrimaryBtn } from '../UI'
 import { Navbar } from '../Navbar'
 import logo from '../../assets/images/logo.png'
 import s from './header.module.css'

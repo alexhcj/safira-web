@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { sliderAPI } from '../../api'
-import { PrimaryBtn } from '../UI/Buttons'
+import { PrimaryBtn } from '../UI'
 import { Dot } from './Controls/Dot'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'

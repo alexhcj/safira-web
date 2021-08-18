@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { postsAPI } from '../../api'
-import { MoreBtn } from '../UI/Buttons'
+import { MoreBtn } from '../UI'
 import Carousel from 'react-multi-carousel'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
 import 'react-multi-carousel/lib/styles.css'
