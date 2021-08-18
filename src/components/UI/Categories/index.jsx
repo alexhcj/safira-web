@@ -1,24 +1,57 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+import { categoriesAPI } from '../../../api'
 import { ArrowSVG } from '../../svg'
 import s from './categories.module.css'
 
-const categories = [
-	{ id: 1, category: 'vegetables' },
-	{ id: 2, category: 'fruits' },
-	{ id: 3, category: 'salads' },
-	{ id: 4, category: 'fish & seafood' },
-	{ id: 5, category: 'fresh meat' },
-	{ id: 6, category: 'milk products' },
-	{ id: 7, category: 'bread' },
-	{ id: 8, category: 'frozen food' },
-]
-
 export const Categories = () => {
+	const [categories, setCategories] = useState([])
 	const [popupToggle, setPopupToggle] = useState(false)
+    const ref = useRef(null)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await categoriesAPI.getCategories()
+				setCategories(data)
+			} catch (e) {
+				console.log(e)
+			}
+		}
+
+		fetchData()
+	}, [])
+
+	useEffect(() => {
+		document.addEventListener('keydown', escKeyHandler)
+		document.addEventListener('click', clickOutsideHandler)
+
+		return () => {
+			document.removeEventListener('keydown', escKeyHandler)
+			document.removeEventListener('click', clickOutsideHandler)
+		}
+	}, [])
+
+	const escKeyHandler = (e) => {
+		if (e.key === 'Escape') {
+			setPopupToggle(false)
+		}
+	}
+
+	const clickHandler = (e) => {
+		setPopupToggle(!popupToggle)
+		if (e.target.className === s.categories || e.target.parentElement === s.categories) {
+		}
+	}
+
+	const clickOutsideHandler = (e) => {
+		if (ref.current && !ref.current.contains(e.target)) {
+			setPopupToggle(false)
+		}
+	}
 
 	return (
-		<div className={s.categories} onClick={() => setPopupToggle(!popupToggle)}>
+		<div className={s.categories} onClick={(e) => clickHandler(e)} ref={ref}>
 			<div className={s.burger}>
 				<span></span>
 				<span></span>
@@ -42,4 +75,6 @@ export const Categories = () => {
 }
 
 // TODO: look for best practices mongodb file structure
-// IDEA: how to pull categories data? is it indeed? how to handle sub categories? where links should route to?
+
+// NOTE: categories and subcats should route to shop with selected params
+// TODO: if category has subcats => add [subcats]

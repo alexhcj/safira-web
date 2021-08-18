@@ -241,5 +241,15 @@
 			"id": 1,
 			"img": "http://localhost:5000/assets/images/specialOffers/1.png"
 		}
+	],
+	"categories": [
+		{ "id": 1, "category": "vegetables" },
+		{ "id": 2, "category": "fruits" },
+		{ "id": 3, "category": "salads" },
+		{ "id": 4, "category": "fish & seafood" },
+		{ "id": 5, "category": "fresh meat" },
+		{ "id": 6, "category": "milk products" },
+		{ "id": 7, "category": "bread" },
+		{ "id": 8, "category": "frozen food" }
 	]
 }
