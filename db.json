@@ -104,7 +104,7 @@
 		},
 		{
 			"id": 2,
-			"name": "Cabbage",
+			"name": "Cabbageee",
 			"description": "Under conditions of long sunny days, such as those found at high northern latitudes in summer, cabbages can grow quite large.",
 			"price": "5.68$",
 			"newprice": "3.79$",
@@ -216,7 +216,7 @@
 			"id": 12,
 			"name": "Cabbage",
 			"description": "Heads average between 0.5 and 4 kg (1 and 8 lb), with fast-growing, earlier-maturing varieties producing smaller heads.",
-			"price": "14.88$",
+			"price": "14.99$",
 			"newprice": "13.31$",
 			"img": "http://localhost:5000/assets/images/products/12.jpg",
 			"quantity": 777,

@@ -1,12 +1,14 @@
 import React from 'react'
-import { ShopSideBar } from '../components'
+import {ShopComp} from '../components'
 import { Breadcrumbs } from '../components/UI'
 
 export const Shop = () => {
 	return (
 		<div>
-            <Breadcrumbs />
-			<ShopSideBar />
+			<Breadcrumbs />
+            <ShopComp />
 		</div>
 	)
 }
+
+// TODO: shop layout

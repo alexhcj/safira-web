@@ -18,6 +18,7 @@ export const SpecialOffer = () => {
 
 		fetchData()
 	}, [])
+
 	return (
 		<div className={s.block}>
 			{specialoffer.map((offer) => {

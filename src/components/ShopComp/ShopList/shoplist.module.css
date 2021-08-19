@@ -1,0 +1,9 @@
+.items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.col {
+	max-width: 268px;
+	width: 100%;
+}
