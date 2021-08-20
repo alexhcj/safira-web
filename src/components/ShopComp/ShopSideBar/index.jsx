@@ -1,6 +1,5 @@
 import s from './ShopSideBar.module.css'
 import { convertArray } from '../../../utils'
-import { debounce } from 'lodash'
 
 
 export const ShopSideBar = ({searchHandler}) => {

@@ -11,6 +11,7 @@ export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
 	const [btnShow, setBtnShow] = useState(false)
 	const limit = 12
+	
 
 	useEffect(() => {
 		const fetchData = async () => {
