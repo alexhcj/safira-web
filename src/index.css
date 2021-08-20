@@ -8,7 +8,9 @@
     --color-white: #ffffff;
     --color-light: #F4F4F4;
     --color-border: #EDEDED;
+    --color-border-light: #E8E8E8;
     --color-border-dark: #DDDDDD;
+    --color-sort-border: #999999;
     --transition-default: all .3s ease;
     --transition-btn: background-color .3s ease;
     --transition-slider-control-dot: background-color .3s ease, box-shadow .3s ease;
@@ -16,6 +18,16 @@
     --transition-link: color .3s ease;
     --transition-menu: opacity .3s ease, transform .3s ease;
     --transition-btn-more-svg: transform .3s ease, fill .3s ease;
+
+    /* sort */
+    --color-sort-border: #DBDBDB;
+    --color-background: #F6F6F6;
+    --transition-sort-hover: border 0.2s ease-in-out;
+    --transition-sort-transform: transform 0.15s ease-in-out;
+    --transition-background: background .2s;
+
+    /* z-index */
+    --z-index-popups: 1000;
 }
 
 body {

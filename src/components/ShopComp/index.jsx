@@ -7,9 +7,10 @@ import s from './shop.module.css'
 export const ShopComp = () => {
     const [sort, setSort] = useState('')
 
-    const sortHandler = (value, sort) => {
-        console.log(value, sort)
-        setSort(value)
+    const sortHandler = (sort) => {
+        console.log(sort)
+        console.log('Hello')
+        // setSort(value)
     }
     
 	return (

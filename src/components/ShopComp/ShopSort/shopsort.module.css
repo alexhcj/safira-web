@@ -1,4 +1,73 @@
-.sort {
+.block {
+	position: relative;
 	margin-bottom: 30px;
+	padding: 10px 8px;
 	height: 60px;
+	border: 1px solid var(--color-border-dark);
 }
+.sort {
+	position: relative;
+	padding: 12px 30px 12px 18px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 5px;
+	border: 1px solid var(--color-border-light);
+	cursor: pointer;
+	transition: var(--transition-sort-hover);
+    user-select: none;
+}
+.sort::after {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	content: '';
+	display: block;
+	margin-top: -4px;
+	width: 5px;
+	height: 5px;
+	border-bottom: 2px solid #999;
+	border-right: 2px solid #999;
+	transform-origin: 66% 66%;
+	transition: var(--transition-sort-transform);
+	transform: rotate(45deg);
+}
+.transform::after {
+	transform: rotate(-135deg);
+}
+.sort:hover {
+	border: 1px solid var(--color-sort-border);
+}
+.list {
+	position: absolute;
+	top: 53px;
+	left: 8px;
+	max-height: 0;
+	opacity: 0;
+	visibility: hidden;
+	border-radius: 5px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    
+	z-index: var(--z-index-popups);
+}
+.active {
+	visibility: visible;
+	opacity: 1;
+	z-index: 200;
+	max-height: 600px;
+}
+.item {
+    padding-left: 18px;
+    padding-right: 29px;
+    line-height: 40px;
+    min-height: 40px;
+    cursor: pointer;
+    transition: var(--transition-background);
+}
+.current {
+    font-weight: 700;
+}
+.hightlight {
+    background-color: var(--color-background);
+}
+/* add focus sort color */
