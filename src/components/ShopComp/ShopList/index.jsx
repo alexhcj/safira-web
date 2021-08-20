@@ -3,14 +3,14 @@ import { productsAPI } from '../../../api'
 import { Product } from '../../Product'
 import s from './shoplist.module.css'
 
-export const ShopList = ({ sort }) => {
+export const ShopList = ({ sort, search }) => {
     const [products, setProducts] = useState([])
     const limit = 12
 
     useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit, sort)
+				const data = await productsAPI.getProducts(limit, sort, search)
 				setProducts(data)
 			} catch (e) {
 				console.log(e)
@@ -18,7 +18,7 @@ export const ShopList = ({ sort }) => {
 		}
 
 		fetchData()
-	}, [sort])
+	}, [sort, search])
     
 	return (
 		<div className={s.items}>
