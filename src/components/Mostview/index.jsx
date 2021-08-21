@@ -10,11 +10,12 @@ export const Mostview = () => {
 	const [mostview, setMostview] = useState([])
 	const [btnShow, setBtnShow] = useState(false)
 	const limit = 10
+	const sort = 'popularity'
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit)
+				const data = await productsAPI.getProducts(limit, sort)
 				setMostview(data)
 			} catch (e) {
 				console.log(e)

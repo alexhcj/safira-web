@@ -9,12 +9,13 @@ import s from './bestsellers.module.css'
 
 export const BestSellers = () => {
 	const limit = 8
+	const sort = 'popularity'
 	const [bestsellers, setBestsellers] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit)
+				const data = await productsAPI.getProducts(limit, sort)
 				setBestsellers(convertArray(data, 2))
 			} catch (e) {
 				console.log(e)
