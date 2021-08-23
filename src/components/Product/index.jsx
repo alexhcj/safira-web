@@ -38,8 +38,8 @@ export const Product = ({ size, product }) => {
 					<NavLink to='/shop'>{category}</NavLink>
 				</h4>
 				<p className={!priceToggle ? `${s.price}` : `${s.price} ${s.hide}`}>
-					{newprice}
-					<span className={s.oldprice}>{price}</span>
+					${newprice}
+					<span className={s.oldprice}>${price}</span>
 				</p>
 			</div>
 			{tags.length !== 0 && size === 'large' && <Tags tags={tags} />}

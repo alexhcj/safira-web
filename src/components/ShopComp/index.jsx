@@ -5,18 +5,19 @@ import { useState } from 'react'
 import s from './shop.module.css'
 
 export const ShopComp = () => {
-    const [sort, setSort] = useState('')
 	const [search, setSearch] = useState('')
+    const [sort, setSort] = useState('')
+    const [order, setOrder] = useState('')
 
-    const sortHandler = (sort) => {
-        console.log(sort)
-        console.log('Hello')
-        // setSort(value)
+    const searchHandler = (search) => {
+        console.log(search)
+        setSearch(search)
     }
-	const searchHandler = (search) => {
-		console.log(search)
-		setSearch(search)
-	}
+    
+    const sortHandler = (sort) => {
+        setSort(sort.sort)
+        setOrder(sort.order)
+    }
     
 	return (
 		<div className={s.section}>
@@ -24,7 +25,7 @@ export const ShopComp = () => {
 				<div className={s.wrapper}>
 					<div className={s.main}>
 						<ShopSort sortHandler={sortHandler} />
-						<ShopList search={search} sort={sort} />
+						<ShopList search={search} sort={sort} order={order} />
 					</div>
 					<div className={s.sidebar}>
 						<ShopSideBar searchHandler={searchHandler}/>
