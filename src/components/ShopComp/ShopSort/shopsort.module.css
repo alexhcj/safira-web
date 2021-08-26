@@ -1,4 +1,7 @@
 .block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 	position: relative;
 	margin-bottom: 30px;
 	padding: 10px 8px;
@@ -9,7 +12,6 @@
 	position: relative;
 	padding: 12px 30px 12px 18px;
 	height: 40px;
-	line-height: 40px;
 	border-radius: 5px;
 	border: 1px solid var(--color-border-light);
 	cursor: pointer;

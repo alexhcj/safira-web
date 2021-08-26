@@ -62,3 +62,4 @@ export const Hovermenu = ({ menuToggle, size }) => {
 
 // TODO: refactor buttons. add handlers, routes, data flow
 // TODO: when hover on btn => popup appears. expectation: when mouselave from btn => popup disappears. real: if fast hover mouse on appeared popup => it still showed
+// BUG: hover on product img near popup hover element mouse get triggered from default cursor to hover state

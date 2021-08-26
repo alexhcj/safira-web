@@ -1,12 +1,13 @@
 import React from 'react'
-import {ShopComp} from '../components'
-import { Breadcrumbs } from '../components/UI'
+import { ShopComp } from '../components'
+import { Breadcrumbs, Divider } from '../components/UI'
 
 export const Shop = () => {
 	return (
 		<div>
 			<Breadcrumbs />
-            <ShopComp />
+			<ShopComp />
+			<Divider />
 		</div>
 	)
 }

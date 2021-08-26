@@ -2,66 +2,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --color-primary: #40A944;
-    --color-dark: #222222;
-    --color-dark-light: #333333;
-    --color-white: #ffffff;
-    --color-light: #F4F4F4;
-    --color-border: #EDEDED;
-    --color-border-light: #E8E8E8;
-    --color-border-dark: #DDDDDD;
-    --color-sort-border: #999999;
-    --transition-default: all .3s ease;
-    --transition-btn: background-color .3s ease;
-    --transition-slider-control-dot: background-color .3s ease, box-shadow .3s ease;
-    --transition-svg: fill .3s ease;
-    --transition-link: color .3s ease;
-    --transition-menu: opacity .3s ease, transform .3s ease;
-    --transition-btn-more-svg: transform .3s ease, fill .3s ease;
+	--color-primary: #40a944;
+	--color-dark: #222222;
+	--color-dark-light: #333333;
+	--color-white: #ffffff;
+	--color-light: #f4f4f4;
+	--color-border: #ededed;
+	--color-border-light: #e8e8e8;
+	--color-border-dark: #dddddd;
+	--color-sort-border: #999999;
+	--transition-default: all 0.3s ease;
+	--transition-btn: background-color 0.3s ease;
+	--transition-slider-control-dot: background-color 0.3s ease, box-shadow 0.3s ease;
+	--transition-svg: fill 0.3s ease;
+	--transition-link: color 0.3s ease;
+	--transition-menu: opacity 0.3s ease, transform 0.3s ease;
+	--transition-btn-more-svg: transform 0.3s ease, fill 0.3s ease;
 
-    /* sort */
-    --color-sort-border: #DBDBDB;
-    --color-background: #F6F6F6;
-    --transition-sort-hover: border 0.2s ease-in-out;
-    --transition-sort-transform: transform 0.15s ease-in-out;
-    --transition-background: background .2s;
+	/* sort */
+	--color-sort-border: #dbdbdb;
+	--color-background: #f6f6f6;
+	--transition-sort-hover: border 0.2s ease-in-out;
+	--transition-sort-transform: transform 0.15s ease-in-out;
+	--transition-background: background 0.2s;
 
-    /* z-index */
-    --z-index-popups: 1000;
+	/* pagination */
+	--color-pagination-item-background: #f1f1f1;
+
+	/* z-index */
+	--z-index-popups: 1000;
 }
 
 body {
-     font-family: 'Work Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',  'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
-    color: var(--color-dark);
-    letter-spacing: 0.02em;
+	font-family: 'Work Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell',
+		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 14px;
+	color: var(--color-dark);
+	letter-spacing: 0.02em;
 }
 
 a {
-    text-decoration: none;
-    color: var(--color-dark);
-    transition: var(--transition-link);
+	text-decoration: none;
+	color: var(--color-dark);
+	transition: var(--transition-link);
 }
 
 svg path {
-    transition: var(--transition-svg);
+	transition: var(--transition-svg);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+button {
+	font-family: 'Work Sans', serif;
 }
 
 /* grid */
 .container {
-    margin: 0 auto;
-    max-width: 1170px;
-    width: 100%;
-    height: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+	margin: 0 auto;
+	max-width: 1170px;
+	width: 100%;
+	height: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
 }

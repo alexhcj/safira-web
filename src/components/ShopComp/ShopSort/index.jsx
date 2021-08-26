@@ -99,6 +99,7 @@ export const ShopSort = ({ sortHandler }) => {
 					)
 				})}
 			</ul>
+			<span className={s.results}>Showing 1–9 of 21 results</span>
 		</div>
 	)
 }
