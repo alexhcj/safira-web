@@ -1,54 +1,51 @@
 import s from './pagination.module.css'
 
 export const Pagination = ({
+	page,
 	pages,
-	currentPagNums,
-	currentPage,
 	maxPageNumberLimit,
-	minPageNumberLimit,
-	currentPageHandler,
-	nextPageClickHandler,
-	prevPageClickHandler,
-	firstPageClickHandler,
-	lastPageClickHandler,
+    minPageNumberLimit,
+	currentPagNums,
+	selectPage,
+	selectNextPage,
+	selectPrevPage,
+	selectFirstPage,
+	selectLastPage,
 }) => {
-    let pageIncrementBtn = null
+	let pageIncrementBtn = null
 	if (pages.length > maxPageNumberLimit) {
-        pageIncrementBtn = (
-            <button className={s.page} onClick={lastPageClickHandler}>
+		pageIncrementBtn = (
+			<button className={s.page} onClick={selectLastPage}>
 				&gt;&gt;
 			</button>
 		)
 	}
-    
-    let pageDecrementBtn = null
-    if (currentPage !== 1) {
-        pageDecrementBtn = (
-            <button className={s.page} onClick={firstPageClickHandler}>
-                &lt;&lt;
-            </button>
-        )
-    }
+
+	let pageDecrementBtn = null
+	if (page >= 4) {
+		pageDecrementBtn = (
+			<button className={s.page} onClick={selectFirstPage}>
+				&lt;&lt;
+			</button>
+		)
+	}
 
 	return (
 		<div className={s.pagination}>
 			{pageDecrementBtn}
-			<button
-				className={`${s.page} ${currentPage === pages[0] ? `${s.disabled}` : ''}`}
-				onClick={prevPageClickHandler}
-			>
+			<button className={`${s.page} ${page === 1 ? `${s.disabled}` : ''}`} onClick={selectPrevPage}>
 				prev
 			</button>
-			<div className={s.list} onClick={(e) => currentPageHandler(e)}>
-				{currentPagNums.map((page) => (
-					<button className={`${s.page} ${currentPage === page ? `${s.active}` : ''}`} id={page} key={page}>
-						{page}
+			<div className={s.list} onClick={(e) => selectPage(e)}>
+				{currentPagNums.map((num) => (
+					<button className={`${s.page} ${page === num ? `${s.active}` : ''}`} id={num} key={num}>
+						{num}
 					</button>
 				))}
 			</div>
 			<button
-				className={`${s.page} ${currentPage === pages[pages.length - 1] ? `${s.disabled}` : ''}`}
-				onClick={nextPageClickHandler}
+				className={`${s.page} ${page === pages[pages.length - 1] ? `${s.disabled}` : ''}`}
+				onClick={selectNextPage}
 			>
 				next
 			</button>

@@ -16,7 +16,7 @@ export const Mostview = () => {
 		const fetchData = async () => {
 			try {
 				const data = await productsAPI.getProducts(limit, sort)
-				setMostview(data)
+				setMostview(data.data)
 			} catch (e) {
 				console.log(e)
 			}

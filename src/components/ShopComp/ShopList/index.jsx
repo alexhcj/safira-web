@@ -1,10 +1,10 @@
 import { Product } from '../../Product'
 import s from './shoplist.module.css'
 
-export const ShopList = ({ currentProducts }) => {
+export const ShopList = ({ products }) => {
 	return (
 		<div className={s.items}>
-			{currentProducts.map((product) => {
+			{products.map((product) => {
 				return (
 					<div className={s.col} key={product.id}>
 						<Product product={product} size='large' />

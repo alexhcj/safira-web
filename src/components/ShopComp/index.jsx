@@ -7,32 +7,92 @@ import { productsAPI } from '../../api'
 import s from './shop.module.css'
 
 export const ShopComp = () => {
-	const [data, setData] = useState([])
-
-	// pagination pages
-	const [currentPage, setCurrentPage] = useState(1)
-	const pageLimit = 3
-
-	// pagination nums
-	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3)
-	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
-	const pageNumberLimit = 3
-
-	// pagination indexes
-	const lastItemIndex = currentPage * pageLimit
-	const firstItemIndex = lastItemIndex - pageLimit
-	const currentProducts = data.slice(firstItemIndex, lastItemIndex)
-
-	// query params
+	// queries
 	const [search, setSearch] = useState('')
 	const [sort, setSort] = useState('')
 	const [order, setOrder] = useState('')
+	const [page, setPage] = useState(1)
+	const limit = 3
+
+	// headers x-total-count
+	const [total, setTotal] = useState(0)
+
+	// pagination
+	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(limit)
+	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
+
+	const [products, setProducts] = useState([])
 	const tags = 'new'
 
-	// total pages
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				// different query param 'tags_like=new'
+				if (sort === 'added') {
+					const data = await productsAPI.getProductsByTags(sort, tags, order)
+					setProducts(data)
+				} else {
+					const data = await productsAPI.getProducts(search, sort, order, page, limit)
+					setProducts(data.data)
+					setTotal(data.total)
+				}
+			} catch (e) {
+				console.log(e)
+			}
+		}
+
+		fetchData()
+	}, [search, sort, order, page, limit])
+
+	const searchHandler = (search) => {
+		setSearch(search)
+	}
+
+	const sortHandler = (sort) => {
+		setSort(sort.sort)
+		setOrder(sort.order)
+	}
+
+	const selectPage = (e) => {
+		if (e.target.nodeName === 'BUTTON') {
+			// prevent click !button
+			setPage(Number(e.target.id))
+		}
+	}
+
+	const selectNextPage = () => {
+		setPage(page + 1)
+
+		if (page + 1 > maxPageNumberLimit) {
+			setmaxPageNumberLimit(maxPageNumberLimit + limit)
+			setminPageNumberLimit(minPageNumberLimit + limit)
+		}
+	}
+
+	const selectPrevPage = () => {
+		setPage(page - 1)
+
+		if ((page - 1) % minPageNumberLimit === 0) {
+			setmaxPageNumberLimit(maxPageNumberLimit - limit)
+			setminPageNumberLimit(minPageNumberLimit - limit)
+		}
+	}
+
+	const selectFirstPage = () => {
+		setPage(1)
+		setmaxPageNumberLimit(limit)
+		setminPageNumberLimit(0)
+	}
+
+	const selectLastPage = () => {
+		setPage(pages[pages.length - 1])
+		setmaxPageNumberLimit(pages[pages.length - 1])
+		setminPageNumberLimit(pages[pages.length - 1])
+	}
+
 	const pages = []
 
-	for (let i = 1; i <= Math.ceil(data.length / pageLimit); i++) {
+	for (let i = 1; i <= Math.ceil(total / limit); i++) {
 		pages.push(i)
 	}
 
@@ -44,89 +104,24 @@ export const ShopComp = () => {
 		return null
 	})
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				// different query param 'tags_like=new'
-				if (sort === 'added') {
-					const data = await productsAPI.getProductsByTags(sort, tags, order)
-					setData(data)
-				} else {
-					const data = await productsAPI.getProducts(search, sort, order)
-					setData(data)
-				}
-			} catch (e) {
-				console.log(e)
-			}
-		}
-
-		fetchData()
-	}, [pageLimit, search, sort, order])
-
-	const searchHandler = (search) => {
-		setSearch(search)
-	}
-
-	const sortHandler = (sort) => {
-		setSort(sort.sort)
-		setOrder(sort.order)
-	}
-
-	const currentPageHandler = (e) => {
-		if (e.target.nodeName === 'BUTTON') {
-			// prevent click !button
-			setCurrentPage(Number(e.target.id))
-		}
-	}
-
-	const nextPageClickHandler = () => {
-		setCurrentPage(currentPage + 1)
-
-		if (currentPage + 1 > maxPageNumberLimit) {
-			setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-			setminPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-		}
-	}
-
-	const prevPageClickHandler = () => {
-		setCurrentPage(currentPage - 1)
-
-		if (currentPage - 1 < minPageNumberLimit) {
-			setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
-			setminPageNumberLimit(minPageNumberLimit - pageNumberLimit)
-		}
-	}
-
-	const firstPageClickHandler = () => {
-		setCurrentPage(1)
-		setmaxPageNumberLimit(pageLimit)
-		setminPageNumberLimit(0)
-	}
-
-	const lastPageClickHandler = () => {
-		setCurrentPage(pages[pages.length - 1])
-		setmaxPageNumberLimit(pages[pages.length - 1])
-		setminPageNumberLimit(pages[pages.length - 1] - pageNumberLimit)
-	}
-
 	return (
 		<div className={s.section}>
 			<div className='container'>
 				<div className={s.wrapper}>
 					<div className={s.main}>
 						<ShopSort sortHandler={sortHandler} />
-						<ShopList currentProducts={currentProducts} />
+						<ShopList products={products} />
 						<Pagination
+							page={page}
 							pages={pages}
-							currentPagNums={currentPagNums}
-							currentPage={currentPage}
 							maxPageNumberLimit={maxPageNumberLimit}
 							minPageNumberLimit={minPageNumberLimit}
-							currentPageHandler={currentPageHandler}
-							nextPageClickHandler={nextPageClickHandler}
-							prevPageClickHandler={prevPageClickHandler}
-							firstPageClickHandler={firstPageClickHandler}
-							lastPageClickHandler={lastPageClickHandler}
+							currentPagNums={currentPagNums}
+							selectPage={selectPage}
+							selectNextPage={selectNextPage}
+							selectPrevPage={selectPrevPage}
+							selectFirstPage={selectFirstPage}
+							selectLastPage={selectLastPage}
 						/>
 					</div>
 					<div className={s.sidebar}>
