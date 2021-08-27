@@ -15,7 +15,7 @@ export const ShopSort = ({ sortHandler }) => {
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
 	const currentSortRef = useRef(null)
-
+	
 	const selectSort = (e) => {
 		const current = e.target.id - 1
 		const params = {

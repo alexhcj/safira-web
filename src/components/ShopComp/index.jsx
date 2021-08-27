@@ -21,6 +21,7 @@ export const ShopComp = () => {
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(limit)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
 
+    const [searchList, setSearchList] = useState('') // popup state?
 	const [products, setProducts] = useState([])
 	const tags = 'new'
 
@@ -46,6 +47,10 @@ export const ShopComp = () => {
 
 	const searchHandler = (search) => {
 		setSearch(search)
+		console.log(search)
+	}
+	const searchListHandler = (search) => {
+		setSearchList(search)
 	}
 
 	const sortHandler = (sort) => {
@@ -125,7 +130,7 @@ export const ShopComp = () => {
 						/>
 					</div>
 					<div className={s.sidebar}>
-						<ShopSideBar searchHandler={searchHandler} />
+						<ShopSideBar search={search} searchListHandler={searchListHandler} searchHandler={searchHandler} />
 					</div>
 				</div>
 			</div>
