@@ -21,15 +21,17 @@ export const ShopComp = () => {
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(limit)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
 
-    const [searchList, setSearchList] = useState('') // popup state?
+	const [isLoading, setIsLoading] = useState()
 	const [products, setProducts] = useState([])
 	const tags = 'new'
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				setIsLoading(true)
 				// different query param 'tags_like=new'
 				if (sort === 'added') {
+					
 					const data = await productsAPI.getProductsByTags(sort, tags, order)
 					setProducts(data)
 				} else {
@@ -40,6 +42,7 @@ export const ShopComp = () => {
 			} catch (e) {
 				console.log(e)
 			}
+			setIsLoading(false)
 		}
 
 		fetchData()
@@ -48,9 +51,6 @@ export const ShopComp = () => {
 	const searchHandler = (search) => {
 		setSearch(search)
 		console.log(search)
-	}
-	const searchListHandler = (search) => {
-		setSearchList(search)
 	}
 
 	const sortHandler = (sort) => {
@@ -130,7 +130,7 @@ export const ShopComp = () => {
 						/>
 					</div>
 					<div className={s.sidebar}>
-						<ShopSideBar search={search} searchListHandler={searchListHandler} searchHandler={searchHandler} />
+						<ShopSideBar isLoading={isLoading} searchHandler={searchHandler} />
 					</div>
 				</div>
 			</div>

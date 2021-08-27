@@ -1,64 +1,91 @@
 import s from './ShopSideBar.module.css'
-import { convertArray } from '../../../utils'
 import { productsAPI } from '../../../api'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef} from 'react'
 
 
-export const ShopSideBar = ({searchHandler, search, searchListHandler}) => {
+export const ShopSideBar = ({searchHandler, isLoading}) => {
 	const [products, setProducts] = useState([])
-	const [input, setInput] = useState([])
-	const [isLoading, setLoading] = useState()
+	const [input, setInput] = useState('')
+	const [popupToggle, setPopupToggle] = useState(false)
+	const ref = useRef(null)
 
     const limit = 5
     useEffect(() => {
-		
 		const fetchData = async () => {
 			try {
-				setLoading(true)
-				const data = await productsAPI.getProducts(limit, input)
-				
-				setProducts(data)
+				const search = input
+				if(input.length>2){
+					const data = await productsAPI.getProducts(search, limit)
+					setProducts(data.data)
+				}
 			} catch (e) {
 				console.log(e)
 			}
-			setLoading(false)
 		} 
-		
-		
 		fetchData()
+
+		
 	}, [input])
-	const inputHandler = (val)=> {
-		setInput(val)
-		searchHandler(input)
+
+	useEffect(() => {
+		document.addEventListener('keydown', escKeyHandler)
+		document.addEventListener('click', clickOutsideHandler)
+
+		return () => {
+			document.removeEventListener('keydown', escKeyHandler)
+			document.removeEventListener('click', clickOutsideHandler)
+		}
+	}, [])
+	
+	const escKeyHandler = (e) => {
+		if (e.key === 'Escape') {
+			setPopupToggle(false)
+		}
 	}
-    function autocompleteHandler(name){
+
+	const clickHandler = () => {
+		setPopupToggle(!popupToggle)
+	}
+
+	const clickOutsideHandler = (e) => {
+		if (ref.current && !ref.current.contains(e.target)) {
+			setPopupToggle(false)
+		}
+	}
+
+    const autocompleteHandler = (name) => {
 		setInput(name)
 		setProducts([])
-		searchHandler(name)
 	}
+
+	const searchBtnHandler = () => {
+		searchHandler(input)
+		setProducts([])
+	}
+
 	return (
 		<section>
-			<input 
-				value={input} 
+			<input className={s.name} type='text'
+				value={input}
 				placeholder='Search here...' 
-				className={s.name} type='text' 
-				onChange={(e)=>inputHandler(e.target.value)}
+				onInput={(e)=>setInput(e.target.value)}
+				onFocus={(e)=>clickHandler(e)}
+				ref={ref}
 			/>
-			<div>{products.map((product) => {
-				if(search.length>2){
+			<div 
+				 className={`${s.popup_container} ${popupToggle&&input.length>2 ? `${s.active}` : ''} `}>{products.map((product) => {
 					return (
-						<div
+						<div className={s.popup_item}
 							onClick={()=>autocompleteHandler(product.name)}
 							key={product.id}>{product.name}
 						</div>
-					)
-				}
-			})}
+					)	
+				})}
 			</div>
 			<button 
 				className={s.btn} 
-				onClick={()=>searchListHandler(search)}
 				disabled={isLoading}
+				onClick={()=>searchBtnHandler()}
 			>
 				{isLoading && <div className={s.ldsring}><div></div><div></div><div></div><div></div></div>}
 				{!isLoading && <span>Filter</span>}

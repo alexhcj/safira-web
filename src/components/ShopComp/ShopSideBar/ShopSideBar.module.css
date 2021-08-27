@@ -9,6 +9,7 @@
 .btn {
     width: 75px;
     height: 30px;
+    margin-top: 50px;
     border-radius: 30px;
     background-color: var(--color-dark);
     color: var(--color-white);
@@ -48,4 +49,34 @@
       transform: rotate(360deg);
     }
   }
-  
+.popup_container {
+  top: 44.5px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  visibility: hidden;
+  width: 86%;
+  margin-left: 7%;
+  border-radius: 3px;
+  cursor: default;
+  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  z-index: 200;
+}
+.active {
+  visibility: visible;
+}
+.popup_item{
+  width: 100%;
+  text-transform: capitalize;
+  padding: 0 20px 0 30px;
+  line-height: 38px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.auto_popup:hover {
+  color: var(--color-primary);
+}
