@@ -12,7 +12,7 @@ export const NewProducts = () => {
 
 	useEffect(() => {
 		const params = {
-			sort: 'added',
+			sort: 'date',
 			tag: 'new',
 			limit: 12,
 		}

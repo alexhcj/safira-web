@@ -13,7 +13,7 @@ export const FeaturedProducts = () => {
 
 	useEffect(() => {
 		const params = {
-			sort: 'added',
+			sort: 'date',
 			limit: 15,
 		}
 

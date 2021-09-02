@@ -3,7 +3,7 @@ import s from './shopsort.module.css'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
-	{ id: 2, sort: 'added', tag: 'new', order: 'desc', text: 'Sort by newness' },
+	{ id: 2, sort: 'date', tag: 'new', order: 'desc', text: 'Sort by newness' },
 	{ id: 3, sort: 'price', tag: '', order: 'desc', text: 'Sort by price: high to low' },
 	{ id: 4, sort: 'price', tag: '', order: 'asc', text: 'Sort by price: low to high' },
 	{ id: 5, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: A - Z' },
