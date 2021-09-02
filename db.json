@@ -102,7 +102,7 @@
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 1245,
-			"added": "2021-08-09",
+			"date": "2021-08-09",
 			"views" : 3224
 		},
 		{
@@ -116,7 +116,7 @@
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 425,
-			"added": "2021-07-16",
+			"date": "2021-07-16",
 			"views" : 1524
 		},
 		{
@@ -130,7 +130,7 @@
 			"category": "Vegetables",
 			"tags": [],
 			"popularity": 552,
-			"added": "2019-08-16",
+			"date": "2019-08-16",
 			"views" : 1824
 		},
 		{
@@ -144,7 +144,7 @@
 			"category": "Vegetables",
 			"tags": ["new", "sale"],
 			"popularity": 526,
-			"added": "2019-01-02",
+			"date": "2019-01-02",
 			"views" : 2173
 		},
 		{
@@ -158,7 +158,7 @@
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 1521,
-			"added": "2021-11-31",
+			"date": "2021-11-31",
 			"views" : 5069
 		},
 		{
@@ -172,7 +172,7 @@
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 76,
-			"added": "2020-03-05",
+			"date": "2020-03-05",
 			"views" : 321
 		},
 		{
@@ -186,7 +186,7 @@
 			"category": "Vegetables",
 			"tags": ["new", "sale"],
 			"popularity": 632,
-			"added": "2019-07-21",
+			"date": "2019-07-21",
 			"views" : 1621
 		},
 		{
@@ -200,7 +200,7 @@
 			"category": "Vegetables",
 			"tags": ["new", "sale"],
 			"popularity": 962,
-			"added": "2021-10-26",
+			"date": "2021-10-26",
 			"views" : 2100
 		},
 		{
@@ -214,7 +214,7 @@
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 1842,
-			"added": "1996-06-05",
+			"date": "1996-06-05",
 			"views" : 3583
 		},
 		{
@@ -228,7 +228,7 @@
 			"category": "Fruits",
 			"tags": [],
 			"popularity": 745,
-			"added": "2020-05-15",
+			"date": "2020-05-15",
 			"views" : 1992
 		},
 		{
@@ -242,7 +242,7 @@
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 826,
-			"added": "2010-04-23",
+			"date": "2010-04-23",
 			"views" : 1520
 		},
 		{
@@ -256,7 +256,7 @@
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 2005,
-			"added": "2021-09-18",
+			"date": "2021-09-18",
 			"views" : 6724
 		}
 	],
