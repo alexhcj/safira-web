@@ -4,7 +4,7 @@ export const Pagination = ({
 	page,
 	pages,
 	maxPageNumberLimit,
-    minPageNumberLimit,
+	minPageNumberLimit,
 	currentPagNums,
 	selectPage,
 	selectNextPage,

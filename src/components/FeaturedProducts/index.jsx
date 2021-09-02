@@ -10,14 +10,17 @@ import 'react-multi-carousel/lib/styles.css'
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
 	const [btnShow, setBtnShow] = useState(false)
-	const limit = 12
-	
 
 	useEffect(() => {
+		const params = {
+			sort: 'added',
+			limit: 15,
+		}
+
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit)
-				setFeaturedProducts(convertArray(data, 3))
+				const data = await productsAPI.getProducts(params)
+				setFeaturedProducts(convertArray(data.data, 3))
 			} catch (e) {
 				console.log(e)
 			}

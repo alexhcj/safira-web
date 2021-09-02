@@ -9,13 +9,16 @@ import s from './mostview.module.css'
 export const Mostview = () => {
 	const [mostview, setMostview] = useState([])
 	const [btnShow, setBtnShow] = useState(false)
-	const limit = 10
-	const sort = 'popularity'
 
 	useEffect(() => {
+		const params = {
+			sort: 'views',
+			limit: 10,
+		}
+
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit, sort)
+				const data = await productsAPI.getProducts(params)
 				setMostview(data.data)
 			} catch (e) {
 				console.log(e)

@@ -8,15 +8,18 @@ import 'react-multi-carousel/lib/styles.css'
 import s from './bestsellers.module.css'
 
 export const BestSellers = () => {
-	const limit = 8
-	const sort = 'popularity'
 	const [bestsellers, setBestsellers] = useState([])
 
 	useEffect(() => {
+		const params = {
+			sort: 'popularity',
+			limit: 8,
+		}
+
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit, sort)
-				setBestsellers(convertArray(data, 2))
+				const data = await productsAPI.getProducts(params)
+				setBestsellers(convertArray(data.data, 2))
 			} catch (e) {
 				console.log(e)
 			}

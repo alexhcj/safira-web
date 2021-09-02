@@ -5,11 +5,11 @@ import s from './offerlinks.module.css'
 
 export const OfferLinks = () => {
 	const [offers, setOffers] = useState([])
-	const [isLoading, setIsLoading] = useState(false)
+	// const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsLoading(true)
+			// setIsLoading(true)
 
 			try {
 				const data = await offersAPI.getOffers()
@@ -17,7 +17,7 @@ export const OfferLinks = () => {
 			} catch (e) {
 				console.log(e)
 			}
-			setIsLoading(false)
+			// setIsLoading(false)
 		}
 
 		fetchData()

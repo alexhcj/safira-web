@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import s from './shopsort.module.css'
 
 const sortParams = [
-	{ id: 1, sort: 'popularity', order: 'desc', text: 'Sort by popularity' },
-	{ id: 2, sort: 'added', order: 'desc', text: 'Sort by newness' },
-	{ id: 3, sort: 'price', order: 'desc', text: 'Sort by price: high to low' },
-	{ id: 4, sort: 'price', order: 'asc', text: 'Sort by price: low to high' },
-	{ id: 5, sort: 'name', order: 'asc', text: 'Sort by alphabet: A - Z' },
-	{ id: 6, sort: 'name', order: 'desc', text: 'Sort by alphabet: Z - A' },
+	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
+	{ id: 2, sort: 'added', tag: 'new', order: 'desc', text: 'Sort by newness' },
+	{ id: 3, sort: 'price', tag: '', order: 'desc', text: 'Sort by price: high to low' },
+	{ id: 4, sort: 'price', tag: '', order: 'asc', text: 'Sort by price: low to high' },
+	{ id: 5, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: A - Z' },
+	{ id: 6, sort: 'name', tag: '', order: 'desc', text: 'Sort by alphabet: Z - A' },
 ]
 
 export const ShopSort = ({ sortHandler }) => {
@@ -15,12 +15,13 @@ export const ShopSort = ({ sortHandler }) => {
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
 	const currentSortRef = useRef(null)
-	
+
 	const selectSort = (e) => {
 		const current = e.target.id - 1
 		const params = {
 			sort: sortParams[current].sort,
 			order: sortParams[current].order,
+            tag: sortParams[current].tag
 		}
 
 		setSort(sortParams[current])

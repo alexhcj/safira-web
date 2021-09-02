@@ -7,10 +7,14 @@ import { productsAPI } from '../../api'
 import s from './shop.module.css'
 
 export const ShopComp = () => {
+	const [products, setProducts] = useState([])
+	const [isLoading, setIsLoading] = useState()
+
 	// queries
 	const [search, setSearch] = useState('')
-	const [sort, setSort] = useState('')
-	const [order, setOrder] = useState('')
+	const [sort, setSort] = useState('popularity')
+	const [tag, setTag] = useState('')
+	const [order, setOrder] = useState('desc')
 	const [page, setPage] = useState(1)
 	const limit = 3
 
@@ -21,32 +25,39 @@ export const ShopComp = () => {
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(limit)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
 
-	const [isLoading, setIsLoading] = useState()
-	const [products, setProducts] = useState([])
-	const tags = 'new'
-
 	useEffect(() => {
 		const fetchData = async () => {
+			setIsLoading(true)
+
 			try {
-				setIsLoading(true)
-				// different query param 'tags_like=new'
-				if (sort === 'added') {
-					
-					const data = await productsAPI.getProductsByTags(sort, tags, order)
-					setProducts(data)
-				} else {
-					const data = await productsAPI.getProducts(search, sort, order, page, limit)
-					setProducts(data.data)
-					setTotal(data.total)
-				}
+				const data = await productsAPI.getProducts({ search, sort, tag, order, page, limit })
+
+				setProducts(data.data)
+				setTotal(data.total)
 			} catch (e) {
 				console.log(e)
 			}
+
 			setIsLoading(false)
 		}
 
 		fetchData()
-	}, [search, sort, order, page, limit])
+	}, [search, sort, tag, order, page, limit])
+
+	const pages = []
+
+	for (let i = 1; i <= Math.ceil(total / limit); i++) {
+		pages.push(i)
+	}
+
+	const currentPagNums = pages.filter((number) => {
+		if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+			console.log('PagNums trigger')
+			return number
+		}
+
+		return null
+	})
 
 	const searchHandler = (search) => {
 		setSearch(search)
@@ -56,6 +67,7 @@ export const ShopComp = () => {
 	const sortHandler = (sort) => {
 		setSort(sort.sort)
 		setOrder(sort.order)
+		setTag(sort.tag)
 	}
 
 	const selectPage = (e) => {
@@ -92,22 +104,8 @@ export const ShopComp = () => {
 	const selectLastPage = () => {
 		setPage(pages[pages.length - 1])
 		setmaxPageNumberLimit(pages[pages.length - 1])
-		setminPageNumberLimit(pages[pages.length - 1])
+		setminPageNumberLimit(pages[pages.length - limit - 1])
 	}
-
-	const pages = []
-
-	for (let i = 1; i <= Math.ceil(total / limit); i++) {
-		pages.push(i)
-	}
-
-	const currentPagNums = pages.filter((number) => {
-		if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-			return number
-		}
-
-		return null
-	})
 
 	return (
 		<div className={s.section}>

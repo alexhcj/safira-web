@@ -8,14 +8,19 @@ import 'react-multi-carousel/lib/styles.css'
 import s from './newproducts.module.css'
 
 export const NewProducts = () => {
-    const limit = 12
 	const [newProducts, setNewProducts] = useState([])
 
 	useEffect(() => {
+		const params = {
+			sort: 'added',
+			tag: 'new',
+			limit: 12,
+		}
+
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(limit)
-				setNewProducts(convertArray(data, 2))
+				const data = await productsAPI.getProducts(params)
+				setNewProducts(convertArray(data.data, 2))
 			} catch (e) {
 				console.log(e)
 			}
@@ -53,7 +58,7 @@ export const NewProducts = () => {
 				draggable={false}
 				customTransition='transform 250ms ease'
 				containerClass={s.slider__container}
-                itemClass={s.slide}
+				itemClass={s.slide}
 				customLeftArrow={<Arrow />}
 				customRightArrow={<Arrow />}
 			>
