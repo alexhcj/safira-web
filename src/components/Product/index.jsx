@@ -37,10 +37,16 @@ export const Product = ({ size, product }) => {
 				<h4 className={s.category}>
 					<NavLink to='/shop'>{category}</NavLink>
 				</h4>
-				<p className={!priceToggle ? `${s.price}` : `${s.price} ${s.hide}`}>
-					${newprice}
-					<span className={s.oldprice}>${price}</span>
-				</p>
+				<div className={!priceToggle ? `${s.prices}` : `${s.prices} ${s.hide}`}>
+					{newprice === undefined ? (
+						<span className={s.price}>${price}</span>
+					) : (
+						<div>
+							<span className={s.priceDiscount}>${newprice}</span>
+							<span className={newprice ? `${s.price} ${s.discount}` : `${s.price}`}>${price}</span>
+						</div>
+					)}
+				</div>
 			</div>
 			{tags.length !== 0 && size === 'large' && <Tags tags={tags} />}
 			<Hovermenu menuToggle={menuToggle} size={size} />

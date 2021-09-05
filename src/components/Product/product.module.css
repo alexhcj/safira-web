@@ -1,77 +1,83 @@
 .product {
-    display: flex;
-    position: relative;
+	display: flex;
+	position: relative;
 }
 .product:first-child {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 .img {
-    width: 120px;
-    height: 120px;
-    transition: opacity .3s ease;
+	width: 120px;
+	height: 120px;
+	transition: opacity 0.3s ease;
 }
 .img:hover {
-    opacity: .8;
+	opacity: 0.8;
 }
 .info {
-    margin-left: 16px;
+	margin-left: 16px;
 }
 .name {
-    text-transform: capitalize;
-    margin-bottom: 18px;
-    line-height: 15px;
-    font-size: 15px;
+	text-transform: capitalize;
+	margin-bottom: 18px;
+	line-height: 15px;
+	font-size: 15px;
 }
 .category {
-    margin-bottom: 15px;
-    line-height: 12px;
-    font-size: 12px;
-    z-index: 50;
+	margin-bottom: 15px;
+	line-height: 12px;
+	font-size: 12px;
+	z-index: 50;
 }
 .name > a:hover,
 .category > a:hover {
-    color: var(--color-primary);
+	color: var(--color-primary);
+}
+.prices {
+	cursor: default;
+	opacity: 1;
+	transition: var(--transition-menu);
+}
+.prices.hide {
+	opacity: 0;
+}
+.priceDiscount {
+	margin-right: 10px;
+	font-weight: 500;
+	line-height: 16px;
+	font-size: 17px;
+	color: var(--color-primary);
 }
 .price {
+	line-height: 16px;
     font-weight: 500;
-    line-height: 16px;
-    font-size: 17px;
-    color: var(--color-primary);
-    cursor: default;
-    opacity: 1;
-    transition: var(--transition-menu);
+	font-size: 15px;
+	color: var(--color-dark);
 }
-.price.hide {
-    opacity: 0;
-}
-.oldprice {
-    margin-left: 10px;
-    text-decoration-line: line-through;
-    line-height: 16px;
-    font-size: 15px;
-    color: var(--color-dark);
+.price.discount {
+    text-decoration: line-through;
+    font-weight: 400;
 }
 
 /* large size */
 .product.large {
-    flex-direction: column;
-    /* margin-right: 20px; */
+	flex-direction: column;
+	/* margin-right: 20px; */
 }
 .product:first-child.large {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 .product.large .img {
-    margin-bottom: 16px;
-    width: 100%;
-    height: 100%;
+	margin-bottom: 16px;
+	width: 100%;
+	height: 100%;
 }
 .product.large .info {
-    margin-left: 0;
-    text-align: center;
+	margin-left: 0;
+	text-align: center;
 }
 .product.large .name {
-    margin-bottom: 16px;
+	margin-bottom: 16px;
 }
 .product.large .category {
-    margin-bottom: 12px;
+	margin-bottom: 12px;
 }
