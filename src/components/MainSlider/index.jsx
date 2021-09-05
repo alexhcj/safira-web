@@ -20,6 +20,7 @@ export const MainSlider = () => {
 			} catch (e) {
 				console.log(e)
 			}
+            
 			setIsLoading(false)
 		}
 

@@ -56,7 +56,7 @@ export const Footer = () => {
 						<form action='' className={s.form}>
 							<div className={s.input}>
 								<input type='text' placeholder='Enter your email' />
-								<PrimaryBtn text='Subscribe' type='submit' />
+								<PrimaryBtn text='Subscribe' type='subscribe' />
 							</div>
 						</form>
 					</div>

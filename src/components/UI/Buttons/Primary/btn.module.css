@@ -15,7 +15,7 @@
 .btn:hover {
     background-color: var(--color-dark);
 }
-.btn__submit {
+.btn__subscribe {
     position: absolute;
     top: 0;
     right: 0;
@@ -39,4 +39,10 @@
 }
 .btn__search svg path {
     fill: var(--color-white);
+}
+.btn__submit {
+    line-height: 42px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 3px;
 }

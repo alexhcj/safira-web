@@ -53,3 +53,5 @@ export const Pagination = ({
 		</div>
 	)
 }
+
+// BUG: when click on lastPageSelector => 2, 3, 4 => click on prev page (current 4) => only first page [1] appears
