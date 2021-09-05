@@ -98,26 +98,36 @@
 			"price": 23.32,
 			"newprice": 13.31,
 			"img": "http://localhost:5000/assets/images/products/1.jpg",
-			"quantity": 23,
+			"quantity": 237,
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 1245,
 			"date": "2021-08-09",
-			"views" : 3224
+			"views" : 3224,
+			"rating" : 4,
+			"company": "General Mills Inc.",
+			"local/import": "local",
+			"shelfLife": "3 months",
+			"productTags": []
 		},
 		{
 			"id": 2,
-			"name": "Cabbageee",
+			"name": "North Cabbage",
 			"description": "Under conditions of long sunny days, such as those found at high northern latitudes in summer, cabbages can grow quite large.",
 			"price": 17.68,
 			"newprice": 2.79,
 			"img": "http://localhost:5000/assets/images/products/2.jpg",
-			"quantity": 78,
+			"quantity": 781,
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 425,
 			"date": "2021-07-16",
-			"views" : 1524
+			"views" : 1524,
+			"rating" : 3,
+			"company": "General Mills Inc.",
+			"local/import": "local",
+			"shelfLife": "2 weeks",
+			"productTags": ["salad", "leafy"]
 		},
 		{
 			"id": 3,
@@ -126,12 +136,17 @@
 			"price": 13.39,
 			"newprice": 7.4,
 			"img": "http://localhost:5000/assets/images/products/3.jpg",
-			"quantity": 7,
+			"quantity": 317,
 			"category": "Vegetables",
 			"tags": [],
 			"popularity": 552,
 			"date": "2019-08-16",
-			"views" : 1824
+			"views" : 1824,
+			"rating" : 4,
+			"company": "General Mills Inc.",
+			"local/import": "local",
+			"shelfLife": "1 week",
+			"productTags": ["salad", "leafy"]
 		},
 		{
 			"id": 4,
@@ -145,7 +160,12 @@
 			"tags": ["new", "sale"],
 			"popularity": 526,
 			"date": "2019-01-02",
-			"views" : 2173
+			"views" : 2173,
+			"rating" : 4,
+			"company": "General Mills Inc.",
+			"local/import": "local",
+			"shelfLife": "3 weeks",
+			"productTags": ["salad"]
 		},
 		{
 			"id": 5,
@@ -154,12 +174,17 @@
 			"price": 33.79,
 			"newprice": 18.89,
 			"img": "http://localhost:5000/assets/images/products/5.jpg",
-			"quantity": 23,
+			"quantity": 723,
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 1521,
 			"date": "2021-11-31",
-			"views" : 5069
+			"views" : 5069,
+			"rating" : 5,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "import",
+			"shelfLife": "4 weeks",
+			"productTags": ["salad", "exotic"]
 		},
 		{
 			"id": 6,
@@ -168,12 +193,17 @@
 			"price": 14.26,
 			"newprice": 7.34,
 			"img": "http://localhost:5000/assets/images/products/6.jpg",
-			"quantity": 78,
+			"quantity": 278,
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 76,
 			"date": "2020-03-05",
-			"views" : 321
+			"views" : 321,
+			"rating" : 5,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "import",
+			"shelfLife": "2 weeks",
+			"productTags": ["salad"]
 		},
 		{
 			"id": 7,
@@ -182,12 +212,17 @@
 			"price": 55.89,
 			"newprice": 39.13,
 			"img": "http://localhost:5000/assets/images/products/7.jpg",
-			"quantity": 7,
+			"quantity": 447,
 			"category": "Vegetables",
 			"tags": ["new", "sale"],
 			"popularity": 632,
 			"date": "2019-07-21",
-			"views" : 1621
+			"views" : 1621,
+			"rating" : 3,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "import",
+			"shelfLife": "1 week",
+			"productTags": ["vitamin C"]
 		},
 		{
 			"id": 8,
@@ -196,12 +231,17 @@
 			"price": 15.27,
 			"newprice": 7.99,
 			"img": "http://localhost:5000/assets/images/products/8.jpg",
-			"quantity": 92,
+			"quantity": 292,
 			"category": "Vegetables",
 			"tags": ["new", "sale"],
 			"popularity": 962,
 			"date": "2021-10-26",
-			"views" : 2100
+			"views" : 2100,
+			"rating" : 4,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "import",
+			"shelfLife": "1 year",
+			"productTags": ["legumes"]
 		},
 		{
 			"id": 9,
@@ -210,12 +250,17 @@
 			"price": 17.67,
 			"newprice": 13.31,
 			"img": "http://localhost:5000/assets/images/products/9.jpg",
-			"quantity": 23,
+			"quantity": 423,
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 1842,
 			"date": "1996-06-05",
-			"views" : 3583
+			"views" : 3583,
+			"rating" : 5,
+			"company": "ConAgra Foods, Inc",
+			"local/import": "local",
+			"shelfLife": "4 months",
+			"productTags": []
 		},
 		{
 			"id": 10,
@@ -224,12 +269,17 @@
 			"price": 2.15,
 			"newprice": 1.34,
 			"img": "http://localhost:5000/assets/images/products/10.jpg",
-			"quantity": 78,
+			"quantity": 478,
 			"category": "Fruits",
 			"tags": [],
 			"popularity": 745,
 			"date": "2020-05-15",
-			"views" : 1992
+			"views" : 1992,
+			"rating" : 5,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "import",
+			"shelfLife": "1 month",
+			"productTags": ["vitamin C", "exotic"]
 		},
 		{
 			"id": 11,
@@ -238,26 +288,36 @@
 			"price": 15.56,
 			"newprice": 8.39,
 			"img": "http://localhost:5000/assets/images/products/11.jpg",
-			"quantity": 7,
+			"quantity": 397,
 			"category": "Fruits",
 			"tags": ["new"],
 			"popularity": 826,
 			"date": "2010-04-23",
-			"views" : 1520
+			"views" : 1520,
+			"rating" : 4,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "local",
+			"shelfLife": "4 weeks",
+			"productTags": ["vitamin C", "salad"]
 		},
 		{
 			"id": 12,
-			"name": "Cabbage",
+			"name": "Sweet Cabbage",
 			"description": "Heads average between 0.5 and 4 kg (1 and 8 lb), with fast-growing, earlier-maturing varieties producing smaller heads.",
 			"price": 14.99,
 			"newprice": 13.31,
 			"img": "http://localhost:5000/assets/images/products/12.jpg",
-			"quantity": 777,
+			"quantity": 787,
 			"category": "Vegetables",
 			"tags": ["sale"],
 			"popularity": 2005,
 			"date": "2021-09-18",
-			"views" : 6724
+			"views" : 6724,
+			"rating" : 4,
+			"company": "Pinnacle Foods, Inc.",
+			"local/import": "local",
+			"shelfLife": "5 months",
+			"productTags": ["salad", "leafy"]
 		}
 	],
 	"dealweek": [
@@ -287,5 +347,8 @@
 		{ "id": 6, "category": "milk products" },
 		{ "id": 7, "category": "bread" },
 		{ "id": 8, "category": "frozen food" }
+	],
+	"shopbanner": [
+		{"id": 1, "img": "http://localhost:5000/assets/images/shopsidebar/1.jpg"}
 	]
 }

@@ -80,3 +80,11 @@
 .auto_popup:hover {
   color: var(--color-primary);
 }
+.price_input {
+  width: 13px;
+  height: 13px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  border: var(--color-primary) 2px solid;
+  position: absolute;
+}

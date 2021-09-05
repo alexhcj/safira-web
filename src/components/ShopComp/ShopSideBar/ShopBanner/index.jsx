@@ -1,22 +1,31 @@
 import { useEffect, useState } from 'react'
-import { shopBannerAPI } from '../../../api'
+import { shopbannerAPI } from '../../../../api'
+import s from './ShopBanner.module.css'
 
 export const ShopBanner = () => {
-    const [shopBanner, getShopBanner] = useState([])
+    const [banners, setBanners] = useState([])
 
     useEffect(() => {
 
         const fetchData = async () => {
             try {
-                const data = await shopBannerAPI.getShopBanner()
+                const data = await shopbannerAPI.getShopBanner()
+                setBanners(data)
             } catch(e) {
                 console.log(e)
             }
         }
-
-    })
+        fetchData()
+    },[])
 
     return (
-        <img src="" alt="" />
+        <section>
+            {banners.map((banner)=>{
+                const {id, img} = banner
+                return (
+                    <img className={s.banner} key={id} src={img} alt="shopbanner" />
+                )
+            })}
+        </section>
     )
 }

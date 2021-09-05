@@ -38,6 +38,9 @@
     font-size: 15px;
     font-weight: 500;
 }
+.nav__link:focus {
+    outline: 0;
+}
 .nav__link:hover {
     color: var(--color-primary);
 }
