@@ -38,10 +38,8 @@ export const Categories = () => {
 		}
 	}
 
-	const clickHandler = (e) => {
+	const toggleHandler = (e) => {
 		setPopupToggle(!popupToggle)
-		if (e.target.className === s.categories || e.target.parentElement === s.categories) {
-		}
 	}
 
 	const clickOutsideHandler = (e) => {
@@ -51,7 +49,7 @@ export const Categories = () => {
 	}
 
 	return (
-		<div className={s.categories} onClick={(e) => clickHandler(e)} ref={ref}>
+		<div className={s.categories} onClick={(e) => toggleHandler(e)} ref={ref}>
 			<div className={s.burger}>
 				<span></span>
 				<span></span>

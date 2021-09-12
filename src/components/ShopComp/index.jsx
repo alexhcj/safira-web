@@ -61,7 +61,6 @@ export const ShopComp = () => {
 
 	const searchHandler = (search) => {
 		setSearch(search)
-		console.log(search)
 	}
 
 	const sortHandler = (sort) => {

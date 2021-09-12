@@ -1,48 +1,51 @@
 .btn {
-    display: inline-flex;
-    width: fit-content;
-    padding: 0 25px;
-    text-transform: uppercase;
-    text-decoration: none;
-    height: 44px;
-    line-height: 44px;
-    font-size: 15px;
-    border-radius: 10px;
-    color: var(--color-white);
-    background-color: var(--color-primary);
-    transition: var(--transition-btn);
+	display: inline-flex;
+	width: fit-content;
+	padding: 0 25px;
+	text-transform: uppercase;
+	text-decoration: none;
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+	border-radius: 10px;
+	color: var(--color-white);
+	background-color: var(--color-primary);
+	transition: var(--transition-btn);
 }
 .btn:hover {
-    background-color: var(--color-dark);
+	background-color: var(--color-dark);
 }
 .btn__subscribe {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    height: 100%;
-    font-size: 14px;
-    border-radius: 0 30px 30px 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+	height: 100%;
+	font-size: 14px;
+	border-radius: 0 30px 30px 0;
 }
 .btn__search {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    height: 100%;
-    border-radius: 0 30px 30px 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+	height: 100%;
+	border-radius: 0 30px 30px 0;
 }
 .btn__search svg path {
-    fill: var(--color-white);
+	fill: var(--color-white);
 }
 .btn__submit {
-    line-height: 42px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 3px;
+	line-height: 42px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 3px;
+}
+.focus {
+    background-color: var(--color-dark);
 }

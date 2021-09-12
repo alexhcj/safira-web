@@ -9,7 +9,7 @@ export const productsAPI = {
 			.then((res) => {
 				return {
 					data: res.data,
-					total: res.headers['x-total-count'],
+					total: Number(res.headers['x-total-count']),
 				}
 			})
 	},

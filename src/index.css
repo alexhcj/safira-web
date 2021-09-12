@@ -3,6 +3,7 @@
 
 :root {
 	--color-primary: #40a944;
+	--color-error: #FF7063;
 	--color-dark: #222222;
 	--color-dark-light: #333333;
 	--color-white: #ffffff;
@@ -16,7 +17,7 @@
 	--transition-slider-control-dot: background-color 0.3s ease, box-shadow 0.3s ease;
 	--transition-svg: fill 0.3s ease;
 	--transition-link: color 0.3s ease;
-	--transition-menu: opacity 0.3s ease, transform 0.3s ease;
+	--transition-menu: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 	--transition-btn-more-svg: transform 0.3s ease, fill 0.3s ease;
 
 	/* sort */
