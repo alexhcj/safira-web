@@ -1,21 +1,21 @@
 .btn {
-    display: inline-flex;
+	display: inline-flex;
 	width: fit-content;
 	text-decoration: none;
-    padding: 0 20px;
-    height: 30px;
-    text-transform: capitalize;
-    letter-spacing: normal;
-    line-height: 30px;
-    font-size: 14px;
-    border-radius: 30px;
-    color: var(--color-white);
-    background-color: var(--color-dark);
+	padding: 0 20px;
+	height: 30px;
+	text-transform: capitalize;
+	letter-spacing: normal;
+	line-height: 30px;
+	font-size: 14px;
+	border-radius: 30px;
+	color: var(--color-white);
+	background-color: var(--color-dark);
 	transition: var(--transition-btn);
 }
 .btn:hover {
-    background-color: var(--color-primary);
+	background-color: var(--color-primary);
 }
-.btn.focus {
-    background-color: var(--color-primary);
+.btn.disabled {
+	background-color: var(--color-error);
 }

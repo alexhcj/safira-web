@@ -4,7 +4,7 @@ import classNames from 'classnames/bind'
 import { DoubleArrowSVG } from '../../../svg'
 import s from './scroll.module.css'
 
-export const Scroll = () => {
+export const Button = () => {
 	const [scrollBtn, setScrollBtn] = useState(false)
 
 	const showScroll = () => {

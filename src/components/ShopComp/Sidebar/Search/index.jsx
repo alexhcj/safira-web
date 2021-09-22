@@ -1,25 +1,30 @@
 import { useEffect, useState, useRef } from 'react'
-import { productsAPI } from '../../../api'
-import { Button } from '../../UI/Buttons/Filter'
+import { productsAPI } from '../../../../api'
+import { Button } from '../../../UI/Buttons/Filter'
+import { ErrorPopup } from '../../../UI/ErrorPopup'
 import classNames from 'classnames/bind'
-import s from './sidebar.module.css'
+import s from './search.module.css'
 
 let cx = classNames.bind(s)
 
-export const ShopSideBar = ({ searchHandler }) => {
+export const Search = ({ searchHandler }) => {
 	const [products, setProducts] = useState([])
 	const [search, setSearch] = useState('')
 	const [currentSearch, setCurrentSearch] = useState('')
-	const [validationToggle, setValidationToggle] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-	const [focus, setFocus] = useState(false)
 	const ref = useRef(null)
 	const limit = 5
 
+	// input validation
+	const [validationToggle, setValidationToggle] = useState(false)
+	const [validationError, setValidationError] = useState('')
+
+	// btn
+	const [disabled, setDisabled] = useState(false)
+
 	const popupCN = cx('popup', {
 		active: popoverToggle && products,
-		focus: focus,
 	})
 
 	useEffect(() => {
@@ -27,14 +32,19 @@ export const ShopSideBar = ({ searchHandler }) => {
 			setIsLoading(true)
 
 			try {
-				const data = await productsAPI.getProducts({ search, limit })
-				// if (data.total === 0) {
-				//     const noresult = [{id: 1, category: 'No result'}]
-				//     setProducts([...noresult])
-				//     console.log(products)
-				// }
+				if (!validationError) {
+					const data = await productsAPI.getProducts({ search, limit })
 
-				setProducts(data.data)
+					// no result
+					if (search !== '' && data.total === 0) {
+						inputValidationHandler('noresult')
+						setPopoverToggle(false)
+						setIsLoading(false)
+						return null
+					}
+
+					setProducts(data.data)
+				}
 			} catch (e) {
 				console.log(e)
 			}
@@ -49,9 +59,21 @@ export const ShopSideBar = ({ searchHandler }) => {
 		return () => {
 			clearTimeout(debounce)
 		}
-	}, [search])
+	}, [search, validationError])
 
 	useEffect(() => {
+		const outsideClickHandler = (e) => {
+			// prevent toggle off on span click
+			if (e.target.nodeName === 'SPAN') {
+				return null
+			}
+
+			if (!ref.current.contains(e.target)) {
+				setPopoverToggle(false)
+				setValidationToggle(false)
+			}
+		}
+
 		document.addEventListener('keydown', escKeyHandler)
 		document.addEventListener('click', outsideClickHandler)
 
@@ -70,94 +92,109 @@ export const ShopSideBar = ({ searchHandler }) => {
 
 	const onClickHandler = () => {
 		setPopoverToggle(true)
-	}
 
-	const outsideClickHandler = (e) => {
-		if (e.target.nodeName === 'SPAN' && search === '') {
-			setPopoverToggle(true)
-			return null
-		}
-
-		if (!ref.current.contains(e.target)) {
-			setPopoverToggle(false)
-			setValidationToggle(false)
+		if (validationError && search !== '') {
+			setValidationToggle(true)
 		}
 	}
 
 	const autoCompleteClickHandler = (search) => {
 		setSearch(search)
+		setDisabled(false)
+		setValidationError('')
 	}
 
 	const searchBtnClickHandler = (e) => {
 		e.preventDefault()
 
-		// empty input req
+		// empty input req onClick
 		if (search === '' || search === undefined) {
-			setValidationToggle(true)
-			setPopoverToggle(true)
+			inputValidationHandler('empty')
 			return null
 		}
 
-		searchHandler(search)
-		setCurrentSearch(search)
-		setProducts([])
-		setSearch('')
+		if (validationError) {
+			setValidationToggle(true)
+		}
+
+		if (!validationError) {
+			searchHandler(search)
+			setCurrentSearch(search)
+			setProducts([])
+			setSearch('')
+		}
 	}
 
 	const inputHandler = (e) => {
 		const input = e.target.value
 
+		if (!popoverToggle) setPopoverToggle(true)
+
 		inputValidationHandler(input)
 		setSearch(input)
 	}
 
-	// validation popup toggle handler
 	const inputValidationHandler = (input) => {
-		// empty
-		if (input !== '' || input !== undefined) {
-			setValidationToggle(false)
+		// no result
+		if (input === 'noresult') {
+			setValidationError('noresult')
+			setValidationToggle(true)
+			setDisabled(true)
+			return null
 		}
 
-		// no results
-		// length (get from longest product title)
-		// only alphabet regexp
-	}
+		// empty
+		if (input === 'empty') {
+			setValidationError('empty')
+			setValidationToggle(true)
+			setPopoverToggle(true)
+			return null
+		}
 
-	const onFocus = () => {
-		setFocus(true)
-	}
+		// alphanumeric and spaces regexp
+		if (!input.match('^[a-zA-Z ]*$')) {
+			setValidationError('text')
+			setValidationToggle(true)
+			setDisabled(true)
+			return null
+		}
 
-	const onBlur = () => {
-		setFocus(false)
+		// max length
+		if (input.length >= 35) {
+			setValidationError('length')
+			setValidationToggle(true)
+			setDisabled(true)
+			return null
+		}
+
+		// else close validation popup & disable error
+		if (input !== '' || input !== undefined) {
+			setValidationError('')
+			setValidationToggle(false)
+			setDisabled(false)
+			// setTimeout
+		}
 	}
 
 	return (
 		<aside>
-			<h3 className={s.title}>Filter by name</h3>
 			<div className={s.search}>
 				<input
-					className={`${s.input} ${validationToggle ? `${s.error}` : ''} `}
+					className={s.input}
+					ref={ref}
 					type='text'
 					value={search}
+					maxLength='35'
 					placeholder='Search...'
 					onChange={(e) => inputHandler(e)}
 					onClick={(e) => onClickHandler(e)}
-					ref={ref}
 				/>
-				<span className={`${s.validation} ${validationToggle ? `${s.active}` : ''} `}>
-					Enter product or select from list
-				</span>
+				{<ErrorPopup error={validationError} toggle={validationToggle} />}
 			</div>
-			<ul className={popupCN} onFocus={onFocus} onBlur={onBlur}>
+			<ul className={popupCN}>
 				{products.map((product) => {
 					return (
-						<li
-							className={s.item}
-							onClick={() => autoCompleteClickHandler(product.name)}
-							key={product.id}
-							onFocus={onFocus}
-							onBlur={onBlur}
-						>
+						<li className={s.item} key={product.id} onClick={() => autoCompleteClickHandler(product.name)}>
 							{product.name}
 						</li>
 					)
@@ -167,7 +204,7 @@ export const ShopSideBar = ({ searchHandler }) => {
 				<Button
 					text='Search'
 					isLoading={isLoading}
-					disabled={isLoading}
+					disabled={disabled}
 					searchBtnHandler={searchBtnClickHandler}
 				></Button>
 				<span>{currentSearch}</span>
@@ -176,12 +213,6 @@ export const ShopSideBar = ({ searchHandler }) => {
 	)
 }
 
-// 2. debounce Danil
-
-// TODO: should not dissapear when switch browser tabs
-// TODO: prevent last query when select fetched coincidences
-
-// BUG: when select 2 times in a row the same product popoup appears under the search input
 // BUG: when click on search btn then right "white" side of sidebar then again on search => it doesn't work
 // Difference event click:
 // Normal click path: (8) [div, div, div.app, div#root, body, html, document, Window]

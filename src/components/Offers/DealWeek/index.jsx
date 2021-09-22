@@ -16,6 +16,7 @@ export const DealWeek = () => {
 				console.log(e)
 			}
 		}
+        
 		fetchData()
 	}, [])
 
@@ -27,7 +28,7 @@ export const DealWeek = () => {
 				let { id, name, price, newprice, img, category, tags, time } = theDeal
 				return (
 					<div key={id} className={s.wrapper}>
-                        <Tags tags={tags} />
+						<Tags tags={tags} />
 						<div className={s.content}>
 							<img className={s.img} src={img} alt='' />
 							<h2 className={s.name}>{name}</h2>

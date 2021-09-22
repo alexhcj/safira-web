@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ShopList } from './ShopList'
 import { ShopSort } from './ShopSort'
-import { ShopSideBar } from './ShopSideBar'
+import { Sidebar } from './Sidebar'
 import { Pagination } from '../UI/Pagination/Pagination'
 import { productsAPI } from '../../api'
 import s from './shop.module.css'
@@ -127,7 +127,7 @@ export const ShopComp = () => {
 						/>
 					</div>
 					<div className={s.sidebar}>
-						<ShopSideBar isLoading={isLoading} searchHandler={searchHandler} />
+						<Sidebar isLoading={isLoading} searchHandler={searchHandler} />
 					</div>
 				</div>
 			</div>

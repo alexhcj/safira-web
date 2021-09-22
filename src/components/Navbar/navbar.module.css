@@ -2,7 +2,7 @@
     width: 100%;
     background-color: var(--color-white);
     transition: all .3s ease-in;
-    z-index: 100;
+    z-index: var(--z-index-navbar);
 }
 .sticky {
     position: fixed;
@@ -37,6 +37,9 @@
     line-height: 50px;
     font-size: 15px;
     font-weight: 500;
+}
+.nav__link:focus {
+    outline: 0;
 }
 .nav__link:hover {
     color: var(--color-primary);

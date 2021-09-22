@@ -3,7 +3,8 @@
 
 :root {
 	--color-primary: #40a944;
-	--color-error: #FF7063;
+	--color-error: #ff7063;
+	--color-warning: #ffae00;
 	--color-dark: #222222;
 	--color-dark-light: #333333;
 	--color-white: #ffffff;
@@ -31,6 +32,7 @@
 	--color-pagination-item-background: #f1f1f1;
 
 	/* z-index */
+	--z-index-navbar: 2000;
 	--z-index-popups: 1000;
 }
 

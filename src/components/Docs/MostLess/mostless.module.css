@@ -1,0 +1,44 @@
+.table {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-bottom: 40px;
+}
+.h6 {
+	width: 20%;
+	margin-bottom: 12px;
+	padding-left: 40px;
+	text-align: start;
+	text-transform: capitalize;
+	font-size: 22px;
+	font-family: 'Playfair Display', serif;
+	font-style: italic;
+}
+.col {
+	padding: 0 20px;
+	width: 40%;
+}
+.card {
+	display: flex;
+	align-items: center;
+}
+.img {
+	margin-right: 40px;
+	width: 100px;
+	height: 100px;
+}
+.name {
+	margin-bottom: 8px;
+	margin-right: 40px;
+	font-size: 18px;
+}
+.paramMost {
+	font-size: 16px;
+	font-weight: 500;
+	color: #40a944;
+}
+.paramLess {
+	font-size: 16px;
+	font-weight: 500;
+	color: #ff7063;
+}

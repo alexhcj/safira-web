@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
-import { Home, Shop, Blog, Cart, Checkout, Product } from './pages'
+import { Home, Shop, Blog, Cart, Checkout, Product, Docs } from './pages'
 import { Header, Footer, Copyright } from './components'
-import { Scroll } from './components/UI/Buttons/Scroll'
+import { ScrollBtn, DocsBtn } from './components/UI'
 
 function App() {
 	return (
@@ -23,13 +23,17 @@ function App() {
 				<Route path='/checkout'>
 					<Checkout />
 				</Route>
-				<Route path='/product'>
+				<Route path='/product/:id'>
 					<Product />
+				</Route>
+				<Route path='/docs'>
+					<Docs />
 				</Route>
 			</Switch>
 			<Footer />
 			<Copyright />
-			<Scroll />
+			<ScrollBtn />
+			<DocsBtn />
 		</div>
 	)
 }

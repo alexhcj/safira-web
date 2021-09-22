@@ -11,7 +11,14 @@ export const Product = ({ size, product }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
-	const { tags, img, name, category, price, newprice } = product
+	const { id, tags, img, name, category, price, newprice } = product
+	const url = {
+		pathname: `/product/${id}`,
+		state: {
+			name: name,
+			category: category,
+		},
+	}
 
 	let productCN = cx('product', { large: size })
 
@@ -27,12 +34,12 @@ export const Product = ({ size, product }) => {
 
 	return (
 		<div onMouseEnter={handleMenuToggle} onMouseLeave={handleMenuToggle} className={productCN}>
-			<NavLink to='/shop'>
+			<NavLink to={url}>
 				<img className={s.img} src={img} alt={name} />
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={s.name}>
-					<NavLink to='/shop'>{name}</NavLink>
+					<NavLink to={url}>{name}</NavLink>
 				</h3>
 				<h4 className={s.category}>
 					<NavLink to='/shop'>{category}</NavLink>

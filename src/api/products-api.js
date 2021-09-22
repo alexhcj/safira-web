@@ -13,4 +13,17 @@ export const productsAPI = {
 				}
 			})
 	},
+	getProductsByNewprice({ sort = 'newprice', order = 'desc', limit = 10, newprice_gte = 0 }) {
+		return instance
+			.get(`products?_sort=${sort}&_order=${order}&_limit=${limit}&newprice_gte=${newprice_gte}`)
+			.then((res) => {
+				return {
+					data: res.data,
+					total: Number(res.headers['x-total-count']),
+				}
+			})
+	},
+	getProduct(id = 1) {
+		return instance.get(`products?id=${id}`).then((res) => res.data)
+	},
 }

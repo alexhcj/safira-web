@@ -32,11 +32,11 @@ export const Navbar = () => {
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to='/'>
-							Blog
+						<NavLink className={s.nav__link} to='/shop'>
+							Shop
 						</NavLink>
-						<NavLink className={s.nav__link} to='/'>
-							Contact us
+						<NavLink className={s.nav__link} to='/blog'>
+							Blog
 						</NavLink>
 					</nav>
 					<div className={s.support}>
