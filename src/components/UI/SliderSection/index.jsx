@@ -50,9 +50,8 @@ export const OneRowProductSlider = ({products, heading, above_heading, id}) => {
                     >
                         {products.map((product) => {
                             if(product.id===id){
-                                return
+                                return 0
                             }
-                            console.log(product.id)
                             return <Product size='large' key={product.id} product={product} />
                         })}
                     </Carousel>

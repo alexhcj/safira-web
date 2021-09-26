@@ -34,6 +34,7 @@ export const ShopComp = () => {
 
 				setProducts(data.data)
 				setTotal(data.total)
+				console.log(data)
 			} catch (e) {
 				console.log(e)
 			}

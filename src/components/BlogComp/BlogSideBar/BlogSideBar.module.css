@@ -1,0 +1,12 @@
+.section {
+    width: 100%;
+    max-width: 265px;
+    margin-left: 22px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.wrapper {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+}

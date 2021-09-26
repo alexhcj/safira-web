@@ -12,13 +12,17 @@ export const ShopSideBar = ({searchHandler, isLoading}) => {
 	// const [isDrag, setDrag] = useState(false)
 	// const [diffX, setdiffX] = useState()
 	// const [dragX, setDragX] = useState(0)
-	const params = {
-		search: input,
-		limit: 5
-	}
+	
+	
+	
     useEffect(() => {
+		const params = {
+			search: input,
+			limit: 5
+		}
 		const fetchData = async () => {
 			try {
+				
 				if(input.length>2){
 					const data = await productsAPI.getProducts(params)
 					setProducts(data.data)
@@ -27,7 +31,12 @@ export const ShopSideBar = ({searchHandler, isLoading}) => {
 				console.log(e)
 			}
 		} 
-		fetchData()
+		const timeoutHandler = setTimeout(() => {
+			fetchData()
+		  }, 500);
+		return ()=> {
+			clearTimeout(timeoutHandler)
+		}
 		
 	}, [input])
 

@@ -9,7 +9,7 @@ export const Button = ({ to = '/', text = 'Read more', type = '' }) => {
 	const btnCN = cx('btn', {
 		btn__subscribe: type === 'subscribe',
 		btn__search: type === 'search',
-		btn__submit: type === 'submit',
+		btn__submit: type === 'submit', 
 	})
 
 	return (
