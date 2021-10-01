@@ -2,6 +2,7 @@ import s from './specialoffer.module.css'
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { specialofferAPI } from '../../../api/'
+import { ImageWithFallback } from '../../../utils/components'
 
 export const SpecialOffer = () => {
 	const [specialoffer, setSpecialoffer] = useState([])
@@ -23,9 +24,15 @@ export const SpecialOffer = () => {
 		<div className={s.block}>
 			{specialoffer.map((offer) => {
 				const { id, img } = offer
+
 				return (
 					<NavLink to='/shop' key={id}>
-						<img className={s.img} src={img} alt='special offer' />
+						<ImageWithFallback
+							className={s.img}
+							src={img}
+							imgSize='specialoffer'
+							alt='Summer sale 50% off fruits'
+						/>
 					</NavLink>
 				)
 			})}
