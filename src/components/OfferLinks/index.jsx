@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { offersAPI } from '../../api'
+import { ImageWithFallback } from '../../utils/components'
 import s from './offerlinks.module.css'
 
 export const OfferLinks = () => {
@@ -32,7 +33,7 @@ export const OfferLinks = () => {
 
 						return (
 							<NavLink className={s.link} to='/shop' key={id}>
-								<img src={img} alt='offer' />
+								<ImageWithFallback src={img} imgSize='offerlink' />
 							</NavLink>
 						)
 					})}
