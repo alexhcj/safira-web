@@ -3,12 +3,14 @@ import { productsAPI } from '../../../api'
 import { Arrow } from '../../MainSlider/Controls/Arrow'
 import { Product } from '../../Product'
 import { convertArray } from '../../../utils/index'
+import { Preloader } from '../../UI'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './newproducts.module.css'
 
 export const NewProducts = () => {
 	const [newProducts, setNewProducts] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		const params = {
@@ -18,12 +20,16 @@ export const NewProducts = () => {
 		}
 
 		const fetchData = async () => {
+			setIsLoading(true)
+
 			try {
 				const data = await productsAPI.getProducts(params)
 				setNewProducts(convertArray(data.data, 2))
 			} catch (e) {
 				console.log(e)
 			}
+
+			setIsLoading(false)
 		}
 
 		fetchData()
@@ -62,15 +68,19 @@ export const NewProducts = () => {
 				customLeftArrow={<Arrow />}
 				customRightArrow={<Arrow />}
 			>
-				{newProducts.map((col, index) => {
-					return (
-						<div key={index}>
-							{col.map((product) => {
-								return <Product size='large' key={product.id} product={product} />
-							})}
-						</div>
-					)
-				})}
+				{isLoading ? (
+					<Preloader />
+				) : (
+					newProducts.map((col, index) => {
+						return (
+							<div key={index}>
+								{col.map((product) => {
+									return <Product size='large' imgSize='sm' key={product.id} product={product} />
+								})}
+							</div>
+						)
+					})
+				)}
 			</Carousel>
 		</div>
 	)

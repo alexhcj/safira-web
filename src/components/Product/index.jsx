@@ -2,16 +2,18 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Hovermenu } from '../UI/Hovermenu'
 import { Tags } from '../UI/Tags'
+import { ImageWithFallback } from '../../utils/components'
 import classNames from 'classnames/bind'
 import s from './product.module.css'
 
 let cx = classNames.bind(s)
 
-export const Product = ({ size, product }) => {
+export const Product = ({ size, imgSize, product }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
 	const { id, tags, img, name, category, price, newprice } = product
+
 	const url = {
 		pathname: `/product/${id}`,
 		state: {
@@ -35,7 +37,7 @@ export const Product = ({ size, product }) => {
 	return (
 		<div onMouseEnter={handleMenuToggle} onMouseLeave={handleMenuToggle} className={productCN}>
 			<NavLink to={url}>
-				<img className={s.img} src={img} alt={name} />
+				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={s.name}>

@@ -78,7 +78,7 @@ export const FeaturedProducts = () => {
 							return (
 								<div key={index}>
 									{col.map((product) => {
-										return <Product key={product.id} product={product} />
+										return <Product imgSize='xs' key={product.id} product={product} />
 									})}
 								</div>
 							)

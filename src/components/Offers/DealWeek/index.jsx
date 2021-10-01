@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { dealweekAPI } from '../../../api/'
+import { ImageWithFallback } from '../../../utils/components'
 import { Tags, PrimaryBtn } from '../../UI'
 import { Timer } from '../Timer'
 import s from './dealweek.module.css'
@@ -16,7 +18,7 @@ export const DealWeek = () => {
 				console.log(e)
 			}
 		}
-        
+
 		fetchData()
 	}, [])
 
@@ -24,13 +26,24 @@ export const DealWeek = () => {
 		<div className={s.block}>
 			<h3 className={s.heading}>Deals Of The Week</h3>
 
-			{deal.map((theDeal) => {
-				let { id, name, price, newprice, img, category, tags, time } = theDeal
+			{deal.map((deal) => {
+				const { id, name, price, newprice, img, category, tags, time } = deal
+
+				const url = {
+					pathname: `/product/${id}`,
+					state: {
+						name: name,
+						category: category,
+					},
+				}
+
 				return (
 					<div key={id} className={s.wrapper}>
 						<Tags tags={tags} />
 						<div className={s.content}>
-							<img className={s.img} src={img} alt='' />
+							<NavLink to={url}>
+								<ImageWithFallback className={s.img} src={img} imgSize='lg' />
+							</NavLink>
 							<h2 className={s.name}>{name}</h2>
 							<h3 className={s.category}>{category}</h3>
 							<p className={s.newprice}>
