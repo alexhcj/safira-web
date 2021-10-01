@@ -22,14 +22,14 @@
       "img": "http://localhost:5000/assets/images/slider/3.jpg"
     }
   ],
-  "offers": [
+  "offerlinks": [
     {
       "id": 1,
-      "img": "http://localhost:5000/assets/images/offerlinks/1.png"
+      "img": "http://localhost:5000/assets/images/offer-links/fresh-vegetables"
     },
     {
       "id": 2,
-      "img": "http://localhost:5000/assets/images/offerlinks/2.png"
+      "img": "http://localhost:5000/assets/images/offer-links/natural-fresh-fruits"
     }
   ],
   "posts": [
@@ -88,7 +88,7 @@
       "title": "Black Friday !",
       "saleInfo": "Sale 50% OFF",
       "description": "all vegetable products",
-      "img": "http://localhost:5000/assets/images/sale/1.jpg"
+      "img": "http://localhost:5000/assets/images/sale"
     }
   ],
   "products": [
@@ -97,7 +97,7 @@
       "name": "Lime",
       "description": "Limes are a rich source of vitamin C, are sour, and are often used to accent the flavours of foods and beverages.",
       "price": 23.32,
-      "img": "http://localhost:5000/assets/images/products/1.jpg",
+      "img": "http://localhost:5000/assets/images/products/lime",
       "quantity": 237,
       "category": "Fruits",
       "tags": [
@@ -120,7 +120,7 @@
       "description": "Under conditions of long sunny days, such as those found at high northern latitudes in summer, cabbages can grow quite large.",
       "price": 8.99,
       "newprice": 5.79,
-      "img": "http://localhost:5000/assets/images/products/2.jpg",
+      "img": "http://localhost:5000/assets/images/products/north-cabbage",
       "quantity": 781,
       "category": "Vegetables",
       "tags": [
@@ -143,7 +143,7 @@
       "name": "Butterhead Lettuce",
       "description": "Lettuce is most often used for salads, although it is also seen in other kinds of food, such as soups, sandwiches and wraps; it can also be grilled.",
       "price": 13.39,
-      "img": "http://localhost:5000/assets/images/products/3.jpg",
+      "img": "http://localhost:5000/assets/images/products/butterhead-lettuce",
       "quantity": 317,
       "category": "Vegetables",
       "tags": [],
@@ -165,7 +165,7 @@
       "description": "The cherry tomato is a type of small round tomato believed to be an intermediate genetic admixture between wild currant-type tomatoes and domesticated garden tomatoes. Cherry tomatoes range in size from a thumbtip up to the size of a golf ball, and can range from spherical to slightly oblong in shape. Although usually red, other colours such as yellow, green, and black also exist.",
       "price": 19.77,
       "newprice": 6.27,
-      "img": "http://localhost:5000/assets/images/products/4.jpg",
+      "img": "http://localhost:5000/assets/images/products/cherry-tomato",
       "quantity": 777,
       "category": "Vegetables",
       "tags": [
@@ -185,10 +185,10 @@
     },
     {
       "id": 5,
-      "name": "Purple Passion fruit",
+      "name": "Purple Passion Fruit",
       "description": "Purple passion fruit is very fragrant and it produces tropical and floral scent. The flesh or the pulp of this fruit variety has small and edible black seeds that are surrounded with a juicy and succulent yellow to orange sack.",
       "price": 33.79,
-      "img": "http://localhost:5000/assets/images/products/5.jpg",
+      "img": "http://localhost:5000/assets/images/products/purple-passion-fruit",
       "quantity": 723,
       "category": "Fruits",
       "tags": [
@@ -210,7 +210,7 @@
       "name": "Olive",
       "description": "The olive's fruit, also called an 'olive', is of major agricultural importance in the Mediterranean region as the source of olive oil.",
       "price": 14.26,
-      "img": "http://localhost:5000/assets/images/products/6.jpg",
+      "img": "http://localhost:5000/assets/images/products/olive",
       "quantity": 278,
       "category": "Fruits",
       "tags": [
@@ -233,7 +233,7 @@
       "description": "It is eaten either raw or cooked. Broccoli is a particularly rich source of vitamin C and vitamin K.",
       "price": 68.19,
       "newprice": 39.13,
-      "img": "http://localhost:5000/assets/images/products/7.jpg",
+      "img": "http://localhost:5000/assets/images/products/broccoli",
       "quantity": 447,
       "category": "Vegetables",
       "tags": [
@@ -257,7 +257,7 @@
       "description": "The snow pea is an edible-pod pea with flat pods and thin pod walls. It is eaten whole, with both the seeds and the pod, while still unripe.",
       "price": 9.39,
       "newprice": 7.99,
-      "img": "http://localhost:5000/assets/images/products/8.jpg",
+      "img": "http://localhost:5000/assets/images/products/snow-pea",
       "quantity": 292,
       "category": "Vegetables",
       "tags": [
@@ -277,11 +277,11 @@
     },
     {
       "id": 9,
-      "name": "All Green Bush Zucchini",
-      "description": "All green bush zucchini is, as the name indicates, a green squash. This variant of the zucchini plant grows like a bush which is why this particular species of the squash gets its name.",
+      "name": "Green Zucchini",
+      "description": "Green zucchini serves as a great source of vitamin C and manganese, making it the perfect addition to your meals in a variety of ways.",
       "price": 21.89,
       "newprice": 13.31,
-      "img": "http://localhost:5000/assets/images/products/9.jpg",
+      "img": "http://localhost:5000/assets/images/products/green-zucchini",
       "quantity": 423,
       "category": "Vegetables",
       "tags": [
@@ -298,10 +298,10 @@
     },
     {
       "id": 10,
-      "name": "Raw mango",
+      "name": "Raw Mango",
       "description": "He says that the fruit is rich in vitamin A and C, calcium, iron and 82% of magnesium which is vital for the extraction of wastes in the body.",
       "price": 2.15,
-      "img": "http://localhost:5000/assets/images/products/10.jpg",
+      "img": "http://localhost:5000/assets/images/products/raw-mango",
       "quantity": 478,
       "category": "Fruits",
       "tags": [],
@@ -319,10 +319,10 @@
     },
     {
       "id": 11,
-      "name": "American Beauty Apple",
-      "description": "Tree vigorous, productive, annual bearer. Stalk short. Flesh yellowish, tender, juicy, subacid, aromativ.",
+      "name": "Black Prince",
+      "description": "This early to middle season dessert apple is deep red, with the red colouring extending, in patches, deep into the flesh of the apple.",
       "price": 15.56,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/black-prince",
       "quantity": 397,
       "category": "Fruits",
       "tags": [
@@ -346,7 +346,7 @@
       "description": "Heads average between 0.5 and 4 kg (1 and 8 lb), with fast-growing, earlier-maturing varieties producing smaller heads.",
       "price": 32.69,
       "newprice": 17.79,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/red-cabbage",
       "quantity": 787,
       "category": "Vegetables",
       "tags": [
@@ -370,7 +370,7 @@
       "description": "Savoy cabbage is a winter vegetable and one of several cabbage varieties. It has crinkled, emerald green leaves. The leaves are crunchy and tender.",
       "price": 36.62,
       "newprice": 19.72,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/savoy-cabbage",
       "quantity": 423,
       "category": "Vegetables",
       "tags": [
@@ -394,7 +394,7 @@
       "description": "Blood limes are hybrids that were developed in Australia. The fruit is blood-red in color, and it is much smaller than other types of limes. It is a cross between the red finger lime and the Ellendale mandarin, the latter being a mandarin-orange hybrid. It also has a somewhat sweet taste.",
       "price": 36.62,
       "newprice": 19.72,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/blood-limes",
       "quantity": 423,
       "category": "Vegetables",
       "tags": [
@@ -418,7 +418,7 @@
       "description": "Lettuce is most often used for salads, although it is also seen in other kinds of food, such as soups, sandwiches and wraps; it can also be grilled.",
       "price": 15.12,
       "newprice": 6.02,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/leaf-lettuce",
       "quantity": 1455,
       "category": "Vegetables",
       "tags": [
@@ -442,7 +442,7 @@
       "description": "Roma tomatoes are egg- or pear-shaped and red when fully ripe. They have few seeds and are a good canning and sauce tomato.",
       "price": 12.13,
       "newprice": 5.32,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/roma-tomato",
       "quantity": 1272,
       "category": "Vegetables",
       "tags": [
@@ -460,35 +460,12 @@
       ]
     },
     {
-      "id": 16,
-      "name": "San Marzano Tomato",
-      "description": "Compared to the Roma tomato, San Marzano tomatoes are thinner and more pointed. The flesh is much thicker with fewer seeds, and the taste is stronger, sweeter, and less acidic.",
-      "price": 11.78,
-      "newprice": 7.54,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
-      "quantity": 247,
-      "category": "Vegetables",
-      "tags": [
-        "sale"
-      ],
-      "popularity": 211,
-      "date": "2021-11-12",
-      "views": 1238,
-      "rating": 3,
-      "company": "Pinnacle Foods, Inc.",
-      "local/import": "local",
-      "shelfLife": 26,
-      "productTags": [
-        "salad"
-      ]
-    },
-    {
       "id": 17,
-      "name": "Can Tomatoes",
+      "name": "Antonella Canned Tomatoes - Finely Chopped",
       "description": "They are quickly blanched in hot water, peeled, stuffed into jars, covered, and boiled to seal the jars.",
       "price": 15.28,
       "newprice": 8.39,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/antonella-canned-tomatoes-finely-chopped",
       "quantity": 547,
       "category": "Vegetables",
       "tags": [
@@ -498,8 +475,9 @@
       "date": "2021-09-02",
       "views": 8689,
       "rating": 4,
-      "company": "ConAgra Foods, Inc.",
-      "local/import": "local",
+      "company": "Antonella",
+      "country": "Italy",
+      "local/import": "import",
       "shelfLife": 22,
       "productTags": [
         "canned"
@@ -511,7 +489,7 @@
       "description": "Its pulp is gelatinous in texture with a sweet-tart flavor. It is good eaten fresh or incorporated with your recipes when cooking. The pulp with seeds can be used directly on fruit desserts like fruit salads or cocktails. You can even use this golden passion fruit as toppings on yogurt and ice creams.",
       "price": 28.13,
       "newprice": 14.79,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/yellow-passion-fruit",
       "quantity": 107,
       "category": "Fruits",
       "tags": [
@@ -530,11 +508,11 @@
     },
     {
       "id": 19,
-      "name": "Maracuya",
-      "description": "Maracuya fruits have wrinkled skin when matured but they are soft to touch. Its pulp has a very sweet, tangy and tropical flavor with floral aroma.",
+      "name": "Fantasia Yellow Nectarine",
+      "description": "A yellow fleshed nectarine, freestone that ripens in February. Good flavour and a firm flesh.",
       "price": 21.49,
       "newprice": 11.52,
-      "img": "http://localhost:5000/assets/images/products/12.jpg",
+      "img": "http://localhost:5000/assets/images/products/fantasia-yellow-nectarine",
       "quantity": 170,
       "category": "Fruits",
       "tags": [
@@ -557,7 +535,7 @@
       "name": "Mission Olive",
       "description": "Mission olives are harvested for table use from late October through November; for oil production",
       "price": 12.31,
-      "img": "http://localhost:5000/assets/images/products/6.jpg",
+      "img": "http://localhost:5000/assets/images/products/mission-olive",
       "quantity": 278,
       "category": "Fruits",
       "tags": [
@@ -576,10 +554,10 @@
     },
     {
       "id": 21,
-      "name": "Snap pea",
+      "name": "Snap Pea",
       "description": "Snap peas, like all other peas, are pod fruits. An edible-podded pea is similar to a garden, or English, pea, but the pod is less fibrous, and is edible when young. Pods of the edible-podded pea, including snap peas, do not have a membrane and do not open when ripe.",
       "price": 7.31,
-      "img": "http://localhost:5000/assets/images/products/6.jpg",
+      "img": "http://localhost:5000/assets/images/products/snap-pea",
       "quantity": 680,
       "category": "Vegetables",
       "tags": [
@@ -598,11 +576,11 @@
     },
     {
       "id": 22,
-      "name": "Frozen Pea",
+      "name": "Frozen Fresh Garden Peas",
       "description": "Green peas should not be boiled! You can have sweet, creamy peas in less than 10 minutes. Try them tonight!",
       "price": 14.31,
       "newprice": 11.17,
-      "img": "http://localhost:5000/assets/images/products/6.jpg",
+      "img": "http://localhost:5000/assets/images/products/frozen-fresh-garden-peas",
       "quantity": 431,
       "category": "Vegetables",
       "tags": [
@@ -613,7 +591,7 @@
       "date": "2020-01-11",
       "views": 14117,
       "rating": 4.6,
-      "company": "Pinnacle Foods, Inc.",
+      "company": "Emborg",
       "local/import": "import",
       "shelfLife": 15,
       "productTags": [
@@ -622,11 +600,11 @@
     },
     {
       "id": 23,
-      "name": "Split pea",
+      "name": "Green Split Peas",
       "description": "Split peas are an agricultural or culinary preparation consisting of the dried, peeled and split seeds of Pisum sativum, the pea.",
       "price": 8.3,
       "newprice": 5.59,
-      "img": "http://localhost:5000/assets/images/products/6.jpg",
+      "img": "http://localhost:5000/assets/images/products/green-split-peas",
       "quantity": 431,
       "category": "Vegetables",
       "tags": [
@@ -637,7 +615,7 @@
       "date": "2020-04-30",
       "views": 3783,
       "rating": 4.3,
-      "company": "Pinnacle Foods, Inc.",
+      "company": "Bob's Red Mill",
       "local/import": "import",
       "shelfLife": 17,
       "productTags": [
@@ -650,7 +628,7 @@
       "description": "‘Bianco’ means white in Italian and Trieste is the Italian city the squash became popular in. They also tend to be slightly more swollen towards the bottom, giving you ample space to make a stuffed zucchini treat.",
       "price": 22.11,
       "newprice": 13.49,
-      "img": "http://localhost:5000/assets/images/products/9.jpg",
+      "img": "http://localhost:5000/assets/images/products/bianco-di-trieste-zucchini",
       "quantity": 513,
       "category": "Vegetables",
       "tags": [
@@ -671,7 +649,7 @@
       "description": "This zucchini is called black beauty because of its brilliant dark green skin that almost looks black in color. These are long and slender squashes that can be enjoyed through the season.",
       "price": 24.81,
       "newprice": 16.66,
-      "img": "http://localhost:5000/assets/images/products/9.jpg",
+      "img": "http://localhost:5000/assets/images/products/black-beauty-zucchini",
       "quantity": 328,
       "category": "Vegetables",
       "tags": [
@@ -688,29 +666,33 @@
     },
     {
       "id": 26,
-      "name": "Cocozelle Zucchini",
-      "description": "This type of Italian zucchini is known for having excellent flavor, with a mild nutty taste. It is a wildly popular variety of zucchini amongst home growers and is the parent of many zucchini hybrids.",
-      "price": 27.05,
-      "newprice": 18.22,
-      "img": "http://localhost:5000/assets/images/products/9.jpg",
-      "quantity": 281,
+      "name": "San Marzano Tomato",
+      "description": "Compared to the Roma tomato, San Marzano tomatoes are thinner and more pointed. The flesh is much thicker with fewer seeds, and the taste is stronger, sweeter, and less acidic.",
+      "price": 11.78,
+      "newprice": 7.54,
+      "img": "http://localhost:5000/assets/images/products/san-marzano-tomato",
+      "quantity": 247,
       "category": "Vegetables",
-      "tags": [],
-      "popularity": 711,
-      "date": "2020-08-17",
-      "views": 1529,
-      "rating": 3.7,
-      "company": "ConAgra Foods, Inc",
+      "tags": [
+        "sale"
+      ],
+      "popularity": 211,
+      "date": "2021-11-12",
+      "views": 1238,
+      "rating": 3,
+      "company": "Pinnacle Foods, Inc.",
       "local/import": "local",
-      "shelfLife": 9,
-      "productTags": []
+      "shelfLife": 26,
+      "productTags": [
+        "salad"
+      ]
     },
     {
       "id": 27,
       "name": "Golden Apple",
       "description": "Golden Delicious apples are one of the most popular and easily available types of apples in the world. These beauties can be found everywhere from supermarkets to specialty orchards.",
       "price": 12.33,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/golden-apple",
       "quantity": 469,
       "category": "Fruits",
       "tags": [
@@ -733,7 +715,7 @@
       "name": "McIntosh Apple",
       "description": "Golden Delicious apples are one of the most popular and easily available types of apples in the world. These beauties can be found everywhere from supermarkets to specialty orchards.",
       "price": 11.28,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/mcintosh-apple",
       "quantity": 571,
       "category": "Fruits",
       "tags": [
@@ -757,7 +739,7 @@
       "description": "Red Delicious apples are medium-sized and have a conical shape. They are broadly round at the top and taper at the base. The thick skin turns bright red well before the fruits are fully ripe, which can lead to early harvests. As they mature, the skin becomes a darker red with white lenticels visibly dotting the surface.",
       "price": 12.79,
       "newprice": 6.71,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/red-delicious-apple",
       "quantity": 561,
       "category": "Fruits",
       "tags": [
@@ -781,7 +763,7 @@
       "description": "The tree is thought to be a hybrid of Malus sylvestris, the European wild apple, with the domesticated apple Malus domestica as the polleniser. The fruit is hard, firm and with a light green skin and crisp, juicy flesh.",
       "price": 10.16,
       "newprice": 7.78,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/granny-smith-apple",
       "quantity": 412,
       "category": "Fruits",
       "tags": [
@@ -806,7 +788,7 @@
       "description": "Dent corn, more popularly called field corn and sometimes also known as yellow dent, is named after the dent or dimple formation at the top of each kernel when the corn dries out. It doesn’t matter how much salt, sugar, or butter you spread over a freshly-picked dent corn cob—it will taste bland!",
       "price": 18.15,
       "newprice": 13.14,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/dent-corn",
       "quantity": 491,
       "category": "Fruits",
       "tags": [
@@ -828,7 +810,7 @@
       "description": "Its cobs come in a wide range of colors, with each kernel having different pigmentations. This type of corn is grown mainly in Central and South America, with the same uses as dent corn and popcorn.",
       "price": 15.72,
       "newprice": 11.19,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/flint-corn",
       "quantity": 382,
       "category": "Fruits",
       "tags": [
@@ -846,11 +828,11 @@
     },
     {
       "id": 33,
-      "name": "Canned Corn",
+      "name": "Green Giant Canned",
       "description": "After initial cooking, the corn is filled into metal cans by filling machines. Of course, it must be said that the cans are cleaned by steam pressure before filling.",
       "price": 23.06,
       "newprice": 17.59,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/green-giant-canned",
       "quantity": 229,
       "category": "Fruits",
       "tags": [
@@ -874,7 +856,7 @@
       "description": "European cucumber is one of the most common types of this vegetable. They are nearly seedless and have thin skins with no spines. They can also grow up to two feet in length. Their taste is also a lot milder than other types of cucumbers, which is one reason for their popularity",
       "price": 15.19,
       "newprice": 12.88,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/european-cucumber",
       "quantity": 432,
       "category": "Vegetables",
       "tags": [
@@ -898,7 +880,7 @@
       "description": "Korean cucumbers are long and slender with small spines and thin skin. If you eat them raw, they are crunchy and sweet without the bitter flavor of some other cucumbers.",
       "price": 14.81,
       "newprice": 10.16,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/korean-cucumber",
       "quantity": 432,
       "category": "Vegetables",
       "tags": [
@@ -922,7 +904,7 @@
       "description": "They have a mild taste and very thin skins, which is why a lot of consumers eat them with the skin on. When a recipe calls for any type of cucumber, you can use the lemon cucumber in it because it is a very tasty, very versatile vegetable.",
       "price": 12.46,
       "newprice": 9.57,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/lemon-cucumber",
       "quantity": 386,
       "category": "Vegetables",
       "tags": [
@@ -946,7 +928,7 @@
       "description": "Its heavy brown parchment skin surrounds ivory white flesh with a strong, sulphury, pungent flavor and aroma. If a recipe says onion without specifying what type, it's assumed to be a yellow onion.",
       "price": 7.46,
       "newprice": 5.12,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/yellow-onion",
       "quantity": 342,
       "category": "Vegetables",
       "tags": [
@@ -969,7 +951,7 @@
       "description": "Sweet and mild enough to be eaten raw, both the exterior skin and the flesh of red onions are a deep magenta color, which makes them particularly good additions to salads or anywhere else a splash of color will enhance the appearance of the dish.",
       "price": 8.93,
       "newprice": 6.24,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/red-onion",
       "quantity": 295,
       "category": "Vegetables",
       "tags": [
@@ -992,7 +974,7 @@
       "description": "Larger and slightly flatter than yellow onions, with lighter colored, less opaque skin, sweet onions contain extra sugar, making them good for caramelizing. Their larger size and sweeter flavor make them ideal for making onion rings.",
       "price": 6.43,
       "newprice": 4.28,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/sweet-onion",
       "quantity": 375,
       "category": "Vegetables",
       "tags": [
@@ -1015,7 +997,7 @@
       "description": "Usually the deep purple roots of beets are eaten boiled, roasted, or raw, and either alone or combined with any salad vegetable. A large proportion of the commercial production is processed into boiled and sterilized beets or into pickles.",
       "price": 10.2,
       "newprice": 6.31,
-      "img": "http://localhost:5000/assets/images/products/11.jpg",
+      "img": "http://localhost:5000/assets/images/products/beetroot",
       "quantity": 257,
       "category": "Vegetables",
       "tags": [
@@ -1034,25 +1016,36 @@
       ]
     }
   ],
-  "dealweek": [
+  "deal-week": [
     {
-      "id": 1,
-      "name": "Capusta",
-      "price": "14.88",
-      "newprice": "10.49",
-      "img": "http://localhost:5000/assets/images/products/1.jpg",
+      "id": 36,
+      "name": "Lemon Cucumber",
+      "description": "They have a mild taste and very thin skins, which is why a lot of consumers eat them with the skin on. When a recipe calls for any type of cucumber, you can use the lemon cucumber in it because it is a very tasty, very versatile vegetable.",
+      "price": 12.46,
+      "newprice": 9.57,
+      "img": "http://localhost:5000/assets/images/products/lemon-cucumber",
+      "quantity": 386,
       "category": "Vegetables",
-      "time": 360000,
       "tags": [
-        "new",
-        "sale"
+        "new"
+      ],
+      "popularity": 1274,
+      "date": "2020-04-12",
+      "views": 5215,
+      "rating": 3.8,
+      "company": "Pinnacle Foods, Inc.",
+      "local/import": "local",
+      "shelfLife": 8,
+      "productTags": [
+        "salad",
+        "exotic"
       ]
     }
   ],
   "specialoffer": [
     {
       "id": 1,
-      "img": "http://localhost:5000/assets/images/specialOffers/1.png"
+      "img": "http://localhost:5000/assets/images/special-offer"
     }
   ],
   "categories": [
@@ -1099,7 +1092,7 @@
     {
       "id": "1",
       "author": "alex",
-      "hours": 83
+      "hours": 108
     }
   ]
 }
