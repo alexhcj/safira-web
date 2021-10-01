@@ -1,15 +1,16 @@
 import s from './sale.module.css'
 import { useEffect, useState } from 'react'
 import { saleAPI } from '../../api'
-import { PrimaryBtn } from '../UI'
+import { Preloader, PrimaryBtn } from '../UI'
+import { ImageWithFallback } from '../../utils/components'
 
 export const Sale = () => {
 	const [sale, setSale] = useState([''])
-	// const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
-			// setIsLoading(true)
+			setIsLoading(true)
 
 			try {
 				const data = await saleAPI.getSale()
@@ -17,17 +18,20 @@ export const Sale = () => {
 			} catch (e) {
 				console.log(e)
 			}
-			// setIsLoading(false)
+
+			setIsLoading(false)
 		}
 
 		fetchData()
 	}, [])
 
-	let { title, img, saleInfo, description } = sale[0]
+	const { title, img, saleInfo, description } = sale[0]
 
-	return (
+	return isLoading ? (
+		<Preloader />
+	) : (
 		<div className={s.section}>
-			<img className={s.img} src={img} alt={title} />
+			<ImageWithFallback className={s.img} src={img} imgSize='sale' alt={`${saleInfo} ${description}`} />
 			<div className='container'>
 				<div className={s.block}>
 					<h4 className={s.title}>{title}</h4>
