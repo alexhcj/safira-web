@@ -207,7 +207,7 @@ export const Search = ({ searchHandler }) => {
 					disabled={disabled}
 					searchBtnHandler={searchBtnClickHandler}
 				></Button>
-				<span>{currentSearch}</span>
+				<span className={s.current}>{currentSearch}</span>
 			</div>
 		</aside>
 	)

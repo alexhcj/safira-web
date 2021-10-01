@@ -68,3 +68,6 @@ input::placeholder {
 	align-items: center;
 	justify-content: space-between;
 }
+.current {
+    text-align: right;
+}
