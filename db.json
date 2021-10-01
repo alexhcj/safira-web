@@ -22,7 +22,7 @@
       "img": "http://localhost:5000/assets/images/slider/3.jpg"
     }
   ],
-  "offerlinks": [
+  "offer-links": [
     {
       "id": 1,
       "img": "http://localhost:5000/assets/images/offer-links/fresh-vegetables"
@@ -1092,7 +1092,7 @@
     {
       "id": "1",
       "author": "alex",
-      "hours": 108
+      "hours": 109
     }
   ]
 }

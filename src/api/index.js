@@ -6,10 +6,10 @@ export const instance = axios.create({
 })
 
 export { sliderAPI } from './slider-api'
-export { offersAPI } from './offers-api'
+export { offerLinksAPI as offersAPI } from './offerlinks-api'
 export { postsAPI } from './posts-api'
 export { saleAPI } from './sale-api'
-export { dealweekAPI } from './dealweek-api'
+export { dealWeekAPI as dealweekAPI } from './dealweek-api'
 export { specialofferAPI } from './specialoffer-api'
 export { productsAPI } from './products-api'
 export { categoriesAPI } from './categories-api'

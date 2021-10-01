@@ -1,7 +1,7 @@
 import { instance } from '.'
 
-export const dealweekAPI = {
+export const dealWeekAPI = {
 	getDeal() {
-		return instance.get('dealweek').then((res) => res.data)
+		return instance.get('deal-week').then((res) => res.data)
 	},
 }
