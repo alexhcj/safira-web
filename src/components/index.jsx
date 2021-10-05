@@ -12,4 +12,5 @@ export { Copyright } from './Copyright'
 export { ShopComp } from './ShopComp'
 export { ProductDetails } from './ProductDetails'
 export { RelatedProducts } from './RelatedProducts'
+export { ProductWrapper } from './ProductWrapper'
 

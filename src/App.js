@@ -14,7 +14,10 @@ function App() {
 				<Route path='/shop'>
 					<Shop />
 				</Route>
-				<Route path='/blog'>
+				<Route path='/blog' exact>
+					<Blog />
+				</Route>
+				<Route path='/blog/:id'>
 					<Blog />
 				</Route>
 				<Route path='/cart'>

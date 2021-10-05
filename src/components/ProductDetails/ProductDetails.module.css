@@ -9,12 +9,6 @@
     margin-left: 24px;
     width: 100%;
 }
-.rating {
-    width: 232px;
-    height: 14px;
-    margin-top: 27px;
-    background-color: yellow;
-}
 .price {
     font-weight: 500;
     line-height: 16px;
@@ -53,4 +47,19 @@
 }
 .category_span {
     font-weight: 400;
+}
+.rating_container {
+    position: relative;
+    width: 75px;
+}
+.rating {
+    height: 12px;
+    background-color: #febd5b;
+    position: absolute;
+    z-index: -1;
+}
+.img_stars {
+    width: 75px;
+    height: 12px;
+    vertical-align: inherit;
 }

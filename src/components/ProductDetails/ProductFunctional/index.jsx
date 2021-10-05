@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { Button } from '../../UI/Buttons/Primary'
 import s from './ProductFunctional.module.css'
 export { useState } from 'react'
 
@@ -25,7 +26,7 @@ export const ProductFunctional = (quantity) => {
                     value={input}
                     type="number" 
                 />
-                <button style={{border: "1px solid grey", marginLeft: 20}}>Add to Cart</button>
+                <Button text="Add to Cart" type='submit' />
             </div>
             <button className={s.toWishlist}>+ Add to WishList</button>
         </section>

@@ -2,20 +2,20 @@ import { useEffect, useState } from "react"
 import s from "./relatedProducts.module.css"
 import { productsAPI } from "../../api"
 import { OneRowProductSlider } from "../UI/SliderSection"
-import { useLocation } from "react-router"
+import { makeUniqueArray } from "../../utils"
 
 export const RelatedProducts = ({name, category, id}) => {
   const [products, setProducts] = useState([])
-  const location = useLocation()
-  console.log(location.state.name)
   useEffect(() => {
     const paramsName = {
       limit: 10,
-      search: name
+      search: name,
+      name_ne: name
     }
     const paramsCat = {
       limit: 10,
-      category: category
+      category: category,
+      name_ne: name
     }
     
     const fetchData = async () => {
@@ -23,7 +23,7 @@ export const RelatedProducts = ({name, category, id}) => {
         const data = await productsAPI.getProducts(paramsName)
           if(data.total<10) {
             const additionData = await productsAPI.getProducts(paramsCat)
-            data.data.push(...additionData.data) // refactor
+            data.data = [...additionData.data, ...data.data]
           }  
 
           setProducts(data.data)
@@ -32,24 +32,9 @@ export const RelatedProducts = ({name, category, id}) => {
       }
     }
     fetchData()
-  },[])
-    const arr = []
-    products.map((product) => {
-      return arr.push(product.id)
-    })
-    const arrHelper = []
-    for(let i=0;i<arr.length;i++){
-        for(let l=i+1;l<arr.length;l++){
-            if(arr[i]===arr[l]||arr[l]){
-                arrHelper.push(l)
-            }
-        }
-    }
-    for(let k=0, reducer=0;k<arrHelper.length;k++,reducer--){
-        products.splice(arrHelper[k]-reducer, 1)
-    }
-    products.splice(10)
-    //  в util
+  },[id, category, name])
+  makeUniqueArray(products)
+  products.splice(10)
   return (
     <section className={s.section}>
         <OneRowProductSlider id={id} heading={'Related Products'} products={products}/>

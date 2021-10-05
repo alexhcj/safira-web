@@ -1,5 +1,15 @@
 import React from 'react'
+import { BlogComp } from '../components/BlogComp'
+import { Breadcrumbs } from '../components/UI'
 
 export const Blog = () => {
-	return <h1>Blog lol Page</h1>
+
+	return (
+		<div>
+			<Breadcrumbs />
+			<div className="container">
+				<BlogComp />
+			</div>
+		</div>
+	)
 }

@@ -10,13 +10,15 @@ import s from './ourBlog.module.css'
 export const OurBlog = () => {
 	const [slides, setPosts] = useState([])
 	const [btnShow, setBtnShow] = useState(false)
-	const limit = 6
 
 	useEffect(() => {
+		const params = {
+			limit: 6
+		}
 		const fetchData = async () => {
 			try {
-				const data = await postsAPI.getPosts(limit)
-				setPosts(data)
+				const data = await postsAPI.getPosts(params)
+				setPosts(data.data)
 			} catch (e) {
 				console.log(e)
 			}
