@@ -47,8 +47,8 @@ export const DealWeek = () => {
 							<h2 className={s.name}>{name}</h2>
 							<h3 className={s.category}>{category}</h3>
 							<p className={s.newprice}>
-								{newprice}
-								<span className={s.price}>{price}</span>
+								${newprice}
+								<span className={s.price}>${price}</span>
 							</p>
 							<Timer time={time} />
 							<PrimaryBtn text='add to cart' />

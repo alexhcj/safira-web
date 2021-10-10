@@ -1,5 +1,25 @@
-.block {
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 26px 0 32px 0;
-    height: 55px;
-    border: 1px solid gray;
+    gap: 10px;
+    min-height: 59px;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 11px 10px;
+    border: 1px solid var(--color-timer-border);
+    border-radius: 3px;
+}
+.count {
+    font-size: 12px;
+    line-height: 17px;
+    text-transform: uppercase;
+}
+.divider {
+    font-size: 17px;
+    line-height: 18px;
+    text-transform: uppercase;
 }

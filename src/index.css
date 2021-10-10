@@ -14,6 +14,7 @@
 	--color-border-light: #e8e8e8;
 	--color-border-dark: #dddddd;
 	--color-sort-border: #999999;
+	--color-timer-border: #e1e1e1;
 	--transition-default: all 0.3s ease;
 	--transition-btn: background-color 0.3s ease;
 	--transition-slider-control-dot: background-color 0.3s ease, box-shadow 0.3s ease;
