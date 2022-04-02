@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { productsAPI } from '../../../../api'
 import { Button } from '../../../UI/Buttons/Filter'
-import { ErrorPopup } from '../../../UI/ErrorPopup'
+import { ErrorPopup } from '../../../UI'
 import classNames from 'classnames/bind'
 import s from './search.module.css'
 
@@ -61,24 +61,22 @@ export const Search = ({ searchHandler }) => {
 		}
 	}, [search, validationError])
 
-	useEffect(() => {
-		const outsideClickHandler = (e) => {
-			// prevent toggle off on span click
-			if (e.target.nodeName === 'SPAN') {
-				return null
-			}
-
-			if (!ref.current.contains(e.target)) {
-				setPopoverToggle(false)
-				setValidationToggle(false)
-			}
+	const outsideClickHandler = (e) => {
+		// prevent toggle off on span click
+		if (e.target.nodeName === 'SPAN') {
+			return null
 		}
 
-		document.addEventListener('keydown', escKeyHandler)
+		if (ref.current && ref.current.contains(e.target)) {
+			setPopoverToggle(false)
+			setValidationToggle(false)
+		}
+	}
+
+	useEffect(() => {
 		document.addEventListener('click', outsideClickHandler)
 
 		return () => {
-			document.removeEventListener('keydown', escKeyHandler)
 			document.removeEventListener('click', outsideClickHandler)
 		}
 	}, [])
@@ -186,6 +184,8 @@ export const Search = ({ searchHandler }) => {
 					value={search}
 					maxLength='35'
 					placeholder='Search...'
+					onKeyDown={escKeyHandler}
+					onBlur={outsideClickHandler}
 					onChange={(e) => inputHandler(e)}
 					onClick={(e) => onClickHandler(e)}
 				/>
@@ -206,7 +206,7 @@ export const Search = ({ searchHandler }) => {
 					isLoading={isLoading}
 					disabled={disabled}
 					searchBtnHandler={searchBtnClickHandler}
-				></Button>
+				/>
 				<span className={s.current}>{currentSearch}</span>
 			</div>
 		</aside>
