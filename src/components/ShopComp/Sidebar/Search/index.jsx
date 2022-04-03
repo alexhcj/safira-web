@@ -3,6 +3,7 @@ import { productsAPI } from '../../../../api'
 import { Button } from '../../../UI/Buttons/Filter'
 import { ErrorPopup } from '../../../UI'
 import classNames from 'classnames/bind'
+import {ReactComponent as Close} from "../../../../assets/images/close.svg";
 import s from './search.module.css'
 
 let cx = classNames.bind(s)
@@ -13,7 +14,7 @@ export const Search = ({ searchHandler }) => {
 	const [currentSearch, setCurrentSearch] = useState('')
 	const [popoverToggle, setPopoverToggle] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-	const ref = useRef(null)
+	const inputRef = useRef(null)
 	const limit = 5
 
 	// input validation
@@ -26,6 +27,8 @@ export const Search = ({ searchHandler }) => {
 	const popupCN = cx('popup', {
 		active: popoverToggle && products,
 	})
+
+	const btnCloseCN = cx('btn_close', search.length !== 0 && 'active')
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -61,17 +64,6 @@ export const Search = ({ searchHandler }) => {
 		}
 	}, [search, validationError])
 
-	const outsideClickHandler = (e) => {
-		// prevent toggle off on span click
-		if (e.target.nodeName === 'SPAN') {
-			return null
-		}
-
-		if (ref.current && ref.current.contains(e.target)) {
-			setPopoverToggle(false)
-			setValidationToggle(false)
-		}
-	}
 
 	useEffect(() => {
 		document.addEventListener('click', outsideClickHandler)
@@ -81,10 +73,15 @@ export const Search = ({ searchHandler }) => {
 		}
 	}, [])
 
+	const outsideClickHandler = (e) => {
+		if (inputRef.current && !inputRef.current.contains(e.target)) {
+			setPopoverToggle(false)
+		}
+	}
+
 	const escKeyHandler = (e) => {
 		if (e.key === 'Escape') {
 			setPopoverToggle(false)
-			setValidationToggle(false)
 		}
 	}
 
@@ -98,8 +95,16 @@ export const Search = ({ searchHandler }) => {
 
 	const autoCompleteClickHandler = (search) => {
 		setSearch(search)
+		setPopoverToggle(false)
+		setDisabled(false)
+		setValidationToggle(false)
+	}
+
+	const closeSearchBtnHandler = () => {
+		setSearch('')
 		setDisabled(false)
 		setValidationError('')
+		setValidationToggle(false)
 	}
 
 	const searchBtnClickHandler = (e) => {
@@ -179,16 +184,18 @@ export const Search = ({ searchHandler }) => {
 			<div className={s.search}>
 				<input
 					className={s.input}
-					ref={ref}
+					ref={inputRef}
 					type='text'
 					value={search}
 					maxLength='35'
 					placeholder='Search...'
 					onKeyDown={escKeyHandler}
-					onBlur={outsideClickHandler}
 					onChange={(e) => inputHandler(e)}
 					onClick={(e) => onClickHandler(e)}
 				/>
+				{search && <span className={btnCloseCN} onClick={closeSearchBtnHandler}>
+					<Close/>
+				</span>}
 				{<ErrorPopup error={validationError} toggle={validationToggle} />}
 			</div>
 			<ul className={popupCN}>
@@ -212,9 +219,3 @@ export const Search = ({ searchHandler }) => {
 		</aside>
 	)
 }
-
-// BUG: when click on search btn then right "white" side of sidebar then again on search => it doesn't work
-// Difference event click:
-// Normal click path: (8) [div, div, div.app, div#root, body, html, document, Window]
-// VS
-// Unnormal [button.btn_btn__2zejw, div.sidebar_bottom__1tlv1, aside, div.shop_sidebar__21I2u, div.shop_wrapper__3ZbI6, div.container, div, div, div.app, div#root, body, html, document, Window]
