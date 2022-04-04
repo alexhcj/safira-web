@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 26px 0 32px 0;
+    margin-top: -4px;
+    margin-bottom: 32px;
     gap: 10px;
     min-height: 59px;
 }
@@ -13,13 +14,13 @@
     border: 1px solid var(--color-timer-border);
     border-radius: 3px;
 }
-.count {
-    font-size: 12px;
-    line-height: 17px;
-    text-transform: uppercase;
-}
-.divider {
+.number {
     font-size: 17px;
     line-height: 18px;
+    text-transform: uppercase;
+}
+.text {
+    font-size: 12px;
+    line-height: 17px;
     text-transform: uppercase;
 }
