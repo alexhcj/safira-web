@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { offersAPI } from '../../api'
-import { ImageWithFallback } from '../../utils/components'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './offerlinks.module.css'
 
 export const OfferLinks = () => {

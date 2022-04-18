@@ -2,7 +2,7 @@ import s from './specialoffer.module.css'
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { specialofferAPI } from '../../../api/'
-import { ImageWithFallback } from '../../../utils/components'
+import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 
 export const SpecialOffer = () => {
 	const [specialoffer, setSpecialoffer] = useState([])

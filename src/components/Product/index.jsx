@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Hovermenu } from '../UI/Hovermenu'
 import { Tags } from '../UI/Tags'
-import { ImageWithFallback } from '../../utils/components'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import classNames from 'classnames/bind'
 import s from './product.module.css'
 

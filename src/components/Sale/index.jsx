@@ -2,7 +2,7 @@ import s from './sale.module.css'
 import { useEffect, useState } from 'react'
 import { saleAPI } from '../../api'
 import { Preloader, PrimaryBtn } from '../UI'
-import { ImageWithFallback } from '../../utils/components'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
 
 export const Sale = () => {
 	const [sale, setSale] = useState([''])

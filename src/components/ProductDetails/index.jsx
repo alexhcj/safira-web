@@ -1,5 +1,5 @@
 import { ProductFunctional } from './ProductFunctional'
-import { ImageWithFallback } from '../../utils/components'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './ProductDetails.module.css'
 import stars from '../../assets/images/stars.png'
 
