@@ -1,0 +1,47 @@
+@import '../../../shared/styles/vars';
+
+.heading {
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    border-radius: 10px 10px 0 0;
+    color: $color-white;
+    background-color: $color-primary;
+}
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 20px 30px;
+    background-color: $color-white;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.name {
+	font-weight: $weight-normal;
+}
+.link {
+	display: inline-flex;
+
+	&:hover,
+	&:hover > * {
+		color: $color-primary;
+	}
+}
+.category {
+    font-size: 12px;
+    line-height: 12px;
+    color: $color-dark;
+}
+.btn {
+	padding: 0 20px;
+}
+.btn_text {
+	text-transform: uppercase;
+	line-height: 44px;
+	font-size: 15px;
+}

@@ -1,5 +1,5 @@
 import { BestSellers } from "./BestSellers"
-import { DealWeek } from "./DealWeek"
+import { DealsWeek } from "./DealsWeek/DealsWeek"
 import { NewProducts } from "./NewProducts"
 import { SpecialOffer } from "./SpecialOffer"
 import s from "./offers.module.css"
@@ -10,7 +10,7 @@ export const Offers = () => {
             <div className="container">
                 <div className={s.wrapper}>
                     <div className={s.left}>
-                        <DealWeek />
+                        <DealsWeek />
                         <SpecialOffer />
                     </div>
                     <div className={s.right}>
