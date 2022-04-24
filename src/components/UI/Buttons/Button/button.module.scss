@@ -1,0 +1,74 @@
+@import '../../../../shared/styles/vars';
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	height: 44px;
+	line-height: 44px;
+	border-radius: 10px;
+	color: $color-white;
+	background-color: $color-primary;
+	@include transition-all;
+
+	&:hover {
+		background-color: $color-dark;
+	}
+}
+
+// type
+.subscribe {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 15px;
+	height: 100%;
+	border-radius: 0 30px 30px 0;
+
+	& > * {
+		text-transform: uppercase;
+		line-height: 22px;
+	}
+}
+
+.search {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 20px;
+	height: 100%;
+	border-radius: 0 30px 30px 0;
+
+	& svg path {
+		fill: $color-white;
+	}
+}
+
+.submit {
+	height: 42px;
+	line-height: 42px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 3px;
+}
+
+.text {
+	padding: 0;
+	height: 28px;
+	line-height: 28px;
+	border: none;
+	background-color: transparent;
+
+	&:hover {
+		background-color: transparent;
+
+		& > * {
+			color: $color-primary;
+		}
+	}
+}
+
+.focus {
+	background-color: $color-dark;
+}
