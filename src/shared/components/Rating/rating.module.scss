@@ -1,0 +1,26 @@
+.rating {
+	display: flex;
+	gap: 4px;
+}
+.box {
+	position: relative;
+	display: flex;
+}
+.item {
+	&:first-child {
+		position: absolute;
+		overflow: hidden;
+		width: 0;
+	}
+
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+.img_stars {
+	width: 75px;
+	height: 12px;
+	vertical-align: inherit;
+}
