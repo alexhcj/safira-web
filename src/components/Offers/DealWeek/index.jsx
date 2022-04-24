@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { dealweekAPI } from '../../../api/'
 import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import { Tags, PrimaryBtn } from '../../UI'
+import { Tags } from '../../UI'
 import { Timer } from '../Timer'
 import s from './dealweek.module.css'
 import {Button} from "../../UI/Buttons/Button/Button";

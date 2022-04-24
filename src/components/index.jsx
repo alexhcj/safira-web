@@ -10,7 +10,6 @@ export { Offers } from './Offers'
 export { FeaturedProducts } from './FeaturedProducts'
 export { Copyright } from './Copyright'
 export { ShopComp } from './ShopComp'
-export { ProductDetails } from './ProductDetails'
+export { ProductDetails } from '../modules/ProductDetail/ProductDetails'
 export { RelatedProducts } from './RelatedProducts'
-export { ProductWrapper } from './ProductWrapper'
 

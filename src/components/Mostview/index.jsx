@@ -20,15 +20,15 @@ export const Mostview = () => {
 			} catch (e) {
 				console.log(e)
 			}
-			
+
 		}
-		
+
 		fetchData()
 	}, [])
 
 	return (
 	<div>
-		<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} /> 
+		<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} />
 	</div>
 	)
 }
