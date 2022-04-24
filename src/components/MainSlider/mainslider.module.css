@@ -22,6 +22,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+	align-items: flex-start;
     max-width: 480px;
     height: 100%;
 }
@@ -38,6 +39,11 @@
     line-height: 36px;
     font-size: 36px;
     font-weight: 300;
+}
+.btn_text {
+	text-transform: uppercase;
+	line-height: 44px;
+	font-size: 15px;
 }
 .text {
     margin-bottom: 40px;
