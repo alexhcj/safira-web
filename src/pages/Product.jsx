@@ -1,12 +1,12 @@
-import { ProductWrapper } from '../components'
 import { Breadcrumbs, Divider } from '../components/UI'
+import {ProductDetails} from "../components";
 
 export const Product = () => {
 
 	return (
 		<div>
 			<Breadcrumbs />
-            <ProductWrapper />
+            <ProductDetails />
 			<Divider />
 		</div>
 	)
