@@ -2,7 +2,7 @@ import { useState } from 'react'
 import s from './goodtocart.module.scss'
 import {Text} from "../UI/Text/Text";
 import {Button} from "../../../components/UI/Buttons/Button/Button";
-import {Space} from "../../../components/Spacing/Space";
+import {Space} from "../Spacing/Space";
 
 export const GoodToCart = ({quantity}) => {
     const [value, setValue] = useState(1)

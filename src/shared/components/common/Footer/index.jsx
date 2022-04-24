@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import logo from '../../assets/images/logo.png'
-import {Button} from "../UI/Buttons/Button/Button";
+import logo from '../../../../assets/images/logo.png'
+import {Button} from "../../../../components/UI/Buttons/Button/Button";
 import s from './footer.module.css'
-import {Text} from "../../shared/components/UI/Text/Text";
+import {Text} from "../../UI/Text/Text";
 
 export const Footer = () => {
 	return (
@@ -54,7 +54,7 @@ export const Footer = () => {
 					<div className={s.newsletter}>
 						<h3 className={s.title}>Sign Up Newsletter</h3>
 						<p>Get updates by subscribe our weekly newsletter</p>
-						<form action='' className={s.form}>
+						<form action='src/shared/components/common/Footer/index' className={s.form}>
 							<div className={s.input}>
 								<input type='text' placeholder='Enter your email' />
 								<Button type='subscribe'>

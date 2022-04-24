@@ -1,6 +1,6 @@
 export { Header } from './Header'
 export { Navbar } from './Navbar'
-export { Footer } from './Footer'
+export { Footer } from '../shared/components/common/Footer'
 export { MainSlider } from './MainSlider'
 export { OfferLinks } from './OfferLinks'
 export { OurBlog } from './OurBlog'
