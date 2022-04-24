@@ -1,4 +1,4 @@
-import { Hours, ImgSizes, MostLess } from '../components/Docs'
+import { ImgSizes, MostLess } from '../components/Docs'
 
 export const Docs = () => {
     const s = {
@@ -38,7 +38,6 @@ export const Docs = () => {
         <section style={s.section}>
             <div className='container'>
                 <h1 style={s.h1}>Documentation</h1>
-                <Hours />
                 <span style={s.divider}></span>
                 <h4 style={s.h4}>
                     <span style={s.most}>Most</span> & <span style={s.less}>Less</span>
