@@ -1,5 +1,6 @@
-import { Breadcrumbs, Divider } from '../components/UI'
-import {ProductDetails} from "../components";
+import {Breadcrumbs} from "../shared/components/UI/Breadcrumbs/Breadcrumbs";
+import {ProductDetails} from "../modules/ProductDetail/ProductDetails";
+import {Border} from "../shared/components/UI/Spacing/Border";
 
 export const Product = () => {
 
@@ -7,7 +8,7 @@ export const Product = () => {
 		<div>
 			<Breadcrumbs />
             <ProductDetails />
-			<Divider />
+			<Border/>
 		</div>
 	)
 }

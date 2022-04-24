@@ -1,6 +1,5 @@
 import React from 'react'
-import { BlogComp } from '../components/BlogComp'
-import { Breadcrumbs } from '../components/UI'
+import {Breadcrumbs} from "../shared/components/UI/Breadcrumbs/Breadcrumbs";
 
 export const Blog = () => {
 
@@ -8,7 +7,7 @@ export const Blog = () => {
 		<div>
 			<Breadcrumbs />
 			<div className="container">
-				<BlogComp />
+				{/*<BlogComp />*/}
 			</div>
 		</div>
 	)

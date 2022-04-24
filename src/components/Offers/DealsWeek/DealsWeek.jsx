@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom'
 // import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import { Tags } from '../../UI'
 // import { Timer } from '../Timer'
 import s from './dealsweek.module.scss'
-import {Button} from "../../UI/Buttons/Button/Button";
-import {Text} from "../../../shared/components/UI/Text/Text";
-import {Space} from "../../../shared/components/Spacing/Space";
+import {Tags} from "../../../shared/components/UI/Tags/Tags";
+import {Space} from "../../../shared/components/UI/Spacing/Space";
 import {Title} from "../../../shared/components/UI/Title/Title";
+import {Text} from "../../../shared/components/UI/Text/Text";
 import {Price} from "../../Price/Price";
+import {Button} from "../../../shared/components/UI/Buttons/Button/Button";
 
 const data = [
 	{id: 1,

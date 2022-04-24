@@ -1,13 +1,14 @@
 import React from 'react'
-import { ShopComp } from '../components'
-import { Breadcrumbs, Divider } from '../components/UI'
+import {Breadcrumbs} from "../shared/components/UI/Breadcrumbs/Breadcrumbs";
+import {ShopComp} from "../components/ShopComp/ShopComp";
+import {Border} from "../shared/components/UI/Spacing/Border";
 
 export const Shop = () => {
 	return (
 		<div>
 			<Breadcrumbs />
 			<ShopComp />
-			<Divider />
+			<Border/>
 		</div>
 	)
 }

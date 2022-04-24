@@ -1,4 +1,5 @@
-import { ImgSizes, MostLess } from '../components/Docs'
+import {MostLess} from "../components/Docs/MostLess/MostLess";
+import {ImgSizes} from "../components/Docs/ImgSizes/ImgSizes";
 
 export const Docs = () => {
     const s = {

@@ -5,14 +5,14 @@ import { GoodToCart } from '../../shared/components/GoodToCart'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 // import {ProductSpecification} from "../../components/ProductSpecification/ProductSpecification";
 // import {RelatedProducts} from "../../components/RelatedProducts";
-import {Border} from "../../shared/components/Spacing/Border";
-import {Space} from "../../shared/components/Spacing/Space";
+import {Border} from "../../shared/components/UI/Spacing/Border";
+import {Space} from "../../shared/components/UI/Spacing/Space";
 import {Text} from "../../shared/components/UI/Text/Text";
 import {Rating} from "../../shared/components/Rating/Rating";
 import s from './productdetails.module.scss'
 import {Title} from "../../shared/components/UI/Title/Title";
 import {Price} from "../../components/Price/Price";
-import {Preloader} from "../../components/UI";
+import {Preloader} from "../../components/svg/Preloader";
 
 export const ProductDetails = () => {
     const {slug} = useParams()

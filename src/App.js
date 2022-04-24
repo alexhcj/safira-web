@@ -1,7 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { Home, Shop, Blog, Cart, Checkout, Product, Docs } from './pages'
-import { Header, Footer, Copyright } from './components'
-import { ScrollBtn, DocsBtn } from './components/UI'
+import {Header} from "./shared/components/common/Header/Header";
+import {Footer} from "./shared/components/common/Footer/Footer";
+import {Copyright} from "./components/Copyright/Copyright";
+import {ButtonScroll} from "./shared/components/UI/Buttons/ButtonScroll/ButtonScroll";
+import {ButtonDocs} from "./shared/components/UI/Buttons/ButtonDocs/ButtonDocs";
 
 function App() {
 	return (
@@ -19,8 +22,8 @@ function App() {
 			</Routes>
 			<Footer />
 			<Copyright />
-			<ScrollBtn />
-			<DocsBtn />
+			<ButtonScroll />
+			<ButtonDocs />
 		</div>
 	)
 }
