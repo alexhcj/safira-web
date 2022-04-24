@@ -19,7 +19,7 @@ export const FeaturedProducts = () => {
 
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(params)
+				const data = await productsAPI.getAll(params)
 				setFeaturedProducts(convertArray(data.data, 3))
 			} catch (e) {
 				console.log(e)

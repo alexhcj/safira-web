@@ -43,7 +43,7 @@ export const MostLess = () => {
                             return productsAPI.getProductsByNewprice({ sort, limit, order }).then((res) => res.data)
                         }
 
-                        return productsAPI.getProducts({ sort, limit, order }).then((res) => res.data)
+                        return productsAPI.getAll({ sort, limit, order }).then((res) => res.data)
                     })
                 )
 

@@ -36,7 +36,7 @@ export const Search = ({ searchHandler }) => {
 
 			try {
 				if (!validationError) {
-					const data = await productsAPI.getProducts({ search, limit })
+					const data = await productsAPI.getAll({ search, limit })
 
 					// no result
 					if (search !== '' && data.total === 0) {
@@ -46,7 +46,7 @@ export const Search = ({ searchHandler }) => {
 						return null
 					}
 
-					setProducts(data.data)
+					setProducts(data)
 				}
 			} catch (e) {
 				console.log(e)

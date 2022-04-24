@@ -17,14 +17,14 @@ export const RelatedProducts = ({name, category, id}) => {
       category: category,
       name_ne: name
     }
-    
+
     const fetchData = async () => {
       try {
-        const data = await productsAPI.getProducts(paramsName)
+        const data = await productsAPI.getAll(paramsName)
           if(data.total<10) {
-            const additionData = await productsAPI.getProducts(paramsCat)
+            const additionData = await productsAPI.getAll(paramsCat)
             data.data = [...additionData.data, ...data.data]
-          }  
+          }
 
           setProducts(data.data)
         } catch (e) {
@@ -37,7 +37,7 @@ export const RelatedProducts = ({name, category, id}) => {
   products.splice(10)
   return (
     <section className={s.section}>
-        <OneRowProductSlider id={id} heading={'Related Products'} products={products}/>
+        {/*<OneRowProductSlider id={id} heading={'Related Products'} products={products}/>*/}
     </section>
   )
 }

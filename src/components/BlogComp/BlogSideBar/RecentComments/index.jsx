@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { FullsizeDivider } from '../../../UI'
 import s from './RecentComments.module.css'
-import { postsAPI } from '../../../../api'
+import {postsAPI} from "../../../../api/posts";
 import { NavLink } from 'react-router-dom'
 import  defaultProfile  from '../../../../assets/images/defaultProfile.png'
 
 export const RecentComments = () => {
     const [comments, setComments] = useState([])
-    
+
     useEffect(() => {
         const params = {
             limit: 3
@@ -19,7 +19,7 @@ export const RecentComments = () => {
             } catch (e) {
                 console.log(e)
             }
-        }  
+        }
         fetchData()
     }, [])
 
@@ -38,7 +38,7 @@ export const RecentComments = () => {
                         >
                             <img className={s.img}
                                 src={defaultProfile}
-                                alt="profile" 
+                                alt="profile"
                             />
                             <p className={s.body}>
                                 <span><span className={s.primary}>{author}</span> says: </span>

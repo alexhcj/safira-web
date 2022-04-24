@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import s from './RelatedPosts.module.css'
 import { useState } from 'react/cjs/react.development'
 import { useEffect } from 'react'
-import { postsAPI } from '../../../../api'
+import {postsAPI} from "../../../../api/posts";
 
 export const RelatedPosts = ({category}) => {
     const [posts, setPosts] = useState([])
@@ -13,7 +13,7 @@ export const RelatedPosts = ({category}) => {
         }
         const fetchData = async () => {
             try {
-                const data = await postsAPI.getPosts(params)
+                const data = await postsAPI.getAll(params)
                 setPosts(data.data)
             } catch(e) {
                 console.log(e)
@@ -31,13 +31,13 @@ export const RelatedPosts = ({category}) => {
                         pathname: `/blog/${id}`,
                     }
                     return (
-                        <NavLink className={s.item} 
+                        <NavLink className={s.item}
                             to={url}
                             key={id}
                         >
                             <img className={s.img}
                                 src={img}
-                                alt={title} 
+                                alt={title}
                             />
                             <p className={s.title}>{title}</p>
                             <p className={s.date}>{date}</p>

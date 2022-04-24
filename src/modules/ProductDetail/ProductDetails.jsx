@@ -21,7 +21,7 @@ export const ProductDetails = () => {
     useEffect(() =>{
         const fetchData = async () => {
             try {
-                const {product} = await productsAPI.getProduct(slug)
+                const {product} = await productsAPI.findOne(slug)
                 setProduct(product)
             } catch(e) {
                 console.log(e)

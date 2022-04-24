@@ -23,8 +23,8 @@ export const NewProducts = () => {
 			setIsLoading(true)
 
 			try {
-				const data = await productsAPI.getProducts(params)
-				setNewProducts(convertArray(data.data, 2))
+				const data = await productsAPI.getAll(params)
+				setNewProducts(convertArray(data, 2))
 			} catch (e) {
 				console.log(e)
 			}

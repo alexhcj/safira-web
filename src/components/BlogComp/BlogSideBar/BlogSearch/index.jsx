@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import s from './BlogSearch.module.css'
-import { postsAPI } from '../../../../api'
+import {postsAPI} from "../../../../api/posts";
 import { FullsizeDivider } from '../../../UI'
 
 export const BlogSearch = ({searchHanlder}) => {
@@ -11,22 +11,22 @@ export const BlogSearch = ({searchHanlder}) => {
             limit: 5,
             title: input
         }
-    
+
         const fetchData = async () => {
             if(input.length>2){
                 try {
-                    const data = await postsAPI.getPosts(params)
+                    const data = await postsAPI.getAll(params)
                     console.log(data.data)
                 } catch (e) {
                     console.log(e)
-                } 
+                }
             }
         }
         const timer = setTimeout(() => {
             fetchData()
         }, 200);
         return () => clearTimeout(timer)
-       
+
     },[input])
 
     return (

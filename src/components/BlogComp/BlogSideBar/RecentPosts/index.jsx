@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FullsizeDivider } from '../../../UI'
 import s from './RecentPosts.module.css'
-import { postsAPI } from '../../../../api'
+import {postsAPI} from "../../../../api/posts";
 import { NavLink } from 'react-router-dom'
 
 export const RecentPosts = () => {
@@ -13,12 +13,12 @@ export const RecentPosts = () => {
         }
         const fetchData = async () => {
             try {
-                const data = await postsAPI.getPosts(params)
+                const data = await postsAPI.getAll(params)
                 setPosts(data.data)
             } catch (e) {
                 console.log(e)
             }
-        }  
+        }
         fetchData()
     },[])
 

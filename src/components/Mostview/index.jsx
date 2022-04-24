@@ -15,7 +15,7 @@ export const Mostview = () => {
 
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(params)
+				const data = await productsAPI.getAll(params)
 				setProducts(data.data)
 			} catch (e) {
 				console.log(e)
@@ -28,7 +28,7 @@ export const Mostview = () => {
 
 	return (
 	<div>
-		<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} />
+		{/*<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} />*/}
 	</div>
 	)
 }

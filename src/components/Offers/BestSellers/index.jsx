@@ -18,8 +18,8 @@ export const BestSellers = () => {
 
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getProducts(params)
-				setBestsellers(convertArray(data.data, 2))
+				const data = await productsAPI.getAll(params)
+				setBestsellers(convertArray(data, 2))
 			} catch (e) {
 				console.log(e)
 			}

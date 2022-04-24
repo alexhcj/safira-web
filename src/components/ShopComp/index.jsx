@@ -30,9 +30,9 @@ export const ShopComp = () => {
 			setIsLoading(true)
 
 			try {
-				const data = await productsAPI.getProducts({ search, sort, tag, order, page, limit })
+				const data = await productsAPI.getAll({ search, sort, tag, order, page, limit })
 
-				setProducts(data.data)
+				setProducts(data)
 				setTotal(data.total)
 				console.log(data)
 			} catch (e) {

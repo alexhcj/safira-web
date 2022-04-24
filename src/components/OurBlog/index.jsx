@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { postsAPI } from '../../api'
+import {postsAPI} from "../../api/posts";
 import { MoreBtn } from '../UI'
 import Carousel from 'react-multi-carousel'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
@@ -17,8 +17,8 @@ export const OurBlog = () => {
 		}
 		const fetchData = async () => {
 			try {
-				const data = await postsAPI.getPosts(params)
-				setPosts(data.data)
+				const data = await postsAPI.getAll()
+				setPosts(data)
 			} catch (e) {
 				console.log(e)
 			}
