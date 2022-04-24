@@ -1,28 +1,17 @@
-import { useEffect, useState } from 'react'
-import { shopbannerAPI } from '../../../../api'
 import s from './banner.module.css'
+import BannerImg from '../../../../assets/images/shopsidebar/1.jpg'
+import {NavLink} from "react-router-dom";
+
+const banner = {
+	id: 1,
+	text: 'Natural food',
+	img: BannerImg
+}
 
 export const Banner = () => {
-	const [banners, setBanners] = useState([])
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await shopbannerAPI.getShopBanner()
-				setBanners(data)
-			} catch (e) {
-				console.log(e)
-			}
-		}
-		fetchData()
-	}, [])
-
 	return (
-		<section>
-			{banners.map((banner) => {
-				const { id, img } = banner
-				return <img className={s.banner} key={id} src={img} alt='shopbanner' />
-			})}
-		</section>
+		<NavLink to='/'>
+			<img className={s.banner} key={banner.id} src={banner.img} alt={banner.text} />
+		</NavLink>
 	)
 }
