@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Home, Shop, Blog, Cart, Checkout, Product, Docs } from './pages'
 import { Header, Footer, Copyright } from './components'
 import { ScrollBtn, DocsBtn } from './components/UI'
@@ -7,32 +7,16 @@ function App() {
 	return (
 		<div className='app'>
 			<Header />
-			<Switch>
-				<Route path='/' exact>
-					<Home />
-				</Route>
-				<Route path='/shop'>
-					<Shop />
-				</Route>
-				<Route path='/blog' exact>
-					<Blog />
-				</Route>
-				<Route path='/blog/:id'>
-					<Blog />
-				</Route>
-				<Route path='/cart'>
-					<Cart />
-				</Route>
-				<Route path='/checkout'>
-					<Checkout />
-				</Route>
-				<Route path='/product/:id'>
-					<Product />
-				</Route>
-				<Route path='/docs'>
-					<Docs />
-				</Route>
-			</Switch>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/shop' element={<Shop />} />
+				<Route path='/blog'  element={<Blog />} />
+				<Route path='/blog/:id' element={<Blog />} />
+				<Route path='/cart' element={<Cart />} />
+				<Route path='/checkout' element={<Checkout />} />
+				<Route path='/products/:slug' element={<Product />} />
+				<Route path='/docs' element={<Docs />} />
+			</Routes>
 			<Footer />
 			<Copyright />
 			<ScrollBtn />
