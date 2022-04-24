@@ -1,8 +1,8 @@
 import s from './featuredProducts.module.css'
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../api'
+import {productsAPI} from "../../api/products";
 import { convertArray } from '../../utils'
-import { Product } from '../Product'
+import { ProductCard } from '../ProductCard'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -78,7 +78,7 @@ export const FeaturedProducts = () => {
 							return (
 								<div key={index}>
 									{col.map((product) => {
-										return <Product imgSize='xs' key={product.id} product={product} />
+										return <ProductCard imgSize='xs' key={product.id} product={product} />
 									})}
 								</div>
 							)

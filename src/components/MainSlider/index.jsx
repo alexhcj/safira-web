@@ -1,32 +1,38 @@
-import { useEffect, useState } from 'react'
-import { sliderAPI } from '../../api'
-import { PrimaryBtn } from '../UI'
 import { Dot } from './Controls/Dot'
 import Carousel from 'react-multi-carousel'
+import {Button} from "../UI/Buttons/Button/Button";
 import 'react-multi-carousel/lib/styles.css'
+import Slide1 from '../../assets/images/slider/1.jpg'
+import Slide2 from '../../assets/images/slider/2.jpg'
+import Slide3 from '../../assets/images/slider/3.jpg'
+import {Text} from "../../shared/components/UI/Text/Text";
 import s from './mainslider.module.css'
 
+const slides = [
+	{
+		id: 1,
+		title: "Vegetables big sale",
+		subTitle: "Fresh farm products",
+		text: "10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!",
+		img: Slide1
+	},
+	{
+		id: 2,
+		title: "Fresh vegetables",
+		subTitle: "Natural farm products",
+		text: "Widest range of farm-fresh Vegetables, Fruits & seasonal produce",
+		img: Slide2
+	},
+	{
+		id: 3,
+		title: "Fresh tomatoes",
+		subTitle: "Natural farm products",
+		text: "Natural organic tomatoes make your health stronger. Put your information here",
+		img: Slide3
+	}
+]
+
 export const MainSlider = () => {
-	const [slides, setSlides] = useState([])
-	const [isLoading, setIsLoading] = useState(false)
-
-	useEffect(() => {
-		const fetchData = async () => {
-			setIsLoading(true)
-
-			try {
-				const data = await sliderAPI.getSlides()
-				setSlides(data)
-			} catch (e) {
-				console.log(e)
-			}
-            
-			setIsLoading(false)
-		}
-
-		fetchData()
-	}, [])
-
 	const responsive = {
 		superLargeDesktop: {
 			breakpoint: { max: 4000, min: 3000 },
@@ -48,17 +54,14 @@ export const MainSlider = () => {
 
 	return (
 		<div className={s.slider}>
-			{isLoading ? (
-				<div className={s.loading}>Loading...</div>
-			) : (
 				<Carousel
 					responsive={responsive}
-					// autoPlay={true}
-					// autoPlaySpeed={5000}
+					autoPlay={true}
+					autoPlaySpeed={5000}
 					swipeable={true}
 					draggable={true}
 					showDots={true}
-					// infinite={true}
+					infinite={true}
 					arrows={false}
 					dotListClass={s.list}
 					customDot={<Dot />}
@@ -68,14 +71,16 @@ export const MainSlider = () => {
 
 						return (
 							<div className={s.item} key={id}>
-								<img className={s.img} src={img} alt={title} />
+								<img src={img} alt={title} />
 								<div className={s.inner}>
 									<div className='container'>
 										<div className={s.content}>
 											<h1 className={s.title}>{title}</h1>
-											<h5 className={s.subTitle}>{subTitle}</h5>
+											<h2 className={s.subTitle}>{subTitle}</h2>
 											<p className={s.text}>{text}</p>
-											<PrimaryBtn to='/shop' />
+											<Button to='/shop'>
+												<Text className={s.btn_text} color="white">Read more</Text>
+											</Button>
 										</div>
 									</div>
 								</div>
@@ -83,7 +88,6 @@ export const MainSlider = () => {
 						)
 					})}
 				</Carousel>
-			)}
 		</div>
 	)
 }

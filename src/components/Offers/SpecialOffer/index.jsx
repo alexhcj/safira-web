@@ -1,41 +1,19 @@
 import s from './specialoffer.module.css'
 import { NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { specialofferAPI } from '../../../api/'
-import { ImageWithFallback } from '../../../utils/components'
+import Img from '../../../assets/images/special-offer/366x484.jpg'
+
+const offer = {
+		id: 1,
+	text: 'Summer sale 50% off fruits',
+		img: Img
+	}
 
 export const SpecialOffer = () => {
-	const [specialoffer, setSpecialoffer] = useState([])
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await specialofferAPI.getSpecialoffer()
-				setSpecialoffer(data)
-			} catch (e) {
-				console.log(e)
-			}
-		}
-
-		fetchData()
-	}, [])
-
 	return (
 		<div className={s.block}>
-			{specialoffer.map((offer) => {
-				const { id, img } = offer
-
-				return (
-					<NavLink to='/shop' key={id}>
-						<ImageWithFallback
-							className={s.img}
-							src={img}
-							imgSize='specialoffer'
-							alt='Summer sale 50% off fruits'
-						/>
-					</NavLink>
-				)
-			})}
+			<NavLink to='/shop' key={offer.id}>
+				<img className={s.img} src={offer.img} alt={offer.text} />
+			</NavLink>
 		</div>
 	)
 }

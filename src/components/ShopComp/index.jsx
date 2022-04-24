@@ -3,7 +3,7 @@ import { ShopList } from './ShopList'
 import { ShopSort } from './ShopSort'
 import { Sidebar } from './Sidebar'
 import { Pagination } from '../UI/Pagination/Pagination'
-import { productsAPI } from '../../api'
+import {productsAPI} from "../../api/products";
 import s from './shop.module.css'
 
 export const ShopComp = () => {

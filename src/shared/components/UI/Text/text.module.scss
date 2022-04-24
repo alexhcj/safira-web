@@ -1,0 +1,57 @@
+@import '../../../styles/vars';
+
+.span {
+	font-size: 14px;
+	line-height: 24px;
+  font-weight: $weight-normal;
+	color: $color-dark;
+	@include transition-all;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: $weight-normal;
+  color: $color-dark;
+	@include transition-all;
+}
+
+// text size
+.size {
+	&_medium {
+		line-height: 42px;
+		font-size: 16px;
+	}
+	&_price {
+		line-height: 16px;
+		font-size: 23px;
+	}
+	&_discount_price {
+		text-decoration-line: line-through;
+		line-height: 16px;
+		font-size: 20px;
+	}
+}
+
+// weight
+.weight {
+	&_medium {
+		font-weight: $weight-medium;
+	}
+	&_semi {
+		font-weight: $weight-semi;
+	}
+	&_bold {
+		font-weight: $weight-bold;
+	}
+}
+
+// colors
+.color {
+	&_primary {
+		color: $color-primary;
+	}
+	&_white {
+		color: $color-white;
+	}
+}

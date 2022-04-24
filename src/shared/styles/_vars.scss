@@ -1,0 +1,17 @@
+// colors
+$color-primary: #40A944;
+$color-dark: #222222;
+$color-white: #FFFFFF;
+$color-border: #EBEBEB;
+$separator: #EDEDED;
+
+// weight
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semi: 600;
+$weight-bold: 700;
+
+// transition
+@mixin transition-all() {
+	transition: all 0.3s ease;
+}

@@ -1,26 +1,47 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import { categoriesAPI } from '../../../api'
 import { ArrowSVG } from '../../svg'
+import {generateID} from "../../../utils/IdGenerator";
 import s from './categories.module.css'
 
+const categories =  [
+	{
+		id: generateID(),
+		category: "vegetables"
+	},
+	{
+		id: generateID(),
+		category: "fruits"
+	},
+	{
+		id: generateID(),
+		category: "salads"
+	},
+	{
+		id: generateID(),
+		category: "fish & seafood"
+	},
+	{
+		id: generateID(),
+		category: "fresh meat"
+	},
+	{
+		id: generateID(),
+		category: "milk products"
+	},
+	{
+		id: generateID(),
+		category: "bread"
+	},
+	{
+		id: generateID(),
+		category: "frozen food"
+	}
+]
+
 export const Categories = () => {
-	const [categories, setCategories] = useState([])
 	const [popupToggle, setPopupToggle] = useState(false)
     const ref = useRef(null)
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await categoriesAPI.getCategories()
-				setCategories(data)
-			} catch (e) {
-				console.log(e)
-			}
-		}
-
-		fetchData()
-	}, [])
 
 	useEffect(() => {
 		document.addEventListener('keydown', escKeyHandler)
@@ -38,7 +59,7 @@ export const Categories = () => {
 		}
 	}
 
-	const toggleHandler = (e) => {
+	const toggleHandler = () => {
 		setPopupToggle(!popupToggle)
 	}
 
@@ -71,8 +92,6 @@ export const Categories = () => {
 		</div>
 	)
 }
-
-// TODO: look for best practices mongodb file structure
 
 // NOTE: categories and subcats should route to shop with selected params
 // TODO: if category has subcats => add [subcats]

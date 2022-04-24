@@ -1,4 +1,4 @@
-import { Product } from '../../Product'
+import { ProductCard } from '../../ProductCard'
 import s from './shoplist.module.css'
 
 export const ShopList = ({ products }) => {
@@ -7,7 +7,7 @@ export const ShopList = ({ products }) => {
 			{products.map((product) => {
 				return (
 					<div className={s.col} key={product.id}>
-						<Product product={product} size='large' />
+						<ProductCard product={product} size='large' />
 					</div>
 				)
 			})}

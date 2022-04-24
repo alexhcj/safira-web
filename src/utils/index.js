@@ -17,7 +17,7 @@ export const sizeTypes = [
     { id: 9, type: 'sale', size: '1920x440' },
 ]
 
-// concat url, size & ext into img url with sertain size
+// concat url, size & ext into img url with certain size
 export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg') => {
     const currentSize = sizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
 

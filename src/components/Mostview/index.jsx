@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../api'
+import {productsAPI} from "../../api/products";
 
 import 'react-multi-carousel/lib/styles.css'
 import { OneRowProductSlider } from '../UI/SliderSection'
@@ -20,15 +20,15 @@ export const Mostview = () => {
 			} catch (e) {
 				console.log(e)
 			}
-			
+
 		}
-		
+
 		fetchData()
 	}, [])
 
 	return (
 	<div>
-		<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} /> 
+		<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} />
 	</div>
 	)
 }

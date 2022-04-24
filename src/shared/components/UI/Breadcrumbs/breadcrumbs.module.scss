@@ -1,0 +1,25 @@
+@import '../../../styles/vars';
+
+.section {
+    margin-bottom: 70px;
+    background: url('../../../../assets/images/breadcrumb/1.jpg') no-repeat 100% 50%;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+		padding: 73px 0;
+}
+.box {
+	margin-right: 7px;
+}
+.breadcrumbs {
+	padding-right: 7px;
+    text-transform: capitalize;
+    line-height: 24px;
+    font-size: 14px;
+
+	&.link:hover {
+		color: $color-primary;
+	}
+}
