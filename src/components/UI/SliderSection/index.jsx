@@ -1,7 +1,7 @@
 import s from './OneRowProductSlider.module.css'
 import { useState } from 'react'
 import { ButtonGroup } from '../../MainSlider/Controls/BtnGroup'
-import { Product } from '../../Product'
+import { ProductCard } from '../../ProductCard'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
@@ -52,7 +52,7 @@ export const OneRowProductSlider = ({products, heading, above_heading, id}) => {
                             if(product.id===id){
                                 return null
                             }
-                            return <Product size='large' key={product.id} product={product} />
+                            return <ProductCard size='large' key={product.id} product={product} />
                         })}
                     </Carousel>
                 </div>

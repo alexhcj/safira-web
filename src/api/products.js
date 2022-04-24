@@ -25,7 +25,7 @@ export const productsAPI = {
                 }
             })
     },
-    getProduct(id = 1) {
-        return instance.get(`products?id=${id}`).then((res) => res.data)
+    getProduct(slug = '') {
+        return instance.get(`products/${slug}`).then((res) => res.data)
     },
 }

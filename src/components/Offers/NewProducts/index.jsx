@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { productsAPI } from '../../../api'
 import { Arrow } from '../../MainSlider/Controls/Arrow'
-import { Product } from '../../Product'
+import { ProductCard } from '../../ProductCard'
 import { convertArray } from '../../../utils/index'
 import { Preloader } from '../../UI'
 import Carousel from 'react-multi-carousel'
@@ -75,7 +75,7 @@ export const NewProducts = () => {
 						return (
 							<div key={index}>
 								{col.map((product) => {
-									return <Product size='large' imgSize='sm' key={product.id} product={product} />
+									return <ProductCard size='large' imgSize='sm' key={product.slug} product={product} />
 								})}
 							</div>
 						)
