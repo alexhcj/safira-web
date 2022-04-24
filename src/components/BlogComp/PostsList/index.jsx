@@ -1,4 +1,4 @@
-import { Button } from '../../UI/Buttons/Primary'
+import { Button } from '../../UI/Buttons/Button/Button'
 import s from './PostsList.module.css'
 
 export const PostsList = ({posts, setLoad, load, isLoading, isLoadMore}) => {
@@ -20,7 +20,7 @@ export const PostsList = ({posts, setLoad, load, isLoading, isLoadMore}) => {
                             <p className={s.title}>{title}</p>
                             <p className={s.date}>{date}</p>
                             <p className={s.text}>{text}</p>
-                            <Button to={url}/> 
+                            <Button to={url}/>
                         </div>
                     )
             })}

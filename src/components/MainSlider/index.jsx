@@ -3,6 +3,7 @@ import { sliderAPI } from '../../api'
 import { PrimaryBtn } from '../UI'
 import { Dot } from './Controls/Dot'
 import Carousel from 'react-multi-carousel'
+import {Button} from "../UI/Buttons/Button/Button";
 import 'react-multi-carousel/lib/styles.css'
 import s from './mainslider.module.css'
 
@@ -75,7 +76,9 @@ export const MainSlider = () => {
 											<h1 className={s.title}>{title}</h1>
 											<h5 className={s.subTitle}>{subTitle}</h5>
 											<p className={s.text}>{text}</p>
-											<PrimaryBtn to='/shop' />
+											<Button to='/shop'>
+												<Text className={s.btn_text} color="white">Read more</Text>
+											</Button>
 										</div>
 									</div>
 								</div>

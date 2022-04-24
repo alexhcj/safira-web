@@ -5,6 +5,7 @@ import { Navbar } from '../Navbar'
 import logo from '../../assets/images/logo.png'
 import s from './header.module.css'
 import { useEffect, useState } from 'react'
+import {Button} from "../UI/Buttons/Button/Button";
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -95,7 +96,7 @@ export const Header = () => {
 							<form action=''>
 								<div className={s.input}>
 									<input type='text' placeholder='Search here...' />
-									<PrimaryBtn type='search' text='' />
+									<Button type='search' />
 								</div>
 							</form>
 						</div>

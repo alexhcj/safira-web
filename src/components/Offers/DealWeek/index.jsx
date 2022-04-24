@@ -5,6 +5,7 @@ import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 import { Tags, PrimaryBtn } from '../../UI'
 import { Timer } from '../Timer'
 import s from './dealweek.module.css'
+import {Button} from "../../UI/Buttons/Button/Button";
 
 export const DealWeek = () => {
 	const [deal, setDeal] = useState([])
@@ -51,7 +52,7 @@ export const DealWeek = () => {
 								<span className={s.price}>${price}</span>
 							</p>
 							<Timer time={time} />
-							<PrimaryBtn text='add to cart' />
+							<Button text='add to cart' />
 						</div>
 					</div>
 				)
