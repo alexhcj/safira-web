@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import './shared/styles/vars';
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -24,7 +25,6 @@
 	--transition-btn-more-svg: transform 0.3s ease, fill 0.3s ease;
 
 	/* sort */
-	--color-sort-border: #dbdbdb;
 	--color-background: #f6f6f6;
 	--transition-sort-hover: border 0.2s ease-in-out;
 	--transition-sort-transform: transform 0.15s ease-in-out;
@@ -63,7 +63,13 @@ code {
 }
 
 button {
+	letter-spacing: 0.02em;
 	font-family: 'Work Sans', serif;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
 /* grid */
