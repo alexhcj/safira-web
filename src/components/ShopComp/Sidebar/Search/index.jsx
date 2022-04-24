@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { productsAPI } from '../../../../api'
+import {productsAPI} from "../../../../api/products";
 import { Button } from '../../../UI/Buttons/Filter'
 import { ErrorPopup } from '../../../UI'
 import classNames from 'classnames/bind'

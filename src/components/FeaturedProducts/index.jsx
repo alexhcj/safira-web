@@ -1,6 +1,6 @@
 import s from './featuredProducts.module.css'
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../api'
+import {productsAPI} from "../../api/products";
 import { convertArray } from '../../utils'
 import { ProductCard } from '../ProductCard'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup'

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import s from "./relatedProducts.module.css"
-import { productsAPI } from "../../api"
+import {productsAPI} from "../../api/products";
 import { OneRowProductSlider } from "../UI/SliderSection"
 import { makeUniqueArray } from "../../utils"
 

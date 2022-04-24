@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../../api'
+import {productsAPI} from "../../../api/products";
 import { Arrow } from '../../MainSlider/Controls/Arrow'
 import { ProductCard } from '../../ProductCard'
 import { convertArray } from '../../../utils/index'

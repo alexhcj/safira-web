@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import {productsAPI} from "../../api";
+import {productsAPI} from "../../api/products";
 import { GoodToCart } from '../../shared/components/GoodToCart'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 // import {ProductSpecification} from "../../components/ProductSpecification/ProductSpecification";

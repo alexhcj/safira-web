@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../api'
+import {productsAPI} from "../../api/products";
 
 import 'react-multi-carousel/lib/styles.css'
 import { OneRowProductSlider } from '../UI/SliderSection'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { productsAPI } from '../../../api'
+import {productsAPI} from "../../../api/products";
 import { convertArray } from '../../../utils'
 import {ImageWithFallback} from '../../../utils/ImageWithFallback'
 import s from './mostless.module.css'
