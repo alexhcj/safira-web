@@ -1,5 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { TwitterSVG, GooglePlusSVG, YoutubeSVG, FacebookSVG, InstagramSVG, CartSVG, HeartSVG } from '../../../../components/svg'
+import CartSVG from '../../../../assets/svg/cart.svg'
+import HeartSVG from '../../../../assets/svg/heart.svg'
+import InstagramSVG from '../../../../assets/svg/instagram.svg'
+import FacebookSVG from '../../../../assets/svg/facebook.svg'
+import YoutubeSVG from '../../../../assets/svg/youtube.svg'
+import GooglePlusSVG from '../../../../assets/svg/google-plus.svg'
+import TwitterSVG from '../../../../assets/svg/twitter.svg'
 import { Navbar } from '../Navbar/Navbar'
 import logo from '../../../../assets/images/logo.png'
 import s from './header.module.css'
@@ -68,19 +74,19 @@ export const Header = () => {
 						</div>
 						<div className={s.social}>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<TwitterSVG />
+								<img src={TwitterSVG} alt=""/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<GooglePlusSVG />
+								<img src={GooglePlusSVG} alt=""/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<YoutubeSVG />
+								<img src={YoutubeSVG} alt=""/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<FacebookSVG />
+								<img src={FacebookSVG} alt=""/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<InstagramSVG />
+								<img src={InstagramSVG} alt=""/>
 							</a>
 						</div>
 					</div>
@@ -111,11 +117,11 @@ export const Header = () => {
 								</NavLink>
 							</div>
 							<NavLink to='/' className={s.account__link}>
-								<HeartSVG width={25} height={25} />
+								<img src={HeartSVG} alt=""/>
 								<span className={s.count}>{account.wishlist}</span>
 							</NavLink>
 							<NavLink to='/' className={s.account__link}>
-								<CartSVG width={26} height={26} />
+								<img src={CartSVG} alt=""/>
 								<span className={s.count}>{account.cart}</span>
 							</NavLink>
 						</div>

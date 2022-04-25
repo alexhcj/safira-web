@@ -12,7 +12,7 @@ import {Rating} from "../../shared/components/Rating/Rating";
 import s from './productdetails.module.scss'
 import {Title} from "../../shared/components/UI/Title/Title";
 import {Price} from "../../components/Price/Price";
-import {Preloader} from "../../components/svg/Preloader";
+import PreloaderSVG from "../../assets/svg/preloader.svg";
 
 export const ProductDetails = () => {
     const {slug} = useParams()
@@ -38,7 +38,8 @@ export const ProductDetails = () => {
         <div className="container">
             <div className={s.product}>
                 <div className={s.img}>
-                    {img ? <ImageWithFallback className={s.product_img} src={img} imgSize='xl' alt={name} /> : <Preloader/>	}
+                    {img ? <ImageWithFallback className={s.product_img} src={img} imgSize='xl' alt={name} /> :
+											<img src={PreloaderSVG} alt="Preloader"/>	}
                 </div>
                 <div className={s.content}>
 										<Title tag='h4' type="title">{name}</Title>

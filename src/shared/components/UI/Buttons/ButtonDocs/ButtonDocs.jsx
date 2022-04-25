@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { DocsSVG } from '../../../../../components/svg'
+// import { DocsSVG } from '../../../../../assets/svg/'
 import s from './buttondocs.module.css'
 
 export const ButtonDocs = () => (
 	<Link to='/docs' className={s.btn}>
-		<DocsSVG fill='#fff' />
+		<div>Docs</div>
+		{/*<DocsSVG fill='#fff' />*/}
 	</Link>
 )
 

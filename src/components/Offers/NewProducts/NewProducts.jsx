@@ -6,7 +6,7 @@ import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './newproducts.module.css'
-import {Preloader} from "../../svg/Preloader";
+import PreloaderSVG from "../../../assets/svg/preloader.svg";
 
 export const NewProducts = () => {
 	const [newProducts, setNewProducts] = useState([])
@@ -69,7 +69,7 @@ export const NewProducts = () => {
 				customRightArrow={<Arrow />}
 			>
 				{isLoading ? (
-					<Preloader />
+					<img src={PreloaderSVG} alt="Preloader"/>
 				) : (
 					newProducts.map((col, index) => {
 						return (

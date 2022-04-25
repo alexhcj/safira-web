@@ -1,4 +1,7 @@
-import { CartSVG, HeartSVG, MagnifierSVG, SyncSVG } from '../../../../components/svg'
+import CartSVG from '../../../../assets/svg/cart.svg'
+import HeartSVG from '../../../../assets/svg/heart.svg'
+import MagnifierSVG from '../../../../assets/svg/magnifier.svg'
+import SyncSVG from '../../../../assets/svg/sync.svg'
 import classNames from 'classnames/bind'
 import s from './hovermenu.module.css'
 
@@ -14,7 +17,8 @@ export const Hovermenu = ({ menuToggle, size }) => {
 	return (
 		<div className={menuCN}>
 			<PopupBtn to='/shop' text='Add to Cart'>
-				<CartSVG />
+				<
+					CartSVG />
 			</PopupBtn>
 			<PopupBtn to='/shop' text='Quick View'>
 				<MagnifierSVG />
