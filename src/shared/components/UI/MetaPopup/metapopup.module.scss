@@ -1,3 +1,5 @@
+@import '../../../../shared/styles/vars';
+
 .list {
     position: relative;
     display: flex;
@@ -5,17 +7,21 @@
     line-height: 39px;
     cursor: pointer;
     transition: var(--transition-default);
+
+		&:hover {
+			color: $color-primary;
+
+			.svg {
+				fill: $color-primary;
+			}
+		}
 }
-.list:hover {
-    color: var(--color-primary);
-}
-.list svg {
-    margin-top: -2px;
+.svg {
+    margin-top: -3px;
     margin-left: 5px;
+		width: 13px;
+		height: 15px;
     transform: rotate(90deg);
-}
-.list:hover svg path {
-    fill: var(--color-primary);
 }
 .popup {
     position: absolute;

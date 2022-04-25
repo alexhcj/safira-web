@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom'
-// import { DocsSVG } from '../../../../../assets/svg/'
+import { ReactComponent as DocsSVG } from '../../../../../assets/svg/docs.svg'
 import s from './buttondocs.module.css'
 
 export const ButtonDocs = () => (
 	<Link to='/docs' className={s.btn}>
-		<div>Docs</div>
-		{/*<DocsSVG fill='#fff' />*/}
+		<DocsSVG width={20} height={20} fill="#ffffff" />
 	</Link>
 )
-
-// TODO: change animation. mb add 2 solo svg docs and add for each custom animation

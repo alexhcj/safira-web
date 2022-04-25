@@ -28,13 +28,14 @@
     height: 2px;
     background-color: var(--color-white);
 }
-.categories svg {
+.svg {
     margin-left: auto;
+	width: 15px;
+	height: 15px;
     transform: rotate(90deg);
+	fill: var(--color-white);
 }
-.categories svg path {
-    fill: var(--color-white);
-}
+
 .popup {
     position: absolute;
     top: 50px;

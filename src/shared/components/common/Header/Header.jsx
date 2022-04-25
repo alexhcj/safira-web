@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import CartSVG from '../../../../assets/svg/cart.svg'
-import HeartSVG from '../../../../assets/svg/heart.svg'
-import InstagramSVG from '../../../../assets/svg/instagram.svg'
-import FacebookSVG from '../../../../assets/svg/facebook.svg'
-import YoutubeSVG from '../../../../assets/svg/youtube.svg'
-import GooglePlusSVG from '../../../../assets/svg/google-plus.svg'
-import TwitterSVG from '../../../../assets/svg/twitter.svg'
+import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
+import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
+import {ReactComponent as InstagramSVG} from '../../../../assets/svg/instagram.svg'
+import {ReactComponent as FacebookSVG} from '../../../../assets/svg/facebook.svg'
+import {ReactComponent as YoutubeSVG} from '../../../../assets/svg/youtube.svg'
+import {ReactComponent as GooglePlusSVG} from '../../../../assets/svg/google-plus.svg'
+import {ReactComponent as TwitterSVG} from '../../../../assets/svg/twitter.svg'
 import { Navbar } from '../Navbar/Navbar'
 import logo from '../../../../assets/images/logo.png'
 import s from './header.module.css'
@@ -16,7 +16,7 @@ import {MetaPopup} from "../../UI/MetaPopup/MetaPopup";
 const languages = [
 	{ id: 1, text: 'Russian' },
 	{ id: 2, text: 'English' },
-	{ id: 3, text: 'Deutch' },
+	{ id: 3, text: 'Deutsch' },
 ]
 
 const currencies = [
@@ -72,21 +72,22 @@ export const Header = () => {
 							<span className={s.meta__divider}>|</span>
 							<MetaPopup text='Currency' data={currencies} />
 						</div>
+						{/* TODO: replace a with Link */}
 						<div className={s.social}>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<img src={TwitterSVG} alt=""/>
+								<TwitterSVG/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<img src={GooglePlusSVG} alt=""/>
+								<GooglePlusSVG/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<img src={YoutubeSVG} alt=""/>
+								<YoutubeSVG/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<img src={FacebookSVG} alt=""/>
+								<FacebookSVG/>
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<img src={InstagramSVG} alt=""/>
+								<InstagramSVG/>
 							</a>
 						</div>
 					</div>
@@ -117,11 +118,11 @@ export const Header = () => {
 								</NavLink>
 							</div>
 							<NavLink to='/' className={s.account__link}>
-								<img src={HeartSVG} alt=""/>
+								<HeartSVG/>
 								<span className={s.count}>{account.wishlist}</span>
 							</NavLink>
 							<NavLink to='/' className={s.account__link}>
-								<img src={CartSVG} alt=""/>
+								<CartSVG/>
 								<span className={s.count}>{account.cart}</span>
 							</NavLink>
 						</div>
@@ -132,9 +133,3 @@ export const Header = () => {
 		</div>
 	)
 }
-
-// TODO: add login & register logic
-// TODO: add search logic
-// TODO: add language & currency logic
-// TODO: add wishlist & cart logic
-// TODO: add real social accounts

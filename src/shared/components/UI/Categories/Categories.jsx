@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import ArrowSVG from '../../../../assets/svg/arrow.svg'
+import {ReactComponent as ArrowSVG} from '../../../../assets/svg/arrow.svg'
 import {generateID} from "../../../../utils/IdGenerator";
 import s from './categories.module.css'
 
@@ -77,7 +77,7 @@ export const Categories = () => {
 				<span></span>
 			</div>
 			All categories
-			<img src={ArrowSVG} alt=""/>
+			<ArrowSVG className={s.svg} />
 			<nav className={`${s.popup} ${popupToggle ? `${s.active}` : ''} `}>
 				{categories.map((link) => {
 					const { id, category } = link

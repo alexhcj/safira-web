@@ -69,6 +69,16 @@
 	}
 }
 
+.filter {
+	height: 30px;
+	border-radius: 30px;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}
+
 .focus {
 	background-color: $color-dark;
 }

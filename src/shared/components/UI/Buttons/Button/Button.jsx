@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import MagnifierSVG from '../../../../../assets/svg/magnifier.svg'
+import {ReactComponent as MagnifierSVG} from '../../../../../assets/svg/magnifier.svg'
 import cn from 'classnames'
 import s from './button.module.scss'
 
@@ -29,7 +29,7 @@ export const Button = ({
 			onBlur={onBlur}
 		>
 			{children}
-			{type === 'search' && <img src={MagnifierSVG} alt=""/>}
+			{type === 'search' && <MagnifierSVG/>}
 		</button>
 	)
 }

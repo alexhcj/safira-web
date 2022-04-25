@@ -1,34 +1,30 @@
-import CartSVG from '../../../../assets/svg/cart.svg'
-import HeartSVG from '../../../../assets/svg/heart.svg'
-import MagnifierSVG from '../../../../assets/svg/magnifier.svg'
-import SyncSVG from '../../../../assets/svg/sync.svg'
+import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
+import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
+import {ReactComponent as MagnifierSVG} from '../../../../assets/svg/magnifier.svg'
+import {ReactComponent as SyncSVG} from '../../../../assets/svg/sync.svg'
 import classNames from 'classnames/bind'
 import s from './hovermenu.module.css'
+import {ButtonPopup} from "../Buttons/ButtonPopup/ButtonPopup";
 
 let cx = classNames.bind(s)
-
-function PopupBtn(props) {
-	return null;
-}
 
 export const Hovermenu = ({ menuToggle, size }) => {
 	let menuCN = cx('menu', { active: menuToggle, large: size })
 
 	return (
 		<div className={menuCN}>
-			<PopupBtn to='/shop' text='Add to Cart'>
-				<
-					CartSVG />
-			</PopupBtn>
-			<PopupBtn to='/shop' text='Quick View'>
+			<ButtonPopup to='/shop' text='Add to Cart'>
+				<CartSVG />
+			</ButtonPopup>
+			<ButtonPopup to='/shop' text='Quick View'>
 				<MagnifierSVG />
-			</PopupBtn>
-			<PopupBtn to='/shop' text='Add to Wishlist'>
+			</ButtonPopup>
+			<ButtonPopup to='/shop' text='Add to Wishlist'>
 				<HeartSVG />
-			</PopupBtn>
-			<PopupBtn to='/shop' text='Add to Compare'>
+			</ButtonPopup>
+			<ButtonPopup to='/shop' text='Add to Compare'>
 				<SyncSVG />
-			</PopupBtn>
+			</ButtonPopup>
 		</div>
 	)
 }

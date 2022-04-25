@@ -5,6 +5,7 @@ import {ReactComponent as Close} from "../../../../assets/images/close.svg";
 import s from './search.module.css'
 import {ErrorPopup} from "../../../../shared/components/UI/ErrorPopup/ErrorPopup";
 import {Button} from "../../../../shared/components/UI/Buttons/Button/Button";
+import {Text} from "../../../../shared/components/UI/Text/Text";
 
 let cx = classNames.bind(s)
 
@@ -209,11 +210,13 @@ export const Search = ({ searchHandler }) => {
 			</ul>
 			<div className={s.bottom}>
 				<Button
-					text='Search'
+					type="filter"
 					isLoading={isLoading}
 					disabled={disabled}
 					searchBtnHandler={searchBtnClickHandler}
-				/>
+				>
+					<Text span color="white">Search</Text>
+				</Button>
 				<span className={s.current}>{currentSearch}</span>
 			</div>
 		</aside>
