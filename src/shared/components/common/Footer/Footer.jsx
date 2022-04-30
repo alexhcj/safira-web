@@ -3,10 +3,12 @@ import logo from '../../../../assets/images/logo.png'
 import {Button} from "../../UI/Buttons/Button/Button";
 import s from './footer.module.css'
 import {Text} from "../../UI/Text/Text";
+import {Space} from "../../UI/Spacing/Space";
 
 export const Footer = () => {
 	return (
-		<div className={s.section}>
+		<>
+			<Space space={70} />
 			<div className='container'>
 				<div className={s.footer}>
 					<div className={s.meta}>
@@ -65,6 +67,7 @@ export const Footer = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+			<Space space={65} />
+		</>
 	)
 }
