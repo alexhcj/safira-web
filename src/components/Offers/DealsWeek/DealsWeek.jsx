@@ -1,13 +1,12 @@
 import { NavLink } from 'react-router-dom'
 // import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 // import { Timer } from '../Timer'
-import s from './dealsweek.module.scss'
 import {Tags} from "../../../shared/components/UI/Tags/Tags";
 import {Space} from "../../../shared/components/UI/Spacing/Space";
-import {Title} from "../../../shared/components/UI/Title/Title";
 import {Text} from "../../../shared/components/UI/Text/Text";
 import {Price} from "../../Price/Price";
 import {Button} from "../../../shared/components/UI/Buttons/Button/Button";
+import s from './dealsweek.module.scss'
 
 const data = [
 	{id: 1,
@@ -17,9 +16,7 @@ const data = [
 		category: 'Fruits',
 		price: 48,
 		discount_price: 39.99,
-		tags: [
-			{text: 'new'}
-		]
+		tags: ['new']
 	}
 ]
 
@@ -36,7 +33,7 @@ export const DealsWeek = () => {
 
 	return (
 		<>
-			<h3 className={s.heading}>Deals Of The Week</h3>
+			<h2 className={s.heading}>Deals Of The Week</h2>
 			<div key={id} className={s.wrapper}>
 				<Tags tags={tags} />
 				<div className={s.content}>
@@ -45,7 +42,7 @@ export const DealsWeek = () => {
 					</NavLink>
 					<Space space={16} />
 					<NavLink className={s.link} to={url}>
-						<Title className={s.name} tag="h6">{name}</Title>
+						<h4 className={s.name}>{name}</h4>
 					</NavLink>
 					<Space space={16} />
 					{/* TODO: refactor. make Link Component */}
@@ -59,7 +56,7 @@ export const DealsWeek = () => {
 					{/*<Timer time='2022-06-09' />*/}
 					<Space size="mm" />
 					<Button className={s.btn}>
-						<Text span className={s.btn_text} color="white">Add to cart</Text>
+						<Text className={s.btn_text} span color="white">Add to cart</Text>
 					</Button>
 				</div>
 			</div>
