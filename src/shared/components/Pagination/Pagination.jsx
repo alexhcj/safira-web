@@ -36,7 +36,7 @@ export const Pagination = ({
 			<button className={`${s.page} ${page === 1 ? `${s.disabled}` : ''}`} onClick={selectPrevPage}>
 				prev
 			</button>
-			<div className={s.list} onClick={(e) => selectPage(e)}>
+			<div role="presentation" className={s.list} onClick={(e) => selectPage(e)}>
 				{currentPagNums.map((num) => (
 					<button className={`${s.page} ${page === num ? `${s.active}` : ''}`} id={num} key={num}>
 						{num}
