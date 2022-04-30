@@ -3,7 +3,6 @@ import s from './text.module.scss';
 
 export const Text = ({
   color,
-  size = 'normal' | 'medium' | 'price' | 'discount_price',
   weight = 'medium' | 'semi' | 'bold',
   span,
   className,
@@ -14,7 +13,6 @@ export const Text = ({
           <span
               className={cn(
                   s.span,
-                  size && s[`size_${size}`],
                   color && s[`color_${color}`],
                   weight && s[`weight_${weight}`],
                   className,
@@ -29,7 +27,6 @@ export const Text = ({
         <p
             className={cn(
                 s.text,
-								size && s[`size_${size}`],
 								color && s[`color_${color}`],
 								weight && s[`weight_${weight}`],
                 className,
