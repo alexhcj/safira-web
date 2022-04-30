@@ -18,8 +18,8 @@ export const BestSellers = () => {
 
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getAll(params)
-				setBestsellers(convertArray(data, 2))
+				const {products} = await productsAPI.getAll(params)
+				setBestsellers(convertArray(products, 2))
 			} catch (e) {
 				console.log(e)
 			}
@@ -66,7 +66,7 @@ export const BestSellers = () => {
 					return (
 						<div key={index}>
 							{col.map((product) => {
-								return <ProductCard imgSize='xs' key={product.id} product={product} />
+								return <ProductCard size="xs" imgSize='xs' key={product.id} product={product} />
 							})}
 						</div>
 					)
