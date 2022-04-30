@@ -3,10 +3,11 @@ import { NavLink } from 'react-router-dom'
 import {postsAPI} from "../../api/posts";
 import Carousel from 'react-multi-carousel'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
+import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/SectionHeader";
 import 'react-multi-carousel/lib/styles.css'
 import s from './ourblog.module.css'
 
-function MoreBtn(props) {
+function MoreBtn() {
 	return null;
 }
 
@@ -56,10 +57,7 @@ export const OurBlog = () => {
 	return (
 		<div className={s.section}>
 			<div className='container'>
-				<div className={s.block}>
-					<h3 className={s.above__heading}>Our recent articles about Organic</h3>
-					<h2 className={s.heading}>Our Blog Posts</h2>
-				</div>
+				<SectionHeader title="Our Blog Posts" subtitle="Our recent articles about Organic" />
 				<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
 					<Carousel
 						responsive={responsive}
