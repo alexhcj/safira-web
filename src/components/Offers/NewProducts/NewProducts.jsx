@@ -14,8 +14,10 @@ export const NewProducts = () => {
 
 	useEffect(() => {
 		const params = {
-			sort: 'date',
-			tag: 'new',
+			filter: {
+				tags: 'new',
+			},
+			sort: 'createdAt',
 			limit: 12,
 		}
 
@@ -23,8 +25,8 @@ export const NewProducts = () => {
 			setIsLoading(true)
 
 			try {
-				const data = await productsAPI.getAll(params)
-				setNewProducts(convertArray(data, 2))
+				const {products} = await productsAPI.getAll(params)
+				setNewProducts(convertArray(products, 2))
 			} catch (e) {
 				console.log(e)
 			}
