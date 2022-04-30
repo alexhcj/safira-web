@@ -54,6 +54,10 @@ export const ShopSort = ({ sortHandler }) => {
 		setListToggle(!listToggle)
 	}
 
+	const handleFocus = () => {
+		console.log('focused')
+	}
+
 	const highlightSortItem = (e) => {
 		let current = e.target.id - 1
 		// mouseover get out from list
@@ -72,6 +76,7 @@ export const ShopSort = ({ sortHandler }) => {
 	return (
 		<div className={s.block}>
 			<span
+				role="presentation"
 				className={`${s.sort} ${listToggle ? `${s.transform}` : ''} `}
 				onClick={clickHandler}
 				ref={currentSortRef}
@@ -81,6 +86,7 @@ export const ShopSort = ({ sortHandler }) => {
 			<ul
 				className={`${s.list} ${listToggle ? `${s.active}` : ''} `}
 				onMouseOver={highlightSortItem}
+				onFocus={handleFocus}
 				onMouseLeave={resetHightlight}
 			>
 				{sortParams.map((param) => {
@@ -88,6 +94,7 @@ export const ShopSort = ({ sortHandler }) => {
 
 					return (
 						<li
+							role="presentation"
 							className={`${s.item} ${sort.id === id ? `${s.current}` : ''} ${
 								activeSortId === id ? `${s.hightlight}` : ''
 							}`}
