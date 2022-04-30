@@ -1,18 +1,14 @@
+import cn from 'classnames'
+import {ButtonPopup} from "../Buttons/ButtonPopup/ButtonPopup";
 import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
 import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
 import {ReactComponent as MagnifierSVG} from '../../../../assets/svg/magnifier.svg'
 import {ReactComponent as SyncSVG} from '../../../../assets/svg/sync.svg'
-import classNames from 'classnames/bind'
-import s from './hovermenu.module.css'
-import {ButtonPopup} from "../Buttons/ButtonPopup/ButtonPopup";
-
-let cx = classNames.bind(s)
+import s from './hovermenu.module.scss'
 
 export const Hovermenu = ({ menuToggle, size }) => {
-	let menuCN = cx('menu', { active: menuToggle, large: size })
-
 	return (
-		<div className={menuCN}>
+		<div className={cn(s.menu, menuToggle && s.active, size === 'large' && s.large)}>
 			<ButtonPopup to='/shop' text='Add to Cart'>
 				<CartSVG />
 			</ButtonPopup>

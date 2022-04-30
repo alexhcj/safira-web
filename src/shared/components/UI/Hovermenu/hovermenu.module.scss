@@ -1,0 +1,31 @@
+@import '../../../styles/vars';
+
+.menu {
+    display: flex;
+    position: absolute;
+    left: 136px;
+    bottom: 20px;
+    padding: 4px 8px;
+    border-radius: 30px;
+    background-color: $color-white;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: default;
+    z-index: -10;
+    opacity: 0;
+    @include transition-all;
+
+		div:not(:last-child) {
+			margin-right: 4px;
+		}
+
+		&.active {
+			opacity: 1;
+			z-index: 10;
+		}
+
+		&.large {
+			 bottom: 120px;
+			 left: 50%;
+			 transform: translateX(-50%);
+		 }
+}
