@@ -1,8 +1,9 @@
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
-import SaleImg from '../../assets/images/sale/1920x440.jpg'
-import s from './sale.module.css'
-import {Text} from "../../shared/components/UI/Text/Text";
 import {useNavigate} from "react-router-dom";
+import {Button} from "../../shared/components/UI/Buttons/Button/Button";
+import {Text} from "../../shared/components/UI/Text/Text";
+import {Space} from "../../shared/components/UI/Spacing/Space";
+import SaleImg from '../../assets/images/sale/1920x440.jpg'
+import s from './sale.module.scss'
 
 const sale = [
 	{
@@ -37,6 +38,7 @@ export const Sale = () => {
 					</Button>
 				</div>
 			</div>
+			<Space space={65} />
 		</div>
 		)
 }
