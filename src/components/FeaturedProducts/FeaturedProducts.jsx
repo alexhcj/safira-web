@@ -1,11 +1,13 @@
-import s from './featuredproducts.module.css'
 import { useEffect, useState } from 'react'
+import Carousel from 'react-multi-carousel'
 import {productsAPI} from "../../api/products";
-import { convertArray } from '../../utils'
 import { ProductCard } from '../ProductCard/ProductCard'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
-import Carousel from 'react-multi-carousel'
+import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/SectionHeader";
+import {Space} from "../../shared/components/UI/Spacing/Space";
+import { convertArray } from '../../utils'
 import 'react-multi-carousel/lib/styles.css'
+import s from './featuredproducts.module.css'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -13,14 +15,14 @@ export const FeaturedProducts = () => {
 
 	useEffect(() => {
 		const params = {
-			sort: 'date',
+			sort: 'createdAt',
 			limit: 15,
 		}
 
 		const fetchData = async () => {
 			try {
-				const data = await productsAPI.getAll(params)
-				setFeaturedProducts(convertArray(data.data, 3))
+				const {products} = await productsAPI.getAll(params)
+				setFeaturedProducts(convertArray(products, 3))
 			} catch (e) {
 				console.log(e)
 			}
@@ -53,12 +55,11 @@ export const FeaturedProducts = () => {
 	}
 
 	return (
-		<div className={s.section}>
+		<>
+			<Space space={65} />
 			<div className='container'>
-				<div className={s.header}>
-					<h5 className={s.desc}>Recently added our store</h5>
-					<h3 className={s.title}>Featured Products</h3>
-				</div>
+				<SectionHeader title="Featured Products" subtitle="Recently added our store" />
+				<Space space={30} />
 				<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
 					<Carousel
 						responsive={responsive}
@@ -78,7 +79,7 @@ export const FeaturedProducts = () => {
 							return (
 								<div key={index}>
 									{col.map((product) => {
-										return <ProductCard imgSize='xs' key={product.id} product={product} />
+										return <ProductCard size="xs" imgSize='xs' key={product.id} product={product} />
 									})}
 								</div>
 							)
@@ -86,7 +87,8 @@ export const FeaturedProducts = () => {
 					</Carousel>
 				</div>
 			</div>
-		</div>
+			<Space space={70} />
+		</>
 	)
 }
 
