@@ -9,10 +9,9 @@ import {Border} from "../../shared/components/UI/Spacing/Border";
 import {Space} from "../../shared/components/UI/Spacing/Space";
 import {Text} from "../../shared/components/UI/Text/Text";
 import {Rating} from "../../shared/components/Rating/Rating";
-import s from './productdetails.module.scss'
-import {Title} from "../../shared/components/UI/Title/Title";
 import {Price} from "../../components/Price/Price";
 import PreloaderSVG from "../../assets/svg/preloader.svg";
+import s from './productdetails.module.scss'
 
 export const ProductDetails = () => {
     const {slug} = useParams()
@@ -42,7 +41,7 @@ export const ProductDetails = () => {
 											<img src={PreloaderSVG} alt="Preloader"/>	}
                 </div>
                 <div className={s.content}>
-										<Title tag='h4' type="title">{name}</Title>
+										<h4>{name}</h4>
                     <Space size="ss" />
 										<Rating rating={rating} />
                     <Space size="xss" />
