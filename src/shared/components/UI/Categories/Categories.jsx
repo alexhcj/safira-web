@@ -70,7 +70,7 @@ export const Categories = () => {
 	}
 
 	return (
-		<div className={s.categories} onClick={(e) => toggleHandler(e)} ref={ref}>
+		<div role="presentation" className={s.categories} onClick={(e) => toggleHandler(e)} ref={ref}>
 			<div className={s.burger}>
 				<span></span>
 				<span></span>
