@@ -1,17 +1,23 @@
 // colors
+$color-white: #FFFFFF;
+$color-black: #000000;
 $color-primary: #40A944;
 $color-dark: #222222;
-$color-white: #FFFFFF;
 $color-border: #EBEBEB;
 $separator: #EDEDED;
+$color-section-bg: #F4F4F4FF;
 
-// weight
+// weights
 $weight-normal: 400;
 $weight-medium: 500;
 $weight-semi: 600;
 $weight-bold: 700;
 
-// transition
+// fonts
+$WorkSans: 'Work Sans', sans-serif;
+$PlayfairDisplay:'Playfair Display', serif;
+
+// transitions
 @mixin transition-all() {
 	transition: all 0.3s ease;
 }

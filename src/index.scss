@@ -49,6 +49,7 @@ body {
 }
 
 a {
+	display: inline-block;
 	text-decoration: none;
 	color: var(--color-dark);
 	transition: var(--transition-link);
