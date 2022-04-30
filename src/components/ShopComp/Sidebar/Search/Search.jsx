@@ -194,7 +194,7 @@ export const Search = ({ searchHandler }) => {
 					onChange={(e) => inputHandler(e)}
 					onClick={(e) => onClickHandler(e)}
 				/>
-				{search && <span className={btnCloseCN} onClick={closeSearchBtnHandler}>
+				{search && <span role="presentation" className={btnCloseCN} onClick={closeSearchBtnHandler}>
 					<Close/>
 				</span>}
 				{<ErrorPopup error={validationError} toggle={validationToggle} />}
@@ -202,7 +202,7 @@ export const Search = ({ searchHandler }) => {
 			<ul className={popupCN}>
 				{products.map((product) => {
 					return (
-						<li className={s.item} key={product.id} onClick={() => autoCompleteClickHandler(product.name)}>
+						<li role="presentation" className={s.item} key={product.id} onClick={() => autoCompleteClickHandler(product.name)}>
 							{product.name}
 						</li>
 					)
