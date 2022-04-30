@@ -1,4 +1,25 @@
+@import '../../shared/styles/vars';
+
 .box {
 	display: flex;
+	justify-content: center;
+	align-items: baseline;
 	gap: 10px;
+}
+.price {
+	line-height: 20px;
+	font-size: 17px;
+
+	&.old {
+		text-decoration: line-through;
+		line-height: 18px;
+		font-size: 16px;
+		font-weight: $weight-normal;
+	}
+}
+.discount_price {
+	line-height: 20px;
+	font-size: 17px;
+	font-weight: $weight-medium;
+	color: $color-primary;
 }
