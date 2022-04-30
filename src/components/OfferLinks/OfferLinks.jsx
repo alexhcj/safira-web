@@ -23,7 +23,7 @@ export const OfferLinks = () => {
 					{links.map(({ id, img }) => {
 						return (
 							<NavLink className={s.link} to='/shop' key={id}>
-								<img src={img} alt="Offer image" />
+								<img src={img} alt="Offer" />
 							</NavLink>
 						)
 					})}
