@@ -23,3 +23,19 @@
 	font-weight: $weight-medium;
 	color: $color-primary;
 }
+
+// sizes
+.large {
+	.price {
+		line-height: 27px;
+		font-size: 23px;
+	}
+	.old {
+		line-height: 24px;
+		font-size: 20px;
+	}
+	.discount_price {
+		line-height: 27px;
+		font-size: 23px;
+	}
+}
