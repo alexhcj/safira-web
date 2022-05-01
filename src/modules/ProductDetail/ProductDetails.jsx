@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import {productsAPI} from "../../api/products";
-import { GoodToCart } from '../../shared/components/GoodToCart'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
-// import {ProductSpecification} from "../../components/ProductSpecification/ProductSpecification";
-// import {RelatedProducts} from "../../components/RelatedProducts";
+import {GoodToCart} from "../../shared/components/GoodToCart/GoodToCart";
+import {ProductSpecification} from "../../components/ProductSpecification/ProductSpecification";
+import {RelatedProducts} from "../../components/RelatedProducts/RelatedProducts";
 import {Border} from "../../shared/components/UI/Spacing/Border";
 import {Space} from "../../shared/components/UI/Spacing/Space";
 import {Text} from "../../shared/components/UI/Text/Text";
@@ -31,7 +31,7 @@ export const ProductDetails = () => {
 
     }, [slug])
 
-    const { name, img, price, description, category, quantity, rating } = product
+    const { name, img, price, description, category, rating, specifications, reviews, productTags } = product
 
     return (
         <div className="container">
@@ -41,17 +41,17 @@ export const ProductDetails = () => {
 											<img src={PreloaderSVG} alt="Preloader"/>	}
                 </div>
                 <div className={s.content}>
-										<h4>{name}</h4>
+										<h4 className={s.name}>{name}</h4>
                     <Space size="ss" />
 										<Rating rating={rating} />
                     <Space size="xss" />
-										{price && <Price price={price.price} discount_price={price.discount_price} />}
+										{price && <Price className={s.price} {...price} type='large' />}
                     <Space size="xs" />
                     <Text>{description}</Text>
                     <Space size="m" />
                     <Border />
                     <Space size="m" />
-                    <GoodToCart quantity={quantity} />
+										{specifications && <GoodToCart quantity={specifications.quantity} />}
 										<Space size="m" />
                     <div className={s.category}>
                         <Text span weight="medium">Category:</Text>
@@ -61,10 +61,11 @@ export const ProductDetails = () => {
 												</NavLink>
                     </div>
                 </div>
-								<Space size="l" />
-                {/*<ProductSpecification product={product}/>*/}
-                {/*<RelatedProducts name={prod.name} id={id} category={prod.category} />*/}
             </div>
+						<Space size="l" />
+						<ProductSpecification {...specifications} />
+						<Space space={65} />
+						{/*<RelatedProducts name={name} id={id} category={category} />*/}
         </div>
     )
 }

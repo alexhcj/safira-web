@@ -1,56 +1,44 @@
 import { useState } from 'react/cjs/react.development'
-import { FullsizeDivider } from '../UI'
-import s from './productspecification.module.scss'
 import defaultProfile from '../../assets/images/defaultProfile.png'
+import {Space} from "../../shared/components/UI/Spacing/Space";
+import s from './productspecification.module.scss'
 
-export const ProductSpecification = ({product}) => {
-    const [active, setActive] = useState('spec')
+export const ProductSpecification = ({company, producing_country, quantity, shelf_life}) => {
+    const [activeTab, setActiveTab] = useState('specifications')
+
+		const handleActiveTab = (tab) => {
+			setActiveTab(tab)
+		}
 
     return (
-        <section className={s.section}>
-            <div className={s.wrapper}>
-                <button className={s.section_name}
-                    onClick={()=>setActive('spec')}
-                >Specification</button>
-                <button className={s.section_name}
-                    onClick={()=>setActive('reviews')}
-                >Reviews ({product.reviews.length})</button>
+        <div className={s.box}>
+            <div className={s.tabs}>
+                <button className={s.tab} onClick={() => handleActiveTab('specifications')}>Specification</button>
+                <button className={s.tab} onClick={() => handleActiveTab('reviews')}>Reviews (5)</button>
             </div>
-            <FullsizeDivider marginTop={15} />
-            {active==='spec' &&
+					<Space space={40} />
+            {activeTab==='specifications' &&
                 <table className={s.table}>
                     <tbody>
                         <tr>
-                            <td className={s.first_col}>Category</td>
-                            <td>{product.category}</td>
+                            <td className={s.spec}>Company</td>
+                            <td className={s.spec_value}>{company}</td>
                         </tr>
                         <tr>
-                            <td className={s.first_col}>Rating</td>
-                            <td>{product.rating}</td>
+                            <td className={s.spec}>Producing country</td>
+                            <td className={s.spec_value}>{producing_country}</td>
                         </tr>
                         <tr>
-                            <td className={s.first_col}>Company</td>
-                            <td>{product.company}</td>
+                            <td className={s.spec}>Shelf life</td>
+                            <td className={s.spec_value}>{shelf_life} (days)</td>
                         </tr>
                         <tr>
-                            <td className={s.first_col}>Local/Import</td>
-                            <td>{product["local/import"]}</td>
-                        </tr>
-                        <tr>
-                            <td className={s.first_col}>Tags</td>
-                            <td>{product.productTags.join(', ')}</td>
-                        </tr>
-                        <tr>
-                            <td className={s.first_col}>Shelf Life</td>
-                            <td>{product.shelfLife}</td>
-                        </tr>
-                        <tr>
-                            <td className={s.first_col}>Quantity</td>
-                            <td>{product.quantity}</td>
+                            <td className={s.spec}>Quantity</td>
+                            <td className={s.spec_value}>{quantity}</td>
                         </tr>
                     </tbody>
                 </table>}
-            {active==='reviews' &&
+            {activeTab==='reviews' &&
                 <div className={s.reviews_container}>
                     {product.reviews.map(comment=>{
                         let {id, author, text, date, rate} = comment
@@ -71,6 +59,6 @@ export const ProductSpecification = ({product}) => {
                         )
                     })}
                 </div>}
-        </section>
+        </div>
     )
 }
