@@ -6,7 +6,8 @@ import s from './button.module.scss'
 export const Button = ({
 		type = 'submit' | 'subscribe' | 'search' | 'text',
 		htmlType = 'button' | 'submit',
-	onClick,
+		onClick,
+		disabled,
 		className,
 		children
 }) => {
@@ -27,6 +28,7 @@ export const Button = ({
 			onClick={onClick}
 			onFocus={onFocus}
 			onBlur={onBlur}
+			disabled={disabled}
 		>
 			{children}
 			{type === 'search' && <MagnifierSVG/>}

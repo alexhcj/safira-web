@@ -17,6 +17,7 @@ export const GoodToCart = ({quantity}) => {
 				<div className={s.box}>
 						<div className={s.input_box}>
 							<label className={s.input_label} htmlFor="quantity">Quantity</label>
+							{/* TODO: add input max quantity validations */}
 							<input className={s.input}
 									onInput={handleInput}
 									value={value}
@@ -26,7 +27,7 @@ export const GoodToCart = ({quantity}) => {
 									max={quantity}
 							/>
 						</div>
-						<Button className={s.btn_add} type='submit'>
+						<Button className={s.btn_add} type='submit' disabled={value > quantity}>
 							<Text size="medium" color="white" weight="medium">Add to cart</Text>
 						</Button>
 				</div>

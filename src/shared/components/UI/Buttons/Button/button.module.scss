@@ -15,6 +15,15 @@
 	&:hover {
 		background-color: $color-dark;
 	}
+
+	&:disabled {
+		background-color: $color-border;
+		cursor: default;
+
+		&:hover {
+			background-color: $color-border;
+		}
+	}
 }
 
 // type
