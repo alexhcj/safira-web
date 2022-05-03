@@ -3,14 +3,15 @@ import {NavLink, useParams} from "react-router-dom";
 import {productsAPI} from "../../api/products";
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import {GoodToCart} from "../../shared/components/GoodToCart/GoodToCart";
-import {ProductSpecification} from "../../components/ProductSpecification/ProductSpecification";
-import {RelatedProducts} from "../../components/RelatedProducts/RelatedProducts";
 import {Border} from "../../shared/components/UI/Spacing/Border";
 import {Space} from "../../shared/components/UI/Spacing/Space";
 import {Text} from "../../shared/components/UI/Text/Text";
 import {Rating} from "../../shared/components/Rating/Rating";
 import {Price} from "../../components/Price/Price";
 import PreloaderSVG from "../../assets/svg/preloader.svg";
+import {Tab, Tabs} from "../../shared/components/Tabs/Tabs";
+import {Specification} from "../../shared/components/Specification/Specification";
+import {Reviews} from "../../shared/components/Reviews/Reviews";
 import s from './productdetails.module.scss'
 
 export const ProductDetails = () => {
@@ -63,7 +64,17 @@ export const ProductDetails = () => {
                 </div>
             </div>
 						<Space size="l" />
-						<ProductSpecification {...specifications} />
+						<div className={s.specifications}>
+							<Tabs className={s.tabs}>
+								<Tab id="spec" text="Specifications">
+									<Specification {...specifications} />
+								</Tab>
+								{/* TODO: add ${reviews.total} */}
+								<Tab id="rev" text={`Reviews (5)`}>
+									{reviews && <Reviews reviews={reviews.reviews} />}
+								</Tab>
+							</Tabs>
+						</div>
 						<Space space={65} />
 						{/*<RelatedProducts name={name} id={id} category={category} />*/}
         </div>
