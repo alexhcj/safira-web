@@ -42,3 +42,11 @@ export const makeUniqueArray = (products) => {
     }
     return products
 }
+
+export const convertISODate = (date) => {
+	const convertedDate = new Date(date);
+	const year = convertedDate.getFullYear()
+	const month = convertedDate.toLocaleString('default', {month: 'long'})
+	const day = convertedDate.getDate()
+	return `${month} ${day}, ${year}`;
+}
