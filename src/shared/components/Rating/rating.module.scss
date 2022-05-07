@@ -1,12 +1,21 @@
 .rating {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	height: 24px;
-	gap: 4px;
+	gap: 5px;
+
+	&.new {
+		height: 16px;
+
+		.item svg {
+			width: 13px;
+			height: 13px;
+		}
+	}
 }
 .box {
 	position: relative;
-	display: flex;
+	cursor: pointer;
 }
 .item {
 	&:first-child {
@@ -19,10 +28,4 @@
 		width: 12px;
 		height: 12px;
 	}
-}
-
-.img_stars {
-	width: 75px;
-	height: 12px;
-	vertical-align: inherit;
 }
