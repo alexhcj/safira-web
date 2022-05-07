@@ -88,6 +88,19 @@
 	}
 }
 
+.form {
+	padding: 5px 15px 3px;
+	height: 32px;
+	line-height: 20px;
+	text-transform: uppercase;
+	border-radius: 5px;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}
+
 .focus {
 	background-color: $color-dark;
 }

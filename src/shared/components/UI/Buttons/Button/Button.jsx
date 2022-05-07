@@ -4,7 +4,7 @@ import cn from 'classnames'
 import s from './button.module.scss'
 
 export const Button = ({
-		type = 'submit' | 'subscribe' | 'search' | 'text',
+		type = 'submit' | 'subscribe' | 'search' | 'text' | 'form',
 		htmlType = 'button' | 'submit',
 		onClick,
 		disabled,
