@@ -13,12 +13,13 @@ import {Tab, Tabs} from "../../shared/components/Tabs/Tabs";
 import {Specification} from "../../shared/components/Specification/Specification";
 import {Reviews} from "../../shared/components/Reviews/Reviews";
 import s from './productdetails.module.scss'
+import {NewReview} from "../../shared/components/Reviews/NewReview";
 
 export const ProductDetails = () => {
     const {slug} = useParams()
     const [product, setProduct] = useState([])
 
-    useEffect(() =>{
+	useEffect(() =>{
         const fetchData = async () => {
             try {
                 const {product} = await productsAPI.findOne(slug)
@@ -26,13 +27,12 @@ export const ProductDetails = () => {
             } catch(e) {
                 console.log(e)
             }
-
         }
         fetchData()
 
     }, [slug])
 
-    const { name, img, price, description, category, rating, specifications, reviews, productTags } = product
+    const { name, img, price, description, category, rating, specifications, reviews } = product
 
     return (
         <div className="container">
@@ -64,17 +64,16 @@ export const ProductDetails = () => {
                 </div>
             </div>
 						<Space size="l" />
-						<div className={s.specifications}>
+						{specifications && <div className={s.specifications}>
 							<Tabs className={s.tabs}>
 								<Tab id="spec" text="Specifications">
 									<Specification {...specifications} />
 								</Tab>
-								{/* TODO: add ${reviews.total} */}
-								<Tab id="rev" text={`Reviews (5)`}>
-									{reviews && <Reviews reviews={reviews.reviews} />}
+								<Tab id="rev" text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
+									{reviews ? <Reviews reviews={reviews.reviews} /> : <NewReview />}
 								</Tab>
 							</Tabs>
-						</div>
+						</div>}
 						<Space space={65} />
 						{/*<RelatedProducts name={name} id={id} category={category} />*/}
         </div>
