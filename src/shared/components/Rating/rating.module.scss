@@ -16,6 +16,12 @@
 .box {
 	position: relative;
 	cursor: pointer;
+
+	&.cursor {
+		.item {
+			cursor: default;
+		}
+	}
 }
 .item {
 	&:first-child {
