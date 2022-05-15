@@ -1,4 +1,10 @@
 import axios from 'axios'
+import {getUserStorage} from "./storage";
+
+const getAccessToken = () => {
+	const user = getUserStorage();
+	return user?.accessToken;
+};
 
 const callAPI = async ({url, data, method, params = {}, headers = {}, responseType }) => {
 	const config = {
@@ -10,6 +16,7 @@ const callAPI = async ({url, data, method, params = {}, headers = {}, responseTy
 			...axios.defaults.headers.common,
 			'Content-Type': 'application/json',
 			...headers,
+			Authorization: `Bearer ${getAccessToken()}`,
 		},
 		baseURL: process.env.REACT_APP_BASE_URL,
 		responseType,
