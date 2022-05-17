@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { FullsizeDivider } from '../../../UI'
-import s from './recentcomments.module.css'
 import {postsAPI} from "../../../../api/posts";
 import { NavLink } from 'react-router-dom'
-import  defaultProfile  from '../../../../assets/images/defaultProfile.png'
+import  defaultProfile  from '../../../../assets/images/default-avatar.png'
+import s from './recentcomments.module.css'
 
 export const RecentComments = () => {
     const [comments, setComments] = useState([])
@@ -26,7 +25,6 @@ export const RecentComments = () => {
     return (
         <div className={s.section}>
             <p className={s.heading}>Recent Comments</p>
-            <FullsizeDivider marginTop={10}/>
             <ul className={s.comments}>
                {comments.map(comment => {
                    let {id, post, author, text} = comment
