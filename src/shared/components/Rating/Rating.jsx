@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from "classnames";
 import {generateID} from "../../../utils/IdGenerator";
 import {ReactComponent as Star} from '../../../assets/svg/star.svg'
 import {ReactComponent as StarFilled} from '../../../assets/svg/star-filled.svg'
@@ -18,7 +19,7 @@ export const Rating = ({rating}) => {
 				const showRatingWithPrecision = isActiveRating && isRatingWithPrecision && isRatingEqualToIndex;
 
 				return (
-					<div className={s.box} key={generateID()}>
+					<div className={cn(s.box, s.cursor)} key={generateID()}>
 						<div className={s.item} style={{width: showRatingWithPrecision && `${Number((rating % 1) * 100).toFixed(2)}%`}}>
 							<StarFilled/>
 						</div>

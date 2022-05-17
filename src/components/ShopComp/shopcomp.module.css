@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+}
+.main {
+    margin-right: 15px;
+    max-width: 852px;
+    width: 100%;
+}
+.sidebar {
+    max-width: 263px;
+    width: 100%;
+    position: relative;
+}

@@ -1,4 +1,4 @@
-import { Button } from '../../UI/Buttons/Button/Button'
+import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
 import s from './PostsList.module.css'
 
 export const PostsList = ({posts, setLoad, load, isLoading, isLoadMore}) => {

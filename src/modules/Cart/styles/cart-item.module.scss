@@ -1,0 +1,46 @@
+@import './cart.module';
+
+.item {
+  td {
+		text-align: center;
+		vertical-align: middle;
+		padding: 10px;
+		border-right: 1px solid $color-border2;
+		border-bottom: 1px solid $color-border2;
+
+		& .delete_svg {
+			cursor: pointer;
+
+			&:hover path {
+				fill: $color-error;
+			}
+		}
+
+		&.image {
+			padding: 20px;
+		}
+
+		&.price {
+			font-size: 16px;
+			font-weight: $weight-medium;
+		}
+
+		&.quantity {
+			font-weight: $weight-medium;
+
+			.box {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.input {
+				padding: 0 5px 0 10px;
+				width: 60px;
+				height: 40px;
+				border: 1px solid $color-border2
+			}
+		}
+  }
+}
