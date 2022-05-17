@@ -1,4 +1,10 @@
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Navbar } from '../Navbar/Navbar'
+import {Button} from "../../UI/Buttons/Button/Button";
+import {MetaPopup} from "../../UI/MetaPopup/MetaPopup";
+import {useLocalStorage} from "../../../../hooks/useLocalStorage.hook";
+import logo from '../../../../assets/images/logo.png'
 import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
 import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
 import {ReactComponent as InstagramSVG} from '../../../../assets/svg/instagram.svg'
@@ -6,12 +12,7 @@ import {ReactComponent as FacebookSVG} from '../../../../assets/svg/facebook.svg
 import {ReactComponent as YoutubeSVG} from '../../../../assets/svg/youtube.svg'
 import {ReactComponent as GooglePlusSVG} from '../../../../assets/svg/google-plus.svg'
 import {ReactComponent as TwitterSVG} from '../../../../assets/svg/twitter.svg'
-import { Navbar } from '../Navbar/Navbar'
-import logo from '../../../../assets/images/logo.png'
 import s from './header.module.css'
-import { useEffect, useState } from 'react'
-import {Button} from "../../UI/Buttons/Button/Button";
-import {MetaPopup} from "../../UI/MetaPopup/MetaPopup";
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -37,13 +38,9 @@ const currencies = [
 // 	{ id: 3, currency: 'Euro', symbol: '€' },
 // ]
 
-const account = {
-	wishlist: 6,
-	cart: 4,
-}
-
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
+	const [cart, setCart] = useLocalStorage('cart', []);
 
 	const fixNavbarToTop = () => {
 		if (window.scrollY >= 150) {
@@ -52,6 +49,8 @@ export const Header = () => {
 			setSticky(false)
 		}
 	}
+
+	// TODO: fix rerender cart quantity on change
 
 	useEffect(() => {
 		window.addEventListener('scroll', fixNavbarToTop)
@@ -119,11 +118,11 @@ export const Header = () => {
 							</div>
 							<NavLink to='/' className={s.account__link}>
 								<HeartSVG/>
-								<span className={s.count}>{account.wishlist}</span>
+								<span className={s.count}>0</span>
 							</NavLink>
-							<NavLink to='/' className={s.account__link}>
+							<NavLink to='/cart' className={s.account__link}>
 								<CartSVG/>
-								<span className={s.count}>{account.cart}</span>
+								<span className={s.count}>{cart.length}</span>
 							</NavLink>
 						</div>
 					</div>
