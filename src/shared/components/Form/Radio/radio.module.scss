@@ -1,0 +1,76 @@
+@import '../../../../shared/styles/vars';
+
+.radio {
+	display: flex;
+	align-items: center;
+
+	input {
+		display: none;
+	}
+
+	&:hover .input {
+		border-color: $color-primary;
+	}
+
+	&:focus {
+		border-color: $color-primary;
+	}
+
+	&:checked {
+		.input {
+			border-color: $color-primary;
+		}
+	}
+
+	.pickup {
+		text-transform: capitalize;
+	}
+}
+
+.label {
+	position: relative;
+	padding-left: 24px;
+	cursor: pointer;
+
+	&::before {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		content: "";
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		border: 1px solid $color-border3;
+		transform: translateY(-50%);
+		@include transition-all;
+	}
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 3px;
+		content: "";
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background-color: transparent;
+		transform: translateY(-50%);
+		@include transition-all;
+	}
+
+	&.active {
+		&::before {
+			border-color: $color-primary;
+		}
+
+		&::after {
+			background-color: $color-primary;
+		}
+	}
+
+	&:hover {
+		&::before {
+			border-color: $color-primary;
+		}
+	}
+}
