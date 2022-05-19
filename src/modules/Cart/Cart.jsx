@@ -6,6 +6,7 @@ import {Space} from "../../shared/components/UI/Spacing/Space";
 import {Border} from "../../shared/components/UI/Spacing/Border";
 import {Button} from "../../shared/components/UI/Buttons/Button/Button";
 import {Text} from "../../shared/components/UI/Text/Text";
+import {calculateTotalPrice} from "../../utils";
 import s from "./styles/cart.module.scss";
 
 export const Cart = () => {
@@ -24,14 +25,6 @@ export const Cart = () => {
 	const deleteProduct = (name) => {
 		const filteredCart = cart.filter(p => p.name !== name)
 		setCart([...filteredCart])
-	}
-
-	const calculateTotalPrice = () => {
-		return cart.reduce((total, item) => {
-			console.log(item)
-			/* eslint-disable no-param-reassign */
-			return total += item.price * item.quantity
-		}, 0)
 	}
 
 	return (
@@ -93,7 +86,7 @@ export const Cart = () => {
 					<div className={s.content}>
 						<div className={s.totals_box}>
 							<p className={s.totals_text}>Total</p>
-							<span className={s.totals_price}>${calculateTotalPrice().toFixed(2)}</span>
+							<span className={s.totals_price}>${calculateTotalPrice(cart).toFixed(2)}</span>
 						</div>
 						<Space space={20} />
 						<Link to="/checkout">
