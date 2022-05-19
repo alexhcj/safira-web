@@ -50,3 +50,10 @@ export const convertISODate = (date) => {
 	const day = convertedDate.getDate()
 	return `${month} ${day}, ${year}`;
 }
+
+export const calculateTotalPrice = (arr) => {
+	return arr.reduce((total, item) => {
+		/* eslint-disable no-param-reassign */
+		return total += item.price * item.quantity
+	}, 0)
+}
