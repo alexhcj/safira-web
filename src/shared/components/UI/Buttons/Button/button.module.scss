@@ -76,6 +76,10 @@
 			color: $color-primary;
 		}
 	}
+
+	&:focus {
+		background-color: transparent;
+	}
 }
 
 .filter {
