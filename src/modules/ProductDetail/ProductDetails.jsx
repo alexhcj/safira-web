@@ -90,6 +90,7 @@ export const ProductDetails = () => {
 							</Tabs>
 						</div>}
 						<Space space={65} />
+						<Border/>
 						{/*<RelatedProducts name={name} id={id} category={category} />*/}
         </div>
     )
