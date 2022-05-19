@@ -1,0 +1,80 @@
+@import '../../../../shared/styles/vars';
+
+.box {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.label {
+	position: relative;
+	cursor: pointer;
+
+	&.required {
+		&::after {
+			margin-left: 4px;
+			content: "*";
+			color: $color-primary;
+		}
+	}
+
+	&.active {
+		&::before {
+			border-color: $color-primary;
+		}
+
+		&::after {
+			background-color: $color-primary;
+		}
+	}
+
+	&:hover {
+		&::before {
+			border-color: $color-primary;
+		}
+	}
+}
+
+.input {
+	display: flex;
+	width: 100%;
+	padding: 5px 15px;
+	height: 40px;
+	border: 1px solid $color-border3;
+	@include transition-all;
+
+	input {
+		display: none;
+	}
+
+	&::placeholder {
+		letter-spacing: normal;
+		line-height: normal;
+		font-size: 14px;
+		font-family: "Work Sans", sans-serif;
+	}
+
+	&:focus {
+		border-color: $color-primary;
+	}
+
+	&:hover {
+		border-color: $color-border-focus;
+	}
+
+	&:focus {
+		border-color: $color-border-focus;
+
+		&::placeholder {
+			opacity: 0;
+		}
+	}
+
+	&:checked {
+		border-color: $color-primary;
+	}
+
+	.pickup {
+		text-transform: capitalize;
+	}
+}
