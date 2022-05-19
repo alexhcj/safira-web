@@ -1,19 +1,39 @@
 @import '../../../styles/vars';
 
 .section {
-    margin-bottom: 70px;
-    background: url('../../../../assets/images/breadcrumb/1.jpg') no-repeat 100% 50%;
+	margin-bottom: 70px;
+	background: url('../../../../assets/images/breadcrumb/1.jpg') no-repeat 100% 50%;
 }
+
 .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-		padding: 73px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 58px 0;
 }
+
+.page {
+	text-transform: capitalize;
+	line-height: 50px;
+	font-size: 42px;
+	font-weight: $weight-normal;
+}
+
+.breadcrumbs {
+	display: flex;
+	justify-content: center;
+}
+
 .box {
+	display: flex;
+	flex-direction: column;
+}
+
+.route {
 	margin-right: 7px;
 }
-.breadcrumbs {
+
+.current {
 	padding-right: 7px;
     text-transform: capitalize;
     line-height: 24px;
