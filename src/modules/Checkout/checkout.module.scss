@@ -1,0 +1,128 @@
+@import '../../shared/styles/vars';
+
+.checkout {
+	display: flex;
+	gap: 24px;
+}
+
+.col_6 {
+	flex: 1 1 50%;
+}
+
+.title {
+	text-transform: uppercase;
+	padding: 5px 0 5px 10px;
+	line-height: 30px;
+	font-size: 16px;
+	font-weight: $weight-medium;
+	color: $color-white;
+	background-color: $color-dark;
+}
+
+.box {
+	display: flex;
+	gap: 24px;
+	justify-content: space-between;
+}
+
+.label > label {
+	text-transform: capitalize;
+	margin-bottom: 8px;
+	font-weight: $weight-medium;
+}
+
+.radio {
+	display: flex;
+	gap: 30px;
+}
+
+.order {
+	width: 100%;
+
+	thead {
+		background-color: $color-border2;
+
+		th {
+			padding: 15px;
+			width: 50%;
+			font-weight: $weight-bold;
+		}
+	}
+
+	tbody {
+		td {
+			text-transform: capitalize;
+			text-align: center;
+			padding: 15px;
+			font-weight: $weight-medium;
+			border-top: 1px solid $color-border3;
+			border-right: 1px solid $color-border3;
+			border-bottom: 1px solid $color-border3;
+		}
+
+		.total td {
+			font-weight: $weight-bold;
+			border-right: none;
+		}
+	}
+}
+
+.account {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	&:hover {
+		.checkbox {
+			border-color: $color-primary;
+		}
+	}
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 15px;
+	height: 15px;
+	border: 1px solid $color-border3;
+	cursor: pointer;
+	@include transition-all;
+
+	&.active {
+		border-color: $color-primary;
+		.check {
+			opacity: 1;
+		}
+	}
+}
+
+.check {
+	opacity: 0;
+	width: 10px;
+	height: 10px;
+	fill: $color-primary;
+}
+
+.payment {
+	display: flex;
+	justify-content: space-between;
+}
+
+.methods {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.button {
+	padding: 0 16px;
+	border-radius: 5px;
+
+	&_text {
+		text-transform: uppercase;
+		line-height: 44px;
+		font-size: 15px;
+		font-weight: $weight-medium;
+	}
+}
