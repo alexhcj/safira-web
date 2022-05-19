@@ -15,6 +15,7 @@ import Maestro from "../../assets/images/maestro.png";
 import AmericanExpress from "../../assets/images/american-express.png";
 import Mir from "../../assets/images/mir.png";
 import s from './checkout.module.scss'
+import {Border} from "../../shared/components/UI/Spacing/Border";
 
 const radioData = [
 	{id: 'delivery', name: 'delivery', label: 'Delivery'},
@@ -216,6 +217,7 @@ export const Checkout = () => {
 				</div>
 			</div>
 			<Space size="l" />
+			<Border />
 		</div>
 	)
 }
