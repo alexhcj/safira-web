@@ -57,3 +57,7 @@ export const calculateTotalPrice = (arr) => {
 		return total += item.price * item.quantity
 	}, 0)
 }
+
+export const stringToSlug = (str) => {
+	return str.split(' ').join('-').toLowerCase()
+}
