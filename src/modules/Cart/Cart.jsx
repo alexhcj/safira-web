@@ -29,7 +29,7 @@ export const Cart = () => {
 
 	return (
 		<div className="container">
-			<table className={s.cart}>
+			<table className={s.table}>
 				<thead className={s.thead}>
 					<tr>
 						<th className={s.delete}>Delete</th>
