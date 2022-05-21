@@ -1,5 +1,5 @@
 import {Breadcrumbs} from "../shared/components/UI/Breadcrumbs/Breadcrumbs";
-import {ProductDetails} from "../modules/ProductDetail/ProductDetails";
+import {ProductDetails} from "../modules/ProductDetails/ProductDetails";
 
 export const Product = () => {
 
