@@ -5,6 +5,7 @@ import {Footer} from "./shared/components/common/Footer/Footer";
 import {Copyright} from "./components/Copyright/Copyright";
 import {ButtonScroll} from "./shared/components/UI/Buttons/ButtonScroll/ButtonScroll";
 import {ButtonDocs} from "./shared/components/UI/Buttons/ButtonDocs/ButtonDocs";
+import {WishlistPage} from "./pages/WishlistPage";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path='/blog/:id' element={<Blog />} />
 				<Route path='/cart' element={<CartPage />} />
 				<Route path='/checkout' element={<CheckoutPage />} />
+				<Route path='/wishlist' element={<WishlistPage />} />
 				<Route path='/products/:slug' element={<Product />} />
 				<Route path='/docs' element={<Docs />} />
 			</Routes>
