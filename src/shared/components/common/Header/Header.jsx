@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Navbar } from '../Navbar/Navbar'
 import {Button} from "../../UI/Buttons/Button/Button";
 import {MetaPopup} from "../../UI/MetaPopup/MetaPopup";
-import {useLocalStorage} from "../../../../hooks/useLocalStorage.hook";
+import {getCartStorage, getWishlistStorage} from "../../../../api/storage";
 import logo from '../../../../assets/images/logo.png'
 import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
 import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
@@ -40,9 +40,11 @@ const currencies = [
 
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
-	const [cart, setCart] = useLocalStorage('cart', []);
+	const cartLength = getCartStorage().length
+	const wishlistLength = getWishlistStorage().length
 
 	const fixNavbarToTop = () => {
+		console.log('log')
 		if (window.scrollY >= 150) {
 			setSticky(true)
 		} else {
@@ -51,6 +53,8 @@ export const Header = () => {
 	}
 
 	// TODO: fix rerender cart quantity on change
+	// TODO: fix rerender wishlist quantity on change
+	// TODO: add throttle
 
 	useEffect(() => {
 		window.addEventListener('scroll', fixNavbarToTop)
@@ -116,13 +120,13 @@ export const Header = () => {
 									Login
 								</NavLink>
 							</div>
-							<NavLink to='/' className={s.account__link}>
+							<NavLink to='/wishlist' className={s.account__link}>
 								<HeartSVG/>
-								<span className={s.count}>0</span>
+								<span className={s.count}>{wishlistLength}</span>
 							</NavLink>
 							<NavLink to='/cart' className={s.account__link}>
 								<CartSVG/>
-								<span className={s.count}>{cart.length}</span>
+								<span className={s.count}>{cartLength}</span>
 							</NavLink>
 						</div>
 					</div>
