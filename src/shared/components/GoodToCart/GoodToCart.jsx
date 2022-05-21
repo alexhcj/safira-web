@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react'
 import {Text} from "../UI/Text/Text";
 import {Button} from "../UI/Buttons/Button/Button";
-import {Space} from "../UI/Spacing/Space";
 import s from './goodtocart.module.scss'
 
 export const GoodToCart = ({maxQuantity, onClick, findProductCart}) => {
@@ -33,11 +32,6 @@ export const GoodToCart = ({maxQuantity, onClick, findProductCart}) => {
 						{/*<Text size="medium" color="white" weight="medium">{findProductCart ? 'Add more' : 'Add to cart'}</Text>*/}
 					</Button>
 				</div>
-				<Space size="s" />
-				<Button type="text">
-					{/* TODO: if product exist in wishlist => icon HEART. Hover on icon => popup (remove from wishlist) */}
-					<Text span>+ Add to WishList</Text>
-				</Button>
 			</>
     )
 }
