@@ -18,6 +18,21 @@
 
 		&.image {
 			padding: 20px;
+			.link {
+				@include transition-all;
+			}
+
+			&:hover {
+				& .link {
+					opacity: 0.8;
+				}
+			}
+		}
+
+		.link {
+			&:hover {
+				color: $color-primary;
+			}
 		}
 
 		&.price {
