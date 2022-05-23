@@ -16,16 +16,16 @@
 	background-color: $color-primary;
 	@include transition-all;
 
+	&.show {
+		opacity: 1;
+	}
+
 	&:hover svg {
 		animation-name: bounceTop;
 		animation-duration:1.4s;
 		animation-iteration-count:infinite;
 		animation-timing-function:linear;
 	}
-}
-
-.show {
-	opacity: 1;
 }
 
 @keyframes bounceTop {
