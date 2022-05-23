@@ -1,3 +1,4 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { MoreSVG } from '../../../../../components/svg'
 import s from './button-more.module.scss'

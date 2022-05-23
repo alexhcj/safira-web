@@ -1,16 +1,15 @@
+import React from 'react'
 import { Preloader } from '../../../common/Preloader/Preloader'
-import classNames from 'classnames/bind'
+import cn from 'classnames'
 import s from './button-filter.module.scss'
 
-let cx = classNames.bind(s)
-
 export const ButtonFilter = ({ text = 'Filter', isLoading, disabled, searchBtnHandler }) => {
-	const btnCN = cx('btn', {
-		disabled: disabled,
-	})
-
 	return (
-		<button className={btnCN} onClick={(e) => searchBtnHandler(e)} disabled={disabled || isLoading}>
+		<button
+			className={cn(s.btn, disabled && s.disabled)}
+			onClick={(e) => searchBtnHandler(e)}
+			disabled={disabled || isLoading}
+		>
 			{isLoading ? <Preloader width='20px' height='20px' fill='#fff' /> : <span>{text}</span>}
 		</button>
 	)

@@ -1,12 +1,13 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Img from '../../../assets/images/special-offer/366x484.jpg'
 import s from './special-offer.module.scss'
 
 const offer = {
-		id: 1,
+	id: 1,
 	text: 'Summer sale 50% off fruits',
-		img: Img
-	}
+	img: Img
+}
 
 export const SpecialOffer = () => {
 	return (

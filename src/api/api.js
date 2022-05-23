@@ -1,12 +1,12 @@
 import axios from 'axios'
-import {getUserStorage} from "./storage";
+import { getUserStorage } from './storage'
 
 const getAccessToken = () => {
-	const user = getUserStorage();
-	return user?.accessToken;
-};
+	const user = getUserStorage()
+	return user?.accessToken
+}
 
-const callAPI = async ({url, data, method, params = {}, headers = {}, responseType }) => {
+const callAPI = async ({ url, data, method, params = {}, headers = {}, responseType }) => {
 	const config = {
 		url,
 		data,
@@ -20,53 +20,53 @@ const callAPI = async ({url, data, method, params = {}, headers = {}, responseTy
 		},
 		baseURL: process.env.REACT_APP_BASE_URL,
 		responseType,
-	};
+	}
 
 	try {
-		const res = await axios(config);
-		return res.data;
+		const res = await axios(config)
+		return res.data
 	} catch (err) {
-		console.log(err);
+		console.log(err)
 	}
-};
+}
 
 export const API = {
 	async get(url, params, headers, responseType) {
-	return callAPI({
-		url,
-		params,
-		headers,
-		responseType,
-		method: 'GET',
-	});
-},
+		return await callAPI({
+			url,
+			params,
+			headers,
+			responseType,
+			method: 'GET',
+		})
+	},
 
 	async post(url, data, params, headers) {
-	return callAPI({
-		url,
-		data,
-		params,
-		headers,
-		method: 'POST',
-	});
-},
+		return await callAPI({
+			url,
+			data,
+			params,
+			headers,
+			method: 'POST',
+		})
+	},
 
 	async put(url, data, params, headers) {
-	return callAPI({
-		url,
-		data,
-		params,
-		headers,
-		method: 'PUT',
-	});
-},
+		return await callAPI({
+			url,
+			data,
+			params,
+			headers,
+			method: 'PUT',
+		})
+	},
 
 	async del(url, params, headers) {
-	return callAPI({
-		url,
-		params,
-		headers,
-		method: 'DELETE',
-	});
-},
-};
+		return await callAPI({
+			url,
+			params,
+			headers,
+			method: 'DELETE',
+		})
+	},
+}

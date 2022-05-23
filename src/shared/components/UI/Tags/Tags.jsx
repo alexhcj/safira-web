@@ -1,6 +1,7 @@
+import React from 'react'
 import s from './tags.module.scss'
 
-export const Tags = ({tags}) => {
+export const Tags = ({ tags }) => {
 	return (
 		<div className={s.tags}>
 			{tags.map((item, index) => (

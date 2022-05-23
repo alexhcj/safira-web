@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, animateScroll as scroll } from 'react-scroll'
 import classNames from 'classnames/bind'
-import {ReactComponent as DoubleArrowSVG} from '../../../../../assets/svg/double-arrow.svg'
+import { ReactComponent as DoubleArrowSVG } from '../../../../../assets/svg/double-arrow.svg'
 import s from './button-scroll.module.scss'
 
 export const ButtonScroll = () => {
@@ -32,7 +32,7 @@ export const ButtonScroll = () => {
 
 	return (
 		<Link to='nav' className={btnCN} onClick={toggleHome} duration={400} spy={true}>
-			<DoubleArrowSVG/>
+			<DoubleArrowSVG />
 		</Link>
 	)
 }

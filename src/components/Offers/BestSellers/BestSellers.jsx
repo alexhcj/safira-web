@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import {productsAPI} from "../../../api/products";
+import React, { useEffect, useState } from 'react'
+import { productsAPI } from '../../../api/products'
 import { ProductCard } from '../../ProductCard/ProductCard'
 import { Arrow } from '../../MainSlider/Controls/Arrow/Arrow'
 import { convertArray } from '../../../utils/index'
@@ -18,7 +18,7 @@ export const BestSellers = () => {
 
 		const fetchData = async () => {
 			try {
-				const {products} = await productsAPI.getAll(params)
+				const { products } = await productsAPI.getAll(params)
 				setBestsellers(convertArray(products, 2))
 			} catch (e) {
 				console.log(e)

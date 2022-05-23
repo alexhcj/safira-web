@@ -1,7 +1,8 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {Button} from "../../UI/Buttons/Button/Button";
-import {Text} from "../../UI/Text/Text";
-import {Space} from "../../UI/Spacing/Space";
+import { Button } from '../../UI/Buttons/Button/Button'
+import { Text } from '../../UI/Text/Text'
+import { Space } from '../../UI/Spacing/Space'
 import logo from '../../../../assets/images/logo.png'
 import s from './footer.module.scss'
 

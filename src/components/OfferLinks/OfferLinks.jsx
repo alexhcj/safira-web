@@ -1,7 +1,8 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Link1 from '../../assets/images/offer-links/fresh-vegetables/590x140.jpg'
 import Link2 from '../../assets/images/offer-links/natural-fresh-fruits/590x140.jpg'
-import {generateID} from "../../utils/IdGenerator";
+import { generateID } from '../../utils/IdGenerator'
 import s from './offer-links.module.scss'
 
 const links = [

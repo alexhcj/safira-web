@@ -1,15 +1,15 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import cn from "classnames";
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
-import {Text} from "../../shared/components/UI/Text/Text";
-import {ImageWithFallback} from "../../utils/ImageWithFallback";
-import {stringToSlug} from "../../utils";
-import PreloaderSVG from "../../assets/svg/preloader.svg";
-import {ReactComponent as CartSVG} from '../../assets/svg/cart.svg'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import cn from 'classnames'
+import { Button } from '../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../shared/components/UI/Text/Text'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { stringToSlug } from '../../utils'
+import PreloaderSVG from '../../assets/svg/preloader.svg'
+import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg'
 import s from './styles/wishlist-item.module.scss'
 
-export const WishlistItem = ({img, name, price, maxQuantity, onClick, onDelete, isProductInCart, quantity}) => {
+export const WishlistItem = ({ img, name, price, maxQuantity, onClick, onDelete, isProductInCart, quantity }) => {
 	const slug = stringToSlug(name)
 
 	return (
@@ -22,9 +22,9 @@ export const WishlistItem = ({img, name, price, maxQuantity, onClick, onDelete, 
 			</td>
 			<td className={s.image}>
 				{img ? <Link className={s.link} to={`/products/${slug}`}>
-						<ImageWithFallback src={img} imgSize='md' alt={name} />
+					<ImageWithFallback src={img} imgSize='md' alt={name} />
 				</Link> :
-					<img src={PreloaderSVG} alt="Preloader"/>	}
+					<img src={PreloaderSVG} alt="Preloader" />	}
 			</td>
 			<td className={s.name}>
 				<Link className={s.link} to={`/products/${slug}`}>{name}</Link>
@@ -41,8 +41,8 @@ export const WishlistItem = ({img, name, price, maxQuantity, onClick, onDelete, 
 						<CartSVG className={s.svg} />
 						<span>{quantity}</span>
 					</Link> : <Button className={s.add_button} onClick={() => onClick(name)}>
-					<Text color="white" className={s.add_text}>Add to cart</Text>
-				</Button>}
+						<Text color="white" className={s.add_text}>Add to cart</Text>
+					</Button>}
 			</td>
 		</tr>
 	)

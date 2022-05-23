@@ -1,15 +1,16 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 // import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 // import { Timer } from '../Timer'
-import {Tags} from "../../../shared/components/UI/Tags/Tags";
-import {Space} from "../../../shared/components/UI/Spacing/Space";
-import {Text} from "../../../shared/components/UI/Text/Text";
-import {Price} from "../../Price/Price";
-import {Button} from "../../../shared/components/UI/Buttons/Button/Button";
+import { Tags } from '../../../shared/components/UI/Tags/Tags'
+import { Space } from '../../../shared/components/UI/Spacing/Space'
+import { Text } from '../../../shared/components/UI/Text/Text'
+import { Price } from '../../Price/Price'
+import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
 import s from './dealsweek.module.scss'
 
 const data = [
-	{id: 1,
+	{ id: 1,
 		slug: 'purple-passion-fruit',
 		name: 'Purple Passion Fruit',
 		img: 'https://react-shop-safira.herokuapp.com/public/images/products/purple-passion-fruit/326x326.jpg',
@@ -38,7 +39,7 @@ export const DealsWeek = () => {
 				<Tags tags={tags} />
 				<div className={s.content}>
 					<NavLink to={url}>
-						<img src={img} alt="Purple Passion Fruit"/>
+						<img src={img} alt="Purple Passion Fruit" />
 					</NavLink>
 					<Space space={16} />
 					<NavLink className={s.link} to={url}>

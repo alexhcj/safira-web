@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Categories } from '../../UI/Categories/Categories'
 import phone from '../../../../assets/images/phone.png'
 import s from './navbar.module.scss'
 
 export const Navbar = () => {
-    const [sticky, setSticky] = useState(false)
+	const [sticky, setSticky] = useState(false)
 
 	const fixNavbarToTop = () => {
 		if (window.scrollY >= 150) {

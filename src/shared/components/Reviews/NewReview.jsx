@@ -1,18 +1,18 @@
-import {useEffect, useState} from "react";
-import {Space} from "../UI/Spacing/Space";
-import {Text} from "../UI/Text/Text";
-import {NewRating} from "../Rating/NewRating";
-import {Button} from "../UI/Buttons/Button/Button";
-import {getUserStorage} from "../../../api/storage";
-import {reviewsAPI} from "../../../api/reviews";
-import {useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Space } from '../UI/Spacing/Space'
+import { Text } from '../UI/Text/Text'
+import { NewRating } from '../Rating/NewRating'
+import { Button } from '../UI/Buttons/Button/Button'
+import { getUserStorage } from '../../../api/storage'
+import { reviewsAPI } from '../../../api/reviews'
+import { useParams } from 'react-router-dom'
 import s from './reviews.module.scss'
 
 export const NewReview = () => {
-	const [textarea, setTextarea] = useState('');
-	const [rating, setRating] = useState(0);
-	const [user, setUser] = useState('');
-	const {slug} = useParams()
+	const [textarea, setTextarea] = useState('')
+	const [rating, setRating] = useState(0)
+	const [user, setUser] = useState('')
+	const { slug } = useParams()
 
 	useEffect(() => {
 		const user = getUserStorage()
@@ -41,7 +41,8 @@ export const NewReview = () => {
 
 	return (
 		<div className={s.review_new}>
-			{/* TODO: add cool logic for new review. (Be the first! Left review and get 50% discount on random product) */}
+			{/* TODO: add cool logic for new review.
+			(Be the first! Left review and get 50% discount on random product) */}
 			<h4 className={s.title}>Add a review</h4>
 			<Space space={8} />
 			<Text className={s.text}>Your email address will not be published. Required fields are marked</Text>

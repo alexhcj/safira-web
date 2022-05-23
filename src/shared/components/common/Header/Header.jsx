@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Navbar } from '../Navbar/Navbar'
-import {Button} from "../../UI/Buttons/Button/Button";
-import {MetaPopup} from "../../UI/MetaPopup/MetaPopup";
-import {getCartStorage, getWishlistStorage} from "../../../../api/storage";
+import { Button } from '../../UI/Buttons/Button/Button'
+import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
+import { getCartStorage, getWishlistStorage } from '../../../../api/storage'
 import logo from '../../../../assets/images/logo.png'
-import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
-import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
-import {ReactComponent as InstagramSVG} from '../../../../assets/svg/instagram.svg'
-import {ReactComponent as FacebookSVG} from '../../../../assets/svg/facebook.svg'
-import {ReactComponent as YoutubeSVG} from '../../../../assets/svg/youtube.svg'
-import {ReactComponent as GooglePlusSVG} from '../../../../assets/svg/google-plus.svg'
-import {ReactComponent as TwitterSVG} from '../../../../assets/svg/twitter.svg'
+import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
+import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
+import { ReactComponent as InstagramSVG } from '../../../../assets/svg/instagram.svg'
+import { ReactComponent as FacebookSVG } from '../../../../assets/svg/facebook.svg'
+import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/youtube.svg'
+import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
+import { ReactComponent as TwitterSVG } from '../../../../assets/svg/twitter.svg'
 import s from './header.module.scss'
 
 const languages = [
@@ -29,7 +29,7 @@ const currencies = [
 // const languages = [
 // 	{ id: 1, language: 'Russian', code: 'ru' },
 // 	{ id: 2, language: 'English', code: 'en' },
-// 	{ id: 3, language: 'Deutch', code: 'deu' },
+// 	{ id: 3, language: 'Deutsch', code: 'deu' },
 // ]
 
 // const currencies = [
@@ -78,19 +78,19 @@ export const Header = () => {
 						{/* TODO: replace a with Link */}
 						<div className={s.social}>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<TwitterSVG/>
+								<TwitterSVG />
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<GooglePlusSVG/>
+								<GooglePlusSVG />
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<YoutubeSVG/>
+								<YoutubeSVG />
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<FacebookSVG/>
+								<FacebookSVG />
 							</a>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<InstagramSVG/>
+								<InstagramSVG />
 							</a>
 						</div>
 					</div>
@@ -121,11 +121,11 @@ export const Header = () => {
 								</NavLink>
 							</div>
 							<NavLink to='/wishlist' className={s.account__link}>
-								<HeartSVG/>
+								<HeartSVG />
 								<span className={s.count}>{wishlistLength}</span>
 							</NavLink>
 							<NavLink to='/cart' className={s.account__link}>
-								<CartSVG/>
+								<CartSVG />
 								<span className={s.count}>{cartLength}</span>
 							</NavLink>
 						</div>

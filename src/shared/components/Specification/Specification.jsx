@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import s from './specification.module.scss'
 
-export const Specification = ({company, producing_country, quantity, shelf_life}) => {
+export const Specification = ({ company, producing_country, quantity, shelf_life }) => {
 	return (
-			<table className={s.table}>
-				<tbody>
+		<table className={s.table}>
+			<tbody>
 				{company && <tr>
 					<td className={s.spec}>Company</td>
 					<td className={s.spec_value}>{company}</td>
@@ -21,7 +21,7 @@ export const Specification = ({company, producing_country, quantity, shelf_life}
 					<td className={s.spec}>Quantity</td>
 					<td className={s.spec_value}>{quantity}</td>
 				</tr>}
-				</tbody>
-			</table>
-	);
-};
+			</tbody>
+		</table>
+	)
+}

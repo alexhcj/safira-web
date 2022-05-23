@@ -1,47 +1,47 @@
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import {ReactComponent as ArrowSVG} from '../../../../assets/svg/arrow.svg'
-import {generateID} from "../../../../utils/IdGenerator";
+import { ReactComponent as ArrowSVG } from '../../../../assets/svg/arrow.svg'
+import { generateID } from '../../../../utils/IdGenerator'
 import s from './categories.module.scss'
 
 const categories =  [
 	{
 		id: generateID(),
-		category: "vegetables"
+		category: 'vegetables'
 	},
 	{
 		id: generateID(),
-		category: "fruits"
+		category: 'fruits'
 	},
 	{
 		id: generateID(),
-		category: "salads"
+		category: 'salads'
 	},
 	{
 		id: generateID(),
-		category: "fish & seafood"
+		category: 'fish & seafood'
 	},
 	{
 		id: generateID(),
-		category: "fresh meat"
+		category: 'fresh meat'
 	},
 	{
 		id: generateID(),
-		category: "milk products"
+		category: 'milk products'
 	},
 	{
 		id: generateID(),
-		category: "bread"
+		category: 'bread'
 	},
 	{
 		id: generateID(),
-		category: "frozen food"
+		category: 'frozen food'
 	}
 ]
 
 export const Categories = () => {
 	const [popupToggle, setPopupToggle] = useState(false)
-    const ref = useRef(null)
+	const ref = useRef(null)
 
 	useEffect(() => {
 		document.addEventListener('keydown', escKeyHandler)
@@ -93,5 +93,5 @@ export const Categories = () => {
 	)
 }
 
-// NOTE: categories and subcats should route to shop with selected params
-// TODO: if category has subcats => add [subcats]
+// NOTE: categories and sub categories should route to shop with selected params
+// TODO: if category has sub categories => add [subcats]

@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import cn from "classnames";
-import {Price} from "../Price/Price";
-import {Tags} from "../../shared/components/UI/Tags/Tags";
-import {Hovermenu} from "../../shared/components/UI/Hovermenu/Hovermenu";
+import cn from 'classnames'
+import { Price } from '../Price/Price'
+import { Tags } from '../../shared/components/UI/Tags/Tags'
+import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './productcard.module.scss'
 
@@ -33,7 +33,11 @@ export const ProductCard = ({ size, imgSize, product }) => {
 	}
 
 	return (
-		<div onMouseEnter={handleMenuToggle} onMouseLeave={handleMenuToggle} className={cn(s.product, size && s[`product_${size}`])}>
+		<div
+			onMouseEnter={handleMenuToggle}
+			onMouseLeave={handleMenuToggle}
+			className={cn(s.product, size && s[`product_${size}`])}
+		>
 			<NavLink to={url}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
 			</NavLink>

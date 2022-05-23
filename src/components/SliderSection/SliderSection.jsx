@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
 import { ProductCard } from '../ProductCard/ProductCard'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import s from './slider-section.module.scss'
 
-export const SliderSection = ({products, heading, above_heading, id}) => {
-    const [btnShow, setBtnShow] = useState(false)
+export const SliderSection = ({ products, heading, above_heading, id }) => {
+	const [btnShow, setBtnShow] = useState(false)
 	const responsive = {
 		superLargeDesktop: {
 			breakpoint: { max: 4000, min: 3000 },
@@ -29,35 +29,35 @@ export const SliderSection = ({products, heading, above_heading, id}) => {
 	const handleBtnGroupToggle = (e) => {
 		e.type === 'mouseenter' ? setBtnShow(true) : setBtnShow(false)
 	}
-    return (
-    <div className={s.section}>
-        <div className='container'>
-            <div className={s.block}>
-                <h5 className={s.above_heading}>{above_heading}</h5>
-                <h3 className={s.heading}>{heading}</h3>
-                <div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
-                    <Carousel
-                        responsive={responsive}
-                        infinite={true}
-                        swipeable={false}
-                        draggable={false}
-                        customTransition='transform 250ms ease'
-                        containerClass={s.slider__container}
-                        itemClass={s.slide}
-                        arrows={false}
-                        renderButtonGroupOutside={true}
-                        customButtonGroup={<ButtonGroup active={btnShow} />}
-                    >
-                        {products.map((product) => {
-                            if(product.id===id){
-                                return null
-                            }
-                            return <ProductCard size='large' key={product.id} product={product} />
-                        })}
-                    </Carousel>
-                </div>
-            </div>
-        </div>
-    </div>
-    )
+	return (
+		<div className={s.section}>
+			<div className='container'>
+				<div className={s.block}>
+					<h5 className={s.above_heading}>{above_heading}</h5>
+					<h3 className={s.heading}>{heading}</h3>
+					<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
+						<Carousel
+							responsive={responsive}
+							infinite={true}
+							swipeable={false}
+							draggable={false}
+							customTransition='transform 250ms ease'
+							containerClass={s.slider__container}
+							itemClass={s.slide}
+							arrows={false}
+							renderButtonGroupOutside={true}
+							customButtonGroup={<ButtonGroup active={btnShow} />}
+						>
+							{products.map((product) => {
+								if(product.id === id){
+									return null
+								}
+								return <ProductCard size='large' key={product.id} product={product} />
+							})}
+						</Carousel>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }

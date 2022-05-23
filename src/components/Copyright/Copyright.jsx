@@ -1,5 +1,6 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {payment1, payment2, payment3, payment4} from '../../assets/images/footer'
+import { payment1, payment2, payment3, payment4 } from '../../assets/images/footer'
 import s from './copyright.module.scss'
 
 export const Copyright = () => {
@@ -22,12 +23,12 @@ export const Copyright = () => {
 							</NavLink>
 						</div>
 					</div>
-                    <div className={s.payment}>
-                        <img className={s.img} src={payment1} alt=''/>
-                        <img className={s.img} src={payment2} alt=''/>
-                        <img className={s.img} src={payment3} alt=''/>
-                        <img className={s.img} src={payment4} alt=''/>
-                    </div>
+					<div className={s.payment}>
+						<img className={s.img} src={payment1} alt='' />
+						<img className={s.img} src={payment2} alt='' />
+						<img className={s.img} src={payment3} alt='' />
+						<img className={s.img} src={payment4} alt='' />
+					</div>
 				</div>
 			</div>
 		</div>

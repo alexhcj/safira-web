@@ -1,8 +1,8 @@
 import React from 'react'
-import {NavLink, useLocation} from 'react-router-dom'
-import {Text} from "../Text/Text";
-import {Space} from "../Spacing/Space";
-import cn from "classnames";
+import { NavLink, useLocation } from 'react-router-dom'
+import { Text } from '../Text/Text'
+import { Space } from '../Spacing/Space'
+import cn from 'classnames'
 import s from './breadcrumbs.module.scss'
 
 export const Breadcrumbs = () => {

@@ -1,3 +1,4 @@
+import React from 'react'
 import { ProductCard } from '../../ProductCard/ProductCard'
 import s from './shop-list.module.scss'
 

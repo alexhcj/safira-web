@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
-import {productsAPI} from "../../api/products";
-
+import React, { useEffect, useState } from 'react'
+import { productsAPI } from '../../api/products'
 import 'react-multi-carousel/lib/styles.css'
-import { SliderSection } from '../SliderSection/SliderSection'
+// import { SliderSection } from '../SliderSection/SliderSection'
 
 export const Mostview = () => {
 	const [products, setProducts] = useState([])
@@ -27,10 +26,14 @@ export const Mostview = () => {
 	}, [])
 
 	return (
-	<div>
-		{/*<OneRowProductSlider heading={'Mostview Products'} above_heading={'Recently added our store'} products={products} />*/}
-	</div>
+		<div>
+			{/*<OneRowProductSlider
+			 heading={'Mostview Products'}
+			  above_heading={'Recently added our store'}
+			  products={products} />*/}
+		</div>
 	)
 }
 
-// TODO: create sliders layout 1.main (fullwidth | big) 2. best && new (column slider) with outdoor controls 3. mostview && ourblog (common)
+// TODO: create sliders layout 1.main (fullwidth | big) 2.
+//  best && new (column slider) with outdoor controls 3. mostview && ourblog (common)

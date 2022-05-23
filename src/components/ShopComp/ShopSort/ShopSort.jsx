@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import s from './shop-sort.module.scss'
 
 const sortParams = [
@@ -21,7 +21,7 @@ export const ShopSort = ({ sortHandler }) => {
 		const params = {
 			sort: sortParams[current].sort,
 			order: sortParams[current].order,
-            tag: sortParams[current].tag
+			tag: sortParams[current].tag
 		}
 
 		setSort(sortParams[current])

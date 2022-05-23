@@ -11,8 +11,8 @@ const setJsonItem = (key, item) => {
 }
 
 const getJsonItem = (key) => {
-	const json = localStorage.getItem(key);
-	return json ? JSON.parse(json) : json;
+	const json = localStorage.getItem(key)
+	return json ? JSON.parse(json) : json
 }
 
 export const getUserStorage = () => getJsonItem(KEY_USER)

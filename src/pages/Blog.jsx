@@ -1,5 +1,5 @@
 import React from 'react'
-import {Breadcrumbs} from "../shared/components/UI/Breadcrumbs/Breadcrumbs";
+import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
 
 export const Blog = () => {
 

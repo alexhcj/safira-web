@@ -1,10 +1,10 @@
-import React from 'react';
-import cn from "classnames";
+import React from 'react'
+import cn from 'classnames'
 import s from './radio.module.scss'
 
-export const Radio = ({name, label, id, isChecked, handleChange, className}) => {
+export const Radio = ({ name, label, id, isChecked, handleChange, className }) => {
 	const onChange = (e) => {
-		const {id} = e.currentTarget
+		const { id } = e.currentTarget
 		handleChange(id)
 	}
 

@@ -1,10 +1,10 @@
-import React from 'react';
-import cn from "classnames";
+import React from 'react'
+import cn from 'classnames'
 import s from './input.module.scss'
 
-export const Input = ({type = 'text', name, value, label, id, placeholder, required, handleChange, className}) => {
+export const Input = ({ type = 'text', name, value, label, id, placeholder, required, handleChange, className }) => {
 	const onChange = (e) => {
-		const {value} = e.currentTarget
+		const { value } = e.currentTarget
 		handleChange(value)
 	}
 

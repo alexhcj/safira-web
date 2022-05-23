@@ -1,70 +1,70 @@
-import React, {useState} from 'react';
-import cn from "classnames";
-import {Space} from "../../shared/components/UI/Spacing/Space";
-import {Radio} from "../../shared/components/Form/Radio/Radio";
-import {useLocalStorage} from "../../hooks/useLocalStorage.hook";
-import {calculateTotalPrice} from "../../utils";
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
-import {Text} from "../../shared/components/UI/Text/Text";
-import {Input} from "../../shared/components/Form/Input/Input";
-import {Textarea} from "../../shared/components/Form/Textarea/Textarea";
-import {ReactComponent as Check} from "../../assets/svg/check.svg";
-import Paypal from "../../assets/images/paypal.png";
-import Visa from "../../assets/images/visa.png";
-import Maestro from "../../assets/images/maestro.png";
-import AmericanExpress from "../../assets/images/american-express.png";
-import Mir from "../../assets/images/mir.png";
+import React, { useState } from 'react'
+import cn from 'classnames'
+import { Space } from '../../shared/components/UI/Spacing/Space'
+import { Radio } from '../../shared/components/Form/Radio/Radio'
+import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
+import { calculateTotalPrice } from '../../utils'
+import { Button } from '../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../shared/components/UI/Text/Text'
+import { Input } from '../../shared/components/Form/Input/Input'
+import { Textarea } from '../../shared/components/Form/Textarea/Textarea'
+import { ReactComponent as Check } from '../../assets/svg/check.svg'
+import Paypal from '../../assets/images/paypal.png'
+import Visa from '../../assets/images/visa.png'
+import Maestro from '../../assets/images/maestro.png'
+import AmericanExpress from '../../assets/images/american-express.png'
+import Mir from '../../assets/images/mir.png'
 import s from './checkout.module.scss'
-import {Border} from "../../shared/components/UI/Spacing/Border";
+import { Border } from '../../shared/components/UI/Spacing/Border'
 
 const radioData = [
-	{id: 'delivery', name: 'delivery', label: 'Delivery'},
-	{id: 'pickup', name: 'delivery', label: 'Pick-up service'}
+	{ id: 'delivery', name: 'delivery', label: 'Delivery' },
+	{ id: 'pickup', name: 'delivery', label: 'Pick-up service' }
 ]
 
 export const Checkout = () => {
-	const [cart, setCart] = useLocalStorage('cart', []);
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [radioSelected, setRadioSelected] = useState(radioData[0].id);
-	const [address, setAddress] = useState('');
-	const [city, setCity] = useState('');
-	const [phone, setPhone] = useState('');
-	const [email, setEmail] = useState('');
-	const [notes, setNotes] = useState('');
-	const [newAccount, setNewAccount] = useState(false);
+	const [cart, setCart] = useLocalStorage('cart', [])
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
+	const [radioSelected, setRadioSelected] = useState(radioData[0].id)
+	const [address, setAddress] = useState('')
+	const [city, setCity] = useState('')
+	const [phone, setPhone] = useState('')
+	const [email, setEmail] = useState('')
+	const [notes, setNotes] = useState('')
+	const [newAccount, setNewAccount] = useState(false)
 
 	const handleFirstNameChange = (value) => {
-		setFirstName(value);
-	};
+		setFirstName(value)
+	}
 
 	const handleLastNameChange = (value) => {
-		setLastName(value);
-	};
+		setLastName(value)
+	}
 
 	const handleRadioChange = (id) => {
-		setRadioSelected(id);
-	};
+		setRadioSelected(id)
+	}
 
 	const handleAddressChange = (value) => {
-		setAddress(value);
-	};
+		setAddress(value)
+	}
 
 	const handleCityChange = (value) => {
-		setCity(value);
-	};
+		setCity(value)
+	}
 
 	const handlePhoneChange = (value) => {
-		setPhone(value);
-	};
+		setPhone(value)
+	}
 
 	const handleEmailChange = (value) => {
-		setEmail(value);
-	};
+		setEmail(value)
+	}
 
 	const handleNotesChange = (value) => {
-		setNotes(value);
-	};
+		setNotes(value)
+	}
 
 	const onSubmit = () => {
 		const form = {
@@ -108,14 +108,16 @@ export const Checkout = () => {
 						</div>
 						<Space space={20} />
 						<fieldset className={s.radio}>
-							{radioData.map((item) => <Radio
-								key={item.id}
-								id={item.id}
-								name={item.name}
-								label={item.label}
-								isChecked={radioSelected === item.id}
-								handleChange={handleRadioChange}
-							/>)}
+							{radioData.map((item) => (
+								<Radio
+									key={item.id}
+									id={item.id}
+									name={item.name}
+									label={item.label}
+									isChecked={radioSelected === item.id}
+									handleChange={handleRadioChange}
+								/>
+							))}
 						</fieldset>
 						<Space space={20} />
 						<Input
@@ -182,20 +184,25 @@ export const Checkout = () => {
 						</thead>
 						{/* TODO: fix right border */}
 						<tbody>
-							{cart.map(item => (
-								<tr key={item.name}>
-									<td>{item.name} <strong>x {item.quantity}</strong></td>
-									<td>${item.price * item.quantity}</td>
-								</tr>
-							))}
-						<tr className={s.total}>
-							<td>Order total</td>
-							<td>${calculateTotalPrice(cart)}</td>
-						</tr>
+							{cart.map(item => {
+								return (
+									<tr key={item.name}>
+										<td>{item.name} <strong>x {item.quantity}</strong></td>
+										<td>${item.price * item.quantity}</td>
+									</tr>
+								)
+							})}
+							<tr className={s.total}>
+								<td>Order total</td>
+								<td>${calculateTotalPrice(cart)}</td>
+							</tr>
 						</tbody>
 					</table>
 					<Space space={25} />
-					<button className={s.account} onClick={() => setNewAccount(!newAccount)}>
+					<button className={s.account} onClick={() => {
+						return setNewAccount(!newAccount)
+					}}
+					>
 						<div className={cn(s.checkbox, newAccount && s.active)}>
 							<Check className={s.check} />
 						</div>
@@ -204,11 +211,11 @@ export const Checkout = () => {
 					<Space space={20} />
 					<div className={s.payment}>
 						<div className={s.methods}>
-							<img src={Paypal} alt="Paypal"/>
-							<img src={Visa} alt="Visa"/>
-							<img src={Maestro} alt="Maestro"/>
-							<img src={AmericanExpress} alt="AmericanExpress"/>
-							<img src={Mir} alt="Mir"/>
+							<img src={Paypal} alt="Paypal" />
+							<img src={Visa} alt="Visa" />
+							<img src={Maestro} alt="Maestro" />
+							<img src={AmericanExpress} alt="AmericanExpress" />
+							<img src={Mir} alt="Mir" />
 						</div>
 						<Button className={s.button} type="submit" onClick={onSubmit}>
 							<Text className={s.button_text} color="white">Proceed to payment</Text>
