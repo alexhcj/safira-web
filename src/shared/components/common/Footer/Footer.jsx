@@ -15,12 +15,12 @@ export const Footer = () => {
 						<NavLink to='/'>
 							<img className={s.img} src={logo} alt='' />
 						</NavLink>
-						<div className={s.desc}>
+						<div>
 							We are a team of designers and developers that create high quality eCommerce with MERN stack
 							technology .
 						</div>
-						<div className={s.adress}>
-							Adress:
+						<div className={s.address}>
+							Address:
 							<a target='_blank' rel='noreferrer' href='https://goo.gl/maps/STZQGHm5kxchbajm8'>
 								Saint Petersburg, Russia, 191040
 							</a>
@@ -48,7 +48,7 @@ export const Footer = () => {
 						<h3 className={s.title}>Extras</h3>
 						<div className={s.list}>
 							<NavLink to='/'>Order History</NavLink>
-							<NavLink to='/'>Grift Cards</NavLink>
+							<NavLink to='/'>Gift Cards</NavLink>
 							<NavLink to='/'>Specials</NavLink>
 							<NavLink to='/'>Site map</NavLink>
 						</div>
@@ -56,7 +56,7 @@ export const Footer = () => {
 					<div className={s.newsletter}>
 						<h3 className={s.title}>Sign Up Newsletter</h3>
 						<p>Get updates by subscribe our weekly newsletter</p>
-						<form action='src/shared/components/common/Footer/Footer.jsx' className={s.form}>
+						<form action='src/shared/components/common/Footer/Footer.jsx'>
 							<div className={s.input}>
 								<input type='text' placeholder='Enter your email' />
 								<Button type='subscribe'>
