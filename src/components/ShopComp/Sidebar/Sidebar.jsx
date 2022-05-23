@@ -1,5 +1,5 @@
 import { Search } from './Search/Search'
-import s from './sidebar.module.css'
+import s from './sidebar.module.scss'
 
 export const Sidebar = ({ searchHandler }) => {
 	return (

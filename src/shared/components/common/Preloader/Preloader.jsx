@@ -1,6 +1,6 @@
 import React from 'react'
 import PreloaderSVG  from '../../../../assets/svg/preloader.svg'
-import s from './preloader.module.css'
+import s from './preloader.module.scss'
 
 export const Preloader = ({ width = 30, height = 30, fill = '#40a944' }) => {
 	return (

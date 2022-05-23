@@ -1,7 +1,7 @@
 import React from 'react';
 import {Space} from "../../Spacing/Space";
 import {Text} from "../../Text/Text";
-import s from './sectionheader.module.scss'
+import s from './section-header.module.scss'
 
 export const SectionHeader = ({title, subtitle}) => {
 	return (

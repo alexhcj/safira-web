@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import {ReactComponent as ArrowSVG} from '../../../../assets/svg/arrow.svg'
 import {generateID} from "../../../../utils/IdGenerator";
-import s from './categories.module.css'
+import s from './categories.module.scss'
 
 const categories =  [
 	{

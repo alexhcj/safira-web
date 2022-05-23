@@ -1,0 +1,69 @@
+@import '../../../../../shared/styles/vars';
+
+.wrapper {
+	position: relative;
+}
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 33px;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	background-color: $color-white;
+	@include transition-all;
+}
+
+.btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+.btn:hover {
+	background-color: $color-primary;
+}
+
+.btn:hover svg path {
+	fill: $color-white;
+}
+
+.popup {
+	position: absolute;
+	display: block;
+	opacity: 0;
+	top: -34px;
+	left: 50%;
+	transform: translateX(-50%) translateY(15px);
+	padding: 6px 10px;
+	white-space: pre;
+	line-height: 14px;
+	font-size: 14px;
+	border-radius: 3px;
+	z-index: -10;
+	color: $color-white;
+	background-color: $color-dark2;
+	@include transition-all;
+}
+
+.popup::after {
+	position: absolute;
+	content: '';
+	bottom: -6px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-style: solid;
+	border-width: 6px 5.5px 0 5.5px;
+	border-color: $color-dark2 transparent transparent transparent;
+}
+
+.popup:hover {
+	display: none;
+}
+
+.wrapper:hover .popup {
+	opacity: 1;
+	z-index: 20;
+	transform: translateX(-50%) translateY(0);
+}

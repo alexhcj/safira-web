@@ -1,6 +1,6 @@
 import React from 'react'
-import s from './dot.module.css'
 import classNames from 'classnames/bind'
+import s from './dot.module.scss'
 
 let cx = classNames.bind(s)
 

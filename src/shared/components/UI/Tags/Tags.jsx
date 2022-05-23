@@ -1,4 +1,4 @@
-import s from './tags.module.css'
+import s from './tags.module.scss'
 
 export const Tags = ({tags}) => {
 	return (

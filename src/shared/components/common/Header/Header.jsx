@@ -12,7 +12,7 @@ import {ReactComponent as FacebookSVG} from '../../../../assets/svg/facebook.svg
 import {ReactComponent as YoutubeSVG} from '../../../../assets/svg/youtube.svg'
 import {ReactComponent as GooglePlusSVG} from '../../../../assets/svg/google-plus.svg'
 import {ReactComponent as TwitterSVG} from '../../../../assets/svg/twitter.svg'
-import s from './header.module.css'
+import s from './header.module.scss'
 
 const languages = [
 	{ id: 1, text: 'Russian' },

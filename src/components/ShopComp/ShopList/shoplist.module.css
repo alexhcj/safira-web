@@ -1,9 +1,0 @@
-.items {
-	display: flex;
-	flex-wrap: wrap;
-    gap: 24px;
-}
-.col {
-	max-width: 268px;
-	width: 100%;
-}

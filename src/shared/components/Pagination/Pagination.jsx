@@ -1,4 +1,4 @@
-import s from './pagination.module.css'
+import s from './pagination.module.scss'
 
 export const Pagination = ({
 	page,

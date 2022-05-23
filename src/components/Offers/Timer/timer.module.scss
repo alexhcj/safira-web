@@ -1,0 +1,31 @@
+@import '../../../shared/styles/vars';
+
+.timer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-top: -4px;
+	margin-bottom: 32px;
+	min-height: 59px;
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	padding: 11px 10px;
+	border-radius: 3px;
+	border: 1px solid $color-timer-border;
+}
+
+.number {
+	text-transform: uppercase;
+	line-height: 18px;
+	font-size: 17px;
+}
+
+.text {
+	text-transform: uppercase;
+	line-height: 17px;
+	font-size: 12px;
+}

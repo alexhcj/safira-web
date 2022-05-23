@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ReactComponent as DocsSVG } from '../../../../../assets/svg/docs.svg'
-import s from './buttondocs.module.css'
+import s from './button-docs.module.scss'
 
 export const ButtonDocs = () => (
 	<Link to='/docs' className={s.btn}>

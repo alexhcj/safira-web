@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {productsAPI} from "../../../api/products";
 import { convertArray } from '../../../utils'
 import {ImageWithFallback} from '../../../utils/ImageWithFallback'
-import s from './mostless.module.css'
+import s from './most-less.module.scss'
 
 export const MostLess = () => {
     const [mostLess, setMostLess] = useState([])

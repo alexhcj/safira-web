@@ -5,7 +5,7 @@ import { Arrow } from '../../MainSlider/Controls/Arrow/Arrow'
 import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import s from './bestsellers.module.css'
+import s from './bestsellers.module.scss'
 
 export const BestSellers = () => {
 	const [bestsellers, setBestsellers] = useState([])

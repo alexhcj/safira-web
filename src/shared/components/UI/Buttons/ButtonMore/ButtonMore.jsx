@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { MoreSVG } from '../../../../../components/svg'
-import s from './buttonmore.module.css'
+import s from './button-more.module.scss'
 
 export const ButtonMore = ({ to = '/', text = 'Show more' }) => {
 	return (

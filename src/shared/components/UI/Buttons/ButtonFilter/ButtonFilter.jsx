@@ -1,6 +1,6 @@
 import { Preloader } from '../../../common/Preloader/Preloader'
 import classNames from 'classnames/bind'
-import s from './buttonfilter.module.css'
+import s from './button-filter.module.scss'
 
 let cx = classNames.bind(s)
 

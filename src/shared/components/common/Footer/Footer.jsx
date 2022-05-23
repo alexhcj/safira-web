@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom'
-import logo from '../../../../assets/images/logo.png'
 import {Button} from "../../UI/Buttons/Button/Button";
-import s from './footer.module.css'
 import {Text} from "../../UI/Text/Text";
 import {Space} from "../../UI/Spacing/Space";
+import logo from '../../../../assets/images/logo.png'
+import s from './footer.module.scss'
 
 export const Footer = () => {
 	return (

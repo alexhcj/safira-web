@@ -1,0 +1,37 @@
+@import '../../shared/styles/vars';
+
+.section {
+	padding: 30px 0;
+	background-color: $color-primary;
+}
+
+.copyright {
+	display: flex;
+}
+
+.block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.text {
+	color: $color-white;
+}
+
+.link {
+	color: $color-white;
+}
+
+.link:hover {
+	color: $color-dark;
+}
+
+.img {
+	width: 60px;
+	height: 36px;
+
+	&:not(:last-child) {
+		margin-right: 12px;
+	}
+}

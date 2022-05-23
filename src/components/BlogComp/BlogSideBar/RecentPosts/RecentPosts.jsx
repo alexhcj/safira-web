@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { FullsizeDivider } from '../../../UI'
-import s from './recentposts.module.css'
-import {postsAPI} from "../../../../api/posts";
 import { NavLink } from 'react-router-dom'
+import { FullsizeDivider } from '../../../UI'
+import {postsAPI} from "../../../../api/posts";
+import s from './recent-posts.module.scss'
 
 export const RecentPosts = () => {
     const [posts, setPosts] = useState([])

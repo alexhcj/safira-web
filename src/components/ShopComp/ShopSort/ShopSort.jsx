@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import s from './shopsort.module.css'
+import s from './shop-sort.module.scss'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },

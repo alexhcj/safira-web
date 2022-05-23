@@ -1,8 +1,7 @@
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import s from './relatedposts.module.css'
-import { useState } from 'react/cjs/react.development'
-import { useEffect } from 'react'
 import {postsAPI} from "../../../../api/posts";
+import s from './related-posts.module.scss'
 
 export const RelatedPosts = ({category}) => {
     const [posts, setPosts] = useState([])

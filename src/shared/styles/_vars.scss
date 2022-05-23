@@ -10,9 +10,14 @@ $color-dark3: #555555;
 $color-border: #EBEBEB;
 $color-border2: #EDEDED;
 $color-border3: #DDDDDD;
+$color-border4: #E8E8E8;
+$color-border-sort: #999999;
 $color-border-focus: darken($color-border3, 25%);
 $separator: #EDEDED;
 $color-section-bg: #F4F4F4FF;
+$color-pagination-item-background: #F1F1F1;
+$color-sort: #F6F6F6;
+$color-timer-border: #E1E1E1;
 
 // weights
 $weight-normal: 400;
@@ -28,3 +33,12 @@ $PlayfairDisplay:'Playfair Display', serif;
 @mixin transition-all() {
 	transition: all 0.3s ease;
 }
+
+@mixin transition-sort() {
+	transition: all 0.2s ease-in-out;
+}
+
+// z-indexes
+$z-index100: 100;
+$z-index90: 90;
+$z-index-1: -1;

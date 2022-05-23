@@ -1,0 +1,43 @@
+@import '../../../../shared/styles/vars';
+
+.section {
+	margin-top: 28px;
+}
+
+.heading {
+	text-transform: uppercase;
+	line-height: 20px;
+	font-size: 15px;
+	font-weight: 500;
+	color: red;
+}
+
+.list {
+	margin-top: 15px;
+}
+
+.category {
+	line-height: 35px;
+	font-size: 13px;
+	color: red;
+	cursor: pointer;
+	@include transition-all;
+}
+
+.chosen {
+	line-height: 35px;
+	font-size: 13px;
+	color: $color-primary;
+	cursor: pointer;
+	@include transition-all;
+}
+
+.category:hover {
+	color: $color-primary;
+}
+
+.checked_category {
+	line-height: 35px;
+	font-size: 13px;
+	color: $color-primary;
+}

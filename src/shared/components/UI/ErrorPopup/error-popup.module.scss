@@ -1,0 +1,49 @@
+@import '../../../../shared/styles/vars';
+
+.validation {
+	position: absolute;
+	right: 0;
+	padding: 0 12px;
+	min-width: 264px;
+	min-height: 35px;
+	line-height: 30px;
+	font-weight: 500;
+	cursor: default;
+	color: $color-error;
+	border: 1px solid $color-error;
+	background-color: $color-white;
+	transform: translateX(103%);
+	z-index: $z-index100;
+}
+
+.animateEnter {
+	opacity: 0;
+	transform: translateX(103%);
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transform: translateX(106%);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(106%);
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(106%);
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(103%);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(103%);
+}

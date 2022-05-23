@@ -1,7 +1,7 @@
-import style from './post.module.css'
-import s from '../PostsList/PostsList.module.css'
 import { RelatedPosts } from './RelatedPosts/RelatedPosts'
 import { FullsizeDivider } from '../../UI'
+import style from './post.module.scss'
+import s from '../PostsList/post-list.module.scss'
 
 export const Post = ({post}) => {
     window.scrollTo({top:0})

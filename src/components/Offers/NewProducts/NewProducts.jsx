@@ -5,8 +5,8 @@ import { ProductCard } from '../../ProductCard/ProductCard'
 import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import s from './newproducts.module.css'
 import PreloaderSVG from "../../../assets/svg/preloader.svg";
+import s from './new-products.module.scss'
 
 export const NewProducts = () => {
 	const [newProducts, setNewProducts] = useState([])

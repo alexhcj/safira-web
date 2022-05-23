@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {postsAPI} from "../../../../api/posts";
 import { NavLink } from 'react-router-dom'
 import  defaultProfile  from '../../../../assets/images/default-avatar.png'
-import s from './recentcomments.module.css'
+import s from './recent-comments.module.scss'
 
 export const RecentComments = () => {
     const [comments, setComments] = useState([])

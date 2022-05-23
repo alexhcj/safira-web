@@ -5,7 +5,7 @@ import Carousel from 'react-multi-carousel'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
 import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/SectionHeader";
 import 'react-multi-carousel/lib/styles.css'
-import s from './ourblog.module.css'
+import s from './our-blog.module.scss'
 
 function MoreBtn() {
 	return null;

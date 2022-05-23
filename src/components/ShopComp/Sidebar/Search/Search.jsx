@@ -2,10 +2,10 @@ import { useEffect, useState, useRef } from 'react'
 import {productsAPI} from "../../../../api/products";
 import classNames from 'classnames/bind'
 import {ReactComponent as Close} from "../../../../assets/images/close.svg";
-import s from './search.module.css'
 import {ErrorPopup} from "../../../../shared/components/UI/ErrorPopup/ErrorPopup";
 import {Button} from "../../../../shared/components/UI/Buttons/Button/Button";
 import {Text} from "../../../../shared/components/UI/Text/Text";
+import s from './search.module.scss'
 
 let cx = classNames.bind(s)
 

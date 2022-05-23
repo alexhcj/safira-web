@@ -1,6 +1,6 @@
-import { Arrow } from '../Arrow/Arrow'
-import s from './btngroup.module.css'
 import classnames from 'classnames/bind'
+import { Arrow } from '../Arrow/Arrow'
+import s from './btn-group.module.scss'
 
 const cx = classnames.bind(s)
 

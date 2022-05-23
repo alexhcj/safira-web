@@ -1,0 +1,113 @@
+@import '../../../../shared/styles/vars';
+
+.search {
+	position: relative;
+}
+
+.input {
+	margin-bottom: 22px;
+	padding: 0 30px 0 15px;
+	width: 100%;
+	height: 35px;
+	font-size: 14px;
+	border: 1px solid $color-border2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	&::placeholder {
+		letter-spacing: 0.32px;
+		font-size: 12px;
+		color: $color-dark;
+		opacity: 0.6;
+	}
+}
+
+.btn {
+	width: 75px;
+	height: 30px;
+	border-radius: 30px;
+	background-color: $color-dark;
+	color: $color-white;
+}
+
+.popup {
+	position: absolute;
+	top: 87px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-height: 0;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	border-radius: 3px;
+	border: 1px solid $color-border;
+	background-color: $color-white;
+	box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+	z-index: $z-index100;
+	@include transition-all;
+}
+
+.btn_close {
+	position: absolute;
+	top: 10px;
+	right: 8px;
+	opacity: 0;
+	cursor: pointer;
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+
+	svg {
+		width: 13px;
+		height: 13px;
+		fill: $color-dark;
+		@include transition-all;
+
+		&:hover {
+			fill: $color-dark2;
+		}
+	}
+}
+
+.active {
+	visibility: visible;
+	opacity: 1;
+	z-index: 200;
+	max-height: 600px;
+}
+
+.item {
+	padding: 0 20px 0 30px;
+	width: 100%;
+	text-transform: capitalize;
+	line-height: 38px;
+	font-size: 14px;
+	font-weight: 400;
+
+	&:hover {
+		color: $color-primary;
+		cursor: pointer;
+	}
+}
+
+.noItem {
+	padding: 0 20px 0 30px;
+	width: 100%;
+	line-height: 38px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.bottom {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.current {
+    text-align: right;
+}

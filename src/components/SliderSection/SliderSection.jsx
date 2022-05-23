@@ -1,9 +1,9 @@
-import s from './slidersection.module.css'
 import { useState } from 'react'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
 import { ProductCard } from '../ProductCard/ProductCard'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import s from './slider-section.module.scss'
 
 export const SliderSection = ({products, heading, above_heading, id}) => {
     const [btnShow, setBtnShow] = useState(false)

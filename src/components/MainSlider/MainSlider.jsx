@@ -1,12 +1,12 @@
-import { Dot } from './Controls/Dot/Dot'
 import Carousel from 'react-multi-carousel'
+import { Dot } from './Controls/Dot/Dot'
 import {Button} from "../../shared/components/UI/Buttons/Button/Button";
+import {Text} from "../../shared/components/UI/Text/Text";
 import 'react-multi-carousel/lib/styles.css'
 import Slide1 from '../../assets/images/slider/1.jpg'
 import Slide2 from '../../assets/images/slider/2.jpg'
 import Slide3 from '../../assets/images/slider/3.jpg'
-import {Text} from "../../shared/components/UI/Text/Text";
-import s from './mainslider.module.css'
+import s from './main-slider.module.scss'
 
 const slides = [
 	{

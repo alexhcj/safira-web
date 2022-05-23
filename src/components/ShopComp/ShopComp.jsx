@@ -4,7 +4,7 @@ import { ShopSort } from './ShopSort/ShopSort'
 import { Sidebar } from './Sidebar/Sidebar'
 import { Pagination } from '../../shared/components/Pagination/Pagination'
 import {productsAPI} from "../../api/products";
-import s from './shopcomp.module.css'
+import s from './shop-comp.module.scss'
 
 export const ShopComp = () => {
 	const [products, setProducts] = useState([])

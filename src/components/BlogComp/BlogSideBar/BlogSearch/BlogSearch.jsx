@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import s from './blogsearch.module.css'
 import {postsAPI} from "../../../../api/posts";
 import { FullsizeDivider } from '../../../UI'
+import s from './blog-search.module.scss'
 
 export const BlogSearch = ({searchHanlder}) => {
     const [input, setInput] = useState('')

@@ -1,0 +1,83 @@
+@import '../../../../shared/styles/vars';
+
+.navbar {
+	width: 100%;
+	background-color: $color-white;
+	z-index: $z-index100;
+	@include transition-all;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 11%);
+    animation-name: navbarAppear;
+    animation-duration: .9s;
+    animation-timing-function: cubic-bezier(0.2, 1, 0.22, 1);
+    animation-iteration-count: 1;
+}
+@keyframes navbarAppear {
+	0% {
+		opacity: 0;
+		top: -15px;
+	}
+	100% {
+		opacity: 1;
+		top: 0;
+	}
+}
+
+.bottom {
+	display: flex;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+
+	&__link {
+		text-transform: capitalize;
+		line-height: 50px;
+		font-size: 15px;
+		font-weight: 500;
+
+		&:not(:last-child) {
+			margin-right: 37px;
+		}
+
+		&:focus {
+			outline: 0;
+		}
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}
+
+.support {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+
+	&__block {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		margin-left: 10px;
+	}
+
+	&__link {
+		line-height: 15px;
+		font-size: 15px;
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	&__text {
+		line-height: 15px;
+		font-size: 13px;
+	}
+}

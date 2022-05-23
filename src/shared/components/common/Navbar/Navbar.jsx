@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Categories } from '../../UI/Categories/Categories'
 import phone from '../../../../assets/images/phone.png'
-import s from './navbar.module.css'
+import s from './navbar.module.scss'
 
 export const Navbar = () => {
     const [sticky, setSticky] = useState(false)

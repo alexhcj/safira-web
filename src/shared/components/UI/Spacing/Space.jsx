@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import s from './styles/spaces.module.scss';
+import s from './styles/space.module.scss';
 
 export const Space = ({
   size,

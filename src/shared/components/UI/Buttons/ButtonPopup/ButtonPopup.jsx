@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import s from './buttonpopup.module.css'
+import s from './button-popup.module.scss'
 
 export const ButtonPopup = ({ to = '/', text = 'Add to Cart', children }) => {
 	return (

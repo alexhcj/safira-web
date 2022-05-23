@@ -1,6 +1,6 @@
 import { sizeTypes } from '../../../utils'
 import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import s from './imgsizes.module.css'
+import s from './img-sizes.module.scss'
 
 export const ImgSizes = () => {
     return (

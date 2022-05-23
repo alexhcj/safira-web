@@ -1,6 +1,6 @@
-import s from './specialoffer.module.css'
 import { NavLink } from 'react-router-dom'
 import Img from '../../../assets/images/special-offer/366x484.jpg'
+import s from './special-offer.module.scss'
 
 const offer = {
 		id: 1,

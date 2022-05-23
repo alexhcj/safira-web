@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react/cjs/react.development'
 import { blogCategoriesAPI } from '../../../../api'
 import { FullsizeDivider } from '../../../UI'
-import s from './blogcategories.module.css'
+import s from './blog-categories.module.scss'
 
 export const BlogCategories = ({categoryHandler}) => {
     const [categories, setCategories] = useState([])

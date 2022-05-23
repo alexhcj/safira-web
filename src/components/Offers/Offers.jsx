@@ -1,8 +1,8 @@
 import { BestSellers } from "./BestSellers/BestSellers"
 import { NewProducts } from "./NewProducts/NewProducts"
 import { SpecialOffer } from "./SpecialOffer/SpecialOffer"
-import s from "./offers.module.css"
 import {DealsWeek} from "./DealsWeek/DealsWeek";
+import s from "./offers.module.scss"
 
 export const Offers = () => {
     return (

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import s from "./relatedproducts.module.css"
 import {productsAPI} from "../../api/products";
 import { SliderSection } from "../SliderSection/SliderSection"
 import { makeUniqueArray } from "../../utils"
+import s from "./related-products.module.scss"
 
 export const RelatedProducts = ({name, category, id}) => {
   const [products, setProducts] = useState([])

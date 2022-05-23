@@ -7,7 +7,7 @@ import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/Se
 import {Space} from "../../shared/components/UI/Spacing/Space";
 import { convertArray } from '../../utils'
 import 'react-multi-carousel/lib/styles.css'
-import s from './featuredproducts.module.css'
+import s from './featured-products.module.scss'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
