@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { Navbar } from '../Navbar/Navbar'
 import { Button } from '../../UI/Buttons/Button/Button'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
-import { getCartStorage, getWishlistStorage } from '../../../../api/storage'
+import { useLocalStorage } from '../../../../hooks/useLocalStorage.hook'
+// import { getCartStorage, getWishlistStorage } from '../../../../api/storage'
 import logo from '../../../../assets/images/logo.png'
 import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
 import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
@@ -40,8 +41,10 @@ const currencies = [
 
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
-	const cartLength = getCartStorage().length
-	const wishlistLength = getWishlistStorage().length
+	// const cartLength = getCartStorage().length
+	// const wishlistLength = getWishlistStorage().length
+	const [cart, setCart] = useLocalStorage('cart', [])
+	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
 
 	const fixNavbarToTop = () => {
 		console.log('log')
@@ -122,11 +125,11 @@ export const Header = () => {
 							</div>
 							<NavLink to='/wishlist' className={s.account__link}>
 								<HeartSVG />
-								<span className={s.count}>{wishlistLength}</span>
+								<span className={s.count}>{wishlist.length}</span>
 							</NavLink>
 							<NavLink to='/cart' className={s.account__link}>
 								<CartSVG />
-								<span className={s.count}>{cartLength}</span>
+								<span className={s.count}>{cart.length}</span>
 							</NavLink>
 						</div>
 					</div>
