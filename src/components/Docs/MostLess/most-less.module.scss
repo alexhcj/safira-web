@@ -1,0 +1,53 @@
+@import '../../../shared/styles/vars';
+
+.table {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.h6 {
+	text-align: start;
+	text-transform: capitalize;
+	margin-bottom: 12px;
+	padding-left: 40px;
+	width: 20%;
+	font-size: 22px;
+	font-family: 'Playfair Display', serif;
+	font-style: italic;
+}
+
+.col {
+	padding: 0 20px;
+	width: 40%;
+}
+
+.card {
+	display: flex;
+	align-items: center;
+}
+
+.img {
+	margin-right: 40px;
+	width: 100px;
+	height: 100px;
+}
+
+.name {
+	margin-bottom: 8px;
+	margin-right: 40px;
+	font-size: 18px;
+}
+
+.paramMost {
+	font-size: 16px;
+	font-weight: 500;
+	color: $color-primary
+}
+
+.paramLess {
+	font-size: 16px;
+	font-weight: 500;
+	color: $color-error;
+}

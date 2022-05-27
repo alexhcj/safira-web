@@ -1,6 +1,6 @@
-import {API} from "./api";
+import { API } from './api'
 
-const BASE_URL = 'categories';
+const BASE_URL = 'categories'
 
 export const categoriesAPI = {
 	getAll() {

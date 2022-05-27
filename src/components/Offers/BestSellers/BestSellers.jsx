@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import {productsAPI} from "../../../api/products";
+import React, { useEffect, useState } from 'react'
+import { productsAPI } from '../../../api/products'
 import { ProductCard } from '../../ProductCard/ProductCard'
 import { Arrow } from '../../MainSlider/Controls/Arrow/Arrow'
 import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import s from './bestsellers.module.css'
+import s from './bestsellers.module.scss'
 
 export const BestSellers = () => {
 	const [bestsellers, setBestsellers] = useState([])
@@ -18,7 +18,7 @@ export const BestSellers = () => {
 
 		const fetchData = async () => {
 			try {
-				const {products} = await productsAPI.getAll(params)
+				const { products } = await productsAPI.getAll(params)
 				setBestsellers(convertArray(products, 2))
 			} catch (e) {
 				console.log(e)

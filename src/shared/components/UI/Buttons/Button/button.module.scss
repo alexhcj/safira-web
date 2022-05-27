@@ -15,7 +15,7 @@
 	&:hover {
 		background-color: $color-dark;
 	}
-
+	// TODO: fix bckg when click
 	&:disabled {
 		background-color: $color-border;
 		cursor: default;
@@ -75,6 +75,10 @@
 		& > * {
 			color: $color-primary;
 		}
+	}
+
+	&:focus {
+		background-color: transparent;
 	}
 }
 

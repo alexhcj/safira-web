@@ -1,9 +1,10 @@
+import React from 'react'
 import cn from 'classnames'
-import {ButtonPopup} from "../Buttons/ButtonPopup/ButtonPopup";
-import {ReactComponent as CartSVG} from '../../../../assets/svg/cart.svg'
-import {ReactComponent as HeartSVG} from '../../../../assets/svg/heart.svg'
-import {ReactComponent as MagnifierSVG} from '../../../../assets/svg/magnifier.svg'
-import {ReactComponent as SyncSVG} from '../../../../assets/svg/sync.svg'
+import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
+import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
+import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
+import { ReactComponent as MagnifierSVG } from '../../../../assets/svg/magnifier.svg'
+import { ReactComponent as SyncSVG } from '../../../../assets/svg/sync.svg'
 import s from './hovermenu.module.scss'
 
 export const Hovermenu = ({ menuToggle, size }) => {
@@ -60,5 +61,6 @@ export const Hovermenu = ({ menuToggle, size }) => {
 
 
 // TODO: refactor buttons. add handlers, routes, data flow
-// TODO: when hover on btn => popup appears. expectation: when mouselave from btn => popup disappears. real: if fast hover mouse on appeared popup => it still showed
+// TODO: when hover on btn => popup appears. expectation:
+//  when mouselave from btn => popup disappears. real: if fast hover mouse on appeared popup => it still showed
 // BUG: hover on product img near popup hover element mouse get triggered from default cursor to hover state

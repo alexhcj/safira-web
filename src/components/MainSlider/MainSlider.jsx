@@ -1,33 +1,34 @@
-import { Dot } from './Controls/Dot/Dot'
+import React from 'react'
 import Carousel from 'react-multi-carousel'
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
+import { Dot } from './Controls/Dot/Dot'
+import { Button } from '../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../shared/components/UI/Text/Text'
 import 'react-multi-carousel/lib/styles.css'
 import Slide1 from '../../assets/images/slider/1.jpg'
 import Slide2 from '../../assets/images/slider/2.jpg'
 import Slide3 from '../../assets/images/slider/3.jpg'
-import {Text} from "../../shared/components/UI/Text/Text";
-import s from './mainslider.module.css'
+import s from './main-slider.module.scss'
 
 const slides = [
 	{
 		id: 1,
-		title: "Vegetables big sale",
-		subTitle: "Fresh farm products",
-		text: "10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!",
+		title: 'Vegetables big sale',
+		subTitle: 'Fresh farm products',
+		text: '10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!',
 		img: Slide1
 	},
 	{
 		id: 2,
-		title: "Fresh vegetables",
-		subTitle: "Natural farm products",
-		text: "Widest range of farm-fresh Vegetables, Fruits & seasonal produce",
+		title: 'Fresh vegetables',
+		subTitle: 'Natural farm products',
+		text: 'Widest range of farm-fresh Vegetables, Fruits & seasonal produce',
 		img: Slide2
 	},
 	{
 		id: 3,
-		title: "Fresh tomatoes",
-		subTitle: "Natural farm products",
-		text: "Natural organic tomatoes make your health stronger. Put your information here",
+		title: 'Fresh tomatoes',
+		subTitle: 'Natural farm products',
+		text: 'Natural organic tomatoes make your health stronger. Put your information here',
 		img: Slide3
 	}
 ]
@@ -54,40 +55,40 @@ export const MainSlider = () => {
 
 	return (
 		<div className={s.slider}>
-				<Carousel
-					responsive={responsive}
-					autoPlay={true}
-					autoPlaySpeed={5000}
-					swipeable={true}
-					draggable={true}
-					showDots={true}
-					infinite={true}
-					arrows={false}
-					dotListClass={s.list}
-					customDot={<Dot />}
-				>
-					{slides.map((slide) => {
-						const { id, title, subTitle, text, img } = slide
+			<Carousel
+				responsive={responsive}
+				autoPlay={true}
+				autoPlaySpeed={5000}
+				swipeable={true}
+				draggable={true}
+				showDots={true}
+				infinite={true}
+				arrows={false}
+				dotListClass={s.list}
+				customDot={<Dot />}
+			>
+				{slides.map((slide) => {
+					const { id, title, subTitle, text, img } = slide
 
-						return (
-							<div className={s.item} key={id}>
-								<img src={img} alt={title} />
-								<div className={s.inner}>
-									<div className='container'>
-										<div className={s.content}>
-											<h1 className={s.title}>{title}</h1>
-											<h2 className={s.subTitle}>{subTitle}</h2>
-											<p className={s.text}>{text}</p>
-											<Button to='/shop'>
-												<Text className={s.btn_text} color="white">Read more</Text>
-											</Button>
-										</div>
+					return (
+						<div className={s.item} key={id}>
+							<img src={img} alt={title} />
+							<div className={s.inner}>
+								<div className='container'>
+									<div className={s.content}>
+										<h1 className={s.title}>{title}</h1>
+										<h2 className={s.subTitle}>{subTitle}</h2>
+										<p className={s.text}>{text}</p>
+										<Button to='/shop'>
+											<Text className={s.btn_text} color="white">Read more</Text>
+										</Button>
 									</div>
 								</div>
 							</div>
-						)
-					})}
-				</Carousel>
+						</div>
+					)
+				})}
+			</Carousel>
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
-import {API} from "./api";
+import { API } from './api'
 
-const BASE_URL = 'dealsweek';
+const BASE_URL = 'dealsweek'
 
 export const dealsweekAPI = {
 	findOne() {

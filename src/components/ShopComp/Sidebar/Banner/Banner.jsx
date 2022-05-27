@@ -1,6 +1,6 @@
-import s from './banner.module.css'
-import BannerImg from '../../../../assets/images/shopsidebar/1.jpg'
 import {NavLink} from "react-router-dom";
+import BannerImg from '../../../../assets/images/shopsidebar/1.jpg'
+import s from './banner.module.scss'
 
 const banner = {
 	id: 1,

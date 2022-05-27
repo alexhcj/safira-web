@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import {ReactComponent as MagnifierSVG} from '../../../../../assets/svg/magnifier.svg'
+import React, { useState } from 'react'
+import { ReactComponent as MagnifierSVG } from '../../../../../assets/svg/magnifier.svg'
 import cn from 'classnames'
 import s from './button.module.scss'
 
 export const Button = ({
-		type = 'submit' | 'subscribe' | 'search' | 'text' | 'form',
-		htmlType = 'button' | 'submit',
-		onClick,
-		disabled,
-		className,
-		children
+	type = 'submit' | 'subscribe' | 'search' | 'text' | 'form',
+	htmlType = 'button' | 'submit',
+	onClick,
+	disabled,
+	className,
+	children
 }) => {
 	const [focus, setFocus] = useState(false)
 
@@ -31,7 +31,7 @@ export const Button = ({
 			disabled={disabled}
 		>
 			{children}
-			{type === 'search' && <MagnifierSVG/>}
+			{type === 'search' && <MagnifierSVG />}
 		</button>
 	)
 }

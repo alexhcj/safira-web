@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'react-multi-carousel'
-import {productsAPI} from "../../api/products";
+import { productsAPI } from '../../api/products'
 import { ProductCard } from '../ProductCard/ProductCard'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
-import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/SectionHeader";
-import {Space} from "../../shared/components/UI/Spacing/Space";
+import { SectionHeader } from '../../shared/components/UI/Section/SectionHeader/SectionHeader'
+import { Space } from '../../shared/components/UI/Spacing/Space'
 import { convertArray } from '../../utils'
 import 'react-multi-carousel/lib/styles.css'
-import s from './featuredproducts.module.css'
+import s from './featured-products.module.scss'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -21,7 +21,7 @@ export const FeaturedProducts = () => {
 
 		const fetchData = async () => {
 			try {
-				const {products} = await productsAPI.getAll(params)
+				const { products } = await productsAPI.getAll(params)
 				setFeaturedProducts(convertArray(products, 3))
 			} catch (e) {
 				console.log(e)

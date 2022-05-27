@@ -1,0 +1,85 @@
+@import '../../../shared/styles/vars';
+
+.block {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+	padding: 10px 8px;
+	height: 60px;
+	border: 1px solid $color-border3;
+}
+
+.sort {
+	position: relative;
+	padding: 12px 30px 12px 18px;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid $color-border4;
+	cursor: pointer;
+	user-select: none;
+	@include transition-all;
+
+	&::after {
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		content: '';
+		display: block;
+		margin-top: -4px;
+		width: 5px;
+		height: 5px;
+		border-bottom: 2px solid #999;
+		border-right: 2px solid #999;
+		transform-origin: 66% 66%;
+		transform: rotate(45deg);
+		@include transition-all;
+	}
+
+	&:hover {
+		border: 1px solid $color-border-sort;
+	}
+}
+
+.transform::after {
+	transform: rotate(-135deg);
+}
+
+.list {
+	position: absolute;
+	top: 53px;
+	left: 8px;
+	max-height: 0;
+	opacity: 0;
+	visibility: hidden;
+	border-radius: 5px;
+	background-color: $color-white;
+	border: 1px solid $color-border4;
+	z-index: $z-index100;
+}
+
+.active {
+	max-height: 600px;
+	visibility: visible;
+	opacity: 1;
+	z-index: 200;
+}
+
+.item {
+	padding-left: 18px;
+	padding-right: 29px;
+	line-height: 40px;
+	min-height: 40px;
+	cursor: pointer;
+	@include transition-all;
+}
+
+.current {
+	font-weight: 700;
+}
+
+.hightlight {
+	background-color: $color-sort;
+}
+/* TODO: add focus sort color */

@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import s from './errorpopup.module.css'
+import s from './error-popup.module.scss'
 
 export const ErrorPopup = ({ error, toggle }) => {
 	const [errorText, setErrorText] = useState('')

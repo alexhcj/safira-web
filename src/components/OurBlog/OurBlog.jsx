@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import {postsAPI} from "../../api/posts";
+import { postsAPI } from '../../api/posts'
 import Carousel from 'react-multi-carousel'
 import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
-import {SectionHeader} from "../../shared/components/UI/Section/SectionHeader/SectionHeader";
+import { SectionHeader } from '../../shared/components/UI/Section/SectionHeader/SectionHeader'
 import 'react-multi-carousel/lib/styles.css'
-import s from './ourblog.module.css'
+import s from './our-blog.module.scss'
 
 function MoreBtn() {
-	return null;
+	return null
 }
 
 export const OurBlog = () => {
@@ -16,9 +16,9 @@ export const OurBlog = () => {
 	const [btnShow, setBtnShow] = useState(false)
 
 	useEffect(() => {
-		const params = {
-			limit: 6
-		}
+		// const params = {
+		// 	limit: 6
+		// }
 		const fetchData = async () => {
 			try {
 				const data = await postsAPI.getAll()
@@ -75,7 +75,7 @@ export const OurBlog = () => {
 					>
 						{slides.map((slide) => {
 							let { id, date, img, text, tags } = slide
-							text = text.substr(0, 62) + '...'
+							text = text.substring(0, 62) + '...'
 							return (
 								<div className={s.item} key={id}>
 									<div className={s.content__wrapper}>

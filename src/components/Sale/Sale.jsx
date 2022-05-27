@@ -1,16 +1,17 @@
-import {useNavigate} from "react-router-dom";
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
-import {Text} from "../../shared/components/UI/Text/Text";
-import {Space} from "../../shared/components/UI/Spacing/Space";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Button } from '../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../shared/components/UI/Text/Text'
+import { Space } from '../../shared/components/UI/Spacing/Space'
 import SaleImg from '../../assets/images/sale/1920x440.jpg'
 import s from './sale.module.scss'
 
 const sale = [
 	{
 		id: 1,
-		title: "Black Friday !",
-		saleInfo: "Sale 50% OFF",
-		description: "all vegetable products",
+		title: 'Black Friday !',
+		saleInfo: 'Sale 50% OFF',
+		description: 'all vegetable products',
 		img: SaleImg
 	}
 ]
@@ -21,7 +22,7 @@ export const Sale = () => {
 
 	const handleClick = (e) => {
 		e.preventDefault()
-		navigate('/shop', {replace: true})
+		navigate('/shop', { replace: true })
 	}
 
 
@@ -40,5 +41,5 @@ export const Sale = () => {
 			</div>
 			<Space space={65} />
 		</div>
-		)
+	)
 }

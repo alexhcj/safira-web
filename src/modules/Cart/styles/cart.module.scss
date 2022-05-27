@@ -1,44 +1,4 @@
-@import '../../../shared/styles/vars';
-
-.cart {
-	width: 100%;
-	border: 1px solid $color-border2;
-
-	.thead {
-		border-bottom: 3px solid $color-primary;
-
-		& tr th {
-			padding: 10px;
-			line-height: 24px;
-			font-size: 16px;
-			font-weight: $weight-medium;
-		}
-	}
-
-	.delete {
-		width: 100px;
-	}
-
-	.image {
-		width: 170px;
-	}
-
-	.name {
-		width: 230px;
-	}
-
-	.price {
-		width: 150px;
-	}
-
-	.quantity {
-		width: 218px;
-	}
-
-	.total {
-		width: 150px;
-	}
-}
+@import '../../../shared/styles/table';
 
 .footer {
 	display: flex;
@@ -74,6 +34,9 @@
 	border: 1px solid $color-border2;
 
 	&::placeholder {
+		letter-spacing: normal;
+		line-height: normal;
+		font-size: 14px;
 		font-family: "Work Sans", sans-serif;
 	}
 }

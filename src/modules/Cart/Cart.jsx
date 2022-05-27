@@ -1,19 +1,20 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import {useLocalStorage} from "../../hooks/useLocalStorage.hook";
-import {CartItem} from "./CartItem";
-import {Space} from "../../shared/components/UI/Spacing/Space";
-import {Border} from "../../shared/components/UI/Spacing/Border";
-import {Button} from "../../shared/components/UI/Buttons/Button/Button";
-import {Text} from "../../shared/components/UI/Text/Text";
-import s from "./styles/cart.module.scss";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
+import { CartItem } from './CartItem'
+import { Space } from '../../shared/components/UI/Spacing/Space'
+import { Border } from '../../shared/components/UI/Spacing/Border'
+import { Button } from '../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../shared/components/UI/Text/Text'
+import { calculateTotalPrice } from '../../utils'
+import s from './styles/cart.module.scss'
 
 export const Cart = () => {
-	const [cart, setCart] = useLocalStorage('cart', []);
+	const [cart, setCart] = useLocalStorage('cart', [])
 	// TODO: add coupon logic verify server & gift card
 
 	const handleProductQuantity = (e, name) => {
-		const {value} = e.target
+		const { value } = e.target
 
 		const product = cart.find(p => p.name === name)
 		product.quantity = value
@@ -26,17 +27,9 @@ export const Cart = () => {
 		setCart([...filteredCart])
 	}
 
-	const calculateTotalPrice = () => {
-		return cart.reduce((total, item) => {
-			console.log(item)
-			/* eslint-disable no-param-reassign */
-			return total += item.price * item.quantity
-		}, 0)
-	}
-
 	return (
 		<div className="container">
-			<table className={s.cart}>
+			<table className={s.table}>
 				<thead className={s.thead}>
 					<tr>
 						<th className={s.delete}>Delete</th>
@@ -55,12 +48,14 @@ export const Cart = () => {
 							price: item.price,
 							quantity: item.quantity
 						}
-						return <CartItem
-							key={item.name}
-							{...product}
-							onInput={handleProductQuantity}
-							onDelete={deleteProduct}
-						/>
+						return (
+							<CartItem
+								key={item.name}
+								{...product}
+								onInput={handleProductQuantity}
+								onDelete={deleteProduct}
+							/>
+						)
 					})}
 				</tbody>
 			</table>
@@ -93,7 +88,7 @@ export const Cart = () => {
 					<div className={s.content}>
 						<div className={s.totals_box}>
 							<p className={s.totals_text}>Total</p>
-							<span className={s.totals_price}>${calculateTotalPrice().toFixed(2)}</span>
+							<span className={s.totals_price}>${calculateTotalPrice(cart).toFixed(2)}</span>
 						</div>
 						<Space space={20} />
 						<Link to="/checkout">
@@ -108,4 +103,4 @@ export const Cart = () => {
 			<Border />
 		</div>
 	)
-};
+}

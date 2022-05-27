@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
-import {productsAPI} from "../../../../api/products";
+import React, { useEffect, useState, useRef } from 'react'
+import { productsAPI } from '../../../../api/products'
 import classNames from 'classnames/bind'
-import {ReactComponent as Close} from "../../../../assets/images/close.svg";
-import s from './search.module.css'
-import {ErrorPopup} from "../../../../shared/components/UI/ErrorPopup/ErrorPopup";
-import {Button} from "../../../../shared/components/UI/Buttons/Button/Button";
-import {Text} from "../../../../shared/components/UI/Text/Text";
+import { ReactComponent as Close } from '../../../../assets/images/close.svg'
+import { ErrorPopup } from '../../../../shared/components/UI/ErrorPopup/ErrorPopup'
+import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../../../shared/components/UI/Text/Text'
+import s from './search.module.scss'
 
 let cx = classNames.bind(s)
 
@@ -195,14 +195,19 @@ export const Search = ({ searchHandler }) => {
 					onClick={(e) => onClickHandler(e)}
 				/>
 				{search && <span role="presentation" className={btnCloseCN} onClick={closeSearchBtnHandler}>
-					<Close/>
+					<Close />
 				</span>}
 				{<ErrorPopup error={validationError} toggle={validationToggle} />}
 			</div>
 			<ul className={popupCN}>
 				{products.map((product) => {
 					return (
-						<li role="presentation" className={s.item} key={product.id} onClick={() => autoCompleteClickHandler(product.name)}>
+						<li
+							role="presentation"
+							className={s.item}
+							key={product.id}
+							onClick={() => autoCompleteClickHandler(product.name)}
+						>
 							{product.name}
 						</li>
 					)

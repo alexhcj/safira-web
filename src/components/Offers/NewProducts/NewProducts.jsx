@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import {productsAPI} from "../../../api/products";
+import React, { useEffect, useState } from 'react'
+import { productsAPI } from '../../../api/products'
 import { Arrow } from '../../MainSlider/Controls/Arrow/Arrow'
 import { ProductCard } from '../../ProductCard/ProductCard'
 import { convertArray } from '../../../utils/index'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import s from './newproducts.module.css'
-import PreloaderSVG from "../../../assets/svg/preloader.svg";
+import PreloaderSVG from '../../../assets/svg/preloader.svg'
+import s from './new-products.module.scss'
 
 export const NewProducts = () => {
 	const [newProducts, setNewProducts] = useState([])
@@ -25,7 +25,7 @@ export const NewProducts = () => {
 			setIsLoading(true)
 
 			try {
-				const {products} = await productsAPI.getAll(params)
+				const { products } = await productsAPI.getAll(params)
 				setNewProducts(convertArray(products, 2))
 			} catch (e) {
 				console.log(e)
@@ -71,14 +71,19 @@ export const NewProducts = () => {
 				customRightArrow={<Arrow />}
 			>
 				{isLoading ? (
-					<img src={PreloaderSVG} alt="Preloader"/>
+					<img src={PreloaderSVG} alt="Preloader" />
 				) : (
 					newProducts.map((col, index) => {
 						return (
 							<div key={index}>
-								{col.map((product) => {
-									return <ProductCard size='large' imgSize='sm' key={product.slug} product={product} />
-								})}
+								{col.map((product) => (
+									<ProductCard
+										size='large'
+										imgSize='sm'
+										key={product.slug}
+										product={product}
+									/>
+								))}
 							</div>
 						)
 					})

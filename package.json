@@ -27,12 +27,6 @@
     "serve": "json-server --watch db.json --port 5000",
     "dev": "concurrently \"npm run start\" \"npm run serve\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,6 +41,9 @@
   },
   "devDependencies": {
     "concurrently": "^6.2.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "json-server": "^0.16.3"
   }
 }

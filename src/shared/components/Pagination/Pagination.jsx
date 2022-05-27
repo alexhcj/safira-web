@@ -1,4 +1,5 @@
-import s from './pagination.module.css'
+import React from 'react'
+import s from './pagination.module.scss'
 
 export const Pagination = ({
 	page,

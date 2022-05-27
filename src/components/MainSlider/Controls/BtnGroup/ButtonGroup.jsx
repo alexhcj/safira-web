@@ -1,14 +1,11 @@
+import React from 'react'
+import cn from 'classnames'
 import { Arrow } from '../Arrow/Arrow'
-import s from './btngroup.module.css'
-import classnames from 'classnames/bind'
-
-const cx = classnames.bind(s)
+import s from './btn-group.module.scss'
 
 export const ButtonGroup = ({ next, previous, active }) => {
-    const btn__group = cx('btn__group', {active: active})
-
 	return (
-		<div className={btn__group}>
+		<div className={cn(s.btn__group, active && s.active)}>
 			<Arrow width={32} height={35} className={s.left} onClick={() => previous()} />
 			<Arrow width={32} height={35} className={s.right} onClick={() => next()} />
 		</div>

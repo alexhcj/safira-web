@@ -1,13 +1,13 @@
-import React, {useCallback, useState} from 'react';
-import cn from 'classnames';
+import React, { useCallback, useState } from 'react'
+import cn from 'classnames'
 import s from './tabs.module.scss'
 
-export const Tabs = ({children, className}) => {
-	const [activeTab, setActiveTab] = useState(children[0].props.id);
+export const Tabs = ({ children, className }) => {
+	const [activeTab, setActiveTab] = useState(children[0].props.id)
 
 	const handleActiveTab = useCallback((id) => {
-		setActiveTab(id);
-	}, []);
+		setActiveTab(id)
+	}, [])
 
 	const tabs = children.map(child => (
 		<button
@@ -22,18 +22,18 @@ export const Tabs = ({children, className}) => {
 		</button>
 	))
 
-	const tabContent = children.filter(child => child.props.id === activeTab);
+	const tabContent = children.filter(child => child.props.id === activeTab)
 
 	return (
 		<>
 			<div className={cn(s.tabs, className)}>{tabs}</div>
 			<div>{tabContent}</div>
 		</>
-	);
-};
-
-function Tab(props) {
-	return <>{props.children}</>;
+	)
 }
 
-export { Tab };
+function Tab(props) {
+	return <>{props.children}</>
+}
+
+export { Tab }
