@@ -8,30 +8,28 @@ import s from './offer-links.module.scss'
 const links = [
 	{
 		id: generateID(),
-		img: Link1
+		img: Link1,
+		text: 'Fresh vegetables'
 	},
 	{
 		id: generateID(),
-		img: Link2
+		img: Link2,
+		text: 'Natural fresh fruits'
 	}
 ]
 
 export const OfferLinks = () => {
 	return (
-		<>
-			<div className='container'>
-				<div className={s.block}>
-					{links.map(({ id, img }) => {
-						return (
-							<NavLink className={s.link} to='/shop' key={id}>
-								<img src={img} alt="Offer" />
-							</NavLink>
-						)
-					})}
-				</div>
+		<div className='container'>
+			<div className={s.block}>
+				{links.map(({ id, img, text }) => {
+					return (
+						<NavLink to='/shop' key={id}>
+							<img className={s.img} src={img} alt={text} />
+						</NavLink>
+					)
+				})}
 			</div>
-		</>
+		</div>
 	)
 }
-
-// TODO: fix jumping content
