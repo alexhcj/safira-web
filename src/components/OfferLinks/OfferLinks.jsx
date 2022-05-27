@@ -18,7 +18,7 @@ const links = [
 
 export const OfferLinks = () => {
 	return (
-		<div className={s.section}>
+		<>
 			<div className='container'>
 				<div className={s.block}>
 					{links.map(({ id, img }) => {
@@ -30,7 +30,7 @@ export const OfferLinks = () => {
 					})}
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 
