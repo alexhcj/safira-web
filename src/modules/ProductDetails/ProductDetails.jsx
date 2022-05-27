@@ -39,7 +39,9 @@ export const ProductDetails = () => {
 
 	}, [slug])
 
-	const { name, img, price, description, category, rating, specifications, reviews } = product
+	const { name, price, description, category, rating, specifications, reviews } = product
+
+	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
 
 	const findProductCart = cart.find(p => p.name === name)
 	const isProductWishlist = (name) => wishlist.find(p => {

@@ -7,6 +7,7 @@ import { Space } from '../../../shared/components/UI/Spacing/Space'
 import { Text } from '../../../shared/components/UI/Text/Text'
 import { Price } from '../../Price/Price'
 import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
+import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 import s from './dealsweek.module.scss'
 
 const data = [
@@ -22,7 +23,9 @@ const data = [
 ]
 
 export const DealsWeek = () => {
-	const { id, slug, name, tags, price, discount_price, img, category } = data[0]
+	const { id, slug, name, tags, price, discount_price, category } = data[0]
+
+	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
 
 	const url = {
 		pathname: `/products/${slug}`,
@@ -39,7 +42,7 @@ export const DealsWeek = () => {
 				<Tags tags={tags} />
 				<div className={s.content}>
 					<NavLink to={url}>
-						<img src={img} alt="Purple Passion Fruit" />
+						<ImageWithFallback src={img} alt={name} imgSize="xl" />
 					</NavLink>
 					<Space space={16} />
 					<NavLink className={s.link} to={url}>
