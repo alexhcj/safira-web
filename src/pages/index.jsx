@@ -1,7 +1,0 @@
-export { Home } from './Home'
-export { Shop } from './Shop'
-export { Blog } from './Blog'
-export { CartPage } from './CartPage'
-export { CheckoutPage } from './CheckoutPage'
-export { Product } from './Product'
-export { Docs } from './Docs'
