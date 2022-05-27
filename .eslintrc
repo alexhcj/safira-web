@@ -39,7 +39,7 @@
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		"react/require-default-props": "off",
-		"react/jsx-space-before-closing": "error",
+		"react/jsx-tag-spacing": "beforeSelfClosing",
 		"react/jsx-closing-bracket-location": ["error", "tag-aligned"],
 		"react/jsx-props-no-spreading": [
 			"off"
