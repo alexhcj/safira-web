@@ -1,18 +1,17 @@
-@import '../../shared/styles/vars';
-
-.slider {
-	margin-bottom: 70px;
-	height: 550px;
-	background-color: $color-section-bg;
-}
-
-.list {
-	bottom: 15px;
-}
+@import '../../../shared/styles/vars';
 
 .item {
-	position: relative;
-	user-select: none;
+	height: 550px;
+	background-color: $color-section-bg;
+
+	&:active {
+		cursor: grab;
+	}
+}
+
+.img {
+	height: 100%;
+	object-fit: cover;
 }
 
 .inner {
@@ -56,6 +55,7 @@
 }
 
 .text {
+	text-align: left;
 	margin-bottom: 40px;
 	max-width: 420px;
 	line-height: 22px;
@@ -72,4 +72,22 @@
 	line-height: 550px;
 	font-size: 28px;
 	font-weight: 500;
+}
+
+.dot {
+	display: inline-block;
+	margin: 0 3px;
+	width: 14px;
+	height: 14px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: $color-section-bg;
+	box-shadow: 0 0 0 2px $color-white inset;
+	@include transition-all;
+
+	&:hover {
+		box-shadow: 0 0 0 2px $color-primary inset;
+		background-color: $color-primary;
+	}
 }

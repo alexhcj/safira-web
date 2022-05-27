@@ -1,24 +1,31 @@
 import React from 'react'
-import { MainSlider } from '../components/MainSlider/MainSlider'
+import { HeroSlider } from '../components/HeroSlider/HeroSlider'
 import { OfferLinks } from '../components/OfferLinks/OfferLinks'
 import { Offers } from '../components/Offers/Offers'
-import { Sale } from '../components/Sale/Sale'
+import { Promo } from '../components/Promo/Promo'
 import { Mostview } from '../components/Mostview/Mostview'
 import { OurBlog } from '../components/OurBlog/OurBlog'
 import { FeaturedProducts } from '../components/FeaturedProducts/FeaturedProducts'
 import { Border } from '../shared/components/UI/Spacing/Border'
+import { Space } from '../shared/components/UI/Spacing/Space'
 
 export const Home = () => {
 	return (
-		<div>
-			<MainSlider />
+		<>
+			<HeroSlider />
+			<Space size="l" />
 			<OfferLinks />
+			<Space space={65} />
 			<Offers />
-			<Sale />
+			<Space space={65} />
+			<Promo />
+			<Space space={65} />
 			<Mostview />
 			<OurBlog />
+			<Space space={65} />
 			<FeaturedProducts />
+			<Space space={70} />
 			<Border />
-		</div>
+		</>
 	)
 }
