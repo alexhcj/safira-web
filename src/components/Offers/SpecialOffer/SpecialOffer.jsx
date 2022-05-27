@@ -12,8 +12,8 @@ const offer = {
 export const SpecialOffer = () => {
 	return (
 		<div className={s.block}>
-			<NavLink to='/shop' key={offer.id}>
-				<img className={s.img} src={offer.img} alt={offer.text} />
+			<NavLink to='/shop' className={s.link}>
+				<img src={offer.img} alt={offer.text} />
 			</NavLink>
 		</div>
 	)
