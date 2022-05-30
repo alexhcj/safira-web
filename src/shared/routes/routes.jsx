@@ -2,7 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Home } from '../../pages/Home'
 import { Shop } from '../../pages/Shop'
-import { Blog } from '../../pages/Blog'
+import { BlogPage } from '../../pages/BlogPage'
+import { PostPage } from '../../pages/PostPage'
 import { CartPage } from '../../pages/CartPage'
 import { CheckoutPage } from '../../pages/CheckoutPage'
 import { WishlistPage } from '../../pages/WishlistPage'
@@ -13,8 +14,8 @@ export const AppRoutes = () => (
 	<Routes>
 		<Route path='/' element={<Home />} />
 		<Route path='/shop' element={<Shop />} />
-		<Route path='/blog'  element={<Blog />} />
-		<Route path='/blog/:id' element={<Blog />} />
+		<Route path='/blog'  element={<BlogPage />} />
+		<Route path='/blog/:slug' element={<PostPage />} />
 		<Route path='/cart' element={<CartPage />} />
 		<Route path='/checkout' element={<CheckoutPage />} />
 		<Route path='/wishlist' element={<WishlistPage />} />
