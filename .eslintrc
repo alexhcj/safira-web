@@ -31,6 +31,8 @@
 		"no-unused-vars": "off",
 		"linebreak-style": ["error", "unix"],
 		"space-infix-ops": "error",
+		"keyword-spacing": ["error", {"after": true}],
+		"comma-spacing": ["error", {"after": true }],
 		"react/prop-types": "off",
 		"no-unneeded-ternary": "warn",
 		"no-trailing-spaces": ["error", {"ignoreComments": true}],
