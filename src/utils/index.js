@@ -65,3 +65,16 @@ export const calculateTotalPrice = (arr) => {
 export const stringToSlug = (str) => {
 	return str.split(' ').join('-').toLowerCase()
 }
+
+export const throttle = (fn, ms) => {
+	let wait = false
+	return () => {
+		if (!wait) {
+			fn.call()
+			wait = true
+			setTimeout(() => {
+				wait = false
+			}, ms)
+		}
+	}
+}
