@@ -1,14 +1,14 @@
 import React from 'react'
 import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
+import { Blog } from '../modules/Blog/Blog'
 
-export const Blog = () => {
-
+const BlogPage = () => {
 	return (
 		<div>
 			<Breadcrumbs />
-			<div className="container">
-				{/*<BlogComp />*/}
-			</div>
+			<Blog />
 		</div>
 	)
 }
+
+export default BlogPage

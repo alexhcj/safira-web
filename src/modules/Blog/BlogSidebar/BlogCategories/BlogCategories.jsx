@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { blogCategoriesAPI } from '../../../../api'
-import { FullsizeDivider } from '../../../UI'
 import s from './blog-categories.module.scss'
+import { postsAPI } from '../../../../api/posts'
 
 export const BlogCategories = ({ categoryHandler }) => {
 	const [categories, setCategories] = useState([])
 	const [active, setActive] = useState('')
 
 	useEffect(() => {
+		const params = {}
+
 		const fetchData = async () => {
 			try {
-				const data = await blogCategoriesAPI.getCategories()
+				const data = await postsAPI.getAll(params)
 				setCategories(data)
-			} catch(e) {
+			} catch (e) {
 				console.log(e)
 			}
 		}
 		fetchData()
-	},[])
+	}, [])
 
 
 
@@ -29,7 +30,6 @@ export const BlogCategories = ({ categoryHandler }) => {
 	return (
 		<div className={s.section}>
 			<p className={s.heading}>Categories</p>
-			<FullsizeDivider marginTop={10} />
 			<ul>
 				{categories.map(category => {
 					let itemClassName
