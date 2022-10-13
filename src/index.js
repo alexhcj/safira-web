@@ -1,14 +1,17 @@
-import React, { StrictMode } from 'react'
+import React, { StrictMode, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+import { Preloader } from './shared/components/common/Preloader/Preloader'
 import App from './App'
 import './index.scss'
 
 ReactDOM.render(
 	<StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>,
+		<Suspense fallback={<Preloader />}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Suspense>
 	</StrictMode>,
 	document.getElementById('root')
 )
