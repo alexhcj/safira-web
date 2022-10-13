@@ -22,7 +22,7 @@ export const OurBlog = () => {
 		const fetchData = async () => {
 			try {
 				const data = await postsAPI.getAll()
-				setPosts(data)
+				setPosts(data.posts)
 			} catch (e) {
 				console.log(e)
 			}

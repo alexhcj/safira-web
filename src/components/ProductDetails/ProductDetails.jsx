@@ -8,7 +8,7 @@ import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Text } from '../../shared/components/UI/Text/Text'
 import { Rating } from '../../shared/components/Rating/Rating'
-import { Price } from '../../components/Price/Price'
+import { Price } from '../../shared/components/Price/Price'
 import { Tab, Tabs } from '../../shared/components/Tabs/Tabs'
 import { Specification } from '../../shared/components/Specification/Specification'
 import { ButtonPopover } from '../../shared/components/UI/Buttons/ButtonPopover/ButtonPopover'
@@ -27,11 +27,13 @@ export const ProductDetails = () => {
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
+		// TODO: check is this solution valid
+		window.scrollTo({ top:0 })
 		const fetchData = async () => {
 			try {
 				const { product } = await productsAPI.findOne(slug)
 				setProduct(product)
-			} catch(e) {
+			} catch (e) {
 				console.log(e)
 			}
 		}

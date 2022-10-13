@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { postsAPI } from '../../../../api/posts'
+import { postsAPI } from '../../../api/posts'
 import s from './related-posts.module.scss'
 
 export const RelatedPosts = ({ category }) => {
@@ -14,12 +14,12 @@ export const RelatedPosts = ({ category }) => {
 			try {
 				const data = await postsAPI.getAll(params)
 				setPosts(data.data)
-			} catch(e) {
+			} catch (e) {
 				console.log(e)
 			}
 		}
 		fetchData()
-	},[category])
+	}, [category])
 	return (
 		<section className={s.section}>
 			<p className={s.heading}>Related Posts</p>

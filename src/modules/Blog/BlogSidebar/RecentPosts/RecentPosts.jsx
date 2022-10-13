@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FullsizeDivider } from '../../../UI'
 import { postsAPI } from '../../../../api/posts'
 import s from './recent-posts.module.scss'
 
@@ -14,18 +13,17 @@ export const RecentPosts = () => {
 		const fetchData = async () => {
 			try {
 				const data = await postsAPI.getAll(params)
-				setPosts(data.data)
+				setPosts(data)
 			} catch (e) {
 				console.log(e)
 			}
 		}
 		fetchData()
-	},[])
+	}, [])
 
 	return (
 		<div className={s.section}>
 			<p className={s.heading}>Recent Posts</p>
-			<FullsizeDivider marginTop={10} />
 			<ul className={s.posts}>
 				{posts.map((post) => {
 					let { id, title, date, img, text } = post

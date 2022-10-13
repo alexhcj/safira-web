@@ -10,6 +10,7 @@ export const Reviews = ({ reviews }) => {
 	return (
 		<>
 			{/* TODO: update UI when new review is created */}
+			{/* TODO: immediately render comment for UX, then check with back res ok or not */}
 			{reviews.map(({ name, avatar, text, createdAt, rating }) =>
 				(
 					<div className={s.review} key={name}>

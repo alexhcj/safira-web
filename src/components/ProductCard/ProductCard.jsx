@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
-import { Price } from '../Price/Price'
+import { Price } from '../../shared/components/Price/Price'
 import { Tags } from '../../shared/components/UI/Tags/Tags'
 import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'

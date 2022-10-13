@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import { Text } from '../../shared/components/UI/Text/Text'
+import { Text } from '../UI/Text/Text'
 import s from './price.module.scss'
 
 export const Price = ({ price, discount_price, type, className }) => {
