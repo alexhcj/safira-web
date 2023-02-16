@@ -200,12 +200,12 @@ export const Search = ({ searchHandler }) => {
 				{<ErrorPopup error={validationError} toggle={validationToggle} />}
 			</div>
 			<ul className={popupCN}>
-				{products.map((product) => {
+				{products.map((product, index) => {
 					return (
 						<li
 							role="presentation"
 							className={s.item}
-							key={product.id}
+							key={index}
 							onClick={() => autoCompleteClickHandler(product.name)}
 						>
 							{product.name}

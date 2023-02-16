@@ -73,11 +73,11 @@ export const OurBlog = () => {
 						onMouseLeave={handleBtnGroupToggle}
 						customButtonGroup={<ButtonGroup active={btnShow} />}
 					>
-						{slides.map((slide) => {
-							let { id, date, img, text, tags } = slide
+						{slides.map((slide, index) => {
+							let { date, img, text, tags } = slide
 							text = text.substring(0, 62) + '...'
 							return (
-								<div className={s.item} key={id}>
+								<div className={s.item} key={index}>
 									<div className={s.content__wrapper}>
 										<NavLink to='/shop'>
 											<img alt='post' className={s.img} src={img} />
