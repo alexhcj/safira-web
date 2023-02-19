@@ -10,41 +10,36 @@ import { Preloader } from '../../shared/components/common/Preloader/Preloader'
 export const Blog = () => {
 	const [posts, setPosts] = useState([])
 	const [offset, setOffset] = useState(0)
-	const limit = 2
 	const [isLoading, setIsLoading] = useState(false)
+	const [isLastPage, setIsLastPage] = useState(false)
+	const limit = 2
 	const infiniteTrigger = useRef(null)
-	let lastScroll = 0
-	// TODO: add total|recieve last posts pack => check condition
-	// add check if posts less then or take 'last' from back "page" stop render loader|try to fetch
+	let lastScroll = 0 // throttle trigger
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(true)
 				const data = await postsAPI.getAll({ limit, offset })
-				setPosts(prevState => [...new Set([...prevState, ...data.posts])])
+				data.meta.page !== 'last' ? setPosts((prev) => [...prev, ...data.posts]) : setIsLastPage(true)
 				setIsLoading(false)
 			} catch (e) {
 				console.log(e)
 			}
 		}
 
-		fetchData()
-	}, [limit, offset])
+		!isLastPage && fetchData()
+	}, [offset, isLastPage])
 
+	// moves screen to page top after refresh
 	useEffect(() => {
-		window.onbeforeunload = () => {
-			window.scrollTo(0, 0)
-		}
+		window.onbeforeunload = () => window.scrollTo(0, 0)
 	}, [])
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll)
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll)
-		}
-	}, [])
+		return () => window.removeEventListener('scroll', handleScroll)
+	})
 
 	const handleScroll = () => {
 		if (Date.now() - lastScroll < 100) {
@@ -64,7 +59,7 @@ export const Blog = () => {
 		<section>
 			<div className="container">
 				<SidebarLayout main={postsList} aside={<BlogSidebar />} />
-				<div ref={infiniteTrigger}>1</div>
+				<div ref={infiniteTrigger}></div>
 				{isLoading && <Preloader />}
 				<Space size="l" />
 				<Border />
