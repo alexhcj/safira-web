@@ -11,9 +11,10 @@ export const Reviews = ({ reviews }) => {
 		<>
 			{/* TODO: update UI when new review is created */}
 			{/* TODO: immediately render comment for UX, then check with back res ok or not */}
-			{reviews.map(({ name, avatar, text, createdAt, rating }) =>
+			{/* TODO: replace userId: fullName to fullName. prop shuld be in comment object */}
+			{reviews.map(({ userId: { fullName }, avatar, text, createdAt, rating }) =>
 				(
-					<div className={s.review} key={name}>
+					<div className={s.review} key={fullName}>
 						{avatar
 							? (<img className={s.avatar} src={avatar} alt="User avatar" />)
 							: (<img className={s.avatar} src={defaultAvatar} alt="User default avatar" />)
@@ -21,7 +22,7 @@ export const Reviews = ({ reviews }) => {
 						<div className={s.content}>
 							<div className={s.info}>
 								<div className={s.meta}>
-									<Text className={s.author}>{name ? name : 'Anonymous'}{' - '}</Text>
+									<Text className={s.author}>{fullName ? fullName : 'Anonymous'}{' - '}</Text>
 									<Text className={s.date} span>{convertISODate(createdAt)}</Text>
 								</div>
 								<Rating rating={rating} />
