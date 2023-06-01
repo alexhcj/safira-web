@@ -1,11 +1,9 @@
-.section {
-    margin-bottom: 65px;
-}
-
-.link {
-    margin-right: 39px;
-}
-
 .block {
-    display: flex;
+	display: flex;
+	gap: 39px;
+}
+
+.img {
+	width: 540px;
+	height: 190px;
 }

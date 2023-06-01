@@ -1,0 +1,25 @@
+@import '../../../../../shared/styles/vars';
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 13px;
+	height: 13px;
+	@include transition-all;
+
+	&.disabled {
+		display: none;
+	}
+
+	&_svg {
+		width: inherit;
+		height: inherit;
+		fill: $color-dark;
+		transition: inherit;
+
+		&:hover {
+			fill: $color-dark2;
+		}
+	}
+}

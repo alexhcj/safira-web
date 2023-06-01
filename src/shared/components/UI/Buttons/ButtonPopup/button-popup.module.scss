@@ -14,19 +14,20 @@
 	border-radius: 50%;
 	background-color: $color-white;
 	@include transition-all;
-}
 
-.btn svg {
-	width: 16px;
-	height: 16px;
-}
+	svg {
+		width: 16px;
+		height: 16px;
+	}
 
-.btn:hover {
-	background-color: $color-primary;
-}
+	&:hover {
+		background-color: $color-primary;
+		z-index: $z-index90;
 
-.btn:hover svg path {
-	fill: $color-white;
+		svg path {
+			fill: $color-white;
+		}
+	}
 }
 
 .popup {
@@ -41,25 +42,25 @@
 	line-height: 14px;
 	font-size: 14px;
 	border-radius: 3px;
-	z-index: -10;
+	z-index: 100;
 	color: $color-white;
 	background-color: $color-dark2;
 	@include transition-all;
-}
 
-.popup::after {
-	position: absolute;
-	content: '';
-	bottom: -6px;
-	left: 50%;
-	transform: translateX(-50%);
-	border-style: solid;
-	border-width: 6px 5.5px 0 5.5px;
-	border-color: $color-dark2 transparent transparent transparent;
-}
+	&::after {
+		position: absolute;
+		content: '';
+		bottom: -6px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-style: solid;
+		border-width: 6px 5.5px 0 5.5px;
+		border-color: $color-dark2 transparent transparent transparent;
+	}
 
-.popup:hover {
-	display: none;
+	&:hover {
+		display: none;
+	}
 }
 
 .wrapper:hover .popup {

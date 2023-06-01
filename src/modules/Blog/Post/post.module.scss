@@ -1,0 +1,54 @@
+@import '../../../shared/styles/vars';
+
+.link {
+	display: flex;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+.title {
+	line-height: 18px;
+	font-size: 17px;
+	font-weight: 500;
+	color: $color-dark;
+}
+
+.meta {
+	line-height: 15px;
+	color: $color-dark;
+}
+
+.divider {
+	margin: 0 5px;
+}
+
+.category {
+	&:hover {
+		color: $color-primary;
+	}
+}
+
+.text {
+	max-width: 700px;
+	max-height: 72px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.post_button {
+	padding: 0 20px;
+}
+
+.post_button_text {
+	text-transform: capitalize;
+	line-height: 42px;
+	font-size: 16px;
+	font-weight: $weight-medium;
+}

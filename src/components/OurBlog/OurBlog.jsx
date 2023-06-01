@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { postsAPI } from '../../api/posts'
 import Carousel from 'react-multi-carousel'
-import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
+import { ButtonGroup } from '../../shared/components/Slider/Controls/BtnGroup/ButtonGroup'
 import { SectionHeader } from '../../shared/components/UI/Section/SectionHeader/SectionHeader'
 import 'react-multi-carousel/lib/styles.css'
 import s from './our-blog.module.scss'
@@ -22,7 +22,7 @@ export const OurBlog = () => {
 		const fetchData = async () => {
 			try {
 				const data = await postsAPI.getAll()
-				setPosts(data)
+				setPosts(data.posts)
 			} catch (e) {
 				console.log(e)
 			}
@@ -73,11 +73,11 @@ export const OurBlog = () => {
 						onMouseLeave={handleBtnGroupToggle}
 						customButtonGroup={<ButtonGroup active={btnShow} />}
 					>
-						{slides.map((slide) => {
-							let { id, date, img, text, tags } = slide
+						{slides.map((slide, index) => {
+							let { date, img, text, tags } = slide
 							text = text.substring(0, 62) + '...'
 							return (
-								<div className={s.item} key={id}>
+								<div className={s.item} key={index}>
 									<div className={s.content__wrapper}>
 										<NavLink to='/shop'>
 											<img alt='post' className={s.img} src={img} />

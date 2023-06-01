@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { productsAPI } from '../../../api/products'
+import { RowSlider } from '../../../shared/components/Slider/RowSlider/RowSlider'
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { Arrow } from '../../MainSlider/Controls/Arrow/Arrow'
-import { convertArray } from '../../../utils/index'
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
-import s from './bestsellers.module.scss'
+import { convertArray } from '../../../utils'
 
 export const BestSellers = () => {
 	const [bestsellers, setBestsellers] = useState([])
@@ -19,7 +16,7 @@ export const BestSellers = () => {
 		const fetchData = async () => {
 			try {
 				const { products } = await productsAPI.getAll(params)
-				setBestsellers(convertArray(products, 2))
+				setBestsellers(products)
 			} catch (e) {
 				console.log(e)
 			}
@@ -28,52 +25,34 @@ export const BestSellers = () => {
 		fetchData()
 	}, [])
 
+	const items = convertArray(bestsellers, 2).map((col, index) => {
+		return (
+			<div key={index} style={{ padding: '0 10px' }}>
+				{col.map((product) => {
+					return (
+						<ProductCard
+							size="xs"
+							imgSize="xs"
+							key={product.slug}
+							product={product}
+						/>
+					)
+				})}
+			</div>
+		)
+	})
+
 	const responsive = {
-		superLargeDesktop: {
-			breakpoint: { max: 4000, min: 3000 },
+		0: {
 			items: 2,
-			slidesToSlide: 1,
-		},
-		desktop: {
-			breakpoint: { max: 3000, min: 1024 },
-			items: 2,
-			slidesToSlide: 1,
-		},
-		tablet: {
-			breakpoint: { max: 1024, min: 464 },
-			items: 2,
-		},
-		mobile: {
-			breakpoint: { max: 464, min: 0 },
-			slidesToSlide: 1,
-		},
+		}
 	}
 
 	return (
-		<div className={s.block}>
-			<h3 className={s.heading}>Best Sellers</h3>
-			<Carousel
-				responsive={responsive}
-				infinite={true}
-				swipeable={false}
-				draggable={false}
-				customTransition='transform 250ms ease'
-				containerClass={s.slider__container}
-				customLeftArrow={<Arrow />}
-				customRightArrow={<Arrow />}
-			>
-				{bestsellers.map((col, index) => {
-					return (
-						<div key={index}>
-							{col.map((product) => {
-								return <ProductCard size="xs" imgSize='xs' key={product.id} product={product} />
-							})}
-						</div>
-					)
-				})}
-			</Carousel>
-		</div>
+		<RowSlider
+			title="Best sellers"
+			items={items}
+			responsive={responsive}
+		/>
 	)
 }
-
-// TODO: BAD ANIMATION. if change slides too fast they transform too slow. also stopped and blocked when slides ends.

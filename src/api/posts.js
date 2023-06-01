@@ -1,14 +1,12 @@
 import { API } from './api'
 
+const BASE_URL = 'posts'
+
 export const postsAPI = {
-	getAll({ limit = '', title = '', sort = 'date', order = 'desc', category = '', start = 0, end = '' }) {
-		return API.get(`posts?title_like=${title}&_sort=${sort}
-		&_order=${order}&category_like=${category}&_start=${start}&_end=${end}&_limit=${limit}`)
+	getAll(params) {
+		return API.get(`${BASE_URL}/list`, params)
 	},
-	findOne(id) {
-		return API.get(`posts?id=${id}`)
+	findOne(slug = '') {
+		return API.get(`${BASE_URL}/${slug}`)
 	},
-	getComments({ sort = 'date', limit = '', order = 'desc' }) {
-		return API.get(`postComments?_sort=${sort}&_limit=${limit}&_order=${order}`)
-	}
 }

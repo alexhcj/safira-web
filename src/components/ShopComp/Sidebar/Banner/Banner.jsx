@@ -1,4 +1,5 @@
-import {NavLink} from "react-router-dom";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import BannerImg from '../../../../assets/images/shopsidebar/1.jpg'
 import s from './banner.module.scss'
 

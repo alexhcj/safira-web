@@ -8,6 +8,7 @@ import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'
 import { Input } from '../../shared/components/Form/Input/Input'
 import { Textarea } from '../../shared/components/Form/Textarea/Textarea'
+import { Border } from '../../shared/components/UI/Spacing/Border'
 import { ReactComponent as Check } from '../../assets/svg/check.svg'
 import Paypal from '../../assets/images/paypal.png'
 import Visa from '../../assets/images/visa.png'
@@ -15,7 +16,7 @@ import Maestro from '../../assets/images/maestro.png'
 import AmericanExpress from '../../assets/images/american-express.png'
 import Mir from '../../assets/images/mir.png'
 import s from './checkout.module.scss'
-import { Border } from '../../shared/components/UI/Spacing/Border'
+// TODO: add eslint rule named imports order
 
 const radioData = [
 	{ id: 'delivery', name: 'delivery', label: 'Delivery' },

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
-import { ProductDetails } from '../modules/ProductDetails/ProductDetails'
+import { ProductDetails } from '../components/ProductDetails/ProductDetails'
 
 export const Product = () => {
 

@@ -12,9 +12,10 @@ export const sizeTypes = [
 	{ id: 4, type: 'md-lg', size: '326x280' },
 	{ id: 5, type: 'lg', size: '326x326' },
 	{ id: 6, type: 'xl', size: '600x600' },
-	{ id: 7, type: 'offerlink', size: '590x140' },
-	{ id: 8, type: 'specialoffer', size: '366x484' },
-	{ id: 9, type: 'sale', size: '1920x440' },
+	{ id: 7, type: 'offer-link', size: '590x140' },
+	{ id: 8, type: 'special-offer', size: '366x484' },
+	{ id: 9, type: 'blog-post', size: '870x550' },
+	{ id: 10, type: 'sale', size: '1920x440' },
 ]
 
 // concat url, size & ext into img url with certain size
@@ -43,12 +44,14 @@ export const makeUniqueArray = (products) => {
 	return products
 }
 
-export const convertISODate = (date) => {
+export const convertISODate = (date, type) => {
 	const convertedDate = new Date(date)
 	const year = convertedDate.getFullYear()
-	const month = convertedDate.toLocaleString('default', { month: 'long' })
+	const month = type === 'post'
+		? convertedDate.toLocaleString('default', { month: '2-digit' })
+		: convertedDate.toLocaleString('default', { month: 'long' })
 	const day = convertedDate.getDate()
-	return `${month} ${day}, ${year}`
+	return type === 'post' ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`
 }
 
 export const calculateTotalPrice = (arr) => {
@@ -58,6 +61,20 @@ export const calculateTotalPrice = (arr) => {
 	}, 0)
 }
 
+// TODO: refactor func using with product slug
 export const stringToSlug = (str) => {
 	return str.split(' ').join('-').toLowerCase()
+}
+
+export const throttle = (fn, ms) => {
+	let wait = false
+	return () => {
+		if (!wait) {
+			fn.call()
+			wait = true
+			setTimeout(() => {
+				wait = false
+			}, ms)
+		}
+	}
 }

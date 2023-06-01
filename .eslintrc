@@ -31,6 +31,8 @@
 		"no-unused-vars": "off",
 		"linebreak-style": ["error", "unix"],
 		"space-infix-ops": "error",
+		"keyword-spacing": ["error", {"after": true}],
+		"comma-spacing": ["error", {"after": true }],
 		"react/prop-types": "off",
 		"no-unneeded-ternary": "warn",
 		"no-trailing-spaces": ["error", {"ignoreComments": true}],
@@ -39,7 +41,7 @@
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		"react/require-default-props": "off",
-		"react/jsx-tag-spacing": "beforeSelfClosing",
+		"react/jsx-tag-spacing": [2, { "beforeSelfClosing": "always" }],
 		"react/jsx-closing-bracket-location": ["error", "tag-aligned"],
 		"react/jsx-props-no-spreading": [
 			"off"

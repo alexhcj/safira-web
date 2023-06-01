@@ -14,6 +14,7 @@ import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/youtube.svg
 import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/twitter.svg'
 import s from './header.module.scss'
+import { throttle } from '../../../../utils'
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -47,7 +48,6 @@ export const Header = () => {
 	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
 
 	const fixNavbarToTop = () => {
-		console.log('log')
 		if (window.scrollY >= 150) {
 			setSticky(true)
 		} else {
@@ -57,18 +57,17 @@ export const Header = () => {
 
 	// TODO: fix rerender cart quantity on change
 	// TODO: fix rerender wishlist quantity on change
-	// TODO: add throttle
 
 	useEffect(() => {
-		window.addEventListener('scroll', fixNavbarToTop)
+		window.addEventListener('scroll', throttle(fixNavbarToTop, 100))
 
-		return function cleanup() {
-			window.removeEventListener('scroll', fixNavbarToTop)
+		return () => {
+			window.removeEventListener('scroll', throttle(fixNavbarToTop, 100))
 		}
 	}, [])
 
 	return (
-		<div className={`${s.navbar} ${sticky ? `${s.padding}` : ''} `}>
+		<div className={`${s.navbar}`}>
 			<span className={s.navbar__border}></span>
 			<div className={s.top}>
 				<div className='container'>
@@ -99,7 +98,7 @@ export const Header = () => {
 					</div>
 				</div>
 			</div>
-			<div className={s.navbar__center}>
+			<div className={`${s.navbar__center} ${sticky ? `${s.padding}` : ''} `}>
 				<div className='container'>
 					<div className={s.center}>
 						<NavLink to='/'>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ButtonGroup } from '../MainSlider/Controls/BtnGroup/ButtonGroup'
+import { ButtonGroup } from '../../shared/components/Slider/Controls/BtnGroup/ButtonGroup'
 import { ProductCard } from '../ProductCard/ProductCard'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'

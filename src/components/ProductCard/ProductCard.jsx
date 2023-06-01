@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
-import { Price } from '../Price/Price'
+import { Price } from '../../shared/components/Price/Price'
 import { Tags } from '../../shared/components/UI/Tags/Tags'
 import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './productcard.module.scss'
 
 // sizes: xs | large
-export const ProductCard = ({ size, imgSize, product }) => {
+export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
-	const { slug, tags, img, name, category, price } = product
+	const { slug, tags, name, category, price } = product
+
+	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
 
 	const url = {
 		pathname: `/products/${slug}`,
@@ -38,8 +40,8 @@ export const ProductCard = ({ size, imgSize, product }) => {
 			onMouseLeave={handleMenuToggle}
 			className={cn(s.product, size && s[`product_${size}`])}
 		>
-			<NavLink to={url}>
-				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
+			<NavLink className={s.img} to={url}>
+				<ImageWithFallback src={img} alt={name} imgSize={imgSize} />
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={s.name}>
