@@ -59,15 +59,15 @@ export const Header = () => {
 	// TODO: fix rerender wishlist quantity on change
 
 	useEffect(() => {
-		window.addEventListener('scroll', throttle(fixNavbarToTop, 250))
+		window.addEventListener('scroll', throttle(fixNavbarToTop, 100))
 
 		return () => {
-			window.removeEventListener('scroll', throttle(fixNavbarToTop, 250))
+			window.removeEventListener('scroll', throttle(fixNavbarToTop, 100))
 		}
 	}, [])
 
 	return (
-		<div className={`${s.navbar} ${sticky ? `${s.padding}` : ''} `}>
+		<div className={`${s.navbar}`}>
 			<span className={s.navbar__border}></span>
 			<div className={s.top}>
 				<div className='container'>
@@ -98,7 +98,7 @@ export const Header = () => {
 					</div>
 				</div>
 			</div>
-			<div className={s.navbar__center}>
+			<div className={`${s.navbar__center} ${sticky ? `${s.padding}` : ''} `}>
 				<div className='container'>
 					<div className={s.center}>
 						<NavLink to='/'>
