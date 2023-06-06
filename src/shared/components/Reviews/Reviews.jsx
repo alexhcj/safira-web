@@ -12,7 +12,7 @@ export const Reviews = ({ reviews }) => {
 			{/* TODO: update UI when new review is created */}
 			{/* TODO: immediately render comment for UX, then check with back res ok or not */}
 			{/* TODO: replace userId: fullName to fullName. prop shuld be in comment object */}
-			{reviews.map(({ userId: { fullName }, avatar, text, createdAt, rating }) =>
+			{reviews.map(({ user: { fullName }, avatar, text, createdAt, rating }) =>
 				(
 					<div className={s.review} key={fullName}>
 						{avatar
