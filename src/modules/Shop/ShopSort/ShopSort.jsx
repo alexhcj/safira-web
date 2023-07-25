@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { getSearchParams } from '../../../utils'
-import s from './shop-sort.module.scss'
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
+import cn from 'classnames'
+import s from './shop-sort.module.scss'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
@@ -76,39 +77,39 @@ export const ShopSort = ({ meta }) => {
 	return (
 		<div className={s.block}>
 			<ShopListLayout />
-			<span
-				role="presentation"
-				className={`${s.sort} ${listToggle ? `${s.transform}` : ''} `}
-				onClick={clickHandler}
-				ref={currentSortRef}
-			>
-				{sort.text}
-			</span>
-			<ul
-				className={`${s.list} ${listToggle ? `${s.active}` : ''} `}
-				onMouseOver={highlightSortItem}
-				onFocus={handleFocus}
-				onMouseLeave={resetHightlight}
-			>
-				{sortParams.map((param) => {
-					let { id, text } = param
+			<div className={s.sort_box}>
+				<span
+					role="presentation"
+					className={cn(s.sort, { [s.transform]: listToggle })}
+					onClick={clickHandler}
+					ref={currentSortRef}
+				>
+					{sort.text}
+				</span>
+				<ul
+					className={cn(s.list, { [s.active]: listToggle })}
+					onMouseOver={highlightSortItem}
+					onFocus={handleFocus}
+					onMouseLeave={resetHightlight}
+				>
+					{sortParams.map((param) => {
+						let { id, text } = param
 
-					return (
-						<li
-							role="presentation"
-							className={`${s.item} ${sort.id === id ? `${s.current}` : ''} ${
-								activeSortId === id ? `${s.hightlight}` : ''
-							}`}
-							key={id}
-							id={`${id}`}
-							onClick={(e) => selectSort(e)}
-						>
-							{text}
-						</li>
-					)
-				})}
-			</ul>
-			<span className={s.results}>Showing {(+params.get('offset') + 1)} - {meta.total < +params.get('limit') ? meta.total : meta.page * +params.get('limit')} of {meta.total} results</span>
+						return (
+							<li
+								role="presentation"
+								className={cn(s.item, { [s.current]: sort.id === id, [s.hightlight]: activeSortId === id })}
+								key={id}
+								id={`${id}`}
+								onClick={(e) => selectSort(e)}
+							>
+								{text}
+							</li>
+						)
+					})}
+				</ul>
+			</div>
+			<div>Showing {(+params.get('offset') + 1)} - {meta.total < +params.get('limit') ? meta.total : meta.page * +params.get('limit')} of {meta.total} results</div>
 		</div>
 	)
 }

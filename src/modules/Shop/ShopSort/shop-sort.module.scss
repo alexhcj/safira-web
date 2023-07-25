@@ -10,9 +10,10 @@
 	height: 60px;
 	border: 1px solid $color-border3;
 }
-
-.sort {
+.sort_box {
 	position: relative;
+}
+.sort {
 	display: flex;
 	align-items: center;
 	padding: 12px 30px 12px 18px;
@@ -50,8 +51,8 @@
 
 .list {
 	position: absolute;
-	top: 53px;
-	left: 8px;
+	top: 42px;
+	min-width: 230px;
 	max-height: 0;
 	opacity: 0;
 	visibility: hidden;
