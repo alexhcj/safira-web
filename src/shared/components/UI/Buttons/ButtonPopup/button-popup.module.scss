@@ -2,6 +2,7 @@
 
 .wrapper {
 	position: relative;
+	border-radius: 50%;
 }
 
 .btn {
@@ -28,6 +29,17 @@
 			fill: $color-white;
 		}
 	}
+
+	// sizes
+	&_lg {
+		width: 42px;
+		height: 42px;
+		border: 1px solid $color-border2;
+
+		&:hover {
+			border-color: $color-primary;
+		}
+	}
 }
 
 .popup {
@@ -36,13 +48,13 @@
 	opacity: 0;
 	top: -34px;
 	left: 50%;
-	transform: translateX(-50%) translateY(15px);
+	transform: translateX(-50%) translateY(8px);
 	padding: 6px 10px;
 	white-space: pre;
 	line-height: 14px;
 	font-size: 14px;
 	border-radius: 3px;
-	z-index: 100;
+	z-index: $z-index-1;
 	color: $color-white;
 	background-color: $color-dark2;
 	@include transition-all;
@@ -50,11 +62,11 @@
 	&::after {
 		position: absolute;
 		content: '';
-		bottom: -6px;
+		bottom: -7px;
 		left: 50%;
 		transform: translateX(-50%);
 		border-style: solid;
-		border-width: 6px 5.5px 0 5.5px;
+		border-width: 8px 8px 0 8px;
 		border-color: $color-dark2 transparent transparent transparent;
 	}
 
@@ -65,6 +77,6 @@
 
 .wrapper:hover .popup {
 	opacity: 1;
-	z-index: 20;
-	transform: translateX(-50%) translateY(0);
+	z-index: $z-index90;
+	transform: translateX(-50%) translateY(-2px);
 }
