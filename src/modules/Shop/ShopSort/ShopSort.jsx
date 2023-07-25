@@ -1,16 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { getSearchParams } from '../../../utils'
 import s from './shop-sort.module.scss'
+import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
-	{ id: 2, sort: 'date', tag: 'new', order: 'desc', text: 'Sort by newness' },
-	{ id: 3, sort: 'price', tag: '', order: 'desc', text: 'Sort by price: high to low' },
-	{ id: 4, sort: 'price', tag: '', order: 'asc', text: 'Sort by price: low to high' },
-	{ id: 5, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: A - Z' },
-	{ id: 6, sort: 'name', tag: '', order: 'desc', text: 'Sort by alphabet: Z - A' },
+	{ id: 2, sort: 'createdAt', tag: 'new', order: 'desc', text: 'Sort by newness' },
+	{ id: 3, sort: 'sortPrice', tag: '', order: 'asc', text: 'Sort by price: high to low' },
+	{ id: 4, sort: 'sortPrice', tag: '', order: 'desc', text: 'Sort by price: low to high' },
+	{ id: 5, sort: 'name', tag: '', order: 'desc', text: 'Sort by alphabet: A - Z' },
+	{ id: 6, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: Z - A' },
 ]
 
-export const ShopSort = ({ sortHandler }) => {
+export const ShopSort = ({ meta }) => {
+	const [params, setParams] = useSearchParams()
 	const [sort, setSort] = useState(sortParams[0])
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
@@ -18,14 +22,10 @@ export const ShopSort = ({ sortHandler }) => {
 
 	const selectSort = (e) => {
 		const current = e.target.id - 1
-		const params = {
-			sort: sortParams[current].sort,
-			order: sortParams[current].order,
-			tag: sortParams[current].tag
-		}
+		const query = getSearchParams(params)
 
 		setSort(sortParams[current])
-		sortHandler(params)
+		setParams({ ...query, offset: '0', sort: sortParams[current].sort, order: sortParams[current].order })
 	}
 
 	useEffect(() => {
@@ -75,6 +75,7 @@ export const ShopSort = ({ sortHandler }) => {
 
 	return (
 		<div className={s.block}>
+			<ShopListLayout />
 			<span
 				role="presentation"
 				className={`${s.sort} ${listToggle ? `${s.transform}` : ''} `}
@@ -99,7 +100,7 @@ export const ShopSort = ({ sortHandler }) => {
 								activeSortId === id ? `${s.hightlight}` : ''
 							}`}
 							key={id}
-							id={id}
+							id={`${id}`}
 							onClick={(e) => selectSort(e)}
 						>
 							{text}
@@ -107,7 +108,7 @@ export const ShopSort = ({ sortHandler }) => {
 					)
 				})}
 			</ul>
-			<span className={s.results}>Showing 1–9 of 21 results</span>
+			<span className={s.results}>Showing {(+params.get('offset') + 1)} - {meta.total < +params.get('limit') ? meta.total : meta.page * +params.get('limit')} of {meta.total} results</span>
 		</div>
 	)
 }

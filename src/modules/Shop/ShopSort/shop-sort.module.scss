@@ -6,13 +6,15 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 30px;
-	padding: 10px 8px;
+	padding: 8px 10px;
 	height: 60px;
 	border: 1px solid $color-border3;
 }
 
 .sort {
 	position: relative;
+	display: flex;
+	align-items: center;
 	padding: 12px 30px 12px 18px;
 	height: 40px;
 	border-radius: 5px;
