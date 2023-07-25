@@ -21,6 +21,10 @@
 		color: $color-dark;
 		opacity: 0.6;
 	}
+
+	&.active {
+		border-color: $color-primary;
+	}
 }
 
 .btn {
@@ -47,11 +51,17 @@
 	box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
 	z-index: $z-index100;
 	@include transition-all;
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		max-height: 300px;
+	}
 }
 
 .btn_close {
 	position: absolute;
-	top: 10px;
+	top: 8px;
 	right: 8px;
 	opacity: 0;
 	cursor: pointer;
@@ -72,13 +82,13 @@
 		}
 	}
 }
-
-.active {
-	visibility: visible;
-	opacity: 1;
-	z-index: 200;
-	max-height: 600px;
-}
+//
+//.active {
+//	visibility: visible;
+//	opacity: 1;
+//	z-index: 200;
+//	max-height: 600px;
+//}
 
 .item {
 	padding: 0 20px 0 30px;
