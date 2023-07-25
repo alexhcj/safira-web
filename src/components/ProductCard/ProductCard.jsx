@@ -7,12 +7,12 @@ import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './productcard.module.scss'
 
-// sizes: xs | large
+// sizes: xs | large | row
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
-	const { slug, tags, name, category, price } = product
+	const { slug, tags, name, category, price, description } = product
 
 	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
 
@@ -36,12 +36,12 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 
 	return (
 		<div
-			onMouseEnter={handleMenuToggle}
-			onMouseLeave={handleMenuToggle}
+			onMouseEnter={size !== 'row' && handleMenuToggle}
+			onMouseLeave={size !== 'row' && handleMenuToggle}
 			className={cn(s.product, size && s[`product_${size}`])}
 		>
-			<NavLink className={s.img} to={url}>
-				<ImageWithFallback src={img} alt={name} imgSize={imgSize} />
+			<NavLink className={s.img_link} to={url}>
+				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={s.name}>
@@ -50,9 +50,10 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 				<h4 className={s.category}>
 					<NavLink to='/shop'>{category}</NavLink>
 				</h4>
-				<Price {...price} className={cn(s.prices, priceToggle && s.hide, size === 'xs' && s.flex_start)} />
+				<Price {...price} className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)} />
+				{size === 'row' && <p className={s.description}>{description}</p>}
 			</div>
-			{tags.length !== 0 && size === 'large' && <Tags tags={tags} />}
+			{(size === 'large' || size === 'row') && !!tags && <Tags tags={tags} size='md' />}
 			<Hovermenu menuToggle={menuToggle} size={size} />
 		</div>
 	)
