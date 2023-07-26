@@ -1,0 +1,20 @@
+@import '../../../../styles/vars';
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 30px;
+	height: 42px;
+	border-radius: 50px;
+	color: $color-white;
+	background-color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}
+.focus {
+	background-color: $color-primary;
+}

@@ -1,0 +1,47 @@
+@import '../../../shared/styles/vars';
+
+.list {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+.item {
+	position: relative;
+	display: flex;
+	cursor: pointer;
+
+	&:nth-child(2) {
+		margin-top: -2px;
+	}
+
+	&:hover .image {
+		opacity: 1;
+	}
+
+	&:hover .tooltip {
+		opacity: 1;
+	}
+}
+.image {
+	opacity: .20;
+	transition: $transition-opacity;
+
+	&.active {
+		opacity: 1;
+	}
+}
+.tooltip {
+	position: absolute;
+	right: -25px;
+	bottom: -32px;
+	text-align: center;
+	padding: 0 5px;
+	min-width: 23px;
+	height: 25px;
+	font-size: 12px;
+	background-color: $color-white;
+	border: 1px solid $color-border5;
+	opacity: 0;
+	z-index: $z-index90;
+	transition: $transition-tooltip;
+}

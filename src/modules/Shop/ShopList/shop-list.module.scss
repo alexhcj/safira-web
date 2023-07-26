@@ -1,10 +1,16 @@
-.items {
-	display: flex;
-	flex-wrap: wrap;
+.grid {
+	display: grid;
 	gap: 24px;
+	grid-template-columns: repeat(3, 1fr);
 	margin-bottom: 34px;
 }
-.col {
-	max-width: 268px;
-	width: 100%;
+.grid-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+.grid-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+.grid-list {
+	grid-template-columns: 1fr;
+	gap: 30px;
 }

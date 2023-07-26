@@ -2,9 +2,10 @@ import React from 'react'
 import cn from 'classnames'
 import s from './text.module.scss'
 
+// weights: 'medium' | 'semi' | 'bold'
 export const Text = ({
 	color,
-	weight = 'medium' | 'semi' | 'bold',
+	weight,
 	span,
 	className,
 	children,
