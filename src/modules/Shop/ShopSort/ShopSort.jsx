@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import cn from 'classnames'
 import { getSearchParams } from '../../../utils'
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
-import cn from 'classnames'
 import s from './shop-sort.module.scss'
 
 const sortParams = [
@@ -14,7 +14,7 @@ const sortParams = [
 	{ id: 6, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: Z - A' },
 ]
 
-export const ShopSort = ({ meta }) => {
+export const ShopSort = ({ meta: { total = 0, page } }) => {
 	const [params, setParams] = useSearchParams()
 	const [sort, setSort] = useState(sortParams[0])
 	const [activeSortId, setActiveSortId] = useState(sort.id)
@@ -109,7 +109,7 @@ export const ShopSort = ({ meta }) => {
 					})}
 				</ul>
 			</div>
-			<div>Showing {(+params.get('offset') + 1)} - {meta.total < +params.get('limit') ? meta.total : meta.page * +params.get('limit')} of {meta.total} results</div>
+			<div>Showing {(+params.get('offset') + 1)} - {total < +params.get('limit') ? total : page * +params.get('limit')} of {total} results</div>
 		</div>
 	)
 }
