@@ -1,0 +1,11 @@
+@import '../../../../styles/vars';
+
+.title {
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+	line-height: 20px;
+	font-size: 15px;
+	font-weight: $weight-medium;
+	border-bottom: 1px solid $color-border2;
+}
