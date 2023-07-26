@@ -11,6 +11,7 @@ $color-border: #EBEBEB;
 $color-border2: #EDEDED;
 $color-border3: #DDDDDD;
 $color-border4: #E8E8E8;
+$color-border5: #3D3E40;
 $color-border-sort: #999999;
 $color-border-focus: darken($color-border3, 25%);
 $separator: #EDEDED;
@@ -42,3 +43,7 @@ $PlayfairDisplay:'Playfair Display', serif;
 $z-index100: 100;
 $z-index90: 90;
 $z-index-1: -1;
+
+// transitions
+$transition-opacity: opacity .18s ease-in;
+$transition-tooltip: opacity .18s ease-in-out;
