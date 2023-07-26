@@ -61,9 +61,12 @@ export const calculateTotalPrice = (arr) => {
 	}, 0)
 }
 
-// TODO: refactor func using with product slug
 export const stringToSlug = (str) => {
 	return str.split(' ').join('-').toLowerCase()
+}
+
+export const slugToString = (str) => {
+	return str.split('-').join(' ')
 }
 
 export const throttle = (fn, ms) => {
@@ -77,4 +80,14 @@ export const throttle = (fn, ms) => {
 			}, ms)
 		}
 	}
+}
+
+export 	const getSearchParams = (params) => {
+	let query = {}
+
+	for (const [key, value] of params.entries()) {
+		value ? query[key] = value : ''
+	}
+
+	return query
 }
