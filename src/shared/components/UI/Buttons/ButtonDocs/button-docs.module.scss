@@ -1,0 +1,43 @@
+@import '../../../../../shared/styles/vars';
+
+.btn {
+	position: fixed;
+	left: 12px;
+	bottom: 85px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	border: 2px solid $color-white;
+	cursor: pointer;
+	background-color: $color-primary;
+	@include transition-all;
+
+	&:hover svg {
+		animation-name: bounceTop;
+		animation-duration:1.4s;
+		animation-iteration-count:infinite;
+		animation-timing-function:linear;
+	}
+}
+
+@keyframes bounceTop {
+	0% {
+		opacity: 1;
+		transform: translateY(0px) scale(1);
+	}
+	25% {
+		opacity: 0;
+		transform: translateY(-10px) scale(0.9);
+	}
+	26% {
+		opacity: 0;
+		transform: translateY(10px) scale(0.9);
+	}
+	55% {
+		opacity: 1;
+		transform: translateY(0px) scale(1);
+	}
+}

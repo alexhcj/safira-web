@@ -1,0 +1,32 @@
+@import '../../../../../shared/styles/vars';
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	text-decoration: none;
+	padding: 0 20px;
+	height: 34px;
+	text-transform: uppercase;
+	letter-spacing: normal;
+	line-height: 34px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 3px;
+	color: $color-white;
+	background-color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+
+	&.disabled {
+		background-color: $color-error;
+	}
+
+	&_text {
+		font-size: inherit;
+		font-weight: inherit;
+	}
+}

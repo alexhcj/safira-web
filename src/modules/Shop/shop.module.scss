@@ -1,0 +1,12 @@
+.wrapper {
+	display: flex;
+	gap: 25px;
+	margin: 0 -15px;
+}
+.main {
+	width: 75%;
+}
+.sidebar {
+	position: relative;
+	width: 25%;
+}

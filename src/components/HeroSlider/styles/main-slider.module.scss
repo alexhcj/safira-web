@@ -1,0 +1,93 @@
+@import '../../../shared/styles/vars';
+
+.item {
+	height: 550px;
+	background-color: $color-section-bg;
+
+	&:active {
+		cursor: grab;
+	}
+}
+
+.img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.inner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	max-width: 480px;
+	height: 100%;
+}
+
+.title {
+	margin-bottom: 8px;
+	text-transform: capitalize;
+	line-height: 48px;
+	font-size: 48px;
+	font-weight: 600;
+}
+
+.subTitle {
+	margin-bottom: 18px;
+	text-transform: capitalize;
+	line-height: 36px;
+	font-size: 36px;
+	font-weight: 300;
+}
+
+.btn_text {
+	text-transform: uppercase;
+	line-height: 44px;
+	font-size: 15px;
+}
+
+.text {
+	text-align: left;
+	margin-bottom: 40px;
+	max-width: 420px;
+	line-height: 22px;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.loading {
+	text-align: center;
+	display: block;
+	width: 100%;
+	height: 550px;
+	min-height: 550px;
+	line-height: 550px;
+	font-size: 28px;
+	font-weight: 500;
+}
+
+.dot {
+	display: inline-block;
+	margin: 0 3px;
+	width: 14px;
+	height: 14px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: $color-section-bg;
+	box-shadow: 0 0 0 2px $color-white inset;
+	@include transition-all;
+
+	&:hover {
+		box-shadow: 0 0 0 2px $color-primary inset;
+		background-color: $color-primary;
+	}
+}

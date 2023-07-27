@@ -1,0 +1,82 @@
+@import '../../../../../shared/styles/vars';
+
+.wrapper {
+	position: relative;
+	border-radius: 50%;
+}
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 33px;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	background-color: $color-white;
+	@include transition-all;
+
+	svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	&:hover {
+		background-color: $color-primary;
+		z-index: $z-index90;
+
+		svg path {
+			fill: $color-white;
+		}
+	}
+
+	// sizes
+	&_lg {
+		width: 42px;
+		height: 42px;
+		border: 1px solid $color-border2;
+
+		&:hover {
+			border-color: $color-primary;
+		}
+	}
+}
+
+.popup {
+	position: absolute;
+	display: block;
+	opacity: 0;
+	top: -34px;
+	left: 50%;
+	transform: translateX(-50%) translateY(8px);
+	padding: 6px 10px;
+	white-space: pre;
+	line-height: 14px;
+	font-size: 14px;
+	border-radius: 3px;
+	z-index: $z-index-1;
+	color: $color-white;
+	background-color: $color-dark2;
+	@include transition-all;
+
+	&::after {
+		position: absolute;
+		content: '';
+		bottom: -7px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-style: solid;
+		border-width: 8px 8px 0 8px;
+		border-color: $color-dark2 transparent transparent transparent;
+	}
+
+	&:hover {
+		display: none;
+	}
+}
+
+.wrapper:hover .popup {
+	opacity: 1;
+	z-index: $z-index90;
+	transform: translateX(-50%) translateY(-2px);
+}

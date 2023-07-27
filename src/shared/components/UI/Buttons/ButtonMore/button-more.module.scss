@@ -1,0 +1,30 @@
+@import '../../../../../shared/styles/vars';
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 15px;
+	border-radius: 10px;
+	color: $color-dark;
+	@include transition-all;
+
+	svg {
+		@include transition-all;
+		margin-left: 10px;
+	}
+
+	&:hover {
+		color: $color-primary;
+
+		svg {
+			transform: translateX(4px) rotate(-90deg);
+
+			path {
+				fill: $color-dark2;
+			}
+		}
+	}
+}

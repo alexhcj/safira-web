@@ -1,0 +1,58 @@
+@import '../../shared/styles/vars';
+
+.section {
+	position: relative;
+	height: 317px;
+	background-color: $color-section-bg;
+}
+
+.img {
+	position: absolute;
+	height: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	object-fit: none;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	opacity: .999;
+}
+
+.title {
+	margin-bottom: 9px;
+	text-transform: uppercase;
+	line-height: 24px;
+	font-size: 20px;
+	font-weight: $weight-normal;
+	color: $color-primary;
+}
+
+.promo__info {
+	text-transform: uppercase;
+	line-height: 50px;
+	font-size: 46px;
+	font-weight: 500;
+	color: $color-dark;
+}
+
+.description {
+	margin-bottom: 45px;
+	text-transform: uppercase;
+	line-height: 30px;
+	font-size: 28px;
+}
+
+.btn {
+	padding: 0 30px;
+	text-transform: uppercase;
+}
+
+.text {
+	line-height: 44px;
+	font-size: 15px;
+}

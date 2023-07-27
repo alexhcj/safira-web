@@ -1,0 +1,40 @@
+@import '../../../../../shared/styles/vars';
+
+.btn {
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.text {
+	position: absolute;
+	display: block;
+	opacity: 0;
+	padding: 6px 10px;
+	white-space: pre;
+	line-height: 14px;
+	font-size: 14px;
+	border-radius: 3px;
+	z-index: -10;
+	color: $color-white;
+	background-color: $color-dark2;
+	@include transition-all;
+
+	&::after {
+		position: absolute;
+		content: '';
+		left: -6px;
+		top: 50%;
+		transform: translateY(-50%);
+		border-style: solid;
+		border-width: 6px 7px 5.5px 0;
+		border-color: transparent $color-dark2 transparent transparent;
+	}
+
+	&.active {
+		opacity: 1;
+		z-index: 20;
+		transform: translateX(-50%) translateY(0);
+	}
+}

@@ -1,0 +1,108 @@
+@import '../../../shared/styles/table';
+
+.footer {
+	display: flex;
+	gap: 24px;
+}
+.coupons,
+.totals {
+	flex: 1 1 50%;
+}
+
+.content {
+	padding: 18px 20px 25px;
+	border: 1px solid $color-border2;
+}
+
+.title {
+	text-transform: uppercase;
+	padding: 5px 0 5px 15px;
+	line-height: 36px;
+	font-size: 16px;
+	font-weight: $weight-medium;
+	color: $color-white;
+	background-color: $color-dark;
+}
+
+.text {
+	font-weight: $weight-medium;
+}
+
+.input {
+	padding: 14px 20px;
+	height: 42px;
+	border: 1px solid $color-border2;
+
+	&::placeholder {
+		letter-spacing: normal;
+		line-height: normal;
+		font-size: 14px;
+		font-family: "Work Sans", sans-serif;
+	}
+}
+
+.coupon,
+.gift_card {
+	display: flex;
+	gap: 25px;
+}
+
+.button_coupon {
+	padding: 9px 15px;
+	height: 38px;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+
+	&_text {
+		text-transform: uppercase;
+		line-height: 20px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
+}
+
+.button_gift {
+	padding: 9px 15px;
+	height: 38px;
+
+	&_text {
+		text-transform: uppercase;
+		line-height: 20px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
+}
+
+.totals {
+	.content {
+		text-align: right;
+	}
+
+	&_box {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&_text {
+		font-weight: $weight-semi;
+	}
+
+	&_price {
+		font-size: 18px;
+		font-weight: $weight-medium;
+	}
+}
+
+.button_proceed {
+	padding: 3px 14px;
+	height: auto;
+}
+
+.proceed_text {
+	line-height: 30px;
+	font-size: 15px;
+	font-weight: $weight-medium;
+}

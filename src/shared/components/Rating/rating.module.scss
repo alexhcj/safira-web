@@ -1,0 +1,37 @@
+.rating {
+	display: inline-flex;
+	align-items: center;
+	height: 24px;
+	gap: 5px;
+
+	&.new {
+		height: 16px;
+
+		.item svg {
+			width: 13px;
+			height: 13px;
+		}
+	}
+}
+.box {
+	position: relative;
+	cursor: pointer;
+
+	&.cursor {
+		.item {
+			cursor: default;
+		}
+	}
+}
+.item {
+	&:first-child {
+		position: absolute;
+		overflow: hidden;
+		width: 0;
+	}
+
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+}

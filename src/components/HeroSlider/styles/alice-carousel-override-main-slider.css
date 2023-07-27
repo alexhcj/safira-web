@@ -1,0 +1,15 @@
+.alice-carousel__dots {
+	position: absolute;
+	left: 50%;
+	bottom: 5px;
+	margin: 0;
+}
+
+.alice-carousel__dots-item span {
+	background-color: transparent;
+}
+
+.alice-carousel__dots-item.__active span {
+	background-color: #40A944;
+	box-shadow: none;
+}

@@ -1,0 +1,54 @@
+@import '../../shared/styles/vars';
+
+.table {
+	width: 100%;
+	border: 1px solid $color-border2;
+
+	.thead {
+		border-bottom: 3px solid $color-primary;
+
+		& tr th {
+			padding: 10px;
+			line-height: 24px;
+			font-size: 16px;
+			font-weight: $weight-medium;
+		}
+	}
+
+	.delete,
+	.image,
+	.name,
+	.price,
+	.quantity,
+	.stock,
+	.total,
+	.add {
+		text-transform: capitalize;
+	}
+
+	.delete {
+		width: 100px;
+	}
+
+	.image {
+		width: 170px;
+	}
+
+	.name {
+		width: 230px;
+	}
+
+	.price {
+		width: 150px;
+	}
+
+	.quantity,
+	.stock {
+		width: 218px;
+	}
+
+	.total,
+	.add {
+		width: 150px;
+	}
+}

@@ -1,0 +1,65 @@
+@import '../../../../shared/styles/vars';
+
+.box {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.label {
+	position: relative;
+
+	&.required {
+		&::after {
+			margin-left: 4px;
+			content: "*";
+			color: $color-primary;
+		}
+	}
+
+	&.active {
+		&::before {
+			border-color: $color-primary;
+		}
+
+		&::after {
+			background-color: $color-primary;
+		}
+	}
+
+	&:hover {
+		&::before {
+			border-color: $color-primary;
+		}
+	}
+}
+
+.textarea {
+	padding: 13px 20px;
+	resize: none;
+	border: 1px solid $color-border3;
+	@include transition-all;
+
+	&::placeholder {
+		letter-spacing: normal;
+		line-height: normal;
+		font-size: 14px;
+		font-family: "Work Sans", sans-serif;
+	}
+
+	&:focus {
+		border-color: $color-primary;
+	}
+
+	&:hover {
+		border-color: $color-border-focus;
+	}
+
+	&:focus {
+		border-color: $color-border-focus;
+
+		&::placeholder {
+			opacity: 0;
+		}
+	}
+}

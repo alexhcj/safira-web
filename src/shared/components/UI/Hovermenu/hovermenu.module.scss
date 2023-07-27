@@ -1,0 +1,42 @@
+@import '../../../styles/vars';
+
+.menu {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	position: absolute;
+	left: 136px;
+	bottom: 20px;
+	padding: 4px 8px;
+	border-radius: 30px;
+	background-color: $color-white;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	cursor: default;
+	z-index: -10;
+	opacity: 0;
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+		z-index: $z-index90;
+	}
+
+	&_large {
+		bottom: 120px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	&_row {
+		bottom: 0;
+		left: 287px;
+		gap: 10px;
+		box-shadow: none;
+		opacity: 1;
+		z-index: $z-index90;
+	}
+}
+.button_cart_text {
+	text-transform: capitalize;
+	line-height: 40px;
+}

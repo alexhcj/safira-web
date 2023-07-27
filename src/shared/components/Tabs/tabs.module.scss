@@ -1,0 +1,18 @@
+@import '../../../shared/styles/vars';
+
+.tabs {
+	display: flex;
+	gap: 35px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid $color-border2;
+}
+.tab {
+	line-height: 26px;
+	font-size: 20px;
+	font-weight: $weight-medium;
+	color: $color-dark3;
+
+	&:hover {
+		color: $color-dark2;
+	}
+}

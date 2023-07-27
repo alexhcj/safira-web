@@ -1,0 +1,22 @@
+@import '../../../shared/styles/vars';
+
+.table {
+	width: 100%;
+	border-top: 1px solid $color-border2;
+	font-size: 14px;
+}
+.spec {
+	padding: 7px 17px;
+	width: 30%;
+	line-height: 24px;
+	font-weight: 700;
+	border-right: 1px solid $color-border3;
+
+	&_value {
+		padding: 7px 17px;
+		line-height: 24px;
+	}
+}
+.table tr {
+	border-bottom: 1px solid $color-border3;
+}

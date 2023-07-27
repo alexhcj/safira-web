@@ -1,0 +1,171 @@
+@import '../../../shared/styles/table';
+
+.item {
+	td {
+		text-align: center;
+		vertical-align: middle;
+		padding: 10px;
+		border-right: 1px solid $color-border2;
+		border-bottom: 1px solid $color-border2;
+
+		.delete {
+			&_button {
+				cursor: pointer;
+
+				&:hover .delete_text {
+					color: $color-error;
+				}
+			}
+
+			&_text {
+				font-size: 20px;
+			}
+		}
+
+		&.image {
+			padding: 20px;
+			.link {
+				@include transition-all;
+			}
+
+			&:hover {
+				& .link {
+					opacity: 0.8;
+				}
+			}
+		}
+
+		.link {
+			&:hover {
+				color: $color-primary;
+			}
+		}
+
+		&.price {
+			font-size: 16px;
+			font-weight: $weight-medium;
+		}
+
+		&.stock {
+			text-transform: capitalize;
+
+			&.less {
+				text-transform: none;
+				color: $color-warning;
+			}
+
+			&.low {
+				text-transform: none;
+				color: $color-error;
+			}
+		}
+
+		&.add {
+			.quantity {
+				position: relative;
+				display: inline-flex;
+
+				&::before {
+					position: absolute;
+					content: '';
+					top: 11px;
+					left: -12px;
+					width: 10px;
+					height: 1px;
+					background-color: $color-dark3;
+					opacity: 0;
+				}
+
+				&::after {
+					position: absolute;
+					content: '';
+					top: 15px;
+					left: -9px;
+					width: 10px;
+					height: 1px;
+					background-color: $color-dark3;
+					opacity: 0;
+				}
+
+				span {
+					position: absolute;
+					content: "";
+					top: -10px;
+					right: -16px;
+					width: 18px;
+					height: 18px;
+					line-height: 18px;
+					font-size: 11px;
+					border-radius: 50%;
+					color: $color-white;
+					background-color: $color-primary;
+					@include transition-all;
+					transition: opacity .05s ease;
+				}
+
+				&:hover {
+					.svg {
+						animation-name: cart;
+						animation-timing-function: ease;
+						animation-direction: alternate;
+						animation-duration: .7s;
+						animation-iteration-count: infinite;
+						animation-fill-mode: both;
+
+					}
+					&::before {
+						animation-name: trace;
+						animation-timing-function: ease;
+						animation-direction: alternate;
+						animation-duration: .7s;
+						animation-iteration-count: infinite;
+						animation-fill-mode: both;
+						animation-delay: .1s;
+					}
+
+					&::after {
+						animation-name: trace;
+						animation-timing-function: ease;
+						animation-direction: alternate;
+						animation-duration: .7s;
+						animation-iteration-count: infinite;
+						animation-fill-mode: both;
+						animation-delay: .1s;
+					}
+				}
+			}
+
+			.add_button {
+				padding: 10px 20px;
+				height: 34px;
+				border-radius: 3px;
+			}
+
+			.add_text {
+				text-transform: uppercase;
+				line-height: 18px;
+				font-size: 12px;
+				font-weight: $weight-medium;
+			}
+		}
+	}
+}
+
+@keyframes cart {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-5px);
+	}
+}
+
+@keyframes trace {
+	from {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateX(-5px);
+	}
+}

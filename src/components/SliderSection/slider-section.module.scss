@@ -1,0 +1,38 @@
+@import '../../shared/styles/vars';
+
+/* slider settings start */
+.slider {
+	position: relative;
+
+	&__container {
+		margin: 0 -10px;
+	}
+}
+
+.slide {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+/* slider settings end */
+
+.section {
+	margin-bottom: 35px; /* product item mb30px */
+}
+.block {
+ text-align: center;
+}
+.above_heading {
+	margin-bottom: 2px;
+	line-height: 24px;
+	font-size: 15px;
+	font-family: 'Playfair Display', serif;
+	font-style: italic;
+	color: $color-dark;
+}
+.heading {
+	margin-bottom: 30px;
+	line-height: 35px;
+	font-size: 32px;
+	font-weight: 500;
+	color: $color-dark;
+}
