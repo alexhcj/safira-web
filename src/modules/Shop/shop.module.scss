@@ -1,15 +1,12 @@
 .wrapper {
-    display: flex;
+	display: flex;
+	gap: 25px;
+	margin: 0 -15px;
 }
-
 .main {
-    margin-right: 15px;
-    max-width: 852px;
-    width: 100%;
+	width: 75%;
 }
-
 .sidebar {
-    position: relative;
-    max-width: 263px;
-    width: 100%;
+	position: relative;
+	width: 25%;
 }

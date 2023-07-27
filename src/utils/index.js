@@ -5,7 +5,7 @@ export const convertArray = (arr, quantity) => {
 	}, [])
 }
 
-export const sizeTypes = [
+export const imgSizeTypes = [
 	{ id: 1, type: 'xs', size: '120x120' },
 	{ id: 2, type: 'sm', size: '225x225' },
 	{ id: 3, type: 'md', size: '270x270' },
@@ -16,11 +16,12 @@ export const sizeTypes = [
 	{ id: 8, type: 'special-offer', size: '366x484' },
 	{ id: 9, type: 'blog-post', size: '870x550' },
 	{ id: 10, type: 'sale', size: '1920x440' },
+	{ id: 11, type: 'shop', size: '255x430' },
 ]
 
 // concat url, size & ext into img url with certain size
 export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg') => {
-	const currentSize = sizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
+	const currentSize = imgSizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
 
 	return `${url}/${currentSize}.${ext}`
 }
