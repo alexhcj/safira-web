@@ -36,7 +36,7 @@ export const DealsWeek = () => {
 	}
 
 	return (
-		<>
+		<div>
 			<h2 className={s.heading}>Deals Of The Week</h2>
 			<div key={id} className={s.wrapper}>
 				<Tags tags={tags} />
@@ -64,6 +64,6 @@ export const DealsWeek = () => {
 					</Button>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

@@ -6,8 +6,8 @@ import { useBannerOffer } from '../../../../hooks/useBannerOffer'
 import { Preloader } from '../../../../shared/components/common/Preloader/Preloader'
 import s from './banner-offer.module.scss'
 
-export const BannerOffer = ({ className, imgSize }) => {
-	const { offer: { type, description }, loading } = useBannerOffer('shop')
+export const BannerOffer = ({ imgSize, className }) => {
+	const { offer: { type, description }, loading } = useBannerOffer(imgSize)
 
 	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/offers/${!loading && type.toLowerCase()}`
 

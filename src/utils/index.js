@@ -13,7 +13,7 @@ export const imgSizeTypes = [
 	{ id: 5, type: 'lg', size: '326x326' },
 	{ id: 6, type: 'xl', size: '600x600' },
 	{ id: 7, type: 'offer-link', size: '590x140' },
-	{ id: 8, type: 'special-offer', size: '366x484' },
+	{ id: 8, type: 'special', size: '366x484' },
 	{ id: 9, type: 'blog-post', size: '870x550' },
 	{ id: 10, type: 'sale', size: '1920x440' },
 	{ id: 11, type: 'shop', size: '255x430' },
