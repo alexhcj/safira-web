@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { getSearchParams } from '../../../utils'
 import s from './pagination.module.scss'
 import cn from 'classnames'
 
@@ -30,7 +29,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectStart = () => {
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: '0' })
 		setmaxPageNumberLimit(3)
@@ -38,7 +37,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectFinish = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: String(totalPages()[totalPages().length - 2] * +params.get('limit') ) })
 		setmaxPageNumberLimit(totalPages().length)
@@ -46,7 +45,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectPrev = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: String(+params.get('offset') - +params.get('limit') ) })
 
@@ -57,7 +56,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectNext = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: String(+params.get('offset') + +params.get('limit') ) })
 
@@ -74,7 +73,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		const page = e.target.id
 		const limit = params.get('limit')
 
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: String((page * +limit) - +limit ) })
 	}

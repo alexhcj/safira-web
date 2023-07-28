@@ -82,13 +82,3 @@ export const throttle = (fn, ms) => {
 		}
 	}
 }
-
-export 	const getSearchParams = (params) => {
-	let query = {}
-
-	for (const [key, value] of params.entries()) {
-		value ? query[key] = value : ''
-	}
-
-	return query
-}

@@ -1,7 +1,6 @@
 import {  useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { productsAPI } from '../api/products'
-import { getSearchParams } from '../utils'
 
 export const useProducts = () => {
 	const [params, setParams] = useSearchParams()
@@ -24,7 +23,7 @@ export const useProducts = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const query = getSearchParams(params)
+				const query = Object.fromEntries([...params])
 
 				const res = await productsAPI.getAll(query) // {products, meta}
 

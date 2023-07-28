@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { getSearchParams } from '../../../utils'
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
 import s from './shop-sort.module.scss'
 
@@ -23,7 +22,7 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 
 	const selectSort = (e) => {
 		const current = e.target.id - 1
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 
 		setSort(sortParams[current])
 		setParams({ ...query, offset: '0', sort: sortParams[current].sort, order: sortParams[current].order })

@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom'
 import { ButtonFilter } from '../../../../shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
 import './react-slider.css'
 import s from './price-range.module.scss'
-import { getSearchParams } from '../../../../utils'
 
 const min = 0
 const max = 500
@@ -15,7 +14,7 @@ export const PriceRange = ({ meta }) => {
 	console.log(meta)
 
 	const filterPriceHandler = () => {
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 		setParams({ ...query, minPrice: `${price[0]}`, maxPrice: `${price[1]}` })
 	}
 

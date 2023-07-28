@@ -6,7 +6,7 @@ import { useSearchError } from '../../../../hooks/useSearchError'
 import { ErrorPopup } from '../../../../shared/components/UI/ErrorPopup/ErrorPopup'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
-import { getSearchParams, stringToSlug } from '../../../../utils'
+import { stringToSlug } from '../../../../utils'
 import { ReactComponent as Close } from '../../../../assets/images/close.svg'
 import s from './search.module.scss'
 
@@ -77,7 +77,7 @@ export const Search = () => {
 			break
 		case 'Enter':
 			setPopoverToggle(false)
-			setParams({ ...getSearchParams(params), slug: stringToSlug(search) })
+			setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
 			setIsProductSelected(true)
 			break
 		default:
@@ -136,7 +136,7 @@ export const Search = () => {
 		// 	return null
 		// }
 
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 		setParams({ ...query, slug: stringToSlug(search) })
 
 		// if (validationError) {
