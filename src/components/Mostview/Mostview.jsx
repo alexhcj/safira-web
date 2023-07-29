@@ -19,7 +19,6 @@ export const Mostview = () => {
 			} catch (e) {
 				console.log(e)
 			}
-
 		}
 
 		fetchData()

@@ -10,7 +10,9 @@ export const Input = ({ type = 'text', name, value, label, id, placeholder, requ
 
 	return (
 		<div className={cn(s.box, className)}>
-			<label className={cn(s.label, required && s.required)} htmlFor={id}>{label}</label>
+			<label className={cn(s.label, required && s.required)} htmlFor={id}>
+				{label}
+			</label>
 			<input
 				className={s.input}
 				type={type}

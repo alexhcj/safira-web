@@ -4,39 +4,39 @@ import { ReactComponent as ArrowSVG } from '../../../../assets/svg/arrow.svg'
 import { generateID } from '../../../../utils/IdGenerator'
 import s from './categories.module.scss'
 
-const categories =  [
+const categories = [
 	{
 		id: generateID(),
-		category: 'vegetables'
+		category: 'vegetables',
 	},
 	{
 		id: generateID(),
-		category: 'fruits'
+		category: 'fruits',
 	},
 	{
 		id: generateID(),
-		category: 'salads'
+		category: 'salads',
 	},
 	{
 		id: generateID(),
-		category: 'fish & seafood'
+		category: 'fish & seafood',
 	},
 	{
 		id: generateID(),
-		category: 'fresh meat'
+		category: 'fresh meat',
 	},
 	{
 		id: generateID(),
-		category: 'milk products'
+		category: 'milk products',
 	},
 	{
 		id: generateID(),
-		category: 'bread'
+		category: 'bread',
 	},
 	{
 		id: generateID(),
-		category: 'frozen food'
-	}
+		category: 'frozen food',
+	},
 ]
 
 export const Categories = () => {
@@ -70,7 +70,7 @@ export const Categories = () => {
 	}
 
 	return (
-		<div role="presentation" className={s.categories} onClick={(e) => toggleHandler(e)} ref={ref}>
+		<div role='presentation' className={s.categories} onClick={(e) => toggleHandler(e)} ref={ref}>
 			<div className={s.burger}>
 				<span></span>
 				<span></span>

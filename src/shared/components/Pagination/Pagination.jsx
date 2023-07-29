@@ -50,8 +50,8 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		setParams({ ...query, offset: `${+query.offset - +query.limit}` })
 
 		if (page === minPageNumberLimit + 1) {
-			setmaxPageNumberLimit(prev => prev - 3)
-			setminPageNumberLimit(prev => prev - 3)
+			setmaxPageNumberLimit((prev) => prev - 3)
+			setminPageNumberLimit((prev) => prev - 3)
 		}
 	}
 
@@ -61,8 +61,8 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 
 		if (page === maxPageNumberLimit) {
-			setmaxPageNumberLimit(prev => prev + 3)
-			setminPageNumberLimit(prev => prev + 3)
+			setmaxPageNumberLimit((prev) => prev + 3)
+			setminPageNumberLimit((prev) => prev + 3)
 		}
 	}
 
@@ -73,7 +73,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		const page = e.target.id
 		const query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: `${(page * +query.limit) - +query.limit}` })
+		setParams({ ...query, offset: `${page * +query.limit - +query.limit}` })
 	}
 
 	return (
@@ -88,19 +88,17 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 					prev
 				</button>
 			)}
-			<div role="presentation" className={s.list} onClick={(e) => selectPage(e)}>
+			<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
 				{calcCurrentPages().map((num) => (
 					<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
 						{num}
 					</button>
 				))}
 			</div>
-			<button
-				className={s.btn}
-				onClick={selectNext}
-				disabled={isLastPage}
-			>next</button>
-			{!isLastPage  && (
+			<button className={s.btn} onClick={selectNext} disabled={isLastPage}>
+				next
+			</button>
+			{!isLastPage && (
 				<button className={s.btn} onClick={selectFinish}>
 					&gt;&gt;
 				</button>

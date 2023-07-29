@@ -21,14 +21,14 @@ onmessage = function (e) {
 			let divider = !cur.div ? Math.ceil(secondsLeft / cur.sec) : Math.ceil((secondsLeft / cur.sec) % cur.div)
 			if (divider <= 9) divider = `0${divider}`
 			result.push({ count, divider })
-			return acc -= cur.sec // decrease seconds diff on each iteration
+			return (acc -= cur.sec) // decrease seconds diff on each iteration
 		}, secondsLeft)
 
 		return result
 	}
 
 	// starts & clear timeout
-	(function() {
+	;(function () {
 		clearTimeout(timeout)
 		timeout = setTimeout(() => postMessage(renderCounts(seconds)), 1000)
 	})()

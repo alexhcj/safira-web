@@ -78,7 +78,7 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 			<ShopListLayout />
 			<div className={s.sort_box}>
 				<span
-					role="presentation"
+					role='presentation'
 					className={cn(s.sort, { [s.transform]: listToggle })}
 					onClick={clickHandler}
 					ref={currentSortRef}
@@ -96,7 +96,7 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 
 						return (
 							<li
-								role="presentation"
+								role='presentation'
 								className={cn(s.item, { [s.current]: sort.id === id, [s.hightlight]: activeSortId === id })}
 								key={id}
 								id={`${id}`}
@@ -108,7 +108,10 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 					})}
 				</ul>
 			</div>
-			<div>Showing {(+params.get('offset') + 1)} - {total < +params.get('limit') ? total : page * +params.get('limit')} of {total} results</div>
+			<div>
+				Showing {+params.get('offset') + 1} - {total < +params.get('limit') ? total : page * +params.get('limit')} of{' '}
+				{total} results
+			</div>
 		</div>
 	)
 }

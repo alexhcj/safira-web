@@ -16,19 +16,19 @@ export const Cart = () => {
 	const handleProductQuantity = (e, name) => {
 		const { value } = e.target
 
-		const product = cart.find(p => p.name === name)
+		const product = cart.find((p) => p.name === name)
 		product.quantity = value
 
 		setCart([...cart])
 	}
 
 	const deleteProduct = (name) => {
-		const filteredCart = cart.filter(p => p.name !== name)
+		const filteredCart = cart.filter((p) => p.name !== name)
 		setCart([...filteredCart])
 	}
 
 	return (
-		<div className="container">
+		<div className='container'>
 			<table className={s.table}>
 				<thead className={s.thead}>
 					<tr>
@@ -41,25 +41,18 @@ export const Cart = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{cart.map(item => {
+					{cart.map((item) => {
 						const product = {
 							img: item.img,
 							name: item.name,
 							price: item.price,
-							quantity: item.quantity
+							quantity: item.quantity,
 						}
-						return (
-							<CartItem
-								key={item.name}
-								{...product}
-								onInput={handleProductQuantity}
-								onDelete={deleteProduct}
-							/>
-						)
+						return <CartItem key={item.name} {...product} onInput={handleProductQuantity} onDelete={deleteProduct} />
 					})}
 				</tbody>
 			</table>
-			<Space size="l" />
+			<Space size='l' />
 			<div className={s.footer}>
 				<div className={s.coupons}>
 					<h3 className={s.title}>Coupon & gift card</h3>
@@ -68,16 +61,20 @@ export const Cart = () => {
 						<Space space={20} />
 						<form>
 							<div className={s.coupon}>
-								<input className={s.input} type="text" placeholder="Coupon code" />
-								<Button type="submit" className={s.button_coupon}>
-									<Text color="white" className={s.button_coupon_text}>Apply coupon</Text>
+								<input className={s.input} type='text' placeholder='Coupon code' />
+								<Button type='submit' className={s.button_coupon}>
+									<Text color='white' className={s.button_coupon_text}>
+										Apply coupon
+									</Text>
 								</Button>
 							</div>
 							<Space space={20} />
 							<div className={s.gift_card}>
-								<input className={s.input} type="text" placeholder="Gift card number" />
-								<Button type="submit" className={s.button_gift}>
-									<Text color="white" className={s.button_gift_text}>Apply gift card</Text>
+								<input className={s.input} type='text' placeholder='Gift card number' />
+								<Button type='submit' className={s.button_gift}>
+									<Text color='white' className={s.button_gift_text}>
+										Apply gift card
+									</Text>
 								</Button>
 							</div>
 						</form>
@@ -91,15 +88,17 @@ export const Cart = () => {
 							<span className={s.totals_price}>${calculateTotalPrice(cart).toFixed(2)}</span>
 						</div>
 						<Space space={20} />
-						<Link to="/checkout">
-							<Button type="submit" className={s.button_proceed}>
-								<Text color="white" className={s.proceed_text}>Proceed to Checkout</Text>
+						<Link to='/checkout'>
+							<Button type='submit' className={s.button_proceed}>
+								<Text color='white' className={s.proceed_text}>
+									Proceed to Checkout
+								</Text>
 							</Button>
 						</Link>
 					</div>
 				</div>
 			</div>
-			<Space size="l" />
+			<Space size='l' />
 			<Border />
 		</div>
 	)

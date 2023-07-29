@@ -11,8 +11,8 @@ const promo = [
 		title: 'Black Friday !',
 		promoInfo: 'Sale 50% OFF',
 		description: 'all vegetable products',
-		img: PromoImg
-	}
+		img: PromoImg,
+	},
 ]
 
 // TODO: refactor to Banners
@@ -25,7 +25,6 @@ export const Promo = () => {
 		navigate('/shop', { replace: true })
 	}
 
-
 	return (
 		<div className={s.section}>
 			<img className={s.img} src={img} alt={`${promoInfo} ${description}`} />
@@ -35,7 +34,9 @@ export const Promo = () => {
 					<h2 className={s.promo__info}>{promoInfo}</h2>
 					<p className={s.description}>{description}</p>
 					<Button className={s.btn} onClick={handleClick}>
-						<Text className={s.text} span color="white">Discover now</Text>
+						<Text className={s.text} span color='white'>
+							Discover now
+						</Text>
 					</Button>
 				</div>
 			</div>

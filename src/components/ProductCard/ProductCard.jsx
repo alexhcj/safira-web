@@ -50,7 +50,10 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 				<h4 className={s.category}>
 					<NavLink to='/shop'>{category}</NavLink>
 				</h4>
-				<Price {...price} className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)} />
+				<Price
+					{...price}
+					className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)}
+				/>
 				{size === 'row' && <p className={s.description}>{description}</p>}
 			</div>
 			{(size === 'large' || size === 'row') && !!tags && <Tags tags={tags} size='md' />}

@@ -10,29 +10,29 @@ export const Wishlist = () => {
 	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
 
 	const addProduct = (name) => {
-		const product = wishlist.find(p => p.name === name)
+		const product = wishlist.find((p) => p.name === name)
 		product.quantity = 1
 		setCart([...cart, product])
 	}
 
 	const isProductInCart = (name) => {
-		return cart.find(p => {
+		return cart.find((p) => {
 			if (p.name === name) return true
 		})
 	}
 
 	const productQuantity = (name) => {
-		const product = cart.find(p => p.name === name)
+		const product = cart.find((p) => p.name === name)
 		return product ? product.quantity : null
 	}
 
 	const deleteProduct = (name) => {
-		const filteredWishlist = wishlist.filter(p => p.name !== name)
+		const filteredWishlist = wishlist.filter((p) => p.name !== name)
 		setWishlist([...filteredWishlist])
 	}
 
 	return (
-		<div className="container">
+		<div className='container'>
 			<table className={s.table}>
 				<thead className={s.thead}>
 					<tr>
@@ -45,12 +45,12 @@ export const Wishlist = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{wishlist.map(item => {
+					{wishlist.map((item) => {
 						const product = {
 							img: item.img,
 							name: item.name,
 							price: item.price,
-							maxQuantity: item.maxQuantity
+							maxQuantity: item.maxQuantity,
 						}
 						return (
 							<WishlistItem
@@ -65,7 +65,7 @@ export const Wishlist = () => {
 					})}
 				</tbody>
 			</table>
-			<Space size="l" />
+			<Space size='l' />
 			<Border />
 		</div>
 	)

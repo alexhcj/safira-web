@@ -17,8 +17,7 @@ export const Footer = () => {
 							<img className={s.img} src={logo} alt='' />
 						</NavLink>
 						<div>
-							We are a team of designers and developers that create high quality eCommerce with MERN stack
-							technology .
+							We are a team of designers and developers that create high quality eCommerce with MERN stack technology.
 						</div>
 						<div className={s.address}>
 							Address:
@@ -61,7 +60,9 @@ export const Footer = () => {
 							<div className={s.input}>
 								<input type='text' placeholder='Enter your email' />
 								<Button type='subscribe'>
-									<Text span color="white">Subscribe</Text>
+									<Text span color='white'>
+										Subscribe
+									</Text>
 								</Button>
 							</div>
 						</form>

@@ -17,7 +17,9 @@ export const Breadcrumbs = () => {
 					<Space space={9} />
 					<div className={s.breadcrumbs}>
 						<div className={s.route}>
-							<NavLink to='/' className={cn(s.current, s.link)}>Home</NavLink>
+							<NavLink to='/' className={cn(s.current, s.link)}>
+								Home
+							</NavLink>
 							<Text span>/</Text>
 						</div>
 						<div className={s.route}>

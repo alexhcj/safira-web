@@ -12,7 +12,9 @@ export const ButtonPopover = ({ isHovered, text, className, onClick, onMouseEnte
 			onMouseLeave={onMouseLeave}
 		>
 			{children}
-			<Text span className={s.text}>{text}</Text>
+			<Text span className={s.text}>
+				{text}
+			</Text>
 		</button>
 	)
 }

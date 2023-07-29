@@ -5,6 +5,7 @@ import { Preloader } from './shared/components/common/Preloader/Preloader'
 import App from './App'
 import './index.scss'
 
+// eslint-disable-next-line react/no-deprecated
 ReactDOM.render(
 	<StrictMode>
 		<Suspense fallback={<Preloader />}>
@@ -13,11 +14,5 @@ ReactDOM.render(
 			</BrowserRouter>
 		</Suspense>
 	</StrictMode>,
-	document.getElementById('root')
+	document.getElementById('root'),
 )
-
-// import reportWebVitals from './reportWebVitals';
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();

@@ -39,7 +39,7 @@ export const NewRating = ({ precision = 0.5, totalStars = 5, onClick }) => {
 	return (
 		<div
 			className={cn(s.rating, s.new)}
-			role="presentation"
+			role='presentation'
 			onClick={handleClick}
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
@@ -54,15 +54,11 @@ export const NewRating = ({ precision = 0.5, totalStars = 5, onClick }) => {
 				const isActiveRating = activeState !== 1
 				const isRatingWithPrecision = activeState % 1 !== 0
 				const isRatingEqualToIndex = Math.ceil(activeState) === index + 1
-				const showRatingWithPrecision =
-					isActiveRating && isRatingWithPrecision && isRatingEqualToIndex
+				const showRatingWithPrecision = isActiveRating && isRatingWithPrecision && isRatingEqualToIndex
 
 				return (
 					<div className={s.box} key={index}>
-						<div
-							className={s.item}
-							style={{ width: showRatingWithPrecision ? `${(activeState % 1) * 100}%` : '0%' }}
-						>
+						<div className={s.item} style={{ width: showRatingWithPrecision ? `${(activeState % 1) * 100}%` : '0%' }}>
 							<StarFilled />
 						</div>
 						<div className={s.item} style={{ color: showEmptyIcon ? 'gray' : 'inherit' }}>
