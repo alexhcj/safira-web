@@ -14,7 +14,7 @@ export const useProducts = () => {
 		const defaultParams = {
 			limit: '6',
 			offset: '0',
-			sort: 'createdAt',
+			sort: 'popularity',
 			order: 'desc'
 		}
 		setParams(defaultParams)
