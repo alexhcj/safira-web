@@ -39,7 +39,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	const selectFinish = () => {
 		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(totalPages()[totalPages().length - 2] * +params.get('limit') ) })
+		setParams({ ...query, offset: `${totalPages()[totalPages().length - 2] * +query.limit}` })
 		setmaxPageNumberLimit(totalPages().length)
 		setminPageNumberLimit(totalPages()[totalPages().length - 4])
 	}
@@ -47,7 +47,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	const selectPrev = () => {
 		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(+params.get('offset') - +params.get('limit') ) })
+		setParams({ ...query, offset: `${+query.offset - +query.limit}` })
 
 		if (page === minPageNumberLimit + 1) {
 			setmaxPageNumberLimit(prev => prev - 3)
@@ -58,7 +58,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	const selectNext = () => {
 		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(+params.get('offset') + +params.get('limit') ) })
+		setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 
 		if (page === maxPageNumberLimit) {
 			setmaxPageNumberLimit(prev => prev + 3)
@@ -71,11 +71,9 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		if (e.target.nodeName !== 'BUTTON') return
 
 		const page = e.target.id
-		const limit = params.get('limit')
+		const query = Object.fromEntries([...params])
 
-		let query = Object.fromEntries([...params])
-
-		setParams({ ...query, offset: String((page * +limit) - +limit ) })
+		setParams({ ...query, offset: `${(page * +query.limit) - +query.limit}` })
 	}
 
 	return (

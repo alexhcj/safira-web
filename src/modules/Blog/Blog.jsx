@@ -11,7 +11,6 @@ import { usePosts } from '../../hooks/services/usePosts'
 export const Blog = () => {
 	const [params, setParams] = useSearchParams()
 	const { posts, meta, loading } = usePosts()
-	const offsetGap = 2
 	const infiniteTrigger = useRef(null)
 	let lastScroll = 0 // throttle trigger
 
@@ -35,7 +34,7 @@ export const Blog = () => {
 		if (currentOffset > infiniteTriggerOffset && !loading && !meta.isLastPage) {
 			const query = Object.fromEntries([...params])
 
-			setParams({ ...query, offset: `${+query.offset + offsetGap}` })
+			setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 		}
 	}
 

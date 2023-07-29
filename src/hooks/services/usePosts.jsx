@@ -12,6 +12,7 @@ export const usePosts = () => {
 	useEffect(() => {
 		const defaultParams = {
 			offset: '0',
+			order: 'desc',
 			sort: 'createdAt',
 			limit: '2',
 		}
