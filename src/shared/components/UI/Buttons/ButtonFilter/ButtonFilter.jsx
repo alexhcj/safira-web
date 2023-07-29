@@ -1,12 +1,11 @@
 import React from 'react'
 import { Preloader } from '../../../common/Preloader/Preloader'
-import cn from 'classnames'
 import s from './button-filter.module.scss'
 
 export const ButtonFilter = ({ text = 'Filter', isLoading, disabled, onClick }) => {
 	return (
 		<button
-			className={cn(s.btn, disabled && s.disabled)}
+			className={s.btn}
 			onClick={onClick}
 			disabled={disabled || isLoading}
 		>

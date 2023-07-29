@@ -19,7 +19,8 @@
 		background-color: $color-primary;
 	}
 
-	&.disabled {
-		background-color: $color-error;
+	&:disabled {
+		background-color: $color-border;
+		cursor: not-allowed;
 	}
 }

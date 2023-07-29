@@ -1,5 +1,4 @@
 import React from 'react'
-import cn from 'classnames'
 import { Preloader } from '../../../common/Preloader/Preloader'
 import { Text } from '../../Text/Text'
 import s from './button-search.module.scss'
@@ -12,7 +11,7 @@ export const ButtonSearch = ({
 }) => {
 	return (
 		<button
-			className={cn(s.btn, disabled && s.disabled)}
+			className={s.btn}
 			type='button'
 			onClick={onClick}
 			disabled={disabled || isLoading}
