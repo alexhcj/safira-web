@@ -17,17 +17,20 @@ export const CartItem = ({ img, name, price, quantity, maxQuantity, onInput, onD
 				<Trash className={s.delete_svg} onClick={() => onDelete(name)} />
 			</td>
 			<td className={s.image}>
-				{img ? <Link className={s.link} to={`/products/${slug}`}>
-					<ImageWithFallback src={img} imgSize='md' alt={name} />
-				</Link> :
-					<img src={PreloaderSVG} alt="Preloader" />	}
+				{img ? (
+					<Link className={s.link} to={`/products/${slug}`}>
+						<ImageWithFallback src={img} imgSize='md' alt={name} />
+					</Link>
+				) : (
+					<img src={PreloaderSVG} alt='Preloader' />
+				)}
 			</td>
 			<td className={s.name}>
-				<Link className={s.link} to={`/products/${slug}`}>{name}</Link>
+				<Link className={s.link} to={`/products/${slug}`}>
+					{name}
+				</Link>
 			</td>
-			<td className={s.price}>
-				${price}
-			</td>
+			<td className={s.price}>${price}</td>
 			<td className={s.quantity}>
 				<form>
 					<div className={s.box}>
@@ -36,16 +39,15 @@ export const CartItem = ({ img, name, price, quantity, maxQuantity, onInput, onD
 							className={s.input}
 							onInput={(e) => onInput(e, name)}
 							value={quantity}
-							type="number"
-							name="quantity"
-							min={1} max={maxQuantity}
+							type='number'
+							name='quantity'
+							min={1}
+							max={maxQuantity}
 						/>
 					</div>
 				</form>
 			</td>
-			<td className={s.total}>
-				${(price * quantity).toFixed(2)}
-			</td>
+			<td className={s.total}>${(price * quantity).toFixed(2)}</td>
 		</tr>
 	)
 }

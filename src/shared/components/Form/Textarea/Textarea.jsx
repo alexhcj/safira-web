@@ -10,7 +10,9 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, cl
 
 	return (
 		<div className={cn(s.box, className)}>
-			<label className={s.label} htmlFor={id}>{label}</label>
+			<label className={s.label} htmlFor={id}>
+				{label}
+			</label>
 			<textarea
 				className={s.textarea}
 				value={value}

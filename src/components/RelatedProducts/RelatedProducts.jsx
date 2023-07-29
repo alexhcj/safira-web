@@ -10,18 +10,18 @@ export const RelatedProducts = ({ name, category, id }) => {
 		const paramsName = {
 			limit: 10,
 			search: name,
-			name_ne: name
+			name_ne: name,
 		}
 		const paramsCat = {
 			limit: 10,
 			category: category,
-			name_ne: name
+			name_ne: name,
 		}
 
 		const fetchData = async () => {
 			try {
 				const data = await productsAPI.getAll(paramsName)
-				if(data.total < 10) {
+				if (data.total < 10) {
 					const additionData = await productsAPI.getAll(paramsCat)
 					data.data = [...additionData.data, ...data.data]
 				}
@@ -32,7 +32,7 @@ export const RelatedProducts = ({ name, category, id }) => {
 			}
 		}
 		fetchData()
-	},[id, category, name])
+	}, [id, category, name])
 	makeUniqueArray(products)
 	products.splice(10)
 	return (

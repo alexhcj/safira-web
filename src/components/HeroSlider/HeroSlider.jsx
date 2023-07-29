@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
@@ -16,21 +16,21 @@ const data = [
 		title: 'Fresh vegetables',
 		subTitle: 'Natural farm products',
 		text: 'Widest range of farm-fresh Vegetables, Fruits & seasonal produce',
-		img: Slide2
+		img: Slide2,
 	},
 	{
 		id: 2,
 		title: 'Fresh tomatoes',
 		subTitle: 'Natural farm products',
 		text: 'Natural organic tomatoes make your health stronger. Put your information here',
-		img: Slide3
+		img: Slide3,
 	},
 	{
 		id: 3,
 		title: 'Vegetables big promo',
 		subTitle: 'Fresh farm products',
 		text: '10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!',
-		img: Slide1
+		img: Slide1,
 	},
 ]
 
@@ -40,15 +40,15 @@ export const HeroSlider = () => {
 			items: 1,
 		},
 		1024: {
-			items: 1
-		}
+			items: 1,
+		},
 	}
 
 	const handleDragStart = (e) => e.preventDefault()
 
 	// TODO: add eslint rule return arrow func () brackets
 	const slides = data.map(({ id, title, subTitle, text, img }) => (
-		<div className={s.item} key={id} onDragStart={handleDragStart} role="presentation">
+		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
 			<img className={s.img} src={img} alt={title} />
 			<div className={s.inner}>
 				<div className='container'>
@@ -57,7 +57,9 @@ export const HeroSlider = () => {
 						<h2 className={s.subTitle}>{subTitle}</h2>
 						<p className={s.text}>{text}</p>
 						<Button to='/shop'>
-							<Text className={s.btn_text} color="white">Read more</Text>
+							<Text className={s.btn_text} color='white'>
+								Read more
+							</Text>
 						</Button>
 					</div>
 				</div>
@@ -76,7 +78,7 @@ export const HeroSlider = () => {
 			mouseTracking={true}
 			infinite={true}
 			disableButtonsControls={true}
-			animationType="fadeout"
+			animationType='fadeout'
 			animationDuration={800}
 			renderDotsItem={dot}
 		/>

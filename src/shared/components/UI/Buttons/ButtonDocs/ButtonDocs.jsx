@@ -5,6 +5,6 @@ import s from './button-docs.module.scss'
 
 export const ButtonDocs = () => (
 	<Link to='/docs' className={s.btn}>
-		<DocsSVG width={20} height={20} fill="#ffffff" />
+		<DocsSVG width={20} height={20} fill='#ffffff' />
 	</Link>
 )

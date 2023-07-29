@@ -57,7 +57,7 @@ export const OurBlog = () => {
 	return (
 		<div className={s.section}>
 			<div className='container'>
-				<SectionHeader title="Our Blog Posts" subtitle="Our recent articles about Organic" />
+				<SectionHeader title='Our Blog Posts' subtitle='Our recent articles about Organic' />
 				<div className={s.slider} onMouseEnter={handleBtnGroupToggle} onMouseLeave={handleBtnGroupToggle}>
 					<Carousel
 						responsive={responsive}

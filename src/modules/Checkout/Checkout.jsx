@@ -20,7 +20,7 @@ import s from './checkout.module.scss'
 
 const radioData = [
 	{ id: 'delivery', name: 'delivery', label: 'Delivery' },
-	{ id: 'pickup', name: 'delivery', label: 'Pick-up service' }
+	{ id: 'pickup', name: 'delivery', label: 'Pick-up service' },
 ]
 
 export const Checkout = () => {
@@ -83,7 +83,7 @@ export const Checkout = () => {
 	}
 
 	return (
-		<div className="container">
+		<div className='container'>
 			<div className={s.checkout}>
 				<div className={s.col_6}>
 					<h3 className={s.title}>Billing details</h3>
@@ -93,16 +93,16 @@ export const Checkout = () => {
 							<Input
 								className={s.label}
 								value={firstName}
-								label="First name"
-								placeholder="Christopher"
+								label='First name'
+								placeholder='Christopher'
 								handleChange={handleFirstNameChange}
 								required
 							/>
 							<Input
 								className={s.label}
 								value={lastName}
-								label="Last name"
-								placeholder="Nolan"
+								label='Last name'
+								placeholder='Nolan'
 								handleChange={handleLastNameChange}
 								required
 							/>
@@ -124,8 +124,8 @@ export const Checkout = () => {
 						<Input
 							className={s.label}
 							value={address}
-							label="Street address"
-							placeholder="House number and street name"
+							label='Street address'
+							placeholder='House number and street name'
 							handleChange={handleAddressChange}
 							required
 						/>
@@ -133,8 +133,8 @@ export const Checkout = () => {
 						<Input
 							className={s.label}
 							value={city}
-							label="Town / city"
-							placeholder="London"
+							label='Town / city'
+							placeholder='London'
 							handleChange={handleCityChange}
 							required
 						/>
@@ -143,21 +143,21 @@ export const Checkout = () => {
 							<Input
 								className={s.label}
 								value={phone}
-								id="phone"
-								name="phone"
-								label="Phone number"
-								placeholder="89111610339"
+								id='phone'
+								name='phone'
+								label='Phone number'
+								placeholder='89111610339'
 								handleChange={handlePhoneChange}
 								required
 							/>
 							<Input
-								type="email"
+								type='email'
 								className={s.label}
 								value={email}
-								id="email"
-								name="email"
-								label="Email address"
-								placeholder="murphy@gmail.com"
+								id='email'
+								name='email'
+								label='Email address'
+								placeholder='murphy@gmail.com'
 								handleChange={handleEmailChange}
 								required
 							/>
@@ -166,9 +166,10 @@ export const Checkout = () => {
 						<Textarea
 							className={s.label}
 							value={notes}
-							label="Order notes" id="notes"
-							name="notes"
-							placeholder="Notes about your order, e.g. special notes for delivery."
+							label='Order notes'
+							id='notes'
+							name='notes'
+							placeholder='Notes about your order, e.g. special notes for delivery.'
 							handleChange={handleNotesChange}
 						/>
 					</form>
@@ -185,10 +186,12 @@ export const Checkout = () => {
 						</thead>
 						{/* TODO: fix right border */}
 						<tbody>
-							{cart.map(item => {
+							{cart.map((item) => {
 								return (
 									<tr key={item.name}>
-										<td>{item.name} <strong>x {item.quantity}</strong></td>
+										<td>
+											{item.name} <strong>x {item.quantity}</strong>
+										</td>
 										<td>${item.price * item.quantity}</td>
 									</tr>
 								)
@@ -200,9 +203,11 @@ export const Checkout = () => {
 						</tbody>
 					</table>
 					<Space space={25} />
-					<button className={s.account} onClick={() => {
-						return setNewAccount(!newAccount)
-					}}
+					<button
+						className={s.account}
+						onClick={() => {
+							return setNewAccount(!newAccount)
+						}}
 					>
 						<div className={cn(s.checkbox, newAccount && s.active)}>
 							<Check className={s.check} />
@@ -212,19 +217,21 @@ export const Checkout = () => {
 					<Space space={20} />
 					<div className={s.payment}>
 						<div className={s.methods}>
-							<img src={Paypal} alt="Paypal" />
-							<img src={Visa} alt="Visa" />
-							<img src={Maestro} alt="Maestro" />
-							<img src={AmericanExpress} alt="AmericanExpress" />
-							<img src={Mir} alt="Mir" />
+							<img src={Paypal} alt='Paypal' />
+							<img src={Visa} alt='Visa' />
+							<img src={Maestro} alt='Maestro' />
+							<img src={AmericanExpress} alt='AmericanExpress' />
+							<img src={Mir} alt='Mir' />
 						</div>
-						<Button className={s.button} type="submit" onClick={onSubmit}>
-							<Text className={s.button_text} color="white">Proceed to payment</Text>
+						<Button className={s.button} type='submit' onClick={onSubmit}>
+							<Text className={s.button_text} color='white'>
+								Proceed to payment
+							</Text>
 						</Button>
 					</div>
 				</div>
 			</div>
-			<Space size="l" />
+			<Space size='l' />
 			<Border />
 		</div>
 	)

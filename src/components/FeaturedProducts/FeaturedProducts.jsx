@@ -29,14 +29,7 @@ export const FeaturedProducts = () => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
-					return (
-						<ProductCard
-							size="xs"
-							imgSize="xs"
-							key={product.slug}
-							product={product}
-						/>
-					)
+					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
 				})}
 			</div>
 		)
@@ -45,15 +38,15 @@ export const FeaturedProducts = () => {
 	const responsive = {
 		0: {
 			items: 3,
-		}
+		},
 	}
 
 	return (
 		<>
 			<div className='container'>
 				<SectionSlider
-					title="Featured products"
-					subtitle="Recently added our store"
+					title='Featured products'
+					subtitle='Recently added our store'
 					items={items}
 					responsive={responsive}
 				/>

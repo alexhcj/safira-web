@@ -8,7 +8,7 @@ export const RelatedPosts = ({ category }) => {
 	useEffect(() => {
 		const params = {
 			limit: 3,
-			category: category
+			category: category,
 		}
 		const fetchData = async () => {
 			try {
@@ -24,20 +24,14 @@ export const RelatedPosts = ({ category }) => {
 		<section className={s.section}>
 			<p className={s.heading}>Related Posts</p>
 			<ul className={s.container}>
-				{posts.map(post => {
+				{posts.map((post) => {
 					let { id, title, img, date } = post
 					const url = {
 						pathname: `/blog/${id}`,
 					}
 					return (
-						<NavLink className={s.item}
-							to={url}
-							key={id}
-						>
-							<img className={s.img}
-								src={img}
-								alt={title}
-							/>
+						<NavLink className={s.item} to={url} key={id}>
+							<img className={s.img} src={img} alt={title} />
 							<p className={s.title}>{title}</p>
 							<p className={s.date}>{date}</p>
 						</NavLink>

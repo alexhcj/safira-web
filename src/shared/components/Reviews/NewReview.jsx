@@ -47,35 +47,43 @@ export const NewReview = () => {
 			<Space space={8} />
 			<Text className={s.text}>Your email address will not be published. Required fields are marked</Text>
 			<Space space={20} />
-			{user ?
+			{user ? (
 				<>
-					<Text span className={s.rating}>Your rating</Text>
+					<Text span className={s.rating}>
+						Your rating
+					</Text>
 					<Space space={8} />
 					<NewRating onClick={handleRating} />
 					<Space space={20} />
 					<form onSubmit={handleSubmit}>
 						<div className={s.textarea}>
-							<label className={s.label} htmlFor="textarea">Your review</label>
+							<label className={s.label} htmlFor='textarea'>
+								Your review
+							</label>
 							<textarea
 								className={s.input}
-								name="textarea"
-								id="textarea"
+								name='textarea'
+								id='textarea'
 								value={textarea}
 								onChange={(e) => handleControl(e, setTextarea)}
 							></textarea>
 						</div>
 						<Space space={14} />
 						<Space space={20} />
-						<Button type="form" htmlType="submit">
-							<Text className={s.btn_text} span>Submit</Text>
+						<Button type='form' htmlType='submit'>
+							<Text className={s.btn_text} span>
+								Submit
+							</Text>
 						</Button>
 					</form>
-				</> : <div>
+				</>
+			) : (
+				<div>
 					{/* TODO: add pretty action */}
 					<h3>Please login to left comment</h3>
 					<div>Login icon (throw modal)</div>
 				</div>
-			}
+			)}
 		</div>
 	)
 }

@@ -9,13 +9,13 @@ const links = [
 	{
 		id: generateID(),
 		img: Link1,
-		text: 'Fresh vegetables'
+		text: 'Fresh vegetables',
 	},
 	{
 		id: generateID(),
 		img: Link2,
-		text: 'Natural fresh fruits'
-	}
+		text: 'Natural fresh fruits',
+	},
 ]
 
 export const OfferLinks = () => {

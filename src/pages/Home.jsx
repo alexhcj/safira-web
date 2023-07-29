@@ -13,7 +13,7 @@ export const Home = () => {
 	return (
 		<>
 			<HeroSlider />
-			<Space size="l" />
+			<Space size='l' />
 			<OfferLinks />
 			<Space space={65} />
 			<Offers />

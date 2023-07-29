@@ -49,7 +49,7 @@ export const SliderSection = ({ products, heading, above_heading, id }) => {
 							customButtonGroup={<ButtonGroup active={btnShow} />}
 						>
 							{products.map((product) => {
-								if(product.id === id){
+								if (product.id === id) {
 									return null
 								}
 								return <ProductCard size='large' key={product.id} product={product} />

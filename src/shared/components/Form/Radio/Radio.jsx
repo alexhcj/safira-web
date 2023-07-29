@@ -10,8 +10,10 @@ export const Radio = ({ name, label, id, isChecked, handleChange, className }) =
 
 	return (
 		<div className={cn(s.radio, className)}>
-			<label className={cn(s.label, isChecked && s.active)} htmlFor={id}>{label}</label>
-			<input type="radio" id={id} name={name} onChange={onChange} />
+			<label className={cn(s.label, isChecked && s.active)} htmlFor={id}>
+				{label}
+			</label>
+			<input type='radio' id={id} name={name} onChange={onChange} />
 		</div>
 	)
 }

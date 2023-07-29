@@ -20,8 +20,6 @@ export const BlogCategories = ({ categoryHandler }) => {
 		fetchData()
 	}, [])
 
-
-
 	const categoryChangeHandler = (val) => {
 		categoryHandler(val)
 		setActive(val)
@@ -31,11 +29,12 @@ export const BlogCategories = ({ categoryHandler }) => {
 		<div className={s.section}>
 			<p className={s.heading}>Categories</p>
 			<ul>
-				{categories.map(category => {
+				{categories.map((category) => {
 					let itemClassName
-					active === category.category ? itemClassName = s.chosen : itemClassName = s.category
+					active === category.category ? (itemClassName = s.chosen) : (itemClassName = s.category)
 					return (
-						<li id={category.category}
+						<li
+							id={category.category}
 							className={itemClassName}
 							key={category.id}
 							onClick={(e) => {

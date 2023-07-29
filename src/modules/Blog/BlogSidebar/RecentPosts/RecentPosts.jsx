@@ -8,7 +8,7 @@ export const RecentPosts = () => {
 
 	useEffect(() => {
 		const params = {
-			limit: 3
+			limit: 3,
 		}
 		const fetchData = async () => {
 			try {
