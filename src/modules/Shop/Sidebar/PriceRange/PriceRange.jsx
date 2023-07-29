@@ -8,10 +8,10 @@ import s from './price-range.module.scss'
 const min = 0
 const max = 500
 
-export const PriceRange = ({ meta }) => {
+// TODO: add meta minPrice & maxPrice. Place instead min & max vars
+export const PriceRange = () => {
 	const [params, setParams] = useSearchParams()
 	const [price, setPrice] = useState([min, max])
-	console.log(meta)
 
 	const filterPriceHandler = () => {
 		const query = Object.fromEntries([...params])
