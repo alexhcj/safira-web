@@ -3,10 +3,7 @@
 .product {
 	display: flex;
 	position: relative;
-
-	&:not(:last-child) {
-		margin-bottom: 25px;
-	}
+	margin-bottom: 24px;
 
 	.img_link {
 		margin-right: 16px;
@@ -54,10 +51,6 @@
 	// sizes
 	&_large {
 		flex-direction: column;
-
-		&:not(:last-child) {
-			margin-bottom: 30px;
-		}
 
 		& .img_link {
 			margin-bottom: 16px;

@@ -5,7 +5,7 @@ export const convertArray = (arr, quantity) => {
 	}, [])
 }
 
-export const sizeTypes = [
+export const imgSizeTypes = [
 	{ id: 1, type: 'xs', size: '120x120' },
 	{ id: 2, type: 'sm', size: '225x225' },
 	{ id: 3, type: 'md', size: '270x270' },
@@ -13,14 +13,15 @@ export const sizeTypes = [
 	{ id: 5, type: 'lg', size: '326x326' },
 	{ id: 6, type: 'xl', size: '600x600' },
 	{ id: 7, type: 'offer-link', size: '590x140' },
-	{ id: 8, type: 'special-offer', size: '366x484' },
+	{ id: 8, type: 'special', size: '366x484' },
 	{ id: 9, type: 'blog-post', size: '870x550' },
 	{ id: 10, type: 'sale', size: '1920x440' },
+	{ id: 11, type: 'shop', size: '255x430' },
 ]
 
 // concat url, size & ext into img url with certain size
 export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg') => {
-	const currentSize = sizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
+	const currentSize = imgSizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
 
 	return `${url}/${currentSize}.${ext}`
 }
@@ -80,14 +81,4 @@ export const throttle = (fn, ms) => {
 			}, ms)
 		}
 	}
-}
-
-export 	const getSearchParams = (params) => {
-	let query = {}
-
-	for (const [key, value] of params.entries()) {
-		value ? query[key] = value : ''
-	}
-
-	return query
 }

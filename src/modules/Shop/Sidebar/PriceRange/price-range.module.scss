@@ -1,0 +1,37 @@
+@import '../../../../shared/styles/vars';
+
+.box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding-top: 10px;
+}
+.slider {
+	display: flex;
+	align-items: center;
+	margin: 0 auto 16px;
+	width: 92%;
+	height: 15px;
+}
+.thumb {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: $color-white;
+	border: 2px solid $color-primary;
+}
+.bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.thumbs {
+	margin-right: 10px;
+	font-size: 12px;
+}
+.mark {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-color: blue;
+}

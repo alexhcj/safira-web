@@ -1,9 +1,9 @@
 import React from 'react'
 import { BestSellers } from './BestSellers/BestSellers'
 import { NewProducts } from './NewProducts/NewProducts'
-import { SpecialOffer } from './SpecialOffer/SpecialOffer'
 import { DealsWeek } from './DealsWeek/DealsWeek'
 import { Space } from '../../shared/components/UI/Spacing/Space'
+import { BannerOffer } from '../../modules/Shop/Sidebar/BannerOffer/BannerOffer'
 import s from './offers.module.scss'
 
 export const Offers = () => {
@@ -14,7 +14,7 @@ export const Offers = () => {
 				<div className={s.wrapper}>
 					<div className={s.left}>
 						<DealsWeek />
-						<SpecialOffer />
+						<BannerOffer imgSize='special' />
 					</div>
 					<div className={s.right}>
 						<BestSellers />

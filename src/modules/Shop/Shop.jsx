@@ -1,5 +1,6 @@
 import React from 'react'
-import { useProducts } from '../../hooks/useProducts'
+import { GridProvider } from '../../context/GridContext'
+import { useProducts } from '../../hooks/services/useProducts'
 import { ShopList } from './ShopList/ShopList'
 import { ShopSort } from './ShopSort/ShopSort'
 import { Sidebar } from './Sidebar/Sidebar'
@@ -7,19 +8,21 @@ import { Pagination } from '../../shared/components/Pagination/Pagination'
 import s from './shop.module.scss'
 
 export const Shop = () => {
-	const { data, meta, loading } = useProducts()
+	const { products, meta, loading } = useProducts()
 
 	return (
 		<>
 			<div className='container'>
 				<div className={s.wrapper}>
 					<div className={s.main}>
-						<ShopSort meta={meta} />
-						<ShopList products={data} />
+						<GridProvider>
+							<ShopSort meta={meta} />
+							<ShopList products={products} />
+						</GridProvider>
 						<Pagination meta={meta} />
 					</div>
 					<div className={s.sidebar}>
-						<Sidebar isLoading={loading} />
+						<Sidebar isLoading={loading} meta={meta} />
 					</div>
 				</div>
 			</div>

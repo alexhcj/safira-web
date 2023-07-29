@@ -11,6 +11,7 @@ $color-border: #EBEBEB;
 $color-border2: #EDEDED;
 $color-border3: #DDDDDD;
 $color-border4: #E8E8E8;
+$color-border5: #3D3E40;
 $color-border-sort: #999999;
 $color-border-focus: darken($color-border3, 25%);
 $separator: #EDEDED;
@@ -18,6 +19,7 @@ $color-section-bg: #F4F4F4FF;
 $color-pagination-item-background: #F1F1F1;
 $color-sort: #F6F6F6;
 $color-timer-border: #E1E1E1;
+$color-slider-range: #DBDBDB;
 
 // weights
 $weight-normal: 400;
@@ -42,3 +44,7 @@ $PlayfairDisplay:'Playfair Display', serif;
 $z-index100: 100;
 $z-index90: 90;
 $z-index-1: -1;
+
+// transitions
+$transition-opacity: opacity .18s ease-in;
+$transition-tooltip: opacity .18s ease-in-out;
