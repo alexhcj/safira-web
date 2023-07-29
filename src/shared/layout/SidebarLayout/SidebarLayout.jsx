@@ -4,9 +4,9 @@ import s from './sidebar-layout.module.scss'
 export const SidebarLayout = (props) => {
 	return (
 		<div className={s.layout}>
-			<div className={s.main}>
+			<main className={s.main}>
 				{props.main}
-			</div>
+			</main>
 			<aside className={s.aside}>
 				{props.aside}
 			</aside>

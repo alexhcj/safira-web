@@ -1,14 +1,12 @@
 .layout {
 	display: flex;
-	gap: 24px;
+	justify-content: space-between;
+	gap: 25px;
 }
-
 .main {
-	max-width: 852px;
-	width: 100%;
+	width: 75%;
 }
-
 .aside {
-	max-width: 263px;
-	width: 100%;
+	width: 25%;
+	height: auto;
 }
