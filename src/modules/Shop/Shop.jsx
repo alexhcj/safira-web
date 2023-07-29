@@ -1,6 +1,6 @@
 import React from 'react'
 import { GridProvider } from '../../context/GridContext'
-import { useProducts } from '../../hooks/useProducts'
+import { useProducts } from '../../hooks/services/useProducts'
 import { ShopList } from './ShopList/ShopList'
 import { ShopSort } from './ShopSort/ShopSort'
 import { Sidebar } from './Sidebar/Sidebar'

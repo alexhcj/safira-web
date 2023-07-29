@@ -1,6 +1,6 @@
 import {  useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { productsAPI } from '../api/products'
+import { productsAPI } from '../../api/products'
 
 export const useProducts = () => {
 	const [params, setParams] = useSearchParams()

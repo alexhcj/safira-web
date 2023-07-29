@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { useProductsBySlug } from '../../../../hooks/useProductsBySlug'
+import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
 import { useSearchError } from '../../../../hooks/useSearchError'
 import { ErrorPopup } from '../../../../shared/components/UI/ErrorPopup/ErrorPopup'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
@@ -205,7 +205,7 @@ export const Search = () => {
 			// setTimeout
 		}
 	}
-	console.log(searchError)
+	// console.log(searchError)
 	return (
 		<aside>
 			<div className={s.search}>

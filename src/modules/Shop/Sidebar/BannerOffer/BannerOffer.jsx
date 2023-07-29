@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { useBannerOffer } from '../../../../hooks/useBannerOffer'
+import { useBannerOffer } from '../../../../hooks/services/useBannerOffer'
 import { Preloader } from '../../../../shared/components/common/Preloader/Preloader'
 import s from './banner-offer.module.scss'
 

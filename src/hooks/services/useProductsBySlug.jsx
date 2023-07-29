@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { productsAPI } from '../api/products'
-import { stringToSlug } from '../utils'
+import { productsAPI } from '../../api/products'
+import { stringToSlug } from '../../utils'
 
 export const useProductsBySlug = (name, selected = false) => {
 	const [loading, setLoading] = useState(true)
