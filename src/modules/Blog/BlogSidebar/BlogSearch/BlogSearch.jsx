@@ -1,45 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import { postsAPI } from '../../../../api/posts'
+import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { ButtonSearch } from '../../../../shared/components/UI/Buttons/ButtonSearch/ButtonSearch'
+import { ButtonClose } from '../../../../shared/components/UI/Buttons/ButtonClose/ButtonClose'
+import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
 import s from './blog-search.module.scss'
 
-export const BlogSearch = ({ searchHandler }) => {
-	const [input, setInput] = useState('')
+export const BlogSearch = ({ isLoading }) => {
+	const [params, setParams] = useSearchParams()
+	const [search, setSearch] = useState('')
 
-	useEffect(() => {
-		const params = {
-			limit: 5,
-			title: input
+	const onChangeHandler = (e) => {
+		const input = e.target.value
+		setSearch(input)
+	}
+
+	const resetSearch = () => {
+		setSearch('')
+
+		if (params.get('search')) {
+			params.delete('search')
+			setParams(params, {
+				replace: true
+			})
 		}
+	}
 
-		const fetchData = async () => {
-			if (input.length > 2){
-				try {
-					const data = await postsAPI.getAll(params)
-					console.log(data.data)
-				} catch (e) {
-					console.log(e)
-				}
-			}
-		}
-		const timer = setTimeout(() => {
-			fetchData()
-		}, 200)
-		return () => clearTimeout(timer)
-
-	}, [input])
+	// TODO: add error handler (useSearchError)
+	const onClickHandler = () => {
+		params.set('search', search)
+		setParams(params, {
+			replace: true
+		})
+	}
 
 	return (
-		<div>
-			<p className={s.heading}>search</p>
-			<input className={s.search}
-				type="text"
-				placeholder="Search..."
-				onChange={(e) => setInput(e.target.value)}
-				value={input}
-			/>
-			<button className={s.btn}
-				onClick={() => searchHandler(input)}
-			>search</button>
-		</div>
+		<>
+			<FilterTitle text='search' />
+			<div className={s.search}>
+				<input className={s.input}
+					type='text'
+					value={search}
+					onChange={onChangeHandler}
+					maxLength='35'
+					placeholder='Search...'
+				/>
+				{(params.get('search') || search) && <ButtonClose onClick={resetSearch} classNames={s.btn_close} />}
+			</div>
+			<ButtonSearch
+				type="filter"
+				isLoading={isLoading}
+				disabled={isLoading}
+				onClick={onClickHandler}
+			>
+			</ButtonSearch>
+		</>
 	)
 }
