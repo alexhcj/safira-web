@@ -1,11 +1,11 @@
 import React from 'react'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import Slide1 from '../../assets/images/slider/1.jpg'
-import Slide2 from '../../assets/images/slider/2.jpg'
-import Slide3 from '../../assets/images/slider/3.jpg'
+import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
+import { Text } from '../../../shared/components/UI/Text/Text'
+import Slide1 from '../../../assets/images/slider/1.jpg'
+import Slide2 from '../../../assets/images/slider/2.jpg'
+import Slide3 from '../../../assets/images/slider/3.jpg'
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 import s from './styles/main-slider.module.scss'
 import './styles/alice-carousel-override-main-slider.css'
@@ -46,7 +46,6 @@ export const HeroSlider = () => {
 
 	const handleDragStart = (e) => e.preventDefault()
 
-	// TODO: add eslint rule return arrow func () brackets
 	const slides = data.map(({ id, title, subTitle, text, img }) => (
 		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
 			<img className={s.img} src={img} alt={title} />

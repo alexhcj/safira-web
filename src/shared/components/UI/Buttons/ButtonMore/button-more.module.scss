@@ -1,0 +1,40 @@
+@import '../../../../styles/vars';
+
+.btn {
+	position: relative;
+	text-transform: uppercase;
+	padding-right: 25px;
+	line-height: 24px;
+	font-size: 14px;
+	color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+
+	&::before {
+		position: absolute;
+		content: '';
+		top: 50%;
+		right: 0;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background-color: $color-primary;
+		transform: translateY(-50%);
+	}
+
+	&::after {
+		position: absolute;
+		content: '';
+		top: 50%;
+		right: 5px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 3.5px 0 3.5px 5px;
+		border-color: transparent transparent transparent $color-white;
+		transform: translateY(-50%);
+	}
+}
