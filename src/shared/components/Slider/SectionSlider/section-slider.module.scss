@@ -14,14 +14,10 @@
 }
 
 .arrow {
-	position: absolute;
-	top: 50%;
-	right: 0;
 	display: inline-flex;
 	padding: 0;
 	width: 22px;
 	height: 26px;
-	transform: translateY(-50%) translateX(100%);
 	opacity: 0;
 	@include transition-all;
 
@@ -29,9 +25,3 @@
 		opacity: 1;
 	}
 }
-
-.arrow_prev {
-	left: 0;
-	transform: scale(-1) translateX(200%);
-}
-

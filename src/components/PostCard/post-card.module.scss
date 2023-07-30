@@ -1,0 +1,56 @@
+@import '../../shared/styles/vars';
+
+.post {
+	display: flex;
+	flex-direction: column;
+}
+
+.img_link {
+	max-width: 362px;
+	@include transition-all;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+.img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 23px 20px 20px;
+	background-color: $color-white;
+}
+
+.meta {
+	margin-bottom: 9px;
+}
+
+.title {
+	margin-bottom: 17px;
+	text-transform: capitalize;
+	line-height: 18px;
+	font-size: 17px;
+	font-weight: $weight-medium;
+	color: $color-dark;
+	@include transition-all;
+
+	& > :hover {
+		color: $color-primary;
+	}
+}
+
+.category {
+	color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+}

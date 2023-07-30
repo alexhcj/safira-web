@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { productsAPI } from '../../api/products'
-import { SectionSlider } from '../../shared/components/Slider/SectionSlider/SectionSlider'
-import { ProductCard } from '../ProductCard/ProductCard'
-import { convertArray } from '../../utils'
+import { productsAPI } from '../../../api/products'
+import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'
+import { ProductCard } from '../../ProductCard/ProductCard'
+import { convertArray } from '../../../utils'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -54,5 +54,3 @@ export const FeaturedProducts = () => {
 		</>
 	)
 }
-
-// TODO: fix Playfair Display font. not like template's font!!!

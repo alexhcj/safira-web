@@ -8,7 +8,7 @@ import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './productcard.module.scss'
 
 // sizes: xs | large | row
-export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
+export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
@@ -38,7 +38,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product }) => {
 		<div
 			onMouseEnter={size !== 'row' && handleMenuToggle}
 			onMouseLeave={size !== 'row' && handleMenuToggle}
-			className={cn(s.product, size && s[`product_${size}`])}
+			className={cn(s.product, size && s[`product_${size}`], className)}
 		>
 			<NavLink className={s.img_link} to={url}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
