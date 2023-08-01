@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { postsAPI } from '../../../../api/posts'
 import s from './recent-posts.module.scss'
+import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
+import { convertISODate } from '../../../../utils'
 
 export const RecentPosts = () => {
 	const [posts, setPosts] = useState([])
 
 	useEffect(() => {
 		const params = {
-			limit: 3,
+			offset: '0',
+			limit: '3',
 		}
+
 		const fetchData = async () => {
 			try {
-				const data = await postsAPI.getAll(params)
-				setPosts(data)
+				const { posts } = await postsAPI.getAll(params)
+				setPosts(posts)
 			} catch (e) {
 				console.log(e)
 			}
@@ -22,28 +27,20 @@ export const RecentPosts = () => {
 	}, [])
 
 	return (
-		<div className={s.section}>
-			<p className={s.heading}>Recent Posts</p>
+		<div>
+			<FilterTitle text='Recent Posts' />
 			<ul className={s.posts}>
-				{posts.map((post) => {
-					let { id, title, date, img, text } = post
-					text = text.slice(0, 80) + '...'
-					const url = {
-						pathname: `/blog/${id}`,
-					}
+				{posts.map(({ title, slug, createdAt }) => {
 					return (
-						<NavLink className={s.wrapper} key={id} to={url}>
-							<div className={s.hover_container}>
-								<img className={s.img_hidden} src={img} alt={title} />
-								<p className={s.title_hidden}>{title}</p>
-								<p className={s.text_hidden}>{text}</p>
-							</div>
-							<img className={s.img} src={img} alt={title} />
-							<div className={s.block}>
+						<div className={s.post} key={slug}>
+							<NavLink className={s.img}>
+								<ImageWithFallback src={slug} alt={title} imgSize='xxs' />
+							</NavLink>
+							<div className={s.info}>
 								<p className={s.title}>{title}</p>
-								<p className={s.date}>{date}</p>
+								<p className={s.date}>{convertISODate(createdAt)}</p>
 							</div>
-						</NavLink>
+						</div>
 					)
 				})}
 			</ul>
