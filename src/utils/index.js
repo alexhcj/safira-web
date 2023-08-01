@@ -6,6 +6,7 @@ export const convertArray = (arr, quantity) => {
 }
 
 export const imgSizeTypes = [
+	{ id: 1, type: 'xxs', size: '75x53' },
 	{ id: 1, type: 'xs', size: '120x120' },
 	{ id: 2, type: 'sm', size: '225x225' },
 	{ id: 3, type: 'md', size: '270x270' },
@@ -48,9 +49,10 @@ export const makeUniqueArray = (products) => {
 export const convertISODate = (date, type) => {
 	const convertedDate = new Date(date)
 	const year = convertedDate.getFullYear()
-	const month = type === 'post'
-		? convertedDate.toLocaleString('default', { month: '2-digit' })
-		: convertedDate.toLocaleString('default', { month: 'long' })
+	const month =
+		type === 'post'
+			? convertedDate.toLocaleString('default', { month: '2-digit' })
+			: convertedDate.toLocaleString('default', { month: 'long' })
 	const day = convertedDate.getDate()
 	return type === 'post' ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`
 }
@@ -58,7 +60,7 @@ export const convertISODate = (date, type) => {
 export const calculateTotalPrice = (arr) => {
 	return arr.reduce((total, item) => {
 		/* eslint-disable no-param-reassign */
-		return total += item.price * item.quantity
+		return (total += item.price * item.quantity)
 	}, 0)
 }
 
