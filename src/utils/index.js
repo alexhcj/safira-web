@@ -46,15 +46,17 @@ export const makeUniqueArray = (products) => {
 	return products
 }
 
-export const convertISODate = (date, type) => {
+// TODO: add full-time type (posts comments). Add - "at 1:38 am"
+// types: 'digit' | 'full' | 'full-time'
+export const convertISODate = (date, type = 'digit', locale = 'en') => {
 	const convertedDate = new Date(date)
 	const year = convertedDate.getFullYear()
 	const month =
-		type === 'post'
-			? convertedDate.toLocaleString('default', { month: '2-digit' })
-			: convertedDate.toLocaleString('default', { month: 'long' })
+		type === 'digit'
+			? convertedDate.toLocaleString(locale || 'default', { month: '2-digit' })
+			: convertedDate.toLocaleString(locale || 'default', { month: 'long' })
 	const day = convertedDate.getDate()
-	return type === 'post' ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`
+	return type === 'digit' ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`
 }
 
 export const calculateTotalPrice = (arr) => {

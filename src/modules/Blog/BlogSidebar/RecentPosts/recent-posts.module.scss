@@ -22,19 +22,24 @@
 }
 
 .img {
-	width: 60px;
+	flex: 0 0 60px;
 	height: 42px;
 }
 
 .title {
+	text-transform: capitalize;
 	line-height: 14px;
 	font-size: 13px;
 	font-weight: 500;
 	color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
 }
 
 .date {
-	margin-top: 5px;
 	line-height: 24px;
 	font-size: 12px;
 	color: $color-dark;
