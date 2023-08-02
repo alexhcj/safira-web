@@ -6,18 +6,19 @@ export const convertArray = (arr, quantity) => {
 }
 
 export const imgSizeTypes = [
-	{ id: 1, type: 'xxs', size: '75x53' },
-	{ id: 1, type: 'xs', size: '120x120' },
-	{ id: 2, type: 'sm', size: '225x225' },
-	{ id: 3, type: 'md', size: '270x270' },
-	{ id: 4, type: 'md-lg', size: '326x280' },
-	{ id: 5, type: 'lg', size: '326x326' },
-	{ id: 6, type: 'xl', size: '600x600' },
-	{ id: 7, type: 'offer-link', size: '590x140' },
-	{ id: 8, type: 'special', size: '366x484' },
-	{ id: 9, type: 'blog-post', size: '870x550' },
-	{ id: 10, type: 'sale', size: '1920x440' },
-	{ id: 11, type: 'shop', size: '255x430' },
+	{ id: 1, type: 'xxxs', size: '50x50' },
+	{ id: 2, type: 'xxs', size: '75x53' },
+	{ id: 3, type: 'xs', size: '120x120' },
+	{ id: 4, type: 'sm', size: '225x225' },
+	{ id: 5, type: 'md', size: '270x270' },
+	{ id: 6, type: 'md-lg', size: '326x280' },
+	{ id: 7, type: 'lg', size: '326x326' },
+	{ id: 8, type: 'xl', size: '600x600' },
+	{ id: 9, type: 'offer-link', size: '590x140' },
+	{ id: 10, type: 'special', size: '366x484' },
+	{ id: 11, type: 'blog-post', size: '870x550' },
+	{ id: 12, type: 'sale', size: '1920x440' },
+	{ id: 13, type: 'shop', size: '255x430' },
 ]
 
 // concat url, size & ext into img url with certain size

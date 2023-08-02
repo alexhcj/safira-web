@@ -38,7 +38,7 @@ export const RecentPosts = () => {
 					const cropTitle = title.length > 28 ? title.slice(0, 25) + '...' : title
 
 					return (
-						<div className={s.post} key={slug}>
+						<div className={s.post} key={`${slug}-recent`}>
 							<NavLink className={s.img} to={url}>
 								<ImageWithFallback src={img} alt={title} imgSize='xxs' />
 							</NavLink>

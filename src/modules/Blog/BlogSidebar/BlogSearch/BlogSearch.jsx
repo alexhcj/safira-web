@@ -20,7 +20,7 @@ export const BlogSearch = ({ isLoading }) => {
 		if (params.get('search')) {
 			params.delete('search')
 			setParams(params, {
-				replace: true
+				replace: true,
 			})
 		}
 	}
@@ -29,15 +29,16 @@ export const BlogSearch = ({ isLoading }) => {
 	const onClickHandler = () => {
 		params.set('search', search)
 		setParams(params, {
-			replace: true
+			replace: true,
 		})
 	}
 
 	return (
-		<>
+		<div>
 			<FilterTitle text='search' />
 			<div className={s.search}>
-				<input className={s.input}
+				<input
+					className={s.input}
 					type='text'
 					value={search}
 					onChange={onChangeHandler}
@@ -46,13 +47,7 @@ export const BlogSearch = ({ isLoading }) => {
 				/>
 				{(params.get('search') || search) && <ButtonClose onClick={resetSearch} classNames={s.btn_close} />}
 			</div>
-			<ButtonSearch
-				type="filter"
-				isLoading={isLoading}
-				disabled={isLoading}
-				onClick={onClickHandler}
-			>
-			</ButtonSearch>
-		</>
+			<ButtonSearch type='filter' isLoading={isLoading} disabled={isLoading} onClick={onClickHandler}></ButtonSearch>
+		</div>
 	)
 }

@@ -27,7 +27,7 @@ export const PostCard = ({ post: { title, slug, createdAt, category }, imgSize, 
 			</NavLink>
 			<div className={s.info}>
 				<div className={s.meta}>
-					<span>{convertISODate(createdAt, 'post')}</span> |{' '}
+					<span>{convertISODate(createdAt)}</span> |{' '}
 					<NavLink className={s.category} to='/shop'>
 						{category}
 					</NavLink>

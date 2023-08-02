@@ -1,48 +1,45 @@
 @import '../../../../shared/styles/vars';
 
-.section {
-	margin-top: 28px;
-}
-
-.heading {
-	text-transform: uppercase;
-	line-height: 20px;
-	font-size: 15px;
-	font-weight: 500;
-	color: red;
-}
-
 .comments {
-	margin-top: 20px;
+	display: grid;
+	gap: 15px;
 }
 
 .comment {
 	display: flex;
-	align-items: center;
-	margin-top: 15px;
-	width: 100%;
+	gap: 14px;
 }
 
-.comment:focus {
-	outline: 0;
-}
-
-.img {
-	width: 50px;
+.img_link {
+	flex: 0 0 50px;
 	height: 50px;
 }
 
-.body {
-	margin-left: 10px;
-	line-height: 20px;
-	font-size: 14px;
-	color: $color-dark
+.img {
+	width: inherit;
+	height: inherit;
 }
 
-.body span {
+.message {
+	display: inline-block;
+	padding-top: 2px;
+}
+
+.name {
+	line-height: inherit;
+	font-size: 12px;
+	color: $color-primary;
+}
+
+.says {
 	font-size: 12px;
 }
 
-.primary {
-	color: $color-primary;
+.text {
+	font-size: 14px;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
 }
