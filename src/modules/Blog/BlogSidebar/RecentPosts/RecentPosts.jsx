@@ -11,6 +11,7 @@ export const RecentPosts = () => {
 
 	useEffect(() => {
 		const params = {
+			sort: 'createdAt',
 			offset: '0',
 			limit: '3',
 		}
@@ -31,14 +32,21 @@ export const RecentPosts = () => {
 			<FilterTitle text='Recent Posts' />
 			<ul className={s.posts}>
 				{posts.map(({ title, slug, createdAt }) => {
+					const url = `/blog/${slug}`
+					const img = `${process.env.REACT_APP_PUBLIC_URL}/images/posts/${slug}`
+
+					const cropTitle = title.length > 28 ? title.slice(0, 25) + '...' : title
+
 					return (
-						<div className={s.post} key={slug}>
-							<NavLink className={s.img}>
-								<ImageWithFallback src={slug} alt={title} imgSize='xxs' />
+						<div className={s.post} key={`${slug}-recent`}>
+							<NavLink className={s.img} to={url}>
+								<ImageWithFallback src={img} alt={title} imgSize='xxs' />
 							</NavLink>
 							<div className={s.info}>
-								<p className={s.title}>{title}</p>
-								<p className={s.date}>{convertISODate(createdAt)}</p>
+								<NavLink to={url}>
+									<h4 className={s.title}>{cropTitle}</h4>
+								</NavLink>
+								<span className={s.date}>{convertISODate(createdAt, 'full')}</span>
 							</div>
 						</div>
 					)

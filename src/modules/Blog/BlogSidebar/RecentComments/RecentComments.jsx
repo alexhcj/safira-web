@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { postsAPI } from '../../../../api/posts'
 import { NavLink } from 'react-router-dom'
-import defaultProfile from '../../../../assets/images/default-avatar.png'
+import { commentsAPI } from '../../../../api/comments'
+import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
+import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
 import s from './recent-comments.module.scss'
 
 export const RecentComments = () => {
@@ -9,11 +10,14 @@ export const RecentComments = () => {
 
 	useEffect(() => {
 		const params = {
-			limit: 3,
+			sort: 'createdAt',
+			order: '1',
+			offset: '0',
+			limit: '3',
 		}
 		const fetchData = async () => {
 			try {
-				const data = await postsAPI.getComments(params)
+				const data = await commentsAPI.getAll(params)
 				setComments(data)
 			} catch (e) {
 				console.log(e)
@@ -23,22 +27,32 @@ export const RecentComments = () => {
 	}, [])
 
 	return (
-		<div className={s.section}>
-			<p className={s.heading}>Recent Comments</p>
+		<div>
+			<FilterTitle title='Recent Comments' />
 			<ul className={s.comments}>
-				{comments.map((comment) => {
-					let { id, post, author, text } = comment
-					text = text.slice(0, 25)
+				{comments.map(({ text, name, postSlug }) => {
+					const postUrl = `/blog/${postSlug}`
+
+					const cropText = text.length > 28 ? text.slice(0, 25) + '...' : text
+
 					return (
-						<NavLink className={s.comment} key={id} to={`/blog/${post}`}>
-							<img className={s.img} src={defaultProfile} alt='profile' />
-							<p className={s.body}>
-								<span>
-									<span className={s.primary}>{author}</span> says:{' '}
-								</span>
-								{text}
-							</p>
-						</NavLink>
+						<div className={s.comment} key={name}>
+							{/* TODO: add user link to img & name */}
+							<NavLink className={s.img_link} to='/user/profile/id'>
+								{/* TODO: add user img */}
+								<ImageWithFallback src='img' imgSize='xxxs' alt='User avatar' className={s.img} />
+							</NavLink>
+							<div className={s.message}>
+								<NavLink className={s.name} to='/user/profile/id'>
+									{name}
+								</NavLink>
+								<span className={s.says}>&#160;says:&#160;</span>
+								{/* TODO: add scroll to comment location when click and redirect */}
+								<NavLink className={s.text} to={postUrl}>
+									{cropText}
+								</NavLink>
+							</div>
+						</div>
 					)
 				})}
 			</ul>
