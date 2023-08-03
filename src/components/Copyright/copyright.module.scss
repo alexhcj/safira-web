@@ -30,8 +30,9 @@
 .img {
 	width: 60px;
 	height: 36px;
+}
 
-	&:not(:last-child) {
-		margin-right: 12px;
-	}
+.payments {
+	display: flex;
+	gap: 11px;
 }
