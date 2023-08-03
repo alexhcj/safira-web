@@ -3,6 +3,7 @@ import { productsAPI } from '../../../api/products'
 import { RowSlider } from '../../../shared/components/Slider/RowSlider/RowSlider'
 import { convertArray } from '../../../utils'
 import { ProductCard } from '../../ProductCard/ProductCard'
+import s from './new-products.module.scss'
 
 export const NewProducts = () => {
 	const [newProducts, setNewProducts] = useState([])
@@ -35,9 +36,9 @@ export const NewProducts = () => {
 
 	const items = convertArray(newProducts, 2).map((col, index) => {
 		return (
-			<div key={index} style={{ padding: '0 10px' }}>
+			<div className={s.product_tower} key={index}>
 				{col.map((product) => {
-					return <ProductCard size='large' imgSize='sm' key={product.slug} product={product} />
+					return <ProductCard size='large' imgSize='sm' key={product.slug} product={product} className={s.product} />
 				})}
 			</div>
 		)

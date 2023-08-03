@@ -1,7 +1,4 @@
-@import '../../../../styles/vars';
-
-.arrow {
-}
+@import '../../../styles/vars';
 
 .arrow:hover svg path {
 	fill: $color-primary;
