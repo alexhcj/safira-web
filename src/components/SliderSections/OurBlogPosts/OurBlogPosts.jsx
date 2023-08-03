@@ -43,7 +43,7 @@ export const OurBlogPosts = () => {
 			<div className='container'>
 				<SectionSlider
 					title='Our Blog Posts'
-					subtitle='Mose viewed in our store'
+					subtitle='Our recent articles abour Organic'
 					items={items}
 					responsive={responsive}
 					className={s.slider_bg}

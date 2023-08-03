@@ -57,10 +57,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 				{size === 'row' && <p className={s.description}>{description}</p>}
 			</div>
 			{(size === 'large' || size === 'row') && !!tags && <Tags tags={tags} size='md' />}
-			<Hovermenu menuToggle={menuToggle} size={size} />
+			<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
 		</div>
 	)
 }
-
-// TODO: menu last item crops with slider overflow
-// TODO: hover on slider => btns appear. slider paddings includes in triggered zone

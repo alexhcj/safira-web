@@ -1,20 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { stringToSlug } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
 import s from './styles/cart-item.module.scss'
 
-export const CartItem = ({ img, name, price, quantity, maxQuantity, onInput, onDelete }) => {
-	const slug = stringToSlug(name)
-
+export const CartItem = ({ slug, img, name, price, quantity, maxQuantity, onInput, onDelete }) => {
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
 				{/* TODO: change on outline icon (too fat lines) */}
 				{/* TODO: fix height difference. ideal 190px */}
-				<Trash className={s.delete_svg} onClick={() => onDelete(name)} />
+				<Trash className={s.delete_svg} onClick={() => onDelete(slug)} />
 			</td>
 			<td className={s.image}>
 				{img ? (
@@ -37,7 +34,7 @@ export const CartItem = ({ img, name, price, quantity, maxQuantity, onInput, onD
 						Quantity
 						<input
 							className={s.input}
-							onInput={(e) => onInput(e, name)}
+							onInput={(e) => onInput(e.target.value, slug)}
 							value={quantity}
 							type='number'
 							name='quantity'

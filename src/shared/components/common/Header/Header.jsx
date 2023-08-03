@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useWishlistContext } from '../../../../context/WishlistContext'
+import { useCartContext } from '../../../../context/CartContext'
 import { Navbar } from '../Navbar/Navbar'
 import { Button } from '../../UI/Buttons/Button/Button'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
-import { useLocalStorage } from '../../../../hooks/useLocalStorage.hook'
-// import { getCartStorage, getWishlistStorage } from '../../../../api/storage'
 import logo from '../../../../assets/images/logo.png'
 import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
 import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
@@ -13,8 +13,8 @@ import { ReactComponent as FacebookSVG } from '../../../../assets/svg/facebook.s
 import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/youtube.svg'
 import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/twitter.svg'
-import s from './header.module.scss'
 import { throttle } from '../../../../utils'
+import s from './header.module.scss'
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -42,10 +42,8 @@ const currencies = [
 
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
-	// const cartLength = getCartStorage().length
-	// const wishlistLength = getWishlistStorage().length
-	const [cart, setCart] = useLocalStorage('cart', [])
-	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
+	const { wishlist } = useWishlistContext()
+	const { cart } = useCartContext()
 
 	const fixNavbarToTop = () => {
 		if (window.scrollY >= 150) {
@@ -54,9 +52,6 @@ export const Header = () => {
 			setSticky(false)
 		}
 	}
-
-	// TODO: fix rerender cart quantity on change
-	// TODO: fix rerender wishlist quantity on change
 
 	useEffect(() => {
 		window.addEventListener('scroll', throttle(fixNavbarToTop, 100))

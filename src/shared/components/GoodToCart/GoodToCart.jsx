@@ -3,7 +3,7 @@ import { Text } from '../UI/Text/Text'
 import { Button } from '../UI/Buttons/Button/Button'
 import s from './goodtocart.module.scss'
 
-export const GoodToCart = ({ maxQuantity, onClick, findProductCart }) => {
+export const GoodToCart = ({ maxQuantity, onClick, productQuantityInCart, product }) => {
 	const [value, setValue] = useState(1)
 
 	const handleInput = (e) => {
@@ -14,7 +14,7 @@ export const GoodToCart = ({ maxQuantity, onClick, findProductCart }) => {
 	return (
 		<>
 			<div className={s.box}>
-				{!findProductCart && (
+				{!productQuantityInCart && (
 					<div className={s.input_box}>
 						<label className={s.input_label} htmlFor='quantity'>
 							Quantity
@@ -34,11 +34,11 @@ export const GoodToCart = ({ maxQuantity, onClick, findProductCart }) => {
 				<Button
 					className={s.btn_add}
 					type='submit'
-					disabled={value > maxQuantity || findProductCart}
-					onClick={() => onClick(value)}
+					disabled={value > maxQuantity || productQuantityInCart}
+					onClick={() => onClick(product, value)}
 				>
 					<Text size='medium' color='white' weight='medium'>
-						{findProductCart ? 'Already in cart' : 'Add to cart'}
+						{productQuantityInCart ? 'Already in cart' : 'Add to cart'}
 					</Text>
 					{/*<Text size="medium" color="white"
 					weight="medium">{findProductCart ? 'Add more' : 'Add to cart'}</Text>*/}

@@ -1,35 +1,14 @@
 import React from 'react'
+import { useWishlistContext } from '../../context/WishlistContext'
+import { useCartContext } from '../../context/CartContext'
+import { WishlistItem } from './WishlistItem'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Border } from '../../shared/components/UI/Spacing/Border'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
-import { WishlistItem } from './WishlistItem'
 import s from './styles/wishlist.module.scss'
 
 export const Wishlist = () => {
-	const [cart, setCart] = useLocalStorage('cart', [])
-	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
-
-	const addProduct = (name) => {
-		const product = wishlist.find((p) => p.name === name)
-		product.quantity = 1
-		setCart([...cart, product])
-	}
-
-	const isProductInCart = (name) => {
-		return cart.find((p) => {
-			if (p.name === name) return true
-		})
-	}
-
-	const productQuantity = (name) => {
-		const product = cart.find((p) => p.name === name)
-		return product ? product.quantity : null
-	}
-
-	const deleteProduct = (name) => {
-		const filteredWishlist = wishlist.filter((p) => p.name !== name)
-		setWishlist([...filteredWishlist])
-	}
+	const { wishlist, removeFromWishlist } = useWishlistContext()
+	const { addToCart, productQuantityInCart } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -47,19 +26,18 @@ export const Wishlist = () => {
 				<tbody>
 					{wishlist.map((item) => {
 						const product = {
-							img: item.img,
+							slug: item.slug,
 							name: item.name,
-							price: item.price,
-							maxQuantity: item.maxQuantity,
+							price: { price: item.price },
+							specifications: { quantity: item.maxQuantity },
 						}
 						return (
 							<WishlistItem
-								key={item.name}
-								{...product}
-								onClick={addProduct}
-								onDelete={deleteProduct}
-								isProductInCart={isProductInCart(item.name)}
-								quantity={productQuantity(item.name)}
+								key={item.slug}
+								product={product}
+								onClick={() => addToCart(product)}
+								onDelete={() => removeFromWishlist(item.slug)}
+								productQuantityInCart={productQuantityInCart(item.slug)}
 							/>
 						)
 					})}

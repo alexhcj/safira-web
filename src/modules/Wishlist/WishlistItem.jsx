@@ -4,26 +4,35 @@ import cn from 'classnames'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { stringToSlug } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg'
 import s from './styles/wishlist-item.module.scss'
 
-export const WishlistItem = ({ img, name, price, maxQuantity, onClick, onDelete, isProductInCart, quantity }) => {
-	const slug = stringToSlug(name)
+export const WishlistItem = ({
+	product: {
+		slug,
+		name,
+		price: { price },
+		specifications: { quantity: maxQuantity },
+	},
+	onClick,
+	onDelete,
+	productQuantityInCart,
+}) => {
+	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
 
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
 				{/* TODO: fix height difference. ideal 190px */}
-				<button className={s.delete_button} onClick={() => onDelete(name)}>
+				<button className={s.delete_button} onClick={onDelete}>
 					<Text span className={s.delete_text}>
 						X
 					</Text>
 				</button>
 			</td>
 			<td className={s.image}>
-				{img ? (
+				{slug ? (
 					<Link className={s.link} to={`/products/${slug}`}>
 						<ImageWithFallback src={img} imgSize='md' alt={name} />
 					</Link>
@@ -41,13 +50,13 @@ export const WishlistItem = ({ img, name, price, maxQuantity, onClick, onDelete,
 				{maxQuantity > 100 ? 'In stoke' : `Left less than ${maxQuantity}`}
 			</td>
 			<td className={s.add}>
-				{isProductInCart ? (
+				{productQuantityInCart ? (
 					<Link to='/cart' className={s.quantity}>
 						<CartSVG className={s.svg} />
-						<span>{quantity}</span>
+						<span>{productQuantityInCart}</span>
 					</Link>
 				) : (
-					<Button className={s.add_button} onClick={() => onClick(name)}>
+					<Button className={s.add_button} onClick={onClick} disabled={productQuantityInCart}>
 						<Text color='white' className={s.add_text}>
 							Add to cart
 						</Text>
