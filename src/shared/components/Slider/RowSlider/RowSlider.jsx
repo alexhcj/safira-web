@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { Arrow } from '../Controls/Arrow/Arrow'
+import { Arrow } from '../Arrow/Arrow'
 import { Space } from '../../UI/Spacing/Space'
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 import s from './row-slider.module.scss'
@@ -22,6 +22,8 @@ export const RowSlider = ({ title, items, responsive, className }) => {
 				animationDuration={250}
 				renderPrevButton={prevButton}
 				renderNextButton={nextButton}
+				paddingLeft={10}
+				paddingRight={10}
 				mouseTracking={true}
 			/>
 		</div>

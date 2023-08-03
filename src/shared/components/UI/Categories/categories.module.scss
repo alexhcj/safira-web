@@ -38,7 +38,10 @@
 	width: 15px;
 	height: 15px;
 	transform: rotate(90deg);
-	fill: $color-white;
+
+	path {
+		fill: $color-white;
+	}
 }
 
 .popup {
