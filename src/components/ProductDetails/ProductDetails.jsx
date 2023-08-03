@@ -16,6 +16,7 @@ import { Reviews } from '../../shared/components/Reviews/Reviews'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { NewReview } from '../../shared/components/Reviews/NewReview'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
+import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
 import s from './productdetails.module.scss'
 
@@ -54,12 +55,12 @@ export const ProductDetails = () => {
 		if (findProductCart) {
 			return
 		}
-		const product = { img, name, price: price.price, quantity, maxQuantity: specifications.quantity }
+		const product = { slug, name, price: price.price, quantity, maxQuantity: specifications.quantity }
 		setCart([...cart, product])
 	}
 
 	const addProductWishlist = () => {
-		const product = { img, name, price: price.price, maxQuantity: specifications.quantity }
+		const product = { slug, name, price: price.price, maxQuantity: specifications.quantity }
 		setWishlist([...wishlist, product])
 	}
 
@@ -107,16 +108,14 @@ export const ProductDetails = () => {
 					<Space size='s' />
 					{isProductWishlist(name) ? (
 						<ButtonPopover
-							className={s.button_popover}
+							className={s.btn}
 							onClick={deleteProduct}
 							onMouseEnter={handlePopover}
 							onMouseLeave={handlePopover}
 							text='Remove from wishlist'
 						>
-							<span className={s.break}></span>
-							<span className={s.break}></span>
-							<span className={s.break}></span>
 							<HeartSVG className={s.heart} />
+							<HeartBrokenSVG className={s.heart_broken} />
 						</ButtonPopover>
 					) : (
 						<Button type='text' onClick={addProductWishlist}>
