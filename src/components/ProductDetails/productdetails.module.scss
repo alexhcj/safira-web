@@ -37,67 +37,32 @@
 	line-height: 20px;
 }
 
-.button_popover {
-	span {
-		top: 0;
-		right: -20px;
-		transform: translateX(100%);
-	}
-
-	span.break:first-of-type {
-		position: absolute;
-		content: '';
-		top: 5px;
-		left: 10px;
-		width: 1px;
-		height: 6px;
-		background-color: $color-error;
-		transform: rotate(30deg);
-	}
-
-	span.break:nth-of-type(2) {
-		position: absolute;
-		content: "";
-		top: 10px;
-		left: 11px;
-		width: 1px;
-		height: 6px;
-		background-color: #FF7063;
-		transform: rotate(-49deg);
-	}
-
-	span.break:nth-of-type(3) {
-		position: absolute;
-		content: "";
-		top: 15px;
-		left: 12px;
-		width: 1px;
-		height: 7px;
-		background-color: #FF7063;
-		transform: rotate(22deg);
-	}
-
-	& > span.break {
-		@include transition-all;
-		opacity: 0;
-	}
-
+.btn {
 	&:hover {
-		span {
+		.heart_broken {
 			opacity: 1;
-		}
-
-		.heart {
-			fill: $color-error;
 		}
 	}
 }
 
 .heart {
-	width: 24px;
-	height: 24px;
-	fill: $color-primary;
 	cursor: pointer;
+
+	path {
+		fill: $color-primary;
+	}
+}
+
+.heart_broken {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	@include transition-all;
+
+	path {
+		fill: $color-error;
+	}
 }
 
 .category {

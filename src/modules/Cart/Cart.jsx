@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
+import { useCartContext } from '../../context/CartContext'
 import { CartItem } from './CartItem'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Border } from '../../shared/components/UI/Spacing/Border'
@@ -10,22 +10,8 @@ import { calculateTotalPrice } from '../../utils'
 import s from './styles/cart.module.scss'
 
 export const Cart = () => {
-	const [cart, setCart] = useLocalStorage('cart', [])
+	const { cart, handleQuantity, removeFromCart } = useCartContext()
 	// TODO: add coupon logic verify server & gift card
-
-	const handleProductQuantity = (e, name) => {
-		const { value } = e.target
-
-		const product = cart.find((p) => p.name === name)
-		product.quantity = value
-
-		setCart([...cart])
-	}
-
-	const deleteProduct = (name) => {
-		const filteredCart = cart.filter((p) => p.name !== name)
-		setCart([...filteredCart])
-	}
 
 	return (
 		<div className='container'>
@@ -41,14 +27,10 @@ export const Cart = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{cart.map((item) => {
-						const product = {
-							img: item.img,
-							name: item.name,
-							price: item.price,
-							quantity: item.quantity,
-						}
-						return <CartItem key={item.name} {...product} onInput={handleProductQuantity} onDelete={deleteProduct} />
+					{cart.map(({ slug, name, img, price, quantity }) => {
+						const product = { slug, name, img, price, quantity }
+
+						return <CartItem key={slug} {...product} onInput={handleQuantity} onDelete={removeFromCart} />
 					})}
 				</tbody>
 			</table>

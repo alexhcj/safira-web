@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
 import { productsAPI } from '../../api/products'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { useWishlistContext } from '../../context/WishlistContext'
+import { useCartContext } from '../../context/CartContext'
 import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
@@ -15,15 +15,17 @@ import { ButtonPopover } from '../../shared/components/UI/Buttons/ButtonPopover/
 import { Reviews } from '../../shared/components/Reviews/Reviews'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { NewReview } from '../../shared/components/Reviews/NewReview'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
+import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
 import s from './productdetails.module.scss'
 
 export const ProductDetails = () => {
+	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
+	const { addToCart, productQuantityInCart } = useCartContext()
 	const { slug } = useParams()
 	const [product, setProduct] = useState([])
-	const [cart, setCart] = useLocalStorage('cart', [])
-	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
@@ -43,30 +45,6 @@ export const ProductDetails = () => {
 	const { name, price, description, category, rating, specifications, reviews } = product
 
 	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
-
-	const findProductCart = cart.find((p) => p.name === name)
-	const isProductWishlist = (name) =>
-		wishlist.find((p) => {
-			if (p.name === name) return true
-		})
-
-	const addProductCart = (quantity) => {
-		if (findProductCart) {
-			return
-		}
-		const product = { img, name, price: price.price, quantity, maxQuantity: specifications.quantity }
-		setCart([...cart, product])
-	}
-
-	const addProductWishlist = () => {
-		const product = { img, name, price: price.price, maxQuantity: specifications.quantity }
-		setWishlist([...wishlist, product])
-	}
-
-	const deleteProduct = () => {
-		const filteredWishlist = wishlist.filter((p) => p.name !== name)
-		setWishlist([...filteredWishlist])
-	}
 
 	const handlePopover = () => {
 		setIsPopoverHovered(!isPopoverHovered)
@@ -93,33 +71,28 @@ export const ProductDetails = () => {
 					<Space size='m' />
 					<Border />
 					<Space size='m' />
-					{/* TODO: add quantity product state and possibility add more */}
-					{/*{findProductCart && <div>{findProductCart.quantity}
-					{`${name}s`} already in cart. Do you want more?</div>}*/}
-					{/*  <Space size="xs" />*/}
 					{specifications && (
 						<GoodToCart
 							maxQuantity={specifications.quantity}
-							onClick={addProductCart}
-							findProductCart={findProductCart}
+							onClick={addToCart}
+							product={product}
+							productQuantityInCart={productQuantityInCart(slug)}
 						/>
 					)}
 					<Space size='s' />
-					{isProductWishlist(name) ? (
+					{isProductInWishlist(slug) ? (
 						<ButtonPopover
-							className={s.button_popover}
-							onClick={deleteProduct}
+							className={s.btn}
+							onClick={removeFromWishlist}
 							onMouseEnter={handlePopover}
 							onMouseLeave={handlePopover}
 							text='Remove from wishlist'
 						>
-							<span className={s.break}></span>
-							<span className={s.break}></span>
-							<span className={s.break}></span>
 							<HeartSVG className={s.heart} />
+							<HeartBrokenSVG className={s.heart_broken} />
 						</ButtonPopover>
 					) : (
-						<Button type='text' onClick={addProductWishlist}>
+						<Button type='text' onClick={() => addToWishlist(product)}>
 							{/* TODO: Hover on icon => popup (remove from wishlist) */}
 							<Text span>+ Add to WishList</Text>
 						</Button>
