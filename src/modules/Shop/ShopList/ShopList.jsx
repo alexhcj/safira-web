@@ -13,12 +13,8 @@ export const ShopList = ({ products }) => {
 		<div className={cn(s.grid, s[`${grid}`])}>
 			{products ? (
 				products.map((product, index) => (
-					<ProductCard
-						key={index}
-						product={product}
-						size={grid === gridTypes[2].type ? 'row' : 'large'}
-						imgSize='md'
-					/>))
+					<ProductCard key={index} product={product} size={grid === gridTypes[2].type ? 'row' : 'lg'} imgSize='md' />
+				))
 			) : (
 				<ProductsNotFound />
 			)}
