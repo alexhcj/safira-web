@@ -11,7 +11,7 @@ export const Price = ({ price, discount_price, type, className }) => {
 					${discount_price}
 				</Text>
 			)}
-			<Text className={cn(s.price, discount_price && s.old)} span>
+			<Text className={cn(s.price, discount_price && s.default)} span>
 				${price}
 			</Text>
 		</div>

@@ -26,7 +26,7 @@ export const MostviewProducts = () => {
 	}, [])
 
 	const items = mostviewProducts.map((product) => {
-		return <ProductCard key={product.slug} product={product} className={s.product} size='large' imgSize='sm' />
+		return <ProductCard key={product.slug} product={product} className={s.product} size='lg' imgSize='sm' />
 	})
 
 	const responsive = {

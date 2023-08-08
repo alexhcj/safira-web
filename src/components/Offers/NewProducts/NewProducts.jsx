@@ -38,7 +38,7 @@ export const NewProducts = () => {
 		return (
 			<div className={s.product_tower} key={index}>
 				{col.map((product) => {
-					return <ProductCard size='large' imgSize='sm' key={product.slug} product={product} className={s.product} />
+					return <ProductCard size='lg' imgSize='sm' key={product.slug} product={product} className={s.product} />
 				})}
 			</div>
 		)
