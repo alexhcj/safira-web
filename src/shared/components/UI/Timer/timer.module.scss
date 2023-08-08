@@ -1,11 +1,10 @@
-@import '../../../shared/styles/vars';
+@import '../../../styles/vars';
 
 .timer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
-	margin-top: -4px;
 	margin-bottom: 32px;
 	min-height: 59px;
 }
@@ -19,6 +18,7 @@
 }
 
 .number {
+	text-align: center;
 	text-transform: uppercase;
 	line-height: 18px;
 	font-size: 17px;

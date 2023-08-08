@@ -6,7 +6,6 @@ export const Timer = ({ date }) => {
 	const [hours, setHours] = useState(0)
 	const [minutes, setMinutes] = useState(0)
 	const [seconds, setSeconds] = useState(0)
-
 	const leading0 = (num) => {
 		return num < 10 ? '0' + num : num.toString()
 	}
