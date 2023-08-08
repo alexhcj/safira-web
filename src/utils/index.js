@@ -18,7 +18,8 @@ export const imgSizeTypes = [
 	{ id: 10, type: 'special', size: '366x484' },
 	{ id: 11, type: 'blog-post', size: '870x550' },
 	{ id: 12, type: 'sale', size: '1920x440' },
-	{ id: 13, type: 'shop', size: '255x430' },
+	{ id: 13, type: 'hero-slider', size: '1920x550' },
+	{ id: 14, type: 'shop', size: '255x430' },
 ]
 
 // concat url, size & ext into img url with certain size
