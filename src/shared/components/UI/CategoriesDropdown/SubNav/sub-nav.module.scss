@@ -1,0 +1,49 @@
+@import '../../../../../shared/styles/vars';
+
+.nav_sub {
+	position: absolute;
+	top: 10px;
+	left: 100%;
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 30px;
+	padding: 25px 20px 23px;
+	max-height: 400px;
+	background-color: $color-white;
+	opacity: 0;
+	z-index: $z-index-1;
+	transform: translateX(40px);
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+		z-index: $z-index100;
+		transform: translateX(0);
+	}
+}
+.nav_sub_item {
+	display: grid;
+	align-content: flex-start;
+}
+.nav_sub_title {
+	text-transform: uppercase;
+	line-height: 30px;
+	font-size: 14px;
+	font-weight: $weight-medium;
+	color: $color-dark;
+}
+.nav_sub_link {
+	text-transform: capitalize;
+	white-space: nowrap;
+	width: 100%;
+	line-height: 30px;
+	font-size: 14px;
+	font-weight: $weight-normal;
+	color: $color-dark;
+	cursor: pointer;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+}
