@@ -1,24 +1,19 @@
-import {  useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { productsAPI } from '../../api/products'
 
 export const useProducts = () => {
-	const [params, setParams] = useSearchParams()
+	const [params] = useSearchParams({
+		limit: '6',
+		offset: '0',
+		sort: 'popularity',
+		order: 'desc',
+	})
 
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
 	const [products, setProducts] = useState([])
 	const [meta, setMeta] = useState({})
-
-	useEffect(() => {
-		const defaultParams = {
-			limit: '6',
-			offset: '0',
-			sort: 'popularity',
-			order: 'desc'
-		}
-		setParams(defaultParams)
-	}, [])
 
 	useEffect(() => {
 		const fetchData = async () => {
