@@ -1,0 +1,44 @@
+@import '../../../../shared/styles/vars';
+
+.checkbox {
+	position: relative;
+	display: grid;
+	place-content: center;
+	margin: 0 10px 0 0;
+	appearance: none;
+	outline: none;
+	background-color: $color-white;
+	font: inherit;
+	color: red;
+	width: 14px;
+	height: 14px;
+	border: 1px solid $color-border4;
+	border-radius: 3px;
+	cursor: pointer;
+	transform: translateY(-0.075em);
+	@include transition-all;
+
+	&::after {
+		content: '';
+		width: 10px;
+		height: 10px;
+		background-color: $color-primary;
+		border-radius: 1px;
+		opacity: 0;
+		transform: scale(0);
+		@include transition-all;
+	}
+
+	&:hover {
+		border-color: $color-primary;
+	}
+
+	&:checked {
+		border-color: $color-primary;
+
+		&::after {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+}
