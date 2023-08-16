@@ -18,7 +18,11 @@
 		"semi": ["error", "never"],
 		"eqeqeq": ["error", "always"],
 		"quotes": ["error", "single"],
-		"indent": ["error", "tab"],
+		"indent": [
+			"error",
+			"tab",
+			{ "ignoredNodes": ["ConditionalExpression"], "MemberExpression": "off", "SwitchCase": 1 }
+		],
 		"brace-style": ["error", "1tbs"],
 		"semi-spacing": ["error", { "before": false, "after": true }],
 		"arrow-spacing": ["error", { "before": true, "after": true }],

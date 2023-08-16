@@ -1,0 +1,39 @@
+@import '../../../../shared/styles/vars';
+
+.brands {
+	display: grid;
+	max-height: 200px;
+	overflow-y: hidden;
+	@include transition-all;
+
+	&.active {
+		overflow-y: scroll;
+		height: auto;
+	}
+}
+.brand_item {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 4px 0;
+}
+.brand {
+	margin-right: 5px;
+	text-transform: uppercase;
+	line-height: 20px;
+	font-size: 14px;
+}
+.quantity {
+	line-height: 20px;
+	font-size: 12px;
+	color: $color-grey;
+}
+.show_more {
+	display: inline-flex;
+	cursor: pointer;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+}

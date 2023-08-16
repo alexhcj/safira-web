@@ -7,7 +7,7 @@ import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import s from './productcard.module.scss'
 
-// sizes: 'xs' | 'lg' | 'row'
+// sizes: 'xs' | 'sm' | 'lg' | 'row'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
@@ -56,7 +56,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 				/>
 				{size === 'row' && <p className={s.description}>{description}</p>}
 			</div>
-			{(size === 'lg' || size === 'row') && !!tags && <Tags tags={tags} size={size} />}
+			{size !== 'xs' && !!tags && <Tags tags={tags} size={size} />}
 			<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
 		</div>
 	)

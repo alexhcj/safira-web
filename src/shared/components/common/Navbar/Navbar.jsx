@@ -32,7 +32,7 @@ export const Navbar = () => {
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to='/shop'>
+						<NavLink className={s.nav__link} to='/shop?limit=6&offset=0&sort=popularity&order=desc'>
 							Shop
 						</NavLink>
 						<NavLink className={s.nav__link} to='/blog'>
