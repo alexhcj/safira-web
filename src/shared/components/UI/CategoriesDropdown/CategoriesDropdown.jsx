@@ -139,7 +139,10 @@ export const CategoriesDropdown = () => {
 		}
 	}
 
-	const onClickHandler = (category) => {
+	const onClickHandler = (e) => {
+		const category = e.target.id
+		const name = e.target.dataset.name
+
 		const query = {
 			category,
 			limit: '6',
@@ -147,7 +150,7 @@ export const CategoriesDropdown = () => {
 			sort: 'popularity',
 			order: 'desc',
 		}
-		navigate(`/shop?${new URLSearchParams(query)}`)
+		navigate(`/shop?${new URLSearchParams(query)}`, { state: { category: name } })
 	}
 
 	return (
@@ -169,12 +172,19 @@ export const CategoriesDropdown = () => {
 								key={category}
 								onMouseEnter={(e) => handleNavSubToggle(e, category)}
 								onMouseLeave={(e) => handleNavSubToggle(e, category)}
+								onClick={onClickHandler}
 							>
-								<li className={s.link} onClick={() => onClickHandler(category)}>
+								<li className={s.link} id={category} data-name={name}>
 									{name}
 									{subcategories && <ArrowSVG className={s.svg_subcategories} />}
 								</li>
-								{subcategories && <SubNav subNavToggleCategory={subNavToggleCategory} subcategories={subcategories} />}
+								{subcategories && (
+									<SubNav
+										subNavToggleCategory={subNavToggleCategory}
+										subcategories={subcategories}
+										setPopupToggle={setPopupToggle}
+									/>
+								)}
 							</ul>
 						)
 					})}

@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import s from './sub-nav.module.scss'
 
-export const SubNav = ({ subNavToggleCategory, subcategories: { items, category } }) => {
+export const SubNav = ({ subNavToggleCategory, setPopupToggle, subcategories: { items, category } }) => {
 	const navigate = useNavigate()
 
-	const onClickHandler = (subCategory) => {
+	const onClickHandler = (e) => {
+		e.stopPropagation()
+		const subCategory = e.target.id
+		const name = e.target.dataset.name
+
 		const query = {
 			subCategory,
 			limit: '6',
@@ -14,11 +18,13 @@ export const SubNav = ({ subNavToggleCategory, subcategories: { items, category 
 			sort: 'popularity',
 			order: 'desc',
 		}
-		navigate(`/shop?${new URLSearchParams(query)}`)
+
+		navigate(`/shop?${new URLSearchParams(query)}`, { state: { category: name } })
+		setPopupToggle(false)
 	}
 
 	return (
-		<nav className={cn(s.nav_sub, subNavToggleCategory === category && s.active)}>
+		<nav className={cn(s.nav_sub, subNavToggleCategory === category && s.active)} onClick={onClickHandler}>
 			{items.map((sub) => (
 				<ul className={s.nav_sub_item} key={sub.category}>
 					<h5 className={s.nav_sub_title}>{sub.name}</h5>
@@ -27,8 +33,9 @@ export const SubNav = ({ subNavToggleCategory, subcategories: { items, category 
 						.map((sub_category) => (
 							<li
 								className={s.nav_sub_link}
-								onClick={() => onClickHandler(sub_category.subCategory)}
 								key={sub_category.subCategory}
+								id={sub_category.subCategory}
+								data-name={sub_category.name}
 							>
 								{sub_category.name}
 							</li>
