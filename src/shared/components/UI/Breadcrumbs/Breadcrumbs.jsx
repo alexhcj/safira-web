@@ -19,7 +19,7 @@ export const Breadcrumbs = () => {
 							Home
 						</NavLink>
 					</div>
-					{pathname && !state.category && (
+					{pathname && !state && (
 						<>
 							<Text span>/ </Text>
 							<Text className={s.current} span>
@@ -27,7 +27,7 @@ export const Breadcrumbs = () => {
 							</Text>
 						</>
 					)}
-					{state.category && (
+					{!!state && (
 						<>
 							<Text span>/ </Text>
 							<Text className={s.current} span>
