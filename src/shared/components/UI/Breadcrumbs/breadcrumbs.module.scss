@@ -2,42 +2,30 @@
 
 .section {
 	margin-bottom: 70px;
+	padding: 58px 0;
 	background: url('../../../../assets/images/breadcrumb/1.jpg') no-repeat 100% 50%;
 }
-
 .content {
-	display: flex;
+	display: grid;
 	justify-content: center;
-	align-items: center;
-	padding: 58px 0;
+	justify-items: center;
 }
-
 .page {
 	text-transform: capitalize;
 	line-height: 50px;
 	font-size: 42px;
 	font-weight: $weight-normal;
 }
-
 .breadcrumbs {
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 7px;
 }
-
-.box {
-	display: flex;
-	flex-direction: column;
-}
-
-.route {
-	margin-right: 7px;
-}
-
 .current {
-	padding-right: 7px;
-    text-transform: capitalize;
-    line-height: 24px;
-    font-size: 14px;
+	text-transform: capitalize;
+	line-height: 24px;
+	font-size: 14px;
 
 	&.link:hover {
 		color: $color-primary;
