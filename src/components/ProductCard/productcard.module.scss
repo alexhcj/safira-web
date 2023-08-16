@@ -48,6 +48,29 @@
 		color: $color-primary;
 	}
 
+	&_sm {
+		flex-direction: column;
+
+		& .img_link {
+			margin-bottom: 16px;
+			width: 100%;
+			min-height: 225px;
+		}
+
+		& .info {
+			margin-left: 0;
+			text-align: center;
+		}
+
+		& .name {
+			margin-bottom: 16px;
+		}
+
+		& .category {
+			margin-bottom: 12px;
+		}
+	}
+
 	// sizes
 	&_lg {
 		flex-direction: column;
