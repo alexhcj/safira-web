@@ -11,7 +11,7 @@ import { ReactComponent as MagnifierSVG } from '../../../../assets/svg/magnifier
 import { ReactComponent as SyncSVG } from '../../../../assets/svg/sync.svg'
 import s from './hovermenu.module.scss'
 
-// sizes: 'large' | 'row'
+// sizes: 'xs' | 'sm' | 'lg' | 'row'
 export const Hovermenu = ({ menuToggle, size, product }) => {
 	const { addToWishlist } = useWishlistContext()
 	const { addToCart } = useCartContext()
@@ -25,17 +25,22 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 					</Text>
 				</ButtonCart>
 			) : (
-				<ButtonPopup text='Add to Cart' onClick={() => addToCart(product)}>
+				<ButtonPopup className={s.btn_popup} text='Add to Cart' onClick={() => addToCart(product)}>
 					<CartSVG />
 				</ButtonPopup>
 			)}
-			<ButtonPopup size={size === 'row' && 'lg'} text='Quick View'>
+			<ButtonPopup className={s.btn_popup} size={size === 'row' && 'lg'} text='Quick View'>
 				<MagnifierSVG />
 			</ButtonPopup>
-			<ButtonPopup onClick={() => addToWishlist(product)} size={size === 'row' && 'lg'} text='Add to Wishlist'>
+			<ButtonPopup
+				className={s.btn_popup}
+				onClick={() => addToWishlist(product)}
+				size={size === 'row' && 'lg'}
+				text='Add to Wishlist'
+			>
 				<HeartSVG />
 			</ButtonPopup>
-			<ButtonPopup size={size === 'row' && 'lg'} text='Add to Compare'>
+			<ButtonPopup className={s.btn_popup} size={size === 'row' && 'lg'} text='Add to Compare'>
 				<SyncSVG />
 			</ButtonPopup>
 		</div>
