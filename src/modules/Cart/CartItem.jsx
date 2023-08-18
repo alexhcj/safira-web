@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { Price } from '../../shared/components/Price/Price'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
 import s from './styles/cart-item.module.scss'
 
-export const CartItem = ({ slug, img, name, price, quantity, maxQuantity, onInput, onDelete }) => {
+export const CartItem = ({ slug, img, name, price, discount_price, quantity, maxQuantity, onInput, onDelete }) => {
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
@@ -27,7 +28,9 @@ export const CartItem = ({ slug, img, name, price, quantity, maxQuantity, onInpu
 					{name}
 				</Link>
 			</td>
-			<td className={s.price}>${price}</td>
+			<td className={s.price}>
+				<Price className={s.price_font} price={price} discount_price={discount_price} />
+			</td>
 			<td className={s.quantity}>
 				<form>
 					<div className={s.box}>
@@ -44,7 +47,7 @@ export const CartItem = ({ slug, img, name, price, quantity, maxQuantity, onInpu
 					</div>
 				</form>
 			</td>
-			<td className={s.total}>${(price * quantity).toFixed(2)}</td>
+			<td className={s.total}>${(discount_price ? discount_price * quantity : price * quantity).toFixed(2)}</td>
 		</tr>
 	)
 }
