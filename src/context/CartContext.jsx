@@ -15,8 +15,8 @@ export const CartProvider = ({ children }) => {
 		const product = { slug, name, img, price: price.price, maxQuantity: specifications.quantity }
 
 		if (productInCart) {
-			quantity ? (product.quantity += +quantity) : product.quantity++
-			setCart([...cart, product])
+			quantity ? (productInCart.quantity += +quantity) : productInCart.quantity++
+			setCart([...cart])
 		} else {
 			quantity ? (product.quantity = +quantity) : (product.quantity = 1)
 			setCart([...cart, product])
