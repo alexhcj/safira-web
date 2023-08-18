@@ -44,6 +44,19 @@ const categories = [
 	{
 		name: 'Drinks',
 		category: 'drinks',
+		subcategories: {
+			category: 'drinks',
+			items: [
+				{
+					name: 'Juices',
+					category: 'juices',
+					categories: [
+						{ name: 'Apple juice', subCategory: 'apple-juice' },
+						{ name: 'Orange juice', subCategory: 'orange-juice' },
+					],
+				},
+			],
+		},
 	},
 	{
 		name: 'Rice, noodles & cooking ingridients',
@@ -55,6 +68,11 @@ const categories = [
 					name: 'Dried food',
 					category: 'dried-food',
 					categories: [{ name: 'Beans, Seeds & Nuts', subCategory: 'beans-seeds-nuts' }],
+				},
+				{
+					name: 'Oil',
+					category: 'oil',
+					categories: [{ name: 'Olive oil', subCategory: 'olive-oil' }],
 				},
 			],
 		},
@@ -74,12 +92,37 @@ const categories = [
 		},
 	},
 	{
-		name: 'Fish & seafood',
-		category: 'fish-seafood',
+		name: 'Meat & seafood',
+		category: 'meat-seafood',
+		subcategories: {
+			category: 'meat-seafood',
+			items: [
+				{
+					name: 'Beef & Lamb',
+					category: 'beef-lamb',
+					categories: [{ name: 'Fresh Beef & Lamb', subCategory: 'fresh-beef-lamb' }],
+				},
+				{
+					name: 'Fish & Seafood',
+					category: 'fish-seafood',
+					categories: [{ name: 'Fresh fish & seafood', subCategory: 'fresh-fish-seafood' }],
+				},
+			],
+		},
 	},
 	{
 		name: 'Dairy, chilled & eggs',
 		category: 'dairy-chilled-eggs',
+		subcategories: {
+			category: 'dairy-chilled-eggs',
+			items: [
+				{
+					name: 'Eggs',
+					category: 'eggs',
+					categories: [{ name: 'Fresh eggs', subCategory: 'fresh-eggs' }],
+				},
+			],
+		},
 	},
 	{
 		name: 'Beer, wine & spirits',
@@ -92,10 +135,6 @@ const categories = [
 	{
 		name: 'Frozen',
 		category: 'frozen',
-	},
-	{
-		name: 'Meat & poultry',
-		category: 'meat-poultry',
 	},
 ]
 
