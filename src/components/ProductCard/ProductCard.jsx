@@ -55,9 +55,9 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 					className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)}
 				/>
 				{size === 'row' && <p className={s.description}>{description}</p>}
+				<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
 			</div>
 			{size !== 'xs' && !!tags && <Tags tags={tags} size={size} />}
-			<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
 		</div>
 	)
 }

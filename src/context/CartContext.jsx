@@ -8,15 +8,22 @@ export const useCartContext = () => useContext(CartContext)
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useLocalStorage('cart', [])
 
-	const addToCart = ({ name, slug, price, specifications }, quantity) => {
+	const addToCart = ({ name, slug, price, discount_price, specifications }, quantity) => {
 		const productInCart = cart.find((product) => product.slug === slug)
 
 		const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
-		const product = { slug, name, img, price: price.price, maxQuantity: specifications.quantity }
+		const product = {
+			slug,
+			name,
+			img,
+			price: price.price,
+			discount_price: price.discount_price,
+			maxQuantity: specifications.quantity,
+		}
 
 		if (productInCart) {
-			quantity ? (product.quantity += +quantity) : product.quantity++
-			setCart([...cart, product])
+			quantity ? (productInCart.quantity += +quantity) : productInCart.quantity++
+			setCart([...cart])
 		} else {
 			quantity ? (product.quantity = +quantity) : (product.quantity = 1)
 			setCart([...cart, product])

@@ -3,6 +3,7 @@ import { productsAPI } from '../../../api/products'
 import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'
 import { ProductCard } from '../../ProductCard/ProductCard'
 import { convertArray } from '../../../utils'
+import s from './featured-products.module.scss'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -29,7 +30,7 @@ export const FeaturedProducts = () => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
-					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
+					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} className={s.product} />
 				})}
 			</div>
 		)

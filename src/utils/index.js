@@ -63,8 +63,7 @@ export const convertISODate = (date, type = 'digit', locale = 'en') => {
 
 export const calculateTotalPrice = (arr) => {
 	return arr.reduce((total, item) => {
-		/* eslint-disable no-param-reassign */
-		return (total += item.price * item.quantity)
+		return (total += item.discount_price ? item.discount_price * item.quantity : item.price * item.quantity)
 	}, 0)
 }
 
