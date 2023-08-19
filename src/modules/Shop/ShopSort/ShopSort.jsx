@@ -109,8 +109,13 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 				</ul>
 			</div>
 			<div>
-				Showing {+params.get('offset') + 1} - {total < +params.get('limit') ? total : page * +params.get('limit')} of{' '}
-				{total} results
+				Showing {+params.get('offset') + 1} -{' '}
+				{total < +params.get('limit')
+					? total
+					: page !== 1 && total < page * +params.get('limit')
+					? total
+					: page * +params.get('limit')}{' '}
+				of {total} results
 			</div>
 		</div>
 	)
