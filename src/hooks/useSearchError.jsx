@@ -12,20 +12,20 @@ export const useSearchError = (search, dataLength) => {
 
 	useEffect(() => {
 		switch (!!search) {
-		case !search:
-			setError(searchErrorTypes[0])
-			break
-		case !search.match('^[a-zA-Z ]*$'):
-			setError(searchErrorTypes[1])
-			break
-		case search.length > 25:
-			setError(searchErrorTypes[2])
-			break
-		case !!search && dataLength === 0:
-			setError(searchErrorTypes[3])
-			break
-		default:
-			setError(null)
+			case !search:
+				setError(searchErrorTypes[0])
+				break
+			case !search.match('^[a-zA-Z ]*$'):
+				setError(searchErrorTypes[1])
+				break
+			case search.length > 25:
+				setError(searchErrorTypes[2])
+				break
+			case !!search && dataLength === 0:
+				setError(searchErrorTypes[3])
+				break
+			default:
+				setError(null)
 		}
 	}, [search, dataLength])
 

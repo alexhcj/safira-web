@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
@@ -6,14 +6,14 @@ import { useSearchError } from '../../../../hooks/useSearchError'
 import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorPopover'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
-import { stringToSlug } from '../../../../utils'
+import { slugToString, stringToSlug } from '../../../../utils'
 import { ReactComponent as Close } from '../../../../assets/images/close.svg'
 import s from './search.module.scss'
 
 export const Search = () => {
-	const [ params, setParams] = useSearchParams()
+	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
-	const [currentSearch, setCurrentSearch] = useState('')
+	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToString(params.get('slug'))) || '')
 	const [isProductSelected, setIsProductSelected] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
 	const [inputFocus, setInputFocus] = useState(false)
@@ -33,18 +33,19 @@ export const Search = () => {
 
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
-		case 'Escape':
-			setPopoverToggle(false)
-			setInputFocus(false)
-			inputRef.current.blur()
-			break
-		case 'Enter':
-			setPopoverToggle(false)
-			setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
-			setIsProductSelected(true)
-			break
-		default:
-			return
+			case 'Escape':
+				setPopoverToggle(false)
+				setInputFocus(false)
+				inputRef.current.blur()
+				break
+			case 'Enter':
+				setPopoverToggle(false)
+				setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
+				setIsProductSelected(true)
+				setCurrentSearch(search)
+				break
+			default:
+				return
 		}
 	}
 
@@ -61,14 +62,13 @@ export const Search = () => {
 	const onBlurHandler = () => {
 		setInputFocus(false)
 		setInputTouched(true)
-
 	}
 
 	const onClickHandler = () => {
 		setInputFocus(true)
 		setPopoverToggle(true)
 
-		if (currentSearch) setSearch(currentSearch)
+		if (params.get('slug')) setSearch(currentSearch)
 	}
 
 	const autoCompleteClickHandler = (name) => {
@@ -79,7 +79,12 @@ export const Search = () => {
 
 	const closeSearchBtnHandler = () => {
 		setSearch('')
+		setCurrentSearch('')
+		params.delete('slug')
+		const query = Object.fromEntries([...params])
+		setParams({ ...query })
 		setIsProductSelected(false)
+		setInputTouched(false)
 		inputRef.current.focus()
 		// TODO: remove additional req
 	}
@@ -122,34 +127,44 @@ export const Search = () => {
 					onFocus={onFocusHandler}
 					onBlur={onBlurHandler}
 				/>
-				{search && <span role="presentation" className={cn(s.btn_close, search.length !== 0 && s.active)} onClick={closeSearchBtnHandler}>
-					<Close />
-				</span>}
+				{search && (
+					<span
+						role='presentation'
+						className={cn(s.btn_close, search.length !== 0 && s.active)}
+						onClick={closeSearchBtnHandler}
+					>
+						<Close />
+					</span>
+				)}
 				{<ErrorPopover error={searchError} inputFocus={inputFocus} inputTouched={inputTouched} />}
 			</div>
 			<ul className={cn(s.popup, { [s.active]: popoverToggle && data })}>
-				{data.filter((_, i) => i < popoverLimit).map((product) => {
-					return (
-						<li
-							role="presentation"
-							className={s.item}
-							key={product.id}
-							onClick={() => autoCompleteClickHandler(product.name)}
-						>
-							{product.name}
-						</li>
-					)
-				})}
+				{data
+					.filter((_, i) => i < popoverLimit)
+					.map((product) => {
+						return (
+							<li
+								role='presentation'
+								className={s.item}
+								key={product.id}
+								onClick={() => autoCompleteClickHandler(product.name)}
+							>
+								{product.name}
+							</li>
+						)
+					})}
 				{!data && searchError && searchError.type === 'noresult' && <div className={s.no_result}>No results</div>}
 			</ul>
 			<div className={s.bottom}>
 				<Button
-					type="filter"
+					type='filter'
 					isLoading={loading}
 					disabled={loading || inputFocus || searchError}
 					onClick={searchBtnClickHandler}
 				>
-					<Text span color="white">Search</Text>
+					<Text span color='white'>
+						Search
+					</Text>
 				</Button>
 				<span className={s.current}>{currentSearch}</span>
 			</div>
