@@ -26,7 +26,7 @@ export const DealsOfWeek = () => {
 	const items = deals.map((product) => {
 		return (
 			<div className={s.deal} key={product.deal.slug}>
-				<ProductCard product={product.deal} size='lg' imgSize='lg' />
+				<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
 				<Timer date={product.expiresDate} />
 				<Button className={s.btn} onClick={() => addToCart(product.deal)}>
 					Add to cart
