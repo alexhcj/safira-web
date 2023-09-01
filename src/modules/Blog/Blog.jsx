@@ -7,6 +7,7 @@ import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
 import { usePosts } from '../../hooks/services/usePosts'
+import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 
 export const Blog = () => {
 	const [params, setParams] = useSearchParams()
@@ -38,15 +39,15 @@ export const Blog = () => {
 		}
 	}
 
-	const postsList = posts.map(post => <Post key={post.slug} {...post} />)
+	const postsList = posts.map((post) => <Post key={post.slug} {...post} />)
 
 	return (
 		<section>
-			<div className="container">
-				<SidebarLayout main={postsList} aside={<BlogSidebar isLoading={loading} />} />
+			<div className='container'>
+				<SidebarLayout main={postsList || <ItemsNotFound type='post' />} aside={<BlogSidebar isLoading={loading} />} />
 				<div ref={infiniteTrigger}></div>
 				{loading && <Preloader />}
-				<Space size="l" />
+				<Space size='l' />
 				<Border />
 			</div>
 		</section>

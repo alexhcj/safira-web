@@ -6,6 +6,7 @@ import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'
+import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { calculateTotalPrice } from '../../utils'
 import s from './styles/cart.module.scss'
 
@@ -27,11 +28,19 @@ export const Cart = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{cart.map(({ slug, name, img, price, discount_price, quantity }) => {
-						const product = { slug, name, img, price, discount_price, quantity }
+					{cart.length === 0 ? (
+						<tr>
+							<td colSpan={6}>
+								<ItemsNotFound type='cart' />
+							</td>
+						</tr>
+					) : (
+						cart.map(({ slug, name, img, price, discount_price, quantity }) => {
+							const product = { slug, name, img, price, discount_price, quantity }
 
-						return <CartItem key={slug} {...product} onInput={handleQuantity} onDelete={removeFromCart} />
-					})}
+							return <CartItem key={slug} {...product} onInput={handleQuantity} onDelete={removeFromCart} />
+						})
+					)}
 				</tbody>
 			</table>
 			<Space size='l' />
