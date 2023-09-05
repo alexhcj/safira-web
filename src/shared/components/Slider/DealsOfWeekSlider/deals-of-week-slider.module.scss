@@ -6,7 +6,7 @@
 
 .arrow {
 	position: absolute;
-	top: 280px;
+	top: 225px;
 	left: 338px;
 	display: inline-flex;
 	padding: 0;
@@ -27,6 +27,16 @@
 
 .arrow_prev {
 	left: -5px;
-	transform: scale(-1) translateX(100%);
-}
+	transform: scale(-1) translateX(12px);
 
+	&.active {
+		transform: scale(-1) translateX(100%);
+	}
+}
+.arrow_next {
+	transform: translateX(-20px);
+
+	&.active {
+		transform: translateX(0);
+	}
+}

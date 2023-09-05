@@ -9,7 +9,7 @@ export const DealsOfWeekSlider = ({ items, responsive, className }) => {
 	const [isArrowsShown, setIsArrowsShown] = useState(false)
 
 	const prevButton = () => <Arrow className={cn(s.arrow, s.arrow_prev, isArrowsShown && s.active)} />
-	const nextButton = () => <Arrow className={cn(s.arrow, isArrowsShown && s.active)} />
+	const nextButton = () => <Arrow className={cn(s.arrow, s.arrow_next, isArrowsShown && s.active)} />
 
 	const handleArrowsShow = () => {
 		setIsArrowsShown(!isArrowsShown)

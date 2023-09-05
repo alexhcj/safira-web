@@ -103,7 +103,7 @@ export const ProductDetails = () => {
 							Category:
 						</Text>
 						{/* TODO: add redirect to shop with category filter */}
-						<NavLink to='/shop'>
+						<NavLink to={`${process.env.REACT_APP_SHOP_DEFULT_LINK}&category=${category}`}>
 							<Text className={s.tag} span>
 								{category}
 							</Text>

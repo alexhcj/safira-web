@@ -1,21 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactSlider from 'react-slider'
 import { useSearchParams } from 'react-router-dom'
+import cn from 'classnames'
+import { productsAPI } from '../../../../api/products'
 import { ButtonFilter } from '../../../../shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
 import './react-slider.css'
+import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
 import s from './price-range.module.scss'
 
-const min = 0
-const max = 500
-
-// TODO: add meta minPrice & maxPrice. Place instead min & max vars
 export const PriceRange = () => {
 	const [params, setParams] = useSearchParams()
-	const [price, setPrice] = useState([min, max])
+	const { category, subCategory, minPrice, maxPrice, slug, brand, dietary } = Object.fromEntries([...params])
+	const [priceRanges, setPriceRanges] = useState([0, 0])
+	const [price, setPrice] = useState([+minPrice || 0, +maxPrice || 0])
+	const [showResetPrice, setShowResetPrice] = useState(false)
 
 	const filterPriceHandler = () => {
 		const query = Object.fromEntries([...params])
 		setParams({ ...query, minPrice: `${price[0]}`, maxPrice: `${price[1]}` })
+	}
+
+	useEffect(() => {
+		const query = Object.fromEntries([...params])
+
+		const fetchData = async () => {
+			try {
+				const { minPrice: initMin, maxPrice: initMax } = await productsAPI.getQueryPriceRange(query)
+				setPriceRanges([+initMin, +initMax])
+
+				if (!minPrice && !maxPrice) {
+					setPrice([+initMin, +initMax])
+				}
+
+				if (minPrice < initMin || maxPrice > initMax) {
+					setParams({ ...query, minPrice: `${initMin}`, maxPrice: `${initMax}` })
+					setPrice([+initMin, +initMax])
+				}
+			} catch (e) {
+				console.log(e)
+			}
+		}
+
+		fetchData()
+	}, [category, subCategory, slug, brand, dietary])
+
+	const resetPriceRange = () => {
+		params.delete('minPrice')
+		params.delete('maxPrice')
+		const query = Object.fromEntries([...params])
+		setParams({ ...query })
+		setPrice(priceRanges)
 	}
 
 	return (
@@ -24,14 +58,29 @@ export const PriceRange = () => {
 				className={s.slider}
 				thumbClassName={s.thumb}
 				onChange={setPrice}
+				defaultValue={priceRanges}
 				value={price}
-				min={min}
-				max={max}
+				step={0.01}
+				min={priceRanges[0]}
+				max={priceRanges[1]}
 			/>
 			<div className={s.bottom}>
 				<ButtonFilter onClick={filterPriceHandler} />
-				<div className={s.thumbs}>
+				<div
+					className={cn(s.thumbs, { [s.active]: minPrice && maxPrice })}
+					onMouseEnter={() => setShowResetPrice(!showResetPrice)}
+					onMouseLeave={() => setShowResetPrice(!showResetPrice)}
+				>
 					${price[0]} - ${price[1]}
+					{minPrice && maxPrice && (
+						<button
+							className={cn(s.reset_price, { [s.active]: showResetPrice })}
+							onClick={resetPriceRange}
+							type='button'
+						>
+							<Close className={s.reset_svg} />
+						</button>
+					)}
 				</div>
 			</div>
 		</div>

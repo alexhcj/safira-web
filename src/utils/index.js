@@ -72,7 +72,15 @@ export const stringToSlug = (str) => {
 }
 
 export const slugToString = (str) => {
-	return str.split('-').join(' ')
+	return str.charAt(0).toUpperCase() + str.split('-').join(' ').slice(1)
+}
+
+export const enumToString = (str) => {
+	return str.split('_').join(' ')
+}
+
+export const brandToSlug = (brand) => {
+	return brand.replace(/\s+/g, '-')
 }
 
 export const throttle = (fn, ms) => {

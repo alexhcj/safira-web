@@ -17,7 +17,7 @@ export const Shop = () => {
 					<div className={s.main}>
 						<GridProvider>
 							<ShopSort meta={meta} />
-							<ShopList products={products} />
+							<ShopList products={products} loading={loading} />
 						</GridProvider>
 						<Pagination meta={meta} />
 					</div>

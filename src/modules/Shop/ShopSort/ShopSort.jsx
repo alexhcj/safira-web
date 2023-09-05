@@ -6,7 +6,7 @@ import s from './shop-sort.module.scss'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
-	{ id: 2, sort: 'createdAt', tag: 'new', order: 'desc', text: 'Sort by newness' },
+	{ id: 2, sort: 'createdAt', tag: 'new', order: 'asc', text: 'Sort by newness' },
 	{ id: 3, sort: 'sortPrice', tag: '', order: 'asc', text: 'Sort by price: high to low' },
 	{ id: 4, sort: 'sortPrice', tag: '', order: 'desc', text: 'Sort by price: low to high' },
 	{ id: 5, sort: 'name', tag: '', order: 'desc', text: 'Sort by alphabet: A - Z' },
@@ -109,8 +109,13 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 				</ul>
 			</div>
 			<div>
-				Showing {+params.get('offset') + 1} - {total < +params.get('limit') ? total : page * +params.get('limit')} of{' '}
-				{total} results
+				Showing {total === 0 ? 0 : +params.get('offset') + 1} -{' '}
+				{total < +params.get('limit')
+					? total
+					: page !== 1 && total < page * +params.get('limit')
+					? total
+					: page * +params.get('limit')}{' '}
+				of {total} results
 			</div>
 		</div>
 	)

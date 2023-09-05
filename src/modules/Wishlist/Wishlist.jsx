@@ -2,6 +2,7 @@ import React from 'react'
 import { useWishlistContext } from '../../context/WishlistContext'
 import { useCartContext } from '../../context/CartContext'
 import { WishlistItem } from './WishlistItem'
+import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import s from './styles/wishlist.module.scss'
@@ -24,23 +25,31 @@ export const Wishlist = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{wishlist.map((item) => {
-						const product = {
-							slug: item.slug,
-							name: item.name,
-							price: { price: item.price },
-							specifications: { quantity: item.maxQuantity },
-						}
-						return (
-							<WishlistItem
-								key={item.slug}
-								product={product}
-								onClick={() => addToCart(product)}
-								onDelete={() => removeFromWishlist(item.slug)}
-								productQuantityInCart={productQuantityInCart(item.slug)}
-							/>
-						)
-					})}
+					{wishlist.length === 0 ? (
+						<tr>
+							<td colSpan={6}>
+								<ItemsNotFound type='wishlist' />
+							</td>
+						</tr>
+					) : (
+						wishlist.map((item) => {
+							const product = {
+								slug: item.slug,
+								name: item.name,
+								price: { price: item.price },
+								specifications: { quantity: item.maxQuantity },
+							}
+							return (
+								<WishlistItem
+									key={item.slug}
+									product={product}
+									onClick={() => addToCart(product)}
+									onDelete={() => removeFromWishlist(item.slug)}
+									productQuantityInCart={productQuantityInCart(item.slug)}
+								/>
+							)
+						})
+					)}
 				</tbody>
 			</table>
 			<Space size='l' />

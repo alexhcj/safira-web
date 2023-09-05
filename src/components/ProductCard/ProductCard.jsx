@@ -25,6 +25,8 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 	}
 
 	const handleMenuToggle = (e) => {
+		if (size === 'row') return
+
 		if (e.type === 'mouseenter') {
 			setMenuToggle(true)
 			!size && setPriceToggle(true) // don't change opacity for large
@@ -36,8 +38,8 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 
 	return (
 		<div
-			onMouseEnter={size !== 'row' && handleMenuToggle}
-			onMouseLeave={size !== 'row' && handleMenuToggle}
+			onMouseEnter={handleMenuToggle}
+			onMouseLeave={handleMenuToggle}
 			className={cn(s.product, size && s[`product_${size}`], className)}
 		>
 			<NavLink className={s.img_link} to={url}>
