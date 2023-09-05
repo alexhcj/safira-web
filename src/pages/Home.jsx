@@ -1,4 +1,5 @@
 import React from 'react'
+import { ProductProvider } from '../context/ProductContext'
 import { HeroSlider } from '../components/SliderSections/HeroSlider/HeroSlider'
 import { OfferLinks } from '../components/OfferLinks/OfferLinks'
 import { Offers } from '../components/Offers/Offers'
@@ -8,10 +9,11 @@ import { OurBlogPosts } from '../components/SliderSections/OurBlogPosts/OurBlogP
 import { FeaturedProducts } from '../components/SliderSections/FeaturedProducts/FeaturedProducts'
 import { Border } from '../shared/components/UI/Spacing/Border'
 import { Space } from '../shared/components/UI/Spacing/Space'
+import { ProductQuickView } from '../components/ProductQuickView/ProductQuickView'
 
 export const Home = () => {
 	return (
-		<>
+		<ProductProvider>
 			<HeroSlider />
 			<Space size='l' />
 			<OfferLinks />
@@ -27,6 +29,7 @@ export const Home = () => {
 			<FeaturedProducts />
 			<Space space={46} />
 			<Border />
-		</>
+			<ProductQuickView />
+		</ProductProvider>
 	)
 }

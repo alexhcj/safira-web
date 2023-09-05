@@ -1,5 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
+import { useProductModalContext } from '../../../../context/ProductContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
 import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
@@ -13,6 +14,7 @@ import s from './hovermenu.module.scss'
 
 // sizes: 'xs' | 'sm' | 'lg' | 'row'
 export const Hovermenu = ({ menuToggle, size, product }) => {
+	const { _, previewProduct } = useProductModalContext()
 	const { addToWishlist } = useWishlistContext()
 	const { addToCart } = useCartContext()
 
@@ -29,7 +31,12 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 					<CartSVG />
 				</ButtonPopup>
 			)}
-			<ButtonPopup className={s.btn_popup} size={size === 'row' && 'lg'} text='Quick View'>
+			<ButtonPopup
+				className={s.btn_popup}
+				size={size === 'row' && 'lg'}
+				text='Quick View'
+				onClick={() => previewProduct(product)}
+			>
 				<MagnifierSVG />
 			</ButtonPopup>
 			<ButtonPopup

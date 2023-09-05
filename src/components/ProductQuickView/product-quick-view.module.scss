@@ -1,0 +1,63 @@
+@import '../../shared/styles/vars';
+
+.content {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: auto 1fr;
+	gap: 25px;
+}
+.img_link {
+	max-width: 428px;
+	max-height: 428px;
+}
+.product {
+}
+.name {
+	margin-bottom: 14px;
+	text-transform: uppercase;
+	line-height: 26px;
+	font-size: 16px;
+	color: $color-dark;
+	font-weight: $weight-semi;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+}
+.price {
+	margin-bottom: 12px;
+}
+.description {
+	margin-bottom: 20px;
+}
+.category {
+	display: flex;
+	margin-bottom: 25px;
+}
+
+.tag {
+	margin-left: 10px;
+
+	&:hover {
+		color: $color-primary;
+	}
+}
+.price {
+	justify-content: flex-start;
+}
+.btn {
+	width: 230px;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+
+	& > span {
+		text-transform: uppercase;
+		line-height: 18px;
+		font-size: 12px;
+		font-weight: $weight-bold;
+	}
+}

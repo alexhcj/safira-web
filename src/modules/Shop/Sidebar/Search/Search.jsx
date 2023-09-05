@@ -7,7 +7,7 @@ import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorP
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
 import { slugToString, stringToSlug } from '../../../../utils'
-import { ReactComponent as Close } from '../../../../assets/images/close.svg'
+import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
 import s from './search.module.scss'
 
 export const Search = () => {

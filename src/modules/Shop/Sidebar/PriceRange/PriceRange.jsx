@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { productsAPI } from '../../../../api/products'
 import { ButtonFilter } from '../../../../shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
 import './react-slider.css'
-import { ReactComponent as Close } from '../../../../assets/images/close.svg'
+import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
 import s from './price-range.module.scss'
 
 export const PriceRange = () => {
