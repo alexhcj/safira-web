@@ -15,7 +15,7 @@ export const EmptyCart = () => {
 				Fill free to add what you like.
 			</p>
 			<Button>
-				<NavLink className={s.search_link} to='/shop?limit=6&offset=0&sort=popularity&order=desc'>
+				<NavLink className={s.search_link} to={process.env.REACT_APP_SHOP_DEFULT_LINK}>
 					Search products
 				</NavLink>
 			</Button>
