@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
 import { useSearchError } from '../../../../hooks/useSearchError'
+import { useDebounce } from '../../../../hooks/useDebounce'
 import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorPopover'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
@@ -19,7 +20,8 @@ export const Search = () => {
 	const [inputFocus, setInputFocus] = useState(false)
 	const [inputTouched, setInputTouched] = useState(false)
 	const inputRef = useRef(null)
-	const { data, loading } = useProductsBySlug(search, isProductSelected)
+	const debouncedSearch = useDebounce(search, 350)
+	const { data, loading } = useProductsBySlug(debouncedSearch, isProductSelected)
 	const { searchError } = useSearchError(search, data.length, inputTouched)
 	const popoverLimit = 5
 
@@ -119,7 +121,7 @@ export const Search = () => {
 					ref={inputRef}
 					type='text'
 					value={search}
-					maxLength='25'
+					maxLength='30'
 					placeholder='Search...'
 					onKeyDown={onKeyDownHandler}
 					onChange={onChangeHandler}
