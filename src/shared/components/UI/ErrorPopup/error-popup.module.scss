@@ -14,6 +14,11 @@
 	background-color: $color-white;
 	transform: translateX(103%);
 	z-index: $z-index100;
+
+	&.no_result {
+		color: $color-warning;
+		border: 1px solid $color-warning;
+	}
 }
 
 .animateEnter {

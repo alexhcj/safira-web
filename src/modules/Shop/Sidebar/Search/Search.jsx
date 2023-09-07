@@ -119,7 +119,11 @@ export const Search = () => {
 		<aside>
 			<div className={s.search}>
 				<input
-					className={cn(s.input, { [s.active]: inputFocus, [s.error]: searchError && inputFocus && inputTouched })}
+					className={cn(s.input, {
+						[s.active]: inputFocus,
+						[s.error]: searchError && inputFocus && inputTouched,
+						[s.no_result]: searchError && searchError.id === 4,
+					})}
 					ref={inputRef}
 					type='text'
 					value={search}
@@ -142,7 +146,7 @@ export const Search = () => {
 				)}
 				{<ErrorPopover error={searchError} inputFocus={inputFocus} inputTouched={inputTouched} />}
 			</div>
-			<ul className={cn(s.popup, { [s.active]: popoverToggle && data })}>
+			<ul className={cn(s.popup, { [s.active]: popoverToggle })}>
 				{data
 					.filter((_, i) => i < popoverLimit)
 					.map((product) => {
@@ -157,7 +161,7 @@ export const Search = () => {
 							</li>
 						)
 					})}
-				{!data && searchError && searchError.type === 'noresult' && <div className={s.no_result}>No results</div>}
+				{!!data && searchError && searchError.type === 'noresult' && <div className={s.no_slug_result}>No results</div>}
 			</ul>
 			<div className={s.bottom}>
 				<Button
