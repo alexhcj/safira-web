@@ -41,10 +41,12 @@ export const Search = () => {
 				inputRef.current.blur()
 				break
 			case 'Enter':
-				setPopoverToggle(false)
-				setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
-				setIsProductSelected(true)
-				setCurrentSearch(search)
+				if (!searchError) {
+					setPopoverToggle(false)
+					setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
+					setIsProductSelected(true)
+					setCurrentSearch(search)
+				}
 				break
 			default:
 				return
