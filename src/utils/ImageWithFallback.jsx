@@ -3,7 +3,7 @@ import { getSizedImgUrl } from '.'
 
 export function ImageWithFallback({ src, fallback, className, alt, imgSize }) {
 	const [imgSrc, setImgSrc] = useState(getSizedImgUrl(src, imgSize))
-	const defaultImgSrc = `${process.env.REACT_APP_PUBLIC_URL}/images/default`
+	const defaultImgSrc = `${process.env.REACT_APP_WEB_PUBLIC_URL}/assets/images/default`
 
 	useEffect(() => {
 		setImgSrc(getSizedImgUrl(src, imgSize))

@@ -13,7 +13,7 @@ export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const { slug, name, category, price, description, specifications } = product
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
 		state: {

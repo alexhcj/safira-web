@@ -14,7 +14,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 
 	const { slug, tags, name, category, price, description } = product
 
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
 	const url = {
 		pathname: `/products/${slug}`,

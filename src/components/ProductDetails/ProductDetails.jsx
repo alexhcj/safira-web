@@ -44,7 +44,7 @@ export const ProductDetails = () => {
 
 	const { name, price, description, category, rating, specifications, reviews } = product
 
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
 	const handlePopover = () => {
 		setIsPopoverHovered(!isPopoverHovered)

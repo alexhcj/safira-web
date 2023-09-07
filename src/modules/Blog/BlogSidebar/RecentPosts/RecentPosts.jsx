@@ -33,7 +33,7 @@ export const RecentPosts = () => {
 			<ul className={s.posts}>
 				{posts.map(({ title, slug, createdAt }) => {
 					const url = `/blog/${slug}`
-					const img = `${process.env.REACT_APP_PUBLIC_URL}/images/posts/${slug}`
+					const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
 
 					const cropTitle = title.length > 28 ? title.slice(0, 25) + '...' : title
 
