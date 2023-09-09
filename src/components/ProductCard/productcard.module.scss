@@ -38,11 +38,20 @@
 	}
 
 	.category {
+		display: grid;
+		grid-auto-flow: column;
+		justify-content: center;
+		align-items: center;
 		margin-bottom: 15px;
 		line-height: 12px;
 		font-size: 12px;
 		z-index: 50;
 		font-weight: $weight-normal;
+
+		&_divider {
+			margin: 0 2px;
+			color: $color-dark4;
+		}
 	}
 
 	.name > a:hover,
@@ -107,10 +116,22 @@
 
 		& .name {
 			margin-bottom: 16px;
+
+			&.margin_less {
+				margin-bottom: 10px;
+			}
 		}
 
 		& .category {
 			margin-bottom: 12px;
+
+			&.category_name {
+				margin-right: 2px;
+			}
+
+			&.margin_less {
+				margin-bottom: 9px;
+			}
 		}
 	}
 
