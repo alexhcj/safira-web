@@ -21,11 +21,13 @@ const dietaryTagsType = {
 }
 
 export const DietaryTags = ({ tags }) => {
-	const dietaryTags = tags.map((tag) => (
-		<div className={s.tag} key={tag}>
-			{dietaryTagsType[tag]}
-		</div>
-	))
+	const dietaryTags =
+		tags &&
+		tags.map((tag) => (
+			<div className={s.tag} key={tag}>
+				{dietaryTagsType[tag]}
+			</div>
+		))
 
 	return <div className={s.tags}>{dietaryTags}</div>
 }
