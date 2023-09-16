@@ -22,12 +22,21 @@
 	align-items: center;
 	gap: 7px;
 }
-.current {
+.breadcrumb,
+.page_breadcrumb {
 	text-transform: capitalize;
 	line-height: 24px;
 	font-size: 14px;
+}
+.breadcrumb {
+	cursor: pointer;
 
 	&.link:hover {
 		color: $color-primary;
 	}
+}
+.category {
+	display: flex;
+	align-items: center;
+	gap: 7px;
 }

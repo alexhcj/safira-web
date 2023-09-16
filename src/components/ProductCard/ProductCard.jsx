@@ -14,7 +14,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
-	const { slug, tags, name, category, price, description, createdAt } = product
+	const { slug, tags, name, subCategory, price, description, createdAt } = product
 
 	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
@@ -22,7 +22,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 		pathname: `/products/${slug}`,
 		state: {
 			name: name,
-			category: category,
+			subCategory: subCategory,
 		},
 	}
 
@@ -51,13 +51,13 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
 					<NavLink to={url}>{name}</NavLink>
 				</h3>
-				<h4 className={cn(s.category, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-					<NavLink className={cn({ [s.category_name]: tags && tags.dietaries })} to='/shop'>
-						{slugToString(category)}
+				<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
+					<NavLink className={cn({ [s.subCategory_name]: tags && tags.dietaries })} to='/shop'>
+						{slugToString(subCategory)}
 					</NavLink>
 					{tags && (
 						<>
-							<span className={s.category_divider}>•</span>
+							<span className={s.subCategory_divider}>•</span>
 							<DietaryTags tags={tags.dietaries} />
 						</>
 					)}

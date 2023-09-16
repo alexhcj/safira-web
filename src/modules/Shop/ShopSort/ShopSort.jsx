@@ -13,12 +13,13 @@ const sortParams = [
 	{ id: 6, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: Z - A' },
 ]
 
-export const ShopSort = ({ meta: { total = 0, page } }) => {
+export const ShopSort = ({ meta = {} }) => {
 	const [params, setParams] = useSearchParams()
 	const [sort, setSort] = useState(sortParams[0])
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
 	const currentSortRef = useRef(null)
+	const { total, page } = meta
 
 	const selectSort = (e) => {
 		const current = e.target.id - 1
@@ -109,13 +110,17 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 				</ul>
 			</div>
 			<div>
-				Showing {total === 0 ? 0 : +params.get('offset') + 1} -{' '}
-				{total < +params.get('limit')
-					? total
-					: page !== 1 && total < page * +params.get('limit')
-					? total
-					: page * +params.get('limit')}{' '}
-				of {total} results
+				{meta && (
+					<>
+						Showing {total === 0 ? 0 : +params.get('offset') + 1} -{' '}
+						{total < +params.get('limit')
+							? total
+							: page !== 1 && total < page * +params.get('limit')
+							? total
+							: page * +params.get('limit')}{' '}
+						of {total} results
+					</>
+				)}
 			</div>
 		</div>
 	)

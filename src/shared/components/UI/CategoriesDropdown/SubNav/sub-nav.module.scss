@@ -22,18 +22,26 @@
 		transform: translateX(0);
 	}
 }
-.nav_sub_item {
+.sub_category_item {
 	display: grid;
 	align-content: flex-start;
 }
-.nav_sub_title {
+.sub_category_title {
+	display: flex;
+	justify-self: flex-start;
 	text-transform: uppercase;
 	line-height: 30px;
 	font-size: 14px;
 	font-weight: $weight-medium;
 	color: $color-dark;
+	cursor: pointer;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
 }
-.nav_sub_link {
+.sub_category_link {
 	text-transform: capitalize;
 	white-space: nowrap;
 	width: 100%;

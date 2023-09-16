@@ -26,7 +26,7 @@ export const PriceRange = () => {
 		const fetchData = async () => {
 			try {
 				const { minPrice: initMin, maxPrice: initMax } = await productsAPI.getQueryPriceRange(query)
-				setPriceRanges([+initMin, +initMax])
+				setPriceRanges([+initMin || 0, +initMax || 0])
 
 				if (!minPrice && !maxPrice) {
 					setPrice([+initMin, +initMax])
