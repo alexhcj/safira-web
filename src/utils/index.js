@@ -23,10 +23,10 @@ export const imgSizeTypes = [
 ]
 
 // concat url, size & ext into img url with certain size
-export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg') => {
+export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg', index) => {
 	const currentSize = imgSizeTypes.filter((sizeType) => sizeType.type === imgSize)[0].size
 
-	return `${url}/${currentSize}.${ext}`
+	return `${url}/${currentSize}${index ? `-${index}` : ''}.${ext}`
 }
 
 export const makeUniqueArray = (products) => {
@@ -94,4 +94,9 @@ export const throttle = (fn, ms) => {
 			}, ms)
 		}
 	}
+}
+
+export const filterCharsOnly = (str) => {
+	// return str.match(/[A-Za-z]/) ? str : new Error('Validation error')
+	return str.match(/[A-Za-z]/)
 }

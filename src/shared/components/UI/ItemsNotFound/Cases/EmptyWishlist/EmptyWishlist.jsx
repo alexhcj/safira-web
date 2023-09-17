@@ -15,7 +15,7 @@ export const EmptyWishlist = () => {
 				Fill free to add what you like.
 			</p>
 			<Button>
-				<NavLink className={s.search_link} to={process.env.REACT_APP_SHOP_DEFULT_LINK}>
+				<NavLink className={s.search_link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
 					Search products
 				</NavLink>
 			</Button>

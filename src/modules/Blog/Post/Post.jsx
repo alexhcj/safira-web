@@ -10,7 +10,7 @@ import s from './post.module.scss'
 
 export const Post = ({ slug, id, title, createdAt, category, text }) => {
 	const url = `/blog/${slug}`
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/posts/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
 
 	return (
 		<>

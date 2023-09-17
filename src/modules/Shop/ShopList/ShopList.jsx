@@ -13,7 +13,7 @@ export const ShopList = ({ products, loading }) => {
 	return (
 		<div className={cn(s.grid, s[`${grid}`])}>
 			{loading && <Preloader />}
-			{products.length === 0 && !loading && <ItemsNotFound type='product' />}
+			{!loading && products.length === 0 && <ItemsNotFound type='product' />}
 			{products.map((product, index) => (
 				<ProductCard key={index} product={product} size={grid === gridTypes[2].type ? 'row' : 'lg'} imgSize='md' />
 			))}

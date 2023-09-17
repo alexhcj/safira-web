@@ -30,6 +30,11 @@
 	&.error {
 		border-color: $color-error;
 	}
+
+	&.no_result {
+		color: $color-warning;
+		border: 1px solid $color-warning;
+	}
 }
 
 .btn {
@@ -109,7 +114,7 @@
 	}
 }
 
-.no_result {
+.no_slug_result {
 	padding: 0 20px 0 30px;
 	width: 100%;
 	line-height: 38px;

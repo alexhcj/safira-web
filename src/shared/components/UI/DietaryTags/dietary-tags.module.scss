@@ -1,0 +1,14 @@
+.tags {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+}
+.tag {
+	width: 22px;
+	height: 22px;
+
+	& > svg {
+		width: inherit;
+		height: inherit;
+	}
+}

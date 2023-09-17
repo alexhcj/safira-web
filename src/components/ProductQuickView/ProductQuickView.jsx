@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useProductModalContext } from '../../context/ProductContext'
 import { useCartContext } from '../../context/CartContext'
 import { Modal } from '../../shared/components/Modal/Modal'
@@ -7,19 +7,26 @@ import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import { Price } from '../../shared/components/Price/Price'
 import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
 import { Text } from '../../shared/components/UI/Text/Text'
+import { slugToString } from '../../utils'
 import s from './product-quick-view.module.scss'
 
 export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
-	const { slug, name, category, price, description, specifications } = product
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const navigate = useNavigate()
+	const { slug, name, basicCategory, price, description, specifications } = product
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
 		state: {
 			name: name,
-			category: category,
+			category: basicCategory,
 		},
+	}
+
+	const onClickHandler = () => {
+		setIsOpen(false)
+		navigate(`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`)
 	}
 
 	return (
@@ -40,11 +47,11 @@ export const ProductQuickView = () => {
 								Category:
 							</Text>
 							{/* TODO: add redirect to shop with category filter */}
-							<NavLink to={`${process.env.REACT_APP_SHOP_DEFULT_LINK}&category=${category}`}>
+							<button type='button' onClick={onClickHandler}>
 								<Text className={s.tag} span>
-									{category}
+									{basicCategory && slugToString(basicCategory)}
 								</Text>
-							</NavLink>
+							</button>
 						</div>
 						{specifications && (
 							<GoodToCart

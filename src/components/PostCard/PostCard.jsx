@@ -8,7 +8,7 @@ import s from './post-card.module.scss'
 export const PostCard = ({ post: { title, slug, createdAt, category }, imgSize, className }) => {
 	const navigate = useNavigate()
 
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/posts/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
 	const url = {
 		pathname: `/posts/${slug}`,
 		state: {

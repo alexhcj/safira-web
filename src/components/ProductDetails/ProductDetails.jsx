@@ -16,6 +16,7 @@ import { Reviews } from '../../shared/components/Reviews/Reviews'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { NewReview } from '../../shared/components/Reviews/NewReview'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { slugToString } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
@@ -25,7 +26,7 @@ export const ProductDetails = () => {
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const { slug } = useParams()
-	const [product, setProduct] = useState([])
+	const [product, setProduct] = useState({})
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
@@ -42,14 +43,13 @@ export const ProductDetails = () => {
 		fetchData()
 	}, [slug])
 
-	const { name, price, description, category, rating, specifications, reviews } = product
+	const { name, price, description, basicCategory, rating, specifications, reviews } = product
 
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
 	const handlePopover = () => {
 		setIsPopoverHovered(!isPopoverHovered)
 	}
-
 	return (
 		<div className='container'>
 			<div className={s.product}>
@@ -102,10 +102,9 @@ export const ProductDetails = () => {
 						<Text span weight='medium'>
 							Category:
 						</Text>
-						{/* TODO: add redirect to shop with category filter */}
-						<NavLink to={`${process.env.REACT_APP_SHOP_DEFULT_LINK}&category=${category}`}>
+						<NavLink to={`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
 							<Text className={s.tag} span>
-								{category}
+								{basicCategory && slugToString(basicCategory)}
 							</Text>
 						</NavLink>
 					</div>

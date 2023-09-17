@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
 import { useSearchError } from '../../../../hooks/useSearchError'
+import { useDebounce } from '../../../../hooks/useDebounce'
 import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorPopover'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
@@ -19,7 +20,8 @@ export const Search = () => {
 	const [inputFocus, setInputFocus] = useState(false)
 	const [inputTouched, setInputTouched] = useState(false)
 	const inputRef = useRef(null)
-	const { data, loading } = useProductsBySlug(search, isProductSelected)
+	const debouncedSearch = useDebounce(search, 350)
+	const { data, loading } = useProductsBySlug(debouncedSearch, isProductSelected)
 	const { searchError } = useSearchError(search, data.length, inputTouched)
 	const popoverLimit = 5
 
@@ -39,10 +41,12 @@ export const Search = () => {
 				inputRef.current.blur()
 				break
 			case 'Enter':
-				setPopoverToggle(false)
-				setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
-				setIsProductSelected(true)
-				setCurrentSearch(search)
+				if (!searchError) {
+					setPopoverToggle(false)
+					setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
+					setIsProductSelected(true)
+					setCurrentSearch(search)
+				}
 				break
 			default:
 				return
@@ -115,11 +119,15 @@ export const Search = () => {
 		<aside>
 			<div className={s.search}>
 				<input
-					className={cn(s.input, { [s.active]: inputFocus, [s.error]: searchError && inputFocus && inputTouched })}
+					className={cn(s.input, {
+						[s.active]: inputFocus,
+						[s.error]: searchError && inputFocus && inputTouched,
+						[s.no_result]: searchError && searchError.id === 4,
+					})}
 					ref={inputRef}
 					type='text'
 					value={search}
-					maxLength='25'
+					maxLength='30'
 					placeholder='Search...'
 					onKeyDown={onKeyDownHandler}
 					onChange={onChangeHandler}
@@ -138,7 +146,7 @@ export const Search = () => {
 				)}
 				{<ErrorPopover error={searchError} inputFocus={inputFocus} inputTouched={inputTouched} />}
 			</div>
-			<ul className={cn(s.popup, { [s.active]: popoverToggle && data })}>
+			<ul className={cn(s.popup, { [s.active]: popoverToggle })}>
 				{data
 					.filter((_, i) => i < popoverLimit)
 					.map((product) => {
@@ -153,7 +161,7 @@ export const Search = () => {
 							</li>
 						)
 					})}
-				{!data && searchError && searchError.type === 'noresult' && <div className={s.no_result}>No results</div>}
+				{!!data && searchError && searchError.type === 'noresult' && <div className={s.no_slug_result}>No results</div>}
 			</ul>
 			<div className={s.bottom}>
 				<Button

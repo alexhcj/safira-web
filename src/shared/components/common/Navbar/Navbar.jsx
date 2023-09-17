@@ -32,7 +32,7 @@ export const Navbar = () => {
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to={process.env.REACT_APP_SHOP_DEFULT_LINK}>
+						<NavLink className={s.nav__link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
 							Shop
 						</NavLink>
 						<NavLink className={s.nav__link} to='/blog'>

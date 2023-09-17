@@ -3,11 +3,12 @@ import { useSearchParams } from 'react-router-dom'
 import s from './pagination.module.scss'
 import cn from 'classnames'
 
-export const Pagination = ({ meta: { page, total, isLastPage } }) => {
+export const Pagination = ({ meta = {} }) => {
 	const perPage = 3
 	const [params, setParams] = useSearchParams()
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(perPage)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
+	const { page, total, isLastPage } = meta
 
 	const totalPages = () => {
 		const pages = []
@@ -95,11 +96,11 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 					</button>
 				))}
 			</div>
-			<button className={s.btn} onClick={selectNext} disabled={isLastPage}>
+			<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
 				next
 			</button>
 			{!isLastPage && (
-				<button className={s.btn} onClick={selectFinish}>
+				<button className={s.btn} onClick={selectFinish} disabled={total === 0}>
 					&gt;&gt;
 				</button>
 			)}

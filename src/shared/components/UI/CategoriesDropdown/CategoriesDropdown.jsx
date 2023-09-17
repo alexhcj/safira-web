@@ -8,34 +8,34 @@ import s from './categories-dropdown.module.scss'
 const categories = [
 	{
 		name: 'Fruits & vegetables',
-		category: 'fruits-vegetables',
-		subcategories: {
-			category: 'fruits-vegetables',
+		primeCategory: 'fruits-vegetables',
+		subCategories: {
+			parentCategory: 'fruits-vegetables',
 			items: [
 				{
 					name: 'Fruits',
-					category: 'fruits',
-					categories: [
-						{ name: 'Tropical Fruits', subCategory: 'tropical-fruits' },
-						{ name: 'Apples & Pears', subCategory: 'apples-pears' },
-						{ name: 'Citrus Fruits', subCategory: 'citrus-fruits' },
+					subCategory: 'fruits',
+					basicCategories: [
+						{ name: 'Tropical Fruits', basicCategory: 'tropical-fruits' },
+						{ name: 'Apples & Pears', basicCategory: 'apples-pears' },
+						{ name: 'Citrus Fruits', basicCategory: 'citrus-fruits' },
 					],
 				},
 				{
 					name: 'Vegetables',
-					category: 'vegetables',
-					categories: [
-						{ name: 'Stone fruits', subCategory: 'stone-fruits' },
-						{ name: 'Tomatoes', subCategory: 'tomatoes' },
-						{ name: 'Cabbages & Lettuces', subCategory: 'cabbages-lettuces' },
-						{ name: 'Broccoli & Cauliflowers', subCategory: 'broccoli-cauliflowers' },
-						{ name: 'Garlic, Ginger & Onions', subCategory: 'garlic-ginger-onions' },
-						{ name: 'Beans & Peas', subCategory: 'beans-peas' },
-						{ name: 'Brinjals & Gourds', subCategory: 'brinjals-gourds' },
-						{ name: 'Cucumbers & Lady Fingers', subCategory: 'cucumbers-lady-fingers' },
-						{ name: 'Potatoes & Roots', subCategory: 'potatoes-roots' },
-						{ name: 'Corns', subCategory: 'corns' },
-						{ name: 'Frozen vegetables', subCategory: 'frozen-vegetables' },
+					subCategory: 'vegetables',
+					basicCategories: [
+						{ name: 'Stone fruits', basicCategory: 'stone-fruits' },
+						{ name: 'Tomatoes', basicCategory: 'tomatoes' },
+						{ name: 'Cabbages & Lettuces', basicCategory: 'cabbages-lettuces' },
+						{ name: 'Broccoli & Cauliflowers', basicCategory: 'broccoli-cauliflowers' },
+						{ name: 'Garlic, Ginger & Onions', basicCategory: 'garlic-ginger-onions' },
+						{ name: 'Beans & Peas', basicCategory: 'beans-peas' },
+						{ name: 'Brinjals & Gourds', basicCategory: 'brinjals-gourds' },
+						{ name: 'Cucumbers & Lady Fingers', basicCategory: 'cucumbers-lady-fingers' },
+						{ name: 'Potatoes & Roots', basicCategory: 'potatoes-roots' },
+						{ name: 'Corns', basicCategory: 'corns' },
+						{ name: 'Frozen vegetables', basicCategory: 'frozen-vegetables' },
 					],
 				},
 			],
@@ -43,16 +43,16 @@ const categories = [
 	},
 	{
 		name: 'Drinks',
-		category: 'drinks',
-		subcategories: {
-			category: 'drinks',
+		primeCategory: 'drinks',
+		subCategories: {
+			parentCategory: 'drinks',
 			items: [
 				{
 					name: 'Juices',
-					category: 'juices',
-					categories: [
-						{ name: 'Apple juice', subCategory: 'apple-juice' },
-						{ name: 'Orange juice', subCategory: 'orange-juice' },
+					subCategory: 'juices',
+					basicCategories: [
+						{ name: 'Apple juice', basicCategory: 'apple-juice' },
+						{ name: 'Orange juice', basicCategory: 'orange-juice' },
 					],
 				},
 			],
@@ -60,87 +60,87 @@ const categories = [
 	},
 	{
 		name: 'Rice, noodles & cooking ingridients',
-		category: 'rice-noodles-cooking-ingridients',
-		subcategories: {
-			category: 'rice-noodles-cooking-ingridients',
+		primeCategory: 'rice-noodles-cooking-ingridients',
+		subCategories: {
+			parentCategory: 'rice-noodles-cooking-ingridients',
 			items: [
 				{
 					name: 'Dried food',
-					category: 'dried-food',
-					categories: [{ name: 'Beans, Seeds & Nuts', subCategory: 'beans-seeds-nuts' }],
+					subCategory: 'dried-food',
+					basicCategories: [{ name: 'Beans, Seeds & Nuts', basicCategory: 'beans-seeds-nuts' }],
 				},
 				{
 					name: 'Oil',
-					category: 'oil',
-					categories: [{ name: 'Olive oil', subCategory: 'olive-oil' }],
+					subCategory: 'oil',
+					basicCategories: [{ name: 'Olive oil', basicCategory: 'olive-oil' }],
 				},
 			],
 		},
 	},
 	{
 		name: 'Food cupboard',
-		category: 'food-cupboard',
-		subcategories: {
-			category: 'food-cupboard',
+		primeCategory: 'food-cupboard',
+		subCategories: {
+			parentCategory: 'food-cupboard',
 			items: [
 				{
 					name: 'Canned food',
-					category: 'canned-food',
-					categories: [{ name: 'Canned Vegetables', subCategory: 'canned-vegetables' }],
+					subCategory: 'canned-food',
+					basicCategories: [{ name: 'Canned Vegetables', basicCategory: 'canned-vegetables' }],
 				},
 			],
 		},
 	},
 	{
 		name: 'Meat & seafood',
-		category: 'meat-seafood',
-		subcategories: {
-			category: 'meat-seafood',
+		primeCategory: 'meat-seafood',
+		subCategories: {
+			parentCategory: 'meat-seafood',
 			items: [
 				{
 					name: 'Beef & Lamb',
-					category: 'beef-lamb',
-					categories: [{ name: 'Fresh Beef & Lamb', subCategory: 'fresh-beef-lamb' }],
+					subCategory: 'beef-lamb',
+					basicCategories: [{ name: 'Fresh Beef & Lamb', basicCategory: 'fresh-beef-lamb' }],
 				},
 				{
 					name: 'Fish & Seafood',
-					category: 'fish-seafood',
-					categories: [{ name: 'Fresh fish & seafood', subCategory: 'fresh-fish-seafood' }],
+					subCategory: 'fish-seafood',
+					basicCategories: [{ name: 'Fresh fish & seafood', basicCategory: 'fresh-fish-seafood' }],
 				},
 			],
 		},
 	},
 	{
 		name: 'Dairy, chilled & eggs',
-		category: 'dairy-chilled-eggs',
-		subcategories: {
-			category: 'dairy-chilled-eggs',
+		primeCategory: 'dairy-chilled-eggs',
+		subCategories: {
+			parentCategory: 'dairy-chilled-eggs',
 			items: [
 				{
 					name: 'Eggs',
-					category: 'eggs',
-					categories: [{ name: 'Fresh eggs', subCategory: 'fresh-eggs' }],
+					subCategory: 'eggs',
+					basicCategories: [{ name: 'Fresh eggs', basicCategory: 'fresh-eggs' }],
 				},
 			],
 		},
 	},
 	{
 		name: 'Beer, wine & spirits',
-		category: 'beer-wine-spirits',
+		primeCategory: 'beer-wine-spirits',
 	},
 	{
 		name: 'Bakery',
-		category: 'bakery',
+		primeCategory: 'bakery',
 	},
 	{
 		name: 'Frozen',
-		category: 'frozen',
+		primeCategory: 'frozen',
 	},
 ]
 
 export const CategoriesDropdown = () => {
 	const [popupToggle, setPopupToggle] = useState(false)
-	const [subNavToggleCategory, setSubNavToggleCategory] = useState(null)
+	const [toggleNavSubCategory, setToggleNavSubCategory] = useState(null)
 	const navigate = useNavigate()
 	const ref = useRef(null)
 
@@ -172,24 +172,24 @@ export const CategoriesDropdown = () => {
 
 	const handleNavSubToggle = (e, category) => {
 		if (e.type === 'mouseenter') {
-			setSubNavToggleCategory(category)
+			setToggleNavSubCategory(category)
 		} else {
-			setSubNavToggleCategory(null)
+			setToggleNavSubCategory(null)
 		}
 	}
 
 	const onClickHandler = (e) => {
-		const category = e.target.id
+		const primeCategory = e.target.id
 		const name = e.target.dataset.name
 
 		const query = {
-			category,
+			primeCategory,
 			limit: '6',
 			offset: '0',
 			sort: 'popularity',
 			order: 'desc',
 		}
-		navigate(`/shop?${new URLSearchParams(query)}`, { state: { category: name } })
+		navigate(`/shop?${new URLSearchParams(query)}`, { state: JSON.stringify({ primeCategory: name }) })
 	}
 
 	return (
@@ -204,24 +204,25 @@ export const CategoriesDropdown = () => {
 			<nav className={cn(s.popup, popupToggle && s.active)}>
 				{categories
 					.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
-					.map(({ name, category, subcategories }) => {
+					.map(({ name, primeCategory, subCategories }) => {
 						return (
 							<ul
-								className={s.category_item}
-								key={category}
-								onMouseEnter={(e) => handleNavSubToggle(e, category)}
-								onMouseLeave={(e) => handleNavSubToggle(e, category)}
+								className={s.prime_category}
+								key={primeCategory}
+								onMouseEnter={(e) => handleNavSubToggle(e, primeCategory)}
+								onMouseLeave={(e) => handleNavSubToggle(e, primeCategory)}
 								onClick={onClickHandler}
 							>
-								<li className={s.link} id={category} data-name={name}>
+								<li className={s.link} id={primeCategory} data-name={name}>
 									{name}
-									{subcategories && <ArrowSVG className={s.svg_subcategories} />}
+									{subCategories && <ArrowSVG className={s.svg_subcategories} />}
 								</li>
-								{subcategories && (
+								{subCategories && (
 									<SubNav
-										subNavToggleCategory={subNavToggleCategory}
-										subcategories={subcategories}
+										subNavToggleCategory={toggleNavSubCategory}
+										subCategories={subCategories}
 										setPopupToggle={setPopupToggle}
+										primeCategory={primeCategory}
 									/>
 								)}
 							</ul>

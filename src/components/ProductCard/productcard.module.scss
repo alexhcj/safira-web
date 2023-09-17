@@ -37,16 +37,25 @@
 		color: $color-black;
 	}
 
-	.category {
+	.subCategory {
+		display: grid;
+		grid-auto-flow: column;
+		justify-content: center;
+		align-items: center;
 		margin-bottom: 15px;
 		line-height: 12px;
 		font-size: 12px;
 		z-index: 50;
 		font-weight: $weight-normal;
+
+		&_divider {
+			margin: 0 2px;
+			color: $color-dark4;
+		}
 	}
 
 	.name > a:hover,
-	.category > a:hover {
+	.subCategory > a:hover {
 		color: $color-primary;
 	}
 
@@ -68,7 +77,7 @@
 			margin-bottom: 16px;
 		}
 
-		& .category {
+		& .subCategory {
 			margin-bottom: 12px;
 		}
 	}
@@ -107,10 +116,22 @@
 
 		& .name {
 			margin-bottom: 16px;
+
+			&.margin_less {
+				margin-bottom: 10px;
+			}
 		}
 
-		& .category {
+		& .subCategory {
 			margin-bottom: 12px;
+
+			&.subCategory_name {
+				margin-right: 2px;
+			}
+
+			&.margin_less {
+				margin-bottom: 9px;
+			}
 		}
 	}
 
@@ -133,7 +154,7 @@
 			margin-bottom: 16px;
 			font-size: 18px;
 		}
-		& .category {
+		& .subCategory {
 			margin-bottom: 12px;
 		}
 		& .prices {

@@ -19,7 +19,7 @@ export const WishlistItem = ({
 	onDelete,
 	productQuantityInCart,
 }) => {
-	const img = `${process.env.REACT_APP_PUBLIC_URL}/images/products/${slug}`
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
 	return (
 		<tr className={s.item}>
