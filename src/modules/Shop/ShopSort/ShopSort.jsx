@@ -1,29 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { getSearchParams } from '../../../utils'
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
 import s from './shop-sort.module.scss'
 
 const sortParams = [
 	{ id: 1, sort: 'popularity', tag: '', order: 'desc', text: 'Sort by popularity' },
-	{ id: 2, sort: 'createdAt', tag: 'new', order: 'desc', text: 'Sort by newness' },
+	{ id: 2, sort: 'createdAt', tag: 'new', order: 'asc', text: 'Sort by newness' },
 	{ id: 3, sort: 'sortPrice', tag: '', order: 'asc', text: 'Sort by price: high to low' },
 	{ id: 4, sort: 'sortPrice', tag: '', order: 'desc', text: 'Sort by price: low to high' },
 	{ id: 5, sort: 'name', tag: '', order: 'desc', text: 'Sort by alphabet: A - Z' },
 	{ id: 6, sort: 'name', tag: '', order: 'asc', text: 'Sort by alphabet: Z - A' },
 ]
 
-export const ShopSort = ({ meta: { total = 0, page } }) => {
+export const ShopSort = ({ meta = {} }) => {
 	const [params, setParams] = useSearchParams()
 	const [sort, setSort] = useState(sortParams[0])
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
 	const currentSortRef = useRef(null)
+	const { total, page } = meta
 
 	const selectSort = (e) => {
 		const current = e.target.id - 1
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 
 		setSort(sortParams[current])
 		setParams({ ...query, offset: '0', sort: sortParams[current].sort, order: sortParams[current].order })
@@ -79,7 +79,7 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 			<ShopListLayout />
 			<div className={s.sort_box}>
 				<span
-					role="presentation"
+					role='presentation'
 					className={cn(s.sort, { [s.transform]: listToggle })}
 					onClick={clickHandler}
 					ref={currentSortRef}
@@ -97,7 +97,7 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 
 						return (
 							<li
-								role="presentation"
+								role='presentation'
 								className={cn(s.item, { [s.current]: sort.id === id, [s.hightlight]: activeSortId === id })}
 								key={id}
 								id={`${id}`}
@@ -109,7 +109,19 @@ export const ShopSort = ({ meta: { total = 0, page } }) => {
 					})}
 				</ul>
 			</div>
-			<div>Showing {(+params.get('offset') + 1)} - {total < +params.get('limit') ? total : page * +params.get('limit')} of {total} results</div>
+			<div>
+				{meta && (
+					<>
+						Showing {total === 0 ? 0 : +params.get('offset') + 1} -{' '}
+						{total < +params.get('limit')
+							? total
+							: page !== 1 && total < page * +params.get('limit')
+							? total
+							: page * +params.get('limit')}{' '}
+						of {total} results
+					</>
+				)}
+			</div>
 		</div>
 	)
 }

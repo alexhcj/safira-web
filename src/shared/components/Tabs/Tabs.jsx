@@ -9,7 +9,7 @@ export const Tabs = ({ children, className }) => {
 		setActiveTab(id)
 	}, [])
 
-	const tabs = children.map(child => (
+	const tabs = children.map((child) => (
 		<button
 			className={cn(s.tab, child.props.id === activeTab && s.active)}
 			onClick={(e) => {
@@ -22,7 +22,7 @@ export const Tabs = ({ children, className }) => {
 		</button>
 	))
 
-	const tabContent = children.filter(child => child.props.id === activeTab)
+	const tabContent = children.filter((child) => child.props.id === activeTab)
 
 	return (
 		<>

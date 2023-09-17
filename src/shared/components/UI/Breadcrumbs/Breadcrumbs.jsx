@@ -1,29 +1,72 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import cn from 'classnames'
 import { Text } from '../Text/Text'
 import { Space } from '../Spacing/Space'
-import cn from 'classnames'
+import { shallowEqual, slugToString } from '../../../../utils'
 import s from './breadcrumbs.module.scss'
 
 export const Breadcrumbs = () => {
-	let location = useLocation().pathname.slice(1) // breadcrumbs without /
-	const breadcrumbs = location.split('/')
+	let { pathname, state } = useLocation()
+	const navigate = useNavigate()
+	const isMultyPaths = pathname.match(/\//g).length > 1
+	const pagePathname = isMultyPaths ? pathname.split('/').filter((path) => path)[0] : pathname.slice(1)
+	const pageDetailsItem = slugToString(
+		pathname
+			.split('/')
+			.filter((path) => path)
+			.at(-1),
+	)
+
+	const categoryNavigate = (categoryType, category, index) => {
+		const newState = {}
+		Object.entries(JSON.parse(state))
+			.slice(0, index + 1)
+			.forEach((item) => {
+				newState[item[0]] = item[1]
+			})
+		if (shallowEqual(JSON.parse(state), newState)) return
+		navigate(`/shop?${categoryType}=${category}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`, {
+			state: JSON.stringify(newState),
+		})
+	}
+
+	const renderCategories = (categories) => {
+		return (
+			categories &&
+			Object.entries(categories).map(([key, value], index) => (
+				<div className={s.category} key={value}>
+					<Text span>/</Text>
+					<div onClick={() => categoryNavigate(key, value, index)}>
+						<Text className={cn(s.breadcrumb, s.link)} span>
+							{slugToString(value)}
+						</Text>
+					</div>
+				</div>
+			))
+		)
+	}
 
 	return (
 		<div className={s.section}>
 			<div className={s.content}>
-				<div className={s.box}>
-					<h3 className={s.page}>{breadcrumbs[0]}</h3>
-					<Space space={9} />
-					<div className={s.breadcrumbs}>
-						<div className={s.route}>
-							<NavLink to='/' className={cn(s.current, s.link)}>Home</NavLink>
-							<Text span>/</Text>
-						</div>
-						<div className={s.route}>
-							<Text className={s.current}>{breadcrumbs[0]}</Text>
-						</div>
+				<h3 className={s.page}>{pagePathname}</h3>
+				<Space space={9} />
+				<div className={s.breadcrumbs}>
+					<div>
+						<NavLink to='/' className={cn(s.breadcrumb, s.link)}>
+							Home
+						</NavLink>
 					</div>
+					{pathname && !state && (
+						<>
+							<Text span>/ </Text>
+							<Text className={s.page_breadcrumb} span>
+								{pageDetailsItem}
+							</Text>
+						</>
+					)}
+					{renderCategories(JSON.parse(state))}
 				</div>
 			</div>
 		</div>

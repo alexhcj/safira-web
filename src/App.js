@@ -5,16 +5,22 @@ import { Copyright } from './components/Copyright/Copyright'
 import { ButtonScroll } from './shared/components/UI/Buttons/ButtonScroll/ButtonScroll'
 import { ButtonDocs } from './shared/components/UI/Buttons/ButtonDocs/ButtonDocs'
 import { AppRoutes } from './shared/routes/routes'
+import { WishlistProvider } from './context/WishlistContext'
+import { CartProvider } from './context/CartContext'
 
 function App() {
 	return (
 		<div className='app'>
-			<Header />
-			<AppRoutes />
-			<Footer />
-			<Copyright />
-			<ButtonScroll />
-			<ButtonDocs />
+			<WishlistProvider>
+				<CartProvider>
+					<Header />
+					<AppRoutes />
+					<Footer />
+					<Copyright />
+					<ButtonScroll />
+					<ButtonDocs />
+				</CartProvider>
+			</WishlistProvider>
 		</div>
 	)
 }

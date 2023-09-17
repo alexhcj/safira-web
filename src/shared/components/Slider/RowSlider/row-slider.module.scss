@@ -1,14 +1,14 @@
 @import '../../../styles/vars';
 
 .slider {
-	padding: 30px 10px;
+	padding: 30px 0 20px;
 	border-radius: 10px;
 	background-color: $color-white;
 }
 
 .title {
 	text-transform: capitalize;
-	padding: 0 10px;
+	padding: 0 20px;
 	line-height: 26px;
 	font-size: 24px;
 	font-weight: 500;
@@ -18,11 +18,11 @@
 .arrow {
 	position: absolute;
 	top: -50px;
-	right: 10px;
+	right: -735px;
+	display: inline-flex;
 	padding: 0;
 	width: 22px;
 	height: 26px;
-	display: inline-flex;
 }
 
 .arrow_prev {

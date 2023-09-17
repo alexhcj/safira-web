@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Categories } from '../../UI/Categories/Categories'
+import { CategoriesDropdown } from '../../UI/CategoriesDropdown/CategoriesDropdown'
 import phone from '../../../../assets/images/phone.png'
 import s from './navbar.module.scss'
 
@@ -27,12 +27,12 @@ export const Navbar = () => {
 		<div className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}>
 			<div className='container'>
 				<div className={s.bottom}>
-					<Categories />
+					<CategoriesDropdown />
 					<nav className={s.nav}>
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to='/shop'>
+						<NavLink className={s.nav__link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
 							Shop
 						</NavLink>
 						<NavLink className={s.nav__link} to='/blog'>

@@ -18,7 +18,7 @@ const callAPI = async ({ url, data, method, params = {}, headers = {}, responseT
 			...headers,
 			Authorization: `Bearer ${getAccessToken()}`,
 		},
-		baseURL: process.env.REACT_APP_BASE_URL,
+		baseURL: process.env.REACT_APP_API_URL,
 		responseType,
 	}
 

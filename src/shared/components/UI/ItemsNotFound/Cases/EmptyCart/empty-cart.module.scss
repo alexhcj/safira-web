@@ -1,0 +1,30 @@
+@import '../../../../../styles/vars';
+
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 50px 0;
+}
+.image {
+	margin-bottom: 25px;
+	width: 250px;
+	height: 220px;
+	opacity: .85;
+}
+.title {
+	margin-bottom: 13px;
+	text-transform: capitalize;
+	font-size: 26px;
+	font-weight: $weight-bold;
+}
+.text {
+	margin-bottom: 25px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 22px;
+}
+.search_link {
+	color: $color-white;
+}

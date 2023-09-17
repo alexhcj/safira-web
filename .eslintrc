@@ -2,13 +2,10 @@
 	"env": {
 		"browser": true,
 		"node": true,
-		"es2021": true
+		"es2021": true,
+		"jest": true
 	},
-	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		"plugin:react-hooks/recommended"
-	],
+	"extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -16,26 +13,27 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react",
-		"react-hooks"
-	],
+	"plugins": ["react", "react-hooks"],
 	"rules": {
 		"semi": ["error", "never"],
 		"eqeqeq": ["error", "always"],
 		"quotes": ["error", "single"],
-		"indent": ["error", "tab"],
+		"indent": [
+			"error",
+			"tab",
+			{ "ignoredNodes": ["ConditionalExpression"], "MemberExpression": "off", "SwitchCase": 1 }
+		],
 		"brace-style": ["error", "1tbs"],
-		"semi-spacing": ["error", {"before": false, "after": true}],
+		"semi-spacing": ["error", { "before": false, "after": true }],
 		"arrow-spacing": ["error", { "before": true, "after": true }],
 		"no-unused-vars": "off",
 		"linebreak-style": ["error", "unix"],
 		"space-infix-ops": "error",
-		"keyword-spacing": ["error", {"after": true}],
-		"comma-spacing": ["error", {"after": true }],
+		"keyword-spacing": ["error", { "after": true }],
+		"comma-spacing": ["error", { "after": true }],
 		"react/prop-types": "off",
 		"no-unneeded-ternary": "warn",
-		"no-trailing-spaces": ["error", {"ignoreComments": true}],
+		"no-trailing-spaces": ["error", { "ignoreComments": true }],
 		"object-curly-spacing": ["error", "always"],
 		"no-duplicate-imports": ["error", { "includeExports": true }],
 		"react-hooks/rules-of-hooks": "error",
@@ -43,15 +41,10 @@
 		"react/require-default-props": "off",
 		"react/jsx-tag-spacing": [2, { "beforeSelfClosing": "always" }],
 		"react/jsx-closing-bracket-location": ["error", "tag-aligned"],
-		"react/jsx-props-no-spreading": [
-			"off"
-		],
-		"max-len": [
-			"warn",
-			{
-				"code": 120
-			}
-		],
-		"no-console": "off"
+		"react/jsx-props-no-spreading": ["off"],
+		"max-len": ["warn", { "code": 120 }],
+		"no-console": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": ["warn", { "extensions": [".jsx", ".js"] }]
 	}
 }

@@ -5,12 +5,8 @@
     display: flex;
     justify-content: space-between;
     padding: 20px 20px 0;
-    max-width: 326px;
+    max-width: 340px;
     width: 100%;
-
-	&_md {
-		max-width: 262px;
-	}
 }
 .tag {
     text-align: center;

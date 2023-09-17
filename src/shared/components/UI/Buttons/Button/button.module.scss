@@ -59,7 +59,7 @@
 	line-height: 42px;
 	font-size: 16px;
 	font-weight: 500;
-	border-radius: 3px;
+	border-radius: $default-border-radius;
 }
 
 .text {
@@ -103,6 +103,10 @@
 	&:hover {
 		background-color: $color-primary;
 	}
+}
+
+.border_none {
+	border-radius: 0;
 }
 
 .focus {

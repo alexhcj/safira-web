@@ -1,9 +1,0 @@
-@import '../../../../styles/vars';
-
-.arrow {
-    position: absolute;
-    display: inline-flex;
-}
-.arrow:hover svg path {
-    fill: $color-primary;
-}

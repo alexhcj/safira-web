@@ -5,6 +5,7 @@
 }
 
 .input {
+	text-transform: capitalize;
 	margin-bottom: 22px;
 	padding: 0 30px 0 15px;
 	width: 100%;
@@ -28,6 +29,11 @@
 
 	&.error {
 		border-color: $color-error;
+	}
+
+	&.no_result {
+		color: $color-warning;
+		border: 1px solid $color-warning;
 	}
 }
 
@@ -108,7 +114,7 @@
 	}
 }
 
-.no_result {
+.no_slug_result {
 	padding: 0 20px 0 30px;
 	width: 100%;
 	line-height: 38px;
@@ -123,5 +129,6 @@
 }
 
 .current {
-    text-align: right;
+	text-transform: capitalize;
+	text-align: right;
 }

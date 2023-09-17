@@ -1,7 +1,7 @@
 @import '../../../styles/vars';
 
 .slider {
-	background-color: $color-white;
+	background-color: transparent;
 }
 
 .title {
@@ -15,13 +15,12 @@
 
 .arrow {
 	position: absolute;
-	top: 50%;
-	right: 0;
+	top: 185px;
+	left: 1135px;
 	display: inline-flex;
 	padding: 0;
 	width: 22px;
 	height: 26px;
-	transform: translateY(-50%) translateX(100%);
 	opacity: 0;
 	@include transition-all;
 
@@ -32,6 +31,6 @@
 
 .arrow_prev {
 	left: 0;
-	transform: scale(-1) translateX(200%);
+	transform: scale(-1) translateX(100%);
 }
 

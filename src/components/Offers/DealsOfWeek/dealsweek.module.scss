@@ -1,0 +1,24 @@
+@import '../../../shared/styles/vars';
+
+.deals {
+	background-color: $color-white;
+	padding: 20px 20px 30px;
+}
+.deal {
+	text-align: center;
+}
+.heading {
+	text-align: center;
+	line-height: 50px;
+	font-size: 24px;
+	font-weight: $weight-normal;
+	border-radius: 10px 10px 0 0;
+	color: $color-white;
+	background-color: $color-primary;
+}
+.product {
+	margin-bottom: 26px;
+}
+.btn {
+	text-transform: uppercase;
+}

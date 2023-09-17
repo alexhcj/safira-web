@@ -26,12 +26,41 @@
 	align-items: center;
 }
 .thumbs {
+	position: relative;
 	margin-right: 10px;
 	font-size: 12px;
+
+	&.active {
+		font-weight: $weight-medium;
+	}
 }
 .mark {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	background-color: blue;
+}
+.reset_price {
+	position: absolute;
+	top: 50%;
+	right: -5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2px;
+	font-size: 10px;
+	line-height: 10px;
+	border: 1px solid $color-error;
+	border-radius: 5px;
+	opacity: 0;
+	transform: translateX(100%) translateY(-50%);
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+}
+.reset_svg {
+	width: 10px;
+	height: 10px;
 }

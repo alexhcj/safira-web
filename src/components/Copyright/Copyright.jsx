@@ -23,7 +23,7 @@ export const Copyright = () => {
 							</NavLink>
 						</div>
 					</div>
-					<div className={s.payment}>
+					<div className={s.payments}>
 						<img className={s.img} src={payment1} alt='' />
 						<img className={s.img} src={payment2} alt='' />
 						<img className={s.img} src={payment3} alt='' />

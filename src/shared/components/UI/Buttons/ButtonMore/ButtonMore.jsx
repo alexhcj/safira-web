@@ -1,15 +1,10 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { MoreSVG } from '../../../../../components/svg'
+import cn from 'classnames'
 import s from './button-more.module.scss'
 
-export const ButtonMore = ({ to = '/', text = 'Show more' }) => {
+export const ButtonMore = ({ text = 'Show more', onClick, className }) => {
 	return (
-		<NavLink to={to} className={s.btn}>
+		<button className={cn(s.btn, className)} onClick={onClick}>
 			{text}
-			<MoreSVG />
-		</NavLink>
+		</button>
 	)
 }
-
-// TODO: create btn Class for extends

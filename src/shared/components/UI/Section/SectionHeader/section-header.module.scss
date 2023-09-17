@@ -11,10 +11,11 @@
 	font-size: 15px;
 	font-style: italic;
 	font-family: $PlayfairDisplay;
-	color: $color-black;
+	color: $color-dark;
 }
 
 .title {
+	text-transform: capitalize;
 	line-height: 35px;
 	font-size: 32px;
 	font-weight: $weight-medium;

@@ -26,9 +26,7 @@ export const Rating = ({ rating }) => {
 						>
 							<StarFilled />
 						</div>
-						<div className={s.item}>
-							{showEmptyIcon  ?  <Star /> : <StarFilled />}
-						</div>
+						<div className={s.item}>{showEmptyIcon ? <Star /> : <StarFilled />}</div>
 					</div>
 				)
 			})}

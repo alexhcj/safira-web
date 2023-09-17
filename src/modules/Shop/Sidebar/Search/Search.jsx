@@ -1,64 +1,29 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { useProductsBySlug } from '../../../../hooks/useProductsBySlug'
+import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
 import { useSearchError } from '../../../../hooks/useSearchError'
-import { ErrorPopup } from '../../../../shared/components/UI/ErrorPopup/ErrorPopup'
+import { useDebounce } from '../../../../hooks/useDebounce'
+import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorPopover'
 import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../../../shared/components/UI/Text/Text'
-import { getSearchParams, stringToSlug } from '../../../../utils'
-import { ReactComponent as Close } from '../../../../assets/images/close.svg'
+import { slugToString, stringToSlug } from '../../../../utils'
+import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
 import s from './search.module.scss'
 
 export const Search = () => {
-	const [ params, setParams] = useSearchParams()
+	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
-	const [currentSearch, setCurrentSearch] = useState('')
+	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToString(params.get('slug'))) || '')
 	const [isProductSelected, setIsProductSelected] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
 	const [inputFocus, setInputFocus] = useState(false)
-	const [inputTouced, setInputTouched] = useState(false)
+	const [inputTouched, setInputTouched] = useState(false)
 	const inputRef = useRef(null)
-	const { data, loading, error } = useProductsBySlug(search, isProductSelected)
-	const { searchError } = useSearchError(search, data.length)
-	const limit = 5
-
-	// input validation
-	// const [validationToggle, setValidationToggle] = useState(false)
-	// const [validationError, setValidationError] = useState('')
-
-	// btn
-	// const [disabled, setDisabled] = useState(false)
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		setIsLoading(true)
-	//
-	// 		try {
-	// 			if (!validationError) {
-	// 				const data = await productsAPI.getAll({ search, limit })
-	//
-	// 				// no result
-	// 				if (search !== '' && data.total === 0) {
-	// 					inputValidationHandler('noresult')
-	// 					setPopoverToggle(false)
-	// 					setIsLoading(false)
-	// 					return null
-	// 				}
-	//
-	// 				setProducts(data.products)
-	// 			}
-	// 		} catch (e) {
-	// 			console.log(e)
-	// 		}
-	//
-	// 		setIsLoading(false)
-	// 	}
-	//
-	// 	const debounce = setTimeout(() => fetchData(), 300)
-	// 	return () => clearTimeout(debounce)
-	//
-	// }, [search, validationError])
+	const debouncedSearch = useDebounce(search, 350)
+	const { data, loading } = useProductsBySlug(debouncedSearch, isProductSelected)
+	const { searchError } = useSearchError(search, data.length, inputTouched)
+	const popoverLimit = 5
 
 	useEffect(() => {
 		document.addEventListener('click', outsideClickHandler)
@@ -70,18 +35,21 @@ export const Search = () => {
 
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
-		case 'Escape':
-			setPopoverToggle(false)
-			setInputFocus(false)
-			inputRef.current.blur()
-			break
-		case 'Enter':
-			setPopoverToggle(false)
-			setParams({ ...getSearchParams(params), slug: stringToSlug(search) })
-			setIsProductSelected(true)
-			break
-		default:
-			return
+			case 'Escape':
+				setPopoverToggle(false)
+				setInputFocus(false)
+				inputRef.current.blur()
+				break
+			case 'Enter':
+				if (!searchError) {
+					setPopoverToggle(false)
+					setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
+					setIsProductSelected(true)
+					setCurrentSearch(search)
+				}
+				break
+			default:
+				return
 		}
 	}
 
@@ -104,51 +72,37 @@ export const Search = () => {
 		setInputFocus(true)
 		setPopoverToggle(true)
 
-		// if (validationError && search !== '') {
-		// 	setValidationToggle(true)
-		// }
+		if (params.get('slug')) setSearch(currentSearch)
 	}
 
 	const autoCompleteClickHandler = (name) => {
 		setIsProductSelected(true)
 		setSearch(name)
 		setPopoverToggle(false)
-		// setDisabled(false)
-		// setValidationToggle(false)
 	}
 
 	const closeSearchBtnHandler = () => {
 		setSearch('')
+		setCurrentSearch('')
+		params.delete('slug')
+		const query = Object.fromEntries([...params])
+		setParams({ ...query })
 		setIsProductSelected(false)
+		setInputTouched(false)
+		inputRef.current.focus()
 		// TODO: remove additional req
-		// setDisabled(false)
-		// setValidationError('')
-		// setValidationToggle(false)
 	}
 
-	const searchBtnClickHandler = (e) => {
-		e.preventDefault()
-
-		// console.log(searchError)
-		// empty input req onClick
-		// if (search === '' || search === undefined) {
-		// 	inputValidationHandler('empty')
-		// 	return null
+	const searchBtnClickHandler = () => {
+		// if (searchError) {
+		// 	setInputFocus(true)
 		// }
 
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 		setParams({ ...query, slug: stringToSlug(search) })
-
-		// if (validationError) {
-		// 	setValidationToggle(true)
-		// }
-
-		// if (!validationError) {
-		// 	// searchHandler(search)
-		// 	setCurrentSearch(search)
-		// 	setPopoverProducts([])
-		// 	setSearch('')
-		// }
+		setCurrentSearch(search)
+		setIsProductSelected(true)
+		setSearch('')
 	}
 
 	const onChangeHandler = (e) => {
@@ -156,65 +110,24 @@ export const Search = () => {
 
 		if (!popoverToggle) setPopoverToggle(true)
 
-		// console.log(searchError)
-		// inputValidationHandler(input)
-
 		setIsProductSelected(false)
 		// TODO: add debounce
 		setSearch(input)
 	}
 
-	const inputValidationHandler = (input) => {
-		// no result
-		if (input === 'noresult') {
-			// setValidationError('noresult')
-			// setValidationToggle(true)
-			// setDisabled(true)
-			return null
-		}
-
-		// empty
-		if (input === 'empty') {
-			// setValidationError('empty')
-			// setValidationToggle(true)
-			setPopoverToggle(true)
-			return null
-		}
-
-		// alphanumeric and spaces regexp
-		if (!input.match('^[a-zA-Z ]*$')) {
-			// setValidationError('text')
-			// setValidationToggle(true)
-			// setDisabled(true)
-			return null
-		}
-
-		// max length
-		if (input.length >= 35) {
-			// setValidationError('length')
-			// setValidationToggle(true)
-			// setDisabled(true)
-			return null
-		}
-
-		// else close validation popup & disable error
-		if (input !== '' || input !== undefined) {
-			// setValidationError('')
-			// setValidationToggle(false)
-			// setDisabled(false)
-			// setTimeout
-		}
-	}
-	console.log(searchError)
 	return (
 		<aside>
 			<div className={s.search}>
 				<input
-					className={cn(s.input, { [s.active]: inputFocus, [s.error]: searchError && inputFocus && inputTouced })}
+					className={cn(s.input, {
+						[s.active]: inputFocus,
+						[s.error]: searchError && inputFocus && inputTouched,
+						[s.no_result]: searchError && searchError.id === 4,
+					})}
 					ref={inputRef}
 					type='text'
 					value={search}
-					maxLength='25'
+					maxLength='30'
 					placeholder='Search...'
 					onKeyDown={onKeyDownHandler}
 					onChange={onChangeHandler}
@@ -222,34 +135,44 @@ export const Search = () => {
 					onFocus={onFocusHandler}
 					onBlur={onBlurHandler}
 				/>
-				{search && <span role="presentation" className={cn(s.btn_close, search.length !== 0 && s.active)} onClick={closeSearchBtnHandler}>
-					<Close />
-				</span>}
-				{/*{<ErrorPopup error={validationError} toggle={validationToggle} />}*/}
+				{search && (
+					<span
+						role='presentation'
+						className={cn(s.btn_close, search.length !== 0 && s.active)}
+						onClick={closeSearchBtnHandler}
+					>
+						<Close />
+					</span>
+				)}
+				{<ErrorPopover error={searchError} inputFocus={inputFocus} inputTouched={inputTouched} />}
 			</div>
-			<ul className={cn(s.popup, { [s.active]: popoverToggle && data })}>
-				{data.filter((_, i) => i < limit).map((product) => {
-					return (
-						<li
-							role="presentation"
-							className={s.item}
-							key={product.id}
-							onClick={() => autoCompleteClickHandler(product.name)}
-						>
-							{product.name}
-						</li>
-					)
-				})}
-				{!data && searchError && searchError.type === 'noresult' && <div className={s.no_result}>No results</div>}
+			<ul className={cn(s.popup, { [s.active]: popoverToggle })}>
+				{data
+					.filter((_, i) => i < popoverLimit)
+					.map((product) => {
+						return (
+							<li
+								role='presentation'
+								className={s.item}
+								key={product.id}
+								onClick={() => autoCompleteClickHandler(product.name)}
+							>
+								{product.name}
+							</li>
+						)
+					})}
+				{!!data && searchError && searchError.type === 'noresult' && <div className={s.no_slug_result}>No results</div>}
 			</ul>
 			<div className={s.bottom}>
 				<Button
-					type="filter"
+					type='filter'
 					isLoading={loading}
-					disabled={loading || inputFocus}
+					disabled={loading || inputFocus || searchError}
 					onClick={searchBtnClickHandler}
 				>
-					<Text span color="white">Search</Text>
+					<Text span color='white'>
+						Search
+					</Text>
 				</Button>
 				<span className={s.current}>{currentSearch}</span>
 			</div>

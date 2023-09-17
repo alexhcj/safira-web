@@ -1,5 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
+import { useProductModalContext } from '../../../../context/ProductContext'
+import { useWishlistContext } from '../../../../context/WishlistContext'
+import { useCartContext } from '../../../../context/CartContext'
 import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
 import { ButtonCart } from '../Buttons/ButtonCart/ButtonCart'
 import { Text } from '../Text/Text'
@@ -9,26 +12,42 @@ import { ReactComponent as MagnifierSVG } from '../../../../assets/svg/magnifier
 import { ReactComponent as SyncSVG } from '../../../../assets/svg/sync.svg'
 import s from './hovermenu.module.scss'
 
-// sizes: 'large' | 'row'
-export const Hovermenu = ({ menuToggle, size }) => {
+// sizes: 'xs' | 'sm' | 'lg' | 'row'
+export const Hovermenu = ({ menuToggle, size, product }) => {
+	const { _, previewProduct } = useProductModalContext()
+	const { addToWishlist } = useWishlistContext()
+	const { addToCart } = useCartContext()
+
 	return (
 		<div className={cn(s.menu, menuToggle && s.active, s[`menu_${size}`])}>
 			{size === 'row' ? (
-				<ButtonCart type='button'>
-					<Text span color='white' weight='semi' className={s.button_cart_text}>Add to cart</Text>
+				<ButtonCart type='button' onClick={() => addToCart(product)}>
+					<Text span color='white' weight='semi' className={s.button_cart_text}>
+						Add to cart
+					</Text>
 				</ButtonCart>
 			) : (
-				<ButtonPopup text='Add to Cart'>
+				<ButtonPopup className={s.btn_popup} text='Add to Cart' onClick={() => addToCart(product)}>
 					<CartSVG />
 				</ButtonPopup>
 			)}
-			<ButtonPopup size={size === 'row' && 'lg'} text='Quick View'>
+			<ButtonPopup
+				className={s.btn_popup}
+				size={size === 'row' && 'lg'}
+				text='Quick View'
+				onClick={() => previewProduct(product)}
+			>
 				<MagnifierSVG />
 			</ButtonPopup>
-			<ButtonPopup size={size === 'row' && 'lg'} text='Add to Wishlist'>
+			<ButtonPopup
+				className={s.btn_popup}
+				onClick={() => addToWishlist(product)}
+				size={size === 'row' && 'lg'}
+				text='Add to Wishlist'
+			>
 				<HeartSVG />
 			</ButtonPopup>
-			<ButtonPopup size={size === 'row' && 'lg'} text='Add to Compare'>
+			<ButtonPopup className={s.btn_popup} size={size === 'row' && 'lg'} text='Add to Compare'>
 				<SyncSVG />
 			</ButtonPopup>
 		</div>

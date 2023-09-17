@@ -1,12 +1,11 @@
 import React from 'react'
-import { sizeTypes } from '../../../utils'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
+import { imgSizeTypes } from '../../../utils'
 import s from './img-sizes.module.scss'
 
 export const ImgSizes = () => {
 	return (
 		<div className={s.sizes}>
-			{sizeTypes.map((item) => {
+			{imgSizeTypes.map((item) => {
 				const { type, size } = item
 
 				return (

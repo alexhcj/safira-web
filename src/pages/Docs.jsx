@@ -47,9 +47,7 @@ export const Docs = () => {
 				<span style={s.divider}></span>
 				<MostLess />
 				<span style={s.divider}></span>
-				<h4 style={s.h4}>
-                    Images Sizes
-				</h4>
+				<h4 style={s.h4}>Images Sizes</h4>
 				<span style={s.divider}></span>
 				<ImgSizes />
 			</div>

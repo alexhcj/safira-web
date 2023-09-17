@@ -1,35 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { postsAPI } from '../../api/posts'
+import React, { useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
 import { SidebarLayout } from '../../shared/layout/SidebarLayout/SidebarLayout'
 import { Post } from './Post/Post'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+import { usePosts } from '../../hooks/services/usePosts'
+import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 
 export const Blog = () => {
-	const [posts, setPosts] = useState([])
-	const [offset, setOffset] = useState(0)
-	const [isLoading, setIsLoading] = useState(false)
-	const [isLastPage, setIsLastPage] = useState(false)
-	const limit = 2
+	const [params, setParams] = useSearchParams()
+	const { posts, meta, loading } = usePosts()
 	const infiniteTrigger = useRef(null)
 	let lastScroll = 0 // throttle trigger
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setIsLoading(true)
-				const data = await postsAPI.getAll({ limit, offset })
-				data.meta.page !== 'last' ? setPosts((prev) => [...prev, ...data.posts]) : setIsLastPage(true)
-				setIsLoading(false)
-			} catch (e) {
-				console.log(e)
-			}
-		}
-
-		!isLastPage && fetchData()
-	}, [offset, isLastPage])
 
 	// moves screen to page top after refresh
 	useEffect(() => {
@@ -48,20 +32,22 @@ export const Blog = () => {
 		lastScroll = Date.now()
 		const infiniteTriggerOffset = infiniteTrigger.current ? infiniteTrigger.current.offsetTop : ''
 		const currentOffset = window.innerHeight + document.documentElement.scrollTop
-		if (currentOffset > infiniteTriggerOffset) {
-			setOffset((prev) => prev + limit)
+		if (currentOffset > infiniteTriggerOffset && !loading && !meta.isLastPage) {
+			const query = Object.fromEntries([...params])
+
+			setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 		}
 	}
 
-	const postsList = posts && posts.map(post => <Post key={post.slug} {...post} />)
+	const postsList = posts.map((post) => <Post key={post.slug} {...post} />)
 
 	return (
 		<section>
-			<div className="container">
-				<SidebarLayout main={postsList} aside={<BlogSidebar />} />
+			<div className='container'>
+				<SidebarLayout main={postsList || <ItemsNotFound type='post' />} aside={<BlogSidebar isLoading={loading} />} />
 				<div ref={infiniteTrigger}></div>
-				{isLoading && <Preloader />}
-				<Space size="l" />
+				{loading && <Preloader />}
+				<Space size='l' />
 				<Border />
 			</div>
 		</section>

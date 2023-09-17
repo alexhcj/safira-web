@@ -1,14 +1,18 @@
 import React from 'react'
 import s from './tags.module.scss'
-import cn from 'classnames'
 
-// sizes: lg | md
-export const Tags = ({ tags, size }) => {
+export const Tags = ({ tags, createdAt }) => {
+	const isProductNew = new Date() < new Date(new Date(createdAt).setDate(new Date().getDate() + 2 * 7))
+
 	return (
-		<div className={cn(s.tags, size && s[`tags_${size}`])}>
-			{tags.map((item, index) => (
-				<span className={s.tag} key={index}>{item.tag}</span>
-			))}
+		<div className={s.tags}>
+			{isProductNew && <span className={s.tag}>new</span>}
+			{/*{tags &&*/}
+			{/*	tags.tags.promotions.map((tag) => (*/}
+			{/*		<span className={`${s.tag} ${s.promotion}`} key={tag}>*/}
+			{/*			{tag}*/}
+			{/*		</span>*/}
+			{/*	))}*/}
 		</div>
 	)
 }

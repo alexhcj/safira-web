@@ -1,32 +1,19 @@
 @import '../../../../shared/styles/vars';
 
-.section {
-	margin-top: 28px;
-}
-
-.heading {
-	text-transform: uppercase;
-	line-height: 20px;
-	font-size: 15px;
-	font-weight: 500;
-	color: red;
-}
-
 .posts {
-	margin-top: 20px;
+	display: grid;
+	gap: 15px;
 }
 
-.wrapper {
+.post {
 	display: flex;
-	margin-top: 15px;
+	gap: 10px;
 }
 
-.wrapper:focus {
-	outline: 0;
-}
-
-.wrapper:hover .hover_container {
-	display: block;
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 
 .block {
@@ -35,49 +22,25 @@
 }
 
 .img {
-	width: 60px;
+	flex: 0 0 60px;
 	height: 42px;
 }
 
-.hover_container {
-	position: absolute;
-	display: none;
-	margin-top: -80px;
-	margin-left: -210px;
-	width: 180px;
-	background-color: $color-white;
-}
-
-.img_hidden {
-	width: 100%;
-}
-
-.title_hidden {
-	text-align: center;
-	margin-top: 5px;
-	padding: 0 3px;
-	font-weight: 500;
-	color: red;
-}
-
-.text_hidden {
-	margin-top: 5px;
-	padding: 0 3px 5px;
-	width: 100%;
-	font-size: 12px;
-	color: red;
-}
-
 .title {
+	text-transform: capitalize;
 	line-height: 14px;
 	font-size: 13px;
 	font-weight: 500;
-	color: red;
+	color: $color-dark;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
 }
 
 .date {
-	margin-top: 5px;
 	line-height: 24px;
 	font-size: 12px;
-	color: red;
+	color: $color-dark;
 }

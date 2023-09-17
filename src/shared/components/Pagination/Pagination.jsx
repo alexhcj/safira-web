@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { getSearchParams } from '../../../utils'
 import s from './pagination.module.scss'
 import cn from 'classnames'
 
-export const Pagination = ({ meta: { page, total, isLastPage } }) => {
+export const Pagination = ({ meta = {} }) => {
 	const perPage = 3
 	const [params, setParams] = useSearchParams()
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(perPage)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
+	const { page, total, isLastPage } = meta
 
 	const totalPages = () => {
 		const pages = []
@@ -30,7 +30,7 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectStart = () => {
-		const query = getSearchParams(params)
+		const query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: '0' })
 		setmaxPageNumberLimit(3)
@@ -38,32 +38,32 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 	}
 
 	const selectFinish = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(totalPages()[totalPages().length - 2] * +params.get('limit') ) })
+		setParams({ ...query, offset: `${totalPages()[totalPages().length - 2] * +query.limit}` })
 		setmaxPageNumberLimit(totalPages().length)
 		setminPageNumberLimit(totalPages()[totalPages().length - 4])
 	}
 
 	const selectPrev = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(+params.get('offset') - +params.get('limit') ) })
+		setParams({ ...query, offset: `${+query.offset - +query.limit}` })
 
 		if (page === minPageNumberLimit + 1) {
-			setmaxPageNumberLimit(prev => prev - 3)
-			setminPageNumberLimit(prev => prev - 3)
+			setmaxPageNumberLimit((prev) => prev - 3)
+			setminPageNumberLimit((prev) => prev - 3)
 		}
 	}
 
 	const selectNext = () => {
-		let query = getSearchParams(params)
+		let query = Object.fromEntries([...params])
 
-		setParams({ ...query, offset: String(+params.get('offset') + +params.get('limit') ) })
+		setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 
 		if (page === maxPageNumberLimit) {
-			setmaxPageNumberLimit(prev => prev + 3)
-			setminPageNumberLimit(prev => prev + 3)
+			setmaxPageNumberLimit((prev) => prev + 3)
+			setminPageNumberLimit((prev) => prev + 3)
 		}
 	}
 
@@ -72,11 +72,9 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 		if (e.target.nodeName !== 'BUTTON') return
 
 		const page = e.target.id
-		const limit = params.get('limit')
+		const query = Object.fromEntries([...params])
 
-		let query = getSearchParams(params)
-
-		setParams({ ...query, offset: String((page * +limit) - +limit ) })
+		setParams({ ...query, offset: `${page * +query.limit - +query.limit}` })
 	}
 
 	return (
@@ -91,20 +89,18 @@ export const Pagination = ({ meta: { page, total, isLastPage } }) => {
 					prev
 				</button>
 			)}
-			<div role="presentation" className={s.list} onClick={(e) => selectPage(e)}>
+			<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
 				{calcCurrentPages().map((num) => (
 					<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
 						{num}
 					</button>
 				))}
 			</div>
-			<button
-				className={s.btn}
-				onClick={selectNext}
-				disabled={isLastPage}
-			>next</button>
-			{!isLastPage  && (
-				<button className={s.btn} onClick={selectFinish}>
+			<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
+				next
+			</button>
+			{!isLastPage && (
+				<button className={s.btn} onClick={selectFinish} disabled={total === 0}>
 					&gt;&gt;
 				</button>
 			)}

@@ -1,31 +1,35 @@
 import React from 'react'
-import { HeroSlider } from '../components/HeroSlider/HeroSlider'
+import { ProductProvider } from '../context/ProductContext'
+import { HeroSlider } from '../components/SliderSections/HeroSlider/HeroSlider'
 import { OfferLinks } from '../components/OfferLinks/OfferLinks'
 import { Offers } from '../components/Offers/Offers'
 import { Promo } from '../components/Promo/Promo'
-import { Mostview } from '../components/Mostview/Mostview'
-import { OurBlog } from '../components/OurBlog/OurBlog'
-import { FeaturedProducts } from '../components/FeaturedProducts/FeaturedProducts'
+import { MostviewProducts } from '../components/SliderSections/MostviewProducts/MostviewProducts'
+import { OurBlogPosts } from '../components/SliderSections/OurBlogPosts/OurBlogPosts'
+import { FeaturedProducts } from '../components/SliderSections/FeaturedProducts/FeaturedProducts'
 import { Border } from '../shared/components/UI/Spacing/Border'
 import { Space } from '../shared/components/UI/Spacing/Space'
+import { ProductQuickView } from '../components/ProductQuickView/ProductQuickView'
 
 export const Home = () => {
 	return (
-		<>
+		<ProductProvider>
 			<HeroSlider />
-			<Space size="l" />
+			<Space size='l' />
 			<OfferLinks />
 			<Space space={65} />
 			<Offers />
 			<Space space={65} />
 			<Promo />
 			<Space space={65} />
-			<Mostview />
-			<OurBlog />
+			<MostviewProducts />
+			<Space space={65} />
+			<OurBlogPosts />
 			<Space space={65} />
 			<FeaturedProducts />
-			<Space space={70} />
+			<Space space={46} />
 			<Border />
-		</>
+			<ProductQuickView />
+		</ProductProvider>
 	)
 }

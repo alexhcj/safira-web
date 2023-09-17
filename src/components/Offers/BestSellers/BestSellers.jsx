@@ -29,14 +29,7 @@ export const BestSellers = () => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
-					return (
-						<ProductCard
-							size="xs"
-							imgSize="xs"
-							key={product.slug}
-							product={product}
-						/>
-					)
+					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
 				})}
 			</div>
 		)
@@ -45,14 +38,8 @@ export const BestSellers = () => {
 	const responsive = {
 		0: {
 			items: 2,
-		}
+		},
 	}
 
-	return (
-		<RowSlider
-			title="Best sellers"
-			items={items}
-			responsive={responsive}
-		/>
-	)
+	return <RowSlider title='Best sellers' items={items} responsive={responsive} />
 }

@@ -7,8 +7,10 @@ import s from './most-less.module.scss'
 export const MostLess = () => {
 	const [mostLess, setMostLess] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
-	const params = useMemo( () => ['name', 'price', 'newprice',
-		'quantity', 'popularity', 'date', 'views', 'rating', 'shelfLife'], [])
+	const params = useMemo(
+		() => ['name', 'price', 'newprice', 'quantity', 'popularity', 'date', 'views', 'rating', 'shelfLife'],
+		[],
+	)
 
 	useEffect(() => {
 		const mostLessQueries = params.reduce((acc, sortValue) => {
@@ -26,7 +28,7 @@ export const MostLess = () => {
 						limit: 1,
 						order: 'asc',
 					},
-				}
+				},
 			)
 			return acc
 		}, [])
@@ -45,7 +47,7 @@ export const MostLess = () => {
 						}
 
 						return productsAPI.getAll({ sort, limit, order }).then((res) => res.data)
-					})
+					}),
 				)
 
 				let res = await Promise.all([promises])
@@ -83,9 +85,7 @@ export const MostLess = () => {
 											<ImageWithFallback className={s.img} src={img} />
 											<div>
 												<div className={s.name}>{name}</div>
-												<div className={index === 0 ? `${s.paramMost}` : `${s.paramLess}`}>
-													{paramsValue}
-												</div>
+												<div className={index === 0 ? `${s.paramMost}` : `${s.paramLess}`}>{paramsValue}</div>
 											</div>
 										</div>
 									</div>

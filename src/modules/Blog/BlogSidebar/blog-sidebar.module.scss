@@ -1,12 +1,13 @@
-.section {
+.wrapper {
 	position: relative;
-	margin-left: 22px;
 	padding-bottom: 70px;
-	max-width: 265px;
 	width: 100%;
+	height: 100%;
 }
 
-.wrapper {
+.sidebar {
 	position: sticky;
 	top: 60px;
+	display: grid;
+	gap: 28px;
 }

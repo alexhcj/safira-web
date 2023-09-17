@@ -3,14 +3,10 @@ import { ReactComponent as MagnifierSVG } from '../../../../../assets/svg/magnif
 import cn from 'classnames'
 import s from './button.module.scss'
 
-export const Button = ({
-	type = 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post',
-	htmlType = 'button' | 'submit',
-	onClick,
-	disabled,
-	className,
-	children
-}) => {
+// types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post'
+// htmlTypes: 'button' | 'submit'
+// rounded: false
+export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded = true, className, children }) => {
 	const [focus, setFocus] = useState(false)
 
 	const onFocus = () => {
@@ -24,7 +20,7 @@ export const Button = ({
 	return (
 		<button
 			type={htmlType}
-			className={cn(s.btn, type && s[type], focus && s.focus, className)}
+			className={cn(s.btn, type && s[type], focus && s.focus, !rounded && s.border_none, className)}
 			onClick={onClick}
 			onFocus={onFocus}
 			onBlur={onBlur}
