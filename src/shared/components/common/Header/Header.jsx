@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useAuthContext } from '../../../../context/AuthContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
 import { Navbar } from '../Navbar/Navbar'
 import { Button } from '../../UI/Buttons/Button/Button'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
+import { throttle } from '../../../../utils'
 import logo from '../../../../assets/images/logo.png'
 import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
 import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
@@ -13,7 +15,7 @@ import { ReactComponent as FacebookSVG } from '../../../../assets/svg/facebook.s
 import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/youtube.svg'
 import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/twitter.svg'
-import { throttle } from '../../../../utils'
+import { ReactComponent as ProfileSVG } from '../../../../assets/svg/profile.svg'
 import s from './header.module.scss'
 
 const languages = [
@@ -42,6 +44,7 @@ const currencies = [
 
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
+	const { user } = useAuthContext()
 	const { wishlist } = useWishlistContext()
 	const { cart } = useCartContext()
 
@@ -72,7 +75,7 @@ export const Header = () => {
 							<span className={s.meta__divider}>|</span>
 							<MetaPopup text='Currency' data={currencies} />
 						</div>
-						{/* TODO: replace a with Link */}
+						{/* TODO: replace a with Link && refactor to map => ... */}
 						<div className={s.social}>
 							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
 								<TwitterSVG />
@@ -108,15 +111,21 @@ export const Header = () => {
 							</form>
 						</div>
 						<div className={s.account}>
-							<div className={s.auth}>
-								<NavLink to='/' className={s.auth__link}>
-									Register
+							{user ? (
+								<NavLink to='/profile' className={s.account__link}>
+									<ProfileSVG />
 								</NavLink>
-								<span className={s.auth__divider}>/</span>
-								<NavLink to='/' className={s.auth__link}>
-									Login
-								</NavLink>
-							</div>
+							) : (
+								<div className={s.auth}>
+									<NavLink to='/register' className={s.auth__link}>
+										Register
+									</NavLink>
+									<span className={s.auth__divider}>/</span>
+									<NavLink to='/login' className={s.auth__link}>
+										Login
+									</NavLink>
+								</div>
+							)}
 							<NavLink to='/wishlist' className={s.account__link}>
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>

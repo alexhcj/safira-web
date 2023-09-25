@@ -3,7 +3,7 @@ import { ReactComponent as MagnifierSVG } from '../../../../../assets/svg/magnif
 import cn from 'classnames'
 import s from './button.module.scss'
 
-// types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post'
+// types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post' | 'auth'
 // htmlTypes: 'button' | 'submit'
 // rounded: false
 export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded = true, className, children }) => {

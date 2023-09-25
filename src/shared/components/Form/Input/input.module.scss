@@ -1,6 +1,7 @@
 @import '../../../../shared/styles/vars';
 
 .box {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -8,11 +9,12 @@
 
 .label {
 	position: relative;
+	@include transition-all;
 
 	&.required {
 		&::after {
 			margin-left: 4px;
-			content: "*";
+			content: '*';
 			color: $color-primary;
 		}
 	}
@@ -50,11 +52,7 @@
 		letter-spacing: normal;
 		line-height: normal;
 		font-size: 14px;
-		font-family: "Work Sans", sans-serif;
-	}
-
-	&:focus {
-		border-color: $color-primary;
+		font-family: 'Work Sans', sans-serif;
 	}
 
 	&:hover {
@@ -73,7 +71,32 @@
 		border-color: $color-primary;
 	}
 
+	&.error {
+		border-color: $color-error;
+	}
+
 	.pickup {
 		text-transform: capitalize;
 	}
+}
+.password_btn {
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(calc(-50% + 12px));
+
+	.password_icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	&:hover {
+		.password_icon path {
+			fill: $color-primary;
+		}
+	}
+}
+.error_popover {
+	transform: translateX(106%) translateY(calc(-50% + 12px)) !important;
+	right: -30px !important;
 }
