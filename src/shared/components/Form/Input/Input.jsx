@@ -1,28 +1,64 @@
-import React from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import cn from 'classnames'
+import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+import { ReactComponent as EyeSVG } from '../../../../assets/svg/eye.svg'
+import { ReactComponent as EyeClosedSVG } from '../../../../assets/svg/eye-closed.svg'
 import s from './input.module.scss'
 
-export const Input = ({ type = 'text', name, value, label, id, placeholder, required, handleChange, className }) => {
-	const onChange = (e) => {
-		const { value } = e.currentTarget
-		handleChange(value)
-	}
+export const Input = ({
+	type = 'text',
+	name,
+	value,
+	label,
+	id,
+	placeholder,
+	required,
+	handleChange,
+	error,
+	className,
+}) => {
+	const [isShowPassword, setIsShowPassword] = useState(false)
+	const [isTouched, setIsTouched] = useState(false)
+	const [isFocused, setIsFocused] = useState(false)
+	const isError = useMemo(() => !isFocused && isTouched && error, [isFocused, isTouched, error])
+
+	const handleFocus = useCallback(() => {
+		setIsFocused(true)
+		setIsTouched(true)
+	}, [])
+
+	const handleBlur = useCallback(() => {
+		setIsFocused(false)
+	}, [])
 
 	return (
 		<div className={cn(s.box, className)}>
-			<label className={cn(s.label, required && s.required)} htmlFor={id}>
-				{label}
-			</label>
+			{label && (
+				<label className={cn(s.label, required && s.required)} htmlFor={id}>
+					{label}
+				</label>
+			)}
 			<input
-				className={s.input}
-				type={type}
+				className={cn(s.input, { [s.error]: isError })}
+				type={type === 'password' && !isShowPassword ? 'password' : 'text'}
 				id={id}
 				value={value}
 				name={name}
-				onChange={onChange}
+				onChange={handleChange}
+				onFocus={handleFocus}
+				onBlur={handleBlur}
 				placeholder={placeholder}
 				required={required}
 			/>
+			{type === 'password' && (
+				<button type='button' className={s.password_btn} onClick={() => setIsShowPassword(!isShowPassword)}>
+					{!isShowPassword && <EyeSVG className={s.password_icon} />}
+					{isShowPassword && <EyeClosedSVG className={s.password_icon} />}
+				</button>
+			)}
+			{/* TODO: add error variant. On mobile should be text under field. */}
+			{/*{isError && <span>{error}</span>}*/}
+			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
 		</div>
 	)
 }

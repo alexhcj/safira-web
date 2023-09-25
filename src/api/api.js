@@ -26,6 +26,9 @@ const callAPI = async ({ url, data, method, params = {}, headers = {}, responseT
 		const res = await axios(config)
 		return res.data
 	} catch (err) {
+		if (err.response) {
+			return err.response.data
+		}
 		console.log(err)
 	}
 }

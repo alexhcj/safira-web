@@ -1,0 +1,19 @@
+@import '../styles/vars';
+
+.terms {
+	display: inline-block;
+	color: $color-dark4;
+}
+.terms-link {
+	text-decoration: underline;
+	color: $color-primary;
+	@include transition-all;
+
+	&:hover {
+		color: darken($color-primary, 8%);
+	}
+
+	&:focus {
+		color: darken($color-primary, 8%);
+	}
+}

@@ -10,7 +10,7 @@ export const Copyright = () => {
 				<div className={s.block}>
 					<div className={s.copyright}>
 						<div className={s.text}>
-							Copyright © 2021{' '}
+							Copyright © {new Date().getFullYear()}{' '}
 							<NavLink to='/' className={s.link}>
 								Safira
 							</NavLink>{' '}
