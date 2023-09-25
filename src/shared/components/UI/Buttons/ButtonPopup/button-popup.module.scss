@@ -57,6 +57,7 @@
 	z-index: $z-index-1;
 	color: $color-white;
 	background-color: $color-dark2;
+	visibility: hidden;
 	@include transition-all;
 
 	&::after {
@@ -78,5 +79,6 @@
 .wrapper:hover .popup {
 	opacity: 1;
 	z-index: $z-index90;
+	visibility: visible;
 	transform: translateX(-50%) translateY(-2px);
 }
