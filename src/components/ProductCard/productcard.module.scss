@@ -59,6 +59,12 @@
 		color: $color-primary;
 	}
 
+	&_xs {
+		.subCategory {
+			justify-content: flex-start;
+		}
+	}
+
 	&_sm {
 		flex-direction: column;
 
