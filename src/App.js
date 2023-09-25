@@ -7,20 +7,23 @@ import { ButtonDocs } from './shared/components/UI/Buttons/ButtonDocs/ButtonDocs
 import { AppRoutes } from './shared/routes/routes'
 import { WishlistProvider } from './context/WishlistContext'
 import { CartProvider } from './context/CartContext'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
 	return (
 		<div className='app'>
-			<WishlistProvider>
-				<CartProvider>
-					<Header />
-					<AppRoutes />
-					<Footer />
-					<Copyright />
-					<ButtonScroll />
-					<ButtonDocs />
-				</CartProvider>
-			</WishlistProvider>
+			<AuthProvider>
+				<WishlistProvider>
+					<CartProvider>
+						<Header />
+						<AppRoutes />
+						<Footer />
+						<Copyright />
+						<ButtonScroll />
+						<ButtonDocs />
+					</CartProvider>
+				</WishlistProvider>
+			</AuthProvider>
 		</div>
 	)
 }

@@ -10,26 +10,29 @@ import { FeaturedProducts } from '../components/SliderSections/FeaturedProducts/
 import { Border } from '../shared/components/UI/Spacing/Border'
 import { Space } from '../shared/components/UI/Spacing/Space'
 import { ProductQuickView } from '../components/ProductQuickView/ProductQuickView'
+import { ScrollToTop } from '../shared/components/ScrollToTop/ScrollToTop'
 
-export const Home = () => {
+export const HomePage = () => {
 	return (
 		<ProductProvider>
-			<HeroSlider />
-			<Space size='l' />
-			<OfferLinks />
-			<Space space={65} />
-			<Offers />
-			<Space space={65} />
-			<Promo />
-			<Space space={65} />
-			<MostviewProducts />
-			<Space space={65} />
-			<OurBlogPosts />
-			<Space space={65} />
-			<FeaturedProducts />
-			<Space space={46} />
-			<Border />
-			<ProductQuickView />
+			<ScrollToTop>
+				<HeroSlider />
+				<Space size='l' />
+				<OfferLinks />
+				<Space space={65} />
+				<Offers />
+				<Space space={65} />
+				<Promo />
+				<Space space={65} />
+				<MostviewProducts />
+				<Space space={65} />
+				<OurBlogPosts />
+				<Space space={65} />
+				<FeaturedProducts />
+				<Space space={46} />
+				<Border />
+				<ProductQuickView />
+			</ScrollToTop>
 		</ProductProvider>
 	)
 }
