@@ -28,7 +28,7 @@ export const RecentComments = () => {
 
 	return (
 		<div>
-			<FilterTitle title='Recent Comments' />
+			<FilterTitle text='Recent Comments' />
 			<ul className={s.comments}>
 				{comments.map(({ text, name, postSlug }) => {
 					const postUrl = `/blog/${postSlug}`
