@@ -1,3 +1,6 @@
+.title {
+	font-size: 22px;
+}
 .id {
 	margin-top: 20px;
 
@@ -13,4 +16,9 @@
 		word-break: break-word;
 		font-weight: 700;
 	}
+}
+.profile_socials {
+	margin-top: 15px;
+	justify-content: flex-start;
+	gap: 22px;
 }

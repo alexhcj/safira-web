@@ -18,8 +18,8 @@ export const Profile = () => {
 
 	return (
 		<div className={s.profile}>
-			<h1>Profile</h1>
-			<Socials socials={socialsList} />
+			<h1 className={s.title}>Profile</h1>
+			<Socials socials={socialsList} width={30} height={30} className={s.profile_socials} />
 			<div className={s.id}>
 				User id: <span>{id}</span>
 			</div>
