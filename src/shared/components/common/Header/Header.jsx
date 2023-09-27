@@ -6,15 +6,16 @@ import { useCartContext } from '../../../../context/CartContext'
 import { Navbar } from '../Navbar/Navbar'
 import { Button } from '../../UI/Buttons/Button/Button'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
+import { Socials } from '../../UI/Socials/Socials'
 import { throttle } from '../../../../utils'
 import logo from '../../../../assets/images/logo.png'
 import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
 import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
-import { ReactComponent as InstagramSVG } from '../../../../assets/svg/instagram.svg'
-import { ReactComponent as FacebookSVG } from '../../../../assets/svg/facebook.svg'
-import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/youtube.svg'
+import { ReactComponent as InstagramSVG } from '../../../../assets/svg/socials/instagram.svg'
+import { ReactComponent as FacebookSVG } from '../../../../assets/svg/socials/facebook.svg'
+import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/socials/youtube.svg'
 import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
-import { ReactComponent as TwitterSVG } from '../../../../assets/svg/twitter.svg'
+import { ReactComponent as TwitterSVG } from '../../../../assets/svg/socials/twitter.svg'
 import { ReactComponent as ProfileSVG } from '../../../../assets/svg/profile.svg'
 import s from './header.module.scss'
 
@@ -28,6 +29,14 @@ const currencies = [
 	{ id: 1, text: '₽ Ruble' },
 	{ id: 2, text: '$ US Dollar' },
 	{ id: 3, text: '€ Euro' },
+]
+
+const socialsList = [
+	{ icon: <TwitterSVG />, url: '/' },
+	{ icon: <GooglePlusSVG />, url: '/' },
+	{ icon: <YoutubeSVG />, url: '/' },
+	{ icon: <FacebookSVG />, url: '/' },
+	{ icon: <InstagramSVG />, url: '/' },
 ]
 
 // const languages = [
@@ -76,23 +85,7 @@ export const Header = () => {
 							<MetaPopup text='Currency' data={currencies} />
 						</div>
 						{/* TODO: replace a with Link && refactor to map => ... */}
-						<div className={s.social}>
-							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<TwitterSVG />
-							</a>
-							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<GooglePlusSVG />
-							</a>
-							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<YoutubeSVG />
-							</a>
-							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<FacebookSVG />
-							</a>
-							<a className={s.social__link} href='/src/pages' target='_blank' rel='noopener noreferrer'>
-								<InstagramSVG />
-							</a>
-						</div>
+						<Socials socials={socialsList} />
 					</div>
 				</div>
 			</div>

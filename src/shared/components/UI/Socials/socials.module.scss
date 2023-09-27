@@ -1,0 +1,20 @@
+@import '../../../styles/vars';
+
+.socials {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 15px;
+
+	&_link {
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+
+		&:hover svg path {
+			fill: $color-primary;
+		}
+	}
+}

@@ -13,6 +13,7 @@ const ShopPage = lazy(() => import('../../pages/ShopPage').then((module) => ({ d
 const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module) => ({ default: module.RegisterPage })))
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
 
+const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
 export const AppRoutes = () => (
 	<Routes>
 		<Route path='/' element={<HomePage />} />
@@ -25,6 +26,7 @@ export const AppRoutes = () => (
 		<Route path='/checkout' element={<CheckoutPage />} />
 		<Route path='/wishlist' element={<WishlistPage />} />
 		<Route path='/products/:slug' element={<Product />} />
+		<Route path='/profile' element={<ProfilePage />} />
 		<Route path='/docs' element={<Docs />} />
 	</Routes>
 )
