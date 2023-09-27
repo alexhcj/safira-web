@@ -18,4 +18,4 @@ export const ShopPage = () => {
 	)
 }
 
-// TODO: shop layout
+// TODO: shop layouts
