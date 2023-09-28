@@ -1,22 +1,50 @@
 import React from 'react'
 // import { RelatedPosts } from './RelatedPosts/RelatedPosts'
-import style from './post-details.module.scss'
-import s from '../../modules/Blog/Post/post.module.scss'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { convertISODate } from '../../utils'
+import s from './post-details.module.scss'
+import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+import { usePost } from '../../hooks/services/usePost'
+import { Border } from '../../shared/components/UI/Spacing/Border'
+import { Space } from '../../shared/components/UI/Spacing/Space'
+import { Comments } from '../Comments/Comments'
 
-export const PostDetails = ({ id, title, img, date, text, category }) => {
-	window.scrollTo({ top: 0 })
+export const PostDetails = () => {
+	const { post, isLoading } = usePost()
+	const { slug, title, createdAt, comments, author, text } = post
+	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
+	const postAuthor = author && author.fullName.split(' ')[0]
 
 	return (
-		<div className={s.post}>
-			<div className={s.wrapper} key={id}>
-				<p className={style.title}>{title}</p>
-				<p className={s.date}>
-					Date: <span>{date}</span> / Category: <span>{category}</span>
-				</p>
-				<img className={s.img} style={{ marginTop: 28 }} src={img} alt={title} />
-				<p className={s.text}>{text}</p>
-				{/*<RelatedPosts category={category} />*/}
-			</div>
-		</div>
+		<>
+			{isLoading ? (
+				<Preloader />
+			) : (
+				<>
+					<div className={s.post}>
+						<div className={s.header}>
+							<h3 className={s.title}>{title}</h3>
+							<div className={s.meta}>
+								<div className={s.author}>
+									Posted by : <span>{postAuthor}</span>
+								</div>
+								<span>/</span>
+								<span className={s.date}>
+									On : <span>{convertISODate(createdAt, 'full')}</span>
+								</span>
+							</div>
+						</div>
+						<ImageWithFallback className={s.img} src={img} imgSize='blog-post' alt={title} />
+						<p className={s.text}>{text}</p>
+						{/* TODO: add share to socials */}
+						{/* TODO: add tags */}
+					</div>
+					<Border />
+					<Space space={66} />
+					{/*<RelatedPosts category={category} />*/}
+					{comments && <Comments comments={comments} />}
+				</>
+			)}
+		</>
 	)
 }

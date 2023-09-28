@@ -1,5 +1,37 @@
+@import '../../shared/styles/vars';
+
+.post {
+	margin-bottom: 62px;
+}
+.header {
+	margin-bottom: 28px;
+}
 .title {
-    line-height: 35px;
-    font-size: 30px;
-    font-weight: 500;
+	margin-bottom: 4px;
+	line-height: 35px;
+	font-size: 30px;
+	font-weight: $weight-medium;
+}
+.meta {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: start;
+	align-items: center;
+	gap: 5px;
+	line-height: 24px;
+	font-size: 14px;
+}
+.author,
+.date {
+	span {
+		line-height: 15px;
+		color: $color-primary;
+	}
+}
+.img {
+	margin-bottom: 30px;
+}
+.text {
+	line-height: 24px;
+	font-size: 15px;
 }

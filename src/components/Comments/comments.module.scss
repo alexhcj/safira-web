@@ -1,0 +1,16 @@
+@import '../../shared/styles/vars';
+
+.block {
+	margin-bottom: 65px;
+}
+.title {
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	line-height: 20px;
+	font-size: 15px;
+	font-weight: $weight-medium;
+}
+.comments {
+	display: grid;
+	gap: 30px;
+}

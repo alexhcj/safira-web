@@ -1,7 +1,7 @@
 import React, { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { HomePage } from '../../pages/HomePage'
-import { PostPage } from '../../pages/PostPage'
+import { PostDetailsPage } from '../../pages/PostDetailsPage'
 import { CartPage } from '../../pages/CartPage'
 import { CheckoutPage } from '../../pages/CheckoutPage'
 import { WishlistPage } from '../../pages/WishlistPage'
@@ -27,7 +27,7 @@ export const AppRoutes = () => {
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/shop' element={<ShopPage />} />
 			<Route path='/blog' element={<BlogPage />} />
-			<Route path='/blog/:slug' element={<PostPage />} />
+			<Route path='/blog/:slug' element={<PostDetailsPage />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/checkout' element={<CheckoutPage />} />
 			<Route path='/wishlist' element={<WishlistPage />} />
