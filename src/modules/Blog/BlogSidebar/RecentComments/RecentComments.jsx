@@ -10,14 +10,12 @@ export const RecentComments = () => {
 
 	useEffect(() => {
 		const params = {
-			sort: 'createdAt',
-			order: '1',
-			offset: '0',
 			limit: '3',
 		}
+
 		const fetchData = async () => {
 			try {
-				const data = await commentsAPI.getAll(params)
+				const data = await commentsAPI.findRecentComments(params)
 				setComments(data)
 			} catch (e) {
 				console.log(e)
@@ -28,29 +26,31 @@ export const RecentComments = () => {
 
 	return (
 		<div>
-			<FilterTitle title='Recent Comments' />
+			<FilterTitle text='Recent Comments' />
 			<ul className={s.comments}>
-				{comments.map(({ text, name, postSlug }) => {
-					const postUrl = `/blog/${postSlug}`
+				{comments.map(({ text, user, postSlug }, index) => {
+					const author = user && user.fullName.split(' ')[0]
+					// TODO: add links to posts comments with autoscroll after navigate
+					// const postUrl = `/blog/${postSlug}`
 
-					const cropText = text.length > 28 ? text.slice(0, 25) + '...' : text
+					const cropText = text && text.length > 28 ? text.slice(0, 25) + '...' : text
 
 					return (
-						<div className={s.comment} key={name}>
+						<div className={s.comment} key={index}>
 							{/* TODO: add user link to img & name */}
 							<NavLink className={s.img_link} to='/user/profile/id'>
 								{/* TODO: add user img */}
-								<ImageWithFallback src='img' imgSize='xxxs' alt='User avatar' className={s.img} />
+								<ImageWithFallback src='img' imgSize='avatar' alt='User avatar' className={s.img} />
 							</NavLink>
 							<div className={s.message}>
 								<NavLink className={s.name} to='/user/profile/id'>
-									{name}
+									{author}
 								</NavLink>
 								<span className={s.says}>&#160;says:&#160;</span>
 								{/* TODO: add scroll to comment location when click and redirect */}
-								<NavLink className={s.text} to={postUrl}>
-									{cropText}
-								</NavLink>
+								{/*<NavLink className={s.text} to={postUrl}>*/}
+								<div>{cropText}</div>
+								{/*</NavLink>*/}
 							</div>
 						</div>
 					)

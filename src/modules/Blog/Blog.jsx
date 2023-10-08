@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
-import { SidebarLayout } from '../../shared/layout/SidebarLayout/SidebarLayout'
+import { SidebarLayout } from '../../shared/layouts/SidebarLayout/SidebarLayout'
 import { Post } from './Post/Post'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'

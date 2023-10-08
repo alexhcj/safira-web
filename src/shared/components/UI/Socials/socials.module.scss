@@ -1,0 +1,22 @@
+@import '../../../styles/vars';
+
+.socials {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 15px;
+
+	.link {
+		display: grid;
+		align-items: center;
+
+		svg {
+			width: inherit;
+			height: inherit;
+		}
+
+		&:hover svg path {
+			fill: $color-primary;
+		}
+	}
+}

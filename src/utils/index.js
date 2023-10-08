@@ -6,7 +6,7 @@ export const convertArray = (arr, quantity) => {
 }
 
 export const imgSizeTypes = [
-	{ id: 1, type: 'xxxs', size: '50x50' },
+	{ id: 1, type: 'avatar', size: '50x50' },
 	{ id: 2, type: 'xxs', size: '75x53' },
 	{ id: 3, type: 'xs', size: '120x120' },
 	{ id: 4, type: 'sm', size: '225x225' },
@@ -48,7 +48,6 @@ export const makeUniqueArray = (products) => {
 	return products
 }
 
-// TODO: add full-time type (posts comments). Add - "at 1:38 am"
 // types: 'digit' | 'full' | 'full-time'
 export const convertISODate = (date, type = 'digit', locale = 'en') => {
 	const convertedDate = new Date(date)
@@ -58,7 +57,16 @@ export const convertISODate = (date, type = 'digit', locale = 'en') => {
 			? convertedDate.toLocaleString(locale || 'default', { month: '2-digit' })
 			: convertedDate.toLocaleString(locale || 'default', { month: 'long' })
 	const day = convertedDate.getDate()
-	return type === 'digit' ? `${day}/${month}/${year}` : `${month} ${day}, ${year}`
+	const time = type === 'full-time' && convertedDate.toLocaleString(locale || 'default', { timeStyle: 'short' })
+
+	switch (type) {
+		case 'digit':
+			return `${day}/${month}/${year}`
+		case 'full':
+			return `${month} ${day}, ${year}`
+		case 'full-time':
+			return `${month} ${day}, ${year} at ${time}`
+	}
 }
 
 export const calculateTotalPrice = (arr) => {
@@ -81,6 +89,10 @@ export const enumToString = (str) => {
 
 export const brandToSlug = (brand) => {
 	return brand.replace(/\s+/g, '-')
+}
+
+export const capitalizeFirstLetter = (str) => {
+	return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 export const throttle = (fn, ms) => {
@@ -116,4 +128,17 @@ export const shallowEqual = (obj1, obj2) => {
 	}
 
 	return true
+}
+
+export const deepCount = (arr) => {
+	let comments = []
+
+	const flattenMembers = arr.map((item) => {
+		if (item.comments && item.comments.length) {
+			comments = [...comments, ...item.comments]
+		}
+		return item
+	})
+
+	return flattenMembers.concat(comments.length ? deepCount(comments) : comments)
 }

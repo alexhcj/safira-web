@@ -1,4 +1,4 @@
-import {  useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { postsAPI } from '../../api/posts'
 
@@ -12,7 +12,7 @@ export const usePosts = () => {
 	useEffect(() => {
 		const defaultParams = {
 			offset: '0',
-			order: 'desc',
+			order: 'asc',
 			sort: 'createdAt',
 			limit: '2',
 		}
@@ -24,7 +24,8 @@ export const usePosts = () => {
 			try {
 				setLoading(true)
 				const query = Object.fromEntries([...params])
-				const { posts, meta } = await postsAPI.getAll(query) // {posts, meta}
+
+				const { posts, meta } = await postsAPI.getAll(query) // { posts, meta }
 
 				query.offset === '0' ? setPosts(posts) : setPosts((prev) => [...prev, ...posts])
 				setMeta(meta)

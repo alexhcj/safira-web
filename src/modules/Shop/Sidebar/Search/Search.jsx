@@ -17,12 +17,12 @@ export const Search = () => {
 	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToString(params.get('slug'))) || '')
 	const [isProductSelected, setIsProductSelected] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
-	const [inputFocus, setInputFocus] = useState(false)
+	const [inputFocused, setInputFocused] = useState(false)
 	const [inputTouched, setInputTouched] = useState(false)
 	const inputRef = useRef(null)
 	const debouncedSearch = useDebounce(search, 350)
 	const { data, loading } = useProductsBySlug(debouncedSearch, isProductSelected)
-	const { searchError } = useSearchError(search, data.length, inputTouched)
+	const { searchError } = useSearchError(search, data.length, inputFocused, inputTouched)
 	const popoverLimit = 5
 
 	useEffect(() => {
@@ -37,7 +37,7 @@ export const Search = () => {
 		switch (e.key) {
 			case 'Escape':
 				setPopoverToggle(false)
-				setInputFocus(false)
+				setInputFocused(false)
 				inputRef.current.blur()
 				break
 			case 'Enter':
@@ -60,16 +60,16 @@ export const Search = () => {
 	}
 
 	const onFocusHandler = () => {
-		setInputFocus(true)
+		setInputFocused(true)
 	}
 
 	const onBlurHandler = () => {
-		setInputFocus(false)
+		setInputFocused(false)
 		setInputTouched(true)
 	}
 
 	const onClickHandler = () => {
-		setInputFocus(true)
+		setInputFocused(true)
 		setPopoverToggle(true)
 
 		if (params.get('slug')) setSearch(currentSearch)
@@ -120,8 +120,8 @@ export const Search = () => {
 			<div className={s.search}>
 				<input
 					className={cn(s.input, {
-						[s.active]: inputFocus,
-						[s.error]: searchError && inputFocus && inputTouched,
+						[s.active]: inputFocused,
+						[s.error]: searchError && inputFocused && inputTouched,
 						[s.no_result]: searchError && searchError.id === 4,
 					})}
 					ref={inputRef}
@@ -144,7 +144,7 @@ export const Search = () => {
 						<Close />
 					</span>
 				)}
-				{<ErrorPopover error={searchError} inputFocus={inputFocus} inputTouched={inputTouched} />}
+				{searchError && <ErrorPopover error={searchError.text} inputFocus={inputFocused} inputTouched={inputTouched} />}
 			</div>
 			<ul className={cn(s.popup, { [s.active]: popoverToggle })}>
 				{data
@@ -167,7 +167,7 @@ export const Search = () => {
 				<Button
 					type='filter'
 					isLoading={loading}
-					disabled={loading || inputFocus || searchError}
+					disabled={loading || inputFocused || searchError}
 					onClick={searchBtnClickHandler}
 				>
 					<Text span color='white'>

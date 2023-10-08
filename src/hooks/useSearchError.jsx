@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const searchErrorTypes = [
 	{ id: 1, type: 'empty', text: 'Enter product or select from list.' },
@@ -7,8 +7,9 @@ const searchErrorTypes = [
 	{ id: 4, type: 'noresult', text: 'Nothing has found on this search. Please try to find something else.' },
 ]
 
-export const useSearchError = (search, dataLength) => {
+export const useSearchError = (search, dataLength, inputFocused, inputTouched) => {
 	const [error, setError] = useState(null)
+	const isError = useMemo(() => inputFocused && inputTouched && error, [inputFocused, inputTouched, error])
 
 	useEffect(() => {
 		switch (!!search) {
@@ -29,5 +30,5 @@ export const useSearchError = (search, dataLength) => {
 		}
 	}, [search, dataLength])
 
-	return { searchError: error }
+	return { searchError: isError ? error : null }
 }

@@ -18,9 +18,10 @@
 ### Auth
 - [x] Register
 - [x] Login
+- [x] User actions (calls for login | register...)
 
 ### Common
-- [ ] Modals
+- [x] Modals
 - [x] Scroll to top
 
 ### Verifications & Mailing
@@ -39,6 +40,10 @@
 - [x] Wishlist
 - [x] Cart
 - [ ] Global search (products & posts)
+- [ ] Reviews (products)
+- [x] Comments with replies (posts)
+- [x] Breadcrumbs
+- [x] Unauthorized buy
 
 
 - **Products**
@@ -47,23 +52,25 @@
 - [x] Filtering (name, price range, brand, tags)
 - [x] Details (by slug)
 - [x] Quick view (modal)
+- [x] Rating
 
 
 - **Posts**
-- [ ] Details (by slug)
+- [x] Details (by slug)
 - [x] Infinite scroll (posts)
 
 ### User
-- [ ] Profile
+- [ ] Profile (private account)
+- [ ] Profile (public account)
+- [ ] Order history
 
 
-### Payment
-- [ ] Checkout
-
-
-### Discount system
+### Discount System & Payment
 - [ ] Promotions
 - [ ] Promocodes
+- [ ] Checkout
+- [ ] Coupons
+- [ ] Gift cards
 
 ### Marketing
 - [x] Sliders and offers

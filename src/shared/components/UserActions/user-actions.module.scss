@@ -1,0 +1,24 @@
+@import '../../../shared/styles/vars';
+
+.action {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: start;
+	align-items: center;
+	gap: 5px;
+	padding: 15px 10px;
+	border-top: 3px solid $color-primary;
+	background-color: $color-grey3;
+}
+.icon {
+	width: 12px;
+	height: 14px;
+}
+.btn {
+	color: $color-primary;
+	@include transition-all;
+
+	&:hover {
+		color: darken($color-primary, 8%);
+	}
+}
