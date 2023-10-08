@@ -1,8 +1,11 @@
 @import '../../shared/styles/vars';
 
-.block {
-	margin-top: 60px;
-	margin-bottom: 65px;
+.reply {
+	width: 100%;
+
+	&_short {
+		margin-top: -15px;
+	}
 }
 .title {
 	margin-bottom: 20px;
@@ -11,13 +14,11 @@
 	font-size: 15px;
 	font-weight: $weight-medium;
 }
-.comments {
+.user_actions {
 	display: grid;
-	gap: 30px;
-	margin-left: -50px;
+	gap: 20px;
 }
-.icon {
-	margin-bottom: -2px;
+.message_icon > svg {
 	width: 15px;
 	height: 14px;
 }

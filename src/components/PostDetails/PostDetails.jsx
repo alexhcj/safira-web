@@ -1,13 +1,14 @@
 import React from 'react'
 // import { RelatedPosts } from './RelatedPosts/RelatedPosts'
+import { usePost } from '../../hooks/services/usePost'
+import { Comments } from '../Comments/Comments'
+import { Reply } from '../Reply/Reply'
+import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Border } from '../../shared/components/UI/Spacing/Border'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import { convertISODate } from '../../utils'
 import s from './post-details.module.scss'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { usePost } from '../../hooks/services/usePost'
-import { Border } from '../../shared/components/UI/Spacing/Border'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Comments } from '../Comments/Comments'
 
 export const PostDetails = () => {
 	const { post, isLoading } = usePost()
@@ -40,9 +41,10 @@ export const PostDetails = () => {
 						{/* TODO: add tags */}
 					</div>
 					<Border />
-					<Space space={66} />
 					{/*<RelatedPosts category={category} />*/}
-					{comments && <Comments comments={comments} />}
+					{comments && <Comments comments={comments.comments} isLoading={isLoading} />}
+					{!isLoading && !comments && <ItemsNotFound type='comments' />}
+					<Reply action={comments && comments.length !== 0 ? 'update' : 'create'} />
 				</>
 			)}
 		</>

@@ -7,6 +7,12 @@ export const useFormErrors = (form, errorsSchema) => {
 		return errorsSchema[type].find(({ pattern }) => !value.match(pattern))
 	}
 
+	const validateTextarea = (type, value, errorsSchema) => {
+		return errorsSchema[type].find(({ pattern, type: patternType }) =>
+			patternType === 'length' ? value.length > pattern : !value.match(pattern),
+		)
+	}
+
 	const validateCheckbox = (type, value) => {
 		return errorsSchema[type].find(({ pattern }) => pattern !== value)
 	}
@@ -28,6 +34,9 @@ export const useFormErrors = (form, errorsSchema) => {
 			switch (key) {
 				case 'password':
 					error = validateInput(key, value, errorsSchema)
+					break
+				case 'textarea':
+					error = validateTextarea(key, value, errorsSchema)
 					break
 				case 'isPrivacyConfirmed':
 					error = validateCheckbox(key, value)

@@ -12,7 +12,7 @@
 	&.required {
 		&::after {
 			margin-left: 4px;
-			content: "*";
+			content: '*';
 			color: $color-primary;
 		}
 	}
@@ -35,7 +35,9 @@
 }
 
 .textarea {
-	padding: 13px 20px;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
 	resize: none;
 	border: 1px solid $color-border3;
 	@include transition-all;
@@ -44,7 +46,7 @@
 		letter-spacing: normal;
 		line-height: normal;
 		font-size: 14px;
-		font-family: "Work Sans", sans-serif;
+		font-family: 'Work Sans', sans-serif;
 	}
 
 	&:focus {
@@ -62,4 +64,7 @@
 			opacity: 0;
 		}
 	}
+}
+.error {
+	color: $color-error;
 }

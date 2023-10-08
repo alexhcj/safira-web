@@ -6,7 +6,7 @@ export const convertArray = (arr, quantity) => {
 }
 
 export const imgSizeTypes = [
-	{ id: 1, type: 'xxxs', size: '50x50' },
+	{ id: 1, type: 'avatar', size: '50x50' },
 	{ id: 2, type: 'xxs', size: '75x53' },
 	{ id: 3, type: 'xs', size: '120x120' },
 	{ id: 4, type: 'sm', size: '225x225' },
@@ -128,4 +128,17 @@ export const shallowEqual = (obj1, obj2) => {
 	}
 
 	return true
+}
+
+export const deepCount = (arr) => {
+	let comments = []
+
+	const flattenMembers = arr.map((item) => {
+		if (item.comments && item.comments.length) {
+			comments = [...comments, ...item.comments]
+		}
+		return item
+	})
+
+	return flattenMembers.concat(comments.length ? deepCount(comments) : comments)
 }

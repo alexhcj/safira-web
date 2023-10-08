@@ -1,13 +1,20 @@
 @import '../../../shared/styles/vars';
 
+.wrapper {
+	display: grid;
+	gap: 30px;
+}
 .comment {
 	position: relative;
 	display: grid;
 	grid-auto-flow: column;
 	grid-template-columns: 50px 1fr;
 	gap: 20px;
+	@include transition-all;
 }
 .box {
+	display: grid;
+	gap: 15px;
 	width: 100%;
 	padding: 15px;
 	border: 1px solid $color-border;
@@ -38,4 +45,8 @@
 	&:hover {
 		background-color: $color-primary;
 	}
+}
+.replies {
+	display: grid;
+	gap: 15px;
 }
