@@ -1,0 +1,24 @@
+.title {
+	font-size: 22px;
+}
+.id {
+	margin-top: 20px;
+
+	span {
+		font-weight: 700;
+	}
+}
+.token {
+	margin-top: 20px;
+	max-width: 500px;
+
+	span {
+		word-break: break-word;
+		font-weight: 700;
+	}
+}
+.profile_socials {
+	margin-top: 15px;
+	justify-content: flex-start;
+	gap: 22px;
+}

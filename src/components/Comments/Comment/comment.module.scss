@@ -1,0 +1,52 @@
+@import '../../../shared/styles/vars';
+
+.wrapper {
+	display: grid;
+	gap: 30px;
+}
+.comment {
+	position: relative;
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 50px 1fr;
+	gap: 20px;
+	@include transition-all;
+}
+.box {
+	display: grid;
+	gap: 15px;
+	width: 100%;
+	padding: 15px;
+	border: 1px solid $color-border;
+	border-radius: $default-border-radius;
+}
+.author {
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: $weight-medium;
+}
+.date {
+	margin-bottom: 8px;
+	line-height: 18px;
+	font-size: 13px;
+	font-style: italic;
+}
+.btn {
+	position: absolute;
+	top: 20px;
+	right: 12px;
+	padding: 2px 10px;
+	height: 28px;
+	line-height: 28px;
+	border-radius: $default-border-radius;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}
+.replies {
+	display: grid;
+	gap: 15px;
+}

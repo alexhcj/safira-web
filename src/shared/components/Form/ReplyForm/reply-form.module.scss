@@ -1,0 +1,69 @@
+@import '../../../styles/vars';
+
+.form {
+	position: relative;
+	margin-bottom: 70px;
+
+	&_short {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: end;
+		grid-template-columns: 1fr auto;
+		gap: 10px;
+		margin-bottom: 0;
+
+		.textarea {
+			margin-bottom: 0;
+			height: 69px;
+
+			& > textarea {
+				padding: 10px 130px 10px 10px;
+				min-height: 39px;
+			}
+		}
+
+		.btn {
+			padding: 0 15px;
+			height: 38px;
+			line-height: 38px;
+			font-size: 12px;
+		}
+	}
+}
+.textarea {
+	margin-bottom: 15px;
+	height: 200px;
+	resize: none;
+	border-color: $color-border2;
+
+	& > label {
+		margin-bottom: 10px;
+		line-height: 20px;
+		font-size: 13px;
+		font-weight: $weight-medium;
+	}
+}
+.auth_error {
+	color: $color-error;
+	opacity: 0;
+	visibility: hidden;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+.btn {
+	text-transform: uppercase;
+	padding: 0 22px;
+	height: 45px;
+	font-size: 13px;
+	line-height: 36px;
+	font-weight: $weight-medium;
+	border-radius: $default-border-radius;
+	background-color: $color-dark;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}

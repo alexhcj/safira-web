@@ -3,6 +3,7 @@ import { ProductsNotFound } from './Cases/ProductsNotFound/ProductsNotFound'
 import { PostsNotFound } from './Cases/PostsNotFound/ProductsNotFound'
 import { EmptyWishlist } from './Cases/EmptyWishlist/EmptyWishlist'
 import { EmptyCart } from './Cases/EmptyCart/EmptyCart'
+import { CommentsNotFound } from './Cases/CommentsNotFound/CommentsNotFound'
 
 // 'product' | 'post' | 'cart' | 'wishlist'
 export const ItemsNotFound = ({ type }) => {
@@ -16,6 +17,8 @@ export const ItemsNotFound = ({ type }) => {
 				return <EmptyWishlist />
 			case 'cart':
 				return <EmptyCart />
+			case 'comments':
+				return <CommentsNotFound />
 		}
 	}
 

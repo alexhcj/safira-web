@@ -41,21 +41,6 @@
 	}
 }
 
-.social {
-	display: flex;
-	align-items: center;
-}
-
-.social__link {
-	&:not(:last-child) {
-		margin-right: 20px;
-	}
-
-	&:hover svg path {
-		fill: $color-primary;
-	}
-}
-
 /* center start */
 .center {
 	display: flex;

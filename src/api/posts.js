@@ -6,7 +6,7 @@ export const postsAPI = {
 	getAll(params) {
 		return API.get(`${BASE_URL}/list`, params)
 	},
-	findOne(slug = '') {
+	findBySlug(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
 }
