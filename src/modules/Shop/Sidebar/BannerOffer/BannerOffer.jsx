@@ -12,7 +12,7 @@ export const BannerOffer = ({ imgSize, className }) => {
 		loading,
 	} = useBannerOffer(imgSize)
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/${!loading && type.toLowerCase()}`
+	const img = !loading && type && `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/${type.toLowerCase()}`
 
 	return (
 		<>
