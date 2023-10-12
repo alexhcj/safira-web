@@ -10,7 +10,7 @@
     "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "install": "^0.13.0",
-    "npm": "^8.11.0",
+    "npm": "^10.2.0",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.7.1",
     "react-dom": "^17.0.2",
@@ -27,7 +27,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "json-server --watch db.json --port 5000",
     "dev": "concurrently \"npm run start\" \"npm run serve\""
   },
   "browserslist": {
@@ -43,11 +42,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "json-server": "^0.16.3",
     "prettier": "3.0.0"
   },
   "overrides": {
