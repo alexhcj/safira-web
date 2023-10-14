@@ -43,14 +43,16 @@ export const RecentComments = () => {
 								<ImageWithFallback src='img' imgSize='avatar' alt='User avatar' className={s.img} />
 							</NavLink>
 							<div className={s.message}>
-								<NavLink className={s.name} to='/user/profile/id'>
-									{author}
-								</NavLink>
-								<span className={s.says}>&#160;says:&#160;</span>
+								<span className={s.says}>
+									<NavLink className={s.name} to='/user/profile/id'>
+										{author}
+									</NavLink>
+									&#160;says:&#160;
+								</span>
 								{/* TODO: add scroll to comment location when click and redirect */}
-								{/*<NavLink className={s.text} to={postUrl}>*/}
-								<div>{cropText}</div>
-								{/*</NavLink>*/}
+								<NavLink className={s.text} to='/'>
+									{cropText}
+								</NavLink>
 							</div>
 						</div>
 					)
