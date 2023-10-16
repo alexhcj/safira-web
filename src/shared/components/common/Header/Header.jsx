@@ -33,11 +33,11 @@ const currencies = [
 ]
 
 const socialsList = [
-	{ icon: <TwitterSVG />, url: '/' },
-	{ icon: <GooglePlusSVG />, url: '/' },
-	{ icon: <YoutubeSVG />, url: '/' },
-	{ icon: <FacebookSVG />, url: '/' },
-	{ icon: <InstagramSVG />, url: '/' },
+	{ icon: <TwitterSVG />, url: '/blank-page' },
+	{ icon: <GooglePlusSVG />, url: '/blank-page' },
+	{ icon: <YoutubeSVG />, url: '/blank-page' },
+	{ icon: <FacebookSVG />, url: '/blank-page' },
+	{ icon: <InstagramSVG />, url: '/blank-page' },
 ]
 
 // const languages = [

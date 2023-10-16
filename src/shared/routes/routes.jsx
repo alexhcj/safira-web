@@ -14,7 +14,7 @@ const BlogPage = lazy(() => import('../../pages/BlogPage').then((module) => ({ d
 const ShopPage = lazy(() => import('../../pages/ShopPage').then((module) => ({ default: module.ShopPage })))
 const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module) => ({ default: module.RegisterPage })))
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
-
+const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
 
 export const AppRoutes = () => {
@@ -23,6 +23,7 @@ export const AppRoutes = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<HomePage />} />
+			<Route path='/blank-page' element={<BlankPage />} />
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/shop' element={<ShopPage />} />
