@@ -9,8 +9,8 @@ import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
 import { slugToString } from '../../utils'
 import s from './productcard.module.scss'
 
-// sizes: 'xs' | 'sm' | 'lg' | 'row'
-export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className }) => {
+// sizes: 'xs' | 'sm' | 'lg' | 'row' | 'row-xs'
+export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 
@@ -51,25 +51,29 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className })
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
 					<NavLink to={url}>{name}</NavLink>
 				</h3>
-				<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-					<NavLink className={cn({ [s.subCategory_name]: tags && tags.dietaries })} to='/shop'>
-						{slugToString(subCategory)}
-					</NavLink>
-					{tags && (
-						<>
-							<span className={s.subCategory_divider}>•</span>
-							<DietaryTags tags={tags.dietaries} />
-						</>
-					)}
-				</h4>
-				<Price
-					{...price}
-					className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)}
-				/>
+				{size !== 'row-xs' && (
+					<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
+						<NavLink className={cn({ [s.subCategory_name]: tags && tags.dietaries })} to='/shop'>
+							{slugToString(subCategory)}
+						</NavLink>
+						{tags && (
+							<>
+								<span className={s.subCategory_divider}>•</span>
+								<DietaryTags tags={tags.dietaries} />
+							</>
+						)}
+					</h4>
+				)}
+				{size !== 'row-xs' && (
+					<Price
+						{...price}
+						className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)}
+					/>
+				)}
 				{size === 'row' && <p className={s.description}>{description}</p>}
-				<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
+				{size !== 'row-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
 			</div>
-			{size !== 'xs' && <Tags tags={tags} size={size} createdAt={createdAt} />}
+			{size !== 'xs' || (size !== 'row-xs' && <Tags tags={tags} size={size} createdAt={createdAt} />)}
 		</div>
 	)
 }

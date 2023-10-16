@@ -3,8 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '../../../../context/AuthContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
+import { RecentSearchProvider } from '../../../../context/RecentSearchContext'
+import { GlobalSeach } from '../../../../components/GlobalSearch/GlobalSeach'
 import { Navbar } from '../Navbar/Navbar'
-import { Button } from '../../UI/Buttons/Button/Button'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
 import { Socials } from '../../UI/Socials/Socials'
 import { throttle } from '../../../../utils'
@@ -96,12 +97,9 @@ export const Header = () => {
 							<img src={logo} alt='' />
 						</NavLink>
 						<div className={s.search}>
-							<form action='src/shared/components/common/Header/Header.jsx'>
-								<div className={s.input}>
-									<input type='text' placeholder='Search here...' />
-									<Button type='search' />
-								</div>
-							</form>
+							<RecentSearchProvider>
+								<GlobalSeach />
+							</RecentSearchProvider>
 						</div>
 						<div className={s.account}>
 							{user ? (

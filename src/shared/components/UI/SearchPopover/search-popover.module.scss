@@ -1,0 +1,89 @@
+@import '../../../styles/vars';
+
+.popover {
+	position: absolute;
+	top: calc(100% + 1px);
+	left: 0;
+	display: grid;
+	padding: 20px 20px 20px 30px;
+	height: auto;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	border-radius: 3px;
+	border: 1px solid $color-border;
+	background-color: $color-white;
+	box-shadow: 0 0 5px 1px rgb(0 0 0 / 10%);
+	z-index: $z-index-1;
+	@include transition-all;
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		z-index: $z-index100;
+		max-height: calc(100vh - 200px);
+	}
+}
+.list {
+	display: grid;
+	gap: 10px;
+}
+.divider {
+	margin: 20px -21px 15px -30px;
+	height: 6px;
+	background-color: $color-border;
+}
+.recent {
+	display: grid;
+	gap: 10px;
+
+	.title {
+		line-height: 12px;
+		font-size: 12px;
+		font-weight: $weight-normal;
+		color: $color-dark;
+	}
+
+	&_list {
+		display: grid;
+		gap: 15px;
+	}
+
+	&_item {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		grid-template: auto / auto auto 1fr;
+		gap: 15px;
+
+		span {
+			justify-self: start;
+		}
+
+		& .icon:last-child {
+			margin-left: auto;
+		}
+	}
+
+	&_link {
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}
+.icon {
+	width: 20px;
+	height: 20px;
+
+	&:last-child {
+		cursor: pointer;
+	}
+
+	&:last-child:hover path {
+		fill: $color-dark4;
+	}
+
+	path {
+		fill: $color-grey;
+	}
+}

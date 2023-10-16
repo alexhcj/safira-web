@@ -170,6 +170,21 @@
 			width: auto;
 		}
 	}
+
+	&_row-xs {
+		margin-bottom: 0;
+		align-items: center;
+
+		& .img_link {
+			width: 40px;
+			height: 40px;
+			min-width: 40px;
+		}
+
+		.name {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .prices {

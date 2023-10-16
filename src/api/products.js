@@ -21,4 +21,7 @@ export const productsAPI = {
 	findOne(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
+	findRandom() {
+		return API.get(`${BASE_URL}/random`)
+	},
 }
