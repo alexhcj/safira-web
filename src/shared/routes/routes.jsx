@@ -16,6 +16,7 @@ const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module)
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
 const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
+const NoMatchPage = lazy(() => import('../../pages/NoMatchPage').then((module) => ({ default: module.NoMatchPage })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -42,6 +43,7 @@ export const AppRoutes = () => {
 				}
 			/>
 			<Route path='/docs' element={<Docs />} />
+			<Route path='*' element={<NoMatchPage />} />
 		</Routes>
 	)
 }
