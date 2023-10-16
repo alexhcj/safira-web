@@ -17,6 +17,16 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 		setFocus(false)
 	}
 
+	const onKeyDownHandler = (e) => {
+		switch (e.key) {
+			case 'Enter':
+				setFocus(false)
+				break
+			default:
+				return
+		}
+	}
+
 	return (
 		<button
 			type={htmlType}
@@ -24,6 +34,7 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 			onClick={onClick}
 			onFocus={onFocus}
 			onBlur={onBlur}
+			onKeyDown={onKeyDownHandler}
 			disabled={disabled}
 		>
 			{children}
