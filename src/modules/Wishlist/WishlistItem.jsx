@@ -24,7 +24,6 @@ export const WishlistItem = ({
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
-				{/* TODO: fix height difference. ideal 190px */}
 				<button className={s.delete_button} onClick={onDelete}>
 					<Text span className={s.delete_text}>
 						X

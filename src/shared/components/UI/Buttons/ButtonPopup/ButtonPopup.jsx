@@ -13,7 +13,3 @@ export const ButtonPopup = ({ text = 'Add to Cart', size, onClick, className, ch
 		</div>
 	)
 }
-
-// TODO: add tooltip components
-// TODO: fix multiple rerenders when hover on wrapper (popup rerenders).
-// animation: transform + opacity + z-index. display none when hover on popup with no animation.

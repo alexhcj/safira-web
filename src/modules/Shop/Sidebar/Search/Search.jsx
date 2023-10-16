@@ -90,7 +90,6 @@ export const Search = () => {
 		setIsProductSelected(false)
 		setInputTouched(false)
 		inputRef.current.focus()
-		// TODO: remove additional req
 	}
 
 	const searchBtnClickHandler = () => {
@@ -111,7 +110,6 @@ export const Search = () => {
 		if (!popoverToggle) setPopoverToggle(true)
 
 		setIsProductSelected(false)
-		// TODO: add debounce
 		setSearch(input)
 	}
 

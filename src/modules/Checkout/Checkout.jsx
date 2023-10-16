@@ -16,7 +16,6 @@ import Maestro from '../../assets/images/maestro.png'
 import AmericanExpress from '../../assets/images/american-express.png'
 import Mir from '../../assets/images/mir.png'
 import s from './checkout.module.scss'
-// TODO: add eslint rule named imports order
 
 const radioData = [
 	{ id: 'delivery', name: 'delivery', label: 'Delivery' },
@@ -184,7 +183,7 @@ export const Checkout = () => {
 								<th>Total</th>
 							</tr>
 						</thead>
-						{/* TODO: fix right border */}
+						{/*  */}
 						<tbody>
 							{cart.map((item) => {
 								return (

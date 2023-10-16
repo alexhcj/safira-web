@@ -30,7 +30,6 @@ export const Post = ({ slug, id, title, createdAt, category, text }) => {
 				<span className={s.meta}>
 					{convertISODate(createdAt)}
 					<span className={s.divider}>|</span>
-					{/* TODO: add redirect to search with params */}
 					<Link className={s.category} to='/'>
 						{category}
 					</Link>

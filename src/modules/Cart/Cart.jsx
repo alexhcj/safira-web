@@ -12,7 +12,6 @@ import s from './styles/cart.module.scss'
 
 export const Cart = () => {
 	const { cart, handleQuantity, removeFromCart } = useCartContext()
-	// TODO: add coupon logic verify server & gift card
 
 	return (
 		<div className='container'>

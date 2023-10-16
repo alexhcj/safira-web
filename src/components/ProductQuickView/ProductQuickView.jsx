@@ -46,7 +46,6 @@ export const ProductQuickView = () => {
 							<Text span weight='medium'>
 								Category:
 							</Text>
-							{/* TODO: add redirect to shop with category filter */}
 							<button type='button' onClick={onClickHandler}>
 								<Text className={s.tag} span>
 									{basicCategory && slugToString(basicCategory)}

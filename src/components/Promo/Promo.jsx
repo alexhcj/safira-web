@@ -15,7 +15,6 @@ const promo = [
 	},
 ]
 
-// TODO: refactor to Banners
 export const Promo = () => {
 	const navigate = useNavigate()
 	const { title, img, promoInfo, description } = promo[0]

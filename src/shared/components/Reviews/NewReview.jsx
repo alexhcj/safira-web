@@ -41,8 +41,6 @@ export const NewReview = () => {
 
 	return (
 		<div className={s.review_new}>
-			{/* TODO: add cool logic for new review.
-			(Be the first! Left review and get 50% discount on random product) */}
 			<h4 className={s.title}>Add a review</h4>
 			<Space space={8} />
 			<Text className={s.text}>Your email address will not be published. Required fields are marked</Text>
@@ -79,7 +77,6 @@ export const NewReview = () => {
 				</>
 			) : (
 				<div>
-					{/* TODO: add pretty action */}
 					<h3>Please login to left comment</h3>
 					<div>Login icon (throw modal)</div>
 				</div>
