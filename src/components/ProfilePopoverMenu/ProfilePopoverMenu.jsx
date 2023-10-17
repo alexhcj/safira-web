@@ -1,14 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useAuthContext } from '../../context/AuthContext'
-import { ReactComponent as LogoutSVG } from '../../assets/svg/logout.svg'
+import { Logout } from '../../shared/components/UI/Logout/Logout'
 import s from './profile-popover-menu.module.scss'
 
 const profileNavList = [{ text: 'Profile', url: '/profile' }]
 
 export const ProfilePopoverMenu = () => {
-	const { logout } = useAuthContext()
-
 	return (
 		<div className={s.profile}>
 			<ul>
@@ -20,10 +17,7 @@ export const ProfilePopoverMenu = () => {
 					</li>
 				))}
 			</ul>
-			<div className={s.logout} onClick={() => logout()}>
-				Logout
-				<LogoutSVG className={s.icon} />
-			</div>
+			<Logout />
 		</div>
 	)
 }

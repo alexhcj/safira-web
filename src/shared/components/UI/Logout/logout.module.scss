@@ -1,0 +1,28 @@
+@import '../../../styles/vars';
+
+.logout {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	justify-content: start;
+	gap: 15px;
+	padding-top: 10px;
+	border-top: 1px solid $color-border;
+	@include transition-all;
+	cursor: pointer;
+
+	&:hover {
+		.icon {
+			transform: translateX(3px);
+		}
+	}
+}
+.icon {
+	width: 14px;
+	height: 14px;
+	@include transition-all;
+
+	path {
+		fill: $color-dark;
+	}
+}
