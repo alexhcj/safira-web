@@ -115,3 +115,6 @@ Used scss modules in combination with [classnames](https://www.npmjs.com/package
 -	[react-slider](https://www.npmjs.com/package/react-slider)
 -	[react-transition-group](https://www.npmjs.com/package/react-transition-group)
 -	[sass](https://www.npmjs.com/package/sass)
+-	[concurrently](https://www.npmjs.com/package/concurrently)
+-	[eslint](https://www.npmjs.com/package/eslint)
+-	[prettier](https://www.npmjs.com/package/prettier)
