@@ -70,23 +70,25 @@
 }
 
 .account {
+	position: relative;
 	display: flex;
 	align-items: center;
 	gap: 20px;
 
-	&__link {
+	&_link {
 		position: relative;
-		display: flex;
+		display: grid;
+		grid-auto-flow: column;
 		align-items: center;
-
-		svg {
-			margin-right: 5px;
-		}
+		gap: 5px;
 
 		&:hover svg path {
 			fill: $color-primary;
 		}
 	}
+}
+.profile_nav {
+	margin-right: 6px;
 }
 .count {
 	display: block;

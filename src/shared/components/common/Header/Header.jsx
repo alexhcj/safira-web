@@ -19,6 +19,8 @@ import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-p
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/socials/twitter.svg'
 import { ReactComponent as ProfileSVG } from '../../../../assets/svg/profile.svg'
 import s from './header.module.scss'
+import { Popover } from '../../UI/Popover/Popover'
+import { ProfilePopoverMenu } from '../../../../components/ProfilePopoverMenu/ProfilePopoverMenu'
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -54,6 +56,7 @@ const socialsList = [
 
 export const Header = () => {
 	const [sticky, setSticky] = useState(false)
+	const [isPopoverShown, setIsPopoverShown] = useState(false)
 	const { user } = useAuthContext()
 	const { wishlist } = useWishlistContext()
 	const { cart } = useCartContext()
@@ -64,6 +67,10 @@ export const Header = () => {
 		} else {
 			setSticky(false)
 		}
+	}
+
+	const handlePopoverShow = (e) => {
+		e.type === 'mouseenter' ? setIsPopoverShown(true) : setIsPopoverShown(false)
 	}
 
 	useEffect(() => {
@@ -103,9 +110,14 @@ export const Header = () => {
 						</div>
 						<div className={s.account}>
 							{user ? (
-								<NavLink to='/profile' className={s.account__link}>
-									<ProfileSVG />
-								</NavLink>
+								<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
+									<NavLink to='/profile' className={s.account_link}>
+										<ProfileSVG />
+									</NavLink>
+									<Popover isOpen={isPopoverShown}>
+										<ProfilePopoverMenu />
+									</Popover>
+								</div>
 							) : (
 								<div className={s.auth}>
 									<NavLink to='/register' className={s.auth__link}>
@@ -117,11 +129,11 @@ export const Header = () => {
 									</NavLink>
 								</div>
 							)}
-							<NavLink to='/wishlist' className={s.account__link}>
+							<NavLink to='/wishlist' className={s.account_link}>
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>
 							</NavLink>
-							<NavLink to='/cart' className={s.account__link}>
+							<NavLink to='/cart' className={s.account_link}>
 								<CartSVG />
 								<span className={s.count}>{cart.length}</span>
 							</NavLink>
