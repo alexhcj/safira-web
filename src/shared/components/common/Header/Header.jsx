@@ -92,7 +92,6 @@ export const Header = () => {
 							<span className={s.meta__divider}>|</span>
 							<MetaPopup text='Currency' data={currencies} />
 						</div>
-						{/* TODO: replace a with Link && refactor to map => ... */}
 						<Socials socials={socialsList} />
 					</div>
 				</div>
