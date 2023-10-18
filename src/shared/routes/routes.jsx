@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../../pages/HomePage'
 import { PostDetailsPage } from '../../pages/PostDetailsPage'
 import { CartPage } from '../../pages/CartPage'
@@ -16,7 +16,7 @@ const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module)
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
 const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
-const NoMatchPage = lazy(() => import('../../pages/NoMatchPage').then((module) => ({ default: module.NoMatchPage })))
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -43,7 +43,8 @@ export const AppRoutes = () => {
 				}
 			/>
 			<Route path='/docs' element={<Docs />} />
-			<Route path='*' element={<NoMatchPage />} />
+			<Route path='/not-found' element={<NotFoundPage />} />
+			<Route path='*' element={<Navigate to='/not-found' />} />
 		</Routes>
 	)
 }
