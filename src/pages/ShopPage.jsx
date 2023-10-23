@@ -17,5 +17,3 @@ export const ShopPage = () => {
 		</ProductProvider>
 	)
 }
-
-// TODO: shop layouts

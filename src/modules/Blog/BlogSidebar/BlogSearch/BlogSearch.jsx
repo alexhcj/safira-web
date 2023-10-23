@@ -25,7 +25,6 @@ export const BlogSearch = ({ isLoading }) => {
 		}
 	}
 
-	// TODO: add error handler (useSearchError)
 	const onClickHandler = () => {
 		params.set('search', search)
 		setParams(params, {

@@ -10,8 +10,6 @@ export const CartItem = ({ slug, img, name, price, discount_price, quantity, max
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
-				{/* TODO: change on outline icon (too fat lines) */}
-				{/* TODO: fix height difference. ideal 190px */}
 				<Trash className={s.delete_svg} onClick={() => onDelete(slug)} />
 			</td>
 			<td className={s.image}>

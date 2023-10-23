@@ -15,7 +15,7 @@ const authFormValidationSchema = {
 		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Email should be filled.' },
 		{
 			type: 'text',
-			pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,30}$/i, // TODO: change pattern
+			pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,30}$/i,
 			text: 'Email should be 2-30 characters and valid.',
 		},
 	],

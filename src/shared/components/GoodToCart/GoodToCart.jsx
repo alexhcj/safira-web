@@ -33,7 +33,6 @@ export const GoodToCart = ({
 						<label className={cn(s.input_label, label && s[`input_label_${label}`])} htmlFor='quantity'>
 							Quantity
 						</label>
-						{/* TODO: add input max quantity validations */}
 						<input
 							className={cn(s.input, type && s[`input_${type}`])}
 							onInput={handleInput}

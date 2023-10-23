@@ -9,6 +9,7 @@ export const Input = ({
 	type = 'text',
 	name,
 	value,
+	defaultValue,
 	label,
 	id,
 	placeholder,
@@ -43,6 +44,7 @@ export const Input = ({
 				type={type === 'password' && !isShowPassword ? 'password' : 'text'}
 				id={id}
 				value={value}
+				defaultValue={defaultValue}
 				name={name}
 				onChange={handleChange}
 				onFocus={handleFocus}

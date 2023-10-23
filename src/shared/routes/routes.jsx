@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../../pages/HomePage'
 import { PostDetailsPage } from '../../pages/PostDetailsPage'
 import { CartPage } from '../../pages/CartPage'
@@ -14,8 +14,13 @@ const BlogPage = lazy(() => import('../../pages/BlogPage').then((module) => ({ d
 const ShopPage = lazy(() => import('../../pages/ShopPage').then((module) => ({ default: module.ShopPage })))
 const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module) => ({ default: module.RegisterPage })))
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
-
+const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })))
+const ProfileDetails = lazy(() =>
+	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
+)
+const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -23,6 +28,7 @@ export const AppRoutes = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<HomePage />} />
+			<Route path='/blank-page' element={<BlankPage />} />
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/shop' element={<ShopPage />} />
@@ -39,8 +45,14 @@ export const AppRoutes = () => {
 						<ProfilePage />
 					</ProtectedRoute>
 				}
-			/>
+			>
+				<Route index element={<ProfileDetails />} />
+				<Route path='profile-details' element={<ProfileDetails />} />
+				<Route path='orders' element={<Orders />} />
+			</Route>
 			<Route path='/docs' element={<Docs />} />
+			<Route path='/not-found' element={<NotFoundPage />} />
+			<Route path='*' element={<Navigate to='/not-found' />} />
 		</Routes>
 	)
 }
