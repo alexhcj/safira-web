@@ -17,6 +17,10 @@ const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({
 const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })))
+const ProfileDetails = lazy(() =>
+	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
+)
+const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -41,7 +45,11 @@ export const AppRoutes = () => {
 						<ProfilePage />
 					</ProtectedRoute>
 				}
-			/>
+			>
+				<Route index element={<ProfileDetails />} />
+				<Route path='profile-details' element={<ProfileDetails />} />
+				<Route path='orders' element={<Orders />} />
+			</Route>
 			<Route path='/docs' element={<Docs />} />
 			<Route path='/not-found' element={<NotFoundPage />} />
 			<Route path='*' element={<Navigate to='/not-found' />} />

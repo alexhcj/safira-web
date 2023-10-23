@@ -6,20 +6,21 @@ export const convertArray = (arr, quantity) => {
 }
 
 export const imgSizeTypes = [
-	{ id: 1, type: 'avatar', size: '50x50' },
-	{ id: 2, type: 'xxs', size: '75x53' },
-	{ id: 3, type: 'xs', size: '120x120' },
-	{ id: 4, type: 'sm', size: '225x225' },
-	{ id: 5, type: 'md', size: '270x270' },
-	{ id: 6, type: 'md-lg', size: '326x280' },
-	{ id: 7, type: 'lg', size: '326x326' },
-	{ id: 8, type: 'xl', size: '600x600' },
-	{ id: 9, type: 'offer-link', size: '590x140' },
-	{ id: 10, type: 'special', size: '366x484' },
-	{ id: 11, type: 'blog-post', size: '870x550' },
-	{ id: 12, type: 'sale', size: '1920x440' },
-	{ id: 13, type: 'hero-slider', size: '1920x550' },
-	{ id: 14, type: 'shop', size: '255x430' },
+	{ type: 'avatar', size: '50x50' },
+	{ type: 'xxs', size: '75x53' },
+	{ type: 'xs', size: '120x120' },
+	{ type: 'avatar-s', size: '150x150' },
+	{ type: 'sm', size: '225x225' },
+	{ type: 'md', size: '270x270' },
+	{ type: 'md-lg', size: '326x280' },
+	{ type: 'lg', size: '326x326' },
+	{ type: 'xl', size: '600x600' },
+	{ type: 'offer-link', size: '590x140' },
+	{ type: 'special', size: '366x484' },
+	{ type: 'blog-post', size: '870x550' },
+	{ type: 'sale', size: '1920x440' },
+	{ type: 'hero-slider', size: '1920x550' },
+	{ type: 'shop', size: '255x430' },
 ]
 
 // concat url, size & ext into img url with certain size
@@ -141,4 +142,21 @@ export const deepCount = (arr) => {
 	})
 
 	return flattenMembers.concat(comments.length ? deepCount(comments) : comments)
+}
+
+export const compareObjectsShallow = (obj1, obj2) => {
+	const keys1 = Object.keys(obj1)
+	const keys2 = Object.keys(obj2)
+
+	if (keys1.length !== keys2.length) {
+		return false
+	}
+
+	for (let key of keys1) {
+		if (obj1[key] !== obj2[key]) {
+			return false
+		}
+	}
+
+	return true
 }

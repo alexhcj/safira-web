@@ -1,24 +1,38 @@
-.title {
-	font-size: 22px;
-}
-.id {
-	margin-top: 20px;
+@import '../../shared/styles/vars';
 
-	span {
-		font-weight: 700;
-	}
+.layout {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template: 1fr / 250px 1fr;
+	align-items: start;
+	gap: 25px;
 }
-.token {
-	margin-top: 20px;
-	max-width: 500px;
+.list {
+	display: grid;
+	gap: 5px;
+	margin-bottom: 20px;
+}
+.link {
+	width: 100%;
+}
+.component {
+	background-color: $color-section-bg;
+}
+.component {
+	padding: 20px;
+}
+.btn {
+	justify-content: start;
+	width: 100%;
+	height: 40px;
+	line-height: 30px;
+	text-transform: capitalize;
+	font-size: 14px;
+	font-weight: $weight-medium;
+	border-radius: $default-border-radius;
 
-	span {
-		word-break: break-word;
-		font-weight: 700;
+	&.active {
+		color: $color-white;
+		background-color: $color-primary;
 	}
-}
-.profile_socials {
-	margin-top: 15px;
-	justify-content: flex-start;
-	gap: 22px;
 }

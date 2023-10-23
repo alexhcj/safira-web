@@ -1,0 +1,123 @@
+@import '../../../styles/vars';
+
+.box {
+	display: grid;
+}
+.form {
+	display: grid;
+	gap: 20px;
+	padding-top: 3px;
+}
+.avatar {
+	position: relative;
+	display: grid;
+	justify-self: start;
+	margin-bottom: 20px;
+
+	img {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		object-fit: cover;
+		cursor: pointer;
+	}
+
+	.label {
+		font-size: 16px;
+		margin-bottom: 12px;
+	}
+
+	.edit {
+		position: absolute;
+		bottom: 5px;
+		right: 0;
+		cursor: pointer;
+		@include transition-all;
+
+		&_text {
+			padding: 4px 8px;
+			font-size: 12px;
+			color: $color-white;
+			border-radius: $default-border-radius;
+			background-color: $color-dark3;
+		}
+
+		&_list {
+			position: absolute;
+			bottom: 0;
+			right: -155px;
+			display: none;
+			padding: 10px 15px;
+			width: 0;
+			color: $color-white;
+			background-color: $color-dark3;
+			border-radius: $default-border-radius;
+			z-index: $z-index-1;
+
+			&::before {
+				position: absolute;
+				bottom: 7px;
+				left: -6px;
+				content: '';
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 4px 6px 4px 0;
+				border-color: transparent $color-dark3 transparent transparent;
+			}
+
+			&.active {
+				display: grid;
+				width: 145px;
+				z-index: $z-index10;
+			}
+		}
+
+		&_item {
+			font-size: 13px;
+			@include transition-all;
+
+			&:hover {
+				color: $color-primary;
+			}
+		}
+	}
+}
+
+.input {
+	text-transform: capitalize;
+
+	& > label {
+		margin-bottom: 12px;
+		line-height: 12px;
+		font-size: 16px;
+	}
+
+	& > input {
+		border-color: $color-border2;
+	}
+}
+.form_actions {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+}
+.auth_error {
+	color: $color-error;
+	opacity: 0;
+	visibility: hidden;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+.btn_auth {
+	justify-self: flex-end;
+}
+.btn_auth_text {
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 26px;
+	font-weight: $weight-bold;
+}
