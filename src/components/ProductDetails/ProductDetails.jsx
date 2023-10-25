@@ -117,8 +117,8 @@ export const ProductDetails = () => {
 						<Tab id='spec' text='Specifications'>
 							<Specification {...specifications} />
 						</Tab>
-						<Tab id='rev' text={`Reviews (${reviews ? reviews.comments.length : '0'})`}>
-							{reviews ? <Reviews reviews={reviews.comments} /> : <NewReview />}
+						<Tab id='rev' text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
+							{reviews ? <Reviews reviews={reviews.reviews} /> : <NewReview />}
 						</Tab>
 					</Tabs>
 				</div>

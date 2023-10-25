@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { authAPI } from '../../../../api/auth'
 import { useAuthContext } from '../../../../context/AuthContext'
@@ -38,9 +38,11 @@ const authFormValidationSchema = {
 }
 
 export const AuthForm = ({ type }) => {
+	const { user } = useAuthContext()
 	const [authError, setAuthError] = useState(null)
 	const { login } = useAuthContext()
 	const navigate = useNavigate()
+	const location = useLocation()
 	const initialFormState = {
 		email: '',
 		password: '',
@@ -48,6 +50,10 @@ export const AuthForm = ({ type }) => {
 	}
 	const [form, setForm] = useState(initialFormState)
 	const { errors } = useFormErrors(form, authFormValidationSchema)
+
+	useEffect(() => {
+		if (user !== null) navigate('/')
+	}, [])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -66,7 +72,7 @@ export const AuthForm = ({ type }) => {
 				type === 'register'
 					? setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
 					: setForm({ email: '', password: '' })
-				navigate('/')
+				location.state?.from ? navigate(`${location.state?.from}`) : navigate('/')
 			} else {
 				setAuthError(user)
 			}

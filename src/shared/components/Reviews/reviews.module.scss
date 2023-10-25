@@ -8,9 +8,12 @@
 .avatar {
 	width: 47px;
 	height: 47px;
+	object-fit: cover;
 }
 .content {
 	position: relative;
+	display: grid;
+	gap: 15px;
 	margin-left: 21px;
 	padding: 12px;
 	width: 100%;
@@ -32,9 +35,10 @@
 	}
 }
 .info {
-	display: flex;
+	display: grid;
+	grid-auto-flow: column;
 	justify-content: space-between;
-	margin-bottom: 15px;
+	gap: 15px;
 }
 .meta {
 	display: flex;
@@ -53,11 +57,20 @@
 .text {
 	line-height: 24px;
 }
+.user_actions {
+	display: grid;
+	gap: 20px;
+}
+.message_icon > svg {
+	width: 15px;
+	height: 14px;
+}
 .review_new {
 
 }
 .title {
 	text-transform: capitalize;
+	margin-bottom: 8px;
 	line-height: 36px;
 	font-size: 18px;
 	font-weight: $weight-medium;

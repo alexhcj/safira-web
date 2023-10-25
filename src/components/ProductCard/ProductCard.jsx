@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { Price } from '../../shared/components/Price/Price'
 import { Tags } from '../../shared/components/UI/Tags/Tags'
@@ -13,6 +13,7 @@ import s from './productcard.module.scss'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
+	const navigate = useNavigate()
 
 	const { slug, tags, name, subCategory, price, description, createdAt } = product
 
@@ -24,6 +25,13 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 			name: name,
 			subCategory: subCategory,
 		},
+	}
+
+	const handleSubCategoryClick = () => {
+		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+		navigate(`/shop?${new URLSearchParams(query)}`, {
+			state: JSON.stringify({ subCategory }),
+		})
 	}
 
 	const handleMenuToggle = (e) => {
@@ -53,9 +61,13 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 				</h3>
 				{size !== 'row-xs' && (
 					<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-						<NavLink className={cn({ [s.subCategory_name]: tags && tags.dietaries })} to='/shop'>
+						<button
+							type='button'
+							onClick={handleSubCategoryClick}
+							className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
+						>
 							{slugToString(subCategory)}
-						</NavLink>
+						</button>
 						{tags && (
 							<>
 								<span className={s.subCategory_divider}>•</span>
