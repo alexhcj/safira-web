@@ -6,7 +6,8 @@ import { Space } from '../Spacing/Space'
 import { shallowEqual, slugToString } from '../../../../utils'
 import s from './breadcrumbs.module.scss'
 
-export const Breadcrumbs = () => {
+// types: 'page' (prevent state through for Breadcrumbs)
+export const Breadcrumbs = ({ type = 'page' }) => {
 	let { pathname, state } = useLocation()
 	const navigate = useNavigate()
 	const isMultyPaths = pathname.match(/\//g).length > 1
@@ -66,7 +67,8 @@ export const Breadcrumbs = () => {
 							</Text>
 						</>
 					)}
-					{renderCategories(JSON.parse(state))}
+					{type === 'shop' && renderCategories(JSON.parse(state))}
+					{/*{renderCategories(JSON.parse(state))}*/}
 				</div>
 			</div>
 		</div>

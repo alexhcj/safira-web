@@ -9,7 +9,7 @@ import { ProductQuickView } from '../components/ProductQuickView/ProductQuickVie
 export const ShopPage = () => {
 	return (
 		<ProductProvider>
-			<Breadcrumbs />
+			<Breadcrumbs type='shop' />
 			<Shop />
 			<Space size='l' />
 			<Border />
