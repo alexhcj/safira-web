@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { DefaultLayout } from '../../../layouts/DefaultLayout/DefaultLayout'
 import { Border } from '../../UI/Spacing/Border'
 import { Space } from '../../UI/Spacing/Space'
@@ -9,9 +9,11 @@ import logo from '../../../../assets/images/logo.png'
 import s from './footer.module.scss'
 
 export const Footer = () => {
+	const location = useLocation()
+
 	return (
 		<DefaultLayout>
-			<Border />
+			{location.pathname.slice(1) !== 'blank-page' && <Border />}
 			<Space space={70} />
 			<div className='container'>
 				<div className={s.footer}>
@@ -20,7 +22,8 @@ export const Footer = () => {
 							<img className={s.img} src={logo} alt='' />
 						</NavLink>
 						<div>
-							We are a team of designers and developers that create high quality eCommerce with MERN stack technology.
+							We are a team of developers and designers that create high quality and flexible projects with variety
+							stack technology.
 						</div>
 						<div className={s.address}>
 							Address:
