@@ -8,9 +8,12 @@
 .avatar {
 	width: 47px;
 	height: 47px;
+	object-fit: cover;
 }
 .content {
 	position: relative;
+	display: grid;
+	gap: 15px;
 	margin-left: 21px;
 	padding: 12px;
 	width: 100%;
@@ -32,9 +35,10 @@
 	}
 }
 .info {
-	display: flex;
+	display: grid;
+	grid-auto-flow: column;
 	justify-content: space-between;
-	margin-bottom: 15px;
+	gap: 15px;
 }
 .meta {
 	display: flex;

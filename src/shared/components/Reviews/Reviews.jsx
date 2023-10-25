@@ -9,26 +9,30 @@ import s from './reviews.module.scss'
 export const Reviews = ({ reviews }) => {
 	return (
 		<>
-			{reviews.map(({ user: { fullName, userId }, avatar, text, createdAt, rating }, index) => (
-				<div className={s.review} key={index}>
-					<ImageWithFallback src={avatar} imgSize='avatar' className={s.avatar} />
-					<div className={s.content}>
-						<div className={s.info}>
-							<div className={s.meta}>
-								<Text className={s.author}>
-									{fullName ? fullName : 'Anonymous'}
-									{' - '}
-								</Text>
-								<Text className={s.date} span>
-									{convertISODate(createdAt, 'full')}
-								</Text>
+			{reviews.map(({ user: { firstName, avatarId }, text, createdAt, rating }, index) => {
+				const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+
+				return (
+					<div className={s.review} key={index}>
+						<ImageWithFallback onlySrc src={avatarUrl} imgSize='avatar' className={s.avatar} />
+						<div className={s.content}>
+							<div className={s.info}>
+								<div className={s.meta}>
+									<Text className={s.author}>
+										{firstName ? firstName : 'Anonymous'}
+										{' - '}
+									</Text>
+									<Text className={s.date} span>
+										{convertISODate(createdAt, 'full')}
+									</Text>
+								</div>
+								<Rating rating={rating} />
 							</div>
-							<Rating rating={rating} />
+							{text && <Text className={s.text}>{text}</Text>}
 						</div>
-						<Text className={s.text}>{text}</Text>
 					</div>
-				</div>
-			))}
+				)
+			})}
 			<NewReview />
 		</>
 	)

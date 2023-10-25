@@ -33,7 +33,7 @@ export const NewReview = () => {
 		const form = {
 			text: textarea,
 			rating: rating,
-			reviewObjectSlug: slug,
+			reviewProductSlug: slug,
 		}
 
 		reviewsAPI.create(form)
