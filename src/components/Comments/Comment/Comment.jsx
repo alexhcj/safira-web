@@ -13,28 +13,28 @@ export const Comment = ({
 		createdAt,
 		text,
 		comments,
-		user: { fullName },
-		avatar,
+		user: { firstName, avatarId },
 	},
 	type,
 	nestedLvl,
 }) => {
 	const { user } = useAuthContext()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
-	const author = fullName.split(' ')[0]
+	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
 
 	return (
 		<div className={s.wrapper} style={{ paddingLeft: 50 }}>
 			<div className={cn(s.comment, type && s[`comment_${type}`])}>
 				<ImageWithFallback
-					src='img'
+					onlySrc
+					src={avatarUrl}
 					imgSize='avatar'
-					alt={avatar ? `${author}'s avatar` : 'User devault avatar'}
+					alt={avatarId ? `${firstName}'s avatar` : 'User devault avatar'}
 					className={s.img}
 				/>
 				<div className={s.box}>
 					<div>
-						<h5 className={s.author}>{author}</h5>
+						<h5 className={s.author}>{firstName}</h5>
 						<span className={s.date}>
 							{capitalizeFirstLetter(convertISODate(createdAt, 'full-time').toLowerCase())}
 						</span>

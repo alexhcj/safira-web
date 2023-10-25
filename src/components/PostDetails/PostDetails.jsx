@@ -12,9 +12,9 @@ import s from './post-details.module.scss'
 
 export const PostDetails = () => {
 	const { post, isLoading } = usePost()
-	const { slug, title, createdAt, comments, author, text } = post
+	const { slug, title, createdAt, comments, user, text } = post
 	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
-	const postAuthor = author && author.fullName.split(' ')[0]
+	const postAuthor = user && `${user.firstName} ${user.lastName}`
 
 	return (
 		<>
