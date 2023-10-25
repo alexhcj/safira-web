@@ -51,7 +51,7 @@
 - [x] Wishlist
 - [x] Cart
 - [x] Global search (products & posts)
-- [ ] Reviews (products)
+- [x] Reviews (products)
 - [x] Comments with replies (posts)
 - [x] Breadcrumbs
 - [x] Unauthorized buy
@@ -76,6 +76,7 @@
 - [ ] Profile (private account)
 - [ ] Profile (public account)
 - [ ] Order history
+- [x] Avatars (stored by server)
 
 ### Discount System & Payment
 - [ ] Promotions
