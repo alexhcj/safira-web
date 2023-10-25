@@ -20,7 +20,8 @@ export const Footer = () => {
 							<img className={s.img} src={logo} alt='' />
 						</NavLink>
 						<div>
-							We are a team of designers and developers that create high quality eCommerce with MERN stack technology.
+							We are a team of developers and designers that create high quality and flexible projects with variety
+							stack technology.
 						</div>
 						<div className={s.address}>
 							Address:
