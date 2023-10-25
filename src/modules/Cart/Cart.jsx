@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useCartContext } from '../../context/CartContext'
 import { CartItem } from './CartItem'
 import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'
 import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
@@ -89,7 +88,6 @@ export const Cart = () => {
 				</div>
 			</div>
 			<Space size='l' />
-			<Border />
 		</div>
 	)
 }

@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
 import { SidebarLayout } from '../../shared/layouts/SidebarLayout/SidebarLayout'
 import { Post } from './Post/Post'
-import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
 import { usePosts } from '../../hooks/services/usePosts'
@@ -48,7 +47,6 @@ export const Blog = () => {
 				<div ref={infiniteTrigger}></div>
 				{loading && <Preloader />}
 				<Space size='l' />
-				<Border />
 			</div>
 		</section>
 	)

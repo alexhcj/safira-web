@@ -4,7 +4,6 @@ import { useCartContext } from '../../context/CartContext'
 import { WishlistItem } from './WishlistItem'
 import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Border } from '../../shared/components/UI/Spacing/Border'
 import s from './styles/wishlist.module.scss'
 
 export const Wishlist = () => {
@@ -53,7 +52,6 @@ export const Wishlist = () => {
 				</tbody>
 			</table>
 			<Space size='l' />
-			<Border />
 		</div>
 	)
 }
