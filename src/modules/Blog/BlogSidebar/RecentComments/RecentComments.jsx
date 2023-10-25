@@ -29,7 +29,8 @@ export const RecentComments = () => {
 			<FilterTitle text='Recent Comments' />
 			<ul className={s.comments}>
 				{comments.map(({ text, user, postSlug }, index) => {
-					const author = user && user.fullName.split(' ')[0]
+					const author = user && user.firstName
+					const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${user.avatarId}`
 					// const postUrl = `/blog/${postSlug}`
 
 					const cropText = text && text.length > 28 ? text.slice(0, 25) + '...' : text
@@ -37,7 +38,7 @@ export const RecentComments = () => {
 					return (
 						<div className={s.comment} key={index}>
 							<NavLink className={s.img_link} to='/user/profile/id'>
-								<ImageWithFallback src='img' imgSize='avatar' alt='User avatar' className={s.img} />
+								<ImageWithFallback onlySrc src={avatarUrl} imgSize='avatar' alt='User avatar' className={s.img} />
 							</NavLink>
 							<div className={s.message}>
 								<span className={s.says}>
