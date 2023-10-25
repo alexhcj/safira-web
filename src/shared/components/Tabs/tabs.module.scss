@@ -11,6 +11,11 @@
 	font-size: 20px;
 	font-weight: $weight-medium;
 	color: $color-dark3;
+	@include transition-all;
+
+	&.active {
+		color: $color-dark2;
+	}
 
 	&:hover {
 		color: $color-dark2;
