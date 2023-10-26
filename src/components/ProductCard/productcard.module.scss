@@ -52,10 +52,14 @@
 			margin: 0 2px;
 			color: $color-dark4;
 		}
+
+		& button {
+			@include transition-all;
+		}
 	}
 
 	.name > a:hover,
-	.subCategory > a:hover {
+	.subCategory > button:hover {
 		color: $color-primary;
 	}
 
