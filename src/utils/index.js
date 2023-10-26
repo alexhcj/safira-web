@@ -88,6 +88,14 @@ export const enumToString = (str) => {
 	return str.split('_').join(' ')
 }
 
+export const enumToCamelCase = (str) => {
+	return str
+		.toLowerCase()
+		.split('_')
+		.map((word, index) => (index !== 0 ? word[0].toUpperCase() + word.slice(1) : word))
+		.join('')
+}
+
 export const brandToSlug = (brand) => {
 	return brand.replace(/\s+/g, '-')
 }
