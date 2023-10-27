@@ -19,9 +19,10 @@ export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items,
 	return (
 		<div className={cn(s.popover, { [s.active]: isOpen })}>
 			<ul className={s.list} onClick={handleSearchClick} data-link='link'>
-				{items.length === 0 ? (
+				{items.length === 0 && Object.keys(randomProduct).length !== 0 && (
 					<ProductCard product={randomProduct} imgSize='xs' size='row-xs' data-link='link' />
-				) : (
+				)}
+				{items.length !== 0 &&
 					items.map((item) =>
 						item.type === 'product' ? (
 							<li key={item.slug} onClick={handleSearchClick} data-link='link'>
@@ -32,8 +33,7 @@ export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items,
 								<PostCard post={item} imgSize='xxs' size='row-xs' />
 							</li>
 						),
-					)
-				)}
+					)}
 			</ul>
 			{recentSearch.length !== 0 && (
 				<>

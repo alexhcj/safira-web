@@ -4,7 +4,7 @@ import { productsAPI } from '../../api/products'
 export const useRandomProduct = () => {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
-	const [product, setProduct] = useState([])
+	const [product, setProduct] = useState({})
 
 	useEffect(() => {
 		const fetchData = async () => {
