@@ -19,7 +19,7 @@ export const ShopSort = ({ meta = {} }) => {
 	const [activeSortId, setActiveSortId] = useState(sort.id)
 	const [listToggle, setListToggle] = useState(false)
 	const currentSortRef = useRef(null)
-	const { total, page } = meta
+	const { total = 0, page } = meta
 
 	const selectSort = (e) => {
 		const current = e.target.id - 1
@@ -112,13 +112,13 @@ export const ShopSort = ({ meta = {} }) => {
 			<div>
 				{meta && (
 					<>
-						Showing {total === 0 ? 0 : +params.get('offset') + 1} -{' '}
+						Showing {total === 0 ? 0 : +params.get('offset') + 1}-
 						{total < +params.get('limit')
 							? total
 							: page !== 1 && total < page * +params.get('limit')
 							? total
 							: page * +params.get('limit')}{' '}
-						of {total} results
+						of {total ? total : 0} results
 					</>
 				)}
 			</div>
