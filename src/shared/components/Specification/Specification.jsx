@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './specification.module.scss'
 
-export const Specification = ({ company, producing_country, quantity, shelf_life }) => {
+export const Specification = ({ company, producingCountry, quantity, shelf_life }) => {
 	return (
 		<table className={s.table}>
 			<tbody>
@@ -11,10 +11,10 @@ export const Specification = ({ company, producing_country, quantity, shelf_life
 						<td className={s.spec_value}>{company}</td>
 					</tr>
 				)}
-				{producing_country && (
+				{producingCountry && (
 					<tr>
 						<td className={s.spec}>Producing country</td>
-						<td className={s.spec_value}>{producing_country}</td>
+						<td className={s.spec_value}>{producingCountry}</td>
 					</tr>
 				)}
 				{shelf_life && (
