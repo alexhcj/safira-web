@@ -203,7 +203,7 @@ export const CategoriesDropdown = () => {
 			<ArrowSVG className={s.svg} />
 			<nav className={cn(s.popup, popupToggle && s.active)}>
 				{categories
-					.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
+					.sort((a, b) => (b.name < a.name ? 1 : -1))
 					.map(({ name, primeCategory, subCategories }) => {
 						return (
 							<ul

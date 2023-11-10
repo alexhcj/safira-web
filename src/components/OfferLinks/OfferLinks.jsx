@@ -1,35 +1,40 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import Link1 from '../../assets/images/offer-links/fresh-vegetables/590x140.jpg'
-import Link2 from '../../assets/images/offer-links/natural-fresh-fruits/590x140.jpg'
-import { generateID } from '../../utils/IdGenerator'
+import { useNavigate } from 'react-router-dom'
+import { useOfferLinks } from '../../hooks/services/useOfferLinks'
+import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { enumToCamelCase, stringToSlug } from '../../utils'
 import s from './offer-links.module.scss'
 
-const links = [
-	{
-		id: generateID(),
-		img: Link1,
-		text: 'Fresh vegetables',
-	},
-	{
-		id: generateID(),
-		img: Link2,
-		text: 'Natural fresh fruits',
-	},
-]
-
 export const OfferLinks = () => {
+	const { links, loading } = useOfferLinks('offer-link')
+	const navigate = useNavigate()
+
+	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
+		navigate(
+			`/${page}?${enumToCamelCase(categoryType)}=${enumToCamelCase(categoryValue)}&${
+				process.env.REACT_APP_SHOP_DEFULT_QUERY
+			}`,
+		)
+	}
+
 	return (
 		<div className='container'>
-			<div className={s.block}>
-				{links.map(({ id, img, text }) => {
-					return (
-						<NavLink to='/shop' key={id}>
-							<img className={s.img} src={img} alt={text} />
-						</NavLink>
-					)
-				})}
-			</div>
+			<ul className={s.block}>
+				{loading && <Preloader width={35} height={35} />}
+				{!loading &&
+					links.map(({ img, title, link }) => {
+						const offerUrl = `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/offer-links/${img}`
+
+						return (
+							<li key={stringToSlug(title)} onClick={(e) => handleOfferClick(link)}>
+								<button type='button' className={s.offer}>
+									<ImageWithFallback onlySrc imgSize='offer-link' src={offerUrl} alt={title} className={s.img} />
+								</button>
+							</li>
+						)
+					})}
+			</ul>
 		</div>
 	)
 }

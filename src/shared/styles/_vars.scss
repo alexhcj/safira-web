@@ -52,6 +52,10 @@ $PlayfairDisplay:'Playfair Display', serif;
 	transition: all 0.2s ease-in-out;
 }
 
+@mixin transition-offer() {
+	transition: all 900ms linear;
+}
+
 // z-indexes
 $z-index100: 100;
 $z-index90: 90;
