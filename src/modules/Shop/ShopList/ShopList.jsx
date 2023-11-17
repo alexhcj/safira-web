@@ -11,12 +11,24 @@ export const ShopList = ({ products, loading }) => {
 
 	// TODO: add animation grid change (grid)
 	return (
-		<div className={cn(s.grid, s[`${grid}`])}>
-			{loading && <Preloader />}
-			{!loading && products.length === 0 && <ItemsNotFound type='product' />}
-			{products.map((product, index) => (
-				<ProductCard key={index} product={product} size={grid === gridTypes[2].type ? 'row' : 'lg'} imgSize='md' />
-			))}
-		</div>
+		<>
+			{loading && (
+				<div className={s.center}>
+					<Preloader width={50} height={50} />
+				</div>
+			)}
+			{!loading && products.length !== 0 && (
+				<div className={cn(s.grid, s[`${grid}`])}>
+					{products.map((product, index) => (
+						<ProductCard key={index} product={product} size={grid === gridTypes[2].type ? 'row' : 'lg'} imgSize='md' />
+					))}
+				</div>
+			)}
+			{!loading && products.length === 0 && (
+				<div className={s.center}>
+					<ItemsNotFound type='product' />
+				</div>
+			)}
+		</>
 	)
 }

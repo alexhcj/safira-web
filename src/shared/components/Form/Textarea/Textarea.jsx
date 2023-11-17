@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import cn from 'classnames'
+import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
 import s from './textarea.module.scss'
 
-export const Textarea = ({ name, label, id, value, handleChange, placeholder, error, className }) => {
+export const Textarea = ({ name, label, id, value, handleChange, placeholder, error, required, className }) => {
 	const [isTouched, setIsTouched] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
-	const isError = useMemo(() => isFocused && isTouched && error, [isFocused, isTouched, error])
+	const isError = useMemo(() => !isFocused && isTouched && error, [isFocused, isTouched, error])
 
 	const handleFocus = useCallback(() => {
 		setIsFocused(true)
@@ -18,11 +19,11 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 
 	return (
 		<div className={cn(s.box, className)}>
-			<label className={s.label} htmlFor={id}>
+			<label className={cn(s.label, { [s.required]: required })} htmlFor={id}>
 				{label}
 			</label>
 			<textarea
-				className={s.textarea}
+				className={cn(s.textarea, { [s.error]: isError })}
 				value={value}
 				id={id}
 				name={name}
@@ -30,8 +31,9 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 				onFocus={handleFocus}
 				onBlur={handleBlur}
 				placeholder={placeholder}
+				required={required}
 			/>
-			{isError && <span className={s.error}>{Object.values(error)[0]}</span>}
+			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
 		</div>
 	)
 }

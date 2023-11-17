@@ -1,7 +1,12 @@
+.center {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	min-height: 420px;
+}
 .grid {
 	display: grid;
 	gap: 24px;
-	grid-template-columns: repeat(3, 1fr);
 	margin-bottom: 34px;
 }
 .grid-3 {

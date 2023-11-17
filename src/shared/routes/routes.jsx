@@ -6,7 +6,7 @@ import { CartPage } from '../../pages/CartPage'
 import { CheckoutPage } from '../../pages/CheckoutPage'
 import { WishlistPage } from '../../pages/WishlistPage'
 import { Product } from '../../pages/Product'
-import { Docs } from '../../pages/Docs'
+// import { Docs } from '../../pages/Docs'
 import { useAuthContext } from '../../context/AuthContext'
 import { ProtectedRoute } from '../layouts/ProtectedRoute/ProtectedRoute'
 
@@ -50,7 +50,7 @@ export const AppRoutes = () => {
 				<Route path='profile-details' element={<ProfileDetails />} />
 				<Route path='orders' element={<Orders />} />
 			</Route>
-			<Route path='/docs' element={<Docs />} />
+			{/*<Route path='/docs' element={<Docs />} />*/}
 			<Route path='/not-found' element={<NotFoundPage />} />
 			<Route path='*' element={<Navigate to='/not-found' />} />
 		</Routes>

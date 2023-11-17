@@ -35,7 +35,7 @@ export const Input = ({
 	return (
 		<div className={cn(s.box, className)}>
 			{label && (
-				<label className={cn(s.label, required && s.required)} htmlFor={id}>
+				<label className={cn(s.label, s.required && required)} htmlFor={id}>
 					{label}
 				</label>
 			)}

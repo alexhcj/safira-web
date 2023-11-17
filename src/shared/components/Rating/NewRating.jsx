@@ -1,15 +1,21 @@
-import React, { useState, useRef } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import cn from 'classnames'
 import { generateID } from '../../../utils/IdGenerator'
 import { ReactComponent as Star } from '../../../assets/svg/star.svg'
 import { ReactComponent as StarFilled } from '../../../assets/svg/star-filled.svg'
 import s from './rating.module.scss'
 
-export const NewRating = ({ precision = 0.5, totalStars = 5, onClick }) => {
+export const NewRating = forwardRef(({ precision = 0.5, totalStars = 5, onClick }, ref) => {
 	const [activeStar, setActiveStar] = useState(-1)
 	const [hoverActiveStar, setHoverActiveStar] = useState(-1)
 	const [isHovered, setIsHovered] = useState(false)
 	const ratingContainerRef = useRef(null)
+
+	useImperativeHandle(ref, () => ({
+		resetRating() {
+			setActiveStar(-1)
+		},
+	}))
 
 	const calculateRating = (e) => {
 		const { width, left } = ratingContainerRef.current.getBoundingClientRect()
@@ -69,4 +75,6 @@ export const NewRating = ({ precision = 0.5, totalStars = 5, onClick }) => {
 			})}
 		</div>
 	)
-}
+})
+
+NewRating.displayName = 'NewRating'

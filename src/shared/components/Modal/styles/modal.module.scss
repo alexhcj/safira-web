@@ -50,16 +50,16 @@
 	border-radius: 50%;
 
 	.close_svg {
-		width: 18px;
-		height: 18px;
+		width: 11px;
+		height: 11px;
 
-		g path {
+		path {
 			@include transition-all;
 		}
 	}
 
 	&:hover {
-		.close_svg g path {
+		.close_svg path {
 			fill: $color-primary;
 		}
 	}
