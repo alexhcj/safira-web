@@ -4,7 +4,7 @@ export const useFormErrors = (form, errorsSchema) => {
 	const [errors, setErrors] = useState({})
 
 	const validateInput = (type, value, errorsSchema) => {
-		return errorsSchema[type].find(({ pattern }) => !value.match(pattern))
+		return errorsSchema[type].find(({ pattern }) => !value.toString().match(pattern))
 	}
 
 	const validateTextarea = (type, value, errorsSchema) => {

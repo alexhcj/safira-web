@@ -55,6 +55,7 @@
 - [x] Comments with replies (posts)
 - [x] Breadcrumbs
 - [x] Unauthorized buy
+- [ ] Compare products
 
 
 - **Products**

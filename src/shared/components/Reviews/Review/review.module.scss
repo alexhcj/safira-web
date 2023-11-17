@@ -1,0 +1,58 @@
+@import '../../../styles/vars';
+
+.review {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 47px 1fr;
+}
+.avatar {
+	width: 47px;
+	height: 47px;
+	object-fit: cover;
+}
+.content {
+	position: relative;
+	display: grid;
+	gap: 15px;
+	margin-left: 21px;
+	padding: 12px;
+	border-radius: 3px;
+	border: 1px solid $color-border2;
+
+	&::before {
+		position: absolute;
+		content: '';
+		top: 10px;
+		left: -6px;
+		width: 10px;
+		height: 10px;
+		display: block;
+		border-bottom: 1px solid $color-border;
+		border-left: 1px solid $color-border;
+		background: $color-white;
+		transform: rotate(45deg);
+	}
+}
+.info {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: space-between;
+	gap: 15px;
+}
+.meta {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.author {
+	text-transform: uppercase;
+	line-height: 24px;
+	font-size: 15px;
+	font-weight: 500;
+}
+.date {
+	line-height: 18px;
+}
+.text {
+	line-height: 24px;
+}

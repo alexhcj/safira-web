@@ -1,0 +1,13 @@
+@import '../../../styles/vars';
+
+.review {
+	margin-bottom: 70px;
+}
+.user_actions {
+	display: grid;
+	gap: 20px;
+}
+.message_icon > svg {
+	width: 15px;
+	height: 14px;
+}

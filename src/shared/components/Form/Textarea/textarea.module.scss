@@ -1,6 +1,7 @@
 @import '../../../../shared/styles/vars';
 
 .box {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -53,6 +54,10 @@
 		border-color: $color-primary;
 	}
 
+	&.error {
+		border-color: $color-error;
+	}
+
 	&:hover {
 		border-color: $color-border-focus;
 	}
@@ -65,6 +70,7 @@
 		}
 	}
 }
-.error {
-	color: $color-error;
+.error_popover {
+	transform: translateX(106%) translateY(calc(-50% + 12px)) !important;
+	right: -30px !important;
 }

@@ -14,7 +14,7 @@ import { Specification } from '../../shared/components/Specification/Specificati
 import { ButtonPopover } from '../../shared/components/UI/Buttons/ButtonPopover/ButtonPopover'
 import { Reviews } from '../../shared/components/Reviews/Reviews'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { NewReview } from '../../shared/components/Reviews/NewReview'
+import { NewReview } from '../../shared/components/Reviews/NewReview/NewReview'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import { slugToString } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
