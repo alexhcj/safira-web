@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
 import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
@@ -16,6 +17,7 @@ const data = [
 		title: 'Fresh vegetables',
 		subTitle: 'Natural farm products',
 		text: 'Widest range of farm-fresh Vegetables, Fruits & seasonal produce',
+		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-vegetables`,
 		img: Slide2,
 	},
 	{
@@ -23,6 +25,7 @@ const data = [
 		title: 'Fresh tomatoes',
 		subTitle: 'Natural farm products',
 		text: 'Natural organic tomatoes make your health stronger. Put your information here',
+		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-tomatoes`,
 		img: Slide3,
 	},
 	{
@@ -30,6 +33,7 @@ const data = [
 		title: 'Vegetables big promo',
 		subTitle: 'Fresh farm products',
 		text: '10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!',
+		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/vegetables-big-promo`,
 		img: Slide1,
 	},
 ]
@@ -46,7 +50,7 @@ export const HeroSlider = () => {
 
 	const handleDragStart = (e) => e.preventDefault()
 
-	const slides = data.map(({ id, title, subTitle, text, img }) => (
+	const slides = data.map(({ id, title, subTitle, text, img, url }) => (
 		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
 			<img className={s.img} src={img} alt={title} />
 			<div className={s.inner}>
@@ -55,11 +59,13 @@ export const HeroSlider = () => {
 						<h1 className={s.title}>{title}</h1>
 						<h2 className={s.subTitle}>{subTitle}</h2>
 						<p className={s.text}>{text}</p>
-						<Button to='/shop'>
-							<Text className={s.btn_text} color='white'>
-								Read more
-							</Text>
-						</Button>
+						<NavLink to={url}>
+							<Button>
+								<Text className={s.btn_text} color='white'>
+									Read more
+								</Text>
+							</Button>
+						</NavLink>
 					</div>
 				</div>
 			</div>
