@@ -23,7 +23,7 @@
 	opacity: .999;
 }
 
-.title {
+.upTitle {
 	margin-bottom: 9px;
 	text-transform: uppercase;
 	line-height: 24px;
@@ -32,7 +32,7 @@
 	color: $color-primary;
 }
 
-.promo__info {
+.title {
 	text-transform: uppercase;
 	line-height: 50px;
 	font-size: 46px;
@@ -40,7 +40,7 @@
 	color: $color-dark;
 }
 
-.description {
+.text {
 	margin-bottom: 45px;
 	text-transform: uppercase;
 	line-height: 30px;
@@ -52,7 +52,7 @@
 	text-transform: uppercase;
 }
 
-.text {
+.btn_text {
 	line-height: 44px;
 	font-size: 15px;
 }

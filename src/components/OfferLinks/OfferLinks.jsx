@@ -3,19 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import { useOfferLinks } from '../../hooks/services/useOfferLinks'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { enumToCamelCase, stringToSlug } from '../../utils'
+import { enumToCamelCase, enumToCapitalizedString, enumToDashString, stringToSlug } from '../../utils'
 import s from './offer-links.module.scss'
 
 export const OfferLinks = () => {
+	// TODO: change to useBanner but in multiple form. Indeed refactor hooks
 	const { links, loading } = useOfferLinks('offer-link')
 	const navigate = useNavigate()
 
 	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
-		navigate(
-			`/${page}?${enumToCamelCase(categoryType)}=${enumToCamelCase(categoryValue)}&${
-				process.env.REACT_APP_SHOP_DEFULT_QUERY
-			}`,
-		)
+		const query = `${enumToCamelCase(categoryType)}=${enumToDashString(categoryValue)}&${
+			process.env.REACT_APP_SHOP_DEFULT_QUERY
+		}`
+		navigate(`/${page}?${new URLSearchParams(query)}`, {
+			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${enumToCapitalizedString(categoryValue)}` }),
+		})
 	}
 
 	return (

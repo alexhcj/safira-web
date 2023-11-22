@@ -18,7 +18,7 @@ export const imgSizeTypes = [
 	{ type: 'offer-link', size: '590x140' },
 	{ type: 'special', size: '366x484' },
 	{ type: 'blog-post', size: '870x550' },
-	{ type: 'sale', size: '1920x440' },
+	{ type: 'promo', size: '1920x440' },
 	{ type: 'hero-slider', size: '1920x550' },
 	{ type: 'shop', size: '255x430' },
 ]
@@ -86,6 +86,18 @@ export const slugToString = (str) => {
 
 export const enumToString = (str) => {
 	return str.split('_').join(' ')
+}
+
+export const enumToCapitalizedString = (str) => {
+	return str
+		.toLowerCase()
+		.split('_')
+		.map((word, index) => (index !== 0 ? word[0].toUpperCase() + word.slice(1) : word))
+		.join(' ')
+}
+
+export const enumToDashString = (str) => {
+	return str.toLowerCase().split('_').join('-')
 }
 
 export const enumToCamelCase = (str) => {
