@@ -24,6 +24,10 @@ export const RecentComments = () => {
 		fetchData()
 	}, [])
 
+	if (comments.length === 0) {
+		return null
+	}
+
 	return (
 		<div>
 			<FilterTitle text='Recent Comments' />
