@@ -1,4 +1,47 @@
+@import '../../../../shared/styles/vars';
+
 .link {
+	position: relative;
 	display: inline-flex;
 	justify-self: start;
+
+	&::before {
+		background: rgba(255, 255, 255, 0.3);
+		bottom: 0;
+		content: '';
+		left: 50%;
+		position: absolute;
+		right: 51%;
+		top: 0;
+		opacity: 1;
+		pointer-events: none;
+	}
+
+	&::after {
+		background: rgba(255, 255, 255, 0.6);
+		bottom: 50%;
+		content: '';
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		opacity: 1;
+		pointer-events: none;
+	}
+
+	&:hover {
+		&::before {
+			left: 0;
+			right: 0;
+			opacity: 0;
+			@include transition-offer;
+		}
+
+		&::after {
+			top: 0;
+			bottom: 0;
+			opacity: 0;
+			@include transition-offer;
+		}
+	}
 }
