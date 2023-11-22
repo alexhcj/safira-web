@@ -184,7 +184,7 @@ export const CategoriesDropdown = () => {
 
 		const query = {
 			primeCategory,
-			limit: '6',
+			limit: '12',
 			offset: '0',
 			sort: 'popularity',
 			order: 'desc',
