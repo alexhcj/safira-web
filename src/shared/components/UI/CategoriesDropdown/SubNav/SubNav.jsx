@@ -20,7 +20,7 @@ export const SubNav = ({
 
 		const query = {
 			[category]: e.target.id,
-			limit: '6',
+			limit: '12',
 			offset: '0',
 			sort: 'popularity',
 			order: 'desc',

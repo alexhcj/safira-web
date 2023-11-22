@@ -4,7 +4,7 @@ import { productsAPI } from '../../api/products'
 
 export const useProducts = () => {
 	const [params] = useSearchParams({
-		limit: '6',
+		limit: '12',
 		offset: '0',
 		sort: 'popularity',
 		order: 'desc',
