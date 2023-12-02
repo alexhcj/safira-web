@@ -24,15 +24,18 @@
 		max-height: calc(100vh - 200px);
 	}
 }
+
 .list {
 	display: grid;
 	gap: 10px;
 }
+
 .divider {
 	margin: 20px -21px 15px -30px;
 	height: 6px;
 	background-color: $color-border;
 }
+
 .recent {
 	display: grid;
 	gap: 10px;
@@ -71,9 +74,15 @@
 		}
 	}
 }
+
 .icon {
 	width: 20px;
 	height: 20px;
+
+	&.close {
+		width: 15px;
+		height: 15px;
+	}
 
 	&:last-child {
 		cursor: pointer;

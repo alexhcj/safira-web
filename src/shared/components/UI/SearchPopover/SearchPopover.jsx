@@ -48,7 +48,7 @@ export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items,
 									<button className={s.recent_link} id='recent'>
 										{item.name}
 									</button>
-									<CloseSVG className={s.icon} id='remove' />
+									<CloseSVG className={cn(s.icon, s.close)} id='remove' />
 								</li>
 							))}
 						</ul>
