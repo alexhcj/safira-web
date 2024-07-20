@@ -21,13 +21,9 @@ export const ShopSort = ({ meta = {} }) => {
 	const currentSortRef = useRef(null)
 	const { total = 0, page } = meta
 
-	const selectSort = (e) => {
-		const current = e.target.id - 1
-		const query = Object.fromEntries([...params])
-
-		setSort(sortParams[current])
-		setParams({ ...query, offset: '0', sort: sortParams[current].sort, order: sortParams[current].order })
-	}
+	useEffect(() => {
+		if (params.size === 0) setParams(process.env.REACT_APP_SHOP_DEFULT_QUERY)
+	}, [params, setParams])
 
 	useEffect(() => {
 		document.addEventListener('keydown', escKeyHandler)
@@ -38,6 +34,14 @@ export const ShopSort = ({ meta = {} }) => {
 			document.removeEventListener('click', clickOutsideHandler)
 		}
 	}, [])
+
+	const selectSort = (e) => {
+		const current = e.target.id - 1
+		const query = Object.fromEntries([...params])
+
+		setSort(sortParams[current])
+		setParams({ ...query, offset: '0', sort: sortParams[current].sort, order: sortParams[current].order })
+	}
 
 	const escKeyHandler = (e) => {
 		if (e.key === 'Escape') {

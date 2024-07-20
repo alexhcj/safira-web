@@ -13,7 +13,7 @@ export const Pagination = ({ meta = {} }) => {
 	const totalPages = () => {
 		const pages = []
 
-		if (total) {
+		if (total && params.size !== 0) {
 			for (let i = 1; i <= Math.ceil(total / params.get('limit')); i++) {
 				pages.push(i)
 			}
