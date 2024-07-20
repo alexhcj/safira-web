@@ -43,7 +43,9 @@ export const Search = () => {
 			case 'Enter':
 				if (!searchError) {
 					setPopoverToggle(false)
-					setParams({ ...Object.fromEntries([...params]), slug: stringToSlug(search) })
+					let query = Object.fromEntries([...params])
+					if (query.offset !== 0) query.offset = '0'
+					setParams({ ...query, slug: stringToSlug(search) })
 					setIsProductSelected(true)
 					setCurrentSearch(search)
 				}
@@ -97,7 +99,8 @@ export const Search = () => {
 		// 	setInputFocus(true)
 		// }
 
-		const query = Object.fromEntries([...params])
+		let query = Object.fromEntries([...params])
+		if (query.offset !== 0) query.offset = '0'
 		setParams({ ...query, slug: stringToSlug(search) })
 		setCurrentSearch(search)
 		setIsProductSelected(true)
