@@ -2,6 +2,7 @@
 $color-white: #FFFFFF;
 $color-black: #000000;
 $color-primary: #40A944;
+$color-primary-40: lighten($color-primary, 40%);
 $color-secondary: #FC8A35;
 $color-error: #FF7063;
 $color-warning: #F3CD01;
@@ -29,9 +30,10 @@ $color-modal-bg: rgba($color-dark, .58);
 
 // radiuses
 $default-border-radius: 3px;
+$border-radius-md: 5px;
 
 // colors with opacity
-$color-modal-border: rgba(0,0,0,.6);
+$color-modal-border: rgba(0, 0, 0, .6);
 
 // weights
 $weight-normal: 400;
@@ -41,7 +43,7 @@ $weight-bold: 700;
 
 // fonts
 $WorkSans: 'Work Sans', sans-serif;
-$PlayfairDisplay:'Playfair Display', serif;
+$PlayfairDisplay: 'Playfair Display', serif;
 
 // transitions
 @mixin transition-all() {
