@@ -8,6 +8,7 @@ import { AppRoutes } from './shared/routes/routes'
 import { WishlistProvider } from './context/WishlistContext'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
+import { CompareProvider } from './context/CompareContext'
 
 function App() {
 	return (
@@ -15,12 +16,14 @@ function App() {
 			<AuthProvider>
 				<WishlistProvider>
 					<CartProvider>
-						<Header />
-						<AppRoutes />
-						<Footer />
-						<Copyright />
-						<ButtonScroll />
-						{/*<ButtonDocs />*/}
+						<CompareProvider>
+							<Header />
+							<AppRoutes />
+							<Footer />
+							<Copyright />
+							<ButtonScroll />
+							{/*<ButtonDocs />*/}
+						</CompareProvider>
 					</CartProvider>
 				</WishlistProvider>
 			</AuthProvider>

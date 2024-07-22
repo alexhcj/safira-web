@@ -82,14 +82,20 @@
 		align-items: center;
 		gap: 5px;
 
-		&:hover svg path {
+		&:hover svg:not(.compare_link) path {
 			fill: $color-primary;
+		}
+
+		&:hover svg.compare_link path {
+			stroke: $color-primary;
 		}
 	}
 }
+
 .profile_nav {
 	margin-right: 6px;
 }
+
 .count {
 	display: block;
 	width: 18px;

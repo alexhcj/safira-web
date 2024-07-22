@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { CategoriesDropdown } from '../../UI/CategoriesDropdown/CategoriesDropdown'
 import phone from '../../../../assets/images/phone.png'
 import s from './navbar.module.scss'
 
 export const Navbar = () => {
 	const [sticky, setSticky] = useState(false)
+	const location = useLocation()
 
 	const fixNavbarToTop = () => {
 		if (window.scrollY >= 150) {
@@ -16,12 +17,14 @@ export const Navbar = () => {
 	}
 
 	useEffect(() => {
+		if (location.pathname === '/compare') return
 		window.addEventListener('scroll', fixNavbarToTop)
 
-		return function cleanup() {
+		return () => {
+			if (location.pathname === '/compare') return
 			window.removeEventListener('scroll', fixNavbarToTop)
 		}
-	}, [])
+	}, [location.pathname])
 
 	return (
 		<div className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}>
