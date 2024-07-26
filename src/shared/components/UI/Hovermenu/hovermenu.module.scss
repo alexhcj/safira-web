@@ -57,10 +57,17 @@
 		z-index: $z-index90;
 	}
 }
+
 .button_cart_text {
 	text-transform: capitalize;
 	line-height: 40px;
 }
+
 .btn_popup {
 	z-index: $z-index-1;
+
+	.compare_svg {
+		width: 18px;
+		height: 18px;
+	}
 }

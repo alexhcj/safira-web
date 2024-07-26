@@ -13,6 +13,7 @@ export const GlobalSeach = () => {
 	const [search, setSearch] = useState([])
 	const { recentSearch, addToSearch } = useRecentSearchContext()
 	const { product } = useRandomProduct()
+	const [isSearched, setIsSearched] = useState(false)
 
 	useEffect(() => {
 		document.addEventListener('click', outsideClickHandler)
@@ -60,6 +61,7 @@ export const GlobalSeach = () => {
 		addToSearch({ name: formData.search, slug: stringToSlug(formData.search) })
 		const res = await searchAPI.globalSearch(formData)
 		setSearch(res.search)
+		setIsSearched(true)
 	}
 
 	return (
@@ -75,6 +77,7 @@ export const GlobalSeach = () => {
 				randomProduct={product}
 				items={search}
 				recentSearch={recentSearch}
+				isSearched={isSearched}
 			/>
 		</div>
 	)

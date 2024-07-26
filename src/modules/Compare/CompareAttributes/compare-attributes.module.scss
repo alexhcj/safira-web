@@ -1,0 +1,81 @@
+@import '../../../shared/styles/vars';
+
+.block {
+	display: grid;
+	border: 1px solid $color-border3;
+}
+
+.header {
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 35px 20px;
+	border-bottom: 1px solid $color-border;
+}
+
+.title {
+	font-size: 20px;
+}
+
+.btn_different {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.different_circle {
+	position: relative;
+	margin-top: -1px;
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	background-color: $color-primary-40;
+}
+
+.different_dot {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	content: '';
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: $color-primary;
+	transform: translate(-50%, -50%);
+}
+
+.btn_different_switcher {
+	display: grid;
+	align-items: center;
+	justify-content: start;
+	width: 28px;
+	height: 17px;
+	padding: 0 2px;
+	border: 1px solid $color-border-sort;
+	border-radius: $default-border-radius;
+	@include transition-all;
+
+	&.active {
+		justify-content: end;
+	}
+}
+
+.btn_different_switcher_square {
+	display: block;
+	width: 13px;
+	height: 12px;
+	background-color: $color-border;
+	border-radius: 2px;
+	@include transition-all;
+
+	&.active {
+		background-color: $color-primary;
+	}
+}
+
+.list {
+	display: grid;
+	grid-auto-flow: row;
+}

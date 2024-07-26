@@ -17,6 +17,10 @@ export const RecentSearchProvider = ({ children }) => {
 		const similarSearch = recentSearch.find((item) => item.name === search.name)
 
 		if (similarSearch) return
+		if (recentSearch.length > 4) {
+			setRecentSearch([...recentSearch.slice(1, recentSearch.length), search])
+			return
+		}
 
 		setRecentSearch([...recentSearch, search])
 	}

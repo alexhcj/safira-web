@@ -7,7 +7,7 @@ import { ReactComponent as RecentSVG } from '../../../../assets/svg/recent.svg'
 import { ReactComponent as CloseSVG } from '../../../../assets/svg/close.svg'
 import s from './search-popover.module.scss'
 
-export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items, recentSearch }) => {
+export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items, recentSearch, isSearched }) => {
 	const { addCurrentSearch, removeFromSearch } = useRecentSearchContext()
 
 	// types: 'recent | 'remove'
@@ -19,9 +19,10 @@ export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items,
 	return (
 		<div className={cn(s.popover, { [s.active]: isOpen })}>
 			<ul className={s.list} onClick={handleSearchClick} data-link='link'>
-				{items.length === 0 && Object.keys(randomProduct).length !== 0 && (
+				{items.length === 0 && Object.keys(randomProduct).length !== 0 && !isSearched && (
 					<ProductCard product={randomProduct} imgSize='xs' size='row-xs' data-link='link' />
 				)}
+				{items.length === 0 && isSearched && <div>Nothing was found. Try searching other keywords</div>}
 				{items.length !== 0 &&
 					items.map((item) =>
 						item.type === 'product' ? (
@@ -47,7 +48,7 @@ export const SearchPopover = ({ isOpen, handleSearchClick, randomProduct, items,
 									<button className={s.recent_link} id='recent'>
 										{item.name}
 									</button>
-									<CloseSVG className={s.icon} id='remove' />
+									<CloseSVG className={cn(s.icon, s.close)} id='remove' />
 								</li>
 							))}
 						</ul>

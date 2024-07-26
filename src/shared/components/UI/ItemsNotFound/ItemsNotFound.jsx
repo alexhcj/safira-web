@@ -4,8 +4,9 @@ import { PostsNotFound } from './Cases/PostsNotFound/ProductsNotFound'
 import { EmptyWishlist } from './Cases/EmptyWishlist/EmptyWishlist'
 import { EmptyCart } from './Cases/EmptyCart/EmptyCart'
 import { CommentsNotFound } from './Cases/CommentsNotFound/CommentsNotFound'
+import { EmptyCompares } from './Cases/EmptyCompares/EmptyCompares'
 
-// 'product' | 'post' | 'cart' | 'wishlist'
+// 'product' | 'post' | 'cart' | 'wishlist' | 'compare'
 export const ItemsNotFound = ({ type }) => {
 	const notFoundCase = (type) => {
 		switch (type) {
@@ -19,6 +20,8 @@ export const ItemsNotFound = ({ type }) => {
 				return <EmptyCart />
 			case 'comments':
 				return <CommentsNotFound />
+			case 'compare':
+				return <EmptyCompares />
 		}
 	}
 

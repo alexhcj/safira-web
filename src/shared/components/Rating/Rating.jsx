@@ -5,11 +5,11 @@ import { ReactComponent as Star } from '../../../assets/svg/star.svg'
 import { ReactComponent as StarFilled } from '../../../assets/svg/star-filled.svg'
 import s from './rating.module.scss'
 
-export const Rating = ({ rating }) => {
+export const Rating = ({ rating, className }) => {
 	const totalStars = 5
 
 	return (
-		<div className={s.rating}>
+		<div className={cn(s.rating, className)}>
 			{[...new Array(totalStars)].map((arr, index) => {
 				const showEmptyIcon = rating < index + 1
 

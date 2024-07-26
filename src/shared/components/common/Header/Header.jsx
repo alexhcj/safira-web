@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '../../../../context/AuthContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
+import { useCompareContext } from '../../../../context/CompareContext'
 import { RecentSearchProvider } from '../../../../context/RecentSearchContext'
 import { GlobalSeach } from '../../../../components/GlobalSearch/GlobalSeach'
 import { Navbar } from '../Navbar/Navbar'
@@ -18,6 +19,7 @@ import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/socials/you
 import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/socials/twitter.svg'
 import { ReactComponent as ProfileSVG } from '../../../../assets/svg/profile.svg'
+import { ReactComponent as CompareSVG } from '../../../../assets/svg/compare.svg'
 import s from './header.module.scss'
 import { Popover } from '../../UI/Popover/Popover'
 import { ProfilePopoverMenu } from '../../../../components/ProfilePopoverMenu/ProfilePopoverMenu'
@@ -60,6 +62,7 @@ export const Header = () => {
 	const { user } = useAuthContext()
 	const { wishlist } = useWishlistContext()
 	const { cart } = useCartContext()
+	const { calcTotalCompareItems } = useCompareContext()
 
 	const fixNavbarToTop = () => {
 		if (window.scrollY >= 150) {
@@ -128,6 +131,10 @@ export const Header = () => {
 									</NavLink>
 								</div>
 							)}
+							<NavLink to='/compare' className={s.account_link}>
+								<CompareSVG className={s.compare_link} />
+								<span className={s.count}>{calcTotalCompareItems()}</span>
+							</NavLink>
 							<NavLink to='/wishlist' className={s.account_link}>
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>

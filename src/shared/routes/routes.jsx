@@ -16,6 +16,7 @@ const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module)
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
 const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
 const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
+const ComparePage = lazy(() => import('../../pages/ComparePage').then((module) => ({ default: module.ComparePage })))
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })))
 const ProfileDetails = lazy(() =>
 	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
@@ -51,6 +52,7 @@ export const AppRoutes = () => {
 				<Route path='orders' element={<Orders />} />
 			</Route>
 			{/*<Route path='/docs' element={<Docs />} />*/}
+			<Route path='/compare' element={<ComparePage />} />
 			<Route path='/not-found' element={<NotFoundPage />} />
 			<Route path='*' element={<Navigate to='/not-found' />} />
 		</Routes>

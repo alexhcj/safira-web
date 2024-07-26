@@ -1,0 +1,43 @@
+@import '../../../styles/vars';
+
+.compare_carousel {
+	position: relative;
+}
+
+.arrow {
+	position: absolute;
+	display: inline-flex;
+	top: 125px;
+	left: 0;
+	padding: 0;
+	width: 22px;
+	height: 26px;
+	opacity: 0;
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+
+	&.disabled {
+		opacity: 0;
+	}
+}
+
+.arrow_prev {
+	left: -10px;
+	transform: scale(-1) translateX(12px);
+
+	&.active {
+		transform: scale(-1) translateX(100%);
+	}
+}
+
+.arrow_next {
+	left: 1145px;
+	transform: translateX(-10px);
+
+	&.active {
+		transform: translateX(5px);
+	}
+}

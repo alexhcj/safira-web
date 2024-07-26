@@ -1,0 +1,67 @@
+@import '../../../shared/styles/vars';
+
+.actions {
+	display: grid;
+	grid-auto-flow: row;
+	text-align: center;
+	gap: 10px;
+	padding: 40px 15px 25px;
+	border-right: 1px solid transparent;
+	border-left: 1px solid transparent;
+
+	&:hover {
+		border-right-color: $color-border2;
+		border-left-color: $color-border2;
+		border-style: none dashed;
+	}
+}
+
+.button {
+	width: 100%;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 3px;
+	background-color: transparent;
+	border: 1px solid $color-dark;
+
+	&:hover {
+		background-color: $color-dark;
+
+		.button_text {
+			color: $color-white;
+		}
+
+		svg {
+			&.svg_related path {
+				stroke: $color-white;
+			}
+
+			path {
+				fill: $color-white;
+			}
+		}
+	}
+}
+
+.button_text {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 10px;
+	text-transform: capitalize;
+}
+
+.button_text_compare {
+	gap: 8px;
+}
+
+.svg {
+	width: 12px;
+	height: 12px;
+}
+
+.svg_related {
+	width: 14px;
+	height: 14px;
+	rotate: 336deg;
+}

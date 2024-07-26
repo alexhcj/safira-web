@@ -1,0 +1,47 @@
+@import '../../../../shared/styles/vars';
+
+.row {
+	display: grid;
+	grid-auto-flow: row;
+	padding: 0 20px;
+
+	&:not(:last-child) {
+		border-bottom: 1px dashed $color-border2;
+	}
+
+	&:nth-child(odd) {
+		background-color: $color-grey3;
+	}
+}
+
+.title {
+	position: relative;
+	padding: 20px 15px 0 0;
+}
+
+.different_dot {
+	position: absolute;
+	top: 29px;
+	left: -12px;
+	content: '';
+	width: 5px;
+	height: 5px;
+	background-color: $color-primary;
+	border-radius: 50%;
+}
+
+.list {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: repeat(auto-fit, 25%);
+	padding: 14px 0;
+}
+
+.item {
+	padding: 6px 0;
+
+	&:not(&:first-child) {
+		padding-left: 15px;
+		border-left: 1px dashed $color-border2;
+	}
+}
