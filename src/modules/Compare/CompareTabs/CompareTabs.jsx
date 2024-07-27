@@ -21,6 +21,8 @@ export const CompareTabs = ({
 	}
 
 	const handleActiveCategory = (e) => {
+		if (e.target.nodeName !== 'LI') return
+
 		setActiveCategory(e.target.dataset.category)
 	}
 
