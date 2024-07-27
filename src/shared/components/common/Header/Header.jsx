@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import cn from 'classnames'
 import { useAuthContext } from '../../../../context/AuthContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
@@ -57,6 +58,7 @@ const socialsList = [
 // ]
 
 export const Header = () => {
+	const location = useLocation()
 	const [sticky, setSticky] = useState(false)
 	const [isPopoverShown, setIsPopoverShown] = useState(false)
 	const { user } = useAuthContext()
@@ -113,7 +115,10 @@ export const Header = () => {
 						<div className={s.account}>
 							{user ? (
 								<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
-									<NavLink to='/profile' className={s.account_link}>
+									<NavLink
+										to='/profile'
+										className={cn(s.account_link, location.pathname.slice(1) === 'profile' && s.active)}
+									>
 										<ProfileSVG />
 									</NavLink>
 									<Popover isOpen={isPopoverShown}>
@@ -131,15 +136,21 @@ export const Header = () => {
 									</NavLink>
 								</div>
 							)}
-							<NavLink to='/compare' className={s.account_link}>
+							<NavLink
+								to='/compare'
+								className={cn(s.account_link, location.pathname.slice(1) === 'compare' && s.active)}
+							>
 								<CompareSVG className={s.compare_link} />
 								<span className={s.count}>{calcTotalCompareItems()}</span>
 							</NavLink>
-							<NavLink to='/wishlist' className={s.account_link}>
+							<NavLink
+								to='/wishlist'
+								className={cn(s.account_link, location.pathname.slice(1) === 'wishlist' && s.active)}
+							>
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>
 							</NavLink>
-							<NavLink to='/cart' className={s.account_link}>
+							<NavLink to='/cart' className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}>
 								<CartSVG />
 								<span className={s.count}>{cart.length}</span>
 							</NavLink>

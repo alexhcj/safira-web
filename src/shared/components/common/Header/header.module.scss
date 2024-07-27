@@ -82,6 +82,14 @@
 		align-items: center;
 		gap: 5px;
 
+		&.active svg:not(.compare_link) path {
+			fill: $color-primary;
+		}
+
+		&.active svg.compare_link path {
+			stroke: $color-primary;
+		}
+
 		&:hover svg:not(.compare_link) path {
 			fill: $color-primary;
 		}
