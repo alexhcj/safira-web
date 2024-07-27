@@ -25,7 +25,7 @@ export const BrandFilter = () => {
 		}
 
 		fetchData()
-	}, [category, subCategory, minPrice, maxPrice, slug])
+	}, [category, subCategory, minPrice, maxPrice, slug, params])
 
 	const selectBrandHandler = (brand) => {
 		const query = Object.fromEntries([...params])
