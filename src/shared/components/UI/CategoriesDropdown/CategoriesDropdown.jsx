@@ -2,141 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { SubNav } from './SubNav/SubNav'
+import { categories } from '../../../../modules/Categories/categories-data'
 import { ReactComponent as ArrowSVG } from '../../../../assets/svg/arrow.svg'
 import s from './categories-dropdown.module.scss'
-
-const categories = [
-	{
-		name: 'Fruits & vegetables',
-		primeCategory: 'fruits-vegetables',
-		subCategories: {
-			parentCategory: 'fruits-vegetables',
-			items: [
-				{
-					name: 'Fruits',
-					subCategory: 'fruits',
-					basicCategories: [
-						{ name: 'Tropical Fruits', basicCategory: 'tropical-fruits' },
-						{ name: 'Apples & Pears', basicCategory: 'apples-pears' },
-						{ name: 'Citrus Fruits', basicCategory: 'citrus-fruits' },
-					],
-				},
-				{
-					name: 'Vegetables',
-					subCategory: 'vegetables',
-					basicCategories: [
-						{ name: 'Stone fruits', basicCategory: 'stone-fruits' },
-						{ name: 'Tomatoes', basicCategory: 'tomatoes' },
-						{ name: 'Cabbages & Lettuces', basicCategory: 'cabbages-lettuces' },
-						{ name: 'Broccoli & Cauliflowers', basicCategory: 'broccoli-cauliflowers' },
-						{ name: 'Garlic, Ginger & Onions', basicCategory: 'garlic-ginger-onions' },
-						{ name: 'Beans & Peas', basicCategory: 'beans-peas' },
-						{ name: 'Brinjals & Gourds', basicCategory: 'brinjals-gourds' },
-						{ name: 'Cucumbers & Lady Fingers', basicCategory: 'cucumbers-lady-fingers' },
-						{ name: 'Potatoes & Roots', basicCategory: 'potatoes-roots' },
-						{ name: 'Corns', basicCategory: 'corns' },
-						{ name: 'Frozen vegetables', basicCategory: 'frozen-vegetables' },
-					],
-				},
-			],
-		},
-	},
-	{
-		name: 'Drinks',
-		primeCategory: 'drinks',
-		subCategories: {
-			parentCategory: 'drinks',
-			items: [
-				{
-					name: 'Juices',
-					subCategory: 'juices',
-					basicCategories: [
-						{ name: 'Apple juice', basicCategory: 'apple-juice' },
-						{ name: 'Orange juice', basicCategory: 'orange-juice' },
-					],
-				},
-			],
-		},
-	},
-	{
-		name: 'Rice, noodles & cooking ingridients',
-		primeCategory: 'rice-noodles-cooking-ingridients',
-		subCategories: {
-			parentCategory: 'rice-noodles-cooking-ingridients',
-			items: [
-				{
-					name: 'Dried food',
-					subCategory: 'dried-food',
-					basicCategories: [{ name: 'Beans, Seeds & Nuts', basicCategory: 'beans-seeds-nuts' }],
-				},
-				{
-					name: 'Oil',
-					subCategory: 'oil',
-					basicCategories: [{ name: 'Olive oil', basicCategory: 'olive-oil' }],
-				},
-			],
-		},
-	},
-	{
-		name: 'Food cupboard',
-		primeCategory: 'food-cupboard',
-		subCategories: {
-			parentCategory: 'food-cupboard',
-			items: [
-				{
-					name: 'Canned food',
-					subCategory: 'canned-food',
-					basicCategories: [{ name: 'Canned Vegetables', basicCategory: 'canned-vegetables' }],
-				},
-			],
-		},
-	},
-	{
-		name: 'Meat & seafood',
-		primeCategory: 'meat-seafood',
-		subCategories: {
-			parentCategory: 'meat-seafood',
-			items: [
-				{
-					name: 'Beef & Lamb',
-					subCategory: 'beef-lamb',
-					basicCategories: [{ name: 'Fresh Beef & Lamb', basicCategory: 'fresh-beef-lamb' }],
-				},
-				{
-					name: 'Fish & Seafood',
-					subCategory: 'fish-seafood',
-					basicCategories: [{ name: 'Fresh fish & seafood', basicCategory: 'fresh-fish-seafood' }],
-				},
-			],
-		},
-	},
-	{
-		name: 'Dairy, chilled & eggs',
-		primeCategory: 'dairy-chilled-eggs',
-		subCategories: {
-			parentCategory: 'dairy-chilled-eggs',
-			items: [
-				{
-					name: 'Eggs',
-					subCategory: 'eggs',
-					basicCategories: [{ name: 'Fresh eggs', basicCategory: 'fresh-eggs' }],
-				},
-			],
-		},
-	},
-	{
-		name: 'Beer, wine & spirits',
-		primeCategory: 'beer-wine-spirits',
-	},
-	{
-		name: 'Bakery',
-		primeCategory: 'bakery',
-	},
-	{
-		name: 'Frozen',
-		primeCategory: 'frozen',
-	},
-]
 
 export const CategoriesDropdown = () => {
 	const [popupToggle, setPopupToggle] = useState(false)
@@ -160,8 +28,9 @@ export const CategoriesDropdown = () => {
 		}
 	}
 
-	const toggleHandler = () => {
-		setPopupToggle(!popupToggle)
+	const onCategoriesClickHandler = (e) => {
+		if (e.target.id !== 'categories') return
+		navigate('/categories')
 	}
 
 	const clickOutsideHandler = (e) => {
@@ -171,7 +40,7 @@ export const CategoriesDropdown = () => {
 	}
 
 	const handleNavSubToggle = (e, category) => {
-		if (e.type === 'mouseenter') {
+		if (e.type === 'mouseenter' && popupToggle) {
 			setToggleNavSubCategory(category)
 		} else {
 			setToggleNavSubCategory(null)
@@ -190,10 +59,19 @@ export const CategoriesDropdown = () => {
 			order: 'desc',
 		}
 		navigate(`/shop?${new URLSearchParams(query)}`, { state: JSON.stringify({ primeCategory: name }) })
+		setPopupToggle(false)
 	}
 
 	return (
-		<div className={s.categories} role='presentation' onClick={toggleHandler} ref={ref}>
+		<div
+			className={s.categories}
+			role='presentation'
+			onMouseEnter={() => setPopupToggle(true)}
+			onMouseLeave={() => setPopupToggle(false)}
+			onClick={onCategoriesClickHandler}
+			ref={ref}
+			id='categories'
+		>
 			<div className={s.burger}>
 				<span></span>
 				<span></span>

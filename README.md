@@ -38,12 +38,13 @@ backend with api, services and database.
 
 ### Navigation
 
+- [x] Categories & Brands
 - [x] Default page routing
 - [x] Multi layer categories
 - [x] Blank page (fake)
 - [x] 404 page
 
-### Pages
+### Support pages
 
 - [ ] About us
 - [ ] Delivery information
