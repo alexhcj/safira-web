@@ -1,0 +1,28 @@
+@import '../../../shared/styles/vars';
+
+.section {
+	border: 1px solid $color-border;
+	border-radius: $border-radius-lg;
+}
+
+.header {
+	padding-top: 16px;
+	padding-left: 16px;
+	font-weight: $weight-semi;
+}
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(4, 25%);
+	padding-left: 16px;
+}
+
+.item {
+	margin: 16px 0 16px 16px;
+}
+
+.link {
+	display: inline-flex;
+	color: $color-primary;
+	cursor: pointer;
+}

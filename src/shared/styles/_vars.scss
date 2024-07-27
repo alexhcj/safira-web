@@ -20,6 +20,7 @@ $color-border4: #E8E8E8;
 $color-border5: #3D3E40;
 $color-border-sort: #999999;
 $color-border-focus: darken($color-border3, 25%);
+$color-border-hover: #AEAEAE;
 $separator: #EDEDED;
 $color-section-bg: #F4F4F4FF;
 $color-pagination-item-background: #F1F1F1;
@@ -31,6 +32,7 @@ $color-modal-bg: rgba($color-dark, .58);
 // radiuses
 $default-border-radius: 3px;
 $border-radius-md: 5px;
+$border-radius-lg: 10px;
 
 // colors with opacity
 $color-modal-border: rgba(0, 0, 0, .6);

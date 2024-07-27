@@ -9,6 +9,9 @@ export const productsAPI = {
 	getQueryBrands(params) {
 		return API.get(`${BASE_URL}/list-brands`, params)
 	},
+	getAllBrands() {
+		return API.get(`${BASE_URL}/all-brands`)
+	},
 	getQueryPriceRange(params) {
 		return API.get(`${BASE_URL}/price-range`, params)
 	},

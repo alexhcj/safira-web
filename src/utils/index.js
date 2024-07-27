@@ -7,6 +7,7 @@ export const convertArray = (arr, quantity) => {
 
 export const imgSizeTypes = [
 	{ type: 'avatar', size: '50x50' },
+	{ type: 'category', size: '72x72' },
 	{ type: 'xxs', size: '75x53' },
 	{ type: 'xs', size: '120x120' },
 	{ type: 'avatar-s', size: '150x150' },

@@ -22,6 +22,10 @@ const ProfileDetails = lazy(() =>
 	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
 )
 const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
+const CategoriesPage = lazy(() =>
+	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
+)
+const BrandsPage = lazy(() => import('../../pages/BrandsPage').then((module) => ({ default: module.BrandsPage })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -38,7 +42,7 @@ export const AppRoutes = () => {
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/checkout' element={<CheckoutPage />} />
 			<Route path='/wishlist' element={<WishlistPage />} />
-			<Route path='/products/:slug' element={<Product />} />
+			<Route path='/brands/:slug' element={<Product />} />
 			<Route
 				path='/profile'
 				element={
@@ -53,6 +57,8 @@ export const AppRoutes = () => {
 			</Route>
 			{/*<Route path='/docs' element={<Docs />} />*/}
 			<Route path='/compare' element={<ComparePage />} />
+			<Route path='/categories' element={<CategoriesPage />} />
+			<Route path='/brands' element={<BrandsPage />} />
 			<Route path='/not-found' element={<NotFoundPage />} />
 			<Route path='*' element={<Navigate to='/not-found' />} />
 		</Routes>

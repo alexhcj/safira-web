@@ -12,7 +12,7 @@ export const EmptyCompares = () => {
 			<p className={s.text}>
 				You could select products to compare in{' '}
 				{
-					<NavLink className={s.link} to='/catalog'>
+					<NavLink className={s.link} to='/categories'>
 						catalog
 					</NavLink>
 				}
@@ -26,7 +26,7 @@ export const EmptyCompares = () => {
 					</NavLink>
 				</Button>
 				<Button>
-					<NavLink className={s.button_text} to='/catalog'>
+					<NavLink className={s.button_text} to='/categories'>
 						Catalog
 					</NavLink>
 				</Button>
