@@ -54,6 +54,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 				className={s.btn_popup}
 				size={size === 'row' && 'lg'}
 				text='Add to Compare'
+				outline
 			>
 				<CompareSVG className={s.compare_svg} />
 			</ButtonPopup>
