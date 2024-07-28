@@ -1,0 +1,21 @@
+@import '../../../shared/styles/vars';
+
+.nav {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	padding: 0 5px;
+	width: 100%;
+}
+
+.char {
+	line-height: 20px;
+	font-weight: $weight-semi;
+	color: $color-border-hover;
+	cursor: not-allowed;
+
+	&.available {
+		color: $color-dark;
+		cursor: pointer;
+	}
+}

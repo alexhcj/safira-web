@@ -17,11 +17,13 @@ export const Navbar = () => {
 	}
 
 	useEffect(() => {
-		if (location.pathname === '/compare') return
+		if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
+			return
 		window.addEventListener('scroll', fixNavbarToTop)
 
 		return () => {
-			if (location.pathname === '/compare') return
+			if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
+				return
 			window.removeEventListener('scroll', fixNavbarToTop)
 		}
 	}, [location.pathname])
