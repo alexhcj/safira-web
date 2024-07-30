@@ -1,9 +1,12 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import cn from 'classnames'
 import s from './button-popup.module.scss'
 
 // sizes: lg
 export const ButtonPopup = ({ text = 'Add to Cart', size, onClick, className, outline, children }) => {
+	const location = useLocation()
+
 	return (
 		<div className={s.wrapper}>
 			<button
@@ -13,7 +16,7 @@ export const ButtonPopup = ({ text = 'Add to Cart', size, onClick, className, ou
 			>
 				{children}
 			</button>
-			<span className={s.popup}>{text}</span>
+			{location.pathname !== '/compare' && <span className={s.popup}>{text}</span>}
 		</div>
 	)
 }
