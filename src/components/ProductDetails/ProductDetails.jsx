@@ -21,6 +21,7 @@ import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
 import s from './productdetails.module.scss'
+import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
 
 export const ProductDetails = () => {
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
@@ -43,7 +44,8 @@ export const ProductDetails = () => {
 		fetchData()
 	}, [slug])
 
-	const { name, price, description, basicCategory, rating, specifications, reviews } = product
+	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
+	console.log(product)
 
 	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
@@ -64,8 +66,11 @@ export const ProductDetails = () => {
 					<h4 className={s.name}>{name}</h4>
 					<Space size='ss' />
 					<Rating rating={rating} />
+					{/* dietaries */}
 					<Space size='xss' />
 					{price && <Price className={s.price} {...price} type='large' />}
+					<Space size='xs' />
+					{tags && <DietaryTags className={s.dietaries} tags={tags.dietaries} />}
 					<Space size='xs' />
 					<Text>{description}</Text>
 					<Space size='m' />

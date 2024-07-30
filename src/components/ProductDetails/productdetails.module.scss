@@ -28,6 +28,16 @@
 	justify-content: flex-start;
 }
 
+.dietaries {
+	justify-content: start;
+	gap: 5px;
+
+	div {
+		width: 30px;
+		height: 30px;
+	}
+}
+
 .content {
 	max-width: 557px;
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import cn from 'classnames'
 import { ReactComponent as HalalSVG } from '../../../../assets/svg/dietaries/halal.svg'
 import { ReactComponent as GlutenFreeSVG } from '../../../../assets/svg/dietaries/gluten-free.svg'
 import { ReactComponent as HealthierChoiceSVG } from '../../../../assets/svg/dietaries/healthier-choice.svg'
@@ -20,7 +21,7 @@ const dietaryTagsType = {
 	VEGETARIAN: <VegetarianSVG />,
 }
 
-export const DietaryTags = ({ tags }) => {
+export const DietaryTags = ({ tags, className }) => {
 	const dietaryTags =
 		tags &&
 		tags.map((tag) => (
@@ -29,5 +30,5 @@ export const DietaryTags = ({ tags }) => {
 			</div>
 		))
 
-	return <div className={s.tags}>{dietaryTags}</div>
+	return <div className={cn(s.tags, className)}>{dietaryTags}</div>
 }
