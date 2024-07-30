@@ -12,7 +12,7 @@ export const ProfileDetails = () => {
 	return (
 		<div className={s.profile}>
 			{loading && <Preloader />}
-			{!loading && Object.values(profile).length !== 0 && (
+			{!loading && typeof profile !== 'undefined' && Object.keys(profile).length !== 0 && (
 				<ProfileForm user={user} profile={profile} loading={loading} />
 			)}
 		</div>

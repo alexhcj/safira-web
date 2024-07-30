@@ -23,17 +23,19 @@ export const DealsOfWeek = () => {
 		fetchData()
 	}, [])
 
-	const items = deals.map((product) => {
-		return (
-			<div className={s.deal} key={product.deal.slug}>
-				<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
-				<Timer date={product.expiresDate} />
-				<Button className={s.btn} onClick={() => addToCart(product.deal)}>
-					Add to cart
-				</Button>
-			</div>
-		)
-	})
+	const items =
+		deals &&
+		deals.map((product) => {
+			return (
+				<div className={s.deal} key={product.deal.slug}>
+					<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
+					<Timer date={product.expiresDate} />
+					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
+						Add to cart
+					</Button>
+				</div>
+			)
+		})
 
 	const responsive = {
 		0: {

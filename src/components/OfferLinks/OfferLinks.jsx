@@ -25,6 +25,7 @@ export const OfferLinks = () => {
 			<ul className={s.block}>
 				{loading && <Preloader width={35} height={35} />}
 				{!loading &&
+					links &&
 					links.map(({ img, title, link }) => {
 						const offerUrl = `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/offer-links/${img}`
 
