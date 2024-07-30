@@ -16,9 +16,21 @@ import s from './hovermenu.module.scss'
 // sizes: 'xs' | 'sm' | 'lg' | 'row'
 export const Hovermenu = ({ menuToggle, size, product }) => {
 	const { previewProduct } = useProductModalContext()
-	const { addToWishlist } = useWishlistContext()
+	const { addToWishlist, isProductInWishlist, removeFromWishlist } = useWishlistContext()
 	const { addToCart } = useCartContext()
-	const { addToCompare } = useCompareContext()
+	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
+	const isProductInWishList = isProductInWishlist(product.slug)
+	const isProductInCompareList = isProductInCompare(product.slug, product.basicCategory)
+
+	const handleWishlistClick = () => {
+		isProductInWishList ? removeFromWishlist(product.slug) : addToWishlist(product)
+	}
+
+	const handleCompareClick = () => {
+		isProductInCompareList
+			? removeItemFromCompare(product.slug, product.basicCategory)
+			: addToCompare(product, product.basicCategory)
+	}
 
 	return (
 		<div className={cn(s.menu, menuToggle && s.active, s[`menu_${size}`])}>
@@ -42,18 +54,18 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 				<MagnifierSVG />
 			</ButtonPopup>
 			<ButtonPopup
-				className={s.btn_popup}
-				onClick={() => addToWishlist(product)}
+				className={cn(s.btn_popup, isProductInWishList && s.active)}
+				onClick={handleWishlistClick}
 				size={size === 'row' && 'lg'}
-				text='Add to Wishlist'
+				text={isProductInWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
 			>
 				<HeartSVG />
 			</ButtonPopup>
 			<ButtonPopup
-				onClick={() => addToCompare(product, product.basicCategory)}
-				className={s.btn_popup}
+				className={cn(s.btn_popup, s.compare, isProductInCompareList && s.active)}
+				onClick={handleCompareClick}
 				size={size === 'row' && 'lg'}
-				text='Add to Compare'
+				text={isProductInCompareList ? 'Remove from Compare' : 'Add to Compare'}
 				outline
 			>
 				<CompareSVG className={s.compare_svg} />

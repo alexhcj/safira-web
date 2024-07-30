@@ -9,6 +9,8 @@ export const WishlistProvider = ({ children }) => {
 	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])
 
 	const addToWishlist = ({ slug, name, price, specifications }) => {
+		if (wishlist.find((product) => product.slug === slug)) return
+
 		const product = { slug, name, price: price.price, maxQuantity: specifications.quantity }
 		setWishlist([...wishlist, product])
 	}

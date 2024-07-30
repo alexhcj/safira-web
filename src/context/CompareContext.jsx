@@ -89,10 +89,8 @@ export const CompareProvider = ({ children }) => {
 		setCompares({})
 	}
 
-	const isProductInCompare = (slug) => {
-		for (const [_, value] of Object.entries(compares)) {
-			if (value.some((product) => product.slug === slug)) return true
-		}
+	const isProductInCompare = (slug, category) => {
+		return (compares[category] && compares[category].find((product) => product.slug === slug)) || false
 	}
 
 	return (

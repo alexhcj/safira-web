@@ -107,7 +107,7 @@ export const ProductDetails = () => {
 								<Text span>+ Add to WishList</Text>
 							</Button>
 						)}
-						{isProductInCompare(slug) ? (
+						{isProductInCompare(slug, basicCategory) ? (
 							<ButtonPopover
 								className={s.btn}
 								onClick={() => removeItemFromCompare(slug, basicCategory)}
