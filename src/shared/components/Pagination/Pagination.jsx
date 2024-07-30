@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import s from './pagination.module.scss'
 import cn from 'classnames'
 
-export const Pagination = ({ meta = {} }) => {
+export const Pagination = ({ meta, loading }) => {
 	const perPage = 3
+	const { page, total, isLastPage } = meta
 	const [params, setParams] = useSearchParams()
 	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(perPage)
 	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
-	const { page, total, isLastPage } = meta
+
+	useEffect(() => {
+		const minNum = params.get('offset') / params.get('limit')
+		const maxNum = minNum + perPage
+		setminPageNumberLimit(minNum)
+		setmaxPageNumberLimit(maxNum)
+	}, [])
 
 	const totalPages = () => {
 		const pages = []
@@ -90,11 +97,13 @@ export const Pagination = ({ meta = {} }) => {
 				</button>
 			)}
 			<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
-				{calcCurrentPages().map((num) => (
-					<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
-						{num}
-					</button>
-				))}
+				{!loading &&
+					page &&
+					calcCurrentPages().map((num) => (
+						<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
+							{num}
+						</button>
+					))}
 			</div>
 			<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
 				next

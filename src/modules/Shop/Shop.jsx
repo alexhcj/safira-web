@@ -19,7 +19,7 @@ export const Shop = () => {
 							<ShopSort meta={meta} />
 							<ShopList products={products} loading={loading} />
 						</GridProvider>
-						<Pagination meta={meta} />
+						<Pagination meta={meta} loading={loading} />
 					</div>
 					<div className={s.sidebar}>
 						<Sidebar isLoading={loading} meta={meta} />
