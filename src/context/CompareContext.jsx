@@ -89,6 +89,12 @@ export const CompareProvider = ({ children }) => {
 		setCompares({})
 	}
 
+	const isProductInCompare = (slug) => {
+		for (const [_, value] of Object.entries(compares)) {
+			if (value.some((product) => product.slug === slug)) return true
+		}
+	}
+
 	return (
 		<CompareContext.Provider
 			value={{
@@ -106,6 +112,7 @@ export const CompareProvider = ({ children }) => {
 				removeItemFromCompare,
 				removeListFromCompare,
 				removeAllCompares,
+				isProductInCompare,
 			}}
 		>
 			{children}

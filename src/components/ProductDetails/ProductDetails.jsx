@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
+import cn from 'classnames'
 import { productsAPI } from '../../api/products'
 import { useWishlistContext } from '../../context/WishlistContext'
 import { useCartContext } from '../../context/CartContext'
+import { useCompareContext } from '../../context/CompareContext'
 import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
 import { Border } from '../../shared/components/UI/Spacing/Border'
 import { Space } from '../../shared/components/UI/Spacing/Space'
@@ -20,12 +22,15 @@ import { slugToString } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
 import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
 import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
+import { ReactComponent as CompareSVG } from '../../assets/svg/compare.svg'
+import { ReactComponent as CompareRemoveSVG } from '../../assets/svg/compare-remove.svg'
 import s from './productdetails.module.scss'
 import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
 
 export const ProductDetails = () => {
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
+	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
 	const { slug } = useParams()
 	const [product, setProduct] = useState({})
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
@@ -45,7 +50,6 @@ export const ProductDetails = () => {
 	}, [slug])
 
 	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
-	console.log(product)
 
 	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
 
@@ -85,23 +89,42 @@ export const ProductDetails = () => {
 						/>
 					)}
 					<Space size='s' />
-					{isProductInWishlist(slug) ? (
-						<ButtonPopover
-							className={s.btn}
-							onClick={removeFromWishlist}
-							onMouseEnter={handlePopover}
-							onMouseLeave={handlePopover}
-							text='Remove from wishlist'
-						>
-							<HeartSVG className={s.heart} />
-							<HeartBrokenSVG className={s.heart_broken} />
-						</ButtonPopover>
-					) : (
-						<Button type='text' onClick={() => addToWishlist(product)}>
-							{/* TODO: Hover on icon => popup (remove from wishlist) */}
-							<Text span>+ Add to WishList</Text>
-						</Button>
-					)}
+					<div className={s.actions}>
+						{isProductInWishlist(slug) ? (
+							<ButtonPopover
+								className={s.btn}
+								onClick={removeFromWishlist}
+								onMouseEnter={handlePopover}
+								onMouseLeave={handlePopover}
+								text='Remove from wishlist'
+							>
+								<HeartSVG className={s.icon} />
+								<HeartBrokenSVG className={s.icon_remove} />
+							</ButtonPopover>
+						) : (
+							<Button type='text' onClick={() => addToWishlist(product)}>
+								{/* TODO: Hover on icon => popup (remove from wishlist) */}
+								<Text span>+ Add to WishList</Text>
+							</Button>
+						)}
+						{isProductInCompare(slug) ? (
+							<ButtonPopover
+								className={s.btn}
+								onClick={() => removeItemFromCompare(slug, basicCategory)}
+								onMouseEnter={handlePopover}
+								onMouseLeave={handlePopover}
+								text='Remove from compare'
+							>
+								<CompareSVG className={cn(s.icon, s.compare)} />
+								<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
+							</ButtonPopover>
+						) : (
+							<Button type='text' onClick={() => addToCompare(product)}>
+								{/* TODO: Hover on icon => popup (remove from compare) */}
+								<Text span>+ Add to Compare</Text>
+							</Button>
+						)}
+					</div>
 					<Space size='m' />
 					<div className={s.category}>
 						<Text span weight='medium'>
