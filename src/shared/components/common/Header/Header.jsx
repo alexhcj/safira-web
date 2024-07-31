@@ -10,7 +10,6 @@ import { GlobalSeach } from '../../../../components/GlobalSearch/GlobalSeach'
 import { Navbar } from '../Navbar/Navbar'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
 import { Socials } from '../../UI/Socials/Socials'
-import { throttle } from '../../../../utils'
 import logo from '../../../../assets/images/logo.png'
 import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
 import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
@@ -79,10 +78,10 @@ export const Header = () => {
 	}
 
 	useEffect(() => {
-		window.addEventListener('scroll', throttle(fixNavbarToTop, 100))
+		window.addEventListener('scroll', fixNavbarToTop)
 
 		return () => {
-			window.removeEventListener('scroll', throttle(fixNavbarToTop, 100))
+			window.removeEventListener('scroll', fixNavbarToTop)
 		}
 	}, [])
 
