@@ -1,11 +1,10 @@
 import React, { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../../pages/HomePage'
-import { PostDetailsPage } from '../../pages/PostDetailsPage'
+import { PostPage } from '../../pages/PostPage'
 import { CartPage } from '../../pages/CartPage'
 import { CheckoutPage } from '../../pages/CheckoutPage'
 import { WishlistPage } from '../../pages/WishlistPage'
-import { Product } from '../../pages/Product'
 // import { Docs } from '../../pages/Docs'
 import { useAuthContext } from '../../context/AuthContext'
 import { ProtectedRoute } from '../layouts/ProtectedRoute/ProtectedRoute'
@@ -21,6 +20,7 @@ const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module)
 const ProfileDetails = lazy(() =>
 	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
 )
+const ProductPage = lazy(() => import('../../pages/ProductPage').then((module) => ({ default: module.ProductPage })))
 const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
 const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
@@ -38,11 +38,11 @@ export const AppRoutes = () => {
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/shop' element={<ShopPage />} />
 			<Route path='/blog' element={<BlogPage />} />
-			<Route path='/blog/:slug' element={<PostDetailsPage />} />
+			<Route path='/blog/:slug' element={<PostPage />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/checkout' element={<CheckoutPage />} />
 			<Route path='/wishlist' element={<WishlistPage />} />
-			<Route path='/products/:slug' element={<Product />} />
+			<Route path='/products/:slug' element={<ProductPage />} />
 			<Route
 				path='/profile'
 				element={

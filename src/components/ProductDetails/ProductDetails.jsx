@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 import { productsAPI } from '../../api/products'
 import { useWishlistContext } from '../../context/WishlistContext'
@@ -28,6 +28,7 @@ import s from './productdetails.module.scss'
 import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
 
 export const ProductDetails = () => {
+	const navigate = useNavigate()
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
@@ -41,13 +42,18 @@ export const ProductDetails = () => {
 		const fetchData = async () => {
 			try {
 				const { product } = await productsAPI.findOne(slug)
+
+				if (!product) {
+					navigate('/not-found')
+				}
+
 				setProduct(product)
 			} catch (e) {
 				console.log(e)
 			}
 		}
 		fetchData()
-	}, [slug])
+	}, [navigate, slug])
 
 	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
 

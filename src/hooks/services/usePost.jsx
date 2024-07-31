@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { postsAPI } from '../../api/posts'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const usePost = () => {
+	const navigate = useNavigate()
 	const { slug } = useParams()
 	const [post, setPost] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
@@ -14,6 +15,9 @@ export const usePost = () => {
 				setIsLoading(true)
 
 				const post = await postsAPI.findBySlug(slug) // { post }
+
+				if (post.statusCode === 404) navigate('/not-found')
+
 				setPost(post)
 			} catch (err) {
 				setIsError(err)
@@ -22,7 +26,7 @@ export const usePost = () => {
 			}
 		}
 		fetchData()
-	}, [slug])
+	}, [navigate, slug])
 
 	return { post, isLoading, isError }
 }
