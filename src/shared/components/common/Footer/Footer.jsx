@@ -33,7 +33,7 @@ export const Footer = () => {
 						</div>
 						<div className={s.email}>
 							Email:
-							<a href='mailto:foodstore@eccomrce.com'>foodstore@eccomrce.com</a>
+							<a href='mailto:foodstore@ecommerce.com'>foodstore@ecommerce.com</a>
 						</div>
 						<div className={s.phone}>
 							Call us:
