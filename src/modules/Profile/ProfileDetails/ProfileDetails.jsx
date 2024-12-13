@@ -7,7 +7,7 @@ import s from './profile-details.module.scss'
 
 export const ProfileDetails = () => {
 	const { user } = useAuthContext()
-	const { profile, loading } = useProfile(user.id)
+	const { profile, loading } = useProfile()
 
 	return (
 		<div className={s.profile}>

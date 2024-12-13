@@ -3,7 +3,6 @@
 .profile {
 	display: grid;
 	grid-auto-flow: column;
-	justify-content: space-between;
-	grid-template: 1fr / 1fr 230px;
+	grid-template-columns: 480px 170px;
 	gap: 100px;
 }

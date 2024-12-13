@@ -135,3 +135,14 @@
 		background-color: $color-white;
 	}
 }
+.profile {
+	padding: 15px 9px;
+	height: 38px;
+	line-height: 38px;
+	background-color: $color-dark;
+	border-radius: $default-border-radius;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}

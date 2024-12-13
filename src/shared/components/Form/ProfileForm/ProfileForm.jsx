@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { filesAPI } from '../../../../api/files'
 import { profilesAPI } from '../../../../api/profiles'
@@ -41,7 +42,8 @@ import s from './profile-form.module.scss'
 // }
 
 export const ProfileForm = ({ user, profile, loading }) => {
-	const { avatarId, firstName, lastName, dateOfBirth, location } = profile
+	const navigate = useNavigate()
+	const { avatarId, firstName, lastName, dateOfBirth, location, email } = profile
 	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
 	const initialFormState = {
 		avatar: null,
@@ -50,7 +52,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		dateOfBirth: convertISODate(dateOfBirth, 'digit') || '',
 		location: location || '',
 	}
-	const [form, setForm] = useState(initialFormState)
+	const [form, setForm] = useState(useMemo(() => initialFormState, [initialFormState]))
 	const [isEditListShown, setIsEditListShown] = useState(false)
 	const avatarRef = useRef(null)
 	const avatarInputRef = useRef(null)
@@ -71,7 +73,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	}
 
 	const handleEditListShown = () => {
-		setIsEditListShown(true)
+		setIsEditListShown(!isEditListShown)
 	}
 
 	const handleUpdate = async (e) => {
@@ -96,15 +98,30 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		setIsEditListShown(false)
 	}
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-
+	const isFormsSame = () => {
 		const profileOrigin = {
 			firstName,
 			lastName,
 			dateOfBirth,
 			location,
 		}
+
+		const formData = {
+			firstName: form.firstName,
+			lastName: form.lastName,
+			dateOfBirth: new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
+			location: form.location,
+		}
+
+		return compareObjectsShallow(profileOrigin, formData)
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+
+		// prevent same data req
+		if (isFormsSame()) return
+
 		// if (Object.keys(errors).length === 0) {
 		const formData = {
 			firstName: form.firstName,
@@ -113,13 +130,9 @@ export const ProfileForm = ({ user, profile, loading }) => {
 			location: form.location,
 		}
 
-		// prevent same data req
-		if (compareObjectsShallow(profileOrigin, formData)) return
-
 		if (user && user.id && user.accessToken) {
 			await profilesAPI.update(formData)
 		}
-		// }
 	}
 
 	const handleChange = (field) => (e) => {
@@ -129,20 +142,116 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		})
 	}
 
+	const handleChangeEmail = () => {
+		navigate('/change-email')
+	}
+
+	const handleChangePassword = () => {
+		navigate('/change-password')
+	}
+
 	return (
-		<div className={s.box}>
-			<form className={s.form} onSubmit={handleSubmit}>
+		<>
+			<div className={s.left}>
+				<div>
+					<h3 className={s.header}>Credentials</h3>
+					<div className={s.credentials_list}>
+						<div className={s.credential_email}>
+							<Input
+								className={s.credential_input}
+								key='email'
+								id='email'
+								type='email'
+								defaultValue={email}
+								label='Email'
+							/>
+							<Button type='profile' className={s.btn_credential} onClick={handleChangeEmail}>
+								<Text span color='white' weight='semi' className={s.btn_credential_text}>
+									Change email
+								</Text>
+							</Button>
+						</div>
+						<div className={s.credential_password} onClick={handleChangePassword}>
+							<Input
+								className={s.credential_input}
+								key='password'
+								id='password'
+								type='text'
+								defaultValue='••••••••••••••'
+								label='Password'
+							/>
+							<Button type='profile' className={s.btn_credential}>
+								<Text span color='white' weight='semi' className={s.btn_credential_text}>
+									Change password
+								</Text>
+							</Button>
+						</div>
+					</div>
+				</div>
+				<form className={s.form} onSubmit={handleSubmit}>
+					<Input
+						className={s.input}
+						key='firstName'
+						id='firstName'
+						type='text'
+						defaultValue={form['firstName']}
+						label='First name'
+						handleChange={handleChange('firstName')}
+						// error={errors['firstName']}
+					/>
+					<Input
+						className={s.input}
+						key='lastName'
+						id='lastName'
+						type='text'
+						defaultValue={form['lastName']}
+						label='Last name'
+						handleChange={handleChange('lastName')}
+						// error={errors['lastName']}
+					/>
+					<Input
+						className={s.input}
+						key='dateOfBirth'
+						id='dateOfBirth'
+						type='date'
+						defaultValue={form['dateOfBirth']}
+						label='Birthday'
+						handleChange={handleChange('dateOfBirth')}
+						// error={errors['dateOfBirth']}
+						placeholder='DD/MM/YYYY'
+					/>
+					<Input
+						className={s.input}
+						key='location'
+						id='location'
+						type='input'
+						defaultValue={form['location']}
+						label='Location'
+						handleChange={handleChange('location')}
+						// error={errors['location']}
+					/>
+					<div className={s.form_actions}>
+						{/* TODO: add udpate profile errors handle */}
+						{/*{updateError && <span className={cn(s.update_error, updateError && s.active)}>{updateError.message}</span>}*/}
+						<Button
+							htmlType='submit'
+							type='submit'
+							className={s.btn_update_profile}
+							disabled={loading || isFormsSame()}
+						>
+							<Text span color='white' className={s.btn_update_profile_text}>
+								Update profile
+							</Text>
+						</Button>
+					</div>
+				</form>
+			</div>
+			<div className={s.right}>
 				<div className={s.avatar} onClick={handleEditListShown} ref={avatarRef}>
 					<label htmlFor='avatar' className={s.label}>
 						Profile picture
 					</label>
-					<ImageWithFallback
-						onlySrc
-						src={avatarUrl}
-						imgSize='avatar-s'
-						alt={`${form['firstName']}'s avatar`}
-						className={s.avatar_img}
-					/>
+					<ImageWithFallback onlySrc src={avatarUrl} imgSize='avatar-s' alt={`${form['firstName']}'s avatar`} />
 					<input
 						id='avatar'
 						name='avatar'
@@ -164,57 +273,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 						</ul>
 					</div>
 				</div>
-				<Input
-					className={s.input}
-					key='firstName'
-					id='firstName'
-					type='text'
-					defaultValue={form['firstName']}
-					label='First name'
-					handleChange={handleChange('firstName')}
-					// error={errors['firstName']}
-				/>
-				<Input
-					className={s.input}
-					key='lastName'
-					id='lastName'
-					type='text'
-					defaultValue={form['lastName']}
-					label='Last name'
-					handleChange={handleChange('lastName')}
-					// error={errors['lastName']}
-				/>
-				<Input
-					className={s.input}
-					key='dateOfBirth'
-					id='dateOfBirth'
-					type='date'
-					defaultValue={form['dateOfBirth']}
-					label='Birthday'
-					handleChange={handleChange('dateOfBirth')}
-					// error={errors['dateOfBirth']}
-					placeholder='DD/MM/YYYY'
-				/>
-				<Input
-					className={s.input}
-					key='location'
-					id='location'
-					type='input'
-					defaultValue={form['location']}
-					label='Location'
-					handleChange={handleChange('location')}
-					// error={errors['location']}
-				/>
-				<div className={s.form_actions}>
-					{/* TODO: add udpate profile errors handle */}
-					{/*{updateError && <span className={cn(s.update_error, updateError && s.active)}>{updateError.message}</span>}*/}
-					<Button htmlType='submit' type='auth' className={s.btn_auth}>
-						<Text span color='white' className={s.btn_auth_text}>
-							Update profile
-						</Text>
-					</Button>
-				</div>
-			</form>
-		</div>
+			</div>
+		</>
 	)
 }
