@@ -11,7 +11,9 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 	let { pathname, state } = useLocation()
 	const navigate = useNavigate()
 	const isMultyPaths = pathname.match(/\//g).length > 1
-	const pagePathname = isMultyPaths ? pathname.split('/').filter((path) => path)[0] : pathname.slice(1)
+	const pagePathname = isMultyPaths
+		? pathname.split('/').filter((path) => path)[0]
+		: pathname.slice(1).replace('-', ' ')
 	const pageDetailsItem = slugToString(
 		pathname
 			.split('/')
