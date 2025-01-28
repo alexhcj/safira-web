@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import cn from 'classnames'
 import s from './timer.module.scss'
 
-export const Timer = ({ date }) => {
+export const Timer = ({ date, className }) => {
 	const [days, setDays] = useState(0)
 	const [hours, setHours] = useState(0)
 	const [minutes, setMinutes] = useState(0)
@@ -32,7 +33,7 @@ export const Timer = ({ date }) => {
 	}, [date])
 
 	return (
-		<div className={s.timer}>
+		<div className={cn(s.timer, className)}>
 			<div className={s.item}>
 				<span className={s.number}>{leading0(days)}</span>
 				<span className={s.text}>Day</span>
