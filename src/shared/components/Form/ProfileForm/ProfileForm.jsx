@@ -49,7 +49,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		avatar: null,
 		firstName: firstName || '',
 		lastName: lastName || '',
-		dateOfBirth: convertISODate(dateOfBirth, 'digit') || '',
+		dateOfBirth: (dateOfBirth && convertISODate(dateOfBirth, 'digit')) || '',
 		location: location || '',
 	}
 	const [form, setForm] = useState(useMemo(() => initialFormState, [initialFormState]))
@@ -109,7 +109,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		const formData = {
 			firstName: form.firstName,
 			lastName: form.lastName,
-			dateOfBirth: new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
+			dateOfBirth: dateOfBirth && new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
 			location: form.location,
 		}
 
@@ -153,8 +153,8 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	return (
 		<>
 			<div className={s.left}>
-				<div>
-					<h3 className={s.header}>Credentials</h3>
+				<section>
+					<h3 className={s.title}>Credentials</h3>
 					<div className={s.credentials_list}>
 						<div className={s.credential_email}>
 							<Input
@@ -187,64 +187,67 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							</Button>
 						</div>
 					</div>
-				</div>
-				<form className={s.form} onSubmit={handleSubmit}>
-					<Input
-						className={s.input}
-						key='firstName'
-						id='firstName'
-						type='text'
-						defaultValue={form['firstName']}
-						label='First name'
-						handleChange={handleChange('firstName')}
-						// error={errors['firstName']}
-					/>
-					<Input
-						className={s.input}
-						key='lastName'
-						id='lastName'
-						type='text'
-						defaultValue={form['lastName']}
-						label='Last name'
-						handleChange={handleChange('lastName')}
-						// error={errors['lastName']}
-					/>
-					<Input
-						className={s.input}
-						key='dateOfBirth'
-						id='dateOfBirth'
-						type='date'
-						defaultValue={form['dateOfBirth']}
-						label='Birthday'
-						handleChange={handleChange('dateOfBirth')}
-						// error={errors['dateOfBirth']}
-						placeholder='DD/MM/YYYY'
-					/>
-					<Input
-						className={s.input}
-						key='location'
-						id='location'
-						type='input'
-						defaultValue={form['location']}
-						label='Location'
-						handleChange={handleChange('location')}
-						// error={errors['location']}
-					/>
-					<div className={s.form_actions}>
-						{/* TODO: add udpate profile errors handle */}
-						{/*{updateError && <span className={cn(s.update_error, updateError && s.active)}>{updateError.message}</span>}*/}
-						<Button
-							htmlType='submit'
-							type='submit'
-							className={s.btn_update_profile}
-							disabled={loading || isFormsSame()}
-						>
-							<Text span color='white' className={s.btn_update_profile_text}>
-								Update profile
-							</Text>
-						</Button>
-					</div>
-				</form>
+				</section>
+				<section>
+					<h3 className={s.title}>Profile</h3>
+					<form className={s.form} onSubmit={handleSubmit}>
+						<Input
+							className={s.input}
+							key='firstName'
+							id='firstName'
+							type='text'
+							defaultValue={form['firstName']}
+							label='First name'
+							handleChange={handleChange('firstName')}
+							// error={errors['firstName']}
+						/>
+						<Input
+							className={s.input}
+							key='lastName'
+							id='lastName'
+							type='text'
+							defaultValue={form['lastName']}
+							label='Last name'
+							handleChange={handleChange('lastName')}
+							// error={errors['lastName']}
+						/>
+						<Input
+							className={s.input}
+							key='dateOfBirth'
+							id='dateOfBirth'
+							type='date'
+							defaultValue={form['dateOfBirth']}
+							label='Birthday'
+							handleChange={handleChange('dateOfBirth')}
+							// error={errors['dateOfBirth']}
+							placeholder='DD/MM/YYYY'
+						/>
+						<Input
+							className={s.input}
+							key='location'
+							id='location'
+							type='input'
+							defaultValue={form['location']}
+							label='Location'
+							handleChange={handleChange('location')}
+							// error={errors['location']}
+						/>
+						<div className={s.form_actions}>
+							{/* TODO: add udpate profile errors handle */}
+							{/*{updateError && <span className={cn(s.update_error, updateError && s.active)}>{updateError.message}</span>}*/}
+							<Button
+								htmlType='submit'
+								type='submit'
+								className={s.btn_update_profile}
+								disabled={loading || isFormsSame()}
+							>
+								<Text span color='white' className={s.btn_update_profile_text}>
+									Update profile
+								</Text>
+							</Button>
+						</div>
+					</form>
+				</section>
 			</div>
 			<div className={s.right}>
 				<div className={s.avatar} onClick={handleEditListShown} ref={avatarRef}>

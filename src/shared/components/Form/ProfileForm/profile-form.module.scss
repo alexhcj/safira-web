@@ -4,9 +4,9 @@
 	display: grid;
 	gap: 35px;
 }
-.header {
+.title {
 	margin-bottom: 15px;
-	letter-spacing: normal;
+	letter-spacing: $letter-spacing-lg-neg;
 	line-height: 19px;
 	font-size: 20px;
 	font-weight: $weight-medium;

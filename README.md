@@ -29,12 +29,15 @@ backend with api, services and database.
 
 ### Verifications & Mailing
 
-- [ ] Confirm email by code
+- [x] Verify email with code
 - [ ] Change password
 - [ ] Forget password
-- [ ] Recovery email
+- [ ] Change email
 - [ ] Subscribe
-- [ ] Unsubscribe (email or profile)
+- [ ] Unsubscribe
+  - [ ] From email
+  - [ ] From profile
+- [ ] Redis queues & schedulers
 
 ### Navigation
 

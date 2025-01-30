@@ -1,0 +1,140 @@
+@import '../../shared/styles/vars';
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 70px;
+}
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-width: 500px;
+	width: 100%;
+}
+.title {
+	margin-bottom: 30px;
+	text-transform: capitalize;
+	line-height: 22px;
+	font-size: 28px;
+	font-weight: $weight-medium;
+}
+.text {
+	text-align: center;
+	max-width: 400px;
+
+	.email {
+		font-weight: $weight-semi;
+	}
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 25px 20px 29px;
+	width: 100%;
+	min-height: 330px;
+	border: 1px solid $color-border2;
+	border-radius: $border-radius-md;
+}
+.form {
+	display: grid;
+	justify-items: center;
+	gap: 20px;
+	width: 100%;
+}
+.input_box {
+	position: relative;
+}
+.input {
+	max-width: 115px;
+
+	& > input {
+		text-align: center;
+		letter-spacing: $letter-spacing-lg;
+		line-height: 26px;
+		font-size: 20px;
+		font-weight: $weight-semi;
+		color: $color-primary;
+		caret-color: $color-grey;
+
+		&::placeholder {
+			color: $color-grey;
+		}
+	}
+	& > span {
+		min-height: 40px;
+	}
+}
+.btn_verify {
+	gap: 5px;
+}
+.preloader {
+	width: auto;
+
+	svg {
+		circle {
+			stroke: $color-white;
+		}
+	}
+}
+.btn_verify_text {
+	letter-spacing: $letter-spacing-lg;
+	font-size: 12px;
+}
+.btn_later {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+
+	.svg {
+		width: 15px;
+		height: 15px;
+
+		path {
+			fill: $color-border-hover;
+		}
+	}
+
+	&:hover {
+		.btn_later_text {
+			color: $color-dark3;
+		}
+
+		.svg path {
+			fill: $color-dark3;
+		}
+	}
+}
+.btn_later_text {
+	text-transform: capitalize;
+	font-size: 12px;
+	color: $color-border-hover;
+}
+.btn_search {
+	border-radius: $default-border-radius;
+}
+.search_link {
+	text-transform: uppercase;
+	letter-spacing: 0;
+	font-size: 12px;
+	font-weight: $weight-semi;
+	color: $color-white;
+}
+.title_success {
+	margin-bottom: 13px;
+	line-height: 19px;
+	font-size: 20px;
+	font-weight: $weight-medium;
+}
+.text_success {
+	margin-bottom: 15px;
+	text-align: center;
+	max-width: 380px;
+	letter-spacing: 0;
+}
+.btns {
+	display: flex;
+	gap: 10px;
+}

@@ -21,9 +21,21 @@ export const useFormErrors = (form, errorsSchema) => {
 		return errorsSchema[type].find(({ pattern }) => (!value ? pattern !== value : value !== password))
 	}
 
+	const validateVerifyCode = (type, value, errorsSchema) => {
+		return errorsSchema[type].find(({ pattern }) => !value.toString().match(pattern))
+	}
+
 	// const validateStrongPassword = (type, value, errorsSchema) => {
 	// 	return errorsSchema[type].find(({ pattern }) => !value.match(pattern))
 	// }
+
+	const handleErrors = (type, error) => {
+		setErrors({ [type]: { [type]: error.message } })
+	}
+
+	const resetErrors = () => {
+		setErrors({})
+	}
 
 	useEffect(() => {
 		let checkedErrors = {}
@@ -44,18 +56,21 @@ export const useFormErrors = (form, errorsSchema) => {
 				case 'confirmPassword':
 					error = validatePasswordsEquality(key, value, form['password'])
 					break
+				case 'code':
+					error = validateVerifyCode(key, value, errorsSchema)
+					break
 				default:
 					error = validateInput(key, value, errorsSchema)
 					break
 			}
 
 			if (error) {
-				checkedErrors[key] = { [error.type]: error.text }
+				checkedErrors[key] = { [error.type]: error.message }
 			}
 		})
 
 		setErrors(checkedErrors)
 	}, [form])
 
-	return { errors }
+	return { errors, handleErrors, resetErrors }
 }

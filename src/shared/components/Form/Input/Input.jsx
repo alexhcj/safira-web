@@ -60,7 +60,7 @@ export const Input = ({
 			)}
 			{/* TODO: add error variant. On mobile should be text under field. */}
 			{/*{isError && <span>{error}</span>}*/}
-			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
+			<ErrorPopover error={isError && Object.values(error)[0]} />
 		</div>
 	)
 }

@@ -1,0 +1,33 @@
+@import '../../../shared/styles/vars';
+
+.box {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+
+	&.active {
+		flex-direction: column;
+	}
+
+	& > * {
+		font-size: 12px;
+		line-height: 22px;
+	}
+}
+.timer {
+	min-height: auto;
+
+	& > * {
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+	}
+}
+.btn {
+	font-weight: $weight-semi;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
+}

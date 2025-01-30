@@ -72,7 +72,9 @@ export const AuthForm = ({ type }) => {
 				type === 'register'
 					? setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
 					: setForm({ email: '', password: '' })
-				location.state?.from ? navigate(`${location.state?.from}`) : navigate('/')
+				location.state?.from
+					? navigate(`${location.state?.from}`)
+					: navigate('/verify-email', { state: { email: form.email } })
 			} else {
 				setAuthError(user)
 			}

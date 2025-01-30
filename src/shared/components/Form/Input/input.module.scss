@@ -84,7 +84,6 @@
 	position: absolute;
 	top: 50%;
 	right: 20px;
-	transform: translateY(calc(-50% + 12px));
 
 	.password_icon {
 		width: 20px;
@@ -96,8 +95,4 @@
 			fill: $color-primary;
 		}
 	}
-}
-.error_popover {
-	transform: translateX(106%) translateY(calc(-50% + 12px)) !important;
-	right: -30px !important;
 }
