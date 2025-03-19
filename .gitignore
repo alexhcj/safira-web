@@ -26,5 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # files
-/*.env
+*.env
+!example.env
 info.md
