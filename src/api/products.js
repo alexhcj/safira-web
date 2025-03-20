@@ -6,6 +6,9 @@ export const productsAPI = {
 	getAll(params) {
 		return API.get(`${BASE_URL}/list`, params)
 	},
+	getRelated({ limit, slug }) {
+		return API.get(`${BASE_URL}/related?limit=${limit}&slug=${slug}`)
+	},
 	getQueryBrands(params) {
 		return API.get(`${BASE_URL}/list-brands`, params)
 	},

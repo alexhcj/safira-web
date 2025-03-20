@@ -17,6 +17,7 @@ import { ButtonPopover } from '../../shared/components/UI/Buttons/ButtonPopover/
 import { Reviews } from '../../shared/components/Reviews/Reviews'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { NewReview } from '../../shared/components/Reviews/NewReview/NewReview'
+import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import { slugToString } from '../../utils'
 import PreloaderSVG from '../../assets/svg/preloader.svg'
@@ -157,8 +158,8 @@ export const ProductDetails = () => {
 					</Tabs>
 				</div>
 			)}
+			<RelatedProducts slug={slug} />
 			<Space space={65} />
-			{/*<RelatedProducts name={name} id={id} category={category} />*/}
 		</div>
 	)
 }
