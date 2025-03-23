@@ -37,7 +37,7 @@ export const Search = () => {
 		switch (e.key) {
 			case 'Escape':
 				setPopoverToggle(false)
-				setInputFocused(false)
+				setInputFocused(false) // TODO: remove. blur() enough. test!
 				inputRef.current.blur()
 				break
 			case 'Enter':

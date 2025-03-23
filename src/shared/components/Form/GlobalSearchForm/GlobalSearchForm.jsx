@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import { useRecentSearchContext } from '../../../../context/RecentSearchContext'
 import { Button } from '../../UI/Buttons/Button/Button'
 import s from './global-search-form.module.scss'
@@ -14,39 +14,50 @@ const globalSearchFormValidationSchema = {
 	],
 }
 
-export const GlobalSearchForm = ({ handleInputClick, onKeyDownHandler, handleSubmit }) => {
-	const { state } = useRecentSearchContext()
-	const initialFormState = {
-		search: '',
+export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
+	const { state, addCurrentSearch } = useRecentSearchContext()
+	const inputRef = useRef(null)
+
+	const onKeyDownHandler = (e) => {
+		switch (e.key) {
+			case 'Escape':
+				inputRef.current.blur()
+				break
+
+			case 'Enter':
+				e.preventDefault()
+				handleSearchSubmit()
+				break
+			default:
+				return
+		}
 	}
-	const [form, setForm] = useState(initialFormState)
 
 	const handleChange = (e) => {
-		setForm({ search: e.target.value })
+		addCurrentSearch({ search: e.target.value, lastSearch: e.target.value })
 	}
 
-	const handleSelectRecentSearch = (value) => {
-		setForm({ search: value })
+	const handleSearchSubmit = () => {
+		handleSubmit(state)
+		addCurrentSearch({ search: '', lastSearch: state.search })
 	}
 
-	useEffect(() => {
-		handleSelectRecentSearch(state)
-	}, [state])
-
+	// TODO: fix UI usage: when click near top border of input => cursor points to start of input "|apple". Better would be to the end.
 	return (
 		<form>
 			<div className={s.input}>
 				<input
+					ref={inputRef}
 					type='text'
 					name='search'
 					placeholder='Search here...'
+					onKeyDown={onKeyDownHandler}
 					onChange={handleChange}
 					onClick={handleInputClick}
-					onKeyDown={onKeyDownHandler}
 					autoComplete='off'
-					value={form.search}
+					value={state.search}
 				/>
-				<Button type='search' onClick={() => handleSubmit(form)} />
+				<Button type='search' onClick={handleSearchSubmit} />
 			</div>
 		</form>
 	)

@@ -17,6 +17,7 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 		setFocus(false)
 	}
 
+	// TODO: don't work in GlobalSearchForm (don't unfocused)
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
 			case 'Enter':
