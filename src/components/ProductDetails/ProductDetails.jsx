@@ -137,7 +137,7 @@ export const ProductDetails = () => {
 						<Text span weight='medium'>
 							Category:
 						</Text>
-						<NavLink to={`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
+						<NavLink to={`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
 							<Text className={s.tag} span>
 								{basicCategory && slugToString(basicCategory)}
 							</Text>

@@ -35,7 +35,7 @@ export const SearchPopover = ({
 	}
 
 	const handleRelatedMoreClick = () => {
-		const query = `${process.env.REACT_APP_SHOP_DEFULT_QUERY}&slug=${state.lastSearch}`
+		const query = `${process.env.REACT_APP_SHOP_DEFAULT_QUERY}&slug=${state.lastSearch}`
 		navigate(`/shop?${new URLSearchParams(query)}`)
 		setIsPopoverToggled(false)
 	}

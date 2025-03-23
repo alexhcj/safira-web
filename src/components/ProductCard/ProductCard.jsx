@@ -28,7 +28,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ subCategory }),
 		})

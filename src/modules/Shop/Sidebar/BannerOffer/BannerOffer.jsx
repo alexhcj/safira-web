@@ -17,7 +17,7 @@ export const BannerOffer = ({ imgSize, className }) => {
 		const { page, categoryType, categoryValue } = offer.link
 
 		const query = `${enumToCamelCase(categoryType)}=${enumToDashString(categoryValue)}&${
-			process.env.REACT_APP_SHOP_DEFULT_QUERY
+			process.env.REACT_APP_SHOP_DEFAULT_QUERY
 		}`
 		navigate(`/${page}?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${enumToCapitalizedString(categoryValue)}` }),

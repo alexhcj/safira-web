@@ -9,7 +9,7 @@ export const CategoryCard = ({ category }) => {
 	const img = `${process.env.REACT_APP_WEB_PUBLIC_URL}/assets/images/categories/${primeCategory}.jpg`
 
 	const handlePrimeCategoryClick = () => {
-		const query = `primeCategory=${primeCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+		const query = `primeCategory=${primeCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ primeCategory }),
 		})
@@ -28,7 +28,7 @@ export const CategoryCard = ({ category }) => {
 				<ul className={s.list}>
 					{subCategories.items.map(({ subCategory, name }, index) => {
 						const handleSubCategoryClick = () => {
-							const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+							const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
 							navigate(`/shop?${new URLSearchParams(query)}`, {
 								state: JSON.stringify({ subCategory }),
 							})

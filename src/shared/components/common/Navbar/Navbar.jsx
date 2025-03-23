@@ -37,10 +37,10 @@ export const Navbar = () => {
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
+						<NavLink className={s.nav__link} to={`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
 							Shop
 						</NavLink>
-						<NavLink className={s.nav__link} to={`/blog?${process.env.REACT_APP_BLOG_DEFULT_QUERY}`}>
+						<NavLink className={s.nav__link} to={`/blog?${process.env.REACT_APP_BLOG_DEFAULT_QUERY}`}>
 							Blog
 						</NavLink>
 					</nav>
