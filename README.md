@@ -78,7 +78,8 @@ backend with api, services and database.
 - [x] Details (by slug)
 - [x] Quick view (modal)
 - [x] Rating
-- [ ] Related products
+- [x] Related products
+- [x] Scheduled sales & promos (CRON jobs)
 
 
 - **Posts**
