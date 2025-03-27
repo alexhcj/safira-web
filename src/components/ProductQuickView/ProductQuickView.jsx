@@ -26,7 +26,7 @@ export const ProductQuickView = () => {
 
 	const onClickHandler = () => {
 		setIsOpen(false)
-		navigate(`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`)
+		navigate(`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`)
 	}
 
 	return (

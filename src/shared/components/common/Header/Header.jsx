@@ -6,7 +6,7 @@ import { useWishlistContext } from '../../../../context/WishlistContext'
 import { useCartContext } from '../../../../context/CartContext'
 import { useCompareContext } from '../../../../context/CompareContext'
 import { RecentSearchProvider } from '../../../../context/RecentSearchContext'
-import { GlobalSeach } from '../../../../components/GlobalSearch/GlobalSeach'
+import { GlobalSearch } from '../../../../components/GlobalSearch/GlobalSearch'
 import { Navbar } from '../Navbar/Navbar'
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
 import { Socials } from '../../UI/Socials/Socials'
@@ -108,7 +108,7 @@ export const Header = () => {
 						</NavLink>
 						<div className={s.search}>
 							<RecentSearchProvider>
-								<GlobalSeach />
+								<GlobalSearch />
 							</RecentSearchProvider>
 						</div>
 						<div className={s.account}>

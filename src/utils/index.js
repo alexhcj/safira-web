@@ -31,25 +31,6 @@ export const getSizedImgUrl = (url, imgSize = 'xl', ext = 'jpg', index) => {
 	return `${url}/${currentSize}${index ? `-${index}` : ''}.${ext}`
 }
 
-export const makeUniqueArray = (products) => {
-	const arr = []
-	products.map((product) => {
-		return arr.push(product.id)
-	})
-	const arrHelper = []
-	for (let i = 0; i < arr.length; i++) {
-		for (let l = i + 1; l < arr.length; l++) {
-			if (arr[i] === arr[l] || arr[l]) {
-				arrHelper.push(l)
-			}
-		}
-	}
-	for (let k = 0, reducer = 0; k < arrHelper.length; k++, reducer--) {
-		products.splice(arrHelper[k] - reducer, 1)
-	}
-	return products
-}
-
 // types: 'digit' | 'full' | 'full-time'
 export const convertISODate = (date, type = 'digit', locale = 'en') => {
 	const convertedDate = new Date(date)

@@ -11,7 +11,7 @@ export const AddCompareItem = ({ category }) => {
 	const navigate = useNavigate()
 
 	const handleAddCompareItem = () => {
-		navigate(`/shop?basicCategory=${category}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`)
+		navigate(`/shop?basicCategory=${category}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`)
 	}
 
 	const handleShowRelatedItem = () => {

@@ -22,7 +22,7 @@ export const ShopSort = ({ meta = {} }) => {
 	const { total = 0, page } = meta
 
 	useEffect(() => {
-		if (params.size === 0) setParams(process.env.REACT_APP_SHOP_DEFULT_QUERY)
+		if (params.size === 0) setParams(process.env.REACT_APP_SHOP_DEFAULT_QUERY)
 	}, [params, setParams])
 
 	useEffect(() => {

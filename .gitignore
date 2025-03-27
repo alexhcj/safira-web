@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# IDEs and editors
+/.idea
+
 # testing
 /coverage
 
@@ -23,5 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # files
-/*.env
-info.txt
+*.env
+!example.env
+info.md

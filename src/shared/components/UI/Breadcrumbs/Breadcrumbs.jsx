@@ -29,7 +29,7 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 				newState[item[0]] = item[1]
 			})
 		if (shallowEqual(JSON.parse(state), newState)) return
-		navigate(`/shop?${categoryType}=${category}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`, {
+		navigate(`/shop?${categoryType}=${category}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`, {
 			state: JSON.stringify(newState),
 		})
 	}
