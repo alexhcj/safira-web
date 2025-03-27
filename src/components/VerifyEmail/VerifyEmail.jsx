@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { verificationsAPI } from '../../api/verifications'
+import { useAuthContext } from '../../context/AuthContext'
 import { useFormErrors } from '../../hooks/useFormErrors'
 import { Input } from '../../shared/components/Form/Input/Input'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
@@ -24,11 +25,11 @@ const verifyEmailFormValidationSchema = {
 
 export const VerifyEmail = () => {
 	const location = useLocation()
+	const { user, updateEmailVerifiedStatus } = useAuthContext()
 	const initialFormState = {
 		code: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const [isVerified, setIsVerified] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [formError, setFormError] = useState(null)
 	const { errors, handleErrors, resetErrors } = useFormErrors(form, verifyEmailFormValidationSchema)
@@ -52,7 +53,7 @@ export const VerifyEmail = () => {
 
 				return
 			}
-			setIsVerified(true)
+			updateEmailVerifiedStatus(true)
 		}
 	}
 
@@ -62,7 +63,7 @@ export const VerifyEmail = () => {
 		setForm({ code: e.target.value })
 	}
 
-	const handleResedCode = () => {
+	const handleResendCode = () => {
 		resetErrors()
 		setFormError(null)
 	}
@@ -71,7 +72,7 @@ export const VerifyEmail = () => {
 		<div className={s.wrapper}>
 			<div className={s.box}>
 				<h2 className={s.title}>Verify email address</h2>
-				{isVerified ? (
+				{user.isEmailVerified ? (
 					<div className={s.content}>
 						<h2 className={s.title_success}>Email verified successfully!</h2>
 						<p className={s.text_success}>
@@ -80,12 +81,12 @@ export const VerifyEmail = () => {
 						</p>
 						<div className={s.btns}>
 							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
+								<NavLink className={s.search_link} to={`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
 									Search products
 								</NavLink>
 							</Button>
 							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/blog?${process.env.REACT_APP_BLOG_DEFULT_QUERY}`}>
+								<NavLink className={s.search_link} to={`/blog?${process.env.REACT_APP_BLOG_DEFAULT_QUERY}`}>
 									Read blog
 								</NavLink>
 							</Button>
@@ -112,17 +113,19 @@ export const VerifyEmail = () => {
 									required
 								/>
 							</div>
-							<ResendCode handleResedCode={handleResedCode} />
+							<ResendCode handleResedCode={handleResendCode} />
 							<Button className={s.btn_verify} htmlType='submit' type='auth'>
 								{isLoading && <Preloader width={20} height={20} className={s.preloader} />}
 								<Text className={s.btn_verify_text} span color='white' weight='bold'>
 									Verify email
 								</Text>
 							</Button>
-							<NavLink className={s.btn_later} to='/'>
-								<Text className={s.btn_later_text}>Verify later</Text>
-								<ArrowSVG className={s.svg} />
-							</NavLink>
+							{location.state.from === '/register' && (
+								<NavLink className={s.btn_later} to='/'>
+									<Text className={s.btn_later_text}>Verify later</Text>
+									<ArrowSVG className={s.svg} />
+								</NavLink>
+							)}
 						</form>
 					</div>
 				)}

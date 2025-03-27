@@ -16,5 +16,16 @@ export const AuthProvider = ({ children }) => {
 		setState(null)
 	}
 
-	return <AuthContext.Provider value={{ user: state, login, logout }}>{children}</AuthContext.Provider>
+	const updateEmailVerifiedStatus = (status) => {
+		setState((prev) => ({
+			...prev,
+			isEmailVerified: status,
+		}))
+	}
+
+	return (
+		<AuthContext.Provider value={{ user: state, login, logout, updateEmailVerifiedStatus }}>
+			{children}
+		</AuthContext.Provider>
+	)
 }

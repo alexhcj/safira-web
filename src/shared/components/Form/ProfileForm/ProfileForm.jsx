@@ -152,7 +152,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 
 	return (
 		<>
-			<div className={s.left}>
+			<div className={s.main}>
 				<section>
 					<h3 className={s.title}>Credentials</h3>
 					<div className={s.credentials_list}>
@@ -249,7 +249,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 					</form>
 				</section>
 			</div>
-			<div className={s.right}>
+			<div className={s.aside}>
 				<div className={s.avatar} onClick={handleEditListShown} ref={avatarRef}>
 					<label htmlFor='avatar' className={s.label}>
 						Profile picture

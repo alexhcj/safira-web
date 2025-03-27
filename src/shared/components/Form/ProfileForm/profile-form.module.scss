@@ -1,8 +1,12 @@
 @import '../../../styles/vars';
 
-.left {
+.main {
 	display: grid;
 	gap: 35px;
+	grid-area: main;
+}
+.aside {
+	grid-area: aside;
 }
 .title {
 	margin-bottom: 15px;
