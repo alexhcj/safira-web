@@ -1,0 +1,105 @@
+@import '../../../styles/vars';
+
+.box {
+	padding-bottom: 40px;
+}
+
+.list {
+	display: flex;
+	gap: 16px;
+}
+
+.item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 115px;
+	overflow: hidden;
+
+	&:not(:last-child)::before {
+		position: absolute;
+		content: '';
+		top: 14px;
+		left: 38px;
+		width: 100%;
+		height: 1px;
+		background-color: $color-border2;
+	}
+
+	&.active {
+		.icon svg path {
+			fill: $color-dark;
+		}
+
+		.step {
+			color: $color-dark2;
+		}
+
+		.title {
+			color: $color-dark;
+		}
+	}
+
+	&.done {
+		&:not(:last-child)::before {
+			background-color: $color-primary;
+		}
+
+		.icon {
+			background-color: $color-primary;
+
+			svg path {
+				fill: $color-white;
+			}
+		}
+
+		.step {
+			color: $color-dark2;
+		}
+
+		.title {
+			color: $color-dark2;
+		}
+	}
+}
+
+.icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 28px;
+	height: 28px;
+	border-radius: $border-round;
+	background-color: $color-border2;
+
+	svg {
+		width: 12px;
+		height: 12px;
+
+		path {
+			fill: $color-grey5;
+		}
+	}
+}
+
+.text {
+	padding-left: 2px;
+}
+
+.step {
+	text-transform: lowercase;
+	line-height: 17px;
+	font-size: 11px;
+	font-family: $PlayfairDisplay;
+	font-style: italic;
+	color: $color-grey4;
+}
+
+.title {
+	letter-spacing: $letter-spacing-lg-neg;
+	line-height: 18px;
+	font-size: 13px;
+	font-weight: $weight-medium;
+	color: $color-grey5;
+}

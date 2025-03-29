@@ -6,6 +6,15 @@ export const verificationsAPI = {
 	verifyEmail(data) {
 		return API.post(`${BASE_URL}/verify-email`, data)
 	},
+	changeEmail(data) {
+		return API.post(`${BASE_URL}/change-email`, data)
+	},
+	verifyNewEmail(data) {
+		return API.post(`${BASE_URL}/verify-new-email`, data)
+	},
+	validatePassword(data) {
+		return API.post(`${BASE_URL}/validate-password`, data)
+	},
 	resendVerifyEmail(data) {
 		return API.post(`${BASE_URL}/resend-verify-email`, data)
 	},

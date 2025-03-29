@@ -26,9 +26,9 @@ const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
 )
 const BrandsPage = lazy(() => import('../../pages/BrandsPage').then((module) => ({ default: module.BrandsPage })))
-// const ChangeEmailPage = lazy(() =>
-// 	import('../../pages/ChangeEmailPage').then((module) => ({ default: module.ChangeEmailPage })),
-// )
+const ChangeEmailPage = lazy(() =>
+	import('../../pages/ChangeEmailPage').then((module) => ({ default: module.ChangeEmailPage })),
+)
 const VerifyEmailPage = lazy(() =>
 	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
 )
@@ -61,14 +61,14 @@ export const AppRoutes = () => {
 				<Route path='profile-details' element={<ProfileDetails />} />
 				<Route path='orders' element={<Orders />} />
 			</Route>
-			{/*<Route*/}
-			{/*	path='/change-email'*/}
-			{/*	element={*/}
-			{/*		<ProtectedRoute user={user}>*/}
-			{/*			<ChangeEmailPage />*/}
-			{/*		</ProtectedRoute>*/}
-			{/*	}*/}
-			{/*/>*/}
+			<Route
+				path='/change-email'
+				element={
+					<ProtectedRoute user={user}>
+						<ChangeEmailPage />
+					</ProtectedRoute>
+				}
+			/>
 			<Route
 				path='/verify-email'
 				element={

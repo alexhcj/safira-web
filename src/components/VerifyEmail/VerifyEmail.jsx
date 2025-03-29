@@ -8,7 +8,7 @@ import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'
 import { ResendCode } from './ResendCode/ResendCode'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { hideEmailParial } from '../../utils'
+import { hideEmailPartial } from '../../utils'
 import { ReactComponent as ArrowSVG } from '../../assets/svg/arrow.svg'
 import s from './verify-email.module.scss'
 
@@ -97,7 +97,7 @@ export const VerifyEmail = () => {
 						<form className={s.form} onSubmit={handleSubmit}>
 							<p className={s.text}>
 								We’ve sent 6-digits verification code to{' '}
-								<span className={s.email}>{hideEmailParial(location.state.email)}</span>. Enter this code into input to
+								<span className={s.email}>{hideEmailPartial(location.state.email)}</span>. Enter this code into input to
 								verify that address is yours.
 							</p>
 							<div className={s.input_box}>

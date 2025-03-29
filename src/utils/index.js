@@ -163,6 +163,6 @@ export const compareObjectsShallow = (obj1, obj2) => {
 	return true
 }
 
-export const hideEmailParial = (email) => {
+export const hideEmailPartial = (email) => {
 	return email.replace(/(\w{3})[\w.-]+@([\w.]+\w)/, '$1***@$2')
 }
