@@ -1,4 +1,3 @@
-import React from 'react'
 import { useCompareContext } from '../../context/CompareContext'
 import { useWishlistContext } from '../../context/WishlistContext'
 import { useCartContext } from '../../context/CartContext'

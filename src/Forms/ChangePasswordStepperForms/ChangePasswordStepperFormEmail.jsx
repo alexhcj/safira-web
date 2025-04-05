@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { Input } from '../../shared/components/Form/Input/Input'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import cn from 'classnames'
 import { useAuthContext } from '../../../context/AuthContext'
 import { Reply } from '../../Reply/Reply'

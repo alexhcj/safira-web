@@ -1,4 +1,3 @@
-import React from 'react'
 import { ProductProvider } from '../context/ProductContext'
 import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
 import { ProductDetails } from '../components/ProductDetails/ProductDetails'

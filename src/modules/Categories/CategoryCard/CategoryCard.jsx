@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ImageWithFallback } from '../../../utils/ImageWithFallback'
 import s from './category-card.module.scss'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import cn from 'classnames'
 import { CompareAttributesRow } from './CompareAttributeItem/CompareAttributesRow'
 import s from './compare-attributes.module.scss'

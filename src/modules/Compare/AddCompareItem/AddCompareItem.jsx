@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { ButtonCart } from '../../../shared/components/UI/Buttons/ButtonCart/ButtonCart'

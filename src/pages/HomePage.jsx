@@ -1,4 +1,3 @@
-import React from 'react'
 import { ProductProvider } from '../context/ProductContext'
 import { HeroSlider } from '../components/SliderSections/HeroSlider/HeroSlider'
 import { OfferLinks } from '../components/OfferLinks/OfferLinks'

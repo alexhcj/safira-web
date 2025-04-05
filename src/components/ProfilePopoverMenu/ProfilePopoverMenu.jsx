@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Logout } from '../../shared/components/UI/Logout/Logout'
 import s from './profile-popover-menu.module.scss'

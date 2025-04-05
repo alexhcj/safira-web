@@ -1,4 +1,3 @@
-import React from 'react'
 import s from './specification.module.scss'
 
 export const Specification = ({ company, producingCountry, quantity, shelf_life }) => {

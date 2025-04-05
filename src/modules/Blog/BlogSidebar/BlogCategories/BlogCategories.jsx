@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import s from './blog-categories.module.scss'
 import { postsAPI } from '../../../../api/posts'
 

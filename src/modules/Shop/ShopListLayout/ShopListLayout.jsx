@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { gridTypes, useGridContext } from '../../../context/GridContext'
 import s from './shop-list-layout.module.scss'

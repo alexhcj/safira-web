@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { ImageWithFallback } from '../../utils/ImageWithFallback'
 import { Price } from '../../shared/components/Price/Price'

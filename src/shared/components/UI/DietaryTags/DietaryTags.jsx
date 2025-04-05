@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { ReactComponent as HalalSVG } from '../../../../assets/svg/dietaries/halal.svg'
 import { ReactComponent as GlutenFreeSVG } from '../../../../assets/svg/dietaries/gluten-free.svg'

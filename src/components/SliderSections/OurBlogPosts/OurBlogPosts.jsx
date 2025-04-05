@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { postsAPI } from '../../../api/posts'
 import { PostCard } from '../../PostCard/PostCard'
 import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'

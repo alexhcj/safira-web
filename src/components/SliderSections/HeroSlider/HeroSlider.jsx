@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'

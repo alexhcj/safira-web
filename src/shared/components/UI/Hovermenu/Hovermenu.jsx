@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { useProductModalContext } from '../../../../context/ProductContext'
 import { useWishlistContext } from '../../../../context/WishlistContext'

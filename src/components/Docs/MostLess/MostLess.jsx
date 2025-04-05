@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react';
 import { productsAPI } from '../../../api/products'
 import { convertArray } from '../../../utils'
 import { ImageWithFallback } from '../../../utils/ImageWithFallback'

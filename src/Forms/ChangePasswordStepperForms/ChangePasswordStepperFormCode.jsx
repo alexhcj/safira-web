@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { useProfile } from '../../hooks/services/useProfile'
 import { ResendCode } from '../../components/VerifyEmail/ResendCode/ResendCode'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'

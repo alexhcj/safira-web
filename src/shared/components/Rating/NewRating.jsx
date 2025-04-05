@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import cn from 'classnames'
 import { generateID } from '../../../utils/IdGenerator'
 import { ReactComponent as Star } from '../../../assets/svg/star.svg'

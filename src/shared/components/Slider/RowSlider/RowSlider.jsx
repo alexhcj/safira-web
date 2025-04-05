@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
 import { Arrow } from '../Arrow/Arrow'

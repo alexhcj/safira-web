@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { enumToString } from '../../../../utils'

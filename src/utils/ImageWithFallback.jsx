@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { getSizedImgUrl } from '.'
 
 export function ImageWithFallback({ src, fallback, className, alt, imgSize, onlySrc }) {

@@ -1,4 +1,4 @@
-import React, { StrictMode, Suspense } from 'react'
+import { StrictMode, Suspense } from 'react';
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Preloader } from './shared/components/common/Preloader/Preloader'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import { Text } from '../../shared/components/UI/Text/Text'

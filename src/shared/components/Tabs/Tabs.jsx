@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 import cn from 'classnames'
 import s from './tabs.module.scss'
 

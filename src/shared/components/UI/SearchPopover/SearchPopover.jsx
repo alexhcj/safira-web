@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { useRecentSearchContext } from '../../../../context/RecentSearchContext'

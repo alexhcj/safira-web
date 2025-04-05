@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import cn from 'classnames'
 import { productsAPI } from '../../api/products'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from '../../../Buttons/Button/Button'
 import { ReactComponent as EmptyWishlistSVG } from '../../../../../../assets/svg/empty-wishlist.svg'

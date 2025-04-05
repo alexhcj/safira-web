@@ -1,6 +1,4 @@
-import React from 'react'
-// import { RelatedPosts } from './RelatedPosts/RelatedPosts'
-import { usePost } from '../../hooks/services/usePost'
+import { usePost } from '../../hooks/services/usePost';
 import { Comments } from '../Comments/Comments'
 import { Reply } from '../Reply/Reply'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'

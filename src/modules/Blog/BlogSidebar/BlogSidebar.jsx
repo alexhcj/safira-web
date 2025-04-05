@@ -1,4 +1,3 @@
-import React from 'react'
 import { BlogSearch } from './BlogSearch/BlogSearch'
 import { RecentComments } from './RecentComments/RecentComments'
 import { RecentPosts } from './RecentPosts/RecentPosts'

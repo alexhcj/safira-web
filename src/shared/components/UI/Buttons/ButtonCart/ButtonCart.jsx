@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import cn from 'classnames'
 import s from './button-cart.module.scss'
 

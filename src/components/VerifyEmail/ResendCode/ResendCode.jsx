@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import cn from 'classnames'
 import { verificationsAPI } from '../../../api/verifications'
 import { useLocalStorage } from '../../../hooks/useLocalStorage.hook'

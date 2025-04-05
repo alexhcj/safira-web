@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { slugToString } from '../../../../utils'
 import { ReactComponent as CloseSVG } from '../../../../assets/svg/close.svg'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { ReactComponent as TelegramSVG } from '../../assets/svg/socials/telegram.svg'
 import { ReactComponent as VkSVG } from '../../assets/svg/socials/vk.svg'
 import { ReactComponent as GithubSVG } from '../../assets/svg/socials/github.svg'

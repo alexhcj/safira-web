@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'

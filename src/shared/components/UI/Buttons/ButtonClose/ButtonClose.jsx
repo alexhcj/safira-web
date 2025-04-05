@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { ReactComponent as Close } from '../../../../../assets/svg/close.svg'
 import s from './button-close.module.scss'

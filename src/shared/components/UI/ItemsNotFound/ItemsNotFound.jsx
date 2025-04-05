@@ -1,4 +1,3 @@
-import React from 'react'
 import { ProductsNotFound } from './Cases/ProductsNotFound/ProductsNotFound'
 import { PostsNotFound } from './Cases/PostsNotFound/ProductsNotFound'
 import { EmptyWishlist } from './Cases/EmptyWishlist/EmptyWishlist'

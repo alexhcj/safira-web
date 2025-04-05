@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { verificationsAPI } from '../../api/verifications'
 import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
 import { StepperFinish } from '../StepperFinish/StepperFinish'

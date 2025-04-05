@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { productsAPI } from '../../../api/products'
 import { RowSlider } from '../../../shared/components/Slider/RowSlider/RowSlider'
 import { ProductCard } from '../../ProductCard/ProductCard'

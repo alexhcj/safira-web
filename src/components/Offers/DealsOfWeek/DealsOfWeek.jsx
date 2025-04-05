@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { offersAPI } from '../../../api/offers'
 import { useCartContext } from '../../../context/CartContext'
 import { DealsOfWeekSlider } from '../../../shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'

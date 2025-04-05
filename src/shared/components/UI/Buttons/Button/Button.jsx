@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { ReactComponent as MagnifierSVG } from '../../../../../assets/svg/magnifier.svg'
 import cn from 'classnames'
 import s from './button.module.scss'

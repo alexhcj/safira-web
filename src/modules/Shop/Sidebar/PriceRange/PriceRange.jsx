@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider'
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'

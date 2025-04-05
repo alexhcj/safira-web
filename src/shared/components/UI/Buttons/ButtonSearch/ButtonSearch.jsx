@@ -1,4 +1,3 @@
-import React from 'react'
 import { Preloader } from '../../../common/Preloader/Preloader'
 import { Text } from '../../Text/Text'
 import s from './button-search.module.scss'

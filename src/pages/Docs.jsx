@@ -1,4 +1,3 @@
-import React from 'react'
 import { MostLess } from '../components/Docs/MostLess/MostLess'
 import { ImgSizes } from '../components/Docs/ImgSizes/ImgSizes'
 

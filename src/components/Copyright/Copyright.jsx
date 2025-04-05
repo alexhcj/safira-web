@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { payment1, payment2, payment3, payment4 } from '../../assets/images/footer'
 import s from './copyright.module.scss'

@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { useAuthContext } from '../../../../context/AuthContext'
 import { ReactComponent as LogoutSVG } from '../../../../assets/svg/logout.svg'

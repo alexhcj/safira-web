@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom'
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
 import { SidebarLayout } from '../../shared/layouts/SidebarLayout/SidebarLayout'

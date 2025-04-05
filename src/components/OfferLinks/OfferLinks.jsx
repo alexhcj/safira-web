@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useOfferLinks } from '../../hooks/services/useOfferLinks'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'

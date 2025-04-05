@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as DocsSVG } from '../../../../../assets/svg/docs.svg'
 import s from './button-docs.module.scss'

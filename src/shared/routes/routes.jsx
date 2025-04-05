@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../../pages/HomePage'
 import { PostPage } from '../../pages/PostPage'

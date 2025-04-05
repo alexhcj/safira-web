@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
 import { SectionHeader } from '../../UI/Section/SectionHeader/SectionHeader'

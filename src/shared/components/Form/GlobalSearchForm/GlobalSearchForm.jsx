@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react';
 import { useRecentSearchContext } from '../../../../context/RecentSearchContext'
 import { Button } from '../../UI/Buttons/Button/Button'
 import s from './global-search-form.module.scss'

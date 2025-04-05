@@ -1,4 +1,4 @@
-import React, { createRef, useCallback } from 'react'
+import { createRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useBrands } from '../../hooks/services/useBrands'
 import { BrandsNav } from './BrandsNav/BrandsNav'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Comment } from './Comment/Comment'
 import { deepCount } from '../../utils'
 import s from './comments.module.scss'

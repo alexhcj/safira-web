@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { Text } from '../Text/Text'

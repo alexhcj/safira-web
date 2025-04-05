@@ -1,4 +1,3 @@
-import React from 'react'
 import s from './tags.module.scss'
 
 export const Tags = ({ tags, createdAt }) => {

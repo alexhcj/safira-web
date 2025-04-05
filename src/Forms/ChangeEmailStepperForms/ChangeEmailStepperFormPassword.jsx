@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { useProfile } from '../../hooks/services/useProfile'
 import { Input } from '../../shared/components/Form/Input/Input'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'

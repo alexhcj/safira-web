@@ -1,4 +1,3 @@
-import React from 'react'
 import s from './filter-title.module.scss'
 
 export const FilterTitle = ({ text }) => {

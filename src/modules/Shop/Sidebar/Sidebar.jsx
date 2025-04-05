@@ -1,4 +1,3 @@
-import React from 'react'
 import { Search } from './Search/Search'
 import { FilterTitle } from '../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
 import { PriceRange } from './PriceRange/PriceRange'

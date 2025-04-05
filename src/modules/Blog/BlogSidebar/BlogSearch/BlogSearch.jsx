@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom'
 import { ButtonSearch } from '../../../../shared/components/UI/Buttons/ButtonSearch/ButtonSearch'
 import { ButtonClose } from '../../../../shared/components/UI/Buttons/ButtonClose/ButtonClose'

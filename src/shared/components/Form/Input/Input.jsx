@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react';
 import cn from 'classnames'
 import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
 import { ReactComponent as EyeSVG } from '../../../../assets/svg/eye.svg'

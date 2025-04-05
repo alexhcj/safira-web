@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import cn from 'classnames'
 import { Space } from '../../shared/components/UI/Spacing/Space'
 import { Radio } from '../../shared/components/Form/Radio/Radio'

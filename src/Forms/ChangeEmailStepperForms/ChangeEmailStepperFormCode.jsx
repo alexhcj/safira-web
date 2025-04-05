@@ -1,5 +1,5 @@
 import { Input } from '../../shared/components/Form/Input/Input'
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
 import { ResendCode } from '../../components/VerifyEmail/ResendCode/ResendCode'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'

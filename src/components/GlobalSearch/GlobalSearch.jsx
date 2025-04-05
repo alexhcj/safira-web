@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 import { searchAPI } from '../../api/search'
 import { useRecentSearchContext } from '../../context/RecentSearchContext'
 import { useRandomProduct } from '../../hooks/services/useRandomProduct'

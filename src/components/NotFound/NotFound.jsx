@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '../../shared/components/UI/Buttons/Button/Button'
 import s from './not-found.module.scss'
 import { useNavigate } from 'react-router-dom'

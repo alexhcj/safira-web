@@ -1,4 +1,3 @@
-import React from 'react'
 import { Space } from '../../Spacing/Space'
 import { Text } from '../../Text/Text'
 import s from './section-header.module.scss'

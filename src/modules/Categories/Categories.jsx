@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { CategoryCard } from './CategoryCard/CategoryCard'
 import { categories } from './categories-data'

@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom'
-import React, { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react';
 
 export const Portal = (props) => {
 	const root = useMemo(() => document.createElement('div'), [])

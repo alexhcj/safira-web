@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { ImageWithFallback } from '../../../../utils/ImageWithFallback'

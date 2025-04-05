@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import { Price } from '../../shared/components/Price/Price'

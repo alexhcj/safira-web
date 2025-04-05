@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../../context/AuthContext'
 import { useProfile } from '../../../hooks/services/useProfile'

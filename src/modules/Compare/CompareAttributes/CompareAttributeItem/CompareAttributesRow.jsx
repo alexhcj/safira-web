@@ -1,4 +1,3 @@
-import React from 'react'
 import { capitalizeFirstLetter } from '../../../../utils'
 import s from './compare-attribute-item.module.scss'
 

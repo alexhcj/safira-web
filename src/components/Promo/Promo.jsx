@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useBannerOffer } from '../../hooks/services/useBannerOffer'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'

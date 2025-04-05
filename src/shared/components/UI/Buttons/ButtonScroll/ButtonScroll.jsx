@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Link, animateScroll as scroll } from 'react-scroll'
 import classNames from 'classnames/bind'
 import { ReactComponent as DoubleArrowSVG } from '../../../../../assets/svg/double-arrow.svg'

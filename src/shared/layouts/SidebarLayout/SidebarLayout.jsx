@@ -1,4 +1,3 @@
-import React from 'react'
 import s from './sidebar-layout.module.scss'
 
 export const SidebarLayout = (props) => {

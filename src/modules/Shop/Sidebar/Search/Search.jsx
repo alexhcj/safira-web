@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
 import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'

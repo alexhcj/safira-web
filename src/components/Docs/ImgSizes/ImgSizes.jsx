@@ -1,4 +1,3 @@
-import React from 'react'
 import { imgSizeTypes } from '../../../utils'
 import s from './img-sizes.module.scss'
 

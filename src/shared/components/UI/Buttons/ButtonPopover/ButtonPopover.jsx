@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'classnames'
 import { Text } from '../../Text/Text'
 import s from './button-popover.module.scss'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../../../context/AuthContext'
 import { UserActions } from '../../UserActions/UserActions'

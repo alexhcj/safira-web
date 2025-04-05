@@ -1,4 +1,3 @@
-import React from 'react'
 import { ScrollToTop } from '../shared/components/ScrollToTop/ScrollToTop'
 import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
 import { PostDetails } from '../components/PostDetails/PostDetails'

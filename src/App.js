@@ -1,4 +1,3 @@
-import React from 'react'
 import { Header } from './shared/components/common/Header/Header'
 import { Footer } from './shared/components/common/Footer/Footer'
 import { Copyright } from './components/Copyright/Copyright'

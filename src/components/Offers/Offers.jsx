@@ -1,4 +1,3 @@
-import React from 'react'
 import { BestSellers } from './BestSellers/BestSellers'
 import { NewProducts } from './NewProducts/NewProducts'
 import { DealsOfWeek } from './DealsOfWeek/DealsOfWeek'
