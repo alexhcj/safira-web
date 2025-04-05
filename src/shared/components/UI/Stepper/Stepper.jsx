@@ -14,7 +14,7 @@ export const Stepper = ({ data, currentStep }) => {
 							[s.done]: currentStep > id || currentStep === 'finish',
 						})}
 					>
-						<div className={s.icon}>{currentStep > id ? <CheckSVG /> : icon}</div>
+						<div className={s.icon}>{currentStep > id || currentStep === 'finish' ? <CheckSVG /> : icon}</div>
 						<div className={s.text}>
 							<span className={s.step}>step {id + 1}</span>
 							<p className={s.title}>{title}</p>

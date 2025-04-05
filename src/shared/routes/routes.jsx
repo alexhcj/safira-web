@@ -29,6 +29,9 @@ const BrandsPage = lazy(() => import('../../pages/BrandsPage').then((module) => 
 const ChangeEmailPage = lazy(() =>
 	import('../../pages/ChangeEmailPage').then((module) => ({ default: module.ChangeEmailPage })),
 )
+const ChangePasswordPage = lazy(() =>
+	import('../../pages/ChangePasswordPage').then((module) => ({ default: module.ChangePasswordPage })),
+)
 const VerifyEmailPage = lazy(() =>
 	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
 )
@@ -66,6 +69,14 @@ export const AppRoutes = () => {
 				element={
 					<ProtectedRoute user={user}>
 						<ChangeEmailPage />
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path='/change-password'
+				element={
+					<ProtectedRoute user={user}>
+						<ChangePasswordPage />
 					</ProtectedRoute>
 				}
 			/>

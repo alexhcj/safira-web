@@ -15,6 +15,15 @@ export const verificationsAPI = {
 	validatePassword(data) {
 		return API.post(`${BASE_URL}/validate-password`, data)
 	},
+	changePassword(data) {
+		return API.post(`${BASE_URL}/change-password`, data)
+	},
+	verifyCode(data) {
+		return API.post(`${BASE_URL}/verify-code`, data)
+	},
+	resetPassword(data) {
+		return API.post(`${BASE_URL}/reset-password?${data.query}`, data.form)
+	},
 	resendVerifyEmail(data) {
 		return API.post(`${BASE_URL}/resend-verify-email`, data)
 	},

@@ -9,6 +9,7 @@ import { Text } from '../../shared/components/UI/Text/Text'
 import { ResendCode } from './ResendCode/ResendCode'
 import { Preloader } from '../../shared/components/common/Preloader/Preloader'
 import { hideEmailPartial } from '../../utils'
+import { VERIFY_EMAIL } from '../../shared/types/api-types'
 import { ReactComponent as ArrowSVG } from '../../assets/svg/arrow.svg'
 import s from './verify-email.module.scss'
 
@@ -113,7 +114,7 @@ export const VerifyEmail = () => {
 									required
 								/>
 							</div>
-							<ResendCode handleResedCode={handleResendCode} />
+							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
 							<Button className={s.btn_verify} htmlType='submit' type='auth'>
 								{isLoading && <Preloader width={20} height={20} className={s.preloader} />}
 								<Text className={s.btn_verify_text} span color='white' weight='bold'>

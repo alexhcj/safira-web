@@ -7,7 +7,8 @@ import { Preloader } from '../../../shared/components/common/Preloader/Preloader
 import { VERIFY_EMAIL } from '../../../shared/types/api-types'
 import s from './resend-code.module.scss'
 
-export const ResendCode = ({ handleResedCode }) => {
+// types: VERIFY_EMAIL
+export const ResendCode = ({ handleResendCode, type, classNames }) => {
 	const [codeTimestamp, setCodeTimeout] = useLocalStorage('code-timeout')
 	const [isLoading, setIsLoading] = useState(false)
 	const expirationTime = 1000 * 60
@@ -28,7 +29,21 @@ export const ResendCode = ({ handleResedCode }) => {
 
 	const resendCode = async () => {
 		setIsLoading(true)
-		const code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.SIGN_UP })
+		let code
+
+		switch (type) {
+			case VERIFY_EMAIL.SIGN_UP:
+				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.SIGN_UP })
+				break
+			case VERIFY_EMAIL.CHANGE_PASSWORD:
+				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_PASSWORD })
+				break
+			case VERIFY_EMAIL.CHANGE_EMAIL:
+				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_EMAIL })
+				break
+			default:
+				console.error('No type found')
+		}
 
 		if (code.statusCode === 201) {
 			setCodeTimeout(code)
@@ -38,7 +53,7 @@ export const ResendCode = ({ handleResedCode }) => {
 	}
 
 	return (
-		<div className={cn(s.box, { [s.active]: codeTimestamp })}>
+		<div className={cn(s.box, { [s.active]: codeTimestamp }, classNames)}>
 			{codeTimestamp && new Date().getTime() < +new Date(codeTimestamp.createdAt) + 1000 * 60 ? (
 				<>
 					<span>Next resend available</span>
@@ -46,14 +61,14 @@ export const ResendCode = ({ handleResedCode }) => {
 				</>
 			) : (
 				<>
-					<span className={s.text}>Didn’t get a code?</span>
+					<span>Didn’t get a code?</span>
 					<button
 						className={s.btn}
 						type='button'
-						onClick={() => handleResedCode(resendCode())}
+						onClick={() => (handleResendCode ? handleResendCode(resendCode()) : resendCode())}
 						disabled={isLoading || codeTimestamp}
 					>
-						{isLoading ? <Preloader width={20} height={20} className={s.preloader} /> : 'Click to resend'}
+						{isLoading ? <Preloader width={20} height={20} /> : 'Click to resend'}
 					</button>
 				</>
 			)}
