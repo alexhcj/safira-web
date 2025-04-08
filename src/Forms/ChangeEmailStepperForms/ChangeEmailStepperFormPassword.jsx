@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useProfile } from '../../hooks/services/useProfile'
-import { Input } from '../../shared/components/Form/Input/Input'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { hideEmailPartial } from '../../utils'
+import { useState } from 'react'
+
+import { useProfile } from '@hooks/services/useProfile'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Input } from '@shared/components/Form/Input/Input'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+import { hideEmailPartial } from '@utils/index'
+
 import s from './change-email-stepper-form.module.scss'
 
 export const ChangeEmailStepperFormPassword = ({ type, isLoading, error, onSubmit }) => {

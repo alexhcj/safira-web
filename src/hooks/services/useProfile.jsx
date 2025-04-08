@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { profilesAPI } from '../../api/profiles'
+
+import { profilesAPI } from '@api/profiles'
 
 export const useProfile = () => {
 	const [loading, setLoading] = useState(true)

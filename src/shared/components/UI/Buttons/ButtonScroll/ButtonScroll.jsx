@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Link, animateScroll as scroll } from 'react-scroll'
+import { useEffect, useState } from 'react'
+
 import classNames from 'classnames/bind'
-import { ReactComponent as DoubleArrowSVG } from '../../../../../assets/svg/double-arrow.svg'
+import { Link, animateScroll as scroll } from 'react-scroll'
+
+import { ReactComponent as DoubleArrowSVG } from '@assets/svg/double-arrow.svg'
+
 import s from './button-scroll.module.scss'
 
 export const ButtonScroll = () => {

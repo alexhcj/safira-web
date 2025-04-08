@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
+
 import { Arrow } from '../Arrow/Arrow'
+
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
+// eslint-disable-next-line import/order
 import s from './deals-of-week-slider.module.scss'
 
 export const DealsOfWeekSlider = ({ items, responsive, className }) => {

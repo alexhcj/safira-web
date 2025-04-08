@@ -1,14 +1,17 @@
-import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import Slide1 from '../../../assets/images/slider/1.jpg'
-import Slide2 from '../../../assets/images/slider/2.jpg'
-import Slide3 from '../../../assets/images/slider/3.jpg'
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
-import s from './styles/main-slider.module.scss'
+import { NavLink } from 'react-router-dom'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import Slide1 from '@assets/images/slider/1.jpg'
+import Slide2 from '@assets/images/slider/2.jpg'
+import Slide3 from '@assets/images/slider/3.jpg'
+
 import './styles/alice-carousel-override-main-slider.css'
+import s from './styles/main-slider.module.scss'
+import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 
 const data = [
 	{

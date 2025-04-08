@@ -1,4 +1,5 @@
-import { ReactComponent as CommentsNotFoundSVG } from '../../../../../../assets/svg/comments-not-found.svg'
+import { ReactComponent as CommentsNotFoundSVG } from '@assets/svg/comments-not-found.svg'
+
 import s from './comments-not-found.module.scss'
 
 export const CommentsNotFound = () => {

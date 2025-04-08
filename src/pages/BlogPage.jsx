@@ -1,10 +1,11 @@
-import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
-import { Blog } from '../modules/Blog/Blog'
+import { Blog } from '@modules/Blog/Blog'
+import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 
 export const BlogPage = () => {
-
-	return (<>
-		<Breadcrumbs />
-		<Blog />
-	</>)
+	return (
+		<>
+			<Breadcrumbs />
+			<Blog />
+		</>
+	)
 }

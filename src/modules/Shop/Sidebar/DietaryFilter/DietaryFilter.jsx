@@ -1,6 +1,8 @@
-import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { enumToString } from '../../../../utils'
+import { useSearchParams } from 'react-router-dom'
+
+import { enumToString } from '@utils/index'
+
 import s from './dietary-filter.module.scss'
 
 const dietaryTypesList = [

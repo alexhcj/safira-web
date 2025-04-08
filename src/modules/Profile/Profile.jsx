@@ -1,9 +1,12 @@
-import { Link, Outlet, useLocation } from 'react-router-dom'
 import cn from 'classnames'
-import { ProfileDetails } from './ProfileDetails/ProfileDetails'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Logout } from '@shared/components/UI/Logout/Logout'
+
 import { Orders } from './Orders/Orders'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Logout } from '../../shared/components/UI/Logout/Logout'
+import { ProfileDetails } from './ProfileDetails/ProfileDetails'
+
 import s from './profile.module.scss'
 
 const profileNavList = [

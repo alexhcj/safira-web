@@ -1,4 +1,5 @@
 import cn from 'classnames'
+
 import s from './text.module.scss'
 
 // weights: 'medium' | 'semi' | 'bold'

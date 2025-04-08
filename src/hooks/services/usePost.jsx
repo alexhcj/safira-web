@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { postsAPI } from '../../api/posts'
+
 import { useNavigate, useParams } from 'react-router-dom'
+
+import { postsAPI } from '@api/posts'
 
 export const usePost = () => {
 	const navigate = useNavigate()

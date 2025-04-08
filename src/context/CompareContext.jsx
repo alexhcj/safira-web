@@ -1,6 +1,8 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage.hook'
+import { createContext, useContext, useEffect, useState } from 'react'
+
 import { useLocation } from 'react-router-dom'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const CompareContext = createContext([])
 

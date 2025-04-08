@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom'
-import s from './pagination.module.scss'
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
+import { useSearchParams } from 'react-router-dom'
+
+import s from './pagination.module.scss'
 
 export const Pagination = ({ meta, loading }) => {
 	const perPage = 3

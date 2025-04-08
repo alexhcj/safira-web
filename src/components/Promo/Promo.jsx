@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import { useBannerOffer } from '../../hooks/services/useBannerOffer'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '../../utils'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
+
+import { useBannerOffer } from '@hooks/services/useBannerOffer'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '@utils/index'
+
 import s from './promo.module.scss'
 
 export const Promo = () => {

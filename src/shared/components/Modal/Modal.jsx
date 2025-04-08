@@ -1,7 +1,11 @@
 import { useCallback, useEffect } from 'react'
+
 import cn from 'classnames'
+
 import { Portal } from './Portal'
-import { ReactComponent as Close } from '../../../assets/svg/close.svg'
+
+import { ReactComponent as Close } from '@assets/svg/close.svg'
+
 import s from './styles/modal.module.scss'
 
 export const Modal = ({ isOpen, setIsOpen, children, className }) => {

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+
 import { NavLink } from 'react-router-dom'
-import { postsAPI } from '../../../../api/posts'
+
+import { postsAPI } from '@api/posts'
+import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { convertISODate } from '@utils/index'
+
 import s from './recent-posts.module.scss'
-import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { convertISODate } from '../../../../utils'
 
 export const RecentPosts = () => {
 	const [posts, setPosts] = useState([])

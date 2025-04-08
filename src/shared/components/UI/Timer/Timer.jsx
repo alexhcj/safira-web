@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
+
 import s from './timer.module.scss'
 
 const TYPES = {

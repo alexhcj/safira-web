@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { useAuthContext } from '../../../context/AuthContext'
+
+import { useAuthContext } from '@context/AuthContext'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { capitalizeFirstLetter, convertISODate } from '@utils/index'
+
 import { Reply } from '../../Reply/Reply'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
-import { capitalizeFirstLetter, convertISODate } from '../../../utils'
+
 import s from './comment.module.scss'
 
 // type: 'short'

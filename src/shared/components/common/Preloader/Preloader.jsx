@@ -1,5 +1,7 @@
 import cn from 'classnames'
-import { ReactComponent as PreloaderSVG } from '../../../../assets/svg/preloader.svg'
+
+import { ReactComponent as PreloaderSVG } from '@assets/svg/preloader.svg'
+
 import s from './preloader.module.scss'
 
 export const Preloader = ({ width = 30, height = 30, className }) => {

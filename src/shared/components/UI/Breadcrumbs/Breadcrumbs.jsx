@@ -1,8 +1,11 @@
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { Text } from '../Text/Text'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+
+import { shallowEqual, slugToString } from '@utils/index'
+
 import { Space } from '../Spacing/Space'
-import { shallowEqual, slugToString } from '../../../../utils'
+import { Text } from '../Text/Text'
+
 import s from './breadcrumbs.module.scss'
 
 // types: 'page' (prevent state through for Breadcrumbs)

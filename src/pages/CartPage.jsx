@@ -1,5 +1,5 @@
-import { Cart } from '../modules/Cart/Cart'
-import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
+import { Cart } from '@modules/Cart/Cart'
+import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 
 export const CartPage = () => (
 	<>

@@ -1,6 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react'
+
 import cn from 'classnames'
+
 import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+
 import s from './checkbox.module.scss'
 
 export const Checkbox = ({ children, type, id, name, checked = false, handleChange, error, required, className }) => {

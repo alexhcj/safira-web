@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
-import { Preloader } from '../../../shared/components/common/Preloader/Preloader'
-import { Space } from '../../../shared/components/UI/Spacing/Space'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import { convertISODate } from '../../../utils'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { convertISODate } from '@utils/index'
+
 import s from './post.module.scss'
 
 export const Post = ({ slug, id, title, createdAt, category, text }) => {

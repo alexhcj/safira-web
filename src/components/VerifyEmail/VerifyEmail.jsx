@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import { NavLink, useLocation } from 'react-router-dom'
-import { verificationsAPI } from '../../api/verifications'
-import { useAuthContext } from '../../context/AuthContext'
-import { useFormErrors } from '../../hooks/useFormErrors'
-import { Input } from '../../shared/components/Form/Input/Input'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
+
+import { verificationsAPI } from '@api/verifications'
+import { useAuthContext } from '@context/AuthContext'
+import { useFormErrors } from '@hooks/useFormErrors'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Input } from '@shared/components/Form/Input/Input'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+import { VERIFY_EMAIL } from '@shared/types/api-types'
+import { hideEmailPartial } from '@utils/index'
+
 import { ResendCode } from './ResendCode/ResendCode'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { hideEmailPartial } from '../../utils'
-import { VERIFY_EMAIL } from '../../shared/types/api-types'
-import { ReactComponent as ArrowSVG } from '../../assets/svg/arrow.svg'
+
+import { ReactComponent as ArrowSVG } from '@assets/svg/arrow.svg'
+
 import s from './verify-email.module.scss'
 
 const verifyEmailFormValidationSchema = {

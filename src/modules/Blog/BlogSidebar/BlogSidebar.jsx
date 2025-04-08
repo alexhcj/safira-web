@@ -1,8 +1,10 @@
 import { BlogSearch } from './BlogSearch/BlogSearch'
 import { RecentComments } from './RecentComments/RecentComments'
 import { RecentPosts } from './RecentPosts/RecentPosts'
-// import { BlogCategories } from './BlogCategories/BlogCategories'
+
 import s from './blog-sidebar.module.scss'
+
+// import { BlogCategories } from './BlogCategories/BlogCategories'
 
 export const BlogSidebar = ({ isLoading }) => (
 	<div className={s.wrapper}>

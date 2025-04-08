@@ -1,9 +1,12 @@
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { ButtonCart } from '../../../shared/components/UI/Buttons/ButtonCart/ButtonCart'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import { ReactComponent as PlusSVG } from '../../../assets/svg/plus.svg'
-import { ReactComponent as CompareSVG } from '../../../assets/svg/compare.svg'
+import { useNavigate } from 'react-router-dom'
+
+import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import { ReactComponent as CompareSVG } from '@assets/svg/compare.svg'
+import { ReactComponent as PlusSVG } from '@assets/svg/plus.svg'
+
 import s from './add-compare-item.module.scss'
 
 export const AddCompareItem = ({ category }) => {

@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react'
+
 import { useParams } from 'react-router-dom'
-import { commentsAPI } from '../../api/comments'
+
+import { commentsAPI } from '@api/comments'
 
 export const useComments = () => {
 	const { slug } = useParams()

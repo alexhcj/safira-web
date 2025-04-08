@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { searchAPI } from '../../api/search'
-import { useRecentSearchContext } from '../../context/RecentSearchContext'
-import { useRandomProduct } from '../../hooks/services/useRandomProduct'
-import { GlobalSearchForm } from '../../shared/components/Form/GlobalSearchForm/GlobalSearchForm'
-import { SearchPopover } from '../../shared/components/UI/SearchPopover/SearchPopover'
-import { stringToSlug } from '../../utils'
+import { useEffect, useRef, useState } from 'react'
+
+import { searchAPI } from '@api/search'
+import { useRecentSearchContext } from '@context/RecentSearchContext'
+import { useRandomProduct } from '@hooks/services/useRandomProduct'
+import { GlobalSearchForm } from '@shared/components/Form/GlobalSearchForm/GlobalSearchForm'
+import { SearchPopover } from '@shared/components/UI/SearchPopover/SearchPopover'
+import { stringToSlug } from '@utils/index'
+
 import s from './global-search.module.scss'
 
 export const GlobalSearch = () => {

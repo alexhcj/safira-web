@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import s from './stepper-finish.module.scss'
 
 export const StepperFinish = ({

@@ -1,20 +1,24 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Radio } from '../../shared/components/Form/Radio/Radio'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
-import { calculateTotalPrice } from '../../utils'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Input } from '../../shared/components/Form/Input/Input'
-import { Textarea } from '../../shared/components/Form/Textarea/Textarea'
-import { Border } from '../../shared/components/UI/Spacing/Border'
-import { ReactComponent as Check } from '../../assets/svg/check.svg'
-import Paypal from '../../assets/images/paypal.png'
-import Visa from '../../assets/images/visa.png'
-import Maestro from '../../assets/images/maestro.png'
-import AmericanExpress from '../../assets/images/american-express.png'
-import Mir from '../../assets/images/mir.png'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { Input } from '@shared/components/Form/Input/Input'
+import { Radio } from '@shared/components/Form/Radio/Radio'
+import { Textarea } from '@shared/components/Form/Textarea/Textarea'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Border } from '@shared/components/UI/Spacing/Border'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+import { calculateTotalPrice } from '@utils/index'
+
+import AmericanExpress from '@assets/images/american-express.png'
+import Maestro from '@assets/images/maestro.png'
+import Mir from '@assets/images/mir.png'
+import Paypal from '@assets/images/paypal.png'
+import Visa from '@assets/images/visa.png'
+import { ReactComponent as Check } from '@assets/svg/check.svg'
+
 import s from './checkout.module.scss'
 
 const radioData = [

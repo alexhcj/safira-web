@@ -1,6 +1,8 @@
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import s from './not-found.module.scss'
 import { useNavigate } from 'react-router-dom'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+
+import s from './not-found.module.scss'
 
 export const NotFound = () => {
 	const navigate = useNavigate()

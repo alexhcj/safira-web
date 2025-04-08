@@ -1,4 +1,5 @@
 import { Preloader } from '../../../common/Preloader/Preloader'
+
 import s from './button-filter.module.scss'
 
 export const ButtonFilter = ({ text = 'Filter', isLoading, disabled, onClick }) => {

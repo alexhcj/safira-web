@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { offersAPI } from '../../api/offers'
+
+import { offersAPI } from '@api/offers'
 
 export const useBannerOffer = (type) => {
 	const [loading, setLoading] = useState(true)

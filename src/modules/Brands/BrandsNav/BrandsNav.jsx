@@ -1,4 +1,5 @@
 import cn from 'classnames'
+
 import s from './brands-nav.module.scss'
 
 const alphabet = [

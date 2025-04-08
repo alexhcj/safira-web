@@ -1,10 +1,14 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { DefaultLayout } from '../../../layouts/DefaultLayout/DefaultLayout'
+
+import { DefaultLayout } from '@shared/layouts/DefaultLayout/DefaultLayout'
+
+import { Button } from '../../UI/Buttons/Button/Button'
 import { Border } from '../../UI/Spacing/Border'
 import { Space } from '../../UI/Spacing/Space'
-import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
-import logo from '../../../../assets/images/logo.png'
+
+import logo from '@assets/images/logo.png'
+
 import s from './footer.module.scss'
 
 export const Footer = () => {

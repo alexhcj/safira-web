@@ -1,7 +1,10 @@
 import cn from 'classnames'
-import { generateID } from '../../../utils/IdGenerator'
-import { ReactComponent as Star } from '../../../assets/svg/star.svg'
-import { ReactComponent as StarFilled } from '../../../assets/svg/star-filled.svg'
+
+import { generateID } from '@utils/IdGenerator'
+
+import { ReactComponent as StarFilled } from '@assets/svg/star-filled.svg'
+import { ReactComponent as Star } from '@assets/svg/star.svg'
+
 import s from './rating.module.scss'
 
 export const Rating = ({ rating, className }) => {

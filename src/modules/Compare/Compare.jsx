@@ -1,11 +1,12 @@
-import { useCompareContext } from '../../context/CompareContext'
-import { useWishlistContext } from '../../context/WishlistContext'
-import { useCartContext } from '../../context/CartContext'
-import { CompareTabs } from './CompareTabs/CompareTabs'
-import { CompareSlider } from '../../shared/components/Slider/CompareSlider/CompareSlider'
+import { useCartContext } from '@context/CartContext'
+import { useCompareContext } from '@context/CompareContext'
+import { useWishlistContext } from '@context/WishlistContext'
+import { CompareSlider } from '@shared/components/Slider/CompareSlider/CompareSlider'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+
 import { CompareAttributes } from './CompareAttributes/CompareAttributes'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { CompareTabs } from './CompareTabs/CompareTabs'
 // import s from './compare.module.scss'
 
 export const Compare = () => {

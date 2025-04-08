@@ -1,12 +1,15 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
+
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { HomePage } from '../../pages/HomePage'
-import { PostPage } from '../../pages/PostPage'
-import { CartPage } from '../../pages/CartPage'
-import { CheckoutPage } from '../../pages/CheckoutPage'
-import { WishlistPage } from '../../pages/WishlistPage'
+
+import { useAuthContext } from '@context/AuthContext'
+import { CartPage } from '@pages/CartPage'
+import { CheckoutPage } from '@pages/CheckoutPage'
+import { HomePage } from '@pages/HomePage'
+import { PostPage } from '@pages/PostPage'
+import { WishlistPage } from '@pages/WishlistPage'
+
 // import { Docs } from '../../pages/Docs'
-import { useAuthContext } from '../../context/AuthContext'
 import { ProtectedRoute } from '../layouts/ProtectedRoute/ProtectedRoute'
 
 const BlogPage = lazy(() => import('../../pages/BlogPage').then((module) => ({ default: module.BlogPage })))

@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import { useOfferLinks } from '../../hooks/services/useOfferLinks'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
+
+import { useOfferLinks } from '@hooks/services/useOfferLinks'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+
 import { enumToCamelCase, enumToCapitalizedString, enumToDashString, stringToSlug } from '../../utils'
+
 import s from './offer-links.module.scss'
 
 export const OfferLinks = () => {

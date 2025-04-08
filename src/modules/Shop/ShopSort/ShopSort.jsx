@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+
 import cn from 'classnames'
+import { useSearchParams } from 'react-router-dom'
+
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
+
 import s from './shop-sort.module.scss'
 
 const sortParams = [

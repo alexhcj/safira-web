@@ -1,10 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { CompareItem } from '../../../../modules/Compare/CompareItem/CompareItem'
-import { AddCompareItem } from '../../../../modules/Compare/AddCompareItem/AddCompareItem'
+
+import { AddCompareItem } from '@modules/Compare/AddCompareItem/AddCompareItem'
+import { CompareItem } from '@modules/Compare/CompareItem/CompareItem'
+
 import { Arrow } from '../Arrow/Arrow'
+
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
+// eslint-disable-next-line import/order
 import s from './compare-slider.module.scss'
 
 const createItems = (type, getAcitveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {

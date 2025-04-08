@@ -1,4 +1,5 @@
-import { capitalizeFirstLetter } from '../../../../utils'
+import { capitalizeFirstLetter } from '@utils/index'
+
 import s from './compare-attribute-item.module.scss'
 
 export const CompareAttributesRow = ({ row: { values, attribute, different } }) => (

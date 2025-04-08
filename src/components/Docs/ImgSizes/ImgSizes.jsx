@@ -1,4 +1,5 @@
-import { imgSizeTypes } from '../../../utils'
+import { imgSizeTypes } from '@utils/index'
+
 import s from './img-sizes.module.scss'
 
 export const ImgSizes = () => {

@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
-import { Logout } from '../../shared/components/UI/Logout/Logout'
+
+import { Logout } from '@shared/components/UI/Logout/Logout'
+
 import s from './profile-popover-menu.module.scss'
 
 const profileNavList = [{ text: 'Profile', url: '/profile' }]

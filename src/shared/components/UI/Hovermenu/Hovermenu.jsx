@@ -1,15 +1,19 @@
 import cn from 'classnames'
-import { useProductModalContext } from '../../../../context/ProductContext'
-import { useWishlistContext } from '../../../../context/WishlistContext'
-import { useCartContext } from '../../../../context/CartContext'
-import { useCompareContext } from '../../../../context/CompareContext'
-import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
+
+import { useCartContext } from '@context/CartContext'
+import { useCompareContext } from '@context/CompareContext'
+import { useProductModalContext } from '@context/ProductContext'
+import { useWishlistContext } from '@context/WishlistContext'
+
 import { ButtonCart } from '../Buttons/ButtonCart/ButtonCart'
+import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
 import { Text } from '../Text/Text'
-import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
-import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
-import { ReactComponent as MagnifierSVG } from '../../../../assets/svg/magnifier.svg'
-import { ReactComponent as CompareSVG } from '../../../../assets/svg/compare.svg'
+
+import { ReactComponent as CartSVG } from '@assets/svg/cart.svg'
+import { ReactComponent as CompareSVG } from '@assets/svg/compare.svg'
+import { ReactComponent as HeartSVG } from '@assets/svg/heart.svg'
+import { ReactComponent as MagnifierSVG } from '@assets/svg/magnifier.svg'
+
 import s from './hovermenu.module.scss'
 
 // sizes: 'xs' | 'sm' | 'lg' | 'row'

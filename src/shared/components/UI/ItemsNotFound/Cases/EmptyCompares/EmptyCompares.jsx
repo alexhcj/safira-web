@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom'
+
 import { Button } from '../../../Buttons/Button/Button'
-import { ReactComponent as EmptyCompareSVG } from '../../../../../../assets/svg/empty-compare.svg'
+
+import { ReactComponent as EmptyCompareSVG } from '@assets/svg/empty-compare.svg'
+
 import s from './empty-compares.module.scss'
 
 export const EmptyCompares = () => {

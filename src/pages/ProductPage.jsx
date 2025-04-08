@@ -1,7 +1,7 @@
-import { ProductProvider } from '../context/ProductContext'
-import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
-import { ProductDetails } from '../components/ProductDetails/ProductDetails'
-import { ProductQuickView } from '../components/ProductQuickView/ProductQuickView'
+import { ProductDetails } from '@components/ProductDetails/ProductDetails'
+import { ProductQuickView } from '@components/ProductQuickView/ProductQuickView'
+import { ProductProvider } from '@context/ProductContext'
+import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 
 export const ProductPage = () => {
 	return (

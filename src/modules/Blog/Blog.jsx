@@ -1,12 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
+
+import { usePosts } from '@hooks/services/usePosts'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { SidebarLayout } from '@shared/layouts/SidebarLayout/SidebarLayout'
+
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
-import { SidebarLayout } from '../../shared/layouts/SidebarLayout/SidebarLayout'
 import { Post } from './Post/Post'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { usePosts } from '../../hooks/services/usePosts'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 
 export const Blog = () => {
 	const [params, setParams] = useSearchParams()

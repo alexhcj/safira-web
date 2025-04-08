@@ -1,8 +1,10 @@
-import { NavLink, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { convertISODate } from '../../utils'
-import { ButtonMore } from '../../shared/components/UI/Buttons/ButtonMore/ButtonMore'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { NavLink, useNavigate } from 'react-router-dom'
+
+import { ButtonMore } from '@shared/components/UI/Buttons/ButtonMore/ButtonMore'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { convertISODate } from '@utils/index'
+
 import s from './post-card.module.scss'
 
 // sizes: 'row-xs'

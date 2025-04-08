@@ -1,9 +1,11 @@
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { useBannerOffer } from '../../../../hooks/services/useBannerOffer'
-import { Preloader } from '../../../../shared/components/common/Preloader/Preloader'
-import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '../../../../utils'
+import { useNavigate } from 'react-router-dom'
+
+import { useBannerOffer } from '@hooks/services/useBannerOffer'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '@utils/index'
+
 import s from './banner-offer.module.scss'
 
 export const BannerOffer = ({ imgSize, className }) => {

@@ -1,18 +1,22 @@
-import { useEffect, useState } from 'react';
-import { verificationsAPI } from '../../api/verifications'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
-import { StepperFinish } from '../StepperFinish/StepperFinish'
-import { ChangePasswordStepperFormEmail } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormEmail'
-import { ChangePasswordStepperFormCode } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormCode'
+import { useEffect, useState } from 'react'
+
+import { verificationsAPI } from '@api/verifications'
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Stepper } from '@shared/components/UI/Stepper/Stepper'
+
 import { ChangePasswordStepperCheckMail } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperCheckMail'
+import { ChangePasswordStepperFormCode } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormCode'
+import { ChangePasswordStepperFormEmail } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormEmail'
 import { ChangePasswordStepperFormPasswords } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormPasswords'
-import { Stepper } from '../../shared/components/UI/Stepper/Stepper'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { ReactComponent as EmailSVG } from '../../assets/svg/email.svg'
-import { ReactComponent as CodeSVG } from '../../assets/svg/code.svg'
-import { ReactComponent as EmailLinkSVG } from '../../assets/svg/email-link.svg'
-import { ReactComponent as PasswordSVG } from '../../assets/svg/password.svg'
-import { ReactComponent as ChangeEmailStepperSVG } from '../../assets/svg/illustrations/change-email-stepper.svg'
+import { StepperFinish } from '../StepperFinish/StepperFinish'
+
+import { ReactComponent as CodeSVG } from '@assets/svg/code.svg'
+import { ReactComponent as EmailLinkSVG } from '@assets/svg/email-link.svg'
+import { ReactComponent as EmailSVG } from '@assets/svg/email.svg'
+import { ReactComponent as ChangeEmailStepperSVG } from '@assets/svg/illustrations/change-email-stepper.svg'
+import { ReactComponent as PasswordSVG } from '@assets/svg/password.svg'
+
 import s from './change-password-stepper.module.scss'
 
 const steps = [

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { offersAPI } from '../../../api/offers'
-import { useCartContext } from '../../../context/CartContext'
-import { DealsOfWeekSlider } from '../../../shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
-import { Timer } from '../../../shared/components/UI/Timer/Timer'
+import { useEffect, useState } from 'react'
+
+import { offersAPI } from '@api/offers'
+import { useCartContext } from '@context/CartContext'
+import { DealsOfWeekSlider } from '@shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Timer } from '@shared/components/UI/Timer/Timer'
+
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
+
 import s from './dealsweek.module.scss'
 
 export const DealsOfWeek = () => {

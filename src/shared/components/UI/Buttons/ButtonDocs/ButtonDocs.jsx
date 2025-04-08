@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ReactComponent as DocsSVG } from '../../../../../assets/svg/docs.svg'
+
+import { ReactComponent as DocsSVG } from '@assets/svg/docs.svg'
+
 import s from './button-docs.module.scss'
 
 export const ButtonDocs = () => (

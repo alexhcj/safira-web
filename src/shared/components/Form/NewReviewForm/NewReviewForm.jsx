@@ -1,14 +1,18 @@
-import { useRef, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useRef, useState } from 'react'
+
 import cn from 'classnames'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { useFormErrors } from '../../../../hooks/useFormErrors'
-import { reviewsAPI } from '../../../../api/reviews'
+import { useParams } from 'react-router-dom'
+
+import { reviewsAPI } from '@api/reviews'
+import { useAuthContext } from '@context/AuthContext'
+import { useFormErrors } from '@hooks/useFormErrors'
+
 import { NewRating } from '../../Rating/NewRating'
-import { Textarea } from '../Textarea/Textarea'
 import { Button } from '../../UI/Buttons/Button/Button'
-import { Text } from '../../UI/Text/Text'
 import { Space } from '../../UI/Spacing/Space'
+import { Text } from '../../UI/Text/Text'
+import { Textarea } from '../Textarea/Textarea'
+
 import s from './new-review-form.module.scss'
 
 const reviewFormValidationSchema = {

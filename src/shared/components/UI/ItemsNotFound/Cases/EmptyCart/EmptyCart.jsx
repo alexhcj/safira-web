@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom'
+
 import { Button } from '../../../Buttons/Button/Button'
-import { ReactComponent as EmptyCartSVG } from '../../../../../../assets/svg/empty-cart.svg'
+
+import { ReactComponent as EmptyCartSVG } from '@assets/svg/empty-cart.svg'
+
 import s from './empty-cart.module.scss'
 
 export const EmptyCart = () => {

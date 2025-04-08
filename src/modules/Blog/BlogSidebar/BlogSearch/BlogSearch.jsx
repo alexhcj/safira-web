@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
-import { ButtonSearch } from '../../../../shared/components/UI/Buttons/ButtonSearch/ButtonSearch'
-import { ButtonClose } from '../../../../shared/components/UI/Buttons/ButtonClose/ButtonClose'
-import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
+import { ButtonClose } from '@shared/components/UI/Buttons/ButtonClose/ButtonClose'
+import { ButtonSearch } from '@shared/components/UI/Buttons/ButtonSearch/ButtonSearch'
+import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
 import s from './blog-search.module.scss'
 
 export const BlogSearch = ({ isLoading }) => {

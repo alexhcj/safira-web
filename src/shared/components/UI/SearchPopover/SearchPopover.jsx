@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { useRecentSearchContext } from '../../../../context/RecentSearchContext'
-import { ProductCard } from '../../../../components/ProductCard/ProductCard'
-import { PostCard } from '../../../../components/PostCard/PostCard'
-import { ReactComponent as RecentSVG } from '../../../../assets/svg/recent.svg'
-import { ReactComponent as CloseSVG } from '../../../../assets/svg/close.svg'
+import { useNavigate } from 'react-router-dom'
+
+import { PostCard } from '@components/PostCard/PostCard'
+import { ProductCard } from '@components/ProductCard/ProductCard'
+import { useRecentSearchContext } from '@context/RecentSearchContext'
+
+import { ReactComponent as CloseSVG } from '@assets/svg/close.svg'
+import { ReactComponent as RecentSVG } from '@assets/svg/recent.svg'
+
 import s from './search-popover.module.scss'
 
 export const SearchPopover = ({

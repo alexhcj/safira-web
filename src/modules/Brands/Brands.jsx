@@ -1,11 +1,15 @@
-import { createRef, useCallback } from 'react';
+import { createRef, useCallback } from 'react'
+
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useBrands } from '../../hooks/services/useBrands'
+
+import { useBrands } from '@hooks/services/useBrands'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import { BrandsNav } from './BrandsNav/BrandsNav'
 import { BrandsRow } from './BrandsRow/BrandsRow'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Space } from '../../shared/components/UI/Spacing/Space'
+
 import s from './brands.module.scss'
 
 export const Brands = () => {

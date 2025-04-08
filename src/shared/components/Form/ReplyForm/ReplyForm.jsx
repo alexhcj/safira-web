@@ -1,11 +1,15 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { useFormErrors } from '../../../../hooks/useFormErrors'
-import { useComments } from '../../../../hooks/services/useComments'
-import { Textarea } from '../Textarea/Textarea'
+import { useParams } from 'react-router-dom'
+
+import { useAuthContext } from '@context/AuthContext'
+import { useComments } from '@hooks/services/useComments'
+import { useFormErrors } from '@hooks/useFormErrors'
+
 import { Button } from '../../UI/Buttons/Button/Button'
+import { Textarea } from '../Textarea/Textarea'
+
 import s from './reply-form.module.scss'
 
 const authFormValidationSchema = {

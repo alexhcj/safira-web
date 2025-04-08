@@ -1,7 +1,9 @@
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { Text } from '../../UI/Text/Text'
-import { convertISODate } from '../../../../utils'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { convertISODate } from '@utils/index'
+
 import { Rating } from '../../Rating/Rating'
+import { Text } from '../../UI/Text/Text'
+
 import s from './review.module.scss'
 
 export const Review = ({

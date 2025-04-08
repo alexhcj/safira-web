@@ -1,5 +1,7 @@
 import cn from 'classnames'
-import { ReactComponent as CheckSVG } from '../../../../assets/svg/check.svg'
+
+import { ReactComponent as CheckSVG } from '@assets/svg/check.svg'
+
 import s from './stepper.module.scss'
 
 export const Stepper = ({ data, currentStep }) => {

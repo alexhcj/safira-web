@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
-import { productsAPI } from '../../../api/products'
-import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'
+import { useEffect, useState } from 'react'
+
+import { productsAPI } from '@api/products'
+import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
+import { convertArray } from '@utils/index'
+
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { convertArray } from '../../../utils'
+
 import s from './featured-products.module.scss'
 
 export const FeaturedProducts = () => {

@@ -1,6 +1,9 @@
 import cn from 'classnames'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { ReactComponent as LogoutSVG } from '../../../../assets/svg/logout.svg'
+
+import { useAuthContext } from '@context/AuthContext'
+
+import { ReactComponent as LogoutSVG } from '@assets/svg/logout.svg'
+
 import s from './logout.module.scss'
 
 export const Logout = ({ className }) => {

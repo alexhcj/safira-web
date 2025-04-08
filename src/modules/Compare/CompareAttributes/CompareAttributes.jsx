@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
+
 import { CompareAttributesRow } from './CompareAttributeItem/CompareAttributesRow'
+
 import s from './compare-attributes.module.scss'
+
 
 export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) => {
 	const [showOnlyDifferent, setShowOnlyDifferent] = useState(false)

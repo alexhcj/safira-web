@@ -1,9 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
+
+import { categories } from '@modules/Categories/categories-data'
+
 import { SubNav } from './SubNav/SubNav'
-import { categories } from '../../../../modules/Categories/categories-data'
-import { ReactComponent as ArrowSVG } from '../../../../assets/svg/arrow.svg'
+
+import { ReactComponent as ArrowSVG } from '@assets/svg/arrow.svg'
+
 import s from './categories-dropdown.module.scss'
 
 export const CategoriesDropdown = () => {

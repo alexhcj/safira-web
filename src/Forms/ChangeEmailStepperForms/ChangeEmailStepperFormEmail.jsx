@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Input } from '../../shared/components/Form/Input/Input'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+import { useState } from 'react'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Input } from '@shared/components/Form/Input/Input'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import s from './change-email-stepper-form.module.scss'
 
 export const ChangeEmailStepperFormEmail = ({ type, isLoading, error, onSubmit }) => {

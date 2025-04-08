@@ -1,6 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react'
+
 import cn from 'classnames'
+
 import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+
 import s from './textarea.module.scss'
 
 export const Textarea = ({ name, label, id, value, handleChange, placeholder, error, required, className }) => {

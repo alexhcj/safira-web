@@ -1,5 +1,7 @@
 import cn from 'classnames'
-import { ReactComponent as FileSVG } from '../../../assets/svg/file.svg'
+
+import { ReactComponent as FileSVG } from '@assets/svg/file.svg'
+
 import s from './user-actions.module.scss'
 
 export const UserActions = ({ icon, message, actionMessage, onClick, className }) => {

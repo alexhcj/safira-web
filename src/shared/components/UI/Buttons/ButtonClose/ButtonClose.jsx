@@ -1,5 +1,7 @@
 import cn from 'classnames'
-import { ReactComponent as Close } from '../../../../../assets/svg/close.svg'
+
+import { ReactComponent as Close } from '@assets/svg/close.svg'
+
 import s from './button-close.module.scss'
 
 export const ButtonClose = ({ onClick, isLoading, disabled, classNames }) => {

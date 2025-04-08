@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+
 import { NavLink } from 'react-router-dom'
-import { postsAPI } from '../../../api/posts'
+
+import { postsAPI } from '@api/posts'
+
 import s from './related-posts.module.scss'
 
 export const RelatedPosts = ({ category }) => {

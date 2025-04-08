@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
+
 import cn from 'classnames'
 import { CSSTransition } from 'react-transition-group'
+
 import s from './error-popup.module.scss'
 
 export const ErrorPopover = ({ error, className }) => {

@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+
 import { Link, useLocation } from 'react-router-dom'
-import { useAuthContext } from '../../context/AuthContext'
-import { useLocalStorage } from '../../hooks/useLocalStorage.hook'
-import { useProfile } from '../../hooks/services/useProfile'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+
+import { useAuthContext } from '@context/AuthContext'
+import { useProfile } from '@hooks/services/useProfile'
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import { hideEmailPartial } from '../../utils'
+
 import s from './change-password-stepper-form.module.scss'
 
 export const ChangePasswordStepperCheckMail = () => {

@@ -1,11 +1,13 @@
-import { usePost } from '../../hooks/services/usePost';
+import { usePost } from '@hooks/services/usePost'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Border } from '@shared/components/UI/Spacing/Border'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { convertISODate } from '@utils/index'
+
 import { Comments } from '../Comments/Comments'
 import { Reply } from '../Reply/Reply'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Border } from '../../shared/components/UI/Spacing/Border'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { convertISODate } from '../../utils'
+
 import s from './post-details.module.scss'
 
 export const PostDetails = () => {

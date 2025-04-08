@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
+
 import { SectionHeader } from '../../UI/Section/SectionHeader/SectionHeader'
-import { Arrow } from '../Arrow/Arrow'
 import { Space } from '../../UI/Spacing/Space'
+import { Arrow } from '../Arrow/Arrow'
+
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
+// eslint-disable-next-line import/order
 import s from './section-slider.module.scss'
 
 export const SectionSlider = ({ title, subtitle, items, responsive, className }) => {

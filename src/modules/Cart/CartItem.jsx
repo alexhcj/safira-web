@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { Price } from '../../shared/components/Price/Price'
-import PreloaderSVG from '../../assets/svg/preloader.svg'
-import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
+
+import { Price } from '@shared/components/Price/Price'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+
+import PreloaderSVG from '@assets/svg/preloader.svg'
+import { ReactComponent as Trash } from '@assets/svg/trash.svg'
+
 import s from './styles/cart-item.module.scss'
 
 export const CartItem = ({ slug, img, name, price, discount_price, quantity, maxQuantity, onInput, onDelete }) => {

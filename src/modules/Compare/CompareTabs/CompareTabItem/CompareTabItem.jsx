@@ -1,6 +1,9 @@
 import cn from 'classnames'
-import { slugToString } from '../../../../utils'
-import { ReactComponent as CloseSVG } from '../../../../assets/svg/close.svg'
+
+import { slugToString } from '@utils/index'
+
+import { ReactComponent as CloseSVG } from '@assets/svg/close.svg'
+
 import s from './compare-tab-item.module.scss'
 
 export const CompareTabItem = ({ handleRemoveFromListCompare, category, activeCategory, totalCompares }) => {

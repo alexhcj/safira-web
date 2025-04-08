@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { productsAPI } from '../../api/products'
+import { useEffect, useState } from 'react'
+
+import { productsAPI } from '@api/products'
 
 export const useRandomProduct = () => {
 	const [loading, setLoading] = useState(true)

@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { ReactComponent as MagnifierSVG } from '../../../../../assets/svg/magnifier.svg'
+import { useState } from 'react'
+
 import cn from 'classnames'
+
+import { ReactComponent as MagnifierSVG } from '@assets/svg/magnifier.svg'
+
 import s from './button.module.scss'
 
 // types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post' | 'auth' | 'secondary' | 'profile'

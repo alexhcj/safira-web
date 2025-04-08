@@ -1,16 +1,20 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import { ButtonPopup } from '../../../shared/components/UI/Buttons/ButtonPopup/ButtonPopup'
-import { ButtonCart } from '../../../shared/components/UI/Buttons/ButtonCart/ButtonCart'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import { Rating } from '../../../shared/components/Rating/Rating'
-import { Price } from '../../../shared/components/Price/Price'
-import { DietaryTags } from '../../../shared/components/UI/DietaryTags/DietaryTags'
-import { slugToString } from '../../../utils'
-import { ReactComponent as HeartSVG } from '../../../assets/svg/heart.svg'
-import { ReactComponent as TrashSVG } from '../../../assets/svg/trash.svg'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { Price } from '@shared/components/Price/Price'
+import { Rating } from '@shared/components/Rating/Rating'
+import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
+import { ButtonPopup } from '@shared/components/UI/Buttons/ButtonPopup/ButtonPopup'
+import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { Text } from '@shared/components/UI/Text/Text'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { slugToString } from '@utils/index'
+
+import { ReactComponent as HeartSVG } from '@assets/svg/heart.svg'
+import { ReactComponent as TrashSVG } from '@assets/svg/trash.svg'
+
 import s from './compare-item.module.scss'
 
 // types: 'small' | 'default'

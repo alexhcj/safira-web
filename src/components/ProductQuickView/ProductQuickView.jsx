@@ -1,12 +1,14 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useProductModalContext } from '../../context/ProductContext'
-import { useCartContext } from '../../context/CartContext'
-import { Modal } from '../../shared/components/Modal/Modal'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { Price } from '../../shared/components/Price/Price'
-import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { slugToString } from '../../utils'
+
+import { useCartContext } from '@context/CartContext'
+import { useProductModalContext } from '@context/ProductContext'
+import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
+import { Modal } from '@shared/components/Modal/Modal'
+import { Price } from '@shared/components/Price/Price'
+import { Text } from '@shared/components/UI/Text/Text'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { slugToString } from '@utils/index'
+
 import s from './product-quick-view.module.scss'
 
 export const ProductQuickView = () => {

@@ -1,8 +1,10 @@
-import { ReactComponent as TelegramSVG } from '../../assets/svg/socials/telegram.svg'
-import { ReactComponent as VkSVG } from '../../assets/svg/socials/vk.svg'
-import { ReactComponent as GithubSVG } from '../../assets/svg/socials/github.svg'
+import { Socials } from '@shared/components/UI/Socials/Socials'
+
+import { ReactComponent as GithubSVG } from '@assets/svg/socials/github.svg'
+import { ReactComponent as TelegramSVG } from '@assets/svg/socials/telegram.svg'
+import { ReactComponent as VkSVG } from '@assets/svg/socials/vk.svg'
+
 import s from './blank-page-info.module.scss'
-import { Socials } from '../../shared/components/UI/Socials/Socials'
 
 const socialsList = [
 	{ icon: <GithubSVG />, url: 'https://github.com/alexhcj' },

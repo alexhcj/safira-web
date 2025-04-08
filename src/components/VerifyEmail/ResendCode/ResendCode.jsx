@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
-import { verificationsAPI } from '../../../api/verifications'
-import { useLocalStorage } from '../../../hooks/useLocalStorage.hook'
-import { Timer } from '../../../shared/components/UI/Timer/Timer'
-import { Preloader } from '../../../shared/components/common/Preloader/Preloader'
-import { VERIFY_EMAIL } from '../../../shared/types/api-types'
+
+import { verificationsAPI } from '@api/verifications'
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Timer } from '@shared/components/UI/Timer/Timer'
+import { VERIFY_EMAIL } from '@shared/types/api-types'
+
 import s from './resend-code.module.scss'
 
 // types: VERIFY_EMAIL

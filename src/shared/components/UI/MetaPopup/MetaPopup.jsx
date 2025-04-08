@@ -1,5 +1,8 @@
 import { ReactComponent as ArrowSVG } from '../../../../assets/svg/arrow.svg'
+
 import s from './meta-popup.module.scss'
+
+
 
 export const MetaPopup = ({ text = 'Meta text', data = [] }) => {
 	return (

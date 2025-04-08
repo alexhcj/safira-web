@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
-import { postsAPI } from '../../../api/posts'
+import { useEffect, useState } from 'react'
+
+import { postsAPI } from '@api/posts'
+import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
+import { Space } from '@shared/components/UI/Spacing/Space'
+
 import { PostCard } from '../../PostCard/PostCard'
-import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'
-import { Space } from '../../../shared/components/UI/Spacing/Space'
+
 import s from './our-blog-posts.module.scss'
 
 export const OurBlogPosts = () => {

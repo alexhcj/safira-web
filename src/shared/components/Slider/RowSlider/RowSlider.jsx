@@ -1,8 +1,11 @@
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { Arrow } from '../Arrow/Arrow'
+
 import { Space } from '../../UI/Spacing/Space'
+import { Arrow } from '../Arrow/Arrow'
+
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
+// eslint-disable-next-line import/order
 import s from './row-slider.module.scss'
 
 export const RowSlider = ({ title, items, responsive, className }) => {

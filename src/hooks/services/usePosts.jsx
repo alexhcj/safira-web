@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
-import { postsAPI } from '../../api/posts'
+
+import { postsAPI } from '@api/posts'
 
 export const usePosts = () => {
 	const [params] = useSearchParams()

@@ -1,5 +1,7 @@
 import cn from 'classnames'
+
 import { Text } from '../UI/Text/Text'
+
 import s from './price.module.scss'
 
 export const Price = ({ price, discount_price, type, className }) => {

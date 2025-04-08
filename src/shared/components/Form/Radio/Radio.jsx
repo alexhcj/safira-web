@@ -1,4 +1,5 @@
 import cn from 'classnames'
+
 import s from './radio.module.scss'
 
 export const Radio = ({ name, label, id, isChecked, handleChange, className }) => {

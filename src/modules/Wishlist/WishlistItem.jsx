@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
 import cn from 'classnames'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import PreloaderSVG from '../../assets/svg/preloader.svg'
-import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg'
+import { Link } from 'react-router-dom'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+
+import { ReactComponent as CartSVG } from '@assets/svg/cart.svg'
+import PreloaderSVG from '@assets/svg/preloader.svg'
+
 import s from './styles/wishlist-item.module.scss'
 
 export const WishlistItem = ({

@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import { useLocation } from 'react-router-dom'
-import { useFormErrors } from '../../hooks/useFormErrors'
-import { Input } from '../../shared/components/Form/Input/Input'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
+
+import { useFormErrors } from '@hooks/useFormErrors'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Input } from '@shared/components/Form/Input/Input'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import s from './change-password-stepper-form.module.scss'
 
 const changePasswordFormValidationSchema = {

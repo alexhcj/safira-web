@@ -1,5 +1,6 @@
-import { useLocation } from 'react-router-dom'
 import cn from 'classnames'
+import { useLocation } from 'react-router-dom'
+
 import s from './button-popup.module.scss'
 
 // sizes: lg

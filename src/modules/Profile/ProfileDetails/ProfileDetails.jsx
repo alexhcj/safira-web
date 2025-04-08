@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom'
-import { useAuthContext } from '../../../context/AuthContext'
-import { useProfile } from '../../../hooks/services/useProfile'
-import { ProfileForm } from '../../../shared/components/Form/ProfileForm/ProfileForm'
-import { Preloader } from '../../../shared/components/common/Preloader/Preloader'
-import { UserActions } from '../../../shared/components/UserActions/UserActions'
-import { ReactComponent as EmailSVG } from '../../../assets/svg/email.svg'
+
+import { useAuthContext } from '@context/AuthContext'
+import { useProfile } from '@hooks/services/useProfile'
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ProfileForm } from '@shared/components/Form/ProfileForm/ProfileForm'
+import { UserActions } from '@shared/components/UserActions/UserActions'
+
+import { ReactComponent as EmailSVG } from '@assets/svg/email.svg'
+
 import s from './profile-details.module.scss'
 
 export const ProfileDetails = () => {

@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
+
 import cn from 'classnames'
-import { filesAPI } from '../../../../api/files'
-import { profilesAPI } from '../../../../api/profiles'
-import { Input } from '../Input/Input'
+import { useNavigate } from 'react-router-dom'
+
+import { filesAPI } from '@api/files'
+import { profilesAPI } from '@api/profiles'
+import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { compareObjectsShallow, convertISODate } from '@utils/index'
+
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
-import { compareObjectsShallow, convertISODate } from '../../../../utils'
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
+import { Input } from '../Input/Input'
+
 import s from './profile-form.module.scss'
 
 // const profileFormValidationSchema = {

@@ -1,14 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+
 import cn from 'classnames'
-import { useProductsBySlug } from '../../../../hooks/services/useProductsBySlug'
-import { useSearchError } from '../../../../hooks/useSearchError'
-import { useDebounce } from '../../../../hooks/useDebounce'
-import { ErrorPopover } from '../../../../shared/components/UI/ErrorPopup/ErrorPopover'
-import { Button } from '../../../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../../../shared/components/UI/Text/Text'
-import { slugToString, stringToSlug } from '../../../../utils'
-import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
+import { useSearchParams } from 'react-router-dom'
+
+import { useProductsBySlug } from '@hooks/services/useProductsBySlug'
+import { useDebounce } from '@hooks/useDebounce'
+import { useSearchError } from '@hooks/useSearchError'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { ErrorPopover } from '@shared/components/UI/ErrorPopup/ErrorPopover'
+import { Text } from '@shared/components/UI/Text/Text'
+import { slugToString, stringToSlug } from '@utils/index'
+
+import { ReactComponent as Close } from '@assets/svg/close.svg'
+
 import s from './search.module.scss'
 
 export const Search = () => {

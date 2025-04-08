@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
-import ReactSlider from 'react-slider'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
-import { productsAPI } from '../../../../api/products'
-import { ButtonFilter } from '../../../../shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
-import './react-slider.css'
-import { ReactComponent as Close } from '../../../../assets/svg/close.svg'
+import { useSearchParams } from 'react-router-dom'
+import ReactSlider from 'react-slider'
+
+import { productsAPI } from '@api/products'
+import { ButtonFilter } from '@shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
+
+import { ReactComponent as Close } from '@assets/svg/close.svg'
+
 import s from './price-range.module.scss'
+import './react-slider.css'
 
 export const PriceRange = () => {
 	const [params, setParams] = useSearchParams()

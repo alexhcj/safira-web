@@ -1,8 +1,10 @@
+import { BannerOffer } from '@modules/Shop/Sidebar/BannerOffer/BannerOffer'
+import { Space } from '@shared/components/UI/Spacing/Space'
+
 import { BestSellers } from './BestSellers/BestSellers'
-import { NewProducts } from './NewProducts/NewProducts'
 import { DealsOfWeek } from './DealsOfWeek/DealsOfWeek'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { BannerOffer } from '../../modules/Shop/Sidebar/BannerOffer/BannerOffer'
+import { NewProducts } from './NewProducts/NewProducts'
+
 import s from './offers.module.scss'
 
 export const Offers = () => {

@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { brandToSlug } from '../../../utils'
+
+import { brandToSlug } from '@utils/index'
+
 import s from './brands-row.module.scss'
 
 export const BrandsRow = ({ name, brands, rowRef }) => {

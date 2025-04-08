@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useState } from 'react'
+
 import cn from 'classnames'
+
 import s from './button-cart.module.scss'
 
-export const ButtonCart = ({
-	type = 'button',
-	onClick,
-	className,
-	children
-}) => {
+export const ButtonCart = ({ type = 'button', onClick, className, children }) => {
 	const [focus, setFocus] = useState(false)
 
 	const onFocus = () => {

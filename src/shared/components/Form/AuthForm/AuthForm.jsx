@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
-import { authAPI } from '../../../../api/auth'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { useFormErrors } from '../../../../hooks/useFormErrors'
-import { Input } from '../Input/Input'
-import { Checkbox } from '../Checkbox/Checkbox'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+
+import { authAPI } from '@api/auth'
+import { useAuthContext } from '@context/AuthContext'
+import { useFormErrors } from '@hooks/useFormErrors'
+
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
+import { Checkbox } from '../Checkbox/Checkbox'
+import { Input } from '../Input/Input'
+
 import s from './auth-form.module.scss'
 
 const authFormValidationSchema = {
