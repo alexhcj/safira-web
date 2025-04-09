@@ -1,32 +1,32 @@
 @import '../../../shared/styles/vars';
 
 .slider__container {
-    padding-top: 50px;
+	padding-top: 50px;
 }
 
 /* slider controls start */
 .slider__container > button {
-    top: -5px;
-    right: 0;
+	top: -5px;
+	right: 0;
 }
 
 .slider__container > button:nth-child(2) {
-    right: 20px;
-    transform: scale(-1);
+	right: 20px;
+	transform: scale(-1);
 }
 
 /* slider controls end */
 .block {
-    margin-bottom: 30px;
-    padding: 30px 20px;
-    border-radius: 10px;
-    background-color: $color-white;
+	margin-bottom: 30px;
+	padding: 30px 20px;
+	border-radius: 10px;
+	background-color: $color-white;
 }
 
 .heading {
-    margin-bottom: -23px;
-    font-weight: 500;
-    line-height: 26px;
-    font-size: 24px;
-    color:  $color-dark;
+	margin-bottom: -23px;
+	font-weight: 500;
+	line-height: 26px;
+	font-size: 24px;
+	color: $color-dark;
 }

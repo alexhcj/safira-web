@@ -33,7 +33,7 @@
 	}
 
 	&:disabled {
-		opacity: .5;
+		opacity: 0.5;
 		color: $color-dark;
 		background-color: $color-pagination-item-background;
 		cursor: not-allowed;

@@ -2,8 +2,9 @@
 
 .profile {
 	display: grid;
-	grid-template: "note note note" auto
-		"main main aside" auto "main main aside" auto / 1fr 480px 170px;
+	grid-template:
+		'note note note' auto
+		'main main aside' auto 'main main aside' auto / 1fr 480px 170px;
 	gap: 0 100px;
 }
 .svg {

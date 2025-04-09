@@ -6,7 +6,6 @@ import { CompareAttributesRow } from './CompareAttributeItem/CompareAttributesRo
 
 import s from './compare-attributes.module.scss'
 
-
 export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) => {
 	const [showOnlyDifferent, setShowOnlyDifferent] = useState(false)
 

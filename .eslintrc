@@ -19,39 +19,21 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react",
-		"react-hooks",
-		"import"
-	],
+	"plugins": ["react", "react-hooks", "import"],
 	"rules": {
-		"semi": [
-			"error",
-			"never"
-		],
-		"eqeqeq": [
-			"error",
-			"always"
-		],
-		"quotes": [
-			"error",
-			"single"
-		],
+		"semi": ["error", "never"],
+		"eqeqeq": ["error", "always"],
+		"quotes": ["error", "single"],
 		"indent": [
 			"error",
 			"tab",
 			{
-				"ignoredNodes": [
-					"ConditionalExpression"
-				],
+				"ignoredNodes": ["ConditionalExpression"],
 				"MemberExpression": "off",
 				"SwitchCase": 1
 			}
 		],
-		"brace-style": [
-			"error",
-			"1tbs"
-		],
+		"brace-style": ["error", "1tbs"],
 		"semi-spacing": [
 			"error",
 			{
@@ -67,10 +49,7 @@
 			}
 		],
 		"no-unused-vars": "off",
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
+		"linebreak-style": ["error", "unix"],
 		"space-infix-ops": "error",
 		"keyword-spacing": [
 			"error",
@@ -92,10 +71,7 @@
 				"ignoreComments": true
 			}
 		],
-		"object-curly-spacing": [
-			"error",
-			"always"
-		],
+		"object-curly-spacing": ["error", "always"],
 		"no-duplicate-imports": [
 			"error",
 			{
@@ -111,13 +87,8 @@
 				"beforeSelfClosing": "always"
 			}
 		],
-		"react/jsx-closing-bracket-location": [
-			"error",
-			"tag-aligned"
-		],
-		"react/jsx-props-no-spreading": [
-			"off"
-		],
+		"react/jsx-closing-bracket-location": ["error", "tag-aligned"],
+		"react/jsx-props-no-spreading": ["off"],
 		"max-len": [
 			"warn",
 			{
@@ -128,32 +99,20 @@
 		"react/jsx-filename-extension": [
 			"warn",
 			{
-				"extensions": [
-					".jsx",
-					".js"
-				]
+				"extensions": [".jsx", ".js"]
 			}
 		],
 		"import/order": [
 			"error",
 			{
-				"pathGroupsExcludedImportTypes": [
-					"react"
-				],
+				"pathGroupsExcludedImportTypes": ["react"],
 				"warnOnUnassignedImports": true,
 				"newlines-between": "always",
 				"alphabetize": {
 					"order": "asc",
 					"caseInsensitive": true
 				},
-				"groups": [
-					"builtin",
-					"external",
-					"internal",
-					"parent",
-					"sibling",
-					"index"
-				],
+				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
 				"pathGroups": [
 					{
 						"pattern": "react",
@@ -223,58 +182,20 @@
 		"import/resolver": {
 			"alias": {
 				"map": [
-					[
-						"@pages",
-						"./src/pages"
-					],
-					[
-						"@api",
-						"./src/api"
-					],
-					[
-						"@context",
-						"./src/context"
-					],
-					[
-						"@hooks",
-						"./src/hooks"
-					],
-					[
-						"@modules",
-						"./src/modules"
-					],
-					[
-						"@components",
-						"./src/components"
-					],
-					[
-						"@shared",
-						"./src/shared"
-					],
-					[
-						"@utils",
-						"./src/utils"
-					],
-					[
-						"@assets",
-						"./src/assets"
-					]
+					["@pages", "./src/pages"],
+					["@api", "./src/api"],
+					["@context", "./src/context"],
+					["@hooks", "./src/hooks"],
+					["@modules", "./src/modules"],
+					["@components", "./src/components"],
+					["@shared", "./src/shared"],
+					["@utils", "./src/utils"],
+					["@assets", "./src/assets"]
 				],
-				"extensions": [
-					".js",
-					".jsx",
-					".svg",
-					".png",
-					".jpg"
-				]
+				"extensions": [".js", ".jsx", ".svg", ".png", ".jpg"]
 			},
 			"node": {
-				"extensions": [
-					".js",
-					".jsx",
-					".scss",
-					".css"
-				]
+				"extensions": [".js", ".jsx", ".scss", ".css"]
 			}
 		}
 	}

@@ -73,7 +73,6 @@ backend with api, services and database.
 - [x] Unauthorized buy
 - [x] CompareList products
 
-
 - **Products**
 - [x] Pagination
 - [x] Sorting
@@ -82,7 +81,6 @@ backend with api, services and database.
 - [x] Quick view (modal)
 - [x] Rating
 - [ ] Related products
-
 
 - **Posts**
 - [x] Details (by slug)
