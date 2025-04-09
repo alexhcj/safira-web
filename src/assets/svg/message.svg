@@ -1,11 +1,11 @@
 <svg width="84" height="76" viewBox="0 0 84 76" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 0H84V6.36453H0V0Z" fill="black"/>
-<path d="M17.92 20.9655H66.08V27.33H17.92V20.9655Z" fill="black"/>
-<path d="M17.92 33.3202H54.1333V39.6847H17.92V33.3202Z" fill="black"/>
-<path d="M31.7333 54.2857H84V60.6502H31.7333V54.2857Z" fill="black"/>
-<path d="M84 6.36453V54.2857H78.0267V6.36453H84Z" fill="black"/>
-<path d="M5.97333 6.36453L5.97333 54.2857H4.74086e-08L0 6.36453H5.97333Z" fill="black"/>
-<path d="M21.28 60.6502V70.7586L14.9333 76V60.6502H21.28Z" fill="black"/>
-<path d="M4.74086e-08 54.2857H21.28V60.6502H0L4.74086e-08 54.2857Z" fill="black"/>
-<path d="M21.2801 62.5221L31.7333 54.2857L33.7866 60.6498L21.2801 70.758L21.2801 62.5221Z" fill="black"/>
+	<path d="M0 0H84V6.36453H0V0Z" fill="black" />
+	<path d="M17.92 20.9655H66.08V27.33H17.92V20.9655Z" fill="black" />
+	<path d="M17.92 33.3202H54.1333V39.6847H17.92V33.3202Z" fill="black" />
+	<path d="M31.7333 54.2857H84V60.6502H31.7333V54.2857Z" fill="black" />
+	<path d="M84 6.36453V54.2857H78.0267V6.36453H84Z" fill="black" />
+	<path d="M5.97333 6.36453L5.97333 54.2857H4.74086e-08L0 6.36453H5.97333Z" fill="black" />
+	<path d="M21.28 60.6502V70.7586L14.9333 76V60.6502H21.28Z" fill="black" />
+	<path d="M4.74086e-08 54.2857H21.28V60.6502H0L4.74086e-08 54.2857Z" fill="black" />
+	<path d="M21.2801 62.5221L31.7333 54.2857L33.7866 60.6498L21.2801 70.758L21.2801 62.5221Z" fill="black" />
 </svg>
