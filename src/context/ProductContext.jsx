@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react'
 
 const ProductModalContext = createContext([])
 export const useProductModalContext = () => useContext(ProductModalContext)
