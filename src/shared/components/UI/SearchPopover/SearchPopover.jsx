@@ -1,12 +1,13 @@
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-import { PostCard } from '@components/PostCard/PostCard'
-import { ProductCard } from '@components/ProductCard/ProductCard'
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
-import { ReactComponent as CloseSVG } from '@assets/svg/close.svg'
-import { ReactComponent as RecentSVG } from '@assets/svg/recent.svg'
+import { PostCard } from '@components/PostCard/PostCard'
+import { ProductCard } from '@components/ProductCard/ProductCard'
+
+import CloseSVG from '@assets/svg/close.svg?react'
+import RecentSVG from '@assets/svg/recent.svg?react'
 
 import s from './search-popover.module.scss'
 
@@ -37,7 +38,7 @@ export const SearchPopover = ({
 	}
 
 	const handleRelatedMoreClick = () => {
-		const query = `${process.env.REACT_APP_SHOP_DEFAULT_QUERY}&slug=${state.lastSearch}`
+		const query = `${import.meta.env.VITE_SHOP_DEFAULT_QUERY}&slug=${state.lastSearch}`
 		navigate(`/shop?${new URLSearchParams(query)}`)
 		setIsPopoverToggled(false)
 	}

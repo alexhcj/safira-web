@@ -1,6 +1,7 @@
 import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
+
 import { CompareSlider } from '@shared/components/Slider/CompareSlider/CompareSlider'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Space } from '@shared/components/UI/Spacing/Space'

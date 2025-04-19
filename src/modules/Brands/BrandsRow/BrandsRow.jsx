@@ -12,7 +12,7 @@ export const BrandsRow = ({ name, brands, rowRef }) => {
 	}
 
 	const handleBrandClick = (brand) => {
-		navigate(`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}&brand=${brand}`)
+		navigate(`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}&brand=${brand}`)
 	}
 
 	return (

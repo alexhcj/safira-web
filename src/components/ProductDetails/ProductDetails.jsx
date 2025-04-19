@@ -4,9 +4,11 @@ import cn from 'classnames'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 import { productsAPI } from '@api/products'
+
 import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
+
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
@@ -20,16 +22,17 @@ import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { slugToString } from '@utils/index'
 
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
 
-import { ReactComponent as CompareRemoveSVG } from '@assets/svg/compare-remove.svg'
-import { ReactComponent as CompareSVG } from '@assets/svg/compare.svg'
-import { ReactComponent as HeartBrokenSVG } from '@assets/svg/heart-broken.svg'
-import { ReactComponent as HeartSVG } from '@assets/svg/heart.svg'
-import PreloaderSVG from '@assets/svg/preloader.svg'
+import CompareRemoveSVG from '@assets/svg/compare-remove.svg?react'
+import CompareSVG from '@assets/svg/compare.svg?react'
+import HeartBrokenSVG from '@assets/svg/heart-broken.svg?react'
+import HeartSVG from '@assets/svg/heart.svg?react'
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
 import s from './productdetails.module.scss'
 
@@ -63,7 +66,7 @@ export const ProductDetails = () => {
 
 	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const handlePopover = () => {
 		setIsPopoverHovered(!isPopoverHovered)
@@ -142,7 +145,7 @@ export const ProductDetails = () => {
 						<Text span weight='medium'>
 							Category:
 						</Text>
-						<NavLink to={`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
+						<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
 							<Text className={s.tag} span>
 								{basicCategory && slugToString(basicCategory)}
 							</Text>

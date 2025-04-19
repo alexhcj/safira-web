@@ -19,7 +19,7 @@ const data = [
 		title: 'Fresh vegetables',
 		subTitle: 'Natural farm products',
 		text: 'Widest range of farm-fresh Vegetables, Fruits & seasonal produce',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-vegetables`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/fresh-vegetables`,
 		img: Slide2,
 	},
 	{
@@ -27,7 +27,7 @@ const data = [
 		title: 'Fresh tomatoes',
 		subTitle: 'Natural farm products',
 		text: 'Natural organic tomatoes make your health stronger. Put your information here',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-tomatoes`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/fresh-tomatoes`,
 		img: Slide3,
 	},
 	{
@@ -35,7 +35,7 @@ const data = [
 		title: 'Vegetables big promo',
 		subTitle: 'Fresh farm products',
 		text: '10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/vegetables-big-promo`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/vegetables-big-promo`,
 		img: Slide1,
 	},
 ]

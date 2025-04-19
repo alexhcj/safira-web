@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { productsAPI } from '@api/products'
+
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
+
 import { convertArray } from '@utils/index'
 
 import { ProductCard } from '../../ProductCard/ProductCard'

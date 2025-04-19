@@ -1,13 +1,13 @@
 import cn from 'classnames'
 
-import { ReactComponent as GlutenFreeSVG } from '@assets/svg/dietaries/gluten-free.svg'
-import { ReactComponent as HalalSVG } from '@assets/svg/dietaries/halal.svg'
-import { ReactComponent as HealthierChoiceSVG } from '@assets/svg/dietaries/healthier-choice.svg'
-import { ReactComponent as HypoallergenicSVG } from '@assets/svg/dietaries/hypoallergenic.svg'
-import { ReactComponent as LactoseFreeSVG } from '@assets/svg/dietaries/lactose-free.svg'
-import { ReactComponent as OrganicSVG } from '@assets/svg/dietaries/organic.svg'
-import { ReactComponent as TransFatFreeSVG } from '@assets/svg/dietaries/trans-fat-free.svg'
-import { ReactComponent as VegetarianSVG } from '@assets/svg/dietaries/vegetarian.svg'
+import GlutenFreeSVG from '@assets/svg/dietaries/gluten-free.svg?react'
+import HalalSVG from '@assets/svg/dietaries/halal.svg?react'
+import HealthierChoiceSVG from '@assets/svg/dietaries/healthier-choice.svg?react'
+import HypoallergenicSVG from '@assets/svg/dietaries/hypoallergenic.svg?react'
+import LactoseFreeSVG from '@assets/svg/dietaries/lactose-free.svg?react'
+import OrganicSVG from '@assets/svg/dietaries/organic.svg?react'
+import TransFatFreeSVG from '@assets/svg/dietaries/trans-fat-free.svg?react'
+import VegetarianSVG from '@assets/svg/dietaries/vegetarian.svg?react'
 
 import s from './dietary-tags.module.scss'
 

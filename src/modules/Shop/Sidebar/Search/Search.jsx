@@ -6,12 +6,14 @@ import { useSearchParams } from 'react-router-dom'
 import { useProductsBySlug } from '@hooks/services/useProductsBySlug'
 import { useDebounce } from '@hooks/useDebounce'
 import { useSearchError } from '@hooks/useSearchError'
+
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ErrorPopover } from '@shared/components/UI/ErrorPopup/ErrorPopover'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { slugToString, stringToSlug } from '@utils/index'
 
-import { ReactComponent as Close } from '@assets/svg/close.svg'
+import Close from '@assets/svg/close.svg?react'
 
 import s from './search.module.scss'
 

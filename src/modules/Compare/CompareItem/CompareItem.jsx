@@ -9,11 +9,12 @@ import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
 import { ButtonPopup } from '@shared/components/UI/Buttons/ButtonPopup/ButtonPopup'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { slugToString } from '@utils/index'
 
-import { ReactComponent as HeartSVG } from '@assets/svg/heart.svg'
-import { ReactComponent as TrashSVG } from '@assets/svg/trash.svg'
+import HeartSVG from '@assets/svg/heart.svg?react'
+import TrashSVG from '@assets/svg/trash.svg?react'
 
 import s from './compare-item.module.scss'
 
@@ -30,7 +31,7 @@ export const CompareItem = ({
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
 	const { slug, name, quantity, rating, price, discount_price, tags, subCategory } = product
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const handleMouseEnter = () => {
 		setIsHovered(true)
@@ -60,7 +61,7 @@ export const CompareItem = ({
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ subCategory }),
 		})

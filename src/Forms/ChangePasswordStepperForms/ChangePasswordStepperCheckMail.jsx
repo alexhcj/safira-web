@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
+
 import { useProfile } from '@hooks/services/useProfile'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { hideEmailPartial } from '../../utils'
+import { hideEmailPartial } from '@utils/index'
 
 import s from './change-password-stepper-form.module.scss'
 

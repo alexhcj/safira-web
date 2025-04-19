@@ -1,5 +1,7 @@
-import { PostDetails } from '@components/PostDetails/PostDetails'
 import { BlogSidebar } from '@modules/Blog/BlogSidebar/BlogSidebar'
+
+import { PostDetails } from '@components/PostDetails/PostDetails'
+
 import { ScrollToTop } from '@shared/components/ScrollToTop/ScrollToTop'
 import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 import { DefaultLayout } from '@shared/layouts/DefaultLayout/DefaultLayout'

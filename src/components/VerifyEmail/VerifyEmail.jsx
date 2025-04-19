@@ -3,18 +3,22 @@ import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { verificationsAPI } from '@api/verifications'
+
 import { useAuthContext } from '@context/AuthContext'
+
 import { useFormErrors } from '@hooks/useFormErrors'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 import { VERIFY_EMAIL } from '@shared/types/api-types'
+
 import { hideEmailPartial } from '@utils/index'
 
 import { ResendCode } from './ResendCode/ResendCode'
 
-import { ReactComponent as ArrowSVG } from '@assets/svg/arrow.svg'
+import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './verify-email.module.scss'
 
@@ -87,12 +91,12 @@ export const VerifyEmail = () => {
 						</p>
 						<div className={s.btns}>
 							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
+								<NavLink className={s.search_link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
 									Search products
 								</NavLink>
 							</Button>
 							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/blog?${process.env.REACT_APP_BLOG_DEFAULT_QUERY}`}>
+								<NavLink className={s.search_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
 									Read blog
 								</NavLink>
 							</Button>

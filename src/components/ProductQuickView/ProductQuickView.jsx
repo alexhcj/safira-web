@@ -2,10 +2,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import { useCartContext } from '@context/CartContext'
 import { useProductModalContext } from '@context/ProductContext'
+
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { Modal } from '@shared/components/Modal/Modal'
 import { Price } from '@shared/components/Price/Price'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { slugToString } from '@utils/index'
 
@@ -16,7 +18,7 @@ export const ProductQuickView = () => {
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const navigate = useNavigate()
 	const { slug, name, basicCategory, price, description, specifications } = product
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
 		state: {
@@ -27,7 +29,7 @@ export const ProductQuickView = () => {
 
 	const onClickHandler = () => {
 		setIsOpen(false)
-		navigate(`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`)
+		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`)
 	}
 
 	return (

@@ -7,6 +7,7 @@ import { Price } from '@shared/components/Price/Price'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Hovermenu } from '@shared/components/UI/Hovermenu/Hovermenu'
 import { Tags } from '@shared/components/UI/Tags/Tags'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { slugToString } from '@utils/index'
 
@@ -20,7 +21,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 
 	const { slug, tags, name, subCategory, price, description, createdAt } = product
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const url = {
 		pathname: `/products/${slug}`,
@@ -31,7 +32,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ subCategory }),
 		})

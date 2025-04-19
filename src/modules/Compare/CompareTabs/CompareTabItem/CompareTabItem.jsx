@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 import { slugToString } from '@utils/index'
 
-import { ReactComponent as CloseSVG } from '@assets/svg/close.svg'
+import CloseSVG from '@assets/svg/close.svg?react'
 
 import s from './compare-tab-item.module.scss'
 

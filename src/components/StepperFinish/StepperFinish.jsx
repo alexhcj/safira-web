@@ -12,7 +12,7 @@ export const StepperFinish = ({
 	const navigate = useNavigate()
 
 	const handleNavigate = () => {
-		navigate(`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`)
+		navigate(`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`)
 	}
 
 	return (

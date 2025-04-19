@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useBannerOffer } from '@hooks/services/useBannerOffer'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '@utils/index'
 
@@ -19,7 +21,7 @@ export const Promo = () => {
 		const { page, categoryType, categoryValue } = offer.link
 
 		const query = `${enumToCamelCase(categoryType)}=${enumToDashString(categoryValue)}&${
-			process.env.REACT_APP_SHOP_DEFAULT_QUERY
+			import.meta.env.VITE_SHOP_DEFAULT_QUERY
 		}`
 		navigate(`/${page}?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${enumToCapitalizedString(categoryValue)}` }),
@@ -28,7 +30,7 @@ export const Promo = () => {
 
 	const renderPromo = () => {
 		const { type, title, upTitle, text } = offer
-		const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/${type.toLowerCase()}`
+		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/${type.toLowerCase()}`
 
 		return (
 			<div className={s.section}>

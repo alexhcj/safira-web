@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
 	const addToCart = ({ name, slug, price, discount_price, specifications }, quantity) => {
 		const productInCart = cart.find((product) => product.slug === slug)
 
-		const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 		const product = {
 			slug,
 			name,

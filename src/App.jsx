@@ -1,8 +1,10 @@
-import { Copyright } from '@components/Copyright/Copyright'
 import { AuthProvider } from '@context/AuthContext'
 import { CartProvider } from '@context/CartContext'
 import { CompareProvider } from '@context/CompareContext'
 import { WishlistProvider } from '@context/WishlistContext'
+
+import { Copyright } from '@components/Copyright/Copyright'
+
 import { Footer } from '@shared/components/common/Footer/Footer'
 import { Header } from '@shared/components/common/Header/Header'
 import { ButtonScroll } from '@shared/components/UI/Buttons/ButtonScroll/ButtonScroll'

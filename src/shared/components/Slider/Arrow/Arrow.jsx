@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { ReactComponent as ArrowSVG } from '@assets/svg/arrow.svg'
+import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './arrow.module.scss'
 

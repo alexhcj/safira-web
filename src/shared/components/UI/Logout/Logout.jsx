@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 import { useAuthContext } from '@context/AuthContext'
 
-import { ReactComponent as LogoutSVG } from '@assets/svg/logout.svg'
+import LogoutSVG from '@assets/svg/logout.svg?react'
 
 import s from './logout.module.scss'
 

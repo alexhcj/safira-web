@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useOfferLinks } from '@hooks/services/useOfferLinks'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 
 import { enumToCamelCase, enumToCapitalizedString, enumToDashString, stringToSlug } from '../../utils'
@@ -15,7 +17,7 @@ export const OfferLinks = () => {
 
 	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
 		const query = `${enumToCamelCase(categoryType)}=${enumToDashString(categoryValue)}&${
-			process.env.REACT_APP_SHOP_DEFAULT_QUERY
+			import.meta.env.VITE_SHOP_DEFAULT_QUERY
 		}`
 		navigate(`/${page}?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${enumToCapitalizedString(categoryValue)}` }),
@@ -29,7 +31,7 @@ export const OfferLinks = () => {
 				{!loading &&
 					links &&
 					links.map(({ img, title, link }) => {
-						const offerUrl = `${process.env.REACT_APP_API_PUBLIC_URL}/images/offers/offer-links/${img}`
+						const offerUrl = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/offer-links/${img}`
 
 						return (
 							<li key={stringToSlug(title)} onClick={(e) => handleOfferClick(link)}>

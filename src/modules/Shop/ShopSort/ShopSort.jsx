@@ -25,7 +25,7 @@ export const ShopSort = ({ meta = {} }) => {
 	const { total = 0, page } = meta
 
 	useEffect(() => {
-		if (params.size === 0) setParams(process.env.REACT_APP_SHOP_DEFAULT_QUERY)
+		if (params.size === 0) setParams(import.meta.env.VITE_SHOP_DEFAULT_QUERY)
 	}, [params, setParams])
 
 	useEffect(() => {
@@ -123,8 +123,8 @@ export const ShopSort = ({ meta = {} }) => {
 						{total < +params.get('limit')
 							? total
 							: page !== 1 && total < page * +params.get('limit')
-							? total
-							: page * +params.get('limit')}{' '}
+								? total
+								: page * +params.get('limit')}{' '}
 						of {total ? total : 0} results
 					</>
 				)}

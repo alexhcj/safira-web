@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { ReactComponent as FileSVG } from '@assets/svg/file.svg'
+import FileSVG from '@assets/svg/file.svg?react'
 
 import s from './user-actions.module.scss'
 

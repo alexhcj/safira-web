@@ -1,8 +1,8 @@
 import { Socials } from '@shared/components/UI/Socials/Socials'
 
-import { ReactComponent as GithubSVG } from '@assets/svg/socials/github.svg'
-import { ReactComponent as TelegramSVG } from '@assets/svg/socials/telegram.svg'
-import { ReactComponent as VkSVG } from '@assets/svg/socials/vk.svg'
+import GithubSVG from '@assets/svg/socials/github.svg?react'
+import TelegramSVG from '@assets/svg/socials/telegram.svg?react'
+import VkSVG from '@assets/svg/socials/vk.svg?react'
 
 import s from './blank-page-info.module.scss'
 

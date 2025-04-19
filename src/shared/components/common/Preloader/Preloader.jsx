@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { ReactComponent as PreloaderSVG } from '@assets/svg/preloader.svg'
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
 import s from './preloader.module.scss'
 

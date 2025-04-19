@@ -4,8 +4,8 @@ import cn from 'classnames'
 
 import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
 
-import { ReactComponent as EyeClosedSVG } from '@assets/svg/eye-closed.svg'
-import { ReactComponent as EyeSVG } from '@assets/svg/eye.svg'
+import EyeClosedSVG from '@assets/svg/eye-closed.svg?react'
+import EyeSVG from '@assets/svg/eye.svg?react'
 
 import s from './input.module.scss'
 

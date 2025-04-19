@@ -2,11 +2,12 @@ import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
+
 import { ReplyForm } from '@shared/components/Form/ReplyForm/ReplyForm'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
-import { ReactComponent as MessageSVG } from '@assets/svg/message.svg'
+import MessageSVG from '@assets/svg/message.svg?react'
 
 import s from './reply.module.scss'
 

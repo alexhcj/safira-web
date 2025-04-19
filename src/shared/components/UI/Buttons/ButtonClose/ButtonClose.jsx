@@ -1,6 +1,7 @@
 import cn from 'classnames'
 
-import { ReactComponent as Close } from '@assets/svg/close.svg'
+import Close from '@assets/svg/close.svg?react'
+
 
 import s from './button-close.module.scss'
 

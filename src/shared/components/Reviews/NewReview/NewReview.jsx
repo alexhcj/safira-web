@@ -5,7 +5,7 @@ import { useAuthContext } from '@context/AuthContext'
 import { NewReviewForm } from '../../Form/NewReviewForm/NewReviewForm'
 import { UserActions } from '../../UserActions/UserActions'
 
-import { ReactComponent as MessageSVG } from '@assets/svg/message.svg'
+import MessageSVG from '@assets/svg/message.svg?react'
 
 import s from './new-review.module.scss'
 

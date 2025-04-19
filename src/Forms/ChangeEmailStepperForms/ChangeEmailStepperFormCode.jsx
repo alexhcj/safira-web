@@ -1,12 +1,15 @@
 import { useState } from 'react'
 
-import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+
+import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 import { VERIFY_EMAIL } from '@shared/types/api-types'
+
 import { hideEmailPartial } from '@utils/index'
 
 import s from './change-email-stepper-form.module.scss'

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { usePosts } from '@hooks/services/usePosts'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Space } from '@shared/components/UI/Spacing/Space'

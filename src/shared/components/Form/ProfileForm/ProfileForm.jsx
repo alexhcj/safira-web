@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { filesAPI } from '@api/files'
 import { profilesAPI } from '@api/profiles'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { compareObjectsShallow, convertISODate } from '@utils/index'
 
@@ -48,7 +49,7 @@ import s from './profile-form.module.scss'
 export const ProfileForm = ({ user, profile, loading }) => {
 	const navigate = useNavigate()
 	const { avatarId, firstName, lastName, dateOfBirth, location, email } = profile
-	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 	const initialFormState = {
 		avatar: null,
 		firstName: firstName || '',

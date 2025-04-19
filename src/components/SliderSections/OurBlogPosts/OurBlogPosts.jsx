@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { postsAPI } from '@api/posts'
+
 import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
 import { Space } from '@shared/components/UI/Spacing/Space'
 

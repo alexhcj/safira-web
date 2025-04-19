@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { ReactComponent as CheckSVG } from '@assets/svg/check.svg'
+import CheckSVG from '@assets/svg/check.svg?react'
 
 import s from './stepper.module.scss'
 

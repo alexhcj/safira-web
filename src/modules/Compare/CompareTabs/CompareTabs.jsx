@@ -1,6 +1,6 @@
 import { CompareTabItem } from './CompareTabItem/CompareTabItem'
 
-import { ReactComponent as TrashSVG } from '@assets/svg/trash.svg'
+import TrashSVG from '@assets/svg/trash.svg?react'
 
 import s from './compare-tabs.module.scss'
 

@@ -23,7 +23,7 @@ export const CompareProvider = ({ children }) => {
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
 		if (itemInCompare) return
 
-		const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 		const item = {
 			slug,

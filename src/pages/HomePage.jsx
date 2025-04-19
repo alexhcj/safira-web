@@ -1,3 +1,5 @@
+import { ProductProvider } from '@context/ProductContext'
+
 import { OfferLinks } from '@components/OfferLinks/OfferLinks'
 import { Offers } from '@components/Offers/Offers'
 import { ProductQuickView } from '@components/ProductQuickView/ProductQuickView'
@@ -6,7 +8,7 @@ import { FeaturedProducts } from '@components/SliderSections/FeaturedProducts/Fe
 import { HeroSlider } from '@components/SliderSections/HeroSlider/HeroSlider'
 import { MostviewProducts } from '@components/SliderSections/MostviewProducts/MostviewProducts'
 import { OurBlogPosts } from '@components/SliderSections/OurBlogPosts/OurBlogPosts'
-import { ProductProvider } from '@context/ProductContext'
+
 import { ScrollToTop } from '@shared/components/ScrollToTop/ScrollToTop'
 import { Space } from '@shared/components/UI/Spacing/Space'
 

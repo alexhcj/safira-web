@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import { productsAPI } from '@api/products'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { convertArray } from '@utils/index'
 

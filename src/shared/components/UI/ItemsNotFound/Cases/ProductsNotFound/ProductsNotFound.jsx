@@ -1,4 +1,4 @@
-import { ReactComponent as ProductsNotFoundSVG } from '@assets/svg/products-not-found.svg'
+import ProductsNotFoundSVG from '@assets/svg/products-not-found.svg?react'
 
 import s from './products-not-found.module.scss'
 

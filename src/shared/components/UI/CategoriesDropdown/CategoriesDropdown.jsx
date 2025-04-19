@@ -7,7 +7,7 @@ import { categories } from '@modules/Categories/categories-data'
 
 import { SubNav } from './SubNav/SubNav'
 
-import { ReactComponent as ArrowSVG } from '@assets/svg/arrow.svg'
+import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './categories-dropdown.module.scss'
 

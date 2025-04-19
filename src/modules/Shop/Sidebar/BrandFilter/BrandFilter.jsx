@@ -4,7 +4,9 @@ import cn from 'classnames'
 import { useSearchParams } from 'react-router-dom'
 
 import { productsAPI } from '@api/products'
+
 import { CheckboxFilter } from '@shared/components/UI/Checkbox/CheckboxFilter'
+
 import { brandToSlug } from '@utils/index'
 
 import s from './brand-filter.module.scss'

@@ -5,9 +5,10 @@ import { useSearchParams } from 'react-router-dom'
 import ReactSlider from 'react-slider'
 
 import { productsAPI } from '@api/products'
+
 import { ButtonFilter } from '@shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
 
-import { ReactComponent as Close } from '@assets/svg/close.svg'
+import Close from '@assets/svg/close.svg?react'
 
 import s from './price-range.module.scss'
 import './react-slider.css'

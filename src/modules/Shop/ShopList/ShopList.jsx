@@ -1,7 +1,9 @@
 import cn from 'classnames'
 
-import { ProductCard } from '@components/ProductCard/ProductCard'
 import { gridTypes, useGridContext } from '@context/GridContext'
+
+import { ProductCard } from '@components/ProductCard/ProductCard'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
 

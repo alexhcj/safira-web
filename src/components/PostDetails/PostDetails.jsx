@@ -1,7 +1,9 @@
 import { usePost } from '@hooks/services/usePost'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Border } from '@shared/components/UI/Spacing/Border'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { convertISODate } from '@utils/index'
 
@@ -13,7 +15,7 @@ import s from './post-details.module.scss'
 export const PostDetails = () => {
 	const { post, isLoading } = usePost()
 	const { slug, title, createdAt, comments, user, text } = post
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/posts/${slug}`
 	const postAuthor = user && `${user.firstName} ${user.lastName}`
 
 	return (

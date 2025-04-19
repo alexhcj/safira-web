@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 
-import { ReactComponent as CartSVG } from '@assets/svg/cart.svg'
-import PreloaderSVG from '@assets/svg/preloader.svg'
+import CartSVG from '@assets/svg/cart.svg?react'
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
 import s from './styles/wishlist-item.module.scss'
 
@@ -21,7 +22,7 @@ export const WishlistItem = ({
 	onDelete,
 	productQuantityInCart,
 }) => {
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	return (
 		<tr className={s.item}>

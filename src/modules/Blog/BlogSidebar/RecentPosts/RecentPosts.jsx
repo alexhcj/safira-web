@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { postsAPI } from '@api/posts'
+
 import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { convertISODate } from '@utils/index'
 
@@ -36,7 +38,7 @@ export const RecentPosts = () => {
 			<ul className={s.posts}>
 				{posts.map(({ title, slug, createdAt }) => {
 					const url = `/blog/${slug}`
-					const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
+					const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/posts/${slug}`
 
 					const cropTitle = title.length > 28 ? title.slice(0, 25) + '...' : title
 

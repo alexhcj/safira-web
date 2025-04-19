@@ -19,21 +19,39 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "react-hooks", "import"],
+	"plugins": [
+		"react",
+		"react-hooks",
+		"import"
+	],
 	"rules": {
-		"semi": ["error", "never"],
-		"eqeqeq": ["error", "always"],
-		"quotes": ["error", "single"],
+		"semi": [
+			"error",
+			"never"
+		],
+		"eqeqeq": [
+			"error",
+			"always"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
 		"indent": [
 			"error",
 			"tab",
 			{
-				"ignoredNodes": ["ConditionalExpression"],
+				"ignoredNodes": [
+					"ConditionalExpression"
+				],
 				"MemberExpression": "off",
 				"SwitchCase": 1
 			}
 		],
-		"brace-style": ["error", "1tbs"],
+		"brace-style": [
+			"error",
+			"1tbs"
+		],
 		"semi-spacing": [
 			"error",
 			{
@@ -49,7 +67,10 @@
 			}
 		],
 		"no-unused-vars": "off",
-		"linebreak-style": ["error", "unix"],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
 		"space-infix-ops": "error",
 		"keyword-spacing": [
 			"error",
@@ -71,7 +92,10 @@
 				"ignoreComments": true
 			}
 		],
-		"object-curly-spacing": ["error", "always"],
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
 		"no-duplicate-imports": [
 			"error",
 			{
@@ -87,8 +111,13 @@
 				"beforeSelfClosing": "always"
 			}
 		],
-		"react/jsx-closing-bracket-location": ["error", "tag-aligned"],
-		"react/jsx-props-no-spreading": ["off"],
+		"react/jsx-closing-bracket-location": [
+			"error",
+			"tag-aligned"
+		],
+		"react/jsx-props-no-spreading": [
+			"off"
+		],
 		"max-len": [
 			"warn",
 			{
@@ -99,20 +128,40 @@
 		"react/jsx-filename-extension": [
 			"warn",
 			{
-				"extensions": [".jsx", ".js"]
+				"extensions": [
+					".jsx",
+					".js"
+				]
+			}
+		],
+		"import/no-unresolved": [
+			"error",
+			{
+				"ignore": [
+					"\\.svg\\?react$"
+				]
 			}
 		],
 		"import/order": [
 			"error",
 			{
-				"pathGroupsExcludedImportTypes": ["react"],
+				"pathGroupsExcludedImportTypes": [
+					"react"
+				],
 				"warnOnUnassignedImports": true,
 				"newlines-between": "always",
 				"alphabetize": {
 					"order": "asc",
 					"caseInsensitive": true
 				},
-				"groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index"
+				],
 				"pathGroups": [
 					{
 						"pattern": "react",
@@ -120,38 +169,42 @@
 						"position": "before"
 					},
 					{
-						"pattern": "api/**",
-						"group": "internal"
+						"pattern": "@api/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "context/**",
-						"group": "internal"
+						"pattern": "@context/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "hooks/**",
-						"group": "internal"
+						"pattern": "@hooks/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "modules/**",
-						"group": "internal"
+						"pattern": "@modules/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "components/**",
-						"group": "internal"
+						"pattern": "@components/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "shared/**",
-						"group": "internal"
+						"pattern": "@shared/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "utils/**",
-						"group": "internal"
+						"pattern": "@utils/**",
+						"group": "internal",
+						"position": "after"
 					},
 					{
-						"pattern": "*.+(svg|png|jpg|jpeg)",
-						"patternOptions": {
-							"matchBase": true
-						},
+						"pattern": "@assets/**",
 						"group": "index",
 						"position": "after"
 					},
@@ -176,26 +229,73 @@
 		]
 	},
 	"settings": {
+		"import/ignore": [
+			"vite",
+			"@vitejs/plugin-react",
+			"vite-jsconfig-paths",
+			"vite-plugin-svgr"
+		],
 		"react": {
 			"version": "17.0.2"
 		},
 		"import/resolver": {
 			"alias": {
 				"map": [
-					["@pages", "./src/pages"],
-					["@api", "./src/api"],
-					["@context", "./src/context"],
-					["@hooks", "./src/hooks"],
-					["@modules", "./src/modules"],
-					["@components", "./src/components"],
-					["@shared", "./src/shared"],
-					["@utils", "./src/utils"],
-					["@assets", "./src/assets"]
+					[
+						"@",
+						"./src"
+					],
+					[
+						"@pages",
+						"./src/pages"
+					],
+					[
+						"@api",
+						"./src/api"
+					],
+					[
+						"@context",
+						"./src/context"
+					],
+					[
+						"@hooks",
+						"./src/hooks"
+					],
+					[
+						"@modules",
+						"./src/modules"
+					],
+					[
+						"@components",
+						"./src/components"
+					],
+					[
+						"@shared",
+						"./src/shared"
+					],
+					[
+						"@utils",
+						"./src/utils"
+					],
+					[
+						"@assets",
+						"./src/assets"
+					]
 				],
-				"extensions": [".js", ".jsx", ".svg", ".png", ".jpg"]
+				"extensions": [
+					".js",
+					".jsx",
+					".json",
+					".svg"
+				]
 			},
 			"node": {
-				"extensions": [".js", ".jsx", ".scss", ".css"]
+				"extensions": [
+					".js",
+					".jsx",
+					".json",
+					".svg"
+				]
 			}
 		}
 	}

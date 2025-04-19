@@ -1,4 +1,5 @@
 import { BannerOffer } from '@modules/Shop/Sidebar/BannerOffer/BannerOffer'
+
 import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { BestSellers } from './BestSellers/BestSellers'

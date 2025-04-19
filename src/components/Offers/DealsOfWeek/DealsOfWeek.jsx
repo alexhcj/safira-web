@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { offersAPI } from '@api/offers'
+
 import { useCartContext } from '@context/CartContext'
+
 import { DealsOfWeekSlider } from '@shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Timer } from '@shared/components/UI/Timer/Timer'

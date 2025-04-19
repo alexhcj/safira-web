@@ -9,10 +9,10 @@ import { ButtonCart } from '../Buttons/ButtonCart/ButtonCart'
 import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
 import { Text } from '../Text/Text'
 
-import { ReactComponent as CartSVG } from '@assets/svg/cart.svg'
-import { ReactComponent as CompareSVG } from '@assets/svg/compare.svg'
-import { ReactComponent as HeartSVG } from '@assets/svg/heart.svg'
-import { ReactComponent as MagnifierSVG } from '@assets/svg/magnifier.svg'
+import CartSVG from '@assets/svg/cart.svg?react'
+import CompareSVG from '@assets/svg/compare.svg?react'
+import HeartSVG from '@assets/svg/heart.svg?react'
+import MagnifierSVG from '@assets/svg/magnifier.svg?react'
 
 import s from './hovermenu.module.scss'
 

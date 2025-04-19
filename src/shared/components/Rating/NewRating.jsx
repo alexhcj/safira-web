@@ -4,8 +4,8 @@ import cn from 'classnames'
 
 import { generateID } from '@utils/IdGenerator'
 
-import { ReactComponent as StarFilled } from '@assets/svg/star-filled.svg'
-import { ReactComponent as Star } from '@assets/svg/star.svg'
+import StarFilled from '@assets/svg/star-filled.svg?react'
+import Star from '@assets/svg/star.svg?react'
 
 import s from './rating.module.scss'
 

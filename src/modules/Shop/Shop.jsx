@@ -1,5 +1,7 @@
 import { GridProvider } from '@context/GridContext'
+
 import { useProducts } from '@hooks/services/useProducts'
+
 import { Pagination } from '@shared/components/Pagination/Pagination'
 
 import { ShopList } from './ShopList/ShopList'

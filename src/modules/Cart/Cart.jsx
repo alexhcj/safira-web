@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 
 import { useCartContext } from '@context/CartContext'
+
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
+
 import { calculateTotalPrice } from '@utils/index'
 
 import { CartItem } from './CartItem'

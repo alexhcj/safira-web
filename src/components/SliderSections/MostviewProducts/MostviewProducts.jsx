@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { productsAPI } from '@api/products'
+
 import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
 
 import { ProductCard } from '../../ProductCard/ProductCard'

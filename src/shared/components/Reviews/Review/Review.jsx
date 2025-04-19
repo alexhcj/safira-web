@@ -14,7 +14,7 @@ export const Review = ({
 		rating,
 	},
 }) => {
-	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
 	return (
 		<div className={s.review}>

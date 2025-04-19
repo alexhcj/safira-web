@@ -3,7 +3,9 @@ import { useState } from 'react'
 import cn from 'classnames'
 
 import { useAuthContext } from '@context/AuthContext'
+
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
+
 import { ImageWithFallback } from '@utils/ImageWithFallback'
 import { capitalizeFirstLetter, convertISODate } from '@utils/index'
 
@@ -24,7 +26,7 @@ export const Comment = ({
 }) => {
 	const { user } = useAuthContext()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
-	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
 	return (
 		<div className={s.wrapper} style={{ paddingLeft: 50 }}>

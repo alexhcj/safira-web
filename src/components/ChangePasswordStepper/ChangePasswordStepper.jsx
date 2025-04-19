@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 
 import { verificationsAPI } from '@api/verifications'
+
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Stepper } from '@shared/components/UI/Stepper/Stepper'
 
@@ -11,11 +13,11 @@ import { ChangePasswordStepperFormEmail } from '../../Forms/ChangePasswordSteppe
 import { ChangePasswordStepperFormPasswords } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormPasswords'
 import { StepperFinish } from '../StepperFinish/StepperFinish'
 
-import { ReactComponent as CodeSVG } from '@assets/svg/code.svg'
-import { ReactComponent as EmailLinkSVG } from '@assets/svg/email-link.svg'
-import { ReactComponent as EmailSVG } from '@assets/svg/email.svg'
-import { ReactComponent as ChangeEmailStepperSVG } from '@assets/svg/illustrations/change-email-stepper.svg'
-import { ReactComponent as PasswordSVG } from '@assets/svg/password.svg'
+import CodeSVG from '@assets/svg/code.svg?react'
+import EmailLinkSVG from '@assets/svg/email-link.svg?react'
+import EmailSVG from '@assets/svg/email.svg?react'
+import ChangeEmailStepperSVG from '@assets/svg/illustrations/change-email-stepper.svg?react'
+import PasswordSVG from '@assets/svg/password.svg?react'
 
 import s from './change-password-stepper.module.scss'
 

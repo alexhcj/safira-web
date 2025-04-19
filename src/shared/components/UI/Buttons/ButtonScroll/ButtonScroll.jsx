@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import { Link, animateScroll as scroll } from 'react-scroll'
 
-import { ReactComponent as DoubleArrowSVG } from '@assets/svg/double-arrow.svg'
+import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
+
 
 import s from './button-scroll.module.scss'
 
