@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { filesAPI } from '@api/files'
 import { profilesAPI } from '@api/profiles'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { compareObjectsShallow, convertISODate } from '@utils/index'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
+import { shallowEqual, convertISODate } from '@utils/index'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -118,7 +119,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 			location: form.location,
 		}
 
-		return compareObjectsShallow(profileOrigin, formData)
+		return shallowEqual(profileOrigin, formData)
 	}
 
 	const handleSubmit = async (e) => {

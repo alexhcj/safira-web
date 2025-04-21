@@ -1,10 +1,9 @@
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
-
-import { ImageWithFallback } from '@utils/ImageWithFallback'
 
 import CartSVG from '@assets/svg/cart.svg?react'
 import PreloaderSVG from '@assets/svg/preloader.svg?react'

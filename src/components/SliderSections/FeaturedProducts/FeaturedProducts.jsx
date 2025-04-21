@@ -4,7 +4,7 @@ import { productsAPI } from '@api/products'
 
 import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
 
-import { convertArray } from '@utils/index'
+import { to2DArray } from '@utils/array'
 
 import { ProductCard } from '../../ProductCard/ProductCard'
 
@@ -31,7 +31,7 @@ export const FeaturedProducts = () => {
 		fetchData()
 	}, [])
 
-	const items = convertArray(featuredProducts, 3).map((col, index) => {
+	const items = to2DArray(featuredProducts, 3).map((col, index) => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {

@@ -10,6 +10,7 @@ import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
 import { NewReview } from '@shared/components/Reviews/NewReview/NewReview'
@@ -23,8 +24,7 @@ import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { slugToString } from '@utils/index'
+import { slugToStr } from '@utils/string'
 
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
 
@@ -147,7 +147,7 @@ export const ProductDetails = () => {
 						</Text>
 						<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
 							<Text className={s.tag} span>
-								{basicCategory && slugToString(basicCategory)}
+								{basicCategory && slugToStr(basicCategory)}
 							</Text>
 						</NavLink>
 					</div>

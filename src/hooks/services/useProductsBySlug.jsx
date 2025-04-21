@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { productsAPI } from '@api/products'
 
-import { stringToSlug } from '@utils/index'
+import { strToSlug } from '@utils/string'
 
 export const useProductsBySlug = (name, selected = false) => {
 	const [loading, setLoading] = useState(true)
@@ -14,7 +14,7 @@ export const useProductsBySlug = (name, selected = false) => {
 
 		const fetchData = async () => {
 			try {
-				const res = await productsAPI.getAllBySlug(stringToSlug(name)) // { products }
+				const res = await productsAPI.getAllBySlug(strToSlug(name)) // { products }
 				setData(res.products)
 			} catch (err) {
 				setError(err)

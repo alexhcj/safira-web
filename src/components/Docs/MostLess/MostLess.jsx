@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { productsAPI } from '@api/products'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { convertArray } from '@utils/index'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
+import { to2DArray } from '@utils/array'
 
 import s from './most-less.module.scss'
 
@@ -54,7 +55,7 @@ export const MostLess = () => {
 				)
 
 				let res = await Promise.all([promises])
-				setMostLess(convertArray(res[0], 2))
+				setMostLess(to2DArray(res[0], 2))
 			} catch (e) {
 				console.log(e)
 			}

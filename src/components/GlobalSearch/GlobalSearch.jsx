@@ -9,7 +9,7 @@ import { useRandomProduct } from '@hooks/services/useRandomProduct'
 import { GlobalSearchForm } from '@shared/components/Form/GlobalSearchForm/GlobalSearchForm'
 import { SearchPopover } from '@shared/components/UI/SearchPopover/SearchPopover'
 
-import { stringToSlug } from '@utils/index'
+import { strToSlug } from '@utils/string'
 
 import s from './global-search.module.scss'
 
@@ -50,7 +50,7 @@ export const GlobalSearch = () => {
 		if (state.search === '') return
 
 		addToSearch(state.search)
-		const data = await searchAPI.globalSearch({ search: stringToSlug(state.search) })
+		const data = await searchAPI.globalSearch({ search: strToSlug(state.search) })
 		setSearch(data)
 		setIsSearched(true)
 	}

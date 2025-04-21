@@ -4,12 +4,12 @@ import { useCartContext } from '@context/CartContext'
 import { useProductModalContext } from '@context/ProductContext'
 
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Modal } from '@shared/components/Modal/Modal'
 import { Price } from '@shared/components/Price/Price'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { slugToString } from '@utils/index'
+import { slugToStr } from '@utils/string'
 
 import s from './product-quick-view.module.scss'
 
@@ -51,7 +51,7 @@ export const ProductQuickView = () => {
 							</Text>
 							<button type='button' onClick={onClickHandler}>
 								<Text className={s.tag} span>
-									{basicCategory && slugToString(basicCategory)}
+									{basicCategory && slugToStr(basicCategory)}
 								</Text>
 							</button>
 						</div>

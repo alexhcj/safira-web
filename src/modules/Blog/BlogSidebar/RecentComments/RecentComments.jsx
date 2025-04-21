@@ -4,9 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 import { commentsAPI } from '@api/comments'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
-
-import { ImageWithFallback } from '@utils/ImageWithFallback'
 
 import s from './recent-comments.module.scss'
 

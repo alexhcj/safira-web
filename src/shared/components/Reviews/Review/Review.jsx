@@ -1,5 +1,6 @@
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { convertISODate } from '@utils/index'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
+import { convertISODate } from '@utils/date'
 
 import { Rating } from '../../Rating/Rating'
 import { Text } from '../../UI/Text/Text'

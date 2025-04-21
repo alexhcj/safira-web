@@ -3,6 +3,7 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
 import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
@@ -10,8 +11,7 @@ import { ButtonPopup } from '@shared/components/UI/Buttons/ButtonPopup/ButtonPop
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { slugToString } from '@utils/index'
+import { slugToStr } from '@utils/string'
 
 import HeartSVG from '@assets/svg/heart.svg?react'
 import TrashSVG from '@assets/svg/trash.svg?react'
@@ -86,7 +86,7 @@ export const CompareItem = ({
 						onClick={handleSubCategoryClick}
 						className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 					>
-						{slugToString(subCategory)}
+						{slugToStr(subCategory)}
 					</button>
 					{tags && (
 						<>

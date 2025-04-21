@@ -3,13 +3,13 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Hovermenu } from '@shared/components/UI/Hovermenu/Hovermenu'
 import { Tags } from '@shared/components/UI/Tags/Tags'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { slugToString } from '@utils/index'
+import { slugToStr } from '@utils/string'
 
 import s from './productcard.module.scss'
 
@@ -70,7 +70,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 							onClick={handleSubCategoryClick}
 							className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 						>
-							{slugToString(subCategory)}
+							{slugToStr(subCategory)}
 						</button>
 						{tags && (
 							<>

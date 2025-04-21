@@ -1,10 +1,10 @@
 import cn from 'classnames'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { ButtonMore } from '@shared/components/UI/Buttons/ButtonMore/ButtonMore'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { convertISODate } from '@utils/index'
+import { convertISODate } from '@utils/date'
 
 import s from './post-card.module.scss'
 

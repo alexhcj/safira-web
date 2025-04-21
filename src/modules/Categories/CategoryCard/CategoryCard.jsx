@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 
 import s from './category-card.module.scss'
 

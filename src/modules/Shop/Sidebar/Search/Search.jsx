@@ -11,7 +11,7 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ErrorPopover } from '@shared/components/UI/ErrorPopup/ErrorPopover'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { slugToString, stringToSlug } from '@utils/index'
+import { slugToStr, strToSlug } from '@utils/string'
 
 import Close from '@assets/svg/close.svg?react'
 
@@ -20,7 +20,7 @@ import s from './search.module.scss'
 export const Search = () => {
 	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
-	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToString(params.get('slug'))) || '')
+	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToStr(params.get('slug'))) || '')
 	const [isProductSelected, setIsProductSelected] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
 	const [inputFocused, setInputFocused] = useState(false)
@@ -51,7 +51,7 @@ export const Search = () => {
 					setPopoverToggle(false)
 					let query = Object.fromEntries([...params])
 					if (query.offset !== 0) query.offset = '0'
-					setParams({ ...query, slug: stringToSlug(search) })
+					setParams({ ...query, slug: strToSlug(search) })
 					setIsProductSelected(true)
 					setCurrentSearch(search)
 				}
@@ -107,7 +107,7 @@ export const Search = () => {
 
 		let query = Object.fromEntries([...params])
 		if (query.offset !== 0) query.offset = '0'
-		setParams({ ...query, slug: stringToSlug(search) })
+		setParams({ ...query, slug: strToSlug(search) })
 		setCurrentSearch(search)
 		setIsProductSelected(true)
 		setSearch('')

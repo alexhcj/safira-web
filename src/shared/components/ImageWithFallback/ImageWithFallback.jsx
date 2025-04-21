@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { getSizedImgUrl } from '.'
+import { getSizedImgUrl } from '@utils/ui'
 
 export function ImageWithFallback({ src, fallback, className, alt, imgSize, onlySrc }) {
 	const [imgSrc, setImgSrc] = useState(getSizedImgUrl(src, imgSize))

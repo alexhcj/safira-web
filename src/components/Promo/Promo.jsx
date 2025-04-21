@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useBannerOffer } from '@hooks/services/useBannerOffer'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { enumToCamelCase, enumToCapitalizedString, enumToDashString } from '@utils/index'
+import { enumToCamelCase, enumToStr, titleCase, enumToDashStr } from '@utils/string'
 
 import s from './promo.module.scss'
 
@@ -20,11 +20,11 @@ export const Promo = () => {
 
 		const { page, categoryType, categoryValue } = offer.link
 
-		const query = `${enumToCamelCase(categoryType)}=${enumToDashString(categoryValue)}&${
+		const query = `${enumToCamelCase(categoryType)}=${enumToDashStr(categoryValue)}&${
 			import.meta.env.VITE_SHOP_DEFAULT_QUERY
 		}`
 		navigate(`/${page}?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${enumToCapitalizedString(categoryValue)}` }),
+			state: JSON.stringify({ [enumToCamelCase(categoryType)]: `${titleCase(enumToStr(categoryValue))}` }),
 		})
 	}
 

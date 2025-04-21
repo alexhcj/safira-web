@@ -4,10 +4,10 @@ import cn from 'classnames'
 
 import { useAuthContext } from '@context/AuthContext'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { capitalizeFirstLetter, convertISODate } from '@utils/index'
+import { capitalize, convertISODate } from '@utils/index'
 
 import { Reply } from '../../Reply/Reply'
 
@@ -41,10 +41,8 @@ export const Comment = ({
 				<div className={s.box}>
 					<div>
 						<h5 className={s.author}>{firstName}</h5>
-						<span className={s.date}>
-							{capitalizeFirstLetter(convertISODate(createdAt, 'full-time').toLowerCase())}
-						</span>
-						<p className={s.text}>{capitalizeFirstLetter(text)}</p>
+						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
+						<p className={s.text}>{capitalize(text)}</p>
 					</div>
 					{/* TODO: add scroll on click to login/register user actions if !user */}
 					<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>

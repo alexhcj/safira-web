@@ -4,7 +4,7 @@ import { productsAPI } from '@api/products'
 
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
 
-import { convertArray } from '@utils/index'
+import { to2DArray } from '@utils/array'
 
 import { ProductCard } from '../../ProductCard/ProductCard'
 
@@ -29,7 +29,7 @@ export const BestSellers = () => {
 		fetchData()
 	}, [])
 
-	const items = convertArray(bestsellers, 2).map((col, index) => {
+	const items = to2DArray(bestsellers, 2).map((col, index) => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {

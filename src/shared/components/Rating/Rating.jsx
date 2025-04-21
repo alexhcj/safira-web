@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { generateID } from '@utils/IdGenerator'
+import { generateID } from '@utils/string'
 
 import StarFilled from '@assets/svg/star-filled.svg?react'
 import Star from '@assets/svg/star.svg?react'

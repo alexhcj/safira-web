@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 
 import { postsAPI } from '@api/posts'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
 
-import { ImageWithFallback } from '@utils/ImageWithFallback'
-import { convertISODate } from '@utils/index'
+import { convertISODate } from '@utils/date'
 
 import s from './recent-posts.module.scss'
 

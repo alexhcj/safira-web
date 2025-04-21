@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
-import { shallowEqual, slugToString } from '@utils/index'
+import { shallowEqual, slugToStr } from '@utils/index'
 
 import { Space } from '../Spacing/Space'
 import { Text } from '../Text/Text'
@@ -16,7 +16,7 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 	const pagePathname = isMultyPaths
 		? pathname.split('/').filter((path) => path)[0]
 		: pathname.slice(1).replace('-', ' ')
-	const pageDetailsItem = slugToString(
+	const pageDetailsItem = slugToStr(
 		pathname
 			.split('/')
 			.filter((path) => path)
@@ -44,7 +44,7 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 					<Text span>/</Text>
 					<div onClick={() => categoryNavigate(key, value, index)}>
 						<Text className={cn(s.breadcrumb, s.link)} span>
-							{slugToString(value)}
+							{slugToStr(value)}
 						</Text>
 					</div>
 				</div>

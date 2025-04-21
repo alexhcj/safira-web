@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
 
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
-
-import { ImageWithFallback } from '@utils/ImageWithFallback'
 
 import PreloaderSVG from '@assets/svg/preloader.svg?react'
 import Trash from '@assets/svg/trash.svg?react'
-
 
 import s from './styles/cart-item.module.scss'
 
