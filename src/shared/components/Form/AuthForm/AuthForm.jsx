@@ -7,7 +7,9 @@ import { authAPI } from '@api/auth'
 
 import { useAuthContext } from '@context/AuthContext'
 
-import { useFormErrors } from '@hooks/useFormErrors'
+import { useFormValidation } from '@hooks/useFormValidation'
+
+import { matchField, maxLength, minLength, passwordStrength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -18,29 +20,23 @@ import s from './auth-form.module.scss'
 
 const authFormValidationSchema = {
 	email: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Email should be filled.' },
-		{
-			type: 'text',
-			pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,30}$/i,
-			text: 'Email should be 2-30 characters and valid.',
-		},
+		required('Email should be filled.'),
+		minLength(2, 'Email should be minimum 2 characters.'),
+		maxLength(30, 'Email should be maximum 30 characters.'),
+		pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, 'Email should be valid.'),
 	],
 	password: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Password should be filled.' },
-		{
-			type: 'text',
-			pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/,
-			text: 'Password should be 8-20 characters and valid.',
-		},
+		required('Password should be filled.'),
+		minLength(8, 'Password should be at least 8 characters.'),
+		maxLength(20, 'Password should be maximum 20 characters.'),
+		pattern(
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]+$/,
+			'Password should contain uppercase, lowercase, number and special character.',
+		),
+		passwordStrength(),
 	],
-	confirmPassword: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Password should be filled.' },
-		{
-			type: 'text',
-			text: 'Password should be identic.',
-		},
-	],
-	isPrivacyConfirmed: [{ type: 'required', pattern: true, text: 'Terms and policies should be confirmed.' }],
+	confirmPassword: [required('Password should be filled.'), matchField('password', 'Password should be identical.')],
+	isPrivacyConfirmed: [required('Terms and policies should be confirmed.')],
 }
 
 export const AuthForm = ({ type }) => {
@@ -55,7 +51,7 @@ export const AuthForm = ({ type }) => {
 		...(type === 'register' && { confirmPassword: '', isPrivacyConfirmed: false }),
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors } = useFormErrors(form, authFormValidationSchema)
+	const { errors, isErrors } = useFormValidation(form, authFormValidationSchema)
 
 	useEffect(() => {
 		if (user !== null) navigate('/')
@@ -64,7 +60,7 @@ export const AuthForm = ({ type }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (Object.keys(errors).length === 0) {
+		if (!isErrors) {
 			const formData = {
 				email: form.email,
 				password: form.password,

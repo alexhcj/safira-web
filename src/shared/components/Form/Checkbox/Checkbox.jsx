@@ -55,7 +55,7 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 					{children}
 				</>
 			)}
-			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
+			<ErrorPopover error={isError && error} className={s.error_popover} />
 		</div>
 	)
 }

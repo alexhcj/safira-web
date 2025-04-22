@@ -23,6 +23,10 @@
 		color: $color-warning;
 		border: 1px solid $color-warning;
 	}
+
+	&:hover {
+		z-index: $z-index200;
+	}
 }
 
 .animateEnter {
