@@ -7,7 +7,7 @@ import { Input } from '@shared/components/Form/Input/Input'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { hideEmailPartial } from '@utils/index'
+import { hideEmailPartial } from '@utils/string'
 
 import s from './change-email-stepper-form.module.scss'
 

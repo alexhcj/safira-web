@@ -1,4 +1,4 @@
-import { imgSizeTypes } from '@utils/index'
+import { imgSizeTypes } from '@utils/ui'
 
 import s from './img-sizes.module.scss'
 

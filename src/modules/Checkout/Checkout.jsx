@@ -12,7 +12,7 @@ import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { calculateTotalPrice } from '@utils/index'
+import { calculateTotalPrice } from '@utils/number'
 
 import AmericanExpress from '@assets/images/american-express.png'
 import Maestro from '@assets/images/maestro.png'

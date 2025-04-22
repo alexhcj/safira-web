@@ -7,7 +7,7 @@ import { productsAPI } from '@api/products'
 
 import { CheckboxFilter } from '@shared/components/UI/Checkbox/CheckboxFilter'
 
-import { brandToSlug } from '@utils/index'
+import { brandToSlug } from '@utils/string'
 
 import s from './brand-filter.module.scss'
 
@@ -37,11 +37,11 @@ export const BrandFilter = () => {
 		const newBrands = !query.brand
 			? brand
 			: !query.brand.split('+').includes(brand)
-			? `${query.brand}+${brand}`
-			: query.brand
-					.split('+')
-					.filter((b) => b !== brand)
-					.join('+')
+				? `${query.brand}+${brand}`
+				: query.brand
+						.split('+')
+						.filter((b) => b !== brand)
+						.join('+')
 
 		if (newBrands) {
 			setParams({ ...query, offset: '0', brand: newBrands })

@@ -7,7 +7,7 @@ import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { calculateTotalPrice } from '@utils/index'
+import { calculateTotalPrice } from '@utils/number'
 
 import { CartItem } from './CartItem'
 

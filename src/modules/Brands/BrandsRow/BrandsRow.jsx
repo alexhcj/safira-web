@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-import { brandToSlug } from '@utils/index'
+import { brandToSlug } from '@utils/string'
 
 import s from './brands-row.module.scss'
 

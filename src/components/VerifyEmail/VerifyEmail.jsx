@@ -14,7 +14,7 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 import { VERIFY_EMAIL } from '@shared/types/api-types'
 
-import { hideEmailPartial } from '@utils/index'
+import { hideEmailPartial } from '@utils/string'
 
 import { ResendCode } from './ResendCode/ResendCode'
 
