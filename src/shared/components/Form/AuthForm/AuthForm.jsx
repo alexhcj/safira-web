@@ -9,6 +9,8 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { PasswordStrength } from '@shared/components/PasswordStrength/PasswordStrength'
+
 import { matchField, maxLength, minLength, passwordStrength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
@@ -39,6 +41,12 @@ const authFormValidationSchema = {
 	isPrivacyConfirmed: [required('Terms and policies should be confirmed.')],
 }
 
+/**
+ * Auth form component. Used for register and login.
+ * @param {string} type - type of auth form (register or login)
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const AuthForm = ({ type }) => {
 	const { user } = useAuthContext()
 	const [authError, setAuthError] = useState(null)
@@ -112,20 +120,25 @@ export const AuthForm = ({ type }) => {
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
-						error={errors['email']}
+						error={type === 'register' && errors['email']}
 						required
 					/>
-					<Input
-						className={s.input}
-						key='password'
-						id='password'
-						type='password'
-						value={form['password']}
-						label='Password'
-						handleChange={handleChange('password')}
-						error={errors['password']}
-						required
-					/>
+					<div className={s.input_box}>
+						{type === 'register' && (
+							<PasswordStrength value={form['password']} isActive={isErrors} classNames={s.password_strength} />
+						)}
+						<Input
+							className={s.input}
+							key='password'
+							id='password'
+							type='password'
+							value={form['password']}
+							label='Password'
+							handleChange={handleChange('password')}
+							error={type === 'register' && errors['password']}
+							required
+						/>
+					</div>
 					{type === 'register' && (
 						<>
 							<Input
@@ -136,7 +149,7 @@ export const AuthForm = ({ type }) => {
 								value={form['confirmPassword']}
 								label='Confirm password'
 								handleChange={handleChange('confirmPassword')}
-								error={errors['confirmPassword']}
+								error={type === 'register' && errors['confirmPassword']}
 								required
 							/>
 							<Checkbox
@@ -145,7 +158,7 @@ export const AuthForm = ({ type }) => {
 								checked={form['isPrivacyConfirmed']}
 								label='Confirm privacy'
 								handleChange={() => handleCheckboxChange('isPrivacyConfirmed')}
-								error={errors['isPrivacyConfirmed']}
+								error={type === 'register' && errors['isPrivacyConfirmed']}
 								required
 							>
 								<div className='terms'>

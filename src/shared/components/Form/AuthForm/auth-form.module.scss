@@ -31,6 +31,14 @@
 	border-radius: 5px;
 }
 
+.input_box {
+	position: relative;
+}
+
+.password_strength {
+	margin-top: 24px;
+}
+
 .input {
 	& > label {
 		margin-bottom: 12px;
@@ -46,10 +54,6 @@
 		right: -20px;
 		margin-top: 24px;
 		min-height: 40px;
-	}
-
-	& > div {
-		margin-top: 24px;
 	}
 }
 

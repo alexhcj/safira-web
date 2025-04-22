@@ -2,8 +2,6 @@ import { useCallback, useMemo, useState } from 'react'
 
 import cn from 'classnames'
 
-import { PasswordStrength } from '@shared/components/PasswordStrength/PasswordStrength'
-
 import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
 
 import EyeClosedSVG from '@assets/svg/eye-closed.svg?react'
@@ -67,7 +65,6 @@ export const Input = ({
 			{/* TODO: add error variant. On mobile should be text under field. */}
 			{/*{isError && <span>{error}</span>}*/}
 			<ErrorPopover error={isError && error} />
-			{id === 'password' && <PasswordStrength value={value} isActive={isError || isFocused} />}
 		</div>
 	)
 }
