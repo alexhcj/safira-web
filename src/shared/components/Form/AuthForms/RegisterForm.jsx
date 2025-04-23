@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import cn from 'classnames'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { authAPI } from '@api/auth'
-
-import { useAuthContext } from '@context/AuthContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
@@ -20,7 +18,7 @@ import { Input } from '../Input/Input'
 
 import s from './auth-form.module.scss'
 
-const authFormValidationSchema = {
+const registerFormValidationSchema = {
 	email: [
 		required('Email should be filled.'),
 		minLength(2, 'Email should be minimum 2 characters.'),
@@ -42,52 +40,49 @@ const authFormValidationSchema = {
 }
 
 /**
- * Auth form component. Used for register and login.
- * @param {string} type - type of auth form (register or login)
+ * Register form component
  * @returns {JSX.Element}
  * @constructor
  */
-export const AuthForm = ({ type }) => {
-	const { user } = useAuthContext()
+export const RegisterForm = () => {
 	const [authError, setAuthError] = useState(null)
-	const { login } = useAuthContext()
 	const navigate = useNavigate()
-	const location = useLocation()
 	const initialFormState = {
 		email: '',
 		password: '',
-		...(type === 'register' && { confirmPassword: '', isPrivacyConfirmed: false }),
+		confirmPassword: '',
+		isPrivacyConfirmed: false,
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isErrors } = useFormValidation(form, authFormValidationSchema)
-
-	useEffect(() => {
-		if (user !== null) navigate('/')
-	}, [])
+	const { errors, isValid, markFieldAsDirty, isFieldDirty, markAllFieldsDirty } = useFormValidation(
+		form,
+		registerFormValidationSchema,
+		{
+			validateOnlyDirty: true, // Only validate fields the user has touched
+		},
+	)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!isErrors) {
+		markAllFieldsDirty()
+
+		if (isValid()) {
 			const formData = {
 				email: form.email,
 				password: form.password,
-				...(type === 'register' && { isPrivacyConfirmed: form.isPrivacyConfirmed }),
+				isPrivacyConfirmed: form.isPrivacyConfirmed,
 			}
 
-			const user = type === 'register' ? await authAPI.register(formData) : await authAPI.login(formData)
+			const res = await authAPI.register(formData)
+			// TODO: handle res ok | error
 
-			if (user && user.id && user.accessToken) {
-				login(user)
-				type === 'register'
-					? setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
-					: setForm({ email: '', password: '' })
-				location.state?.from
-					? navigate(`${location.state?.from}`)
-					: navigate('/verify-email', { state: { email: form.email } })
-			} else {
-				setAuthError(user)
+			if (res.statusCode === 404) {
+				console.log('Error')
 			}
+
+			setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
+			navigate('/verify-email', { state: { email: form.email } })
 		}
 	}
 
@@ -98,6 +93,9 @@ export const AuthForm = ({ type }) => {
 			...form,
 			[field]: e.target.value,
 		})
+
+		// Mark field as dirty when user changes it
+		markFieldAsDirty(field)
 	}
 
 	const handleCheckboxChange = (field) => {
@@ -105,12 +103,20 @@ export const AuthForm = ({ type }) => {
 			...form,
 			[field]: !form.isPrivacyConfirmed,
 		})
+
+		// Mark checkbox as dirty when user clicks it
+		markFieldAsDirty(field)
+	}
+
+	// Show error only if field is dirty
+	const getFieldError = (field) => {
+		return isFieldDirty(field) ? errors[field] : null
 	}
 
 	return (
 		<div className={s.wrapper}>
 			<div className={s.box}>
-				<h2 className={s.title}>{type}</h2>
+				<h2 className={s.title}>Register</h2>
 				<form className={s.form} onSubmit={handleSubmit}>
 					<Input
 						className={s.input}
@@ -120,13 +126,15 @@ export const AuthForm = ({ type }) => {
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
-						error={type === 'register' && errors['email']}
+						error={getFieldError('email')}
 						required
 					/>
 					<div className={s.input_box}>
-						{type === 'register' && (
-							<PasswordStrength value={form['password']} isActive={isErrors} classNames={s.password_strength} />
-						)}
+						<PasswordStrength
+							classNames={s.password_strength}
+							value={form['password']}
+							isActive={isFieldDirty('password')}
+						/>
 						<Input
 							className={s.input}
 							key='password'
@@ -135,51 +143,47 @@ export const AuthForm = ({ type }) => {
 							value={form['password']}
 							label='Password'
 							handleChange={handleChange('password')}
-							error={type === 'register' && errors['password']}
+							error={getFieldError('password')}
 							required
 						/>
 					</div>
-					{type === 'register' && (
-						<>
-							<Input
-								className={s.input}
-								key='confirmPassword'
-								id='confirmPassword'
-								type='password'
-								value={form['confirmPassword']}
-								label='Confirm password'
-								handleChange={handleChange('confirmPassword')}
-								error={type === 'register' && errors['confirmPassword']}
-								required
-							/>
-							<Checkbox
-								key='checkbox'
-								type='terms'
-								checked={form['isPrivacyConfirmed']}
-								label='Confirm privacy'
-								handleChange={() => handleCheckboxChange('isPrivacyConfirmed')}
-								error={type === 'register' && errors['isPrivacyConfirmed']}
-								required
-							>
-								<div className='terms'>
-									I agree to the{' '}
-									<Link className='terms-link' to='/'>
-										Terms of Use
-									</Link>{' '}
-									and{' '}
-									<Link className='terms-link' to='/'>
-										Privacy Policy
-									</Link>
-									.
-								</div>
-							</Checkbox>
-						</>
-					)}
+					<Input
+						className={s.input}
+						key='confirmPassword'
+						id='confirmPassword'
+						type='password'
+						value={form['confirmPassword']}
+						label='Confirm password'
+						handleChange={handleChange('confirmPassword')}
+						error={getFieldError('confirmPassword')}
+						required
+					/>
+					<Checkbox
+						key='checkbox'
+						type='terms'
+						checked={form['isPrivacyConfirmed']}
+						label='Confirm privacy'
+						handleChange={() => handleCheckboxChange('isPrivacyConfirmed')}
+						error={getFieldError('isPrivacyConfirmed')}
+						required
+					>
+						<div className='terms'>
+							I agree to the{' '}
+							<Link className='terms-link' to='/'>
+								Terms of Use
+							</Link>{' '}
+							and{' '}
+							<Link className='terms-link' to='/'>
+								Privacy Policy
+							</Link>
+							.
+						</div>
+					</Checkbox>
 					<div className={s.form_actions}>
 						{authError && <span className={cn(s.auth_error, authError && s.active)}>{authError.message}</span>}
 						<Button htmlType='submit' type='auth' className={s.btn_auth}>
 							<Text span color='white' className={s.btn_auth_text}>
-								{type}
+								Register
 							</Text>
 						</Button>
 					</div>

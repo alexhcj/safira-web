@@ -53,6 +53,10 @@
 		border-color: $color-primary;
 	}
 
+	&:focus {
+		border-color: $color-primary;
+	}
+
 	&.active {
 		border-color: $color-primary;
 
