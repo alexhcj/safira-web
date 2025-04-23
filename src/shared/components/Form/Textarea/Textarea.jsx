@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 
 import cn from 'classnames'
 
-import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 
 import s from './textarea.module.scss'
 

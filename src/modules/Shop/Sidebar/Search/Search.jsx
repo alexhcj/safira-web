@@ -8,7 +8,7 @@ import { useDebounce } from '@hooks/useDebounce'
 import { useSearchError } from '@hooks/useSearchError'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { ErrorPopover } from '@shared/components/UI/ErrorPopup/ErrorPopover'
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { slugToStr, strToSlug } from '@utils/string'
