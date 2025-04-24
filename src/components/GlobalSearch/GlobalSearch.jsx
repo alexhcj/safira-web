@@ -33,12 +33,14 @@ export const GlobalSearch = () => {
 	const outsideClickHandler = (e) => {
 		if (searchRef.current && !searchRef.current.contains(e.target)) {
 			setIsPopoverToggled(false)
+			// setIsSearched(false)
 		}
 	}
 
 	const handleSearchClick = (e) => {
 		if (e.currentTarget.dataset.link) {
 			setIsPopoverToggled(false)
+			// setIsSearched(false)
 		}
 	}
 
@@ -59,6 +61,7 @@ export const GlobalSearch = () => {
 		switch (e.key) {
 			case 'Escape':
 				setIsPopoverToggled(false)
+				// setIsSearched(false)
 				break
 			default:
 				return
