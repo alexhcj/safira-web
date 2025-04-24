@@ -1,8 +1,12 @@
-import { useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
-import { required, pattern, minLength, maxLength } from '@utils/validation/form'
+import { useFormValidation } from '@hooks/useFormValidation'
+
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
+
+import { maxLength, minLength, pattern, required } from '@utils/validation'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 
@@ -13,7 +17,7 @@ const globalSearchFormValidationSchema = {
 		required('Search field should not be empty.'),
 		minLength(2, 'Search should be at least 2 characters.'),
 		maxLength(100, 'Search cannot exceed 100 characters.'),
-		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/g, 'Search can only contain letters, numbers, spaces and basic punctuation.'),
+		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/, 'Search can only contain letters, numbers, spaces and basic punctuation.'),
 		pattern(/^(?!\s*$).+/, 'Search cannot contain only whitespace.'),
 	],
 }
@@ -21,6 +25,36 @@ const globalSearchFormValidationSchema = {
 export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 	const { state, addCurrentSearch } = useRecentSearchContext()
 	const inputRef = useRef(null)
+	const searchRef = useRef(null)
+	const { isValid, getFieldError, resetForm } = useFormValidation(
+		{ search: state.search },
+		globalSearchFormValidationSchema,
+		{
+			validateOnChange: false,
+		},
+	)
+
+	useEffect(() => {
+		document.addEventListener('keydown', escKeyHandler)
+		document.addEventListener('click', clickOutsideHandler)
+
+		return () => {
+			document.removeEventListener('keydown', escKeyHandler)
+			document.removeEventListener('click', clickOutsideHandler)
+		}
+	}, [])
+
+	const escKeyHandler = (e) => {
+		if (e.key === 'Escape') {
+			!isValid() && resetForm()
+		}
+	}
+
+	const clickOutsideHandler = (e) => {
+		if (searchRef.current && !searchRef.current.contains(e.target)) {
+			!isValid() && resetForm()
+		}
+	}
 
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
@@ -37,19 +71,25 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 		}
 	}
 
+	const handleFocus = useCallback(() => {
+		!isValid() && resetForm()
+	}, [isValid, resetForm])
+
 	const handleChange = (e) => {
+		!isValid() && resetForm()
 		addCurrentSearch({ search: e.target.value, lastSearch: e.target.value })
 	}
 
 	const handleSearchSubmit = () => {
+		if (!isValid()) return
 		handleSubmit(state)
-		addCurrentSearch({ search: '', lastSearch: state.search })
+		addCurrentSearch({ search: '', lastSearch: state.search.trim() })
 	}
 
 	// TODO: fix UI usage: when click near top border of input => cursor points to start of input "|apple". Better would be to the end.
 	return (
-		<form>
-			<div className={s.input}>
+		<div className={s.search} ref={searchRef}>
+			<form>
 				<input
 					ref={inputRef}
 					type='text'
@@ -57,12 +97,14 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 					placeholder='Search here...'
 					onKeyDown={onKeyDownHandler}
 					onChange={handleChange}
+					onFocus={handleFocus}
 					onClick={handleInputClick}
 					autoComplete='off'
 					value={state.search}
 				/>
 				<Button type='search' onClick={handleSearchSubmit} />
-			</div>
-		</form>
+			</form>
+			<ErrorPopover error={!isValid(false) && getFieldError('search')} />
+		</div>
 	)
 }

@@ -51,8 +51,8 @@ export const GlobalSearch = () => {
 	const handleSubmit = async (state) => {
 		if (state.search === '') return
 
-		addToSearch(state.search)
-		const data = await searchAPI.globalSearch({ search: strToSlug(state.search) })
+		addToSearch(state.search.trim())
+		const data = await searchAPI.globalSearch({ search: strToSlug(state.search.trim()) })
 		setSearch(data)
 		setIsSearched(true)
 	}
