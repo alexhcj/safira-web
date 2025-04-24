@@ -28,6 +28,19 @@ const radioData = [
 	{ id: 'pickup', name: 'delivery', label: 'Pick-up service' },
 ]
 
+// address: [
+// 	required('Address should be filled.'),
+// 	minLength(5, 'Address should be minimum 5 characters.'),
+// 	maxLength(100, 'Address should be maximum 100 characters.'),
+// ]
+
+// phoneNumber: [
+// 	required('Phone number should be filled.'),
+// 	minLength(10, 'Phone number should be minimum 10 digits.'),
+// 	maxLength(15, 'Phone number should be maximum 15 digits.'),
+// 	pattern(/^\+?[0-9\s()-]+$/, 'Phone number should contain only digits, spaces, parentheses and hyphens.'),
+// ]
+
 export const Checkout = () => {
 	const [cart, setCart] = useLocalStorage('cart', [])
 	const [firstName, setFirstName] = useState('')
