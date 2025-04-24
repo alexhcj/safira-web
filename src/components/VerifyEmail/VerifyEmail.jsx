@@ -39,8 +39,8 @@ export const VerifyEmail = () => {
 	}
 	const [form, setForm] = useState(initialFormState)
 	const [isLoading, setIsLoading] = useState(false)
-	const [formError, setFormError] = useState(null)
-	const { errors, isValid } = useFormValidation(form, verifyEmailFormValidationSchema)
+	// const [formError, setFormError] = useState(null)
+	const { isValid, getFieldError, resetForm } = useFormValidation(form, verifyEmailFormValidationSchema)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -56,8 +56,8 @@ export const VerifyEmail = () => {
 
 			if (verifyEmail.statusCode !== 200) {
 				setIsLoading(false)
-				setFormError(true)
-				handleErrors('code', verifyEmail)
+				// setFormError(true)
+				// handleErrors('code', verifyEmail)
 
 				return
 			}
@@ -66,14 +66,15 @@ export const VerifyEmail = () => {
 	}
 
 	const handleChange = (e) => {
-		if (formError) setFormError(false)
+		!isValid() && resetForm()
+		// if (formError) setFormError(false)
 
 		setForm({ code: e.target.value })
 	}
 
 	const handleResendCode = () => {
-		resetErrors()
-		setFormError(null)
+		resetForm()
+		// setFormError(null)
 	}
 
 	return (
@@ -116,7 +117,7 @@ export const VerifyEmail = () => {
 									id='code'
 									type='text'
 									value={form.code}
-									error={errors['code'] ?? formError}
+									error={getFieldError('code')}
 									placeholder='726482'
 									required
 								/>
