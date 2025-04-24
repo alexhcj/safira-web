@@ -2,18 +2,19 @@ import { useRef } from 'react'
 
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
+import { required, pattern, minLength, maxLength } from '@utils/validation/form'
+
 import { Button } from '../../UI/Buttons/Button/Button'
 
 import s from './global-search-form.module.scss'
 
 const globalSearchFormValidationSchema = {
 	search: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Search should be filled.' },
-		{
-			type: 'text',
-			pattern: /[a-z][A-Z][0-9][-!$%^&*()_+|~=`{}[\]:";'<>?,./]/,
-			text: 'Search should be valid',
-		},
+		required('Search field should not be empty.'),
+		minLength(2, 'Search should be at least 2 characters.'),
+		maxLength(100, 'Search cannot exceed 100 characters.'),
+		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/g, 'Search can only contain letters, numbers, spaces and basic punctuation.'),
+		pattern(/^(?!\s*$).+/, 'Search cannot contain only whitespace.'),
 	],
 }
 

@@ -6,32 +6,32 @@ import { useParams } from 'react-router-dom'
 import { useAuthContext } from '@context/AuthContext'
 
 import { useComments } from '@hooks/services/useComments'
-import { useFormErrors } from '@hooks/useFormErrors'
+import { useFormValidation } from '@hooks/useFormValidation'
+
+import { maxLength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Textarea } from '../Textarea/Textarea'
 
 import s from './reply-form.module.scss'
 
-const authFormValidationSchema = {
+const replyFormValidationSchema = {
 	textarea: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Comment should be filled.' },
-		{
-			type: 'text',
-			pattern: /^[a-zA-z0-9" "]+$/g,
-			text: 'Comment should valid.',
-		},
-		{
-			type: 'length',
-			pattern: 100,
-			text: 'Comment should be maximun 100 characters length.',
-		},
+		required('Comment should be filled.'),
+		maxLength(100, 'Comment should be maximum 100 characters length.'),
+		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/g, 'Comment should contain letters, numbers, spaces and basic punctuation.'),
 	],
 }
 
-// action: 'create' (create new entity) | 'update' (updates comments array)
-// type: 'short'
-export const ReplyForm = ({ nestedLvl, type, action }) => {
+/**
+ * Form component for creating and updating comments/replies
+ *
+ * @param {number} nestedLvl - The nesting level of the reply in comments hierarchy
+ * @param {string} type - Visual type of the form ('short' for compact version)
+ * @param {string} action - Action to perform ('create' for new comment or 'update' to modify existing comments array)
+ * @returns {JSX.Element} Reply form component
+ */
+export const ReplyForm = ({ nestedLvl = 0, type, action }) => {
 	const { slug } = useParams()
 	const { create, update } = useComments()
 	const [commentError, setCommentError] = useState(null)
@@ -40,12 +40,12 @@ export const ReplyForm = ({ nestedLvl, type, action }) => {
 		textarea: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors } = useFormErrors(form, authFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, replyFormValidationSchema)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		if (Object.keys(errors).length === 0) {
+		if (isValid()) {
 			const formData = {
 				userId: user.id,
 				text: form.textarea,

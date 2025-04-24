@@ -7,7 +7,9 @@ import { reviewsAPI } from '@api/reviews'
 
 import { useAuthContext } from '@context/AuthContext'
 
-import { useFormErrors } from '@hooks/useFormErrors'
+import { useFormValidation } from '@hooks/useFormValidation'
+
+import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { NewRating } from '../../Rating/NewRating'
 import { Button } from '../../UI/Buttons/Button/Button'
@@ -18,20 +20,11 @@ import { Textarea } from '../Textarea/Textarea'
 import s from './new-review-form.module.scss'
 
 const reviewFormValidationSchema = {
-	rating: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, text: 'Rating should be filled.' },
-		{
-			type: 'text',
-			pattern: /[1-5]/,
-			text: 'Rating should be 1-5 numbers and valid.',
-		},
-	],
+	rating: [required('Rating should be filled.'), pattern(/^[1-5]$/, 'Rating should be 1-5 numbers and valid.')],
 	review: [
-		{
-			type: 'length',
-			pattern: /^.{30,100}$/,
-			text: 'Review should be 30-100 characters and valid.',
-		},
+		minLength(30, 'Review min length should be 30 characters and valid.'),
+		maxLength(100, 'Review max length should be 100 characters and valid.'),
+		pattern(/^[\w\s.,!?'"(){}[\]-]+$/, 'Review can only contain letters, numbers, spaces and basic punctuation.'),
 	],
 }
 
@@ -44,19 +37,19 @@ export const NewReviewForm = () => {
 		review: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors } = useFormErrors(form, reviewFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, reviewFormValidationSchema)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (user && Object.keys(errors).length === 0) {
+		if (user && isValid()) {
 			const formData = {
 				rating: form.rating,
 				text: form.review,
 				reviewProductSlug: slug,
 			}
 
-			reviewsAPI.create(formData)
+			await reviewsAPI.create(formData)
 		}
 
 		setForm({ rating: '0', review: '' })

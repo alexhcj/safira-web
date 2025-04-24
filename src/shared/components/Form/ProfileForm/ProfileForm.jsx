@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { filesAPI } from '@api/files'
 import { profilesAPI } from '@api/profiles'
 
+import { useFormValidation } from '@hooks/useFormValidation'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 
-import { shallowEqual, convertISODate } from '@utils/index'
+import { shallowEqual, convertISODate, maxLength, minLength, pattern } from '@utils/index'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -16,36 +18,32 @@ import { Input } from '../Input/Input'
 
 import s from './profile-form.module.scss'
 
-// const profileFormValidationSchema = {
-// 	firstName: [
-// 		{
-// 			type: 'text',
-// 			pattern: /[a-z][A-Z]/,
-// 			text: 'First name should be valid.',
-// 		},
-// 	],
-// 	lastName: [
-// 		{
-// 			type: 'text',
-// 			pattern: /[a-z][A-Z]/,
-// 			text: 'Last name should be valid.',
-// 		},
-// 	],
-// 	dateOfBirth: [
-// 		{
-// 			type: 'text',
-// 			pattern: /[0-9]\//,
-// 			text: 'Date of birth should be valid.',
-// 		},
-// 	],
-// 	location: [
-// 		{
-// 			type: 'text',
-// 			pattern: /[a-z][A-Z]/,
-// 			text: 'Location should be valid.',
-// 		},
-// 	],
-// }
+const profileFormValidationSchema = {
+	firstName: [
+		minLength(2, 'Min first name length should be 2 characters.'),
+		maxLength(50, 'Max first name length should be 50 characters.'),
+		pattern(/^[a-zA-Z\s'-]+$/, 'First name should contain only letters, spaces, apostrophes and hyphens.'),
+	],
+	lastName: [
+		minLength(2, 'Min last name length should be 2 characters.'),
+		maxLength(50, 'Max last name length should be 50 characters.'),
+		pattern(/^[a-zA-Z\s'-]+$/, 'Last name should contain only letters, spaces, apostrophes and hyphens.\n'),
+	],
+	dateOfBirth: [
+		pattern(
+			/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}$/,
+			'Date should be in DD/MM/YYYY format and be valid.',
+		),
+	],
+	location: [
+		minLength(2, 'Min location length should be 2 characters.'),
+		maxLength(50, 'Max location length should be 50 characters.'),
+		pattern(
+			/^[A-Za-z\s\-,.']+$/,
+			'Location should contain only letters, spaces, hyphens, apostrophes, periods and commas.',
+		),
+	],
+}
 
 export const ProfileForm = ({ user, profile, loading }) => {
 	const navigate = useNavigate()
@@ -62,7 +60,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	const [isEditListShown, setIsEditListShown] = useState(false)
 	const avatarRef = useRef(null)
 	const avatarInputRef = useRef(null)
-	// const { errors } = useFormErrors(form, profileFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, profileFormValidationSchema)
 
 	useEffect(() => {
 		document.addEventListener('click', clickOutsideHandler)
@@ -128,16 +126,17 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		// prevent same data req
 		if (isFormsSame()) return
 
-		// if (Object.keys(errors).length === 0) {
-		const formData = {
-			firstName: form.firstName,
-			lastName: form.lastName,
-			dateOfBirth: new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
-			location: form.location,
-		}
+		if (isValid()) {
+			const formData = {
+				firstName: form.firstName,
+				lastName: form.lastName,
+				dateOfBirth: new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
+				location: form.location,
+			}
 
-		if (user && user.id && user.accessToken) {
-			await profilesAPI.update(formData)
+			if (user && user.id && user.accessToken) {
+				await profilesAPI.update(formData)
+			}
 		}
 	}
 
@@ -205,7 +204,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							defaultValue={form['firstName']}
 							label='First name'
 							handleChange={handleChange('firstName')}
-							// error={errors['firstName']}
+							error={errors['firstName']}
 						/>
 						<Input
 							className={s.input}
@@ -215,7 +214,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							defaultValue={form['lastName']}
 							label='Last name'
 							handleChange={handleChange('lastName')}
-							// error={errors['lastName']}
+							error={errors['lastName']}
 						/>
 						<Input
 							className={s.input}
@@ -225,7 +224,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							defaultValue={form['dateOfBirth']}
 							label='Birthday'
 							handleChange={handleChange('dateOfBirth')}
-							// error={errors['dateOfBirth']}
+							error={errors['dateOfBirth']}
 							placeholder='DD/MM/YYYY'
 						/>
 						<Input
@@ -236,7 +235,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							defaultValue={form['location']}
 							label='Location'
 							handleChange={handleChange('location')}
-							// error={errors['location']}
+							error={errors['location']}
 						/>
 						<div className={s.form_actions}>
 							{/* TODO: add udpate profile errors handle */}

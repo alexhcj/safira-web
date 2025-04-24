@@ -6,7 +6,7 @@ import { verificationsAPI } from '@api/verifications'
 
 import { useAuthContext } from '@context/AuthContext'
 
-import { useFormErrors } from '@hooks/useFormErrors'
+import { useFormValidation } from '@hooks/useFormValidation'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
@@ -15,6 +15,7 @@ import { Text } from '@shared/components/UI/Text/Text'
 import { VERIFY_EMAIL } from '@shared/types/api-types'
 
 import { hideEmailPartial } from '@utils/string'
+import { exactLength, pattern, required } from '@utils/validation/form'
 
 import { ResendCode } from './ResendCode/ResendCode'
 
@@ -24,12 +25,9 @@ import s from './verify-email.module.scss'
 
 const verifyEmailFormValidationSchema = {
 	code: [
-		{ type: 'required', pattern: /^(?!\s*$).+/, message: 'Code should be filled.' },
-		{
-			type: 'text',
-			pattern: /^[0-9]{6}$/,
-			message: 'Code could be 6 digits in 0-9 range.',
-		},
+		required('Code should be filled.'),
+		exactLength(6, 'Verification code must be exactly 6 digits.'),
+		pattern(/^\d+$/, 'Verification code should contain only digits.'),
 	],
 }
 
@@ -42,12 +40,12 @@ export const VerifyEmail = () => {
 	const [form, setForm] = useState(initialFormState)
 	const [isLoading, setIsLoading] = useState(false)
 	const [formError, setFormError] = useState(null)
-	const { errors, handleErrors, resetErrors } = useFormErrors(form, verifyEmailFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, verifyEmailFormValidationSchema)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (Object.keys(errors).length === 0) {
+		if (isValid()) {
 			const formData = {
 				code: form.code,
 			}

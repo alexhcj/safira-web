@@ -47,6 +47,17 @@ export const pattern = (regex, msg) => (value) => (regex.test(value) ? null : ms
 export const matchField = (targetField, msg) => (value, form) => (value === form?.[targetField] ? null : msg)
 
 /**
+ * Validates that a field has an exact length
+ * @param {number} length - The exact length required
+ * @param {string} message - Error message to display
+ * @returns {function} Validation function
+ */
+export const exactLength = (length, message) => (value) => {
+	if (!value) return null
+	return String(value).length === length ? null : message
+}
+
+/**
  *
  * @returns {(function(*): (string|null))|*}
  */

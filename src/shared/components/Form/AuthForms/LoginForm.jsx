@@ -9,7 +9,7 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
-import { maxLength, minLength, passwordStrength, pattern, required } from '@utils/validation/form'
+import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -18,21 +18,20 @@ import { Input } from '../Input/Input'
 import s from './auth-form.module.scss'
 
 const loginFormValidationSchema = {
+	// email: no minLength, pattern min 5 chars
 	email: [
 		required('Email should be filled.'),
-		minLength(2, 'Email should be minimum 2 characters.'),
-		maxLength(30, 'Email should be maximum 30 characters.'),
 		pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, 'Email should be valid.'),
+		maxLength(64, 'Email should be maximum 64 characters.'),
 	],
 	password: [
 		required('Password should be filled.'),
 		minLength(8, 'Password should be at least 8 characters.'),
-		maxLength(20, 'Password should be maximum 20 characters.'),
+		maxLength(64, 'Password should be maximum 64 characters.'),
 		pattern(
 			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]+$/,
 			'Password should contain uppercase, lowercase, number and special character.',
 		),
-		passwordStrength(),
 	],
 }
 

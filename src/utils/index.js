@@ -4,6 +4,7 @@ import * as number from './number/index'
 import * as object from './object/index'
 import * as string from './string/index'
 import * as ui from './ui/index'
+import * as validation from './validation/index'
 
 // Named exports for direct imports
 export * from './array'
@@ -12,6 +13,7 @@ export * from './number'
 export * from './object'
 export * from './string'
 export * from './ui'
+export * from './validation'
 
 // Namespaced exports for grouped imports
-export { date, string, number, array, object, ui }
+export { date, string, number, array, object, ui, validation }
