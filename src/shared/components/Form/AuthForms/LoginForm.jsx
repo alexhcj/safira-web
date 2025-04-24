@@ -51,7 +51,7 @@ export const LoginForm = () => {
 		password: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isErrors } = useFormValidation(form, loginFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, loginFormValidationSchema)
 
 	useEffect(() => {
 		if (user !== null) navigate('/')
@@ -60,7 +60,7 @@ export const LoginForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!isErrors()) {
+		if (!isValid()) {
 			const formData = {
 				email: form.email,
 				password: form.password,

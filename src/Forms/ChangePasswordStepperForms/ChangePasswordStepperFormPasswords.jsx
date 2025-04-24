@@ -44,7 +44,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, error, onS
 		confirmPassword: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isErrors } = useFormValidation(form, changePasswordFormValidationSchema)
+	const { errors, isValid } = useFormValidation(form, changePasswordFormValidationSchema)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -61,7 +61,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, error, onS
 	return (
 		<form className={s.form} onSubmit={handleSubmit}>
 			<div className={s.input_box}>
-				<PasswordStrength value={form['password']} isActive={isErrors()} />
+				<PasswordStrength value={form['password']} isActive={isValid()} />
 				<Input
 					className={s.input_password}
 					key='password'
@@ -87,7 +87,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, error, onS
 				error={errors['confirmPassword']}
 				required
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading || isErrors()}>
+			<Button className={s.btn} htmlType='submit' disabled={isLoading || isValid()}>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (
