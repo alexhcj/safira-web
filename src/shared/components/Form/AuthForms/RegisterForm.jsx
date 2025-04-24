@@ -9,7 +9,7 @@ import { useFormValidation } from '@hooks/useFormValidation'
 
 import { PasswordStrength } from '@shared/components/PasswordStrength/PasswordStrength'
 
-import { matchField, maxLength, minLength, passwordStrength, pattern, required } from '@utils/validation/form'
+import { matchField, maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -33,7 +33,6 @@ const registerFormValidationSchema = {
 			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]+$/,
 			'Password should contain uppercase, lowercase, number and special character.',
 		),
-		passwordStrength(),
 	],
 	confirmPassword: [required('Password should be filled.'), matchField('password', 'Password must be identical.')],
 	isPrivacyConfirmed: [required('Terms and policies should be confirmed.')],

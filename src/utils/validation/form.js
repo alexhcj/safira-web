@@ -56,16 +56,3 @@ export const exactLength = (length, message) => (value) => {
 	if (!value) return null
 	return String(value).length === length ? null : message
 }
-
-/**
- *
- * @returns {(function(*): (string|null))|*}
- */
-export const passwordStrength = () => (value) => {
-	if (!value) return 'Password is required'
-	if (value.length < 8) return 'Password is too short'
-	if (!/[A-Z]/.test(value)) return 'Use at least one uppercase letter'
-	if (!/[0-9]/.test(value)) return 'Include at least one number'
-	if (!/[!@#$%^&*]/.test(value)) return 'Include at least one special character'
-	return null
-}
