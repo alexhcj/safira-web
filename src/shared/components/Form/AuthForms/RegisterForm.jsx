@@ -54,18 +54,10 @@ export const RegisterForm = () => {
 		isPrivacyConfirmed: false,
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isValid, markFieldAsDirty, isFieldDirty, markAllFieldsDirty } = useFormValidation(
-		form,
-		registerFormValidationSchema,
-		{
-			validateOnlyDirty: true, // Only validate fields the user has touched
-		},
-	)
+	const { isValid, getFieldError } = useFormValidation(form, registerFormValidationSchema)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-
-		markAllFieldsDirty()
 
 		if (isValid()) {
 			const formData = {
@@ -93,9 +85,6 @@ export const RegisterForm = () => {
 			...form,
 			[field]: e.target.value,
 		})
-
-		// Mark field as dirty when user changes it
-		markFieldAsDirty(field)
 	}
 
 	const handleCheckboxChange = (field) => {
@@ -103,14 +92,6 @@ export const RegisterForm = () => {
 			...form,
 			[field]: !form.isPrivacyConfirmed,
 		})
-
-		// Mark checkbox as dirty when user clicks it
-		markFieldAsDirty(field)
-	}
-
-	// Show error only if field is dirty
-	const getFieldError = (field) => {
-		return isFieldDirty(field) ? errors[field] : null
 	}
 
 	return (
@@ -133,7 +114,7 @@ export const RegisterForm = () => {
 						<PasswordStrength
 							classNames={s.password_strength}
 							value={form['password']}
-							isActive={isFieldDirty('password')}
+							isActive={form['password'].length > 0}
 						/>
 						<Input
 							className={s.input}
