@@ -51,7 +51,9 @@ export const LoginForm = () => {
 		password: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isValid } = useFormValidation(form, loginFormValidationSchema)
+	const { isValid, getFieldError } = useFormValidation(form, loginFormValidationSchema, {
+		validateOnChange: false,
+	})
 
 	useEffect(() => {
 		if (user !== null) navigate('/')
@@ -60,7 +62,7 @@ export const LoginForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!isValid()) {
+		if (isValid()) {
 			const formData = {
 				email: form.email,
 				password: form.password,
@@ -100,8 +102,7 @@ export const LoginForm = () => {
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
-						error={errors['email']}
-						required
+						error={getFieldError('email')}
 					/>
 					<Input
 						className={s.input}
@@ -111,8 +112,7 @@ export const LoginForm = () => {
 						value={form['password']}
 						label='Password'
 						handleChange={handleChange('password')}
-						error={errors['password']}
-						required
+						error={getFieldError('password')}
 					/>
 					<div className={s.form_actions}>
 						{authError && <span className={cn(s.auth_error, authError && s.active)}>{authError.message}</span>}
