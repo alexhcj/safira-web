@@ -45,7 +45,7 @@ export const Input = ({
 			)}
 			<input
 				className={cn(s.input, { [s.error]: isError })}
-				type={type === 'password' && !isShowPassword ? 'password' : 'text'}
+				type={type}
 				id={id}
 				value={value}
 				defaultValue={defaultValue}

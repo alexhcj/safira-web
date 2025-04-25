@@ -10,7 +10,7 @@ import { useFormValidation } from '@hooks/useFormValidation'
 
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 
-import { shallowEqual, convertISODate, maxLength, minLength, pattern } from '@utils/index'
+import { convertISODate, maxLength, pattern, dateToISO } from '@utils/index'
 
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Text } from '../../UI/Text/Text'
@@ -20,28 +20,26 @@ import s from './profile-form.module.scss'
 
 const profileFormValidationSchema = {
 	firstName: [
-		minLength(2, 'Min first name length should be 2 characters.'),
-		maxLength(50, 'Max first name length should be 50 characters.'),
-		pattern(/^[a-zA-Z\s'-]+$/, 'First name should contain only letters, spaces, apostrophes and hyphens.'),
+		pattern(/^$|^[a-zA-Z\s'-]+$/, 'First name should contain only letters, spaces, apostrophes and hyphens.'),
+		maxLength(50, 'First name maximum length should be 50 characters.'),
 	],
 	lastName: [
-		minLength(2, 'Min last name length should be 2 characters.'),
-		maxLength(50, 'Max last name length should be 50 characters.'),
-		pattern(/^[a-zA-Z\s'-]+$/, 'Last name should contain only letters, spaces, apostrophes and hyphens.\n'),
+		pattern(/^$|^[a-zA-Z\s'-]+$/, 'Last name should contain only letters, spaces, apostrophes and hyphens.'),
+		maxLength(50, 'Last name maximum length should be 50 characters.'),
 	],
 	dateOfBirth: [
 		pattern(
-			/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}$/,
+			/^$|^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}$/,
 			'Date should be in DD/MM/YYYY format and be valid.',
 		),
+		maxLength(20, 'Date maximum length should be 20 characters.'),
 	],
 	location: [
-		minLength(2, 'Min location length should be 2 characters.'),
-		maxLength(50, 'Max location length should be 50 characters.'),
 		pattern(
-			/^[A-Za-z\s\-,.']+$/,
+			/^$|^[A-Za-z\s\-,.']+$/,
 			'Location should contain only letters, spaces, hyphens, apostrophes, periods and commas.',
 		),
+		maxLength(50, 'Location maximum length should be 50 characters.'),
 	],
 }
 
@@ -56,11 +54,11 @@ export const ProfileForm = ({ user, profile, loading }) => {
 		dateOfBirth: (dateOfBirth && convertISODate(dateOfBirth, 'digit')) || '',
 		location: location || '',
 	}
-	const [form, setForm] = useState(useMemo(() => initialFormState, [initialFormState]))
+	const [form, setForm] = useState(initialFormState)
 	const [isEditListShown, setIsEditListShown] = useState(false)
 	const avatarRef = useRef(null)
 	const avatarInputRef = useRef(null)
-	const { errors, isValid } = useFormValidation(form, profileFormValidationSchema)
+	const { isValid, getFieldError } = useFormValidation(form, profileFormValidationSchema)
 
 	useEffect(() => {
 		document.addEventListener('click', clickOutsideHandler)
@@ -104,38 +102,77 @@ export const ProfileForm = ({ user, profile, loading }) => {
 
 	const isFormsSame = () => {
 		const profileOrigin = {
-			firstName,
-			lastName,
-			dateOfBirth,
-			location,
+			firstName: firstName || '',
+			lastName: lastName || '',
+			dateOfBirth: dateOfBirth || null,
+			location: location || '',
 		}
 
 		const formData = {
-			firstName: form.firstName,
-			lastName: form.lastName,
-			dateOfBirth: dateOfBirth && new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
-			location: form.location,
+			firstName: form.firstName || '',
+			lastName: form.lastName || '',
+			dateOfBirth: form.dateOfBirth ? dateToISO(form.dateOfBirth) : null,
+			location: form.location || '',
 		}
 
-		return shallowEqual(profileOrigin, formData)
+		// Special handling for date comparison
+		const datesEqual = () => {
+			if (!profileOrigin.dateOfBirth && !formData.dateOfBirth) return true
+			if (!profileOrigin.dateOfBirth || !formData.dateOfBirth) return false
+
+			// Compare just the date part (ignoring time)
+			return (
+				new Date(profileOrigin.dateOfBirth).toISOString().split('T')[0] ===
+				new Date(formData.dateOfBirth).toISOString().split('T')[0]
+			)
+		}
+
+		return (
+			profileOrigin.firstName === formData.firstName &&
+			profileOrigin.lastName === formData.lastName &&
+			datesEqual() &&
+			profileOrigin.location === formData.location
+		)
+	}
+
+	const createFormDataPayload = () => {
+		const payload = {}
+
+		// Only add fields that have values and have changed
+		if (form.firstName !== (firstName || '')) {
+			payload.firstName = form.firstName
+		}
+
+		if (form.lastName !== (lastName || '')) {
+			payload.lastName = form.lastName
+		}
+
+		const formDateISO = form.dateOfBirth ? dateToISO(form.dateOfBirth) : null
+		if (formDateISO !== dateOfBirth) {
+			payload.dateOfBirth = formDateISO
+		}
+
+		if (form.location.trim() !== (location || '').trim()) {
+			payload.location = form.location.trim()
+		}
+
+		return payload
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		// prevent same data req
-		if (isFormsSame()) return
+		if (!isValid(false)) {
+			if (isFormsSame()) return
+		}
 
-		if (isValid()) {
-			const formData = {
-				firstName: form.firstName,
-				lastName: form.lastName,
-				dateOfBirth: new Date(form.dateOfBirth.split('/').reverse().join('/')).toISOString(),
-				location: form.location,
-			}
+		const formData = createFormDataPayload()
 
-			if (user && user.id && user.accessToken) {
+		if (Object.keys(formData).length > 0 && user && user.id && user.accessToken) {
+			try {
 				await profilesAPI.update(formData)
+			} catch (error) {
+				console.log('Failed to update profile: ', error)
 			}
 		}
 	}
@@ -181,7 +218,6 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								className={s.credential_input}
 								key='password'
 								id='password'
-								type='text'
 								defaultValue='••••••••••••••'
 								label='Password'
 							/>
@@ -200,42 +236,37 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							className={s.input}
 							key='firstName'
 							id='firstName'
-							type='text'
-							defaultValue={form['firstName']}
+							value={form['firstName']}
 							label='First name'
 							handleChange={handleChange('firstName')}
-							error={errors['firstName']}
+							error={getFieldError('firstName')}
 						/>
 						<Input
 							className={s.input}
 							key='lastName'
 							id='lastName'
-							type='text'
-							defaultValue={form['lastName']}
+							value={form['lastName']}
 							label='Last name'
 							handleChange={handleChange('lastName')}
-							error={errors['lastName']}
+							error={getFieldError('lastName')}
 						/>
 						<Input
 							className={s.input}
 							key='dateOfBirth'
 							id='dateOfBirth'
-							type='date'
-							defaultValue={form['dateOfBirth']}
+							value={form['dateOfBirth']}
 							label='Birthday'
 							handleChange={handleChange('dateOfBirth')}
-							error={errors['dateOfBirth']}
-							placeholder='DD/MM/YYYY'
+							error={getFieldError('dateOfBirth')}
 						/>
 						<Input
 							className={s.input}
 							key='location'
 							id='location'
-							type='input'
-							defaultValue={form['location']}
+							value={form['location']}
 							label='Location'
 							handleChange={handleChange('location')}
-							error={errors['location']}
+							error={getFieldError('location')}
 						/>
 						<div className={s.form_actions}>
 							{/* TODO: add udpate profile errors handle */}
@@ -244,7 +275,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								htmlType='submit'
 								type='submit'
 								className={s.btn_update_profile}
-								disabled={loading || isFormsSame()}
+								disabled={loading || !isValid(false)}
 							>
 								<Text span color='white' className={s.btn_update_profile_text}>
 									Update profile

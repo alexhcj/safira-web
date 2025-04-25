@@ -1,13 +1,13 @@
-@import '../../../styles/vars';
-
 .main {
 	display: grid;
 	gap: 35px;
 	grid-area: main;
 }
+
 .aside {
 	grid-area: aside;
 }
+
 .title {
 	margin-bottom: 15px;
 	letter-spacing: $letter-spacing-lg-neg;
@@ -15,10 +15,12 @@
 	font-size: 20px;
 	font-weight: $weight-medium;
 }
+
 .credentials_list {
 	display: grid;
 	gap: 12px;
 }
+
 .credential_email,
 .credential_password {
 	display: grid;
@@ -26,6 +28,7 @@
 	align-items: end;
 	gap: 10px;
 }
+
 .credential_input {
 	& > input {
 		cursor: default;
@@ -39,18 +42,22 @@
 		}
 	}
 }
+
 .btn_credential {
 	margin-bottom: 1px;
 }
+
 .btn_credential_text {
 	text-transform: capitalize;
 	line-height: 20px;
 	font-size: 12px;
 }
+
 .form {
 	display: grid;
 	gap: 15px;
 }
+
 .avatar {
 	position: relative;
 
@@ -130,9 +137,8 @@
 }
 
 .input {
-	text-transform: capitalize;
-
 	& > label {
+		text-transform: capitalize;
 		line-height: 24px;
 		font-size: 14px;
 	}
@@ -141,11 +147,13 @@
 		border-color: $color-border2;
 	}
 }
+
 .form_actions {
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
 }
+
 .auth_error {
 	color: $color-error;
 	opacity: 0;
@@ -156,9 +164,11 @@
 		visibility: visible;
 	}
 }
+
 .btn_update_profile {
 	justify-self: flex-end;
 }
+
 .btn_update_profile_text {
 	text-transform: capitalize;
 	line-height: 20px;
