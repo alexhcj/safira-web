@@ -52,15 +52,16 @@ export const VerifyEmail = () => {
 
 			setIsLoading(true)
 
-			const verifyEmail = await verificationsAPI.verifyEmail(formData)
+			const res = await verificationsAPI.verifyEmail(formData)
 
-			if (verifyEmail.statusCode !== 200) {
+			if (res.statusCode !== 200) {
 				setIsLoading(false)
 				// setFormError(true)
 				// handleErrors('code', verifyEmail)
 
 				return
 			}
+
 			updateEmailVerifiedStatus(true)
 		}
 	}
