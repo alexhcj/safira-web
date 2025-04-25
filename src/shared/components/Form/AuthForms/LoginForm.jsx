@@ -73,7 +73,7 @@ export const LoginForm = () => {
 			if (user && user.id && user.accessToken) {
 				login(user)
 				setForm({ email: '', password: '' })
-				navigate(`${location.state?.from}`)
+				navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
 			}
 		}
 	}

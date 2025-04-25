@@ -136,7 +136,7 @@ export const Header = () => {
 										Register
 									</NavLink>
 									<span className={s.auth__divider}>/</span>
-									<NavLink to='/login' className={s.auth__link}>
+									<NavLink to='/login' state={{ from: location }} replace className={s.auth__link}>
 										Login
 									</NavLink>
 								</div>
