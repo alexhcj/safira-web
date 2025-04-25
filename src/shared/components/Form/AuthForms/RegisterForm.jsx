@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { authAPI } from '@api/auth'
 
+import { useAuthContext } from '@context/AuthContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { PasswordStrength } from '@shared/components/PasswordStrength/PasswordStrength'
@@ -34,7 +36,11 @@ const registerFormValidationSchema = {
 			'Password should contain uppercase, lowercase, number and special character.',
 		),
 	],
-	confirmPassword: [required('Password should be filled.'), matchField('password', 'Password must be identical.')],
+	confirmPassword: [
+		required('Password should be filled.'),
+		matchField('password', 'Password must be identical.'),
+		maxLength(64, 'Password should be maximum 64 characters.'),
+	],
 	isPrivacyConfirmed: [required('Terms and policies should be confirmed.')],
 }
 
@@ -44,6 +50,7 @@ const registerFormValidationSchema = {
  * @constructor
  */
 export const RegisterForm = () => {
+	const { login } = useAuthContext()
 	const [authError, setAuthError] = useState(null)
 	const navigate = useNavigate()
 	const initialFormState = {
@@ -72,6 +79,7 @@ export const RegisterForm = () => {
 				console.log('Error')
 			}
 
+			login(res)
 			setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
 			navigate('/verify-email', { state: { email: form.email } })
 		}
