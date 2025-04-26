@@ -2,8 +2,6 @@ import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
 import cn from 'classnames'
 
-import { generateID } from '@utils/string'
-
 import StarFilled from '@assets/svg/star-filled.svg?react'
 import Star from '@assets/svg/star.svg?react'
 
@@ -54,7 +52,6 @@ export const NewRating = forwardRef(({ precision = 0.5, totalStars = 5, onClick 
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 			ref={ratingContainerRef}
-			key={generateID()}
 		>
 			{[...new Array(totalStars)].map((arr, index) => {
 				const activeState = isHovered ? hoverActiveStar : activeStar
@@ -67,7 +64,7 @@ export const NewRating = forwardRef(({ precision = 0.5, totalStars = 5, onClick 
 				const showRatingWithPrecision = isActiveRating && isRatingWithPrecision && isRatingEqualToIndex
 
 				return (
-					<div className={s.box} key={index}>
+					<div className={s.box} key={index} role='button'>
 						<div className={s.item} style={{ width: showRatingWithPrecision ? `${(activeState % 1) * 100}%` : '0%' }}>
 							<StarFilled />
 						</div>

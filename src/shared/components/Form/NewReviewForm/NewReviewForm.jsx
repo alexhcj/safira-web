@@ -9,6 +9,8 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
+
 import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { NewRating } from '../../Rating/NewRating'
@@ -20,7 +22,10 @@ import { Textarea } from '../Textarea/Textarea'
 import s from './new-review-form.module.scss'
 
 const reviewFormValidationSchema = {
-	rating: [required('Rating should be filled.'), pattern(/^[1-5]$/, 'Rating should be 1-5 numbers and valid.')],
+	rating: [
+		required('Rating should be filled.'),
+		pattern(/^[1-5]$|^[0-4]\.5$/, 'Rating should be between 0.5-5 with 0.5 step and valid.'),
+	],
 	review: [
 		minLength(30, 'Review min length should be 30 characters and valid.'),
 		maxLength(100, 'Review max length should be 100 characters and valid.'),
@@ -33,30 +38,41 @@ export const NewReviewForm = () => {
 	const { user } = useAuthContext()
 	const { slug } = useParams()
 	const initialFormState = {
-		rating: '0',
+		rating: 0,
 		review: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isValid } = useFormValidation(form, reviewFormValidationSchema)
+	const { errors, isValid, resetForm, getFieldError, resetFieldError } = useFormValidation(
+		form,
+		reviewFormValidationSchema,
+		{
+			validateOnChange: false,
+		},
+	)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (user && isValid()) {
+		if (!isValid()) return
+
+		if (user) {
 			const formData = {
 				rating: form.rating,
 				text: form.review,
 				reviewProductSlug: slug,
 			}
 
-			await reviewsAPI.create(formData)
+			const res = await reviewsAPI.create(formData)
+			// TODO: add response handling (201 & errors) + optimistic updates
 		}
 
-		setForm({ rating: '0', review: '' })
+		setForm({ rating: 0, review: '' })
 		handleResetRating()
 	}
 
 	const handleChange = (field) => (e) => {
+		!isValid() && resetFieldError(field)
+
 		setForm({
 			...form,
 			[field]: e.target.value,
@@ -76,11 +92,14 @@ export const NewReviewForm = () => {
 			<h4 className={s.title}>Add a review</h4>
 			<Text className={s.text}>Select rating and describe your filling about product</Text>
 			<Space space={20} />
-			<Text span className={cn(s.rating_text, s.required)}>
-				Your rating
-			</Text>
-			<Space space={8} />
-			<NewRating ref={ratingRef} onClick={handleSelectRating} />
+			<div className={s.rating}>
+				<Text span className={cn(s.rating_text, s.required)}>
+					Your rating
+				</Text>
+				<Space space={8} />
+				<NewRating ref={ratingRef} onClick={handleSelectRating} />
+				<ErrorPopover error={getFieldError('rating')} className={s.error_popover} />
+			</div>
 			<Space space={20} />
 			<form className={s.form} onSubmit={handleSubmit}>
 				<Textarea
@@ -91,8 +110,7 @@ export const NewReviewForm = () => {
 					value={form['review']}
 					label='Review'
 					handleChange={handleChange('review')}
-					error={errors['review']}
-					required
+					error={getFieldError('review')}
 				/>
 				<Button htmlType='submit' type='form'>
 					<Text span color='white' className={s.btn_auth_text}>

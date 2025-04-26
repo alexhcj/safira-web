@@ -1,9 +1,8 @@
-@import '../../../styles/vars';
-
 .box {
 	display: grid;
 	width: 100%;
 }
+
 .title {
 	text-transform: capitalize;
 	margin-bottom: 8px;
@@ -11,14 +10,26 @@
 	font-size: 18px;
 	font-weight: $weight-medium;
 }
+
 .text {
 	line-height: 24px;
 }
+
+.rating {
+	position: relative;
+}
+
+.error_popover {
+	top: 10px;
+	transform: translateX(calc(100% + 50px));
+}
+
 .rating_text {
 	text-transform: capitalize;
 	line-height: 30px;
 	font-weight: $weight-bold;
 }
+
 .required {
 	&::after {
 		margin-left: 4px;
@@ -26,12 +37,15 @@
 		color: $color-primary;
 	}
 }
+
 .new_rating {
 	justify-self: flex-start;
 }
+
 .form {
 	width: 100%;
 }
+
 .textarea {
 	textarea {
 		margin-bottom: 20px;
@@ -39,6 +53,7 @@
 		height: 120px;
 	}
 }
+
 .btn_auth_text {
 	text-transform: uppercase;
 	font-size: 13px;

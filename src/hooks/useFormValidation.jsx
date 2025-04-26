@@ -60,6 +60,14 @@ export const useFormValidation = (formValues, validationSchema, options = {}) =>
 		setErrors({})
 	}
 
+	const resetFieldError = (fieldName) => {
+		setErrors((prevErrors) => {
+			const newErrors = { ...prevErrors }
+			delete newErrors[fieldName]
+			return newErrors
+		})
+	}
+
 	const isValid = (validateBeforeCheck = true) => {
 		if (validateBeforeCheck) {
 			const validationErrors = validateForm()
@@ -79,5 +87,6 @@ export const useFormValidation = (formValues, validationSchema, options = {}) =>
 		validateForm,
 		getFieldError,
 		resetForm,
+		resetFieldError,
 	}
 }
