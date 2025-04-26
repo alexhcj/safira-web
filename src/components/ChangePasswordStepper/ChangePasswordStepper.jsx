@@ -56,7 +56,8 @@ const steps = [
 export const ChangePasswordStepper = () => {
 	const [step, setStep] = useLocalStorage('change-password-stepper', { step: 0 })
 	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState({})
+	const [error, setError] = useState(null)
+	// TODO: add response error handling
 
 	useEffect(() => {
 		if (step.step === 'finish') setStep({ step: 0 })
@@ -128,7 +129,7 @@ export const ChangePasswordStepper = () => {
 							onSubmit={handleSubmit}
 							type={steps[step.step].type}
 							isLoading={isLoading}
-							error={error}
+							responseError={error}
 						/>
 					)}
 					{step.step === 'finish' && <StepperFinish title='Password changed successfully!' />}

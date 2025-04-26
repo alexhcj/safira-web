@@ -1,6 +1,9 @@
 import { useState } from 'react'
 
+import { exactLength, maxLength, pattern, required } from '@/utils'
+
 import { useProfile } from '@hooks/services/useProfile'
+import { useFormValidation } from '@hooks/useFormValidation'
 
 import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
 
@@ -14,12 +17,26 @@ import { hideEmailPartial } from '@utils/string'
 
 import s from './change-password-stepper-form.module.scss'
 
+const codeFormValidationSchema = {
+	code: [
+		required('Code should be filled.'),
+		exactLength(6, 'Verification code must be exactly 6 digits.'),
+		pattern(/^\d+$/, 'Verification code should contain only digits.'),
+	],
+}
+
 export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit }) => {
 	const { profile } = useProfile()
 	const [code, setCode] = useState('')
+	const { isValid, getFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
+		validateOnChange: false,
+	})
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
+		if (!isValid()) return
+
 		onSubmit(type, { code: +code })
 	}
 
@@ -38,7 +55,7 @@ export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit
 				value={code}
 				handleChange={(e) => setCode(e.target.value)}
 				placeholder='726482'
-				error={error}
+				error={getFieldError('code')}
 			/>
 			<ResendCode classNames={s.resend_code} type={VERIFY_EMAIL.CHANGE_PASSWORD} />
 			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
