@@ -4,13 +4,14 @@ import { verificationsAPI } from '@api/verifications'
 
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
+import { ChangePasswordStepperCheckMail } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperCheckMail'
+import { ChangePasswordStepperFormCode } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperFormCode'
+import { ChangePasswordStepperFormEmail } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperFormEmail'
+import { ChangePasswordStepperFormPasswords } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperFormPasswords'
+
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Stepper } from '@shared/components/UI/Stepper/Stepper'
 
-import { ChangePasswordStepperCheckMail } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperCheckMail'
-import { ChangePasswordStepperFormCode } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormCode'
-import { ChangePasswordStepperFormEmail } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormEmail'
-import { ChangePasswordStepperFormPasswords } from '../../Forms/ChangePasswordStepperForms/ChangePasswordStepperFormPasswords'
 import { StepperFinish } from '../StepperFinish/StepperFinish'
 
 import CodeSVG from '@assets/svg/code.svg?react'

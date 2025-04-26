@@ -6,12 +6,13 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
+import { ChangeEmailStepperFormCode } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormCode'
+import { ChangeEmailStepperFormEmail } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormEmail'
+import { ChangeEmailStepperFormPassword } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormPassword'
+
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Stepper } from '@shared/components/UI/Stepper/Stepper'
 
-import { ChangeEmailStepperFormCode } from '../../Forms/ChangeEmailStepperForms/ChangeEmailStepperFormCode'
-import { ChangeEmailStepperFormEmail } from '../../Forms/ChangeEmailStepperForms/ChangeEmailStepperFormEmail'
-import { ChangeEmailStepperFormPassword } from '../../Forms/ChangeEmailStepperForms/ChangeEmailStepperFormPassword'
 import { StepperFinish } from '../StepperFinish/StepperFinish'
 
 import CodeSVG from '@assets/svg/code.svg?react'
