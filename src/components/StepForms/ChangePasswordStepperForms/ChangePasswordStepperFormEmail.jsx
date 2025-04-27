@@ -22,7 +22,7 @@ const emailFormValidationSchema = {
 
 export const ChangePasswordStepperFormEmail = ({ type, isLoading, error, onSubmit }) => {
 	const [email, setEmail] = useState('')
-	const { isValid, getFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
+	const { isValid, getFieldError, resetFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
 		validateOnChange: false,
 	})
 
@@ -34,6 +34,11 @@ export const ChangePasswordStepperFormEmail = ({ type, isLoading, error, onSubmi
 		onSubmit(type, { email })
 	}
 
+	const handleChange = (e) => {
+		if (!isValid()) resetFieldError('email')
+		setEmail(e.target.value)
+	}
+
 	return (
 		<form className={s.form} onSubmit={handleSubmit}>
 			<p className={s.text}>Enter profile email address and we’ll send to it a verification code.</p>
@@ -41,7 +46,7 @@ export const ChangePasswordStepperFormEmail = ({ type, isLoading, error, onSubmi
 				type='text'
 				id='email'
 				value={email}
-				handleChange={(e) => setEmail(e.target.value)}
+				handleChange={handleChange}
 				placeholder='johnsmith99@gmail.com'
 				error={getFieldError('email')}
 			/>

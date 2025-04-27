@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { exactLength, maxLength, pattern, required } from '@/utils'
+import { exactLength, pattern, required } from '@/utils'
 
 import { useProfile } from '@hooks/services/useProfile'
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -28,7 +28,7 @@ const codeFormValidationSchema = {
 export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit }) => {
 	const { profile } = useProfile()
 	const [code, setCode] = useState('')
-	const { isValid, getFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
+	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
 		validateOnChange: false,
 	})
 
@@ -38,6 +38,11 @@ export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit
 		if (!isValid()) return
 
 		onSubmit(type, { code: +code })
+	}
+
+	const handleChange = (e) => {
+		if (!isValid()) resetFieldError('code')
+		setCode(e.target.value)
 	}
 
 	return (
@@ -53,7 +58,7 @@ export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit
 				type='text'
 				id='code'
 				value={code}
-				handleChange={(e) => setCode(e.target.value)}
+				handleChange={handleChange}
 				placeholder='726482'
 				error={getFieldError('code')}
 			/>
