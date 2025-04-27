@@ -110,12 +110,11 @@ export const RegisterForm = () => {
 						className={s.input}
 						key='email'
 						id='email'
-						type='email'
+						type='text'
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
 						error={getFieldError('email')}
-						required
 					/>
 					<div className={s.input_box}>
 						<PasswordStrength
@@ -132,7 +131,6 @@ export const RegisterForm = () => {
 							label='Password'
 							handleChange={handleChange('password')}
 							error={getFieldError('password')}
-							required
 						/>
 					</div>
 					<Input
@@ -144,7 +142,6 @@ export const RegisterForm = () => {
 						label='Confirm password'
 						handleChange={handleChange('confirmPassword')}
 						error={getFieldError('confirmPassword')}
-						required
 					/>
 					<Checkbox
 						key='checkbox'
@@ -153,7 +150,6 @@ export const RegisterForm = () => {
 						label='Confirm privacy'
 						handleChange={() => handleCheckboxChange('isPrivacyConfirmed')}
 						error={getFieldError('isPrivacyConfirmed')}
-						required
 					>
 						<div className='terms'>
 							I agree to the{' '}

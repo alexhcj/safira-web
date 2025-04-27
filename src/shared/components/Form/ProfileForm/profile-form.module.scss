@@ -146,6 +146,11 @@
 	& > input {
 		border-color: $color-border2;
 	}
+
+	& > span {
+		top: 24px;
+		min-height: 40px;
+	}
 }
 
 .form_actions {

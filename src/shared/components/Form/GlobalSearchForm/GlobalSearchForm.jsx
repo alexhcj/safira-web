@@ -104,7 +104,7 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 				/>
 				<Button type='search' onClick={handleSearchSubmit} />
 			</form>
-			<ErrorPopover error={!isValid(false) && getFieldError('search')} />
+			<ErrorPopover className={s.error_popover} error={!isValid(false) && getFieldError('search')} />
 		</div>
 	)
 }

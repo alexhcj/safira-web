@@ -14,6 +14,11 @@
 			color: $color-grey6;
 		}
 	}
+
+	& > span {
+		min-height: 40px;
+		transform: translateX(calc(100% + 40px));
+	}
 }
 
 .text {
@@ -23,11 +28,10 @@
 }
 
 .input_code {
-	align-self: center;
-	max-width: 150px;
-
 	input {
+		align-self: center;
 		text-align: center;
+		max-width: 150px;
 		padding: 7px 20px;
 		letter-spacing: $letter-spacing-lg;
 		line-height: 26px;
@@ -39,6 +43,11 @@
 			color: $color-grey;
 		}
 	}
+
+	& > span {
+		min-height: 40px;
+		transform: translateX(calc(100% + 40px));
+	}
 }
 
 .resend_code {
@@ -48,6 +57,11 @@
 .input_password {
 	button {
 		translate: 0 -50%;
+	}
+
+	& > span {
+		min-height: 40px;
+		transform: translateX(calc(100% + 40px));
 	}
 }
 

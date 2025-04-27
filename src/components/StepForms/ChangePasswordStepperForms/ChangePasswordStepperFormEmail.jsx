@@ -43,6 +43,7 @@ export const ChangePasswordStepperFormEmail = ({ type, isLoading, error, onSubmi
 		<form className={s.form} onSubmit={handleSubmit}>
 			<p className={s.text}>Enter profile email address and we’ll send to it a verification code.</p>
 			<Input
+				className={s.input_email}
 				type='text'
 				id='email'
 				value={email}

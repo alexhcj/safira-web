@@ -21,7 +21,7 @@
 
 .error_popover {
 	top: 10px;
-	transform: translateX(calc(100% + 50px));
+	transform: translateX(calc(100% + 52px));
 }
 
 .rating_text {
@@ -51,6 +51,10 @@
 		margin-bottom: 20px;
 		padding: 5px 20px 0;
 		height: 120px;
+	}
+
+	& > span {
+		right: -20px;
 	}
 }
 
