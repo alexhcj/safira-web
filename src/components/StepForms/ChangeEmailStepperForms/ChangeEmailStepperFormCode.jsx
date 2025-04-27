@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import { exactLength, pattern, required } from '@/utils'
+
+import { useFormValidation } from '@hooks/useFormValidation'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
@@ -14,13 +17,32 @@ import { hideEmailPartial } from '@utils/string'
 
 import s from './change-email-stepper-form.module.scss'
 
+const codeFormValidationSchema = {
+	code: [
+		required('Code should be filled.'),
+		exactLength(6, 'Verification code must be exactly 6 digits.'),
+		pattern(/^\d+$/, 'Verification code should contain only digits.'),
+	],
+}
+
 export const ChangeEmailStepperFormCode = ({ type, isLoading, error, onSubmit }) => {
 	const [step, _] = useLocalStorage('change-email-stepper')
 	const [code, setCode] = useState('')
+	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
+		validateOnChange: false,
+	})
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
+		if (!isValid()) return
+
 		onSubmit(type, { code: +code })
+	}
+
+	const handleChange = (e) => {
+		if (!isValid()) resetFieldError('code')
+		setCode(e.target.value)
 	}
 
 	return (
@@ -34,9 +56,9 @@ export const ChangeEmailStepperFormCode = ({ type, isLoading, error, onSubmit })
 				type='text'
 				id='code'
 				value={code}
-				handleChange={(e) => setCode(e.target.value)}
+				handleChange={handleChange}
 				placeholder='726482'
-				error={error}
+				error={getFieldError('code')}
 			/>
 			<ResendCode classNames={s.resend_code} type={VERIFY_EMAIL.CHANGE_EMAIL} />
 			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
