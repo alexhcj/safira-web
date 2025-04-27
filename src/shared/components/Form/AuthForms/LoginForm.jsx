@@ -30,7 +30,7 @@ const loginFormValidationSchema = {
 		maxLength(64, 'Password should be maximum 64 characters.'),
 		pattern(
 			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d\S]+$/,
-			'Password should contain uppercase, lowercase, number and special character.',
+			'Password should include a mix of character types.',
 		),
 	],
 }
