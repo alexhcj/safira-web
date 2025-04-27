@@ -42,13 +42,9 @@ export const NewReviewForm = () => {
 		review: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { errors, isValid, resetForm, getFieldError, resetFieldError } = useFormValidation(
-		form,
-		reviewFormValidationSchema,
-		{
-			validateOnChange: false,
-		},
-	)
+	const { isValid, getFieldError, resetFieldError } = useFormValidation(form, reviewFormValidationSchema, {
+		validateOnChange: false,
+	})
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
