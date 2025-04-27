@@ -35,7 +35,7 @@ export const Comment = ({
 					onlySrc
 					src={avatarUrl}
 					imgSize='avatar'
-					alt={avatarId ? `${firstName}'s avatar` : 'User devault avatar'}
+					alt={avatarId ? `${firstName}'s avatar` : 'User default avatar'}
 					className={s.img}
 				/>
 				<div className={s.box}>
