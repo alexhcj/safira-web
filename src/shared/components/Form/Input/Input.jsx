@@ -62,8 +62,6 @@ export const Input = ({
 					{isShowPassword && <EyeClosedSVG className={s.password_icon} />}
 				</button>
 			)}
-			{/* TODO: add error variant. On mobile should be text under field. */}
-			{/*{isError && <span>{error}</span>}*/}
 			<ErrorPopover error={isError && error} />
 		</div>
 	)
