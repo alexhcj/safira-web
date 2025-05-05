@@ -6,10 +6,20 @@ export const ScrollToTop = ({ children }) => {
 	const { pathname, search } = useLocation()
 
 	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		})
+		const abortController = new AbortController()
+
+		const scrollToTop = () => {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth',
+			})
+		}
+
+		scrollToTop()
+
+		return () => {
+			abortController.abort()
+		}
 	}, [pathname, search])
 
 	return <>{children}</>
