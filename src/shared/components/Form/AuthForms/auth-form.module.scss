@@ -61,17 +61,6 @@
 	align-items: center;
 }
 
-.auth_error {
-	color: $color-error;
-	opacity: 0;
-	visibility: hidden;
-
-	&.active {
-		opacity: 1;
-		visibility: visible;
-	}
-}
-
 .btn_auth {
 	justify-self: flex-end;
 }

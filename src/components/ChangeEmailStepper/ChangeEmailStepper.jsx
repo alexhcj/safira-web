@@ -1,9 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-import { verificationsAPI } from '@api/verifications'
-
-import { useAuthContext } from '@context/AuthContext'
-
+import { useVerifications } from '@hooks/services/useVerifications'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ChangeEmailStepperFormCode } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormCode'
@@ -47,65 +44,44 @@ const steps = [
 ]
 
 export const ChangeEmailStepper = () => {
-	const { updateUserCreds } = useAuthContext()
+	const { changeEmail, verifyNewEmail, validatePassword, isLoading } = useVerifications()
 	const [step, setStep] = useLocalStorage('change-email-stepper', { step: 0, email: '' })
-	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState({})
 
 	useEffect(() => {
 		if (step.step === 'finish') setStep({ step: 0, email: '' })
 	}, [])
 
 	const handleSubmit = async (type, value) => {
-		setIsLoading(true)
-
 		switch (type) {
 			case 'new-email': {
-				const res = await verificationsAPI.changeEmail(value)
+				const res = await changeEmail(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: 'Check is email correct.' })
-					break
+				if (res && res.success && res.statusCode === 200) {
+					setStep({ step: 1, email: value.email })
 				}
-
-				setIsLoading(false)
-				setStep({ step: 1, email: value.email })
 				break
 			}
 
 			case 'verify-new-email': {
-				const res = await verificationsAPI.verifyNewEmail(value)
+				const res = await verifyNewEmail(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: res.message })
-					break
+				if (res && res.success && res.statusCode === 200) {
+					setStep((prev) => ({ ...prev, step: 2 }))
 				}
-
-				setIsLoading(false)
-				setStep((prev) => ({ ...prev, step: 2 }))
 				break
 			}
 
 			case 'validate-password': {
-				const res = await verificationsAPI.validatePassword(value)
+				const res = await validatePassword(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: res.message })
-					break
+				if (res && res.success) {
+					setStep({ step: 'finish', email: '' })
 				}
-
-				setIsLoading(false)
-				setStep({ step: 'finish', email: '' })
-				updateUserCreds(res.creds)
 				break
 			}
 
 			default: {
-				setIsLoading(false)
-				setError({ message: 'Something went wrong.' })
+				return null
 			}
 		}
 	}
@@ -119,12 +95,7 @@ export const ChangeEmailStepper = () => {
 				<div className={s.content}>
 					<Stepper data={steps} currentStep={step.step} />
 					{CurrentStepComponent && (
-						<CurrentStepComponent
-							onSubmit={handleSubmit}
-							type={steps[step.step].type}
-							isLoading={isLoading}
-							error={error}
-						/>
+						<CurrentStepComponent onSubmit={handleSubmit} type={steps[step.step].type} isLoading={isLoading} />
 					)}
 					{step.step === 'finish' && <StepperFinish title='Email verified successfully!' />}
 				</div>

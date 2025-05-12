@@ -31,7 +31,7 @@ const changePasswordFormValidationSchema = {
 	],
 }
 
-export const ChangePasswordStepperFormPasswords = ({ type, isLoading, error, onSubmit }) => {
+export const ChangePasswordStepperFormPasswords = ({ type, isLoading, onSubmit }) => {
 	const location = useLocation()
 	const initialFormState = {
 		password: '',

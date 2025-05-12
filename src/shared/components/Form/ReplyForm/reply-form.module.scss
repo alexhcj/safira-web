@@ -45,6 +45,7 @@
 	}
 
 	& > span {
+		top: 53px;
 		left: 0;
 		transform: translateX(calc(-100% - 20px)) translateY(calc(-50% + 8px)) !important;
 	}

@@ -3,19 +3,19 @@ import { API } from './api'
 const BASE_URL = 'comments'
 
 export const commentsAPI = {
-	getAll(params) {
+	async getAll(params) {
 		return API.get(`${BASE_URL}`, params)
 	},
-	findRecentComments(params) {
+	async findRecentComments(params) {
 		return API.get(`${BASE_URL}/recent-comments`, params)
 	},
-	getBySlug(slug = '') {
+	async getBySlug(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
-	create(slug, text) {
+	async create({ slug, text }) {
 		return API.post(`${BASE_URL}/${slug}`, text)
 	},
-	update(postSlug, data, params) {
-		return API.put(`${BASE_URL}/${postSlug}`, data, params)
+	async update(slug, data, { nestedLvl }) {
+		return API.put(`${BASE_URL}/${slug}?nestedLvl=${nestedLvl || 0}`, data)
 	},
 }

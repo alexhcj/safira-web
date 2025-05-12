@@ -20,7 +20,7 @@ const emailFormValidationSchema = {
 	],
 }
 
-export const ChangePasswordStepperFormEmail = ({ type, isLoading, error, onSubmit }) => {
+export const ChangePasswordStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 	const [email, setEmail] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
 		validateOnChange: false,

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 
-import cn from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
-
-import { authAPI } from '@api/auth'
 
 import { useAuthContext } from '@context/AuthContext'
 
+import { useAuth } from '@hooks/services/useAuth'
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { maxLength, minLength, pattern, required } from '@utils/validation/form'
@@ -42,8 +40,7 @@ const loginFormValidationSchema = {
  */
 export const LoginForm = () => {
 	const { user } = useAuthContext()
-	const [authError, setAuthError] = useState(null)
-	const { login } = useAuthContext()
+	const { login } = useAuth()
 	const navigate = useNavigate()
 	const location = useLocation()
 	const initialFormState = {
@@ -51,9 +48,7 @@ export const LoginForm = () => {
 		password: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { isValid, getFieldError } = useFormValidation(form, loginFormValidationSchema, {
-		validateOnChange: false,
-	})
+	const { isValid, getFieldError } = useFormValidation(form, loginFormValidationSchema)
 
 	useEffect(() => {
 		if (user !== null) navigate('/')
@@ -68,21 +63,21 @@ export const LoginForm = () => {
 				password: form.password,
 			}
 
-			const user = await authAPI.login(formData)
+			const res = await login(formData)
 
-			// TODO: handle res ok | error
+			if (res) {
+				if (res.success && res.user.accessToken) {
+					setForm({ email: '', password: '' })
 
-			if (user && user.id && user.accessToken) {
-				login(user)
-				setForm({ email: '', password: '' })
-				navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
+					!res.isEmailVerified
+						? navigate('/verify-email', { state: { email: form.email } })
+						: navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
+				}
 			}
 		}
 	}
 
 	const handleChange = (field) => (e) => {
-		if (authError) setAuthError(false)
-
 		setForm({
 			...form,
 			[field]: e.target.value,
@@ -115,7 +110,6 @@ export const LoginForm = () => {
 						error={getFieldError('password')}
 					/>
 					<div className={s.form_actions}>
-						{authError && <span className={cn(s.auth_error, authError && s.active)}>{authError.message}</span>}
 						<Button htmlType='submit' type='auth' className={s.btn_auth}>
 							<Text span color='white' className={s.btn_auth_text}>
 								Login

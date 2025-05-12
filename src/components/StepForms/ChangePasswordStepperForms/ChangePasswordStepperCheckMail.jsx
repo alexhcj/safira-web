@@ -14,12 +14,13 @@ import { hideEmailPartial } from '@utils/string'
 
 import s from './change-password-stepper-form.module.scss'
 
-export const ChangePasswordStepperCheckMail = () => {
+export const ChangePasswordStepperCheckMail = ({ onSubmit }) => {
 	const location = useLocation()
 	const { user } = useAuthContext()
 	const [step, setStep] = useLocalStorage('change-password-stepper')
 	const { profile } = useProfile()
 	const [isLoading, setIsLoading] = useState(false)
+	// const [linkError, setLinkError] = useState({ isError: true, message: 'Link expired', type: 'expiration' })
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -29,30 +30,29 @@ export const ChangePasswordStepperCheckMail = () => {
 		if (params.size !== 0) {
 			if (step.step !== 2) {
 				setStep({ step: 0 })
-				console.log('Wrong step')
+				// TODO (back): add cancel method for password reset based on step => each step has self data to be canceled
+				// setLinkError({ isError: true, message: 'Something went wrong', type: 'step' })
+				// send	undo password change request
 			}
 
 			if (!data.userId || data.userId !== user.id) {
 				setStep({ step: 0 })
-				console.log('Unauthorized')
-				// 	set error
+				// setLinkError({ isError: true, message: 'Unauthorized', type: 'auth' })
 				// send	undo password change request
 			}
 
-			if (new Date().getTime() > data.expirationTime) {
+			if (new Date().getTime() > +data.expirationTime) {
 				setStep({ step: 0 })
-				console.log('Expiration expired')
-				// 	set error
-				//	send undo password change request
-				// 	show reset step button to try again from scratch
+				// setLinkError({ isError: true, message: 'Link expired', type: 'expiration' })
+				// send undo password change request
 			}
 
 			setIsLoading(false)
 			setTimeout(() => {
-				setStep({ step: 3 })
+				onSubmit('on-valid-link')
 			}, 1000)
 		}
-	}, [location.search])
+	}, [location.search, setStep, user.id])
 
 	return (
 		<div className={s.form}>
@@ -76,6 +76,12 @@ export const ChangePasswordStepperCheckMail = () => {
 				</div>
 			)}
 			{location.search && !isLoading && <div className={s.validate_success}>Link is valid!</div>}
+			{/*{linkError.isError && (*/}
+			{/*	<div className={s.validate_failure}>*/}
+			{/*		Link is not valid!*/}
+			{/*		<br /> {linkError.message}*/}
+			{/*	</div>*/}
+			{/*)}*/}
 		</div>
 	)
 }

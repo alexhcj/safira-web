@@ -1,0 +1,113 @@
+.toast {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 400px;
+	min-width: 250px;
+	background-color: $color-white;
+	z-index: $z-index300;
+}
+
+.error {
+	border-left: 4px solid transparent;
+	box-shadow: $box-shadow;
+	overflow: hidden;
+	will-change: transform, opacity;
+
+	// severity types
+	&.severity_warning {
+		border-left-color: $color-warning;
+
+		.error_title, .error_icon {
+			color: $color-warning;
+		}
+	}
+
+	&.severity_error {
+		border-left-color: $color-error;
+
+		.error_title, .error_icon {
+			color: $color-error;
+		}
+	}
+
+	&_content {
+		padding: 12px 16px;
+	}
+
+	&_header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	&_message {
+		word-break: break-word;
+		margin: 0 0 8px;
+		font-size: 14px;
+		color: $color-dark;
+	}
+
+	&_path {
+		margin: 0;
+		font-size: 12px;
+		color: $color-dark4;
+		word-break: break-all;
+	}
+
+	&_title {
+		margin: 0;
+		font-weight: $weight-semi;
+	}
+}
+
+.dismiss_button {
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	color: $color-dark4;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+
+.animateEnter {
+	opacity: 0;
+	transform: translateX(20px);
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(20px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(0);
+}

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import cn from 'classnames'
 
-import { verificationsAPI } from '@api/verifications'
-
+import { useVerifications } from '@hooks/services/useVerifications'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -12,11 +11,15 @@ import { VERIFY_EMAIL } from '@shared/types/api-types'
 
 import s from './resend-code.module.scss'
 
-// types: VERIFY_EMAIL
+/**
+ * @param {Function} handleResendCode - Optional callback for resending code
+ * @param {string} type - Type of email verification (VERIFY_EMAIL enum)
+ * @param {string} classNames - Optional CSS class names
+ */
 export const ResendCode = ({ handleResendCode, type, classNames }) => {
+	const { resendVerifyEmail, isLoading } = useVerifications()
 	const [codeTimestamp, setCodeTimeout] = useLocalStorage('code-timeout')
-	const [isLoading, setIsLoading] = useState(false)
-	const expirationTime = 1000 * 60
+	const EXPIRATION_TIME = 1000 * 60
 
 	useEffect(() => {
 		if (codeTimestamp && new Date().getTime() > +new Date(codeTimestamp.createdAt) + 1000 * 60) {
@@ -27,36 +30,34 @@ export const ResendCode = ({ handleResendCode, type, classNames }) => {
 	useEffect(() => {
 		const codeAutoClean = setTimeout(() => {
 			setCodeTimeout(null)
-		}, expirationTime)
+		}, EXPIRATION_TIME)
 
 		return () => clearTimeout(codeAutoClean)
-	}, [codeTimestamp])
+	}, [codeTimestamp, setCodeTimeout])
 
 	const resendCode = async () => {
-		setIsLoading(true)
-		let code
+		let res
 
 		switch (type) {
 			case VERIFY_EMAIL.SIGN_UP:
-				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.SIGN_UP })
+				res = await resendVerifyEmail({ type: VERIFY_EMAIL.SIGN_UP })
 				break
 			case VERIFY_EMAIL.CHANGE_PASSWORD:
-				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_PASSWORD })
+				res = await resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_PASSWORD })
 				break
 			case VERIFY_EMAIL.CHANGE_EMAIL:
-				code = await verificationsAPI.resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_EMAIL })
+				res = await resendVerifyEmail({ type: VERIFY_EMAIL.CHANGE_EMAIL })
 				break
 			default:
-				console.error('No type found')
+				return null
 		}
 
-		if (code.statusCode === 201) {
-			setCodeTimeout(code)
+		if (res && res.success && res.statusCode === 201) {
+			setCodeTimeout({ createdAt: res.createdAt, statusCode: res.statusCode })
 		}
-
-		setIsLoading(false)
 	}
 
+	// TODO: fix (bug): laggy UI timer rendering => when clicked resend timer values starts from 0.58 not from 1|0.59
 	return (
 		<div className={cn(s.box, { [s.active]: codeTimestamp }, classNames)}>
 			{codeTimestamp && new Date().getTime() < +new Date(codeTimestamp.createdAt) + 1000 * 60 ? (

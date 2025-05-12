@@ -20,7 +20,7 @@ const emailFormValidationSchema = {
 	],
 }
 
-export const ChangeEmailStepperFormEmail = ({ type, isLoading, error, onSubmit }) => {
+export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 	const [email, setEmail] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
 		validateOnChange: false,
@@ -52,7 +52,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, error, onSubmit }
 				placeholder='johnsmith99@gmail.com'
 				error={getFieldError('email')}
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={s.btn} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

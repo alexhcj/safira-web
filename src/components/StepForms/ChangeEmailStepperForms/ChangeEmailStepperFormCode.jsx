@@ -25,7 +25,7 @@ const codeFormValidationSchema = {
 	],
 }
 
-export const ChangeEmailStepperFormCode = ({ type, isLoading, error, onSubmit }) => {
+export const ChangeEmailStepperFormCode = ({ type, isLoading, onSubmit }) => {
 	const [step, _] = useLocalStorage('change-email-stepper')
 	const [code, setCode] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
@@ -61,7 +61,7 @@ export const ChangeEmailStepperFormCode = ({ type, isLoading, error, onSubmit })
 				error={getFieldError('code')}
 			/>
 			<ResendCode classNames={s.resend_code} type={VERIFY_EMAIL.CHANGE_EMAIL} />
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={s.btn} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

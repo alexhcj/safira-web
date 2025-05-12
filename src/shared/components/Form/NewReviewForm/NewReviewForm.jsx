@@ -3,12 +3,13 @@ import { useRef, useState } from 'react'
 import cn from 'classnames'
 import { useParams } from 'react-router-dom'
 
-import { reviewsAPI } from '@api/reviews'
-
 import { useAuthContext } from '@context/AuthContext'
+import { useErrorContext } from '@context/ErrorContext'
 
+import { useReviews } from '@hooks/services/useReviews'
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 
 import { maxLength, minLength, pattern, required } from '@utils/validation/form'
@@ -27,6 +28,7 @@ const reviewFormValidationSchema = {
 		pattern(/^[1-5]$|^[0-4]\.5$/, 'Rating should be between 0.5-5 with 0.5 step and valid.'),
 	],
 	review: [
+		required('Review should be filled.'),
 		minLength(30, 'Review min length should be 30 characters and valid.'),
 		maxLength(100, 'Review max length should be 100 characters and valid.'),
 		pattern(/^[\w\s.,!?'"(){}[\]-]+$/, 'Review can only contain letters, numbers, spaces and basic punctuation.'),
@@ -34,9 +36,11 @@ const reviewFormValidationSchema = {
 }
 
 export const NewReviewForm = () => {
-	const ratingRef = useRef(null)
+	const { isResponseValid, clearErrors } = useErrorContext()
 	const { user } = useAuthContext()
+	const { createReview, isLoading } = useReviews()
 	const { slug } = useParams()
+	const ratingRef = useRef(null)
 	const initialFormState = {
 		rating: 0,
 		review: '',
@@ -49,25 +53,27 @@ export const NewReviewForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!isValid()) return
+		if (isValid()) {
+			if (user) {
+				const formData = {
+					rating: form.rating,
+					text: form.review,
+					reviewProductSlug: slug,
+				}
 
-		if (user) {
-			const formData = {
-				rating: form.rating,
-				text: form.review,
-				reviewProductSlug: slug,
+				const res = await createReview(formData)
+
+				if (res && res.success) {
+					setForm(initialFormState)
+					handleResetRating()
+				}
 			}
-
-			const res = await reviewsAPI.create(formData)
-			// TODO: add response handling (201 & errors) + optimistic updates
 		}
-
-		setForm({ rating: 0, review: '' })
-		handleResetRating()
 	}
 
 	const handleChange = (field) => (e) => {
 		!isValid() && resetFieldError(field)
+		!isResponseValid() && clearErrors()
 
 		setForm({
 			...form,
@@ -109,9 +115,13 @@ export const NewReviewForm = () => {
 					error={getFieldError('review')}
 				/>
 				<Button htmlType='submit' type='form'>
-					<Text span color='white' className={s.btn_auth_text}>
-						Submit
-					</Text>
+					{isLoading ? (
+						<Preloader width={20} height={20} />
+					) : (
+						<Text span color='white' className={s.btn_auth_text}>
+							Submit
+						</Text>
+					)}
 				</Button>
 			</form>
 		</div>

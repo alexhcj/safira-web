@@ -2,10 +2,9 @@ import { useState } from 'react'
 
 import { NavLink, useLocation } from 'react-router-dom'
 
-import { verificationsAPI } from '@api/verifications'
-
 import { useAuthContext } from '@context/AuthContext'
 
+import { useVerifications } from '@hooks/services/useVerifications'
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -32,14 +31,13 @@ const verifyEmailFormValidationSchema = {
 }
 
 export const VerifyEmail = () => {
+	const { verifyEmail, isLoading } = useVerifications()
 	const location = useLocation()
 	const { user, updateEmailVerifiedStatus } = useAuthContext()
 	const initialFormState = {
 		code: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const [isLoading, setIsLoading] = useState(false)
-	// const [formError, setFormError] = useState(null)
 	const { isValid, getFieldError, resetForm } = useFormValidation(form, verifyEmailFormValidationSchema)
 
 	const handleSubmit = async (e) => {
@@ -50,32 +48,21 @@ export const VerifyEmail = () => {
 				code: form.code,
 			}
 
-			setIsLoading(true)
+			const res = await verifyEmail(formData)
 
-			const res = await verificationsAPI.verifyEmail(formData)
-
-			if (res.statusCode !== 200) {
-				setIsLoading(false)
-				// setFormError(true)
-				// handleErrors('code', verifyEmail)
-
-				return
+			if (res && res.success && res.code) {
+				updateEmailVerifiedStatus(true)
 			}
-
-			updateEmailVerifiedStatus(true)
 		}
 	}
 
 	const handleChange = (e) => {
 		!isValid() && resetForm()
-		// if (formError) setFormError(false)
-
 		setForm({ code: e.target.value })
 	}
 
 	const handleResendCode = () => {
 		resetForm()
-		// setFormError(null)
 	}
 
 	return (
@@ -120,7 +107,6 @@ export const VerifyEmail = () => {
 									value={form.code}
 									error={getFieldError('code')}
 									placeholder='726482'
-									required
 								/>
 							</div>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />

@@ -27,7 +27,7 @@ export const useProducts = () => {
 				setProducts(res.products)
 				setMeta(res.meta)
 			} catch (err) {
-				setError(err)
+				return null
 			} finally {
 				setLoading(false)
 			}

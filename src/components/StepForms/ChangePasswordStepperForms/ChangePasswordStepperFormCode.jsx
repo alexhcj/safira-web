@@ -25,7 +25,7 @@ const codeFormValidationSchema = {
 	],
 }
 
-export const ChangePasswordStepperFormCode = ({ type, isLoading, error, onSubmit }) => {
+export const ChangePasswordStepperFormCode = ({ type, isLoading, onSubmit }) => {
 	const { profile } = useProfile()
 	const [code, setCode] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {

@@ -3,28 +3,28 @@ import { API } from './api'
 const BASE_URL = 'verifications'
 
 export const verificationsAPI = {
-	verifyEmail(data) {
+	async verifyEmail(data = {}) {
 		return API.post(`${BASE_URL}/verify-email`, data)
 	},
-	changeEmail(data) {
+	async changeEmail(data = {}) {
 		return API.post(`${BASE_URL}/change-email`, data)
 	},
-	verifyNewEmail(data) {
+	async verifyNewEmail(data = {}) {
 		return API.post(`${BASE_URL}/verify-new-email`, data)
 	},
-	validatePassword(data) {
+	async validatePassword(data = {}) {
 		return API.post(`${BASE_URL}/validate-password`, data)
 	},
-	changePassword(data) {
+	async changePassword(data = {}) {
 		return API.post(`${BASE_URL}/change-password`, data)
 	},
-	verifyCode(data) {
+	async verifyCode(data = {}) {
 		return API.post(`${BASE_URL}/verify-code`, data)
 	},
-	resetPassword(data) {
+	async resetPassword(data = {}) {
 		return API.post(`${BASE_URL}/reset-password?${data.query}`, data.form)
 	},
-	resendVerifyEmail(data) {
+	async resendVerifyEmail(data = {}) {
 		return API.post(`${BASE_URL}/resend-verify-email`, data)
 	},
 }

@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { searchAPI } from '@api/search'
-
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
 import { useRandomProduct } from '@hooks/services/useRandomProduct'
+import { useSearch } from '@hooks/services/useSearch'
 
 import { GlobalSearchForm } from '@shared/components/Form/GlobalSearchForm/GlobalSearchForm'
 import { SearchPopover } from '@shared/components/UI/SearchPopover/SearchPopover'
@@ -16,6 +15,7 @@ import s from './global-search.module.scss'
 export const GlobalSearch = () => {
 	const { addToSearch } = useRecentSearchContext()
 	const { product } = useRandomProduct()
+	const { findAllMatches } = useSearch()
 
 	const [isPopoverToggled, setIsPopoverToggled] = useState(false)
 	const [search, setSearch] = useState({})
@@ -52,9 +52,12 @@ export const GlobalSearch = () => {
 		if (state.search === '') return
 
 		addToSearch(state.search.trim())
-		const data = await searchAPI.globalSearch({ search: strToSlug(state.search.trim()) })
-		setSearch(data)
-		setIsSearched(true)
+		const res = await findAllMatches({ search: strToSlug(state.search.trim()) })
+
+		if (res && res.success) {
+			setSearch(res.search)
+			setIsSearched(true)
+		}
 	}
 
 	const onKeyDownHandler = (e) => {

@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 	}
 
 	const updateUserCreds = (data) => {
-		setState((prev) => ({ ...prev, id: data.id, accessToken: data.accessToken }))
+		setState((prev) => ({ ...prev, ...data }))
 	}
 
 	return (

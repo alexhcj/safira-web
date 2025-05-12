@@ -13,7 +13,7 @@ import s from './reply.module.scss'
 
 // action: 'create' (create new entity) | 'update' (updates comments array)
 // type: 'short'
-export const Reply = ({ nestedLvl = '', type, action = 'create' }) => {
+export const Reply = ({ nestedLvl, type, action }) => {
 	const { user } = useAuthContext()
 	const navigate = useNavigate()
 

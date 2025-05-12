@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-import { verificationsAPI } from '@api/verifications'
-
+import { useVerifications } from '@hooks/services/useVerifications'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ChangePasswordStepperCheckMail } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperCheckMail'
@@ -54,64 +53,49 @@ const steps = [
 ]
 
 export const ChangePasswordStepper = () => {
+	const { changePassword, verifyCode, resetPassword, isLoading } = useVerifications()
 	const [step, setStep] = useLocalStorage('change-password-stepper', { step: 0 })
-	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState(null)
-	// TODO: add response error handling
 
 	useEffect(() => {
 		if (step.step === 'finish') setStep({ step: 0 })
 	}, [])
 
 	const handleSubmit = async (type, value) => {
-		setIsLoading(true)
-
 		switch (type) {
 			case 'enter-profile-email': {
-				const res = await verificationsAPI.changePassword(value)
+				const res = await changePassword(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: 'Check is email correct.' })
-					break
+				if (res && res.statusCode === 200) {
+					setStep({ step: 1 })
 				}
-
-				setIsLoading(false)
-				setStep({ step: 1 })
 				break
 			}
 
 			case 'verify-profile-email': {
-				const res = await verificationsAPI.verifyCode(value)
+				const res = await verifyCode(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: res.message })
-					break
+				if (res && res.statusCode === 200) {
+					setStep({ step: 2 })
 				}
+				break
+			}
 
-				setIsLoading(false)
-				setStep({ step: 2 })
+			case 'on-valid-link': {
+				setStep({ step: 3 })
 				break
 			}
 
 			case 'reset-password': {
-				const res = await verificationsAPI.resetPassword(value)
+				const res = await resetPassword(value)
 
-				if (res.statusCode !== 200) {
-					setIsLoading(false)
-					setError({ message: res.message })
-					break
+				if (res && res.statusCode === 200) {
+					setStep({ step: 'finish' })
 				}
-
-				setIsLoading(false)
-				setStep({ step: 'finish' })
 				break
 			}
 
 			default: {
-				setIsLoading(false)
-				setError({ message: 'Something went wrong.' })
+				return null
 			}
 		}
 	}
@@ -125,12 +109,7 @@ export const ChangePasswordStepper = () => {
 				<div className={s.content}>
 					<Stepper data={steps} currentStep={step.step} />
 					{CurrentStepComponent && (
-						<CurrentStepComponent
-							onSubmit={handleSubmit}
-							type={steps[step.step].type}
-							isLoading={isLoading}
-							responseError={error}
-						/>
+						<CurrentStepComponent onSubmit={handleSubmit} type={steps[step.step].type} isLoading={isLoading} />
 					)}
 					{step.step === 'finish' && <StepperFinish title='Password changed successfully!' />}
 				</div>

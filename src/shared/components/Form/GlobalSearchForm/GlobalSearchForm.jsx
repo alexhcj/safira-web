@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
@@ -90,6 +90,7 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 	return (
 		<div className={s.search} ref={searchRef}>
 			<form>
+				{/* TODO: refactor to Input || Input[global_search] component */}
 				<input
 					ref={inputRef}
 					type='text'

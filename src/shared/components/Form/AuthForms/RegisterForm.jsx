@@ -1,14 +1,11 @@
 import { useState } from 'react'
 
-import cn from 'classnames'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { authAPI } from '@api/auth'
-
-import { useAuthContext } from '@context/AuthContext'
-
+import { useAuth } from '@hooks/services/useAuth'
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { PasswordStrength } from '@shared/components/PasswordStrength/PasswordStrength'
 
 import { matchField, maxLength, minLength, pattern, required } from '@utils/validation/form'
@@ -50,8 +47,7 @@ const registerFormValidationSchema = {
  * @constructor
  */
 export const RegisterForm = () => {
-	const { login } = useAuthContext()
-	const [authError, setAuthError] = useState(null)
+	const { register, isLoading } = useAuth()
 	const navigate = useNavigate()
 	const initialFormState = {
 		email: '',
@@ -72,22 +68,18 @@ export const RegisterForm = () => {
 				isPrivacyConfirmed: form.isPrivacyConfirmed,
 			}
 
-			const res = await authAPI.register(formData)
-			// TODO: handle res ok | error
+			const res = await register(formData)
 
-			if (res.statusCode === 404) {
-				console.log('Error')
+			if (res) {
+				if (res.success && res.user.accessToken) {
+					setForm(initialFormState)
+					navigate('/verify-email', { state: { email: form.email, from: '/register' } })
+				}
 			}
-
-			login(res)
-			setForm({ email: '', password: '', confirmPassword: '', isPrivacyConfirmed: false })
-			navigate('/verify-email', { state: { email: form.email } })
 		}
 	}
 
 	const handleChange = (field) => (e) => {
-		if (authError) setAuthError(false)
-
 		setForm({
 			...form,
 			[field]: e.target.value,
@@ -106,16 +98,18 @@ export const RegisterForm = () => {
 			<div className={s.box}>
 				<h2 className={s.title}>Register</h2>
 				<form className={s.form} onSubmit={handleSubmit}>
-					<Input
-						className={s.input}
-						key='email'
-						id='email'
-						type='text'
-						value={form['email']}
-						label='Email address'
-						handleChange={handleChange('email')}
-						error={getFieldError('email')}
-					/>
+					<div className={s.input_box}>
+						<Input
+							className={s.input}
+							key='email'
+							id='email'
+							type='text'
+							value={form['email']}
+							label='Email address'
+							handleChange={handleChange('email')}
+							error={getFieldError('email')}
+						/>
+					</div>
 					<div className={s.input_box}>
 						<PasswordStrength
 							classNames={s.password_strength}
@@ -164,11 +158,14 @@ export const RegisterForm = () => {
 						</div>
 					</Checkbox>
 					<div className={s.form_actions}>
-						{authError && <span className={cn(s.auth_error, authError && s.active)}>{authError.message}</span>}
 						<Button htmlType='submit' type='auth' className={s.btn_auth}>
-							<Text span color='white' className={s.btn_auth_text}>
-								Register
-							</Text>
+							{isLoading ? (
+								<Preloader width={20} height={20} />
+							) : (
+								<Text span color='white' className={s.btn_auth_text}>
+									Register
+								</Text>
+							)}
 						</Button>
 					</div>
 				</form>

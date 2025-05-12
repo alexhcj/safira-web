@@ -26,7 +26,7 @@ const changePasswordFormValidationSchema = {
 	],
 }
 
-export const ChangeEmailStepperFormPassword = ({ type, isLoading, error, onSubmit }) => {
+export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) => {
 	const { profile } = useProfile()
 	const [password, setPassword] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation(
@@ -64,7 +64,7 @@ export const ChangeEmailStepperFormPassword = ({ type, isLoading, error, onSubmi
 				placeholder='********'
 				error={getFieldError('password')}
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={s.btn} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (
