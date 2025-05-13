@@ -14,14 +14,17 @@ import { Post } from './Post/Post'
 
 export const Blog = () => {
 	const [params, setParams] = useSearchParams()
-	const { posts, meta, loading } = usePosts()
+	const { fetchPosts, posts, meta, isLoading } = usePosts()
 	const infiniteTrigger = useRef(null)
 	let lastScroll = 0 // throttle trigger
 
-	// moves screen to page top after refresh
 	useEffect(() => {
 		window.onbeforeunload = () => window.scrollTo(0, 0)
 	}, [])
+
+	useEffect(() => {
+		fetchPosts(params)
+	}, [params])
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll)
@@ -35,7 +38,7 @@ export const Blog = () => {
 		lastScroll = Date.now()
 		const infiniteTriggerOffset = infiniteTrigger.current ? infiniteTrigger.current.offsetTop : ''
 		const currentOffset = window.innerHeight + document.documentElement.scrollTop
-		if (currentOffset > infiniteTriggerOffset && !loading && !meta.isLastPage) {
+		if (currentOffset > infiniteTriggerOffset && !isLoading && !meta.isLastPage) {
 			const query = Object.fromEntries([...params])
 
 			setParams({ ...query, offset: `${+query.offset + +query.limit}` })
@@ -47,9 +50,12 @@ export const Blog = () => {
 	return (
 		<section>
 			<div className='container'>
-				<SidebarLayout main={postsList || <ItemsNotFound type='post' />} aside={<BlogSidebar isLoading={loading} />} />
+				<SidebarLayout
+					main={postsList || <ItemsNotFound type='post' />}
+					aside={<BlogSidebar isLoading={isLoading} />}
+				/>
 				<div ref={infiniteTrigger}></div>
-				{loading && <Preloader />}
+				{isLoading && <Preloader />}
 				<Space size='l' />
 			</div>
 		</section>
