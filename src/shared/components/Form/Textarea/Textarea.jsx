@@ -34,7 +34,7 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 				placeholder={placeholder}
 				required={required}
 			/>
-			<ErrorPopover error={isError && error} className={s.error_popover} />
+			<ErrorPopover error={isError && error} />
 		</div>
 	)
 }
