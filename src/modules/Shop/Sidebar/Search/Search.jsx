@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import cn from 'classnames'
 import { useSearchParams } from 'react-router-dom'
 
-import { useProductsBySlug } from '@hooks/services/useProductsBySlug'
-import { useDebounce } from '@hooks/useDebounce'
-import { useSearchError } from '@hooks/useSearchError'
+import { maxLength, pattern } from '@/utils'
 
+import { useProductsNew } from '@hooks/services/useProductsNew'
+import { useDebounce } from '@hooks/useDebounce'
+import { useFormValidation } from '@hooks/useFormValidation'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { Input } from '@shared/components/Form/Input/Input'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { slugToStr, strToSlug } from '@utils/string'
@@ -17,25 +20,71 @@ import Close from '@assets/svg/close.svg?react'
 
 import s from './search.module.scss'
 
+const searchFormValidationSchema = {
+	search: [
+		pattern(/^[a-zA-Z ]*$/, 'Use only upper and lower case characters.'),
+		maxLength(30, 'Maximum characters are 30.'),
+	],
+}
+
 export const Search = () => {
 	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
 	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToStr(params.get('slug'))) || '')
-	const [isProductSelected, setIsProductSelected] = useState(false)
 	const [popoverToggle, setPopoverToggle] = useState(false)
-	const [inputFocused, setInputFocused] = useState(false)
-	const [inputTouched, setInputTouched] = useState(false)
-	const inputRef = useRef(null)
-	const debouncedSearch = useDebounce(search, 350)
-	const { data, loading } = useProductsBySlug(debouncedSearch, isProductSelected)
-	const { searchError } = useSearchError(search, data.length, inputFocused, inputTouched)
-	const popoverLimit = 5
 
+	const searchContainerRef = useRef(null)
+	const inputRef = useRef(null)
+
+	const debouncedSearch = useDebounce(search, 350)
+	const { findProducts, isLoading } = useProductsNew()
+	const [products, setProducts] = useState([])
+
+	const formValues = useMemo(() => ({ search }), [search])
+
+	const { isValid, getFieldError, resetFieldError } = useFormValidation(formValues, searchFormValidationSchema, {
+		validateOnChange: true,
+	})
+
+	const POPOVER_LIMIT = 5
+
+	// Fetch products when search changes
 	useEffect(() => {
-		document.addEventListener('click', outsideClickHandler)
+		const fetchData = async () => {
+			const res = await findProducts({ slug: debouncedSearch })
+
+			if (res && res.success) {
+				setProducts(res.products)
+			}
+		}
+
+		if (isValid(false)) fetchData()
+	}, [debouncedSearch])
+
+	const isInputFocused = () => {
+		return document.activeElement === inputRef.current
+	}
+
+	// Handle clicks outside the search container
+	useEffect(() => {
+		const handleOutsideClick = (e) => {
+			if (searchContainerRef.current && !searchContainerRef.current.contains(e.target)) {
+				setPopoverToggle(false)
+			}
+		}
+
+		const handleFocusChange = () => {
+			setPopoverToggle(isInputFocused())
+		}
+
+		document.addEventListener('click', handleOutsideClick)
+		document.addEventListener('focusin', handleFocusChange)
+		document.addEventListener('focusout', handleFocusChange)
 
 		return () => {
-			document.removeEventListener('click', outsideClickHandler)
+			document.removeEventListener('click', handleOutsideClick)
+			document.removeEventListener('focusin', handleFocusChange)
+			document.removeEventListener('focusout', handleFocusChange)
 		}
 	}, [])
 
@@ -43,145 +92,102 @@ export const Search = () => {
 		switch (e.key) {
 			case 'Escape':
 				setPopoverToggle(false)
-				setInputFocused(false) // TODO: remove. blur() enough. test!
 				inputRef.current.blur()
 				break
 			case 'Enter':
-				if (!searchError) {
-					setPopoverToggle(false)
-					let query = Object.fromEntries([...params])
-					if (query.offset !== 0) query.offset = '0'
-					setParams({ ...query, slug: strToSlug(search) })
-					setIsProductSelected(true)
-					setCurrentSearch(search)
-				}
+				submitSearch()
 				break
 			default:
 				return
 		}
 	}
 
-	const outsideClickHandler = (e) => {
-		if (inputRef.current && !inputRef.current.contains(e.target)) {
-			setPopoverToggle(false)
-		}
-	}
-
-	const onFocusHandler = () => {
-		setInputFocused(true)
-	}
-
-	const onBlurHandler = () => {
-		setInputFocused(false)
-		setInputTouched(true)
-	}
-
-	const onClickHandler = () => {
-		setInputFocused(true)
-		setPopoverToggle(true)
-
-		if (params.get('slug')) setSearch(currentSearch)
-	}
-
-	const autoCompleteClickHandler = (name) => {
-		setIsProductSelected(true)
+	const handleSelectItem = (name) => {
 		setSearch(name)
 		setPopoverToggle(false)
 	}
 
-	const closeSearchBtnHandler = () => {
+	const handleChange = useCallback(
+		(e) => {
+			if (!popoverToggle) setPopoverToggle(true)
+			!isValid(false) && resetFieldError('search')
+			setSearch(e.target.value)
+		},
+		[popoverToggle, resetFieldError],
+	)
+
+	const handleClearSearch = () => {
 		setSearch('')
-		setCurrentSearch('')
-		params.delete('slug')
-		const query = Object.fromEntries([...params])
-		setParams({ ...query })
-		setIsProductSelected(false)
-		setInputTouched(false)
-		inputRef.current.focus()
+		inputRef.current?.focus()
 	}
 
-	const searchBtnClickHandler = () => {
-		// if (searchError) {
-		// 	setInputFocus(true)
-		// }
+	const submitSearch = useCallback(() => {
+		if (!isValid()) {
+			setPopoverToggle(false)
+			inputRef.current?.blur()
+			return
+		}
 
 		let query = Object.fromEntries([...params])
 		if (query.offset !== 0) query.offset = '0'
 		setParams({ ...query, slug: strToSlug(search) })
 		setCurrentSearch(search)
-		setIsProductSelected(true)
+		setPopoverToggle(false)
 		setSearch('')
-	}
-
-	const onChangeHandler = (e) => {
-		const input = e.target.value
-
-		if (!popoverToggle) setPopoverToggle(true)
-
-		setIsProductSelected(false)
-		setSearch(input)
-	}
+		inputRef.current?.blur()
+	}, [isValid, params, search, setParams])
 
 	return (
 		<aside>
-			<div className={s.search}>
-				<input
-					className={cn(s.input, {
-						[s.active]: inputFocused,
-						[s.error]: searchError && inputFocused && inputTouched,
-						[s.no_result]: searchError && searchError.id === 4,
-					})}
+			<div className={s.search} ref={searchContainerRef} onKeyDown={onKeyDownHandler}>
+				<Input
+					className={s.input}
 					ref={inputRef}
 					type='text'
-					value={search}
-					maxLength='30'
 					placeholder='Search...'
-					onKeyDown={onKeyDownHandler}
-					onChange={onChangeHandler}
-					onClick={onClickHandler}
-					onFocus={onFocusHandler}
-					onBlur={onBlurHandler}
+					value={search}
+					handleChange={handleChange}
+					error={getFieldError('search')}
+					warning={search !== '' && products.length === 0}
 				/>
 				{search && (
 					<span
 						role='presentation'
 						className={cn(s.btn_close, search.length !== 0 && s.active)}
-						onClick={closeSearchBtnHandler}
+						onClick={handleClearSearch}
 					>
-						<Close />
+						<Close className={s.icon_close} />
 					</span>
 				)}
-				{searchError && <ErrorPopover error={searchError.text} inputFocus={inputFocused} inputTouched={inputTouched} />}
 			</div>
-			<ul className={cn(s.popup, { [s.active]: popoverToggle })}>
-				{data
-					.filter((_, i) => i < popoverLimit)
-					.map((product) => {
-						return (
-							<li
-								role='presentation'
-								className={s.item}
-								key={product.id}
-								onClick={() => autoCompleteClickHandler(product.name)}
-							>
-								{product.name}
-							</li>
-						)
-					})}
-				{!!data && searchError && searchError.type === 'noresult' && <div className={s.no_slug_result}>No results</div>}
+
+			<ul className={cn(s.popover, { [s.active]: popoverToggle })}>
+				{products
+					.filter((_, i) => i < POPOVER_LIMIT)
+					.map((product) => (
+						<li
+							role='presentation'
+							className={s.popover_item}
+							key={`ps_${product.slug}`}
+							onClick={() => handleSelectItem(product.name)}
+						>
+							{product.name}
+						</li>
+					))}
+				{products.length === 0 && <div className={s.popover_empty}>No results</div>}
 			</ul>
+
 			<div className={s.bottom}>
-				<Button
-					type='filter'
-					isLoading={loading}
-					disabled={loading || inputFocused || searchError}
-					onClick={searchBtnClickHandler}
-				>
-					<Text span color='white'>
-						Search
-					</Text>
+				<Button type='filter' disabled={isLoading} onClick={submitSearch}>
+					{isLoading ? (
+						<Preloader width={20} height={20} />
+					) : (
+						<Text span color='white'>
+							Search
+						</Text>
+					)}
 				</Button>
-				<span className={s.current}>{currentSearch}</span>
+				<span className={s.current_search}>{currentSearch}</span>
 			</div>
 		</aside>
 	)

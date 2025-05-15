@@ -73,6 +73,10 @@
 		border-color: $color-primary;
 	}
 
+	&.warning {
+		border-color: $color-warning;
+	}
+
 	&.error {
 		border-color: $color-error;
 	}
