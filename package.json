@@ -1,7 +1,30 @@
 {
-	"name": "react-shop",
+	"name": "safira-web",
 	"version": "0.1.0",
+	"description": "Safira web application frontend built with React and Vite - an e-commerce platform for implementing React native patterns and practices to build food store.",
+	"author": {
+		"name": "Alex",
+		"email": "alexhcj@yandex.ru",
+		"url": "https://t.me/alex_hcj"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/alexhcj/safira-web.git"
+	},
+	"keywords": [
+		"e-commerce",
+		"react",
+		"vite",
+		"food-store",
+		"safira"
+	],
 	"private": true,
+	"license": "MIT",
+	"engines": {
+		"node": ">=16.0.0",
+		"npm": ">=8.0.0"
+	},
+	"homepage": "https://safira-store.shop/",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
@@ -29,18 +52,6 @@
 		"sass": "^1.50.0",
 		"web-vitals": "^1.0.1"
 	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
 	"devDependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@vitejs/plugin-react": "^4.4.0",
@@ -55,6 +66,18 @@
 		"vite": "^6.3.1",
 		"vite-jsconfig-paths": "^2.0.1",
 		"vite-plugin-svgr": "^4.3.0"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	},
 	"overrides": {
 		"react-error-overlay": "6.0.9"

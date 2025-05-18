@@ -27,22 +27,27 @@ backend with api, services and database.
 - [x] Login
 - [x] User actions (calls for login | register...)
 
+- ### API
+
+- [x] Global error handling
+
 ### Verifications & Mailing
 
 - [x] Verify email with code
-- [ ] Change password
+- [x] Change password
 - [ ] Forget password
-- [ ] Change email
-- [ ] Subscribe
+- [x] Change email
+- [x] Subscribe
 - [ ] Unsubscribe
   - [ ] From email
   - [ ] From profile
-- [ ] Redis queues & schedulers
+- [x] Redis queues & schedulers
 
 ### Navigation
 
 - [x] Categories & Brands
 - [x] Default page routing
+- [x] Protected page routing
 - [x] Multi layer categories
 - [x] Blank page (fake)
 - [x] 404 page
@@ -61,12 +66,16 @@ backend with api, services and database.
 
 - [x] Modals
 - [x] Scroll to top
+- [x] Popovers
+- [x] Forms validation & error handling
+- [x] Password strength
 
 ### E-commerce
 
 - [x] Wishlist
 - [x] Cart
 - [x] Global search (products & posts)
+- [x] Separate search by collections (products || posts)
 - [x] Reviews (products)
 - [x] Comments with replies (posts)
 - [x] Breadcrumbs
@@ -80,7 +89,7 @@ backend with api, services and database.
 - [x] Details (by slug)
 - [x] Quick view (modal)
 - [x] Rating
-- [ ] Related products
+- [x] Related products
 
 - **Posts**
 - [x] Details (by slug)
@@ -89,15 +98,15 @@ backend with api, services and database.
 
 ### User
 
-- [ ] Profile (private account)
-- [ ] Profile (public account)
+- [x] Profile (private)
+- [ ] Profile (public)
 - [ ] Order history
 - [x] Avatars (stored by server)
 
 ### Discount System & Payment
 
 - [ ] Promotions
-- [ ] Promocodes
+- [ ] Promo codes
 - [ ] Checkout
 - [ ] Coupons
 - [ ] Gift cards
@@ -126,6 +135,12 @@ Used scss modules in combination with [classnames](https://www.npmjs.com/package
 - [ ] 769 - 1024
 - [ ] 481 - 768
 - [ ] 320 - 480
+
+## Project
+- [x] Vite integration
+  - [x] Aliases
+- [x] Eslint
+  - [x] Imports sorting
 
 ## Additional Packages
 
