@@ -42,9 +42,13 @@ export const PostDetails = () => {
 						<div className={s.header}>
 							<h3 className={s.title}>{post.title}</h3>
 							<div className={s.meta}>
-								<div className={s.author}>
-									Posted by : <span>{`${post.user.firstName || 'Admin'} ${post.user.lastName || ''}`}</span>
-								</div>
+								{post.user ? (
+									<div className={s.author}>
+										Posted by : <span>{`${post.user.firstName} ${post.user.lastName}`}</span>
+									</div>
+								) : (
+									<div className={s.author}>Admin</div>
+								)}
 								<span>/</span>
 								<span className={s.date}>
 									On : <span>{convertISODate(post.createdAt, 'full')}</span>
