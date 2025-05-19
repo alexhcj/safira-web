@@ -18,7 +18,7 @@ export const Copyright = () => {
 							.&nbsp;
 						</div>
 						<div className={s.text}>
-							All Rights Reserved . Design By{' '}
+							Released under MIT License . Design By{' '}
 							<NavLink to='/' className={s.link}>
 								Safira
 							</NavLink>
