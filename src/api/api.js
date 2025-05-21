@@ -11,7 +11,7 @@ const getAccessToken = () => {
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
-	timeout: 15000,
+	timeout: 90000, // Render DB warm up ~50 sec. TODO: remove to 15 in prod\no warm up DB?
 	headers: {
 		'Content-Type': 'application/json',
 	},
