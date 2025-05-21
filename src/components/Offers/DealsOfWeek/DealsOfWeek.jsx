@@ -34,7 +34,7 @@ export const DealsOfWeek = () => {
 			return (
 				<div className={s.deal} key={product.deal.slug}>
 					<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
-					<Timer className={s.timer} date={product.expiresDate} />
+					<Timer className={s.timer} type='days' date={product.expiresDate} />
 					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
 						Add to cart
 					</Button>

@@ -4,7 +4,11 @@ import cn from 'classnames'
 
 import s from './timer.module.scss'
 
-const TYPES = {
+/**
+ * Timer granularity types with their display priority
+ * Higher numbers include the display of lower numbered units
+ */
+const TIMER_GRANULARITY = {
 	seconds: 1,
 	minutes: 2,
 	hours: 3,
@@ -20,9 +24,10 @@ export const Timer = ({ type, date, className }) => {
 	const leading0 = (num) => {
 		return num < 10 ? '0' + num : num.toString()
 	}
+	// console.log(leading0(days))
 
 	const calculateTime = (date) => {
-		const time = Date.parse(date) - Date.parse(new Date())
+		const time = Date.parse(date.toString()) - Date.now()
 
 		if (time < 0) {
 			setDays(0)
@@ -38,32 +43,33 @@ export const Timer = ({ type, date, className }) => {
 	}
 
 	useEffect(() => {
-		setInterval(() => calculateTime(date), 1000)
+		calculateTime(date)
+		const interval = setInterval(() => calculateTime(date), 1000)
 
-		return () => calculateTime(date)
+		return () => clearInterval(interval)
 	}, [date])
 
 	return (
 		<div className={cn(s.timer, className)}>
-			{TYPES[type] >= TYPES.days && (
+			{TIMER_GRANULARITY[type] >= TIMER_GRANULARITY.days && (
 				<div className={s.item}>
 					<span className={s.number}>{leading0(days)}</span>
 					<span className={s.text}>Day</span>
 				</div>
 			)}
-			{TYPES[type] >= TYPES.hours && (
+			{TIMER_GRANULARITY[type] >= TIMER_GRANULARITY.hours && (
 				<div className={s.item}>
 					<span className={s.number}>{leading0(hours)}</span>
 					<span className={s.text}>Hour</span>
 				</div>
 			)}
-			{TYPES[type] >= TYPES.minutes && (
+			{TIMER_GRANULARITY[type] >= TIMER_GRANULARITY.minutes && (
 				<div className={s.item}>
 					<span className={s.number}>{leading0(minutes)}</span>
 					<span className={s.text}>Min</span>
 				</div>
 			)}
-			{TYPES[type] >= TYPES.seconds && (
+			{TIMER_GRANULARITY[type] >= TIMER_GRANULARITY.seconds && (
 				<div className={s.item}>
 					<span className={s.number}>{leading0(seconds)}</span>
 					<span className={s.text}>Sec</span>
