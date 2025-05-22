@@ -1,4 +1,11 @@
-# Safira - online ecommerce food store
+# Safira - Online E-commerce Food Store
+
+---
+
+## Demo
+
+- [Production App](https://safira-store.shop)
+- [Development App](https://safira-shop-web-dev.onrender.com/) (see work in progress)
 
 ## Description
 
