@@ -9,6 +9,7 @@ import { ErrorProvider, useErrorContext } from '@context/ErrorContext'
 import { WishlistProvider } from '@context/WishlistContext'
 
 import { Copyright } from '@components/Copyright/Copyright'
+import { DbWarmUpPopup } from '@components/DBWarmUpModal/DbWarmUpPopup'
 import { ResponseError } from '@components/ResponseError/ResponseError'
 
 import { Footer } from '@shared/components/common/Footer/Footer'
@@ -42,6 +43,7 @@ function App() {
 									<Copyright />
 									<ButtonScroll />
 									<ResponseError />
+									<DbWarmUpPopup />
 									{/*<ButtonDocs />*/}
 								</CompareProvider>
 							</CartProvider>
