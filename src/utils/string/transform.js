@@ -30,16 +30,6 @@ export const enumToStr = (str) => {
 }
 
 /**
- * Converts a brand name to a URL-friendly slug format
- * @param {string} brand - The brand name to convert
- * @returns {string} The slugified brand name
- */
-export const brandToSlug = (brand) => {
-	if (typeof brand !== 'string') return ''
-	return brand.trim().replace(/\s+/g, '-').toLowerCase()
-}
-
-/**
  * Converts an enum string to a dash-separated lowercase string
  * @param {string} str - The enum string to convert
  * @returns {string} The dash-separated lowercase string

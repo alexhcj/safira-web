@@ -32,5 +32,22 @@ export const useProductsNew = () => {
 		}
 	}
 
-	return { findProducts, isLoading }
+	const findQueryBrands = async (params) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const brands = await productsAPI.findQueryBrands(params)
+
+			return {
+				success: true,
+				...brands,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	return { findProducts, findQueryBrands, isLoading }
 }

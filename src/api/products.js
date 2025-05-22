@@ -9,7 +9,7 @@ export const productsAPI = {
 	async getRelated({ limit, slug }) {
 		return API.get(`${BASE_URL}/related?limit=${limit}&slug=${slug}`)
 	},
-	async getQueryBrands(params) {
+	async findQueryBrands(params) {
 		return API.get(`${BASE_URL}/list-brands`, params)
 	},
 	async getAllBrands() {
