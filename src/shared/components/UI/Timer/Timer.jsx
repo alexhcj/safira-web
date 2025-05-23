@@ -24,7 +24,6 @@ export const Timer = ({ type, date, className }) => {
 	const leading0 = (num) => {
 		return num < 10 ? '0' + num : num.toString()
 	}
-	// console.log(leading0(days))
 
 	const calculateTime = (date) => {
 		const time = Date.parse(date.toString()) - Date.now()
