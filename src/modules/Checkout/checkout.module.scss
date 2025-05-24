@@ -55,14 +55,13 @@
 			text-align: center;
 			padding: 15px;
 			font-weight: $weight-medium;
-			border-top: 1px solid $color-border3;
-			border-right: 1px solid $color-border3;
-			border-bottom: 1px solid $color-border3;
+			border: 1px solid $color-border3;
 		}
 
 		.total td {
 			font-weight: $weight-bold;
 			border-right: none;
+			border-left: none;
 		}
 	}
 }

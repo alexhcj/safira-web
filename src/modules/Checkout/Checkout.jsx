@@ -193,7 +193,7 @@ export const Checkout = () => {
 					</form>
 				</div>
 				<div className={s.col_6}>
-					<h3 className={s.title}>Billing details</h3>
+					<h3 className={s.title}>Your order</h3>
 					<Space space={8} />
 					<table className={s.order}>
 						<thead>
