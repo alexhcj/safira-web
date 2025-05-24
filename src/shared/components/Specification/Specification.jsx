@@ -1,13 +1,13 @@
 import s from './specification.module.scss'
 
-export const Specification = ({ company, producingCountry, quantity, shelf_life }) => {
+export const Specification = ({ company, producingCountry, quantity, shelfLife }) => {
 	return (
 		<table className={s.table}>
 			<tbody>
 				{company && (
 					<tr>
 						<td className={s.spec}>Company</td>
-						<td className={s.spec_value}>{company}</td>
+						<td className={s.spec_value}>{company.displayName}</td>
 					</tr>
 				)}
 				{producingCountry && (
@@ -16,10 +16,12 @@ export const Specification = ({ company, producingCountry, quantity, shelf_life 
 						<td className={s.spec_value}>{producingCountry}</td>
 					</tr>
 				)}
-				{shelf_life && (
+				{shelfLife && (
 					<tr>
 						<td className={s.spec}>Shelf life</td>
-						<td className={s.spec_value}>{shelf_life} (days)</td>
+						<td className={s.spec_value}>
+							{shelfLife.value} ({shelfLife.unit})
+						</td>
 					</tr>
 				)}
 				{quantity && (
