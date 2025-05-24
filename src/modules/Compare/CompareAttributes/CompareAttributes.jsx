@@ -9,7 +9,7 @@ import s from './compare-attributes.module.scss'
 export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) => {
 	const [showOnlyDifferent, setShowOnlyDifferent] = useState(false)
 
-	const combineCompareAtrributesRows = () => {
+	const combineCompareAttributesRows = () => {
 		let rows = []
 
 		const allAttributesKeys =
@@ -76,7 +76,7 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) 
 			</div>
 			<div className={s.list}>
 				{renderRows(
-					pickRowsInRange(markDifferentAttributesRows(combineCompareAtrributesRows()), range),
+					pickRowsInRange(markDifferentAttributesRows(combineCompareAttributesRows()), range),
 					showOnlyDifferent,
 				).map((row) => (
 					<CompareAttributesRow key={row.attribute} row={row} />

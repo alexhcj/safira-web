@@ -12,9 +12,9 @@ import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 // eslint-disable-next-line import/order
 import s from './compare-slider.module.scss'
 
-const createItems = (type, getAcitveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {
+const createItems = (type, getActiveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {
 	return [
-		...getAcitveCompares(activeCategory).map((product, index) => (
+		...getActiveCompares(activeCategory).map((product, index) => (
 			<CompareItem
 				type={type}
 				key={product.slug}
