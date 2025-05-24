@@ -89,7 +89,7 @@ export const ProductDetails = () => {
 					<Space size='xss' />
 					{price && <Price className={s.price} {...price} type='large' />}
 					<Space size='xs' />
-					{tags && <DietaryTags className={s.dietaries} tags={tags.dietaries} />}
+					{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
 					<Space size='xs' />
 					<Text>{description}</Text>
 					<Space size='m' />

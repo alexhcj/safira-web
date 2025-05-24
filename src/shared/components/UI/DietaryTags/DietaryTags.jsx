@@ -22,7 +22,8 @@ const dietaryTagsType = {
 	VEGETARIAN: <VegetarianSVG />,
 }
 
-export const DietaryTags = ({ tags, className }) => {
+// sizes: 'sm' | 'md'
+export const DietaryTags = ({ tags, size = 'sm', className }) => {
 	const dietaryTags =
 		tags &&
 		tags.map((tag) => (
@@ -31,5 +32,5 @@ export const DietaryTags = ({ tags, className }) => {
 			</div>
 		))
 
-	return <div className={cn(s.tags, className)}>{dietaryTags}</div>
+	return <div className={cn(s.tags, s[`size_${size}`], className)}>{dietaryTags}</div>
 }
