@@ -20,9 +20,14 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) 
 			allAttributesKeys.forEach((attrKey, index) => {
 				rows.push({ attribute: attrKey, different: false, values: [] })
 				getActiveCompares(activeCategory).forEach(({ specifications }) => {
+					if (attrKey === 'company') {
+						rows[index].values.push(specifications[attrKey] ? specifications[attrKey].displayName : '-')
+						return
+					}
 					rows[index].values.push(specifications[attrKey] ? specifications[attrKey] : '-')
 				})
 			})
+		console.log(rows)
 
 		return rows
 	}
