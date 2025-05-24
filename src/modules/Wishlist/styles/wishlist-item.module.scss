@@ -1,12 +1,13 @@
-@import '../../../shared/styles/table';
-
 .item {
+	height: 190px;
+
 	td {
 		text-align: center;
 		vertical-align: middle;
 		padding: 10px;
 		border-right: 1px solid $color-border2;
 		border-bottom: 1px solid $color-border2;
+		height: 190px;
 
 		.delete {
 			&_button {
@@ -23,8 +24,11 @@
 		}
 
 		&.image {
-			padding: 20px;
+			padding: 15px;
+
 			.link {
+				max-width: 150px;
+				max-height: 150px;
 				@include transition-all;
 			}
 
