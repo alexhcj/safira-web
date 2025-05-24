@@ -9,6 +9,12 @@ import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound
 
 import s from './shop-list.module.scss'
 
+const gridTypesToProduct = {
+	'grid-3': 'lg',
+	'grid-4': 'md-lg',
+	'grid-list': 'row',
+}
+
 export const ShopList = ({ products, loading }) => {
 	const { grid } = useGridContext()
 
@@ -23,7 +29,7 @@ export const ShopList = ({ products, loading }) => {
 			{!loading && products.length !== 0 && (
 				<div className={cn(s.grid, s[`${grid}`])}>
 					{products.map((product, index) => (
-						<ProductCard key={index} product={product} size={grid === gridTypes[2].type ? 'row' : 'lg'} imgSize='md' />
+						<ProductCard key={index} product={product} size={gridTypesToProduct[grid]} imgSize='md' />
 					))}
 				</div>
 			)}
