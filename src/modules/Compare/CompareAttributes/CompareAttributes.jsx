@@ -24,10 +24,15 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, range }) 
 						rows[index].values.push(specifications[attrKey] ? specifications[attrKey].displayName : '-')
 						return
 					}
+					if (attrKey === 'shelfLife') {
+						rows[index].values.push(
+							specifications[attrKey] ? `${specifications[attrKey].value} ${specifications[attrKey].unit}` : '-',
+						)
+						return
+					}
 					rows[index].values.push(specifications[attrKey] ? specifications[attrKey] : '-')
 				})
 			})
-		console.log(rows)
 
 		return rows
 	}
