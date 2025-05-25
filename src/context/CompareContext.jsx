@@ -35,7 +35,11 @@ export const CompareProvider = ({ children }) => {
 			discount_price: price.discount_price,
 			specifications,
 		}
-		if (compares.length === 0) setCompares({ [basicCategory]: [item] })
+		if (Object.keys(compares).length === 0) {
+			setActiveCategory(basicCategory)
+			setCompares({ [basicCategory]: [item] })
+			return
+		}
 		if (!compares[basicCategory]) setCompares({ ...compares, [basicCategory]: [item] })
 		if (compares[basicCategory]) setCompares({ ...compares, [basicCategory]: [...compares[basicCategory], item] })
 	}

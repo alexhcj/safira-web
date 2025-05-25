@@ -30,9 +30,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 	}
 
 	const handleCompareClick = () => {
-		isProductInCompareList
-			? removeItemFromCompare(product.slug, product.basicCategory)
-			: addToCompare(product, product.basicCategory)
+		isProductInCompareList ? removeItemFromCompare(product.slug, product.basicCategory) : addToCompare(product)
 	}
 
 	return (
