@@ -10,7 +10,7 @@ export const imgSizeTypes = [
 	{ type: 'lg', size: '326x326' },
 	{ type: 'xl', size: '600x600' },
 	{ type: 'offer-link', size: '590x140' },
-	{ type: 'special', size: '366x484' },
+	{ type: 'special', size: '350x461' },
 	{ type: 'blog-post', size: '870x550' },
 	{ type: 'promo', size: '1920x440' },
 	{ type: 'hero-slider', size: '1920x550' },

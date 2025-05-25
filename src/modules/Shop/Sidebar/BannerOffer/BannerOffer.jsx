@@ -34,7 +34,7 @@ export const BannerOffer = ({ imgSize, className }) => {
 
 			return (
 				<button className={cn(s.link, className)} type='button' onClick={handleClick}>
-					<ImageWithFallback src={img} imgSize={imgSize} alt={description} />
+					<ImageWithFallback className={s.img} src={img} imgSize={imgSize} alt={description} />
 				</button>
 			)
 		}
