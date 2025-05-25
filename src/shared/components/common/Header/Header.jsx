@@ -78,7 +78,6 @@ export const Header = () => {
 			setSticky(false)
 		}
 	}
-
 	const handlePopoverShow = (e) => {
 		e.type === 'mouseenter' ? setIsPopoverShown(true) : setIsPopoverShown(false)
 	}
@@ -127,7 +126,7 @@ export const Header = () => {
 										<ProfileSVG />
 									</NavLink>
 									<Popover isOpen={isPopoverShown}>
-										<ProfilePopoverMenu />
+										<ProfilePopoverMenu setIsPopoverShown={setIsPopoverShown} />
 									</Popover>
 								</div>
 							) : (

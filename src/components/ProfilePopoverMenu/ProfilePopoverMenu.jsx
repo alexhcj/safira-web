@@ -6,7 +6,7 @@ import s from './profile-popover-menu.module.scss'
 
 const profileNavList = [{ text: 'Profile', url: '/profile' }]
 
-export const ProfilePopoverMenu = () => {
+export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
 	return (
 		<div className={s.profile}>
 			<ul>
@@ -18,7 +18,7 @@ export const ProfilePopoverMenu = () => {
 					</li>
 				))}
 			</ul>
-			<Logout />
+			<Logout setIsPopoverShown={setIsPopoverShown} />
 		</div>
 	)
 }
