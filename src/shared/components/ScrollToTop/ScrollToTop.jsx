@@ -6,19 +6,22 @@ export const ScrollToTop = ({ children }) => {
 	const { pathname, search } = useLocation()
 
 	useEffect(() => {
-		const abortController = new AbortController()
-
-		const scrollToTop = () => {
+		// Delayed scroll to handle late-loading content
+		const timeoutId = setTimeout(() => {
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth',
 			})
-		}
+		}, 0)
 
-		scrollToTop()
+		// Additional fallback for very slow loading content
+		const fallbackTimeoutId = setTimeout(() => {
+			window.scrollTo(0, 0)
+		}, 500)
 
 		return () => {
-			abortController.abort()
+			clearTimeout(timeoutId)
+			clearTimeout(fallbackTimeoutId)
 		}
 	}, [pathname, search])
 
