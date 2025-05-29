@@ -269,7 +269,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							error={getFieldError('location')}
 						/>
 						<div className={s.form_actions}>
-							{/* TODO: add udpate profile errors handle */}
+							{/* TODO: add update profile errors handle */}
 							{/*{updateError && <span className={cn(s.update_error, updateError && s.active)}>{updateError.message}</span>}*/}
 							<Button htmlType='submit' type='submit' className={s.btn_update_profile} disabled={loading}>
 								<Text span color='white' className={s.btn_update_profile_text}>

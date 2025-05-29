@@ -11,11 +11,11 @@
 
 **Safira** - fullstack training project based on [React](https://react.dev/)
 ecosystem ([hooks](https://react.dev/reference/react), [context](https://react.dev/reference/react/useContext), etc.)
-and [NestJS](https://nestjs.com/) in conjuction with [MongoDB](https://www.mongodb.com/).
+and [NestJS](https://nestjs.com/) in conjunction with [MongoDB](https://www.mongodb.com/).
 
-**Main idea** is to develop frontend with minimum dependencies based writter on React.
+**Main idea** is to develop frontend with minimum dependencies based writer on React.
 
-**MVP** version would consist of frontend part with most used features of nesessary real life e-commerce solutions and
+**MVP** version would consist of frontend part with most used features of necessary real life e-commerce solutions and
 backend with api, services and database.
 
 **Final** project form would have:

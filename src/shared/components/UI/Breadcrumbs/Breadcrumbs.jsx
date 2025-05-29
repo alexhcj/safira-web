@@ -12,8 +12,8 @@ import s from './breadcrumbs.module.scss'
 export const Breadcrumbs = ({ type = 'page' }) => {
 	let { pathname, state } = useLocation()
 	const navigate = useNavigate()
-	const isMultyPaths = pathname.match(/\//g).length > 1
-	const pagePathname = isMultyPaths
+	const isMultiPaths = pathname.match(/\//g).length > 1
+	const pagePathname = isMultiPaths
 		? pathname.split('/').filter((path) => path)[0]
 		: pathname.slice(1).replace('-', ' ')
 	const pageDetailsItem = slugToStr(

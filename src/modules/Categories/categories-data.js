@@ -52,10 +52,10 @@ export const categories = [
 		},
 	},
 	{
-		name: 'Rice, noodles & cooking ingridients',
-		primeCategory: 'rice-noodles-cooking-ingridients',
+		name: 'Rice, noodles & cooking ingredients',
+		primeCategory: 'rice-noodles-cooking-ingredients',
 		subCategories: {
-			parentCategory: 'rice-noodles-cooking-ingridients',
+			parentCategory: 'rice-noodles-cooking-ingredients',
 			items: [
 				{
 					name: 'Dried food',

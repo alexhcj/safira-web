@@ -77,7 +77,7 @@ export const ShopSort = ({ meta = {} }) => {
 	}
 
 	// help highlightSortItem when mouse get out list
-	const resetHightlight = () => {
+	const resetHighlight = () => {
 		setActiveSortId(sort.id)
 	}
 
@@ -97,7 +97,7 @@ export const ShopSort = ({ meta = {} }) => {
 					className={cn(s.list, { [s.active]: listToggle })}
 					onMouseOver={highlightSortItem}
 					onFocus={handleFocus}
-					onMouseLeave={resetHightlight}
+					onMouseLeave={resetHighlight}
 				>
 					{sortParams.map((param) => {
 						let { id, text } = param
@@ -105,7 +105,7 @@ export const ShopSort = ({ meta = {} }) => {
 						return (
 							<li
 								role='presentation'
-								className={cn(s.item, { [s.current]: sort.id === id, [s.hightlight]: activeSortId === id })}
+								className={cn(s.item, { [s.current]: sort.id === id, [s.highlight]: activeSortId === id })}
 								key={id}
 								id={`${id}`}
 								onClick={(e) => selectSort(e)}

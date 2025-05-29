@@ -47,7 +47,7 @@ export const MostLess = () => {
 
 						// newprice_gte param breaks default method
 						if (sort === 'newprice') {
-							return productsAPI.getProductsByNewprice({ sort, limit, order }).then((res) => res.data)
+							return productsAPI.getProductsByNewPrice({ sort, limit, order }).then((res) => res.data)
 						}
 
 						return productsAPI.getAll({ sort, limit, order }).then((res) => res.data)
