@@ -8,11 +8,11 @@ export const useComments = () => {
 	const { clearErrors } = useErrorContext()
 	const [isLoading, setIsLoading] = useState(false)
 
-	const createComment = async (params = {}) => {
+	const createComment = async (slug, data) => {
 		setIsLoading(true)
 		try {
 			clearErrors()
-			const res = await commentsAPI.create(params) // params: {slug, text}, res: { posts, meta }
+			const res = await commentsAPI.create(slug, data)
 			return {
 				success: true,
 				comment: res,

@@ -12,7 +12,7 @@ export const commentsAPI = {
 	async getBySlug(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
-	async create({ slug, text }) {
+	async create(slug, text) {
 		return API.post(`${BASE_URL}/${slug}`, text)
 	},
 	async update(slug, data, { nestedLvl }) {

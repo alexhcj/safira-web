@@ -51,7 +51,6 @@ export const ReplyForm = ({ nestedLvl = 0, type, action = 'create' }) => {
 
 		if (isValid()) {
 			const formData = {
-				userId: user.id,
 				text: form.reply,
 			}
 
@@ -65,7 +64,7 @@ export const ReplyForm = ({ nestedLvl = 0, type, action = 'create' }) => {
 				}
 
 				if (action === 'create') {
-					const res = await createComment(formData)
+					const res = await createComment(slug, formData)
 
 					if (res && res.success) {
 						setForm(initialFormState)

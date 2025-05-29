@@ -40,7 +40,7 @@ export const Comment = ({
 				/>
 				<div className={s.box}>
 					<div>
-						<h5 className={s.author}>{firstName}</h5>
+						<h5 className={s.author}>{firstName || 'User'}</h5>
 						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
 						<p className={s.text}>{capitalize(text)}</p>
 					</div>
