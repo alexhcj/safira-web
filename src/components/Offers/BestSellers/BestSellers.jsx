@@ -8,6 +8,8 @@ import { to2DArray } from '@utils/array'
 
 import { ProductCard } from '../../ProductCard/ProductCard'
 
+import s from './bestsellers.module.scss'
+
 export const BestSellers = () => {
 	const [bestsellers, setBestsellers] = useState([])
 
@@ -33,7 +35,7 @@ export const BestSellers = () => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
-					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
+					return <ProductCard className={s.product} size='xs' imgSize='xs' key={product.slug} product={product} />
 				})}
 			</div>
 		)
