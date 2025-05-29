@@ -40,7 +40,6 @@ export const BlogSearch = ({ isLoading }) => {
 	const resetSearch = () => {
 		setSearch('')
 
-		// TODO: refactor? => unnecessary request (params updates)
 		if (params.get('search')) {
 			params.delete('search')
 			setParams(params, {

@@ -10,7 +10,6 @@ import { enumToCamelCase, enumToStr, titleCase, enumToDashStr, strToSlug } from 
 import s from './offer-links.module.scss'
 
 export const OfferLinks = () => {
-	// TODO: change to useBanner but in multiple form. Indeed refactor hooks
 	const { links, loading } = useOfferLinks('offer-link')
 	const navigate = useNavigate()
 

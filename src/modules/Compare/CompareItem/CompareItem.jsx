@@ -46,7 +46,6 @@ export const CompareItem = ({
 		addToWishlist(productToWishlist)
 	}
 
-	// TODO: refactor. make objects simple. check db response
 	const handleAddToCart = () => {
 		const productToCart = {
 			slug,

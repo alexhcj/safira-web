@@ -44,7 +44,6 @@ export const Comment = ({
 						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
 						<p className={s.text}>{capitalize(text)}</p>
 					</div>
-					{/* TODO: add scroll on click to login/register user actions if !user */}
 					<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
 						Reply
 					</Button>

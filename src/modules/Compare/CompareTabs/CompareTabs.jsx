@@ -29,7 +29,6 @@ export const CompareTabs = ({
 
 	return (
 		<div className={s.box}>
-			{/* TODO: refactor to Button */}
 			<button className={s.btn_clear} onClick={() => removeAllCompares()}>
 				<TrashSVG className={s.trash} />
 				Remove all compares

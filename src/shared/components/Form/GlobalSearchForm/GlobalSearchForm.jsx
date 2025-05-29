@@ -86,11 +86,9 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 		addCurrentSearch({ search: '', lastSearch: state.search.trim() })
 	}
 
-	// TODO: fix UI usage: when click near top border of input => cursor points to start of input "|apple". Better would be to the end.
 	return (
 		<div className={s.search} ref={searchRef}>
 			<form>
-				{/* TODO: refactor to Input || Input[global_search] component */}
 				<input
 					ref={inputRef}
 					type='text'

@@ -93,7 +93,6 @@ export const setupErrorHandling = (addErrorFn) => {
 				context,
 			})
 
-			// TODO: add logger
 			// For critical errors (log to server)
 			if (severity === 'critical') {
 				// logErrorToServer(error, { errorType, message: errorMessage })
@@ -115,7 +114,6 @@ const callAPI = async ({ url, data, method, params = {}, headers = {}, responseT
 	})
 
 	return response.data
-	// TODO: when add business error handling like (auto-retry, transform res...) consider here to place.
 }
 
 export const API = {

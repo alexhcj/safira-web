@@ -75,7 +75,6 @@ export const CompareProvider = ({ children }) => {
 		const filteredComparedCategory = compares[category].filter((item) => item.slug !== slug)
 		setCompares({ [category]: filteredComparedCategory })
 
-		// TODO: optimize. check before filter 58
 		if (filteredComparedCategory.length === 0) removeListFromCompare(category)
 	}
 

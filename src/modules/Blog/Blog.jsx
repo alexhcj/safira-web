@@ -55,7 +55,6 @@ export const Blog = () => {
 					aside={<BlogSidebar isLoading={isLoading} />}
 				/>
 				<div ref={infiniteTrigger}></div>
-				{/* TODO: add empty component (no posts found) => add button which resets url params */}
 				{isLoading && <Preloader />}
 				<Space size='l' />
 			</div>

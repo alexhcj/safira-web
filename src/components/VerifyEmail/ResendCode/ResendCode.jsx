@@ -57,7 +57,6 @@ export const ResendCode = ({ handleResendCode, type, classNames }) => {
 		}
 	}
 
-	// TODO: fix (bug): laggy UI timer rendering => when clicked resend timer values starts from 0.58 not from 1|0.59
 	return (
 		<div className={cn(s.box, { [s.active]: codeTimestamp }, classNames)}>
 			{codeTimestamp && new Date().getTime() < +new Date(codeTimestamp.createdAt) + 1000 * 60 ? (

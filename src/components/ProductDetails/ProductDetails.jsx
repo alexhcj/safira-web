@@ -46,7 +46,6 @@ export const ProductDetails = () => {
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
-		// TODO: check is this solution valid
 		window.scrollTo({ top: 0 })
 		const fetchData = async () => {
 			try {
@@ -118,7 +117,6 @@ export const ProductDetails = () => {
 							</ButtonPopover>
 						) : (
 							<Button type='text' onClick={() => addToWishlist(product)}>
-								{/* TODO: Hover on icon => popup (remove from wishlist) */}
 								<Text span>+ Add to WishList</Text>
 							</Button>
 						)}
@@ -135,7 +133,6 @@ export const ProductDetails = () => {
 							</ButtonPopover>
 						) : (
 							<Button type='text' onClick={() => addToCompare(product)}>
-								{/* TODO: Hover on icon => popup (remove from compare) */}
 								<Text span>+ Add to Compare</Text>
 							</Button>
 						)}

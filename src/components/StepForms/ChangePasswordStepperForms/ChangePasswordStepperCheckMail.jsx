@@ -30,7 +30,6 @@ export const ChangePasswordStepperCheckMail = ({ onSubmit }) => {
 		if (params.size !== 0) {
 			if (step.step !== 2) {
 				setStep({ step: 0 })
-				// TODO (back): add cancel method for password reset based on step => each step has self data to be canceled
 				// setLinkError({ isError: true, message: 'Something went wrong', type: 'step' })
 				// send	undo password change request
 			}

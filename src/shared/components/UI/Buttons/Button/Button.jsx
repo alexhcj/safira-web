@@ -4,7 +4,6 @@ import cn from 'classnames'
 
 import MagnifierSVG from '@assets/svg/magnifier.svg?react'
 
-
 import s from './button.module.scss'
 
 // types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post' | 'auth' | 'secondary' | 'profile'
@@ -21,7 +20,6 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 		setFocus(false)
 	}
 
-	// TODO: don't work in GlobalSearchForm (don't unfocused)
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
 			case 'Enter':

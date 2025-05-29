@@ -18,7 +18,6 @@ const gridTypesToProduct = {
 export const ShopList = ({ products, loading }) => {
 	const { grid } = useGridContext()
 
-	// TODO: add animation grid change (grid)
 	return (
 		<>
 			{loading && (

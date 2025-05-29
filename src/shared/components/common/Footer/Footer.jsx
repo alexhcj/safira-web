@@ -16,7 +16,6 @@ export const Footer = () => {
 	return (
 		<div className='container'>
 			{!isBlankPage && <Border />}
-			{/* TODO: remove when add brands block */}
 			<Space space={70} />
 			<footer className={s.footer}>
 				<div className={s.meta}>

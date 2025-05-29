@@ -5,7 +5,6 @@ import { CSSTransition } from 'react-transition-group'
 
 import s from './error-popover.module.scss'
 
-// TODO: fix different transformX value => different string length causes different transform value (106%)
 export const ErrorPopover = ({ error, className }) => {
 	const [toggle, setToggle] = useState(false)
 	const nodeRef = useRef(null)

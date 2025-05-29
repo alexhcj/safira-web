@@ -57,8 +57,6 @@ export const PostDetails = () => {
 						</div>
 						<ImageWithFallback className={s.img} src={img} imgSize='blog-post' alt={post.title} />
 						<p className={s.text}>{post.text}</p>
-						{/* TODO: add share to socials */}
-						{/* TODO: add tags */}
 					</div>
 					<Border />
 					{/*<RelatedPosts category={category} />*/}

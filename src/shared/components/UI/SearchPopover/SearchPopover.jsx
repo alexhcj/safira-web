@@ -25,7 +25,6 @@ export const SearchPopover = ({
 	const handleRecentSearch = (e) => {
 		const recentItem = e.target.closest('svg') ?? e.target.closest('h3')
 
-		// TODO: add input focus => could use 'enter' to search
 		if (recentItem && recentItem.id === 'recent-name') {
 			e.stopPropagation()
 			addCurrentSearch({ search: recentItem.dataset.search, lastSearch: recentItem.dataset.search })
@@ -43,8 +42,6 @@ export const SearchPopover = ({
 		setIsPopoverToggled(false)
 	}
 
-	// TODO: fill empty gap when searched yet. Show some text "Type for searching products and posts"
-	// TODO: refactor search usage (use context value?). !Also fix statement isSearched => if closed after "nothing found" => show again random product
 	return (
 		<div className={cn(s.popover, { [s.active]: isOpen })}>
 			<ul className={s.list} onClick={handleSearchClick} data-link='link'>
