@@ -1,11 +1,14 @@
-@import '../../../shared/styles/vars';
-
 .deals {
 	background-color: $color-white;
 	padding: 20px 20px 30px;
 }
 .deal {
 	text-align: center;
+}
+.product {
+	a {
+		max-height: 326px!important;
+	}
 }
 .timer {
 	margin-top: 26px;

@@ -33,7 +33,7 @@ export const DealsOfWeek = () => {
 		deals.map((product) => {
 			return (
 				<div className={s.deal} key={product.deal.slug}>
-					<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
+					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='md-lg' />
 					<Timer className={s.timer} type='days' date={product.expiresDate} />
 					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
 						Add to cart
