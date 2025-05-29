@@ -13,7 +13,7 @@ import { slugToStr } from '@utils/string'
 
 import s from './productcard.module.scss'
 
-// sizes: 'xs' | 'sm' | 'lg' | 'row' | 'row-xs'
+// sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'row' | 'row-xs'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
@@ -58,6 +58,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 		>
 			<NavLink className={s.img_link} to={url}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
+				{size !== 'xs' && size !== 'row-xs' && <Tags {...price} createdAt={createdAt} />}
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
@@ -89,7 +90,6 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 				{size === 'row' && <p className={s.description}>{description}</p>}
 				{size !== 'row-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
 			</div>
-			{size !== 'xs' || (size !== 'row-xs' && <Tags tags={tags} size={size} createdAt={createdAt} />)}
 		</div>
 	)
 }
