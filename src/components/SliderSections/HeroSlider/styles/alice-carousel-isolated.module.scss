@@ -1,0 +1,23 @@
+.heroSliderWrapper {
+	:global(.alice-carousel__stage-item) {
+		// title
+		& > div > div > div > div > h1 {
+			line-height: 40px;
+		}
+
+		// sub title
+		& > div > div > div > div > h2 {
+			line-height: 36px;
+		}
+
+		// text
+		& > div > div > div > div > p {
+			line-height: 22px;
+		}
+
+		// link
+		& > div > div > div > div > a > button > p {
+			line-height: 44px;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+.dealsOfWeekWrapper {
+	:global(.alice-carousel__stage-item) {
+		// tags
+		& > div > div > a > div > span {
+			line-height: 20px;
+		}
+
+		// title
+		& > div > div > div > h3 > a {
+			line-height: 15px;
+		}
+
+		// category
+		& > div > div > div > h4 > button {
+			line-height: 12px;
+		}
+
+		// price
+		& > div > div > div > div:first-of-type > span {
+			line-height: 16px;
+		}
+
+		// hover menu
+		& > div > div > div > div:last-of-type > div > span {
+			line-height: 14px;
+		}
+
+		// timer
+		& > div > div:nth-of-type(2) > div > span:first-of-type {
+			line-height: 18px;
+		}
+
+		// timer
+		& > div > div:nth-of-type(2) > div > span:nth-of-type(2) {
+			line-height: 17px;
+		}
+
+		// button
+		& > div > button {
+			line-height: 44px;
+		}
+	}
+}

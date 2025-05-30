@@ -9,6 +9,7 @@ import Slide1 from '@assets/images/slider/1.jpg'
 import Slide2 from '@assets/images/slider/2.jpg'
 import Slide3 from '@assets/images/slider/3.jpg'
 
+import os from './styles/alice-carousel-isolated.module.scss'
 import './styles/alice-carousel-override-main-slider.css'
 import s from './styles/main-slider.module.scss'
 import 'react-alice-carousel/lib/scss/alice-carousel.scss'
@@ -77,17 +78,19 @@ export const HeroSlider = () => {
 	const dot = () => <span className={cn(s.dot)}></span>
 
 	return (
-		<AliceCarousel
-			responsive={responsive}
-			items={slides}
-			autoPlay={true}
-			autoPlayInterval={5000}
-			mouseTracking={true}
-			infinite={true}
-			disableButtonsControls={true}
-			animationType='fadeout'
-			animationDuration={800}
-			renderDotsItem={dot}
-		/>
+		<div className={os.heroSliderWrapper}>
+			<AliceCarousel
+				responsive={responsive}
+				items={slides}
+				autoPlay={true}
+				autoPlayInterval={5000}
+				mouseTracking={true}
+				infinite={true}
+				disableButtonsControls={true}
+				animationType='fadeout'
+				animationDuration={800}
+				renderDotsItem={dot}
+			/>
+		</div>
 	)
 }

@@ -1,12 +1,12 @@
-@import '../../../styles/vars';
-
 .slider {
-	background-color: transparent;
+	padding: 30px 0 20px;
+	border-radius: 10px;
+	background-color: $color-white;
 }
 
 .title {
 	text-transform: capitalize;
-	padding: 0 10px;
+	padding: 0 20px;
 	line-height: 26px;
 	font-size: 24px;
 	font-weight: 500;
@@ -15,21 +15,14 @@
 
 .arrow {
 	position: absolute;
-	top: 185px;
-	left: 1135px;
+	top: -50px;
+	right: -735px;
 	display: inline-flex;
 	padding: 0;
 	width: 22px;
 	height: 26px;
-	opacity: 0;
-	@include transition-all;
-
-	&.active {
-		opacity: 1;
-	}
 }
 
 .arrow_prev {
-	left: 0;
 	transform: scale(-1) translateX(100%);
 }

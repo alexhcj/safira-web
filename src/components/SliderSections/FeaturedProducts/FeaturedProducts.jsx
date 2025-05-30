@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import cn from 'classnames'
+
 import { productsAPI } from '@api/products'
 
 import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
@@ -8,7 +10,8 @@ import { to2DArray } from '@utils/array'
 
 import { ProductCard } from '../../ProductCard/ProductCard'
 
-import s from './featured-products.module.scss'
+import os from './styles/alice-carousel-isolated.module.scss'
+import s from './styles/featured-products.module.scss'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -49,7 +52,7 @@ export const FeaturedProducts = () => {
 
 	return (
 		<>
-			<div className='container'>
+			<div className={cn('container', os.featuredProductsSliderWrapper)}>
 				<SectionSlider
 					title='Featured products'
 					subtitle='Recently added our store'

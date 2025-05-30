@@ -7,9 +7,8 @@ import { SectionHeader } from '../../UI/Section/SectionHeader/SectionHeader'
 import { Space } from '../../UI/Spacing/Space'
 import { Arrow } from '../Arrow/Arrow'
 
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
-// eslint-disable-next-line import/order
-import s from './section-slider.module.scss'
+import os from './styles/alice-carousel-isolated.module.scss'
+import s from './styles/section-slider.module.scss'
 
 export const SectionSlider = ({ title, subtitle, items, responsive, className }) => {
 	const [isArrowsShown, setIsArrowsShown] = useState(false)
@@ -22,7 +21,11 @@ export const SectionSlider = ({ title, subtitle, items, responsive, className })
 	}
 
 	return (
-		<div className={cn(s.slider, className)} onMouseEnter={handleArrowsShow} onMouseLeave={handleArrowsShow}>
+		<div
+			className={cn(s.slider, os.sectionSliderWrapper, className)}
+			onMouseEnter={handleArrowsShow}
+			onMouseLeave={handleArrowsShow}
+		>
 			<SectionHeader title={title} subtitle={subtitle} />
 			<Space space={30} />
 			<AliceCarousel

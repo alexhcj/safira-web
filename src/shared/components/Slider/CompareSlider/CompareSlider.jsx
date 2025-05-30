@@ -8,8 +8,6 @@ import { CompareItem } from '@modules/Compare/CompareItem/CompareItem'
 
 import { Arrow } from '../Arrow/Arrow'
 
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
-// eslint-disable-next-line import/order
 import s from './compare-slider.module.scss'
 
 const createItems = (type, getActiveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {
