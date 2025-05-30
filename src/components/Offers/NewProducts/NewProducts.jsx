@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import cn from 'classnames'
+
 import { productsAPI } from '@api/products'
 
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
@@ -40,8 +42,10 @@ export const NewProducts = () => {
 	}, [])
 
 	const items = to2DArray(newProducts, 2).map((col, index) => {
+		const isTopProductHeightBig = col[0].name.length < 28
+
 		return (
-			<div className={s.product_tower} key={index}>
+			<div className={cn(s.product_tower, isTopProductHeightBig && s.big)} key={index}>
 				{col.map((product) => {
 					return <ProductCard size='sm' imgSize='sm' key={product.slug} product={product} className={s.product} />
 				})}
