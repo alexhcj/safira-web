@@ -53,6 +53,15 @@ export const ChangePasswordStepperCheckMail = ({ onSubmit }) => {
 		}
 	}, [location.search, setStep, user.id])
 
+	const getEmailProviderInbox = (email) => {
+		const domain = email.split('@')[1].toLowerCase()
+		if (domain.includes('gmail')) return 'https://mail.google.com/'
+		if (domain.includes('yahoo')) return 'https://mail.yahoo.com/'
+		if (domain.includes('outlook') || domain.includes('hotmail') || domain.includes('live'))
+			return 'https://outlook.live.com/mail/inbox'
+		return 'mailto:'
+	}
+
 	return (
 		<div className={s.form}>
 			{Object.keys(profile).length !== 0 && !location.search && (
@@ -61,9 +70,14 @@ export const ChangePasswordStepperCheckMail = ({ onSubmit }) => {
 						We’ve sent <strong>reset password link</strong> to <strong>{hideEmailPartial(profile.email)}</strong> your
 						email address. Click this link to reset password.
 					</p>
-					<Link className={s.check_mail} to='mailto:'>
+					<Link
+						className={s.check_mail}
+						to={getEmailProviderInbox(profile.email)}
+						rel='noopener noreferrer'
+						target='_blank'
+					>
 						<Text className={s.check_mail_text} weight='semi' color='white' span>
-							Check Email
+							Check your inbox
 						</Text>
 					</Link>
 				</>
