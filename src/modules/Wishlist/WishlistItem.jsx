@@ -5,6 +5,8 @@ import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWit
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
+import { formatPrice } from '@utils/number/convert'
+
 import CartSVG from '@assets/svg/cart.svg?react'
 import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
@@ -46,7 +48,7 @@ export const WishlistItem = ({
 					{name}
 				</Link>
 			</td>
-			<td className={s.price}>${price}</td>
+			<td className={s.price}>{formatPrice(price)}</td>
 			<td className={cn(s.stock, maxQuantity < 100 && s.less, maxQuantity < 30 && s.low)}>
 				{maxQuantity > 100 ? 'In stoke' : `Left less than ${maxQuantity}`}
 			</td>
