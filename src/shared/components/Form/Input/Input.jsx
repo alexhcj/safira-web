@@ -44,7 +44,7 @@ export const Input = forwardRef(
 		return (
 			<div className={cn(s.box, className)}>
 				{label && (
-					<label className={cn(s.label, s.required && required)} htmlFor={id}>
+					<label className={cn(s.label, required && s.required)} htmlFor={id}>
 						{label}
 					</label>
 				)}
@@ -60,7 +60,6 @@ export const Input = forwardRef(
 					onFocus={handleFocus}
 					onBlur={handleBlur}
 					placeholder={placeholder}
-					required={required}
 				/>
 				{type === 'password' && (
 					<button type='button' className={s.password_btn} onClick={() => setIsShowPassword(!isShowPassword)}>

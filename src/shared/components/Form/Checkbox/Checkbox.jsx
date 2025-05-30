@@ -33,7 +33,6 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 						onChange={handleChange}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
-						required={required}
 					/>
 					{children}
 					<label className={cn(s.label, required && s.required, className)} htmlFor={id}></label>
@@ -49,7 +48,6 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 							onChange={handleChange}
 							onFocus={handleFocus}
 							onBlur={handleBlur}
-							required={required}
 						/>
 					</label>
 					{children}

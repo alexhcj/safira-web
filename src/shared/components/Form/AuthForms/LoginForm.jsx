@@ -98,6 +98,7 @@ export const LoginForm = () => {
 						label='Email address'
 						handleChange={handleChange('email')}
 						error={getFieldError('email')}
+						required
 					/>
 					<Input
 						className={s.input}
@@ -108,6 +109,7 @@ export const LoginForm = () => {
 						label='Password'
 						handleChange={handleChange('password')}
 						error={getFieldError('password')}
+						required
 					/>
 					<div className={s.form_actions}>
 						<Button htmlType='submit' type='auth' className={s.btn_auth}>
