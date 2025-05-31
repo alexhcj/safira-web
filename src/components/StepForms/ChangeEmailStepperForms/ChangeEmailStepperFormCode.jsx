@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 import { exactLength, pattern, required } from '@/utils'
 
+import { useEmailStepperContext } from '@context/EmailStepperContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
 
@@ -26,7 +27,7 @@ const codeFormValidationSchema = {
 }
 
 export const ChangeEmailStepperFormCode = ({ type, isLoading, onSubmit }) => {
-	const [step, _] = useLocalStorage('change-email-stepper')
+	const { step, _ } = useEmailStepperContext()
 	const [code, setCode] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
 		validateOnChange: false,

@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 
+import { useEmailStepperContext } from '@context/EmailStepperContext'
+
 import { useVerifications } from '@hooks/services/useVerifications'
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ChangeEmailStepperFormCode } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormCode'
 import { ChangeEmailStepperFormEmail } from '@components/StepForms/ChangeEmailStepperForms/ChangeEmailStepperFormEmail'
@@ -45,7 +46,7 @@ const steps = [
 
 export const ChangeEmailStepper = () => {
 	const { changeEmail, verifyNewEmail, validatePassword, isLoading } = useVerifications()
-	const [step, setStep] = useLocalStorage('change-email-stepper', { step: 0, email: '' })
+	const { step, setStep } = useEmailStepperContext()
 
 	useEffect(() => {
 		if (step.step === 'finish') setStep({ step: 0, email: '' })
