@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+
 import { Modal } from '@shared/components/Modal/Modal'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
@@ -13,11 +15,28 @@ import ReactSVG from '@assets/svg/technologies/react.svg?react'
 
 import s from './db-warmup-modal.module.scss'
 
+const STORAGE_KEY = 'safira-db-warmup-modal'
+const COOLDOWN_DURATION = 15 * 60 * 1000 // 15 mins
+
 export const DbWarmUpPopup = () => {
-	const [isOpen, setIsOpen] = useState(true)
+	const [timeout, setTimeout] = useLocalStorage(STORAGE_KEY, null)
+	const [isOpen, setIsOpen] = useState(false)
 	const [progress, setProgress] = useState(0)
 
+	// check if modal should be shown based on localStorage
 	useEffect(() => {
+		const now = Date.now()
+
+		if (!timeout || now - parseInt(timeout) >= COOLDOWN_DURATION) {
+			setIsOpen(true)
+			setTimeout(now.toString())
+		}
+	}, [])
+
+	// progress bar logic - only runs when modal is open
+	useEffect(() => {
+		if (!isOpen) return
+
 		const totalTime = 50000 // 50 sec
 		const interval = 500
 		const steps = totalTime / interval
@@ -36,15 +55,30 @@ export const DbWarmUpPopup = () => {
 		}, interval)
 
 		return () => clearInterval(timer)
-	}, [])
+	}, [isOpen])
 
+	// auto-close modal when progress reaches 100%
 	useEffect(() => {
 		if (progress >= 100) {
-			setTimeout(() => {
+			const closeTimer = setTimeout(() => {
 				setIsOpen(false)
 			}, 1000)
+
+			return () => clearTimeout(closeTimer)
 		}
 	}, [progress])
+
+	// manual close handler
+	const handleClose = () => {
+		setIsOpen(false)
+	}
+
+	// reset progress when modal closes
+	useEffect(() => {
+		if (!isOpen) {
+			setProgress(0)
+		}
+	}, [isOpen])
 
 	return (
 		<Modal isOpen={isOpen} setIsOpen={setIsOpen} className={s.modal}>
@@ -83,7 +117,7 @@ export const DbWarmUpPopup = () => {
 					</div>
 				</div>
 
-				<Button className={s.button} onClick={() => setIsOpen(false)}>
+				<Button className={s.button} onClick={handleClose}>
 					<Text className={s.button_text} weight='medium' color='white'>
 						Enjoy App!
 					</Text>
