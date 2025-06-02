@@ -54,7 +54,19 @@ export const PriceRange = () => {
 		params.delete('maxPrice')
 		const query = Object.fromEntries([...params])
 		setParams({ ...query })
-		setPrice(priceRanges)
+
+		// updates available price range
+		const fetchData = async () => {
+			try {
+				const { minPrice, maxPrice } = await productsAPI.getQueryPriceRange(query)
+				setPriceRanges([+minPrice || 0, +maxPrice || 0])
+				setPrice([minPrice, maxPrice])
+			} catch (e) {
+				console.log(e)
+			}
+		}
+
+		fetchData()
 	}
 
 	return (
