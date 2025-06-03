@@ -13,7 +13,7 @@ export const BlankPageInfo = () => {
 						Hi! I&apos;m <span>Alex</span>, a <span>Full-Stack Developer</span>.
 					</h2>
 					<p className={s.description}>
-						I build scalable web applications from concept to deployment. 5+ years crafting e-commerce platforms, CMS
+						I build scalable web applications from concept to deployment. 8+ years crafting e-commerce platforms, CMS
 						solutions, and complex business systems. I don&apos;t just code—I solve problems.
 					</p>
 					<p className={s.contact}>
