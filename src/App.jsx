@@ -4,10 +4,12 @@ import { setupErrorHandling } from '@api/api'
 
 import { AuthProvider } from '@context/AuthContext'
 import { CartProvider } from '@context/CartContext'
+import { CartPopupProvider } from '@context/CartPopupContext'
 import { CompareProvider } from '@context/CompareContext'
 import { ErrorProvider, useErrorContext } from '@context/ErrorContext'
 import { WishlistProvider } from '@context/WishlistContext'
 
+import { CartPopup } from '@components/CartPopup/CartPopup'
 import { Copyright } from '@components/Copyright/Copyright'
 import { DbWarmUpPopup } from '@components/DBWarmUpModal/DbWarmUpPopup'
 import { ResponseError } from '@components/ResponseError/ResponseError'
@@ -36,16 +38,19 @@ function App() {
 					<AuthProvider>
 						<WishlistProvider>
 							<CartProvider>
-								<CompareProvider>
-									<Header />
-									<AppRoutes />
-									<Footer />
-									<Copyright />
-									<ButtonScroll />
-									<ResponseError />
-									<DbWarmUpPopup />
-									{/*<ButtonDocs />*/}
-								</CompareProvider>
+								<CartPopupProvider>
+									<CompareProvider>
+										<Header />
+										<AppRoutes />
+										<Footer />
+										<Copyright />
+										<ButtonScroll />
+										<ResponseError />
+										<DbWarmUpPopup />
+										<CartPopup />
+										{/*<ButtonDocs />*/}
+									</CompareProvider>
+								</CartPopupProvider>
 							</CartProvider>
 						</WishlistProvider>
 					</AuthProvider>

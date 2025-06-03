@@ -5,6 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
 import { useCartContext } from '@context/CartContext'
+import { useCartPopupContext } from '@context/CartPopupContext'
 import { useCompareContext } from '@context/CompareContext'
 import { RecentSearchProvider } from '@context/RecentSearchContext'
 import { useWishlistContext } from '@context/WishlistContext'
@@ -64,6 +65,7 @@ const socialsList = [
 
 export const Header = () => {
 	const location = useLocation()
+	const { setIsOpen } = useCartPopupContext()
 	const [sticky, setSticky] = useState(false)
 	const [isPopoverShown, setIsPopoverShown] = useState(false)
 	const { user } = useAuthContext()
@@ -154,10 +156,14 @@ export const Header = () => {
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>
 							</NavLink>
-							<NavLink to='/cart' className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}>
+							<button
+								type='button'
+								className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}
+								onClick={() => setIsOpen(true)}
+							>
 								<CartSVG />
 								<span className={s.count}>{cart.length}</span>
-							</NavLink>
+							</button>
 						</div>
 					</div>
 				</div>
