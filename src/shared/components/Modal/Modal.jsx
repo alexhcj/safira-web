@@ -6,6 +6,7 @@ import { Portal } from './Portal'
 
 import Close from '@assets/svg/close.svg?react'
 
+import ds from './styles/modal-default.module.scss'
 import s from './styles/modal.module.scss'
 
 export const Modal = ({ isOpen, setIsOpen, children, className }) => {
@@ -34,8 +35,8 @@ export const Modal = ({ isOpen, setIsOpen, children, className }) => {
 		<>
 			{isOpen && (
 				<Portal>
-					<div className={s.modal}>
-						<div role='presentation' className={s.overlay} onClick={() => setIsOpen(false)} />
+					<div className={ds.modal}>
+						<div role='presentation' className={ds.overlay} onClick={() => setIsOpen(false)} />
 						<div className={cn(s.box, className)}>
 							<div className={s.wrapper}>
 								<div className='container'>
