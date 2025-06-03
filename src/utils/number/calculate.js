@@ -5,6 +5,6 @@
  */
 export const calculateTotalPrice = (arr) => {
 	return arr.reduce((total, item) => {
-		return (total += item.discount_price ? item.discount_price * item.quantity : item.price * item.quantity)
+		return (total += item.price * item.quantity)
 	}, 0)
 }

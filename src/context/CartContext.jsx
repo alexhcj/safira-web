@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react'
 
+import { calculateTotalPrice } from '@/utils'
+
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const CartContext = createContext([])
@@ -39,13 +41,24 @@ export const CartProvider = ({ children }) => {
 		setCart([...cart])
 	}
 
+	const cartTotalPrice = () => {
+		const items = cart.map((product) => ({
+			quantity: product.quantity,
+			price: product.discount_price ? product.discount_price : product.price,
+		}))
+
+		return calculateTotalPrice(items)
+	}
+
 	const removeFromCart = (slug) => {
 		const filteredCart = cart.filter((product) => product.slug !== slug)
 		setCart([...filteredCart])
 	}
 
 	return (
-		<CartContext.Provider value={{ cart, addToCart, productQuantityInCart, handleQuantity, removeFromCart }}>
+		<CartContext.Provider
+			value={{ cart, addToCart, productQuantityInCart, handleQuantity, cartTotalPrice, removeFromCart }}
+		>
 			{children}
 		</CartContext.Provider>
 	)

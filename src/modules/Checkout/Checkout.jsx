@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import cn from 'classnames'
 
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { useCartContext } from '@context/CartContext'
 
 import { Input } from '@shared/components/Form/Input/Input'
 import { Radio } from '@shared/components/Form/Radio/Radio'
@@ -12,7 +12,7 @@ import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { calculateTotalPrice } from '@utils/number'
+import { formatPrice } from '@utils/number/convert'
 
 import AmericanExpress from '@assets/images/american-express.png'
 import Maestro from '@assets/images/maestro.png'
@@ -42,7 +42,7 @@ const radioData = [
 // ]
 
 export const Checkout = () => {
-	const [cart, setCart] = useLocalStorage('cart', [])
+	const { cart, cartTotalPrice } = useCartContext()
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
 	const [radioSelected, setRadioSelected] = useState(radioData[0].id)
@@ -216,7 +216,7 @@ export const Checkout = () => {
 							})}
 							<tr className={s.total}>
 								<td>Order total</td>
-								<td>${calculateTotalPrice(cart)}</td>
+								<td>{formatPrice(cartTotalPrice())}</td>
 							</tr>
 						</tbody>
 					</table>
