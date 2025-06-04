@@ -19,7 +19,7 @@ export const Comment = ({
 		createdAt,
 		text,
 		comments,
-		user: { firstName, avatarId },
+		user: { userId, firstName, avatarId },
 	},
 	type,
 	nestedLvl,
@@ -44,9 +44,11 @@ export const Comment = ({
 						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
 						<p className={s.text}>{capitalize(text)}</p>
 					</div>
-					<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
-						Reply
-					</Button>
+					{user && userId !== user.id && (
+						<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
+							Reply
+						</Button>
+					)}
 				</div>
 			</div>
 			{!isReplyHidden && <Reply nestedLvl={nestedLvl} action='update' type='short' />}

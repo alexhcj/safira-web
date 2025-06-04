@@ -1,17 +1,18 @@
 /**
- * Count total nested comments
- * @param {array} arr - Array of comments
- * @returns {number} - Total comments
+ * Count total nested comments recursively
+ * @param {array} comments - Array of comments
+ * @returns {number} - Total number of comments including all nested
  */
-export const countCommentsDeep = (arr) => {
-	let comments = []
+export const countCommentsDeep = (comments = []) => {
+	let count = 0
 
-	const flattenMembers = arr.map((item) => {
-		if (item.comments && item.comments.length) {
-			comments = [...comments, ...item.comments]
+	for (const comment of comments) {
+		count += 1 // count this comment
+
+		if (Array.isArray(comment.comments)) {
+			count += countCommentsDeep(comment.comments) // count children
 		}
-		return item
-	})
+	}
 
-	return flattenMembers.concat(comments.length ? countCommentsDeep(comments) : comments).length
+	return count
 }
