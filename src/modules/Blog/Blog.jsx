@@ -20,7 +20,8 @@ export const Blog = () => {
 
 	useEffect(() => {
 		window.onbeforeunload = () => window.scrollTo(0, 0)
-		setParams(import.meta.env.VITE_BLOG_DEFAULT_QUERY)
+
+		if (params.size === 0) setParams(import.meta.env.VITE_BLOG_DEFAULT_QUERY)
 	}, [])
 
 	useEffect(() => {

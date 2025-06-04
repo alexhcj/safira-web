@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { maxLength, minLength, pattern, required } from '@/utils'
 
@@ -25,6 +25,8 @@ const blogSearchFormValidationSchema = {
 const DEFAULT_QUERY = import.meta.env.VITE_BLOG_DEFAULT_QUERY
 
 export const BlogSearch = ({ isLoading }) => {
+	const location = useLocation()
+	const navigate = useNavigate()
 	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ search }, blogSearchFormValidationSchema, {
@@ -61,7 +63,11 @@ export const BlogSearch = ({ isLoading }) => {
 
 			if (search !== '') newParams.search = search
 
-			setParams(newParams, { replace: true })
+			if (location.pathname === '/blog') {
+				setParams(newParams, { replace: true })
+			} else {
+				navigate(`/blog?${new URLSearchParams(newParams)}`, { replace: true })
+			}
 		}
 	}
 
