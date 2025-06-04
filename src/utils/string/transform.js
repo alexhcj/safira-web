@@ -20,6 +20,17 @@ export const slugToStr = (str) => {
 }
 
 /**
+ * Converts a camelCase string to a readable string with proper capitalization
+ * @param {string} str - The camelCase string to convert
+ * @returns {string} The formatted string
+ */
+export const camelToStr = (str) => {
+	if (typeof str !== 'string') return ''
+	const words = str.replace(/([A-Z])/g, ' $1').trim()
+	return words.charAt(0).toUpperCase() + words.slice(1)
+}
+
+/**
  * Converts an enum string to a readable text by replacing underscores with spaces
  * @param {string} str - The enum string to convert
  * @returns {string} The formatted string
