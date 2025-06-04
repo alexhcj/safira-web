@@ -20,10 +20,15 @@ import s from './hovermenu.module.scss'
 export const Hovermenu = ({ menuToggle, size, product }) => {
 	const { previewProduct } = useProductModalContext()
 	const { addToWishlist, isProductInWishlist, removeFromWishlist } = useWishlistContext()
-	const { addToCart } = useCartContext()
+	const { addToCart, isProductInCart, removeFromCart } = useCartContext()
 	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
+	const isProductInCartList = isProductInCart(product.slug)
 	const isProductInWishList = isProductInWishlist(product.slug)
 	const isProductInCompareList = isProductInCompare(product.slug, product.basicCategory)
+
+	const handleCartClick = () => {
+		isProductInCartList ? removeFromCart(product.slug) : addToCart(product)
+	}
 
 	const handleWishlistClick = () => {
 		isProductInWishList ? removeFromWishlist(product.slug) : addToWishlist(product)
@@ -36,13 +41,17 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 	return (
 		<div className={cn(s.menu, menuToggle && s.active, s[`menu_${size}`])}>
 			{size === 'row' ? (
-				<ButtonCart type='button' onClick={() => addToCart(product)}>
+				<ButtonCart type='button' onClick={handleCartClick}>
 					<Text span color='white' weight='semi' className={s.button_cart_text}>
 						Add to cart
 					</Text>
 				</ButtonCart>
 			) : (
-				<ButtonPopup className={s.btn_popup} text='Add to Cart' onClick={() => addToCart(product)}>
+				<ButtonPopup
+					className={cn(s.btn_popup, isProductInCartList && s.active)}
+					onClick={handleCartClick}
+					text={isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
+				>
 					<CartSVG />
 				</ButtonPopup>
 			)}

@@ -50,6 +50,10 @@ export const CartProvider = ({ children }) => {
 		return calculateTotalPrice(items)
 	}
 
+	const isProductInCart = (slug) => {
+		return cart.find((product) => product.slug === slug)
+	}
+
 	const removeFromCart = (slug) => {
 		const filteredCart = cart.filter((product) => product.slug !== slug)
 		setCart([...filteredCart])
@@ -57,7 +61,15 @@ export const CartProvider = ({ children }) => {
 
 	return (
 		<CartContext.Provider
-			value={{ cart, addToCart, productQuantityInCart, handleQuantity, cartTotalPrice, removeFromCart }}
+			value={{
+				cart,
+				addToCart,
+				productQuantityInCart,
+				handleQuantity,
+				cartTotalPrice,
+				isProductInCart,
+				removeFromCart,
+			}}
 		>
 			{children}
 		</CartContext.Provider>
