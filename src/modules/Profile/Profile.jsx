@@ -1,6 +1,8 @@
 import cn from 'classnames'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
+import { useAuthContext } from '@context/AuthContext'
+
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Logout } from '@shared/components/UI/Logout/Logout'
 
@@ -16,6 +18,11 @@ const profileNavList = [
 
 export const Profile = () => {
 	const location = useLocation()
+	const { logout } = useAuthContext()
+
+	const handleLogout = () => {
+		logout()
+	}
 
 	return (
 		<div className={s.profile}>
@@ -35,7 +42,7 @@ export const Profile = () => {
 							</li>
 						))}
 					</ul>
-					<Logout />
+					<Logout onClick={handleLogout} />
 				</aside>
 				<Outlet />
 			</div>
