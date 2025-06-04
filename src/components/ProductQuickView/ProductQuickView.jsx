@@ -17,7 +17,7 @@ export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const navigate = useNavigate()
-	const { slug, name, basicCategory, price, description, specifications } = product
+	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
@@ -29,7 +29,9 @@ export const ProductQuickView = () => {
 
 	const onClickHandler = () => {
 		setIsOpen(false)
-		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`)
+		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
+			state: JSON.stringify({ primeCategory, subCategory, basicCategory }),
+		})
 	}
 
 	return (
