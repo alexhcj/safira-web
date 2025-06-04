@@ -35,6 +35,7 @@ export const CategoriesDropdown = () => {
 
 	const onCategoriesClickHandler = (e) => {
 		if (e.target.id !== 'categories') return
+		setPopupToggle(false)
 		navigate('/categories')
 	}
 
