@@ -8,16 +8,18 @@ import { productsAPI } from '@api/products'
 
 import { ButtonFilter } from '@shared/components/UI/Buttons/ButtonFilter/ButtonFilter'
 
+import { formatPrice } from '@utils/number/convert'
+
 import Close from '@assets/svg/close.svg?react'
 
 import s from './price-range.module.scss'
 import './react-slider.css'
 
-import { formatPrice } from '@utils/number/convert'
-
 export const PriceRange = () => {
 	const [params, setParams] = useSearchParams()
-	const { category, subCategory, minPrice, maxPrice, slug, brand, dietary } = Object.fromEntries([...params])
+	const { primeCategory, subCategory, basicCategory, minPrice, maxPrice, slug, brand, dietary } = Object.fromEntries([
+		...params,
+	])
 	const [priceRanges, setPriceRanges] = useState([0, 0])
 	const [price, setPrice] = useState([+minPrice || 0, +maxPrice || 0])
 	const [showResetPrice, setShowResetPrice] = useState(false)
@@ -49,7 +51,7 @@ export const PriceRange = () => {
 		}
 
 		fetchData()
-	}, [category, subCategory, slug, brand, dietary])
+	}, [primeCategory, subCategory, basicCategory, slug, brand, dietary])
 
 	const resetPriceRange = () => {
 		params.delete('minPrice')
