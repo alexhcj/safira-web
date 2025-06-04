@@ -13,6 +13,8 @@ import Close from '@assets/svg/close.svg?react'
 import s from './price-range.module.scss'
 import './react-slider.css'
 
+import { formatPrice } from '@utils/number/convert'
+
 export const PriceRange = () => {
 	const [params, setParams] = useSearchParams()
 	const { category, subCategory, minPrice, maxPrice, slug, brand, dietary } = Object.fromEntries([...params])
@@ -88,7 +90,7 @@ export const PriceRange = () => {
 					onMouseEnter={() => setShowResetPrice(true)}
 					onMouseLeave={() => setShowResetPrice(false)}
 				>
-					${price[0]} - ${price[1]}
+					{formatPrice(price[0])} - {formatPrice(price[1])}
 					{minPrice && maxPrice && (
 						<button
 							className={cn(s.reset_price, { [s.active]: showResetPrice })}
