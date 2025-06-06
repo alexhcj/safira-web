@@ -1,4 +1,3 @@
-import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
@@ -26,7 +25,6 @@ export const Compare = () => {
 		setActiveIndex,
 	} = useCompareContext()
 	const { addToWishlist } = useWishlistContext()
-	const { addToCart } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -48,7 +46,6 @@ export const Compare = () => {
 						removeItemFromCompare={removeItemFromCompare}
 						setRange={setRange}
 						addToWishlist={addToWishlist}
-						addToCart={addToCart}
 					/>
 					{/*<CompareSlider*/}
 					{/*	className={s.fixed}*/}

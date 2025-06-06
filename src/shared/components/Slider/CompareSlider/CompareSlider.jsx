@@ -10,7 +10,7 @@ import { Arrow } from '../Arrow/Arrow'
 
 import s from './compare-slider.module.scss'
 
-const createItems = (type, getActiveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {
+const createItems = (type, getActiveCompares, activeCategory, handleClick, addToWishlist, removeSlide) => {
 	return [
 		...getActiveCompares(activeCategory).map((product, index) => (
 			<CompareItem
@@ -18,7 +18,6 @@ const createItems = (type, getActiveCompares, activeCategory, handleClick, addTo
 				key={product.slug}
 				product={product}
 				addToWishlist={addToWishlist}
-				addToCart={addToCart}
 				removeSlide={removeSlide}
 				category={activeCategory}
 				dataValue={index + 1}
@@ -46,7 +45,6 @@ export const CompareSlider = ({
 	removeItemFromCompare,
 	setRange,
 	addToWishlist,
-	addToCart,
 }) => {
 	const [isArrowsShown, setIsArrowsShown] = useState(false)
 	const [items, setItems] = useState([])
@@ -62,10 +60,8 @@ export const CompareSlider = ({
 	)
 
 	useEffect(() => {
-		setItems(
-			createItems(type, getActiveCompares, activeCategory, setActiveIndex, addToWishlist, addToCart, removeSlide),
-		)
-	}, [activeCategory, addToCart, addToWishlist, getActiveCompares, removeSlide, setActiveIndex])
+		setItems(createItems(type, getActiveCompares, activeCategory, setActiveIndex, addToWishlist, removeSlide))
+	}, [activeCategory, addToWishlist, getActiveCompares, removeSlide, setActiveIndex])
 
 	useEffect(() => {
 		items.length > 4 ? setIsArrowsShown(true) : setIsArrowsShown(false)

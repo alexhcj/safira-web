@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { throttle } from '@/utils'
 
+import { useCartContext } from '@context/CartContext'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
@@ -21,19 +23,13 @@ import TrashSVG from '@assets/svg/trash.svg?react'
 import s from './compare-item.module.scss'
 
 // types: 'small' | 'default'
-export const CompareItem = ({
-	type = 'default',
-	product,
-	addToWishlist,
-	category,
-	addToCart,
-	removeSlide,
-	dataValue,
-}) => {
+export const CompareItem = ({ type = 'default', product, addToWishlist, category, removeSlide, dataValue }) => {
+	const { addToCart, removeFromCart, isProductInCart } = useCartContext()
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
 	const { slug, name, quantity, rating, price, discount_price, tags, subCategory } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
+	const isProductInCartList = isProductInCart(slug)
 
 	const handleMouseEnter = () => {
 		setIsHovered(true)
@@ -53,16 +49,20 @@ export const CompareItem = ({
 	}
 
 	const handleAddToCart = () => {
-		const productToCart = {
-			slug,
-			name,
-			price: {
-				price,
-				discount_price,
-			},
-			specifications: { quantity },
+		if (isProductInCartList) {
+			removeFromCart(slug)
+		} else {
+			const productToCart = {
+				slug,
+				name,
+				price: {
+					price,
+					discount_price,
+				},
+				specifications: { quantity },
+			}
+			addToCart(productToCart)
 		}
-		addToCart(productToCart)
 	}
 
 	const handleSubCategoryClick = () => {
@@ -106,9 +106,9 @@ export const CompareItem = ({
 					<ButtonPopup onClick={() => handleAddToWishlist()} size='lg' text='Add to Wishlist'>
 						<HeartSVG />
 					</ButtonPopup>
-					<ButtonCart type='button' onClick={() => handleAddToCart()}>
+					<ButtonCart type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
-							Add to cart
+							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 						</Text>
 					</ButtonCart>
 				</div>
@@ -136,9 +136,9 @@ export const CompareItem = ({
 					<ButtonPopup onClick={() => handleAddToWishlist()} size='lg' text='Add to Wishlist'>
 						<HeartSVG />
 					</ButtonPopup>
-					<ButtonCart type='button' onClick={() => handleAddToCart()}>
+					<ButtonCart type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
-							Add to cart
+							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 						</Text>
 					</ButtonCart>
 					<div className={cn(s.remove, { [s.active]: isHovered })} onClick={() => removeSlide(slug, category)}>
