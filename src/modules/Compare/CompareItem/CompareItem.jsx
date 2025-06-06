@@ -3,6 +3,8 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { throttle } from '@/utils'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
@@ -41,6 +43,10 @@ export const CompareItem = ({
 		setIsHovered(false)
 	}
 
+	const handleMouseMove = throttle(() => {
+		setIsHovered(true)
+	}, 150)
+
 	const handleAddToWishlist = () => {
 		const productToWishlist = { slug, name, price: { price }, specifications: { quantity } }
 		addToWishlist(productToWishlist)
@@ -72,6 +78,7 @@ export const CompareItem = ({
 				className={cn(s.item, s[type])}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
+				onMouseMove={handleMouseMove}
 				data-value={dataValue}
 			>
 				<Link className={s.img_link} to={`/products/${slug}`}>

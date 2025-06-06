@@ -1,8 +1,8 @@
 export const throttle = (fn, ms) => {
 	let wait = false
-	return () => {
+	return function (...args) {
 		if (!wait) {
-			fn.call()
+			fn.apply(this, args) // preserve `this` and pass arguments
 			wait = true
 			setTimeout(() => {
 				wait = false
