@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 import jsconfigPaths from 'vite-jsconfig-paths'
 import svgr from 'vite-plugin-svgr'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
 	plugins: [
 		react({
 			include: '**/*.{jsx,js}',
@@ -13,6 +13,9 @@ export default defineConfig({
 		svgr(),
 		jsconfigPaths(),
 	],
+	define: {
+		__APP_ENV__: JSON.stringify(mode),
+	},
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, './src'),
@@ -40,4 +43,4 @@ export default defineConfig({
 			},
 		},
 	},
-})
+}))

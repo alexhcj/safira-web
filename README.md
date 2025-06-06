@@ -6,6 +6,7 @@
 
 - [Production App](https://safira-store.shop)
 - [Development App](https://safira-shop-web-dev.onrender.com/) (see work in progress)
+- [Figma Design](https://www.figma.com/design/i0PEldds46MbUNR5avusy3/safira?node-id=1494-199&t=U6ofgb37pEb4sqSM-1)
 
 ## Description
 

@@ -12,6 +12,7 @@ import { WishlistProvider } from '@context/WishlistContext'
 import { CartPopup } from '@components/CartPopup/CartPopup'
 import { Copyright } from '@components/Copyright/Copyright'
 import { DbWarmUpPopup } from '@components/DBWarmUpModal/DbWarmUpPopup'
+import { EnvStatus } from '@components/EnvStatus/EnvStatus'
 import { ResponseError } from '@components/ResponseError/ResponseError'
 
 import { Footer } from '@shared/components/common/Footer/Footer'
@@ -48,6 +49,7 @@ function App() {
 										<ResponseError />
 										<DbWarmUpPopup />
 										<CartPopup />
+										<EnvStatus />
 										{/*<ButtonDocs />*/}
 									</CompareProvider>
 								</CartPopupProvider>
