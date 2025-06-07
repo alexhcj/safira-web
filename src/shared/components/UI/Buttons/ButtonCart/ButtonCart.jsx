@@ -15,11 +15,16 @@ export const ButtonCart = ({ type = 'button', onClick, className, children }) =>
 		setFocus(false)
 	}
 
+	const handleClick = () => {
+		onClick()
+		setFocus(false)
+	}
+
 	return (
 		<button
 			type={type}
 			className={cn(s.btn, focus && s.focus, className)}
-			onClick={onClick}
+			onClick={handleClick}
 			onFocus={onFocus}
 			onBlur={onBlur}
 		>
