@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { throttle } from '@/utils'
 
 import { useCartContext } from '@context/CartContext'
+import { useWishlistContext } from '@context/WishlistContext'
 
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
@@ -23,13 +24,15 @@ import TrashSVG from '@assets/svg/trash.svg?react'
 import s from './compare-item.module.scss'
 
 // types: 'small' | 'default'
-export const CompareItem = ({ type = 'default', product, addToWishlist, category, removeSlide, dataValue }) => {
+export const CompareItem = ({ type = 'default', product, category, removeSlide, dataValue }) => {
 	const { addToCart, removeFromCart, isProductInCart } = useCartContext()
+	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
 	const { slug, name, quantity, rating, price, discount_price, tags, subCategory } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const isProductInCartList = isProductInCart(slug)
+	const isProductInWishList = isProductInWishlist(slug)
 
 	const handleMouseEnter = () => {
 		setIsHovered(true)
@@ -45,7 +48,8 @@ export const CompareItem = ({ type = 'default', product, addToWishlist, category
 
 	const handleAddToWishlist = () => {
 		const productToWishlist = { slug, name, price: { price }, specifications: { quantity } }
-		addToWishlist(productToWishlist)
+
+		isProductInWishList ? removeFromWishlist(slug) : addToWishlist(productToWishlist)
 	}
 
 	const handleAddToCart = () => {
@@ -103,7 +107,12 @@ export const CompareItem = ({ type = 'default', product, addToWishlist, category
 				</h4>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
-					<ButtonPopup onClick={() => handleAddToWishlist()} size='lg' text='Add to Wishlist'>
+					<ButtonPopup
+						className={cn(s.button_wishlist, isProductInWishList && s.active)}
+						onClick={handleAddToWishlist}
+						size='lg'
+						text='Add to Wishlist'
+					>
 						<HeartSVG />
 					</ButtonPopup>
 					<ButtonCart type='button' onClick={handleAddToCart}>
@@ -133,7 +142,7 @@ export const CompareItem = ({ type = 'default', product, addToWishlist, category
 				<h3 className={s.name}>{name}</h3>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
-					<ButtonPopup onClick={() => handleAddToWishlist()} size='lg' text='Add to Wishlist'>
+					<ButtonPopup onClick={handleAddToWishlist} size='lg' text='Add to Wishlist'>
 						<HeartSVG />
 					</ButtonPopup>
 					<ButtonCart type='button' onClick={handleAddToCart}>

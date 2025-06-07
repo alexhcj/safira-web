@@ -1,5 +1,4 @@
 import { useCompareContext } from '@context/CompareContext'
-import { useWishlistContext } from '@context/WishlistContext'
 
 import { CompareSlider } from '@shared/components/Slider/CompareSlider/CompareSlider'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
@@ -24,7 +23,6 @@ export const Compare = () => {
 		activeIndex,
 		setActiveIndex,
 	} = useCompareContext()
-	const { addToWishlist } = useWishlistContext()
 
 	return (
 		<div className='container'>
@@ -45,7 +43,6 @@ export const Compare = () => {
 						setActiveIndex={setActiveIndex}
 						removeItemFromCompare={removeItemFromCompare}
 						setRange={setRange}
-						addToWishlist={addToWishlist}
 					/>
 					{/*<CompareSlider*/}
 					{/*	className={s.fixed}*/}

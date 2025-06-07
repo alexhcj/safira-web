@@ -123,6 +123,17 @@
 	height: 42px;
 }
 
+.button_wishlist {
+	&.active {
+		background-color: $color-primary;
+		border-color: $color-primary;
+
+		svg path {
+			fill: $color-white;
+		}
+	}
+}
+
 .remove {
 	position: absolute;
 	top: 10px;
