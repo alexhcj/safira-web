@@ -1,4 +1,4 @@
-import { camelToStr, capitalize, titleCase } from '@utils/string'
+import { camelToStr } from '@utils/string'
 
 import s from './compare-attribute-item.module.scss'
 
@@ -10,7 +10,7 @@ export const CompareAttributesRow = ({ row: { values, attribute, different } }) 
 		</h6>
 		<div className={s.list}>
 			{values.map((value, index) => (
-				<span className={s.item} key={index}>
+				<span className={s.item} key={`${attribute}-${index}`}>
 					{value}
 				</span>
 			))}

@@ -6,22 +6,19 @@ import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { CompareAttributes } from './CompareAttributes/CompareAttributes'
 import { CompareTabs } from './CompareTabs/CompareTabs'
-// import s from './compare.module.scss'
 
 export const Compare = () => {
 	const {
-		range,
-		setRange,
+		activeIndex,
+		setActiveIndex,
 		comparesCategories,
 		getActiveCompares,
 		removeListFromCompare,
-		removeItemFromCompare,
 		activeCategory,
+		removeItemFromCompare,
 		setActiveCategory,
 		removeAllCompares,
 		calcCategoryItems,
-		activeIndex,
-		setActiveIndex,
 	} = useCompareContext()
 
 	return (
@@ -38,25 +35,16 @@ export const Compare = () => {
 					/>
 					<CompareSlider
 						getActiveCompares={getActiveCompares}
+						removeItemFromCompare={removeItemFromCompare}
 						activeCategory={activeCategory}
 						activeIndex={activeIndex}
 						setActiveIndex={setActiveIndex}
-						removeItemFromCompare={removeItemFromCompare}
-						setRange={setRange}
 					/>
-					{/*<CompareSlider*/}
-					{/*	className={s.fixed}*/}
-					{/*	type='small'*/}
-					{/*	getActiveCompares={getActiveCompares}*/}
-					{/*	activeCategory={activeCategory}*/}
-					{/*	activeIndex={activeIndex}*/}
-					{/*	setActiveIndex={setActiveIndex}*/}
-					{/*	removeItemFromCompare={removeItemFromCompare}*/}
-					{/*	setRange={setRange}*/}
-					{/*	addToWishlist={addToWishlist}*/}
-					{/*	addToCart={addToCart}*/}
-					{/*/>*/}
-					<CompareAttributes getActiveCompares={getActiveCompares} activeCategory={activeCategory} range={range} />
+					<CompareAttributes
+						getActiveCompares={getActiveCompares}
+						activeCategory={activeCategory}
+						activeIndex={activeIndex}
+					/>
 				</>
 			) : (
 				<ItemsNotFound type='compare' />
