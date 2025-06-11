@@ -21,7 +21,7 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 	}
 
 	const handleClick = () => {
-		onClick()
+		onClick && onClick()
 		setFocus(false)
 	}
 
