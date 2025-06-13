@@ -1,21 +1,24 @@
-import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useProductModalContext } from '../../context/ProductContext'
-import { useCartContext } from '../../context/CartContext'
-import { Modal } from '../../shared/components/Modal/Modal'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { Price } from '../../shared/components/Price/Price'
-import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { slugToString } from '../../utils'
+
+import { useCartContext } from '@context/CartContext'
+import { useProductModalContext } from '@context/ProductContext'
+
+import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Modal } from '@shared/components/Modal/Modal'
+import { Price } from '@shared/components/Price/Price'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import { slugToStr } from '@utils/string'
+
 import s from './product-quick-view.module.scss'
 
 export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const navigate = useNavigate()
-	const { slug, name, basicCategory, price, description, specifications } = product
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications } = product
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
 		state: {
@@ -26,7 +29,9 @@ export const ProductQuickView = () => {
 
 	const onClickHandler = () => {
 		setIsOpen(false)
-		navigate(`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`)
+		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
+			state: JSON.stringify({ primeCategory, subCategory, basicCategory }),
+		})
 	}
 
 	return (
@@ -48,7 +53,7 @@ export const ProductQuickView = () => {
 							</Text>
 							<button type='button' onClick={onClickHandler}>
 								<Text className={s.tag} span>
-									{basicCategory && slugToString(basicCategory)}
+									{basicCategory && slugToStr(basicCategory)}
 								</Text>
 							</button>
 						</div>

@@ -1,9 +1,11 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { Price } from '../../shared/components/Price/Price'
-import PreloaderSVG from '../../assets/svg/preloader.svg'
-import { ReactComponent as Trash } from '../../assets/svg/trash.svg'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Price } from '@shared/components/Price/Price'
+
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
+import Trash from '@assets/svg/trash.svg?react'
+
 import s from './styles/cart-item.module.scss'
 
 export const CartItem = ({ slug, img, name, price, discount_price, quantity, maxQuantity, onInput, onDelete }) => {
@@ -15,7 +17,7 @@ export const CartItem = ({ slug, img, name, price, discount_price, quantity, max
 			<td className={s.image}>
 				{img ? (
 					<Link className={s.link} to={`/products/${slug}`}>
-						<ImageWithFallback src={img} imgSize='md' alt={name} />
+						<ImageWithFallback src={img} imgSize='sm' alt={name} />
 					</Link>
 				) : (
 					<img src={PreloaderSVG} alt='Preloader' />

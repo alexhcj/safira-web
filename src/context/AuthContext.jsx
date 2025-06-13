@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage.hook'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const AuthContext = createContext(null)
 
@@ -16,5 +17,20 @@ export const AuthProvider = ({ children }) => {
 		setState(null)
 	}
 
-	return <AuthContext.Provider value={{ user: state, login, logout }}>{children}</AuthContext.Provider>
+	const updateEmailVerifiedStatus = (status) => {
+		setState((prev) => ({
+			...prev,
+			isEmailVerified: status,
+		}))
+	}
+
+	const updateUserCreds = (data) => {
+		setState((prev) => ({ ...prev, ...data }))
+	}
+
+	return (
+		<AuthContext.Provider value={{ user: state, login, logout, updateEmailVerifiedStatus, updateUserCreds }}>
+			{children}
+		</AuthContext.Provider>
+	)
 }

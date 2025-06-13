@@ -1,15 +1,18 @@
-import { NavLink, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { convertISODate } from '../../utils'
-import { ButtonMore } from '../../shared/components/UI/Buttons/ButtonMore/ButtonMore'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
+import { NavLink, useNavigate } from 'react-router-dom'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { ButtonMore } from '@shared/components/UI/Buttons/ButtonMore/ButtonMore'
+
+import { convertISODate } from '@utils/date'
+
 import s from './post-card.module.scss'
 
 // sizes: 'row-xs'
 export const PostCard = ({ post: { title, slug, createdAt, category }, size, imgSize, className }) => {
 	const navigate = useNavigate()
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/posts/${slug}`
 	const url = `/blog/${slug}`
 
 	const handleClick = () => {

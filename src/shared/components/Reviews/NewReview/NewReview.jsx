@@ -1,9 +1,12 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { UserActions } from '../../UserActions/UserActions'
+
+import { useAuthContext } from '@context/AuthContext'
+
 import { NewReviewForm } from '../../Form/NewReviewForm/NewReviewForm'
-import { ReactComponent as MessageSVG } from '../../../../assets/svg/message.svg'
+import { UserActions } from '../../UserActions/UserActions'
+
+import MessageSVG from '@assets/svg/message.svg?react'
+
 import s from './new-review.module.scss'
 
 export const NewReview = () => {

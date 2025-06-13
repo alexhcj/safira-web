@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { brandToSlug } from '../../../utils'
+
 import s from './brands-row.module.scss'
 
 export const BrandsRow = ({ name, brands, rowRef }) => {
@@ -10,17 +10,17 @@ export const BrandsRow = ({ name, brands, rowRef }) => {
 	}
 
 	const handleBrandClick = (brand) => {
-		navigate(`/shop?${process.env.REACT_APP_SHOP_DEFAULT_QUERY}&brand=${brand}`)
+		navigate(`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}&brand=${brand}`)
 	}
 
 	return (
 		<section className={s.section} ref={rowRef}>
 			<h6 className={s.header}>{name}</h6>
 			<ul className={s.list}>
-				{brands.map((brand) => (
-					<li className={s.item} key={brand}>
-						<div className={s.link} onClick={() => handleBrandClick(brandToSlug(brand))}>
-							{brand}
+				{brands.map(({ slug, displayName }) => (
+					<li className={s.item} key={slug}>
+						<div className={s.link} onClick={() => handleBrandClick(slug)}>
+							{displayName}
 						</div>
 					</li>
 				))}

@@ -1,11 +1,21 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Logout } from '../../shared/components/UI/Logout/Logout'
+
+import { useAuthContext } from '@context/AuthContext'
+
+import { Logout } from '@shared/components/UI/Logout/Logout'
+
 import s from './profile-popover-menu.module.scss'
 
 const profileNavList = [{ text: 'Profile', url: '/profile' }]
 
-export const ProfilePopoverMenu = () => {
+export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
+	const { logout } = useAuthContext()
+
+	const handleLogout = () => {
+		setIsPopoverShown(false)
+		logout()
+	}
+
 	return (
 		<div className={s.profile}>
 			<ul>
@@ -17,7 +27,7 @@ export const ProfilePopoverMenu = () => {
 					</li>
 				))}
 			</ul>
-			<Logout />
+			<Logout onClick={handleLogout} />
 		</div>
 	)
 }

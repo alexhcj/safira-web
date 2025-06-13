@@ -1,28 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { CompareItem } from '../../../../modules/Compare/CompareItem/CompareItem'
-import { AddCompareItem } from '../../../../modules/Compare/AddCompareItem/AddCompareItem'
+
+import { AddCompareItem } from '@modules/Compare/AddCompareItem/AddCompareItem'
+import { CompareItem } from '@modules/Compare/CompareItem/CompareItem'
+
 import { Arrow } from '../Arrow/Arrow'
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
+
 import s from './compare-slider.module.scss'
 
-const createItems = (type, getAcitveCompares, activeCategory, handleClick, addToWishlist, addToCart, removeSlide) => {
-	return [
-		...getAcitveCompares(activeCategory).map((product, index) => (
+const createItems = (type, products, activeCategory, removeSlide) => {
+	const items = [
+		...products.map((product, index) => (
 			<CompareItem
 				type={type}
-				key={product.slug}
+				key={`${product.slug}-${index}`}
 				product={product}
-				addToWishlist={addToWishlist}
-				addToCart={addToCart}
 				removeSlide={removeSlide}
 				category={activeCategory}
 				dataValue={index + 1}
 			/>
 		)),
-		<AddCompareItem key='add-compare-item' category={activeCategory} />,
 	]
+
+	// Always add the AddCompareItem at the end
+	if (products.length > 0) {
+		items.push(<AddCompareItem key='add-compare-item' category={activeCategory} />)
+	}
+
+	return items
 }
 
 const responsive = {
@@ -32,72 +39,79 @@ const responsive = {
 	},
 }
 
-// types: 'small' | 'default'
 export const CompareSlider = ({
-	className,
-	type,
 	getActiveCompares,
+	removeItemFromCompare,
 	activeCategory,
 	activeIndex,
 	setActiveIndex,
-	removeItemFromCompare,
-	setRange,
-	addToWishlist,
-	addToCart,
+	className,
+	type,
 }) => {
-	const [isArrowsShown, setIsArrowsShown] = useState(false)
+	const [carouselRef, setCarouselRef] = useState(null)
 	const [items, setItems] = useState([])
-	const [isNextDisabled, setIsNextDisabled] = useState(false)
-	const [isPrevDisabled, setIsPrevDisabled] = useState(true)
+
+	const activeProducts = getActiveCompares(activeCategory)
 
 	const removeSlide = useCallback(
 		(slug, category) => {
 			removeItemFromCompare(slug, category)
-			setActiveIndex((prev) => prev - 1)
 		},
-		[removeItemFromCompare, setActiveIndex],
+		[removeItemFromCompare],
 	)
 
+	// Update items when dependencies change
 	useEffect(() => {
-		setItems(
-			createItems(type, getActiveCompares, activeCategory, setActiveIndex, addToWishlist, addToCart, removeSlide),
-		)
-	}, [activeCategory, addToCart, addToWishlist, getActiveCompares, removeSlide, setActiveIndex])
+		const newItems = createItems(type, activeProducts, activeCategory, removeSlide)
+		setItems(newItems)
+	}, [activeCategory, activeProducts, removeSlide, type])
 
+	// Reset activeIndex when category changes or when items are removed
 	useEffect(() => {
-		items.length > 4 ? setIsArrowsShown(true) : setIsArrowsShown(false)
-	}, [items.length])
+		setActiveIndex(0)
+	}, [activeCategory, setActiveIndex])
 
-	const slidePrev = (isDisabled) => {
-		if (isDisabled) {
-			setActiveIndex(items.length - 4)
-			setRange({ first: items.length - 4, last: items.length - 1 })
-			return
+	// Calculate navigation states for infinite sliding
+	const totalItems = items.length
+	const visibleItems = 4
+	const maxIndex = Math.max(0, totalItems - visibleItems)
+	const isArrowsShown = totalItems > visibleItems
+
+	const handlePrevClick = () => {
+		if (carouselRef) {
+			let newIndex
+			if (activeIndex > 0) {
+				newIndex = activeIndex - 1
+			} else {
+				// Wrap to end
+				newIndex = maxIndex
+			}
+			carouselRef.slideTo(newIndex)
 		}
-
-		setActiveIndex((prev) => prev - 1)
-		setRange((prev) => ({ first: prev.first - 1, last: prev.last - 1 }))
 	}
 
-	const slideNext = (isDisabled) => {
-		if (isDisabled) {
-			setActiveIndex(0)
-			setRange({ first: 0, last: 3 })
-			return
+	const handleNextClick = () => {
+		if (carouselRef) {
+			let newIndex
+			if (activeIndex < maxIndex) {
+				newIndex = activeIndex + 1
+			} else {
+				// Wrap to beginning
+				newIndex = 0
+			}
+			carouselRef.slideTo(newIndex)
 		}
-
-		setActiveIndex((prev) => prev + 1)
-		setRange((prev) => ({ first: prev.first + 1, last: prev.last + 1 }))
 	}
 
-	const onSlideChanged = (e) => {
-		e.isNextSlideDisabled ? setIsNextDisabled(e.isNextSlideDisabled) : setIsNextDisabled(false)
-		e.isPrevSlideDisabled ? setIsPrevDisabled(e.isPrevSlideDisabled) : setIsPrevDisabled(false)
+	const handleSlideChanged = (e) => {
+		// Update activeIndex when AliceCarousel slides
+		setActiveIndex(e.item)
 	}
 
 	return (
 		<div className={cn(s.compare_carousel, className)}>
 			<AliceCarousel
+				ref={setCarouselRef}
 				responsive={responsive}
 				paddingLeft={type !== 'small' && 10}
 				paddingRight={type !== 'small' && 10}
@@ -106,16 +120,23 @@ export const CompareSlider = ({
 				animationDuration={250}
 				disableDotsControls
 				disableButtonsControls
-				onSlideChanged={onSlideChanged}
+				mouseTracking={false}
+				touchTracking={false}
+				onSlideChanged={handleSlideChanged}
+				key={activeCategory}
 			/>
 			<Arrow
-				className={cn(s.arrow, s.arrow_prev, isArrowsShown && s.active)}
-				onClick={() => slidePrev(isPrevDisabled)}
+				className={cn(s.arrow, s.arrow_prev, {
+					[s.active]: isArrowsShown,
+				})}
+				onClick={handlePrevClick}
 				ariaLabel='prev'
 			/>
 			<Arrow
-				className={cn(s.arrow, s.arrow_next, isArrowsShown && s.active)}
-				onClick={() => slideNext(isNextDisabled)}
+				className={cn(s.arrow, s.arrow_next, {
+					[s.active]: isArrowsShown,
+				})}
+				onClick={handleNextClick}
 				ariaLabel='next'
 			/>
 		</div>

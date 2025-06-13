@@ -1,15 +1,18 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import Slide1 from '../../../assets/images/slider/1.jpg'
-import Slide2 from '../../../assets/images/slider/2.jpg'
-import Slide3 from '../../../assets/images/slider/3.jpg'
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
-import s from './styles/main-slider.module.scss'
+import { NavLink } from 'react-router-dom'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import Slide1 from '@assets/images/slider/1.jpg'
+import Slide2 from '@assets/images/slider/2.jpg'
+import Slide3 from '@assets/images/slider/3.jpg'
+
+import os from './styles/alice-carousel-isolated.module.scss'
 import './styles/alice-carousel-override-main-slider.css'
+import s from './styles/main-slider.module.scss'
+import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 
 const data = [
 	{
@@ -17,7 +20,7 @@ const data = [
 		title: 'Fresh vegetables',
 		subTitle: 'Natural farm products',
 		text: 'Widest range of farm-fresh Vegetables, Fruits & seasonal produce',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-vegetables`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/fresh-vegetables`,
 		img: Slide2,
 	},
 	{
@@ -25,7 +28,7 @@ const data = [
 		title: 'Fresh tomatoes',
 		subTitle: 'Natural farm products',
 		text: 'Natural organic tomatoes make your health stronger. Put your information here',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/fresh-tomatoes`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/fresh-tomatoes`,
 		img: Slide3,
 	},
 	{
@@ -33,7 +36,7 @@ const data = [
 		title: 'Vegetables big promo',
 		subTitle: 'Fresh farm products',
 		text: '10% certifled-organic mix of fruit and veggies. Perfect for weekly cooking and snacking!',
-		url: `${process.env.REACT_APP_WEB_PUBLIC_URL}/blog/vegetables-big-promo`,
+		url: `${import.meta.env.VITE_WEB_PUBLIC_URL}/blog/vegetables-big-promo`,
 		img: Slide1,
 	},
 ]
@@ -75,17 +78,19 @@ export const HeroSlider = () => {
 	const dot = () => <span className={cn(s.dot)}></span>
 
 	return (
-		<AliceCarousel
-			responsive={responsive}
-			items={slides}
-			autoPlay={true}
-			autoPlayInterval={5000}
-			mouseTracking={true}
-			infinite={true}
-			disableButtonsControls={true}
-			animationType='fadeout'
-			animationDuration={800}
-			renderDotsItem={dot}
-		/>
+		<div className={os.heroSliderWrapper}>
+			<AliceCarousel
+				responsive={responsive}
+				items={slides}
+				autoPlay={true}
+				autoPlayInterval={5000}
+				mouseTracking={true}
+				infinite={true}
+				disableButtonsControls={true}
+				animationType='fadeout'
+				animationDuration={800}
+				renderDotsItem={dot}
+			/>
+		</div>
 	)
 }

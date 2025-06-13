@@ -1,7 +1,8 @@
-import React from 'react'
-import { useSearchParams } from 'react-router-dom'
 import cn from 'classnames'
-import { enumToString } from '../../../../utils'
+import { useSearchParams } from 'react-router-dom'
+
+import { enumToStr } from '@utils/string'
+
 import s from './dietary-filter.module.scss'
 
 const dietaryTypesList = [
@@ -24,11 +25,11 @@ export const DietaryFilter = () => {
 		const newDietaries = !query.dietary
 			? dietary
 			: !query.dietary.split('+').includes(dietary)
-			? `${query.dietary}+${dietary}`
-			: query.dietary
-					.split('+')
-					.filter((d) => d !== dietary)
-					.join('+')
+				? `${query.dietary}+${dietary}`
+				: query.dietary
+						.split('+')
+						.filter((d) => d !== dietary)
+						.join('+')
 
 		if (newDietaries) {
 			setParams({ ...query, offset: '0', dietary: newDietaries })
@@ -49,7 +50,7 @@ export const DietaryFilter = () => {
 					key={dietary}
 					onClick={() => selectDietary(dietary)}
 				>
-					{enumToString(dietary)}
+					{enumToStr(dietary)}
 				</button>
 			))}
 		</div>

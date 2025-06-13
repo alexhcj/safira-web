@@ -1,0 +1,40 @@
+.socials {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+	margin-top: 20px;
+
+	.item {
+		&:first-of-type svg {
+			width: 18px;
+			height: 18px;
+		}
+
+		&:hover {
+			span {
+				color: $color-dark;
+			}
+		}
+	}
+
+	.link {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		gap: 8px;
+
+		span {
+			text-decoration: underline;
+			font-weight: $weight-medium;
+			color: $color-primary;
+			@include transition-all;
+		}
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+}

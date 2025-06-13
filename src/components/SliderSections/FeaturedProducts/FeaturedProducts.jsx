@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { productsAPI } from '../../../api/products'
-import { SectionSlider } from '../../../shared/components/Slider/SectionSlider/SectionSlider'
+import { useEffect, useState } from 'react'
+
+import cn from 'classnames'
+
+import { productsAPI } from '@api/products'
+
+import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
+
+import { to2DArray } from '@utils/array'
+
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { convertArray } from '../../../utils'
-import s from './featured-products.module.scss'
+
+import os from './styles/alice-carousel-isolated.module.scss'
+import s from './styles/featured-products.module.scss'
 
 export const FeaturedProducts = () => {
 	const [featuredProducts, setFeaturedProducts] = useState([])
@@ -26,7 +34,7 @@ export const FeaturedProducts = () => {
 		fetchData()
 	}, [])
 
-	const items = convertArray(featuredProducts, 3).map((col, index) => {
+	const items = to2DArray(featuredProducts, 3).map((col, index) => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
@@ -44,7 +52,7 @@ export const FeaturedProducts = () => {
 
 	return (
 		<>
-			<div className='container'>
+			<div className={cn('container', os.featuredProductsSliderWrapper)}>
 				<SectionSlider
 					title='Featured products'
 					subtitle='Recently added our store'

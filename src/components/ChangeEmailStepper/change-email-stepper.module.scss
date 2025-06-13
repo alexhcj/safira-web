@@ -1,0 +1,10 @@
+.box {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: min-content 1fr;
+	gap: 50px;
+}
+
+.content {
+	padding: 60px 50px 90px;
+}

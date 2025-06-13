@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
-import { productsAPI } from '../../api/products'
+
+import { productsAPI } from '@api/products'
 
 export const useProducts = () => {
 	const [params] = useSearchParams({
@@ -25,7 +27,7 @@ export const useProducts = () => {
 				setProducts(res.products)
 				setMeta(res.meta)
 			} catch (err) {
-				setError(err)
+				return null
 			} finally {
 				setLoading(false)
 			}

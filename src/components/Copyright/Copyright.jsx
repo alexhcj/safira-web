@@ -1,6 +1,7 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { payment1, payment2, payment3, payment4 } from '../../assets/images/footer'
+
+import { payment1, payment2, payment3, payment4 } from '@assets/images/footer'
+
 import s from './copyright.module.scss'
 
 export const Copyright = () => {
@@ -17,7 +18,7 @@ export const Copyright = () => {
 							.&nbsp;
 						</div>
 						<div className={s.text}>
-							All Rights Reserved . Design By{' '}
+							Released under MIT License . Design By{' '}
 							<NavLink to='/' className={s.link}>
 								Safira
 							</NavLink>

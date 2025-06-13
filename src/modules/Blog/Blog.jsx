@@ -1,23 +1,32 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+
 import { useSearchParams } from 'react-router-dom'
+
+import { usePosts } from '@hooks/services/usePosts'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { SidebarLayout } from '@shared/layouts/SidebarLayout/SidebarLayout'
+
 import { BlogSidebar } from './BlogSidebar/BlogSidebar'
-import { SidebarLayout } from '../../shared/layouts/SidebarLayout/SidebarLayout'
 import { Post } from './Post/Post'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Preloader } from '../../shared/components/common/Preloader/Preloader'
-import { usePosts } from '../../hooks/services/usePosts'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
 
 export const Blog = () => {
 	const [params, setParams] = useSearchParams()
-	const { posts, meta, loading } = usePosts()
+	const { fetchPosts, posts, meta, isLoading } = usePosts()
 	const infiniteTrigger = useRef(null)
 	let lastScroll = 0 // throttle trigger
 
-	// moves screen to page top after refresh
 	useEffect(() => {
 		window.onbeforeunload = () => window.scrollTo(0, 0)
+
+		if (params.size === 0) setParams(import.meta.env.VITE_BLOG_DEFAULT_QUERY)
 	}, [])
+
+	useEffect(() => {
+		fetchPosts(params)
+	}, [params])
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll)
@@ -31,7 +40,7 @@ export const Blog = () => {
 		lastScroll = Date.now()
 		const infiniteTriggerOffset = infiniteTrigger.current ? infiniteTrigger.current.offsetTop : ''
 		const currentOffset = window.innerHeight + document.documentElement.scrollTop
-		if (currentOffset > infiniteTriggerOffset && !loading && !meta.isLastPage) {
+		if (currentOffset > infiniteTriggerOffset && !isLoading && !meta.isLastPage) {
 			const query = Object.fromEntries([...params])
 
 			setParams({ ...query, offset: `${+query.offset + +query.limit}` })
@@ -43,9 +52,12 @@ export const Blog = () => {
 	return (
 		<section>
 			<div className='container'>
-				<SidebarLayout main={postsList || <ItemsNotFound type='post' />} aside={<BlogSidebar isLoading={loading} />} />
+				<SidebarLayout
+					main={postsList || <ItemsNotFound type='post' />}
+					aside={<BlogSidebar isLoading={isLoading} />}
+				/>
 				<div ref={infiniteTrigger}></div>
-				{loading && <Preloader />}
+				{isLoading && <Preloader />}
 				<Space size='l' />
 			</div>
 		</section>

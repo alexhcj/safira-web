@@ -1,6 +1,7 @@
-import React from 'react'
 import cn from 'classnames'
-import { gridTypes, useGridContext } from '../../../context/GridContext'
+
+import { gridTypes, useGridContext } from '@context/GridContext'
+
 import s from './shop-list-layout.module.scss'
 
 export const ShopListLayout = () => {
@@ -17,8 +18,7 @@ export const ShopListLayout = () => {
 					<img className={cn(s.image, { [s.active]: grid === item.type })} src={item.img} alt={item.alt} />
 					<span className={s.tooltip}>{item.name}</span>
 				</li>
-			)
-			)}
+			))}
 		</ul>
 	)
 }

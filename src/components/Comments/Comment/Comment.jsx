@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { useAuthContext } from '../../../context/AuthContext'
+
+import { useAuthContext } from '@context/AuthContext'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+
+import { capitalize, convertISODate } from '@utils/index'
+
 import { Reply } from '../../Reply/Reply'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
-import { capitalizeFirstLetter, convertISODate } from '../../../utils'
+
 import s from './comment.module.scss'
 
 // type: 'short'
@@ -13,14 +19,14 @@ export const Comment = ({
 		createdAt,
 		text,
 		comments,
-		user: { firstName, avatarId },
+		user: { userId, firstName, avatarId },
 	},
 	type,
 	nestedLvl,
 }) => {
 	const { user } = useAuthContext()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
-	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
 	return (
 		<div className={s.wrapper} style={{ paddingLeft: 50 }}>
@@ -29,21 +35,20 @@ export const Comment = ({
 					onlySrc
 					src={avatarUrl}
 					imgSize='avatar'
-					alt={avatarId ? `${firstName}'s avatar` : 'User devault avatar'}
+					alt={avatarId ? `${firstName}'s avatar` : 'User default avatar'}
 					className={s.img}
 				/>
 				<div className={s.box}>
 					<div>
-						<h5 className={s.author}>{firstName}</h5>
-						<span className={s.date}>
-							{capitalizeFirstLetter(convertISODate(createdAt, 'full-time').toLowerCase())}
-						</span>
-						<p className={s.text}>{capitalizeFirstLetter(text)}</p>
+						<h5 className={s.author}>{firstName || 'User'}</h5>
+						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
+						<p className={s.text}>{capitalize(text)}</p>
 					</div>
-					{/* TODO: add scroll on click to login/register user actions if !user */}
-					<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
-						Reply
-					</Button>
+					{user && userId !== user.id && (
+						<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
+							Reply
+						</Button>
+					)}
 				</div>
 			</div>
 			{!isReplyHidden && <Reply nestedLvl={nestedLvl} action='update' type='short' />}

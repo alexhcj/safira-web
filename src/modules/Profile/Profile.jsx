@@ -1,10 +1,14 @@
-import React from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
 import cn from 'classnames'
-import { ProfileDetails } from './ProfileDetails/ProfileDetails'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+
+import { useAuthContext } from '@context/AuthContext'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Logout } from '@shared/components/UI/Logout/Logout'
+
 import { Orders } from './Orders/Orders'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Logout } from '../../shared/components/UI/Logout/Logout'
+import { ProfileDetails } from './ProfileDetails/ProfileDetails'
+
 import s from './profile.module.scss'
 
 const profileNavList = [
@@ -14,6 +18,11 @@ const profileNavList = [
 
 export const Profile = () => {
 	const location = useLocation()
+	const { logout } = useAuthContext()
+
+	const handleLogout = () => {
+		logout()
+	}
 
 	return (
 		<div className={s.profile}>
@@ -33,7 +42,7 @@ export const Profile = () => {
 							</li>
 						))}
 					</ul>
-					<Logout />
+					<Logout onClick={handleLogout} />
 				</aside>
 				<Outlet />
 			</div>

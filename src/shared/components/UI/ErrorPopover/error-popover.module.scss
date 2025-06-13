@@ -1,0 +1,60 @@
+.validation {
+	position: absolute;
+	display: block;
+	align-content: center;
+	top: 0;
+	right: 0;
+	padding: 0 12px;
+	width: max-content;
+	max-width: 264px;
+	min-height: 35px;
+	line-height: 30px;
+	font-weight: 500;
+	cursor: default;
+	color: $color-error;
+	border: 1px solid $color-error;
+	background-color: $color-white;
+	transform: translateX(100%);
+	z-index: $z-index100;
+
+	&.no_result {
+		color: $color-warning;
+		border: 1px solid $color-warning;
+	}
+
+	&:hover {
+		z-index: $z-index200;
+	}
+}
+
+.animateEnter {
+	opacity: 0;
+	transform: translateX(calc(100% + 10px));
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transform: translateX(calc(100% + 20px));
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(calc(100% + 20px));
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(calc(100% + 20px));
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(calc(100% + 10px));
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(calc(100% + 10px));
+}

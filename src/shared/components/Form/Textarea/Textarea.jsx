@@ -1,16 +1,17 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+
 import cn from 'classnames'
-import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
+
 import s from './textarea.module.scss'
 
 export const Textarea = ({ name, label, id, value, handleChange, placeholder, error, required, className }) => {
-	const [isTouched, setIsTouched] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
-	const isError = useMemo(() => !isFocused && isTouched && error, [isFocused, isTouched, error])
+	const isError = useMemo(() => !isFocused && error, [isFocused, error])
 
 	const handleFocus = useCallback(() => {
 		setIsFocused(true)
-		setIsTouched(true)
 	}, [])
 
 	const handleBlur = useCallback(() => {
@@ -33,7 +34,7 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 				placeholder={placeholder}
 				required={required}
 			/>
-			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
+			<ErrorPopover error={isError && error} />
 		</div>
 	)
 }

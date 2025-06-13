@@ -3,31 +3,31 @@ import { API } from './api'
 const BASE_URL = 'products'
 
 export const productsAPI = {
-	getAll(params) {
+	async getAll(params) {
 		return API.get(`${BASE_URL}/list`, params)
 	},
-	getRelated({ limit, slug }) {
+	async getRelated({ limit, slug }) {
 		return API.get(`${BASE_URL}/related?limit=${limit}&slug=${slug}`)
 	},
-	getQueryBrands(params) {
+	async findQueryBrands(params) {
 		return API.get(`${BASE_URL}/list-brands`, params)
 	},
-	getAllBrands() {
+	async findAllBrands() {
 		return API.get(`${BASE_URL}/all-brands`)
 	},
-	getQueryPriceRange(params) {
+	async getQueryPriceRange(params) {
 		return API.get(`${BASE_URL}/price-range`, params)
 	},
-	getAllBySlug(slug) {
+	async getAllBySlug(slug) {
 		return API.get(`${BASE_URL}/list-by-slug${slug && `?slug=${slug}`}`)
 	},
-	getProductsByNewprice({ sort = 'newprice', order = 'desc', limit = 10, newprice_gte = 0 }) {
+	async getProductsByNewPrice({ sort = 'newprice', order = 'desc', limit = 10, newprice_gte = 0 }) {
 		return API.get(`${BASE_URL}?_sort=${sort}&_order=${order}&_limit=${limit}&newprice_gte=${newprice_gte}`)
 	},
-	findOne(slug = '') {
+	async findOne(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
-	findRandom() {
+	async findRandom() {
 		return API.get(`${BASE_URL}/random`)
 	},
 }

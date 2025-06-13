@@ -1,15 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { searchAPI } from '../../api/search'
-import { useRecentSearchContext } from '../../context/RecentSearchContext'
-import { useRandomProduct } from '../../hooks/services/useRandomProduct'
-import { GlobalSearchForm } from '../../shared/components/Form/GlobalSearchForm/GlobalSearchForm'
-import { SearchPopover } from '../../shared/components/UI/SearchPopover/SearchPopover'
-import { stringToSlug } from '../../utils'
+import { useEffect, useRef, useState } from 'react'
+
+import { useRecentSearchContext } from '@context/RecentSearchContext'
+
+import { useRandomProduct } from '@hooks/services/useRandomProduct'
+import { useSearch } from '@hooks/services/useSearch'
+
+import { GlobalSearchForm } from '@shared/components/Form/GlobalSearchForm/GlobalSearchForm'
+import { SearchPopover } from '@shared/components/UI/SearchPopover/SearchPopover'
+
+import { strToSlug } from '@utils/string'
+
 import s from './global-search.module.scss'
 
 export const GlobalSearch = () => {
 	const { addToSearch } = useRecentSearchContext()
 	const { product } = useRandomProduct()
+	const { findAllMatches } = useSearch()
 
 	const [isPopoverToggled, setIsPopoverToggled] = useState(false)
 	const [search, setSearch] = useState({})
@@ -27,12 +33,14 @@ export const GlobalSearch = () => {
 	const outsideClickHandler = (e) => {
 		if (searchRef.current && !searchRef.current.contains(e.target)) {
 			setIsPopoverToggled(false)
+			// setIsSearched(false)
 		}
 	}
 
 	const handleSearchClick = (e) => {
 		if (e.currentTarget.dataset.link) {
 			setIsPopoverToggled(false)
+			// setIsSearched(false)
 		}
 	}
 
@@ -43,16 +51,20 @@ export const GlobalSearch = () => {
 	const handleSubmit = async (state) => {
 		if (state.search === '') return
 
-		addToSearch(state.search)
-		const data = await searchAPI.globalSearch({ search: stringToSlug(state.search) })
-		setSearch(data)
-		setIsSearched(true)
+		addToSearch(state.search.trim())
+		const res = await findAllMatches({ search: strToSlug(state.search.trim()) })
+
+		if (res && res.success) {
+			setSearch(res.search)
+			setIsSearched(true)
+		}
 	}
 
 	const onKeyDownHandler = (e) => {
 		switch (e.key) {
 			case 'Escape':
 				setIsPopoverToggled(false)
+				// setIsSearched(false)
 				break
 			default:
 				return

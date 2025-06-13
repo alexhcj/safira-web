@@ -2,8 +2,16 @@
 
 .profile {
 	display: grid;
-	grid-auto-flow: column;
-	justify-content: space-between;
-	grid-template: 1fr / 1fr 230px;
-	gap: 100px;
+	grid-template:
+		'note note note' auto
+		'main main aside' auto 'main main aside' auto / 1fr 480px 170px;
+	gap: 0 100px;
+}
+.svg {
+	width: 16px;
+	height: 16px;
+}
+.verify_email {
+	grid-area: note;
+	margin-bottom: 20px;
 }

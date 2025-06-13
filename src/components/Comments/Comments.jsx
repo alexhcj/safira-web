@@ -1,6 +1,7 @@
-import React from 'react'
+import { countCommentsDeep } from '@utils/object'
+
 import { Comment } from './Comment/Comment'
-import { deepCount } from '../../utils'
+
 import s from './comments.module.scss'
 
 export const Comments = ({ comments, isLoading }) => {
@@ -9,7 +10,7 @@ export const Comments = ({ comments, isLoading }) => {
 			{!isLoading && comments && (
 				<div className={s.block}>
 					<h3 className={s.title}>
-						<span>{deepCount(comments).length}</span> Comments
+						<span>{countCommentsDeep(comments)}</span> Comments
 					</h3>
 					<div className={s.comments}>
 						{comments.map((comment, index) => (

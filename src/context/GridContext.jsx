@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState } from 'react'
-import GridImage1 from '../assets/images/shop/grid-3.png'
-import GridImage2 from '../assets/images/shop/grid-4.png'
-import GridImage3 from '../assets/images/shop/grid-list.png'
+import { createContext, useContext, useState } from 'react'
+
+import GridImage1 from '@assets/images/shop/grid-3.png'
+import GridImage2 from '@assets/images/shop/grid-4.png'
+import GridImage3 from '@assets/images/shop/grid-list.png'
 
 const GridContext = createContext(null)
 
@@ -10,9 +11,7 @@ export const useGridContext = () => useContext(GridContext)
 export const GridProvider = ({ children }) => {
 	const [grid, setGrid] = useState(gridTypes[0].type)
 
-	return <GridContext.Provider value={{ grid, setGrid }}>
-		{children}
-	</GridContext.Provider>
+	return <GridContext.Provider value={{ grid, setGrid }}>{children}</GridContext.Provider>
 }
 
 export const gridTypes = [

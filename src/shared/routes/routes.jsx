@@ -1,12 +1,18 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
+
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { HomePage } from '../../pages/HomePage'
-import { PostPage } from '../../pages/PostPage'
-import { CartPage } from '../../pages/CartPage'
-import { CheckoutPage } from '../../pages/CheckoutPage'
-import { WishlistPage } from '../../pages/WishlistPage'
+
+import { CartPage } from '@pages/CartPage'
+import { CheckoutPage } from '@pages/CheckoutPage'
+import { HomePage } from '@pages/HomePage'
+import { PostPage } from '@pages/PostPage'
+import { WishlistPage } from '@pages/WishlistPage'
+
+import { useAuthContext } from '@context/AuthContext'
+
 // import { Docs } from '../../pages/Docs'
-import { useAuthContext } from '../../context/AuthContext'
+import { PublicRoute } from '@shared/layouts/PublicRoute/PublicRoute'
+
 import { ProtectedRoute } from '../layouts/ProtectedRoute/ProtectedRoute'
 
 const BlogPage = lazy(() => import('../../pages/BlogPage').then((module) => ({ default: module.BlogPage })))
@@ -26,6 +32,15 @@ const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
 )
 const BrandsPage = lazy(() => import('../../pages/BrandsPage').then((module) => ({ default: module.BrandsPage })))
+const ChangeEmailPage = lazy(() =>
+	import('../../pages/ChangeEmailPage').then((module) => ({ default: module.ChangeEmailPage })),
+)
+const ChangePasswordPage = lazy(() =>
+	import('../../pages/ChangePasswordPage').then((module) => ({ default: module.ChangePasswordPage })),
+)
+const VerifyEmailPage = lazy(() =>
+	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
+)
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -34,6 +49,7 @@ export const AppRoutes = () => {
 		<Routes>
 			<Route path='/' element={<HomePage />} />
 			<Route path='/blank-page' element={<BlankPage />} />
+			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/shop' element={<ShopPage />} />
@@ -55,6 +71,30 @@ export const AppRoutes = () => {
 				<Route path='profile-details' element={<ProfileDetails />} />
 				<Route path='orders' element={<Orders />} />
 			</Route>
+			<Route
+				path='/change-email'
+				element={
+					<ProtectedRoute user={user}>
+						<ChangeEmailPage />
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path='/change-password'
+				element={
+					<ProtectedRoute user={user}>
+						<ChangePasswordPage />
+					</ProtectedRoute>
+				}
+			/>
+			<Route
+				path='/verify-email'
+				element={
+					<ProtectedRoute user={user}>
+						<VerifyEmailPage />
+					</ProtectedRoute>
+				}
+			/>
 			{/*<Route path='/docs' element={<Docs />} />*/}
 			<Route path='/compare' element={<ComparePage />} />
 			<Route path='/categories' element={<CategoriesPage />} />

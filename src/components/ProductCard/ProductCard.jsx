@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { Price } from '../../shared/components/Price/Price'
-import { Tags } from '../../shared/components/UI/Tags/Tags'
-import { Hovermenu } from '../../shared/components/UI/Hovermenu/Hovermenu'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
-import { slugToString } from '../../utils'
+import { NavLink, useNavigate } from 'react-router-dom'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Price } from '@shared/components/Price/Price'
+import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { Hovermenu } from '@shared/components/UI/Hovermenu/Hovermenu'
+import { Tags } from '@shared/components/UI/Tags/Tags'
+
+import { slugToStr } from '@utils/string'
+
 import s from './productcard.module.scss'
 
-// sizes: 'xs' | 'sm' | 'lg' | 'row' | 'row-xs'
+// sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'row' | 'row-xs'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
@@ -17,7 +21,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 
 	const { slug, tags, name, subCategory, price, description, createdAt } = product
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const url = {
 		pathname: `/products/${slug}`,
@@ -28,7 +32,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ subCategory }),
 		})
@@ -54,6 +58,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 		>
 			<NavLink className={s.img_link} to={url}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
+				{size !== 'xs' && size !== 'row-xs' && <Tags {...price} createdAt={createdAt} />}
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
@@ -66,7 +71,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 							onClick={handleSubCategoryClick}
 							className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 						>
-							{slugToString(subCategory)}
+							{slugToStr(subCategory)}
 						</button>
 						{tags && (
 							<>
@@ -85,7 +90,6 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 				{size === 'row' && <p className={s.description}>{description}</p>}
 				{size !== 'row-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
 			</div>
-			{size !== 'xs' || (size !== 'row-xs' && <Tags tags={tags} size={size} createdAt={createdAt} />)}
 		</div>
 	)
 }

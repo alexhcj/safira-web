@@ -1,10 +1,12 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { CategoryCard } from './CategoryCard/CategoryCard'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import { categories } from './categories-data'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
+import { CategoryCard } from './CategoryCard/CategoryCard'
+
 import s from './categories.module.scss'
 
 export const Categories = () => {

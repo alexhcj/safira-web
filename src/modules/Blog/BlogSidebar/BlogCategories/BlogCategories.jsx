@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { postsAPI } from '@api/posts'
+
 import s from './blog-categories.module.scss'
-import { postsAPI } from '../../../../api/posts'
 
 export const BlogCategories = ({ categoryHandler }) => {
 	const [categories, setCategories] = useState([])

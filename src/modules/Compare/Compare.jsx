@@ -1,31 +1,25 @@
-import React from 'react'
-import { useCompareContext } from '../../context/CompareContext'
-import { useWishlistContext } from '../../context/WishlistContext'
-import { useCartContext } from '../../context/CartContext'
-import { CompareTabs } from './CompareTabs/CompareTabs'
-import { CompareSlider } from '../../shared/components/Slider/CompareSlider/CompareSlider'
+import { useCompareContext } from '@context/CompareContext'
+
+import { CompareSlider } from '@shared/components/Slider/CompareSlider/CompareSlider'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+
 import { CompareAttributes } from './CompareAttributes/CompareAttributes'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
-// import s from './compare.module.scss'
+import { CompareTabs } from './CompareTabs/CompareTabs'
 
 export const Compare = () => {
 	const {
-		range,
-		setRange,
+		activeIndex,
+		setActiveIndex,
 		comparesCategories,
 		getActiveCompares,
 		removeListFromCompare,
-		removeItemFromCompare,
 		activeCategory,
+		removeItemFromCompare,
 		setActiveCategory,
 		removeAllCompares,
 		calcCategoryItems,
-		activeIndex,
-		setActiveIndex,
 	} = useCompareContext()
-	const { addToWishlist } = useWishlistContext()
-	const { addToCart } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -41,27 +35,16 @@ export const Compare = () => {
 					/>
 					<CompareSlider
 						getActiveCompares={getActiveCompares}
+						removeItemFromCompare={removeItemFromCompare}
 						activeCategory={activeCategory}
 						activeIndex={activeIndex}
 						setActiveIndex={setActiveIndex}
-						removeItemFromCompare={removeItemFromCompare}
-						setRange={setRange}
-						addToWishlist={addToWishlist}
-						addToCart={addToCart}
 					/>
-					{/*<CompareSlider*/}
-					{/*	className={s.fixed}*/}
-					{/*	type='small'*/}
-					{/*	getActiveCompares={getActiveCompares}*/}
-					{/*	activeCategory={activeCategory}*/}
-					{/*	activeIndex={activeIndex}*/}
-					{/*	setActiveIndex={setActiveIndex}*/}
-					{/*	removeItemFromCompare={removeItemFromCompare}*/}
-					{/*	setRange={setRange}*/}
-					{/*	addToWishlist={addToWishlist}*/}
-					{/*	addToCart={addToCart}*/}
-					{/*/>*/}
-					<CompareAttributes getActiveCompares={getActiveCompares} activeCategory={activeCategory} range={range} />
+					<CompareAttributes
+						getActiveCompares={getActiveCompares}
+						activeCategory={activeCategory}
+						activeIndex={activeIndex}
+					/>
 				</>
 			) : (
 				<ItemsNotFound type='compare' />

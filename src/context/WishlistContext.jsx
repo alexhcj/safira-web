@@ -1,5 +1,6 @@
-import React, { createContext, useContext } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage.hook'
+import { createContext, useContext } from 'react'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const WishlistContext = createContext([])
 

@@ -1,32 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
-import { productsAPI } from '../../api/products'
-import { useWishlistContext } from '../../context/WishlistContext'
-import { useCartContext } from '../../context/CartContext'
-import { useCompareContext } from '../../context/CompareContext'
-import { GoodToCart } from '../../shared/components/GoodToCart/GoodToCart'
-import { Border } from '../../shared/components/UI/Spacing/Border'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Rating } from '../../shared/components/Rating/Rating'
-import { Price } from '../../shared/components/Price/Price'
-import { Tab, Tabs } from '../../shared/components/Tabs/Tabs'
-import { Specification } from '../../shared/components/Specification/Specification'
-import { ButtonPopover } from '../../shared/components/UI/Buttons/ButtonPopover/ButtonPopover'
-import { Reviews } from '../../shared/components/Reviews/Reviews'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { NewReview } from '../../shared/components/Reviews/NewReview/NewReview'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
+
+import { productsAPI } from '@api/products'
+
+import { useCartContext } from '@context/CartContext'
+import { useCompareContext } from '@context/CompareContext'
+import { useWishlistContext } from '@context/WishlistContext'
+
+import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Price } from '@shared/components/Price/Price'
+import { Rating } from '@shared/components/Rating/Rating'
+import { NewReview } from '@shared/components/Reviews/NewReview/NewReview'
+import { Reviews } from '@shared/components/Reviews/Reviews'
+import { Specification } from '@shared/components/Specification/Specification'
+import { Tab, Tabs } from '@shared/components/Tabs/Tabs'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { ButtonPopover } from '@shared/components/UI/Buttons/ButtonPopover/ButtonPopover'
+import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { Border } from '@shared/components/UI/Spacing/Border'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import { slugToStr } from '@utils/string'
+
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import { slugToString } from '../../utils'
-import PreloaderSVG from '../../assets/svg/preloader.svg'
-import { ReactComponent as HeartBrokenSVG } from '../../assets/svg/heart-broken.svg'
-import { ReactComponent as HeartSVG } from '../../assets/svg/heart.svg'
-import { ReactComponent as CompareSVG } from '../../assets/svg/compare.svg'
-import { ReactComponent as CompareRemoveSVG } from '../../assets/svg/compare-remove.svg'
+
+import CompareRemoveSVG from '@assets/svg/compare-remove.svg?react'
+import CompareSVG from '@assets/svg/compare.svg?react'
+import HeartBrokenSVG from '@assets/svg/heart-broken.svg?react'
+import HeartSVG from '@assets/svg/heart.svg?react'
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
+
 import s from './productdetails.module.scss'
-import { DietaryTags } from '../../shared/components/UI/DietaryTags/DietaryTags'
 
 export const ProductDetails = () => {
 	const navigate = useNavigate()
@@ -38,7 +46,6 @@ export const ProductDetails = () => {
 	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
-		// TODO: check is this solution valid
 		window.scrollTo({ top: 0 })
 		const fetchData = async () => {
 			try {
@@ -58,7 +65,7 @@ export const ProductDetails = () => {
 
 	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
 
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const handlePopover = () => {
 		setIsPopoverHovered(!isPopoverHovered)
@@ -81,7 +88,7 @@ export const ProductDetails = () => {
 					<Space size='xss' />
 					{price && <Price className={s.price} {...price} type='large' />}
 					<Space size='xs' />
-					{tags && <DietaryTags className={s.dietaries} tags={tags.dietaries} />}
+					{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
 					<Space size='xs' />
 					<Text>{description}</Text>
 					<Space size='m' />
@@ -110,7 +117,6 @@ export const ProductDetails = () => {
 							</ButtonPopover>
 						) : (
 							<Button type='text' onClick={() => addToWishlist(product)}>
-								{/* TODO: Hover on icon => popup (remove from wishlist) */}
 								<Text span>+ Add to WishList</Text>
 							</Button>
 						)}
@@ -127,7 +133,6 @@ export const ProductDetails = () => {
 							</ButtonPopover>
 						) : (
 							<Button type='text' onClick={() => addToCompare(product)}>
-								{/* TODO: Hover on icon => popup (remove from compare) */}
 								<Text span>+ Add to Compare</Text>
 							</Button>
 						)}
@@ -137,9 +142,9 @@ export const ProductDetails = () => {
 						<Text span weight='medium'>
 							Category:
 						</Text>
-						<NavLink to={`/shop?basicCategory=${basicCategory}&${process.env.REACT_APP_SHOP_DEFAULT_QUERY}`}>
+						<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
 							<Text className={s.tag} span>
-								{basicCategory && slugToString(basicCategory)}
+								{basicCategory && slugToStr(basicCategory)}
 							</Text>
 						</NavLink>
 					</div>

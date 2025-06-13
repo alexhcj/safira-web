@@ -1,11 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { useRecentSearchContext } from '../../../../context/RecentSearchContext'
-import { ProductCard } from '../../../../components/ProductCard/ProductCard'
-import { PostCard } from '../../../../components/PostCard/PostCard'
-import { ReactComponent as RecentSVG } from '../../../../assets/svg/recent.svg'
-import { ReactComponent as CloseSVG } from '../../../../assets/svg/close.svg'
+import { useNavigate } from 'react-router-dom'
+
+import { useRecentSearchContext } from '@context/RecentSearchContext'
+
+import { PostCard } from '@components/PostCard/PostCard'
+import { ProductCard } from '@components/ProductCard/ProductCard'
+
+import CloseSVG from '@assets/svg/close.svg?react'
+import RecentSVG from '@assets/svg/recent.svg?react'
+
 import s from './search-popover.module.scss'
 
 export const SearchPopover = ({
@@ -22,7 +25,6 @@ export const SearchPopover = ({
 	const handleRecentSearch = (e) => {
 		const recentItem = e.target.closest('svg') ?? e.target.closest('h3')
 
-		// TODO: add input focus => could use 'enter' to search
 		if (recentItem && recentItem.id === 'recent-name') {
 			e.stopPropagation()
 			addCurrentSearch({ search: recentItem.dataset.search, lastSearch: recentItem.dataset.search })
@@ -35,12 +37,11 @@ export const SearchPopover = ({
 	}
 
 	const handleRelatedMoreClick = () => {
-		const query = `${process.env.REACT_APP_SHOP_DEFAULT_QUERY}&slug=${state.lastSearch}`
+		const query = `${import.meta.env.VITE_SHOP_DEFAULT_QUERY}&slug=${state.lastSearch}`
 		navigate(`/shop?${new URLSearchParams(query)}`)
 		setIsPopoverToggled(false)
 	}
 
-	// TODO: fill empty gap when searched yet. Show some text "Type for searching products and posts"
 	return (
 		<div className={cn(s.popover, { [s.active]: isOpen })}>
 			<ul className={s.list} onClick={handleSearchClick} data-link='link'>

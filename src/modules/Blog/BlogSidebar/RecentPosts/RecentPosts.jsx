@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { NavLink } from 'react-router-dom'
-import { postsAPI } from '../../../../api/posts'
+
+import { postsAPI } from '@api/posts'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
+import { convertISODate } from '@utils/date'
+
 import s from './recent-posts.module.scss'
-import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { convertISODate } from '../../../../utils'
 
 export const RecentPosts = () => {
 	const [posts, setPosts] = useState([])
@@ -33,7 +38,7 @@ export const RecentPosts = () => {
 			<ul className={s.posts}>
 				{posts.map(({ title, slug, createdAt }) => {
 					const url = `/blog/${slug}`
-					const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/posts/${slug}`
+					const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/posts/${slug}`
 
 					const cropTitle = title.length > 28 ? title.slice(0, 25) + '...' : title
 

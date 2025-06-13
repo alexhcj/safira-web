@@ -1,0 +1,32 @@
+@import '../../shared/styles/vars';
+
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.title {
+	margin-bottom: 13px;
+	letter-spacing: $letter-spacing-lg-neg;
+	line-height: 19px;
+	font-size: 20px;
+	font-weight: $weight-medium;
+}
+
+.text {
+	margin-bottom: 20px;
+	max-width: 300px;
+}
+
+.btn {
+	border-radius: $default-border-radius;
+}
+
+.btn_text {
+	text-transform: uppercase;
+	font-weight: $weight-semi;
+	line-height: 20px;
+	font-size: 12px;
+}

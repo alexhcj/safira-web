@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { productsAPI } from '../../api/products'
-import { SectionSlider } from '../../shared/components/Slider/SectionSlider/SectionSlider'
+import { useEffect, useState } from 'react'
+
+import { productsAPI } from '@api/products'
+
+import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
+
 import { ProductCard } from '../ProductCard/ProductCard'
+
 import s from './related-products.module.scss'
 
 export const RelatedProducts = ({ slug }) => {

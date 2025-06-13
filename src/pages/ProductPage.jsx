@@ -1,17 +1,19 @@
-import React from 'react'
-import { ProductProvider } from '../context/ProductContext'
-import { Breadcrumbs } from '../shared/components/UI/Breadcrumbs/Breadcrumbs'
-import { ProductDetails } from '../components/ProductDetails/ProductDetails'
-import { ProductQuickView } from '../components/ProductQuickView/ProductQuickView'
+import { ProductProvider } from '@context/ProductContext'
+
+import { ProductDetails } from '@components/ProductDetails/ProductDetails'
+import { ProductQuickView } from '@components/ProductQuickView/ProductQuickView'
+
+import { ScrollToTop } from '@shared/components/ScrollToTop/ScrollToTop'
+import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 
 export const ProductPage = () => {
 	return (
 		<ProductProvider>
-			<div>
+			<ScrollToTop>
 				<Breadcrumbs />
 				<ProductDetails />
 				<ProductQuickView />
-			</div>
+			</ScrollToTop>
 		</ProductProvider>
 	)
 }
