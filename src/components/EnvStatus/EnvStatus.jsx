@@ -81,7 +81,7 @@ export const EnvStatus = () => {
 	// don't render in production unless it's blank page
 	const isContactPage = location.pathname.includes('/blank')
 
-	if (import.meta.env.PROD && !isContactPage) {
+	if (import.meta.env.MODE === 'production' && !isContactPage) {
 		return null
 	}
 
