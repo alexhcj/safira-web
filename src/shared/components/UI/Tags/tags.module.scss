@@ -1,21 +1,19 @@
-@import '../../../../shared/styles/vars';
-
 .tags {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 20px 0;
-    max-width: 340px;
-    width: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 20px 0;
+	width: 100%;
 }
 .tag {
-    text-align: center;
-    text-transform: uppercase;
-    min-width: 40px;
-    padding: 0 4px;
-    line-height: 20px;
-    font-size: 12px;
-    border-radius: 5px;
-    color: $color-white;
-    background: $color-primary;
+	text-align: center;
+	text-transform: uppercase;
+	min-width: 40px;
+	padding: 0 4px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	border-radius: $border-radius-md;
+	color: $color-white;
+	background: $color-primary;
 }

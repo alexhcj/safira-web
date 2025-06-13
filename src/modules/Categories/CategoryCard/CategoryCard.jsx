@@ -1,15 +1,16 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
 import s from './category-card.module.scss'
 
 export const CategoryCard = ({ category }) => {
 	const navigate = useNavigate()
 	const { name, primeCategory, subCategories } = category
-	const img = `${process.env.REACT_APP_WEB_PUBLIC_URL}/assets/images/categories/${primeCategory}.jpg`
+	const img = `${import.meta.env.VITE_WEB_PUBLIC_URL}/assets/images/categories/${primeCategory}.jpg`
 
 	const handlePrimeCategoryClick = () => {
-		const query = `primeCategory=${primeCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+		const query = `primeCategory=${primeCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({ primeCategory }),
 		})
@@ -28,7 +29,7 @@ export const CategoryCard = ({ category }) => {
 				<ul className={s.list}>
 					{subCategories.items.map(({ subCategory, name }, index) => {
 						const handleSubCategoryClick = () => {
-							const query = `subCategory=${subCategory}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`
+							const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 							navigate(`/shop?${new URLSearchParams(query)}`, {
 								state: JSON.stringify({ subCategory }),
 							})

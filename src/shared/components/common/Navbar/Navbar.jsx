@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { NavLink, useLocation } from 'react-router-dom'
+
 import { CategoriesDropdown } from '../../UI/CategoriesDropdown/CategoriesDropdown'
-import phone from '../../../../assets/images/phone.png'
+
+import phone from '@assets/images/phone.png'
+
 import s from './navbar.module.scss'
 
 export const Navbar = () => {
@@ -37,10 +41,10 @@ export const Navbar = () => {
 						<NavLink className={s.nav__link} to='/'>
 							Home
 						</NavLink>
-						<NavLink className={s.nav__link} to={`/shop?${process.env.REACT_APP_SHOP_DEFULT_QUERY}`}>
+						<NavLink className={s.nav__link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
 							Shop
 						</NavLink>
-						<NavLink className={s.nav__link} to={`/blog?${process.env.REACT_APP_BLOG_DEFULT_QUERY}`}>
+						<NavLink className={s.nav__link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
 							Blog
 						</NavLink>
 					</nav>

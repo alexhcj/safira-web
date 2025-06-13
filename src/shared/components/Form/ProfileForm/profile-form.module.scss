@@ -1,80 +1,132 @@
-@import '../../../styles/vars';
-
-.box {
+.main {
 	display: grid;
+	gap: 35px;
+	grid-area: main;
 }
+
+.aside {
+	grid-area: aside;
+}
+
+.title {
+	margin-bottom: 15px;
+	letter-spacing: $letter-spacing-lg-neg;
+	line-height: 19px;
+	font-size: 20px;
+	font-weight: $weight-medium;
+}
+
+.credentials_list {
+	display: grid;
+	gap: 12px;
+}
+
+.credential_email,
+.credential_password {
+	display: grid;
+	grid-template-columns: 335px 135px;
+	align-items: end;
+	gap: 10px;
+}
+
+.credential_input {
+	& > input {
+		cursor: default;
+
+		&:hover {
+			border-color: $color-border3;
+		}
+
+		&:focus {
+			border-color: $color-border-focus;
+		}
+	}
+}
+
+.btn_credential {
+	margin-bottom: 1px;
+}
+
+.btn_credential_text {
+	text-transform: capitalize;
+	line-height: 20px;
+	font-size: 12px;
+}
+
 .form {
 	display: grid;
-	gap: 20px;
-	padding-top: 3px;
+	gap: 15px;
 }
+
 .avatar {
 	position: relative;
-	display: grid;
-	justify-self: start;
-	margin-bottom: 20px;
+
+	.label {
+		text-transform: capitalize;
+		font-size: 14px;
+	}
 
 	img {
-		width: 150px;
-		height: 150px;
+		margin: 5px auto 0;
+		width: 130px;
+		height: 130px;
 		border-radius: 50%;
 		object-fit: cover;
 		cursor: pointer;
 	}
 
-	.label {
-		font-size: 16px;
-		margin-bottom: 12px;
-	}
-
 	.edit {
 		position: absolute;
-		bottom: 5px;
-		right: 0;
+		bottom: 10px;
+		right: 20px;
 		cursor: pointer;
 		@include transition-all;
 
 		&_text {
 			padding: 4px 8px;
 			font-size: 12px;
+			font-weight: $weight-medium;
 			color: $color-white;
 			border-radius: $default-border-radius;
-			background-color: $color-dark3;
+			background-color: $color-border-sort;
+			@include transition-all;
+
+			&:hover {
+				background-color: $color-dark;
+			}
 		}
 
 		&_list {
 			position: absolute;
-			bottom: 0;
-			right: -155px;
-			display: none;
-			padding: 10px 15px;
-			width: 0;
-			color: $color-white;
-			background-color: $color-dark3;
+			top: 100%;
+			left: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 10px 0;
+			width: 156px;
+			max-height: 0;
+			color: $color-dark;
+			background-color: $color-white;
 			border-radius: $default-border-radius;
+			box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+			visibility: hidden;
+			opacity: 0;
 			z-index: $z-index-1;
-
-			&::before {
-				position: absolute;
-				bottom: 7px;
-				left: -6px;
-				content: '';
-				width: 0;
-				height: 0;
-				border-style: solid;
-				border-width: 4px 6px 4px 0;
-				border-color: transparent $color-dark3 transparent transparent;
-			}
+			@include transition-all;
 
 			&.active {
-				display: grid;
-				width: 145px;
+				max-height: 101px;
+				visibility: visible;
+				opacity: 1;
 				z-index: $z-index10;
 			}
 		}
 
 		&_item {
-			font-size: 13px;
+			padding: 0 20px 0 30px;
+			width: 100%;
+			line-height: 38px;
 			@include transition-all;
 
 			&:hover {
@@ -85,23 +137,28 @@
 }
 
 .input {
-	text-transform: capitalize;
-
 	& > label {
-		margin-bottom: 12px;
-		line-height: 12px;
-		font-size: 16px;
+		text-transform: capitalize;
+		line-height: 24px;
+		font-size: 14px;
 	}
 
 	& > input {
 		border-color: $color-border2;
 	}
+
+	& > span {
+		top: 24px;
+		min-height: 40px;
+	}
 }
+
 .form_actions {
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
 }
+
 .auth_error {
 	color: $color-error;
 	opacity: 0;
@@ -112,12 +169,14 @@
 		visibility: visible;
 	}
 }
-.btn_auth {
+
+.btn_update_profile {
 	justify-self: flex-end;
 }
-.btn_auth_text {
-	text-transform: uppercase;
+
+.btn_update_profile_text {
+	text-transform: capitalize;
+	line-height: 20px;
 	font-size: 12px;
-	line-height: 26px;
-	font-weight: $weight-bold;
+	font-weight: $weight-semi;
 }

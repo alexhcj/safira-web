@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { profilesAPI } from '../../api/profiles'
+import { useEffect, useState } from 'react'
 
-export const useProfile = (id) => {
+import { profilesAPI } from '@api/profiles'
+
+export const useProfile = () => {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
 	const [profile, setProfile] = useState({})
@@ -9,7 +10,7 @@ export const useProfile = (id) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await profilesAPI.findByUserId(id) // { ...profile }
+				const res = await profilesAPI.findProfile()
 
 				setProfile(res)
 			} catch (err) {

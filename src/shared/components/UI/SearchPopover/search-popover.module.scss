@@ -20,13 +20,18 @@
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		z-index: $z-index100;
+		z-index: $z-index200;
 	}
 }
 
 .list {
 	display: grid;
 	gap: 10px;
+}
+
+.btn_related {
+	display: inline-flex;
+	margin-top: 5px;
 }
 
 .divider {
@@ -67,7 +72,11 @@
 		}
 	}
 
-	&_link {
+	&_name {
+		font-weight: $weight-normal;
+		cursor: pointer;
+		@include transition-all;
+
 		&:hover {
 			color: $color-primary;
 		}

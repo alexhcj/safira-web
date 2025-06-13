@@ -1,9 +1,11 @@
-import React from 'react'
-import { useWishlistContext } from '../../context/WishlistContext'
-import { useCartContext } from '../../context/CartContext'
+import { useCartContext } from '@context/CartContext'
+import { useWishlistContext } from '@context/WishlistContext'
+
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+
 import { WishlistItem } from './WishlistItem'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Space } from '../../shared/components/UI/Spacing/Space'
+
 import s from './styles/wishlist.module.scss'
 
 export const Wishlist = () => {

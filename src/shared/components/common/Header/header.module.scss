@@ -26,7 +26,7 @@
 		height: 100px;
 
 		&.padding {
-			padding-bottom: 50px;
+			padding-bottom: 120px;
 		}
 	}
 }
@@ -81,6 +81,14 @@
 		grid-auto-flow: column;
 		align-items: center;
 		gap: 5px;
+
+		&.active svg:not(.compare_link) path {
+			fill: $color-primary;
+		}
+
+		&.active svg.compare_link path {
+			stroke: $color-primary;
+		}
 
 		&:hover svg:not(.compare_link) path {
 			fill: $color-primary;

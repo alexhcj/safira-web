@@ -1,11 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import cn from 'classnames'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { ImageWithFallback } from '../../utils/ImageWithFallback'
-import PreloaderSVG from '../../assets/svg/preloader.svg'
-import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg'
+import { Link } from 'react-router-dom'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import { formatPrice } from '@utils/number/convert'
+
+import CartSVG from '@assets/svg/cart.svg?react'
+import PreloaderSVG from '@assets/svg/preloader.svg?react'
+
 import s from './styles/wishlist-item.module.scss'
 
 export const WishlistItem = ({
@@ -19,7 +23,7 @@ export const WishlistItem = ({
 	onDelete,
 	productQuantityInCart,
 }) => {
-	const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	return (
 		<tr className={s.item}>
@@ -33,7 +37,7 @@ export const WishlistItem = ({
 			<td className={s.image}>
 				{slug ? (
 					<Link className={s.link} to={`/products/${slug}`}>
-						<ImageWithFallback src={img} imgSize='md' alt={name} />
+						<ImageWithFallback src={img} imgSize='sm' alt={name} />
 					</Link>
 				) : (
 					<img src={PreloaderSVG} alt='Preloader' />
@@ -44,7 +48,7 @@ export const WishlistItem = ({
 					{name}
 				</Link>
 			</td>
-			<td className={s.price}>${price}</td>
+			<td className={s.price}>{formatPrice(price)}</td>
 			<td className={cn(s.stock, maxQuantity < 100 && s.less, maxQuantity < 30 && s.low)}>
 				{maxQuantity > 100 ? 'In stoke' : `Left less than ${maxQuantity}`}
 			</td>

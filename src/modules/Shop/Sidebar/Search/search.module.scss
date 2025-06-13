@@ -5,47 +5,58 @@
 }
 
 .input {
-	text-transform: capitalize;
-	margin-bottom: 22px;
-	padding: 0 30px 0 15px;
-	width: 100%;
-	height: 35px;
-	font-size: 14px;
-	border: 1px solid $color-border2;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	input {
+		margin-bottom: 22px;
+		padding: 0 30px 0 15px;
+		height: 35px;
+		font-size: 14px;
+		border-color: $color-border2;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 
-	&::placeholder {
-		letter-spacing: 0.32px;
-		font-size: 12px;
-		color: $color-dark;
-		opacity: 0.6;
+		&::placeholder {
+			letter-spacing: 0.32px;
+			font-size: 12px;
+			color: $color-dark;
+			opacity: 0.6;
+		}
+
+		&:hover {
+			border-color: $color-primary;
+		}
+
+		&:focus {
+			border-color: $color-primary;
+		}
 	}
+}
+
+.btn_close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	opacity: 0;
+	cursor: pointer;
+	@include transition-all;
 
 	&.active {
-		border-color: $color-primary;
+		opacity: 1;
 	}
 
-	&.error {
-		border-color: $color-error;
-	}
+	.icon_close {
+		width: 11px;
+		height: 11px;
+		fill: $color-dark;
+		@include transition-all;
 
-	&.no_result {
-		color: $color-warning;
-		border: 1px solid $color-warning;
+		&:hover {
+			fill: $color-dark2;
+		}
 	}
 }
 
-.btn {
-	width: 75px;
-	height: 30px;
-	border-radius: 30px;
-	background-color: $color-dark;
-	color: $color-white;
-}
-
-.popup {
+.popover {
 	position: absolute;
 	top: 87px;
 	display: flex;
@@ -67,59 +78,28 @@
 		opacity: 1;
 		max-height: 300px;
 	}
-}
 
-.btn_close {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	opacity: 0;
-	cursor: pointer;
-	@include transition-all;
-
-	&.active {
-		opacity: 1;
-	}
-
-	svg {
-		width: 13px;
-		height: 13px;
-		fill: $color-dark;
-		@include transition-all;
+	&_item {
+		padding: 0 20px 0 30px;
+		width: 100%;
+		text-transform: capitalize;
+		line-height: 38px;
+		font-size: 14px;
+		font-weight: 400;
 
 		&:hover {
-			fill: $color-dark2;
+			color: $color-primary;
+			cursor: pointer;
 		}
 	}
-}
-//
-//.active {
-//	visibility: visible;
-//	opacity: 1;
-//	z-index: 200;
-//	max-height: 600px;
-//}
 
-.item {
-	padding: 0 20px 0 30px;
-	width: 100%;
-	text-transform: capitalize;
-	line-height: 38px;
-	font-size: 14px;
-	font-weight: 400;
-
-	&:hover {
-		color: $color-primary;
-		cursor: pointer;
+	&_empty {
+		padding: 0 20px 0 30px;
+		width: 100%;
+		line-height: 38px;
+		font-size: 14px;
+		font-weight: 400;
 	}
-}
-
-.no_slug_result {
-	padding: 0 20px 0 30px;
-	width: 100%;
-	line-height: 38px;
-	font-size: 14px;
-	font-weight: 400;
 }
 
 .bottom {
@@ -128,7 +108,7 @@
 	justify-content: space-between;
 }
 
-.current {
+.current_search {
 	text-transform: capitalize;
 	text-align: right;
 }

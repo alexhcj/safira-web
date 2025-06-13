@@ -12,7 +12,7 @@
 		gap: 10px;
 		margin-bottom: 0;
 
-		.textarea {
+		.reply {
 			margin-bottom: 0;
 			height: 69px;
 
@@ -30,7 +30,8 @@
 		}
 	}
 }
-.textarea {
+
+.reply {
 	margin-bottom: 15px;
 	height: 200px;
 	resize: none;
@@ -42,7 +43,14 @@
 		font-size: 13px;
 		font-weight: $weight-medium;
 	}
+
+	& > span {
+		top: 30px;
+		left: 0;
+		transform: translateX(calc(-100% - 20px));
+	}
 }
+
 .auth_error {
 	color: $color-error;
 	opacity: 0;
@@ -53,6 +61,7 @@
 		visibility: visible;
 	}
 }
+
 .btn {
 	text-transform: uppercase;
 	padding: 0 22px;

@@ -1,6 +1,7 @@
-import React from 'react'
 import { CompareTabItem } from './CompareTabItem/CompareTabItem'
-import { ReactComponent as TrashSVG } from '../../../assets/svg/trash.svg'
+
+import TrashSVG from '@assets/svg/trash.svg?react'
+
 import s from './compare-tabs.module.scss'
 
 export const CompareTabs = ({
@@ -21,12 +22,13 @@ export const CompareTabs = ({
 	}
 
 	const handleActiveCategory = (e) => {
+		if (e.target.nodeName !== 'LI') return
+
 		setActiveCategory(e.target.dataset.category)
 	}
 
 	return (
 		<div className={s.box}>
-			{/* TODO: refactor to Button */}
 			<button className={s.btn_clear} onClick={() => removeAllCompares()}>
 				<TrashSVG className={s.trash} />
 				Remove all compares

@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+
 import cn from 'classnames'
+import { useSearchParams } from 'react-router-dom'
+
 import { ShopListLayout } from '../ShopListLayout/ShopListLayout'
+
 import s from './shop-sort.module.scss'
 
 const sortParams = [
@@ -22,7 +25,7 @@ export const ShopSort = ({ meta = {} }) => {
 	const { total = 0, page } = meta
 
 	useEffect(() => {
-		if (params.size === 0) setParams(process.env.REACT_APP_SHOP_DEFULT_QUERY)
+		if (params.size === 0) setParams(import.meta.env.VITE_SHOP_DEFAULT_QUERY)
 	}, [params, setParams])
 
 	useEffect(() => {
@@ -74,7 +77,7 @@ export const ShopSort = ({ meta = {} }) => {
 	}
 
 	// help highlightSortItem when mouse get out list
-	const resetHightlight = () => {
+	const resetHighlight = () => {
 		setActiveSortId(sort.id)
 	}
 
@@ -94,7 +97,7 @@ export const ShopSort = ({ meta = {} }) => {
 					className={cn(s.list, { [s.active]: listToggle })}
 					onMouseOver={highlightSortItem}
 					onFocus={handleFocus}
-					onMouseLeave={resetHightlight}
+					onMouseLeave={resetHighlight}
 				>
 					{sortParams.map((param) => {
 						let { id, text } = param
@@ -102,7 +105,7 @@ export const ShopSort = ({ meta = {} }) => {
 						return (
 							<li
 								role='presentation'
-								className={cn(s.item, { [s.current]: sort.id === id, [s.hightlight]: activeSortId === id })}
+								className={cn(s.item, { [s.current]: sort.id === id, [s.highlight]: activeSortId === id })}
 								key={id}
 								id={`${id}`}
 								onClick={(e) => selectSort(e)}
@@ -120,8 +123,8 @@ export const ShopSort = ({ meta = {} }) => {
 						{total < +params.get('limit')
 							? total
 							: page !== 1 && total < page * +params.get('limit')
-							? total
-							: page * +params.get('limit')}{' '}
+								? total
+								: page * +params.get('limit')}{' '}
 						of {total ? total : 0} results
 					</>
 				)}

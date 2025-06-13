@@ -1,0 +1,44 @@
+.sidebar {
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	min-width: 370px;
+	width: 0;
+	padding: 18px 28px 33px;
+	overflow-y: auto;
+	background-color: $color-white;
+	z-index: $z-index200;
+	transition: $transition-sidebar-modal;
+	translate: 100% 0;
+
+	&.active {
+		translate: 0 0;
+	}
+}
+
+.btn_close {
+	position: absolute;
+	top: 13px;
+	right: 23px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 35px;
+	height: 35px;
+
+	.close_svg {
+		width: 15px;
+		height: 15px;
+
+		path {
+			@include transition-all;
+		}
+	}
+
+	&:hover {
+		.close_svg path {
+			fill: $color-primary;
+		}
+	}
+}

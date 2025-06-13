@@ -1,28 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useAuthContext } from '../../../../context/AuthContext'
-import { useWishlistContext } from '../../../../context/WishlistContext'
-import { useCartContext } from '../../../../context/CartContext'
-import { useCompareContext } from '../../../../context/CompareContext'
-import { RecentSearchProvider } from '../../../../context/RecentSearchContext'
-import { GlobalSeach } from '../../../../components/GlobalSearch/GlobalSeach'
-import { Navbar } from '../Navbar/Navbar'
+import { useEffect, useState } from 'react'
+
+import cn from 'classnames'
+import { NavLink, useLocation } from 'react-router-dom'
+
+import { useAuthContext } from '@context/AuthContext'
+import { useCartContext } from '@context/CartContext'
+import { useCartPopupContext } from '@context/CartPopupContext'
+import { useCompareContext } from '@context/CompareContext'
+import { RecentSearchProvider } from '@context/RecentSearchContext'
+import { useWishlistContext } from '@context/WishlistContext'
+
+import { GlobalSearch } from '@components/GlobalSearch/GlobalSearch'
+import { ProfilePopoverMenu } from '@components/ProfilePopoverMenu/ProfilePopoverMenu'
+
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
-import { Socials } from '../../UI/Socials/Socials'
-import { throttle } from '../../../../utils'
-import logo from '../../../../assets/images/logo.png'
-import { ReactComponent as CartSVG } from '../../../../assets/svg/cart.svg'
-import { ReactComponent as HeartSVG } from '../../../../assets/svg/heart.svg'
-import { ReactComponent as InstagramSVG } from '../../../../assets/svg/socials/instagram.svg'
-import { ReactComponent as FacebookSVG } from '../../../../assets/svg/socials/facebook.svg'
-import { ReactComponent as YoutubeSVG } from '../../../../assets/svg/socials/youtube.svg'
-import { ReactComponent as GooglePlusSVG } from '../../../../assets/svg/google-plus.svg'
-import { ReactComponent as TwitterSVG } from '../../../../assets/svg/socials/twitter.svg'
-import { ReactComponent as ProfileSVG } from '../../../../assets/svg/profile.svg'
-import { ReactComponent as CompareSVG } from '../../../../assets/svg/compare.svg'
-import s from './header.module.scss'
 import { Popover } from '../../UI/Popover/Popover'
-import { ProfilePopoverMenu } from '../../../../components/ProfilePopoverMenu/ProfilePopoverMenu'
+import { Socials } from '../../UI/Socials/Socials'
+import { Navbar } from '../Navbar/Navbar'
+
+import logo from '@assets/images/logo.png'
+import CartSVG from '@assets/svg/cart.svg?react'
+import CompareSVG from '@assets/svg/compare.svg?react'
+import GooglePlusSVG from '@assets/svg/google-plus.svg?react'
+import HeartSVG from '@assets/svg/heart.svg?react'
+import ProfileSVG from '@assets/svg/profile.svg?react'
+import FacebookSVG from '@assets/svg/socials/facebook.svg?react'
+import InstagramSVG from '@assets/svg/socials/instagram.svg?react'
+import TwitterSVG from '@assets/svg/socials/twitter.svg?react'
+import YoutubeSVG from '@assets/svg/socials/youtube.svg?react'
+
+import s from './header.module.scss'
 
 const languages = [
 	{ id: 1, text: 'Russian' },
@@ -57,6 +64,8 @@ const socialsList = [
 // ]
 
 export const Header = () => {
+	const location = useLocation()
+	const { setIsOpen } = useCartPopupContext()
 	const [sticky, setSticky] = useState(false)
 	const [isPopoverShown, setIsPopoverShown] = useState(false)
 	const { user } = useAuthContext()
@@ -71,18 +80,21 @@ export const Header = () => {
 			setSticky(false)
 		}
 	}
-
 	const handlePopoverShow = (e) => {
 		e.type === 'mouseenter' ? setIsPopoverShown(true) : setIsPopoverShown(false)
 	}
 
 	useEffect(() => {
-		window.addEventListener('scroll', throttle(fixNavbarToTop, 100))
+		if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
+			return
+		window.addEventListener('scroll', fixNavbarToTop)
 
 		return () => {
-			window.removeEventListener('scroll', throttle(fixNavbarToTop, 100))
+			if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
+				return
+			window.removeEventListener('scroll', fixNavbarToTop)
 		}
-	}, [])
+	}, [location.pathname])
 
 	return (
 		<div className={`${s.navbar}`}>
@@ -107,17 +119,20 @@ export const Header = () => {
 						</NavLink>
 						<div className={s.search}>
 							<RecentSearchProvider>
-								<GlobalSeach />
+								<GlobalSearch />
 							</RecentSearchProvider>
 						</div>
 						<div className={s.account}>
 							{user ? (
 								<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
-									<NavLink to='/profile' className={s.account_link}>
+									<NavLink
+										to='/profile'
+										className={cn(s.account_link, location.pathname.slice(1) === 'profile' && s.active)}
+									>
 										<ProfileSVG />
 									</NavLink>
 									<Popover isOpen={isPopoverShown}>
-										<ProfilePopoverMenu />
+										<ProfilePopoverMenu setIsPopoverShown={setIsPopoverShown} />
 									</Popover>
 								</div>
 							) : (
@@ -126,23 +141,33 @@ export const Header = () => {
 										Register
 									</NavLink>
 									<span className={s.auth__divider}>/</span>
-									<NavLink to='/login' className={s.auth__link}>
+									<NavLink to='/login' state={{ from: location }} replace className={s.auth__link}>
 										Login
 									</NavLink>
 								</div>
 							)}
-							<NavLink to='/compare' className={s.account_link}>
+							<NavLink
+								to='/compare'
+								className={cn(s.account_link, location.pathname.slice(1) === 'compare' && s.active)}
+							>
 								<CompareSVG className={s.compare_link} />
 								<span className={s.count}>{calcTotalCompareItems()}</span>
 							</NavLink>
-							<NavLink to='/wishlist' className={s.account_link}>
+							<NavLink
+								to='/wishlist'
+								className={cn(s.account_link, location.pathname.slice(1) === 'wishlist' && s.active)}
+							>
 								<HeartSVG />
 								<span className={s.count}>{wishlist.length}</span>
 							</NavLink>
-							<NavLink to='/cart' className={s.account_link}>
+							<button
+								type='button'
+								className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}
+								onClick={() => setIsOpen(true)}
+							>
 								<CartSVG />
 								<span className={s.count}>{cart.length}</span>
-							</NavLink>
+							</button>
 						</div>
 					</div>
 				</div>

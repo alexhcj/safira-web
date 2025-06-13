@@ -1,10 +1,13 @@
-import React from 'react'
-import { GridProvider } from '../../context/GridContext'
-import { useProducts } from '../../hooks/services/useProducts'
+import { GridProvider } from '@context/GridContext'
+
+import { useProducts } from '@hooks/services/useProducts'
+
+import { Pagination } from '@shared/components/Pagination/Pagination'
+
 import { ShopList } from './ShopList/ShopList'
 import { ShopSort } from './ShopSort/ShopSort'
 import { Sidebar } from './Sidebar/Sidebar'
-import { Pagination } from '../../shared/components/Pagination/Pagination'
+
 import s from './shop.module.scss'
 
 export const Shop = () => {
@@ -19,7 +22,7 @@ export const Shop = () => {
 							<ShopSort meta={meta} />
 							<ShopList products={products} loading={loading} />
 						</GridProvider>
-						<Pagination meta={meta} />
+						<Pagination meta={meta} loading={loading} />
 					</div>
 					<div className={s.sidebar}>
 						<Sidebar isLoading={loading} meta={meta} />

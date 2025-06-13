@@ -1,17 +1,19 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { ButtonCart } from '../../../shared/components/UI/Buttons/ButtonCart/ButtonCart'
-import { Text } from '../../../shared/components/UI/Text/Text'
-import { ReactComponent as PlusSVG } from '../../../assets/svg/plus.svg'
-import { ReactComponent as CompareSVG } from '../../../assets/svg/compare.svg'
+import { useNavigate } from 'react-router-dom'
+
+import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import CompareSVG from '@assets/svg/compare.svg?react'
+import PlusSVG from '@assets/svg/plus.svg?react'
+
 import s from './add-compare-item.module.scss'
 
 export const AddCompareItem = ({ category }) => {
 	const navigate = useNavigate()
 
 	const handleAddCompareItem = () => {
-		navigate(`/shop?basicCategory=${category}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`)
+		navigate(`/shop?basicCategory=${category}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`)
 	}
 
 	const handleShowRelatedItem = () => {

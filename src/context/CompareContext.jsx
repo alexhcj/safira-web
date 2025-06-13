@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage.hook'
+import { createContext, useContext, useEffect, useState } from 'react'
+
 import { useLocation } from 'react-router-dom'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const CompareContext = createContext([])
 
@@ -11,17 +13,17 @@ export const CompareProvider = ({ children }) => {
 	const [compares, setCompares] = useLocalStorage('compare', {})
 	const [activeCategory, setActiveCategory] = useState(Object.keys(compares)[0])
 	const [activeIndex, setActiveIndex] = useState(0)
-	const [range, setRange] = useState({ first: activeIndex, last: activeIndex + 3 })
 
+	// reset range when location changes
 	useEffect(() => {
-		return () => setRange({ first: 0, last: 3 })
+		setActiveIndex(0)
 	}, [location])
 
 	const addToCompare = ({ slug, price, specifications, name, tags, basicCategory, subCategory }) => {
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
 		if (itemInCompare) return
 
-		const img = `${process.env.REACT_APP_API_PUBLIC_URL}/images/products/${slug}`
+		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 		const item = {
 			slug,
@@ -33,9 +35,15 @@ export const CompareProvider = ({ children }) => {
 			discount_price: price.discount_price,
 			specifications,
 		}
-		if (compares.length === 0) setCompares({ [basicCategory]: [item] })
-		if (!compares[basicCategory]) setCompares({ ...compares, [basicCategory]: [item] })
-		if (compares[basicCategory]) setCompares({ ...compares, [basicCategory]: [...compares[basicCategory], item] })
+
+		if (Object.keys(compares).length === 0) {
+			setCompares({ [basicCategory]: [item] })
+			setActiveCategory(basicCategory)
+		} else if (!compares[basicCategory]) {
+			setCompares({ ...compares, [basicCategory]: [item] })
+		} else {
+			setCompares({ ...compares, [basicCategory]: [...compares[basicCategory], item] })
+		}
 	}
 
 	const comparesCategories = () => {
@@ -49,32 +57,32 @@ export const CompareProvider = ({ children }) => {
 	}
 
 	const calcCategoryItems = (category) => {
-		return Object.entries(compares[category])
-			.map((item) => item[1])
-			.reduce((acc) => acc + 1, 0)
+		return compares[category] ? compares[category].length : 0
 	}
 
 	const getActiveCompares = (activeCategory) => {
-		return compares[activeCategory]
+		return compares[activeCategory] || []
 	}
 
 	const removeItemFromCompare = (slug, category) => {
-		if (range.last === compares[category].length) {
-			setRange((prev) => ({
-				first: prev.first - 1,
-				last: prev.last - 1,
-			}))
+		const currentItems = compares[category] || []
+		const filteredComparedCategory = currentItems.filter((item) => item.slug !== slug)
+
+		if (filteredComparedCategory.length > 0) {
+			setCompares({ ...compares, [category]: filteredComparedCategory })
+			// Reset to first item if current index is out of bounds
+			if (activeIndex >= filteredComparedCategory.length) {
+				setActiveIndex(0)
+			}
+		} else {
+			removeListFromCompare(category)
 		}
-
-		const filteredComparedCategory = compares[category].filter((item) => item.slug !== slug)
-		setCompares({ [category]: filteredComparedCategory })
-
-		// TODO: optimize. check before filter 58
-		if (filteredComparedCategory.length === 0) removeListFromCompare(category)
 	}
 
-	const makeFirstCompareItemActive = (compares) => {
-		setActiveCategory(compares[0])
+	const makeFirstCompareListActive = (compareKeys) => {
+		if (compareKeys.length > 0) {
+			setActiveCategory(compareKeys[0])
+		}
 	}
 
 	const removeListFromCompare = (category) => {
@@ -82,11 +90,25 @@ export const CompareProvider = ({ children }) => {
 		const convertedToObject = Object.fromEntries(filteredCompares)
 		setCompares(convertedToObject)
 
-		if (category === activeCategory) makeFirstCompareItemActive(Object.keys(convertedToObject))
+		if (category === activeCategory) {
+			const remainingCategories = Object.keys(convertedToObject)
+			if (remainingCategories.length > 0) {
+				makeFirstCompareListActive(remainingCategories)
+			} else {
+				setActiveCategory(null)
+				setActiveIndex(0)
+			}
+		}
 	}
 
 	const removeAllCompares = () => {
 		setCompares({})
+		setActiveCategory(null)
+		setActiveIndex(0)
+	}
+
+	const isProductInCompare = (slug, category) => {
+		return (compares[category] && compares[category].find((product) => product.slug === slug)) || false
 	}
 
 	return (
@@ -96,8 +118,6 @@ export const CompareProvider = ({ children }) => {
 				setActiveCategory,
 				activeIndex,
 				setActiveIndex,
-				range,
-				setRange,
 				addToCompare,
 				comparesCategories,
 				calcTotalCompareItems,
@@ -106,6 +126,7 @@ export const CompareProvider = ({ children }) => {
 				removeItemFromCompare,
 				removeListFromCompare,
 				removeAllCompares,
+				isProductInCompare,
 			}}
 		>
 			{children}

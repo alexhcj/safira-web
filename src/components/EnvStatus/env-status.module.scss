@@ -1,0 +1,180 @@
+.env {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	width: 40px;
+	height: 40px;
+	display: block;
+	z-index: $z-index100;
+}
+.env_icon {
+	display: block;
+
+	path {
+		fill: $color-grey5;
+	}
+
+	&:hover {
+		path {
+			fill: $color-dark;
+		}
+	}
+}
+.popover {
+	position: absolute;
+	bottom: 0;
+	left: 100%;
+	padding: 15px 25px;
+	min-width: 305px;
+	background-color: $color-white;
+	border: 1px solid $color-border;
+}
+.header {
+	margin-bottom: 15px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid $color-border;
+}
+.title {
+	letter-spacing: 0;
+	line-height: 22px;
+	font-size: 14px;
+	font-weight: $weight-normal;
+}
+.env_list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.env_row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+.env_item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-left: 27px;
+
+	&.active {
+		padding-left: 5px;
+	}
+}
+.env_indicator {
+	position: relative;
+	width: 12px;
+	height: 12px;
+
+	&.env {
+		&_development {
+			.env_pulse {
+				background-color: $color-primary-40;
+			}
+			.env_dot {
+				background-color: $color-primary;
+			}
+		}
+
+		&_production {
+			.env_pulse {
+				background-color: $color-confidence-40;
+			}
+			.env_dot {
+				background-color: $color-confidence;
+			}
+		}
+	}
+}
+.env_pulse {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	animation: pulseAnimation 1.5s ease-out infinite;
+}
+.env_dot {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: $color-dark;
+	transform: translate(-50%, -50%);
+}
+@keyframes pulseAnimation {
+	0% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0.8;
+	}
+	50% {
+		transform: translate(-50%, -50%) scale(1.3);
+		opacity: 0.4;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0.8;
+	}
+}
+.env_name {
+	line-height: 20px;
+	font-size: 14px;
+}
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+}
+.action_button {
+	display: flex;
+	align-items: center;
+
+	&:hover {
+		svg path {
+			stroke: $color-primary;
+		}
+	}
+}
+.copied_icon {
+	width: 15px;
+	height: 15px;
+
+	path {
+		fill: $color-primary;
+	}
+}
+.animateEnter {
+	opacity: 0;
+	transform: translateX(0);
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transform: translateX(10px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(10px);
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(10px);
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(0);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(0);
+}

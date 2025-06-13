@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import cn from 'classnames'
-import { Text } from '../UI/Text/Text'
+
 import { Button } from '../UI/Buttons/Button/Button'
+import { Text } from '../UI/Text/Text'
+
 import s from './goodtocart.module.scss'
 
 // types: 'straight'

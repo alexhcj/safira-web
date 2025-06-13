@@ -10,30 +10,30 @@
 	padding: 200px 100px;
 }
 .title {
+	text-transform: capitalize;
 	margin-bottom: 15px;
 	font-size: 32px;
 }
 .text {
-	font-size: 20px;
-	margin-bottom: 40px;
+	font-size: 16px;
+	margin-bottom: 30px;
+	color: $color-dark3;
 }
 .hello {
+	margin-bottom: 15px;
+	font-size: 19px;
 	font-weight: $weight-normal;
 
 	span {
+		font-weight: $weight-medium;
 		color: $color-primary;
 	}
 }
 .description {
 	margin: 0 auto;
-	max-width: 400px;
+	max-width: 430px;
 }
 .contact {
-	margin: 25px auto 0;
+	margin: 40px auto 0;
 	max-width: 280px;
-}
-.socials {
-	margin-top: 15px;
-	justify-content: center;
-	gap: 22px;
 }

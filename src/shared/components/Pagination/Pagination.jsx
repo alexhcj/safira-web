@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import s from './pagination.module.scss'
-import cn from 'classnames'
+import { useEffect, useState } from 'react'
 
-export const Pagination = ({ meta = {} }) => {
+import cn from 'classnames'
+import { useSearchParams } from 'react-router-dom'
+
+import s from './pagination.module.scss'
+
+export const Pagination = ({ meta, loading }) => {
 	const perPage = 3
-	const [params, setParams] = useSearchParams()
-	const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(perPage)
-	const [minPageNumberLimit, setminPageNumberLimit] = useState(0)
 	const { page, total, isLastPage } = meta
+	const [params, setParams] = useSearchParams()
+	const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(perPage)
+	const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
+
+	useEffect(() => {
+		const minNum = params.get('offset') / params.get('limit')
+		const maxNum = minNum + perPage
+		setMinPageNumberLimit(minNum)
+		setMaxPageNumberLimit(maxNum)
+	}, [])
 
 	const totalPages = () => {
 		const pages = []
@@ -33,16 +42,16 @@ export const Pagination = ({ meta = {} }) => {
 		const query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: '0' })
-		setmaxPageNumberLimit(3)
-		setminPageNumberLimit(0)
+		setMaxPageNumberLimit(3)
+		setMinPageNumberLimit(0)
 	}
 
 	const selectFinish = () => {
 		let query = Object.fromEntries([...params])
 
 		setParams({ ...query, offset: `${totalPages()[totalPages().length - 2] * +query.limit}` })
-		setmaxPageNumberLimit(totalPages().length)
-		setminPageNumberLimit(totalPages()[totalPages().length - 4])
+		setMaxPageNumberLimit(totalPages().length)
+		setMinPageNumberLimit(totalPages()[totalPages().length - 4])
 	}
 
 	const selectPrev = () => {
@@ -51,8 +60,8 @@ export const Pagination = ({ meta = {} }) => {
 		setParams({ ...query, offset: `${+query.offset - +query.limit}` })
 
 		if (page === minPageNumberLimit + 1) {
-			setmaxPageNumberLimit((prev) => prev - 3)
-			setminPageNumberLimit((prev) => prev - 3)
+			setMaxPageNumberLimit((prev) => prev - 3)
+			setMinPageNumberLimit((prev) => prev - 3)
 		}
 	}
 
@@ -62,8 +71,8 @@ export const Pagination = ({ meta = {} }) => {
 		setParams({ ...query, offset: `${+query.offset + +query.limit}` })
 
 		if (page === maxPageNumberLimit) {
-			setmaxPageNumberLimit((prev) => prev + 3)
-			setminPageNumberLimit((prev) => prev + 3)
+			setMaxPageNumberLimit((prev) => prev + 3)
+			setMinPageNumberLimit((prev) => prev + 3)
 		}
 	}
 
@@ -90,11 +99,13 @@ export const Pagination = ({ meta = {} }) => {
 				</button>
 			)}
 			<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
-				{calcCurrentPages().map((num) => (
-					<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
-						{num}
-					</button>
-				))}
+				{!loading &&
+					page &&
+					calcCurrentPages().map((num) => (
+						<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
+							{num}
+						</button>
+					))}
 			</div>
 			<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
 				next

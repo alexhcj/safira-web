@@ -1,16 +1,20 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { useCartContext } from '../../context/CartContext'
+
+import { useCartContext } from '@context/CartContext'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+
+import { formatPrice } from '@utils/number/convert'
+
 import { CartItem } from './CartItem'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { ItemsNotFound } from '../../shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { calculateTotalPrice } from '../../utils'
+
 import s from './styles/cart.module.scss'
 
 export const Cart = () => {
-	const { cart, handleQuantity, removeFromCart } = useCartContext()
+	const { cart, handleQuantity, cartTotalPrice, removeFromCart } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -74,7 +78,7 @@ export const Cart = () => {
 					<div className={s.content}>
 						<div className={s.totals_box}>
 							<p className={s.totals_text}>Total</p>
-							<span className={s.totals_price}>${calculateTotalPrice(cart).toFixed(2)}</span>
+							<span className={s.totals_price}>{formatPrice(cartTotalPrice())}</span>
 						</div>
 						<Space space={20} />
 						<Link to='/checkout'>

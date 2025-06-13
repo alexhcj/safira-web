@@ -1,18 +1,22 @@
-import React from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { Text } from '../Text/Text'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+
+import { shallowEqual, slugToStr } from '@utils/index'
+
 import { Space } from '../Spacing/Space'
-import { shallowEqual, slugToString } from '../../../../utils'
+import { Text } from '../Text/Text'
+
 import s from './breadcrumbs.module.scss'
 
 // types: 'page' (prevent state through for Breadcrumbs)
 export const Breadcrumbs = ({ type = 'page' }) => {
 	let { pathname, state } = useLocation()
 	const navigate = useNavigate()
-	const isMultyPaths = pathname.match(/\//g).length > 1
-	const pagePathname = isMultyPaths ? pathname.split('/').filter((path) => path)[0] : pathname.slice(1)
-	const pageDetailsItem = slugToString(
+	const isMultiPaths = pathname.match(/\//g).length > 1
+	const pagePathname = isMultiPaths
+		? pathname.split('/').filter((path) => path)[0]
+		: pathname.slice(1).replace('-', ' ')
+	const pageDetailsItem = slugToStr(
 		pathname
 			.split('/')
 			.filter((path) => path)
@@ -27,7 +31,7 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 				newState[item[0]] = item[1]
 			})
 		if (shallowEqual(JSON.parse(state), newState)) return
-		navigate(`/shop?${categoryType}=${category}&${process.env.REACT_APP_SHOP_DEFULT_QUERY}`, {
+		navigate(`/shop?${categoryType}=${category}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
 			state: JSON.stringify(newState),
 		})
 	}
@@ -40,7 +44,7 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 					<Text span>/</Text>
 					<div onClick={() => categoryNavigate(key, value, index)}>
 						<Text className={cn(s.breadcrumb, s.link)} span>
-							{slugToString(value)}
+							{slugToStr(value)}
 						</Text>
 					</div>
 				</div>

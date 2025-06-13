@@ -1,93 +1,127 @@
-import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
-import { productsAPI } from '../../../../api/products'
-import { CheckboxFilter } from '../../../../shared/components/UI/Checkbox/CheckboxFilter'
-import { brandToSlug } from '../../../../utils'
+import { useSearchParams } from 'react-router-dom'
+
+import { useProductsNew } from '@hooks/services/useProductsNew'
+
+import { CheckboxFilter } from '@shared/components/UI/Checkbox/CheckboxFilter'
+
 import s from './brand-filter.module.scss'
 
 export const BrandFilter = () => {
 	const [params, setParams] = useSearchParams()
+	const { findQueryBrands } = useProductsNew()
 	const [availableBrands, setAvailableBrands] = useState([])
 	const [showMore, setShowMore] = useState(false)
-	const { category, subCategory, minPrice, maxPrice, slug } = Object.fromEntries([...params])
+
+	const { category, subCategory, minPrice, maxPrice, slug, brand } = Object.fromEntries([...params])
+
+	const selectedBrands = brand ? brand.split('+') : []
 
 	useEffect(() => {
-		const query = Object.fromEntries([...params])
-
 		const fetchData = async () => {
-			try {
-				const { brands } = await productsAPI.getQueryBrands(query)
-				setAvailableBrands(sortBrands(brands, 'a-z'))
-			} catch (e) {
-				console.log(e)
+			const queryWithoutBrand = { ...Object.fromEntries([...params]) }
+
+			if (queryWithoutBrand.brand) {
+				delete queryWithoutBrand.brand
+			}
+
+			const res = await findQueryBrands(queryWithoutBrand)
+
+			if (res && res.success) {
+				setAvailableBrands(res.brands || [])
 			}
 		}
 
 		fetchData()
 	}, [category, subCategory, minPrice, maxPrice, slug])
 
-	const selectBrandHandler = (brand) => {
+	const toggleBrandSelection = (brandSlug) => {
 		const query = Object.fromEntries([...params])
-		const newBrands = !query.brand
-			? brand
-			: !query.brand.split('+').includes(brand)
-			? `${query.brand}+${brand}`
-			: query.brand
-					.split('+')
-					.filter((b) => b !== brand)
-					.join('+')
 
-		if (newBrands) {
-			setParams({ ...query, offset: '0', brand: newBrands })
+		const isSelected = selectedBrands.includes(brandSlug)
+
+		let newBrandParam
+
+		if (isSelected) {
+			newBrandParam = selectedBrands.filter((b) => b !== brandSlug).join('+')
+		} else {
+			newBrandParam = selectedBrands.length > 0 ? `${brand}+${brandSlug}` : brandSlug
+		}
+
+		if (newBrandParam) {
+			setParams({ ...query, offset: '0', brand: newBrandParam })
 		} else {
 			params.delete('brand')
-			const query = Object.fromEntries([...params])
-			setParams({ ...query, offset: '0' })
+			setParams({ ...Object.fromEntries([...params]), offset: '0' })
 		}
 	}
 
-	const sortBrands = (brands, sortType = 'a-z') => {
-		switch (!!brands) {
-			case sortType === 'a-z':
-				return [...brands].sort((a, b) => b.brand[0] - a.brand[0])
-			case sortType === 'popularity':
-				return [...brands].sort((a, b) => b.popularity - a.popularity)
-			default:
-				return brands
-		}
-	}
+	const sortBrandsWithSelectedOnTop = (brands, selectedSlugs, sortType = 'a-z') => {
+		if (!brands || brands.length === 0) return []
 
-	const isBrandChecked = (brand) => {
-		const query = Object.fromEntries([...params])
-		return !query.brand ? false : query.brand.split('+').includes(brand)
+		const sortedBrands = [...brands]
+
+		// First sort by selection status
+		sortedBrands.sort((a, b) => {
+			const aIsSelected = selectedSlugs.includes(a.brand.slug)
+			const bIsSelected = selectedSlugs.includes(b.brand.slug)
+
+			// If both have the same selection status, sort by the specified sort type
+			if (aIsSelected === bIsSelected) {
+				if (sortType === 'a-z') {
+					return a.brand.displayName.localeCompare(b.brand.displayName)
+				} else if (sortType === 'popularity') {
+					// For equal popularity, sort alphabetically as a tie-breaker
+					const popularityDiff = b.popularity - a.popularity
+					return popularityDiff === 0 ? a.brand.displayName.localeCompare(b.brand.displayName) : popularityDiff
+				}
+				return 0
+			}
+
+			// Selected brands come first
+			return aIsSelected ? -1 : 1
+		})
+
+		return sortedBrands
 	}
 
 	const toggleShowMore = () => {
 		setShowMore(!showMore)
 	}
 
+	if (availableBrands.length === 0) {
+		return <div className={s.no_brands}>No brands found for the current selection</div>
+	}
+
+	// Sort brands with selected ones on top, then apply the secondary sort
+	const sortedBrands = sortBrandsWithSelectedOnTop(availableBrands, selectedBrands, showMore ? 'a-z' : 'popularity')
+
 	return (
 		<>
 			<div className={cn(s.brands, { [s.active]: showMore && availableBrands.length > 5 })}>
-				{sortBrands(availableBrands, showMore ? 'a-z' : 'popularity').map(({ brand, quantity }, index) => {
+				{sortedBrands.map(({ brand: { slug, displayName }, quantity }, index) => {
+					// Only show first 5 brands if not expanded (excluding selected ones which are always shown)
+					const isSelected = selectedBrands.includes(slug)
+
+					if (!showMore && index > 4 && !isSelected) return null
+
 					return (
-						index <= (showMore ? Infinity : 4) && (
-							<CheckboxFilter
-								className={s.brand_item}
-								isChecked={isBrandChecked(brandToSlug(brand))}
-								key={brandToSlug(brand)}
-								onClick={() => selectBrandHandler(brandToSlug(brand))}
-							>
-								<span className={s.brand}>{brand}</span>
-								<span className={s.quantity}>({quantity})</span>
-							</CheckboxFilter>
-						)
+						<CheckboxFilter
+							className={s.brand_item}
+							isChecked={isSelected}
+							key={slug}
+							onClick={() => toggleBrandSelection(slug)}
+						>
+							<span className={s.brand}>{displayName}</span>
+							<span className={cn(s.quantity, { [s.active]: isSelected })}>({quantity})</span>
+						</CheckboxFilter>
 					)
 				})}
 			</div>
-			{availableBrands.length > 5 && (
-				<button className={s.show_more} onClick={() => toggleShowMore(showMore)}>
+			{sortedBrands.length > 5 && (
+				<button className={cn(s.btn_show_more, { [s.active]: showMore })} onClick={() => toggleShowMore(showMore)}>
 					{showMore ? 'Show less' : 'Show more'}
 				</button>
 			)}

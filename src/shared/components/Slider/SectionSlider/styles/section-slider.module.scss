@@ -1,0 +1,33 @@
+.slider {
+	background-color: transparent;
+}
+
+.title {
+	text-transform: capitalize;
+	padding: 0 10px;
+	line-height: 26px;
+	font-size: 24px;
+	font-weight: 500;
+	color: $color-dark;
+}
+
+.arrow {
+	position: absolute;
+	top: 185px;
+	left: 1135px;
+	display: inline-flex;
+	padding: 0;
+	width: 22px;
+	height: 26px;
+	opacity: 0;
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+}
+
+.arrow_prev {
+	left: 0;
+	transform: scale(-1) translateX(100%);
+}

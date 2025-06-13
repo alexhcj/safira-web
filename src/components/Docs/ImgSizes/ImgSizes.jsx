@@ -1,5 +1,5 @@
-import React from 'react'
-import { imgSizeTypes } from '../../../utils'
+import { imgSizeTypes } from '@utils/ui'
+
 import s from './img-sizes.module.scss'
 
 export const ImgSizes = () => {

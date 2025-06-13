@@ -1,9 +1,11 @@
-@import '../../../shared/styles/vars';
-
 .product_tower {
 	display: grid;
 	gap: 30px;
 	padding: 0 10px;
+
+	&.big {
+		gap: 45px;
+	}
 }
 .product {
 	margin-bottom: 0;

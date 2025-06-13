@@ -1,6 +1,4 @@
-@import '../../../styles/vars';
-
-.input {
+.search {
 	position: relative;
 
 	input {
@@ -18,4 +16,8 @@
 			font-family: $WorkSans;
 		}
 	}
+}
+
+.error_popover {
+	min-height: 45px;
 }

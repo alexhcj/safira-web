@@ -7,6 +7,6 @@ export const offersAPI = {
 		return API.get(`${BASE_URL}/list?${type ? `type=${type}` : ''}`)
 	},
 	getOfferByType(type) {
-		return API.get(`${BASE_URL}/${type}`)
+		return API.get(`${BASE_URL}/list/${type}`)
 	},
 }

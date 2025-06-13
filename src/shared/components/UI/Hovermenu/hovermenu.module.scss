@@ -49,6 +49,7 @@
 	}
 
 	&_row {
+		position: relative;
 		gap: 10px;
 		margin-top: 22px;
 		padding: 0;
@@ -66,8 +67,23 @@
 .btn_popup {
 	z-index: $z-index-1;
 
-	.compare_svg {
-		width: 18px;
-		height: 18px;
+	&.compare {
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+	}
+
+	&.active {
+		background-color: $color-primary;
+
+		svg:not(.copmare) path {
+			fill: $color-white;
+		}
+
+		&.compare svg path {
+			fill: $color-primary;
+			stroke: $color-white;
+		}
 	}
 }

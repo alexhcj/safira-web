@@ -1,16 +1,19 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
-import { useAuthContext } from '../../context/AuthContext'
-import { ReplyForm } from '../../shared/components/Form/ReplyForm/ReplyForm'
-import { UserActions } from '../../shared/components/UserActions/UserActions'
-import { Space } from '../../shared/components/UI/Spacing/Space'
-import { ReactComponent as MessageSVG } from '../../assets/svg/message.svg'
+import { useNavigate } from 'react-router-dom'
+
+import { useAuthContext } from '@context/AuthContext'
+
+import { ReplyForm } from '@shared/components/Form/ReplyForm/ReplyForm'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { UserActions } from '@shared/components/UserActions/UserActions'
+
+import MessageSVG from '@assets/svg/message.svg?react'
+
 import s from './reply.module.scss'
 
 // action: 'create' (create new entity) | 'update' (updates comments array)
 // type: 'short'
-export const Reply = ({ nestedLvl = '', type, action = 'create' }) => {
+export const Reply = ({ nestedLvl, type, action }) => {
 	const { user } = useAuthContext()
 	const navigate = useNavigate()
 

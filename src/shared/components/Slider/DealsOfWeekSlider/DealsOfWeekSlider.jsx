@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
+
 import { Arrow } from '../Arrow/Arrow'
-import 'react-alice-carousel/lib/scss/alice-carousel.scss'
-import s from './deals-of-week-slider.module.scss'
+
+import os from './styles/alice-carousel-isolated.module.scss'
+import s from './styles/deals-of-week-slider.module.scss'
 
 export const DealsOfWeekSlider = ({ items, responsive, className }) => {
 	const [isArrowsShown, setIsArrowsShown] = useState(false)
@@ -16,7 +19,11 @@ export const DealsOfWeekSlider = ({ items, responsive, className }) => {
 	}
 
 	return (
-		<div className={cn(s.slider, className)} onMouseEnter={handleArrowsShow} onMouseLeave={handleArrowsShow}>
+		<div
+			className={cn(s.slider, os.dealsOfWeekWrapper, className)}
+			onMouseEnter={handleArrowsShow}
+			onMouseLeave={handleArrowsShow}
+		>
 			<AliceCarousel
 				responsive={responsive}
 				items={items}

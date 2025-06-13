@@ -1,7 +1,10 @@
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { Text } from '../../UI/Text/Text'
-import { convertISODate } from '../../../../utils'
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
+import { convertISODate } from '@utils/date'
+
 import { Rating } from '../../Rating/Rating'
+import { Text } from '../../UI/Text/Text'
+
 import s from './review.module.scss'
 
 export const Review = ({
@@ -12,7 +15,7 @@ export const Review = ({
 		rating,
 	},
 }) => {
-	const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${avatarId}`
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
 	return (
 		<div className={s.review}>

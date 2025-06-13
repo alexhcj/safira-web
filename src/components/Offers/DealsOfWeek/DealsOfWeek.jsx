@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { offersAPI } from '../../../api/offers'
-import { useCartContext } from '../../../context/CartContext'
-import { DealsOfWeekSlider } from '../../../shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
-import { Timer } from '../../../shared/components/UI/Timer/Timer'
+import { useEffect, useState } from 'react'
+
+import { offersAPI } from '@api/offers'
+
+import { useCartContext } from '@context/CartContext'
+
+import { DealsOfWeekSlider } from '@shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Timer } from '@shared/components/UI/Timer/Timer'
+
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { Button } from '../../../shared/components/UI/Buttons/Button/Button'
+
 import s from './dealsweek.module.scss'
 
 export const DealsOfWeek = () => {
@@ -23,17 +28,19 @@ export const DealsOfWeek = () => {
 		fetchData()
 	}, [])
 
-	const items = deals.map((product) => {
-		return (
-			<div className={s.deal} key={product.deal.slug}>
-				<ProductCard product={product.deal} size='md-lg' imgSize='md-lg' />
-				<Timer date={product.expiresDate} />
-				<Button className={s.btn} onClick={() => addToCart(product.deal)}>
-					Add to cart
-				</Button>
-			</div>
-		)
-	})
+	const items =
+		deals &&
+		deals.map((product) => {
+			return (
+				<div className={s.deal} key={product.deal.slug}>
+					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='md-lg' />
+					<Timer className={s.timer} type='days' date={product.expiresDate} />
+					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
+						Add to cart
+					</Button>
+				</div>
+			)
+		})
 
 	const responsive = {
 		0: {

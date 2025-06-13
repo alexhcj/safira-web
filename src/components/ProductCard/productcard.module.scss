@@ -1,12 +1,10 @@
-@import '../../shared/styles/vars';
-
 .product {
 	position: relative;
 	display: flex;
 	align-items: flex-start;
-	margin-bottom: 25px;
 
 	.img_link {
+		position: relative;
 		display: flex;
 		margin-right: 16px;
 		min-width: 120px;
@@ -19,8 +17,7 @@
 		}
 	}
 	.img {
-		width: 100%;
-		height: 100%;
+		object-fit: cover;
 	}
 
 	.info {
@@ -73,6 +70,7 @@
 		flex-direction: column;
 
 		& .img_link {
+			margin-right: 0;
 			margin-bottom: 16px;
 			width: 100%;
 			min-height: 225px;
@@ -97,6 +95,7 @@
 
 		& .img_link {
 			margin-bottom: 16px;
+			max-height: 195px;
 			width: 100%;
 			height: 100%;
 		}
@@ -114,6 +113,7 @@
 
 		& .img_link {
 			margin-bottom: 16px;
+			max-height: 270px;
 			width: 100%;
 			height: 100%;
 		}
@@ -172,7 +172,11 @@
 			margin-bottom: 15px;
 		}
 		& .description {
-			width: auto;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 

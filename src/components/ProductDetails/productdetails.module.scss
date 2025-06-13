@@ -28,6 +28,65 @@
 	justify-content: flex-start;
 }
 
+.dietaries {
+	justify-content: start;
+	gap: 5px;
+
+	div {
+		width: 30px;
+		height: 30px;
+	}
+}
+
+.actions {
+	display: inline-grid;
+	justify-items: start;
+	gap: 10px;
+
+	.btn {
+		&:hover {
+			.icon {
+				opacity: 0;
+			}
+
+			.icon_remove {
+				opacity: 1;
+			}
+		}
+	}
+
+	.icon {
+		cursor: pointer;
+		@include transition-all;
+
+		path {
+			fill: $color-primary;
+		}
+
+		&.compare path {
+			fill: $color-white;
+			stroke: $color-primary;
+		}
+	}
+
+	.icon_remove {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		@include transition-all;
+
+		path {
+			fill: $color-error;
+		}
+
+		&.compare path {
+			fill: $color-white;
+			stroke: $color-error;
+		}
+	}
+}
+
 .content {
 	max-width: 557px;
 }
@@ -35,34 +94,6 @@
 .title {
 	font-size: 22px;
 	line-height: 20px;
-}
-
-.btn {
-	&:hover {
-		.heart_broken {
-			opacity: 1;
-		}
-	}
-}
-
-.heart {
-	cursor: pointer;
-
-	path {
-		fill: $color-primary;
-	}
-}
-
-.heart_broken {
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	@include transition-all;
-
-	path {
-		fill: $color-error;
-	}
 }
 
 .category {

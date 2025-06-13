@@ -1,14 +1,13 @@
-@import '../../../../shared/styles/vars';
-
 .brands {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	max-height: 200px;
-	overflow-y: hidden;
+	overflow: hidden;
 	@include transition-all;
 
 	&.active {
+		max-height: 270px;
 		overflow-y: scroll;
-		height: auto;
 	}
 }
 .brand_item {
@@ -17,6 +16,7 @@
 	cursor: pointer;
 	padding: 4px 0;
 }
+
 .brand {
 	margin-right: 5px;
 	text-transform: uppercase;
@@ -24,16 +24,33 @@
 	font-size: 14px;
 }
 .quantity {
-	line-height: 20px;
-	font-size: 12px;
+	margin-left: auto;
+	line-height: 22px;
+	font-size: 13px;
 	color: $color-grey;
+
+	&.active {
+		color: $color-dark;
+	}
 }
-.show_more {
+.btn_show_more {
 	display: inline-flex;
+	margin-top: 10px;
 	cursor: pointer;
 	@include transition-all;
 
 	&:hover {
 		color: $color-primary;
 	}
+
+	&.active {
+		margin-top: 15px;
+	}
 }
+
+.no_brands {
+	padding: 20px 0;
+	color: $color-dark4;
+	text-align: center;
+}
+

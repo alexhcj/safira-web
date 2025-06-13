@@ -1,33 +1,40 @@
-import React, { createContext, useContext, useState } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage.hook'
+import { createContext, useContext, useState } from 'react'
+
+import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const RecentSearchContext = createContext([])
 
 export const useRecentSearchContext = () => useContext(RecentSearchContext)
 
 export const RecentSearchProvider = ({ children }) => {
-	const [recentSearch, setRecentSearch] = useLocalStorage('search', [])
-	const [state, setState] = useState('')
+	const [recentSearch, setRecentSearch] = useLocalStorage('recent-search', [])
+	const [state, setState] = useState({ search: '', lastSearch: '' })
+	const maxSize = 5
 
-	const addCurrentSearch = (slug) => {
-		setState(slug)
+	const addCurrentSearch = (search) => {
+		setState(search)
 	}
 
 	const addToSearch = (search) => {
-		const similarSearch = recentSearch.find((item) => item.name === search.name)
+		setRecentSearch((prev) => {
+			const existingIndex = prev.indexOf(search)
 
-		if (similarSearch) return
-		if (recentSearch.length > 4) {
-			setRecentSearch([...recentSearch.slice(1, recentSearch.length), search])
-			return
-		}
+			if (existingIndex !== -1) {
+				return [search, ...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]
+			}
 
-		setRecentSearch([...recentSearch, search])
+			if (prev.length < maxSize) {
+				return [search, ...prev]
+			}
+
+			if (prev.length === maxSize) {
+				return [search, ...prev.slice(0, -1)]
+			}
+		})
 	}
 
 	const removeFromSearch = (slug) => {
-		const filteredSearch = recentSearch.filter((item) => item.slug !== slug)
-		setRecentSearch([...filteredSearch])
+		setRecentSearch((prev) => prev.filter((item) => item !== slug))
 	}
 
 	return (

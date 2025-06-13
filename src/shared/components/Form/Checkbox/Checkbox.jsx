@@ -1,6 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+
 import cn from 'classnames'
-import { ErrorPopover } from '../../UI/ErrorPopup/ErrorPopover'
+
+import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
+
 import s from './checkbox.module.scss'
 
 export const Checkbox = ({ children, type, id, name, checked = false, handleChange, error, required, className }) => {
@@ -30,7 +33,6 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 						onChange={handleChange}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
-						required={required}
 					/>
 					{children}
 					<label className={cn(s.label, required && s.required, className)} htmlFor={id}></label>
@@ -46,13 +48,12 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 							onChange={handleChange}
 							onFocus={handleFocus}
 							onBlur={handleBlur}
-							required={required}
 						/>
 					</label>
 					{children}
 				</>
 			)}
-			<ErrorPopover error={isError && Object.values(error)[0]} className={s.error_popover} />
+			<ErrorPopover error={isError && error} className={s.error_popover} />
 		</div>
 	)
 }

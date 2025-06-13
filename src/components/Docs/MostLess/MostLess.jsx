@@ -1,7 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { productsAPI } from '../../../api/products'
-import { convertArray } from '../../../utils'
-import { ImageWithFallback } from '../../../utils/ImageWithFallback'
+import { useEffect, useMemo, useState } from 'react'
+
+import { productsAPI } from '@api/products'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+
+import { to2DArray } from '@utils/array'
+
 import s from './most-less.module.scss'
 
 export const MostLess = () => {
@@ -43,7 +47,7 @@ export const MostLess = () => {
 
 						// newprice_gte param breaks default method
 						if (sort === 'newprice') {
-							return productsAPI.getProductsByNewprice({ sort, limit, order }).then((res) => res.data)
+							return productsAPI.getProductsByNewPrice({ sort, limit, order }).then((res) => res.data)
 						}
 
 						return productsAPI.getAll({ sort, limit, order }).then((res) => res.data)
@@ -51,7 +55,7 @@ export const MostLess = () => {
 				)
 
 				let res = await Promise.all([promises])
-				setMostLess(convertArray(res[0], 2))
+				setMostLess(to2DArray(res[0], 2))
 			} catch (e) {
 				console.log(e)
 			}

@@ -1,23 +1,43 @@
-import React, { createRef, useCallback } from 'react'
+import { createRef, useEffect, useMemo, useState } from 'react'
+
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useBrands } from '../../hooks/services/useBrands'
+
+import { useProductsNew } from '@hooks/services/useProductsNew'
+
+import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { Space } from '@shared/components/UI/Spacing/Space'
+import { Text } from '@shared/components/UI/Text/Text'
+
 import { BrandsNav } from './BrandsNav/BrandsNav'
 import { BrandsRow } from './BrandsRow/BrandsRow'
-import { Button } from '../../shared/components/UI/Buttons/Button/Button'
-import { Text } from '../../shared/components/UI/Text/Text'
-import { Space } from '../../shared/components/UI/Spacing/Space'
+
 import s from './brands.module.scss'
 
 export const Brands = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
+	const { findAllBrands, isLoading } = useProductsNew()
+	const [brands, setBrands] = useState([])
 	const isBrandsPage = location.pathname.slice(1) === 'brands'
-	const { brands, loading } = useBrands()
 
-	const refs = brands.reduce((acc, cur) => {
-		acc[cur.name] = createRef()
-		return acc
-	}, {})
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await findAllBrands()
+
+			if (res && res.success) {
+				setBrands(res.brands)
+			}
+		}
+
+		fetchData()
+	}, [])
+
+	const refs =
+		brands &&
+		brands.reduce((acc, cur) => {
+			acc[cur.name] = createRef()
+			return acc
+		}, {})
 
 	const handleCharAnchorClick = (name) => {
 		refs[name].current.scrollIntoView({
@@ -34,7 +54,7 @@ export const Brands = () => {
 		navigate('/brands')
 	}
 
-	const availableChars = useCallback(() => brands.map((item) => item.name), [brands])
+	const availableChars = useMemo(() => brands.map((item) => item.name), [brands])
 
 	return (
 		<div className='container'>
@@ -52,11 +72,11 @@ export const Brands = () => {
 								Brands
 							</Text>
 						</Button>
-						<BrandsNav chars={availableChars()} onClick={handleCharAnchorClick} />
+						<BrandsNav chars={availableChars} onClick={handleCharAnchorClick} />
 					</div>
 				</div>
 				<nav className={s.nav}>
-					{loading && <div>loading...</div>}
+					{isLoading && <div>loading...</div>}
 					{brands.map((item) => (
 						<BrandsRow {...item} key={item.name} rowRef={refs[item.name]} />
 					))}

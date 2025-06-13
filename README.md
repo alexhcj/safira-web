@@ -1,14 +1,22 @@
-# Safira - online ecommerce food store
+# Safira - Online E-commerce Food Store
+
+---
+
+## Demo
+
+- [Production App](https://safira-store.shop)
+- [Development App](https://safira-shop-web-dev.onrender.com/) (see work in progress)
+- [Figma Design](https://www.figma.com/design/i0PEldds46MbUNR5avusy3/safira?node-id=1494-199&t=U6ofgb37pEb4sqSM-1)
 
 ## Description
 
 **Safira** - fullstack training project based on [React](https://react.dev/)
 ecosystem ([hooks](https://react.dev/reference/react), [context](https://react.dev/reference/react/useContext), etc.)
-and [NestJS](https://nestjs.com/) in conjuction with [MongoDB](https://www.mongodb.com/).
+and [NestJS](https://nestjs.com/) in conjunction with [MongoDB](https://www.mongodb.com/).
 
-**Main idea** is to develop frontend with minimum dependencies based writter on React.
+**Main idea** is to develop frontend with minimum dependencies based writer on React.
 
-**MVP** version would consist of frontend part with most used features of nesessary real life e-commerce solutions and
+**MVP** version would consist of frontend part with most used features of necessary real life e-commerce solutions and
 backend with api, services and database.
 
 **Final** project form would have:
@@ -27,19 +35,27 @@ backend with api, services and database.
 - [x] Login
 - [x] User actions (calls for login | register...)
 
+- ### API
+
+- [x] Global error handling
+
 ### Verifications & Mailing
 
-- [ ] Confirm email by code
-- [ ] Change password
+- [x] Verify email with code
+- [x] Change password
 - [ ] Forget password
-- [ ] Recovery email
-- [ ] Subscribe
-- [ ] Unsubscribe (email or profile)
+- [x] Change email
+- [x] Subscribe
+- [ ] Unsubscribe
+  - [ ] From email
+  - [ ] From profile
+- [x] Redis queues & schedulers
 
 ### Navigation
 
 - [x] Categories & Brands
 - [x] Default page routing
+- [x] Protected page routing
 - [x] Multi layer categories
 - [x] Blank page (fake)
 - [x] 404 page
@@ -58,18 +74,21 @@ backend with api, services and database.
 
 - [x] Modals
 - [x] Scroll to top
+- [x] Popovers
+- [x] Forms validation & error handling
+- [x] Password strength
 
 ### E-commerce
 
 - [x] Wishlist
 - [x] Cart
 - [x] Global search (products & posts)
+- [x] Separate search by collections (products || posts)
 - [x] Reviews (products)
 - [x] Comments with replies (posts)
 - [x] Breadcrumbs
 - [x] Unauthorized buy
 - [x] CompareList products
-
 
 - **Products**
 - [x] Pagination
@@ -78,7 +97,8 @@ backend with api, services and database.
 - [x] Details (by slug)
 - [x] Quick view (modal)
 - [x] Rating
-- [ ] Related products
+- [x] Related products
+- [x] Scheduled sales & promos (CRON jobs)
 
 
 - **Posts**
@@ -88,15 +108,15 @@ backend with api, services and database.
 
 ### User
 
-- [ ] Profile (private account)
-- [ ] Profile (public account)
+- [x] Profile (private)
+- [ ] Profile (public)
 - [ ] Order history
 - [x] Avatars (stored by server)
 
 ### Discount System & Payment
 
 - [ ] Promotions
-- [ ] Promocodes
+- [ ] Promo codes
 - [ ] Checkout
 - [ ] Coupons
 - [ ] Gift cards
@@ -125,6 +145,12 @@ Used scss modules in combination with [classnames](https://www.npmjs.com/package
 - [ ] 769 - 1024
 - [ ] 481 - 768
 - [ ] 320 - 480
+
+## Project
+- [x] Vite integration
+  - [x] Aliases
+- [x] Eslint
+  - [x] Imports sorting
 
 ## Additional Packages
 

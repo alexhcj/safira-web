@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { productsAPI } from '../../../api/products'
-import { RowSlider } from '../../../shared/components/Slider/RowSlider/RowSlider'
+import { useEffect, useState } from 'react'
+
+import { productsAPI } from '@api/products'
+
+import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
+
+import { to2DArray } from '@utils/array'
+
 import { ProductCard } from '../../ProductCard/ProductCard'
-import { convertArray } from '../../../utils'
+
+import s from './bestsellers.module.scss'
 
 export const BestSellers = () => {
 	const [bestsellers, setBestsellers] = useState([])
@@ -25,11 +31,11 @@ export const BestSellers = () => {
 		fetchData()
 	}, [])
 
-	const items = convertArray(bestsellers, 2).map((col, index) => {
+	const items = to2DArray(bestsellers, 2).map((col, index) => {
 		return (
 			<div key={index} style={{ padding: '0 10px' }}>
 				{col.map((product) => {
-					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
+					return <ProductCard className={s.product} size='xs' imgSize='xs' key={product.slug} product={product} />
 				})}
 			</div>
 		)

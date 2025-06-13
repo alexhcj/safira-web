@@ -1,6 +1,6 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
+
 import s from './sub-nav.module.scss'
 
 export const SubNav = ({

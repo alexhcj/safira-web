@@ -8,14 +8,16 @@
 }
 
 .sticky {
-    position: fixed;
-    top: 0;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 11%);
-    animation-name: navbarAppear;
-    animation-duration: .9s;
-    animation-timing-function: cubic-bezier(0.2, 1, 0.22, 1);
-    animation-iteration-count: 1;
+	position: fixed;
+	top: 0;
+	box-shadow: 0 1px 3px rgb(0 0 0 / 11%);
+	animation-name: navbarAppear;
+	animation-duration: 0.9s;
+	animation-timing-function: cubic-bezier(0.2, 1, 0.22, 1);
+	animation-iteration-count: 1;
+	z-index: $z-index300;
 }
+
 @keyframes navbarAppear {
 	0% {
 		opacity: 0;

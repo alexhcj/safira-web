@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import { NavLink } from 'react-router-dom'
-import { commentsAPI } from '../../../../api/comments'
-import { ImageWithFallback } from '../../../../utils/ImageWithFallback'
-import { FilterTitle } from '../../../../shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
+import { commentsAPI } from '@api/comments'
+
+import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
+
 import s from './recent-comments.module.scss'
 
 export const RecentComments = () => {
@@ -24,7 +28,7 @@ export const RecentComments = () => {
 		fetchData()
 	}, [])
 
-	if (comments.length === 0) {
+	if (!comments) {
 		return null
 	}
 
@@ -34,7 +38,7 @@ export const RecentComments = () => {
 			<ul className={s.comments}>
 				{comments.map(({ text, user, postSlug }, index) => {
 					const author = user && user.firstName
-					const avatarUrl = `${process.env.REACT_APP_API_URL}/files/avatar/${user.avatarId}`
+					const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${user.avatarId}`
 					// const postUrl = `/blog/${postSlug}`
 
 					const cropText = text && text.length > 28 ? text.slice(0, 25) + '...' : text
