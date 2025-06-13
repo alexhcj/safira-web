@@ -22,12 +22,12 @@ export const EnvStatus = () => {
 		development: {
 			name: 'Development',
 			url: 'https://safira-shop-web-dev.onrender.com',
-			current: import.meta.env.DEV,
+			current: import.meta.env.MODE === 'development',
 		},
 		production: {
 			name: 'Production',
 			url: 'https://safira-store.shop',
-			current: import.meta.env.PROD,
+			current: import.meta.env.MODE === 'production',
 		},
 	}
 
@@ -81,7 +81,7 @@ export const EnvStatus = () => {
 	// don't render in production unless it's blank page
 	const isContactPage = location.pathname.includes('/blank')
 
-	if (import.meta.env.PROD && !isContactPage) {
+	if (import.meta.env.MODE === 'production' && !isContactPage) {
 		return null
 	}
 
@@ -117,7 +117,7 @@ export const EnvStatus = () => {
 					<div className={s.env_list}>
 						{Object.entries(environments).map(([key, env]) => (
 							<div key={key} className={s.env_row}>
-								<div className={cn(s.env_item, import.meta.env.MODE === env.name.toLowerCase() && s.active)}>
+								<div className={cn(s.env_item, env.current && s.active)}>
 									{env.current && (
 										<div className={cn(s.env_indicator, s[`env_${import.meta.env.MODE}`])}>
 											<span className={s.env_pulse}></span>

@@ -28,6 +28,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"build:dev": "vite build --mode development",
 		"preview": "vite preview",
 		"eslint:fix": "npx eslint --fix \"src/**/*.{js,jsx}\"",
 		"prettier:fix": "npx prettier --write ."
