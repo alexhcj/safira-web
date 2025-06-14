@@ -1,4 +1,4 @@
-@import '../../../styles/vars';
+@use '@shared/styles/vars' as *;
 
 .popover {
 	position: absolute;

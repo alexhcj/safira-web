@@ -1,5 +1,5 @@
-@import '../../shared/styles/grid';
-@import '../../shared/styles/vars';
+//@import '../../shared/styles/grid';
+@use '@shared/styles/vars' as *;
 
 .block {
 	display: grid;

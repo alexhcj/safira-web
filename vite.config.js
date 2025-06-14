@@ -36,11 +36,4 @@ export default defineConfig(({ mode }) => ({
 	preview: {
 		port: 3000,
 	},
-	css: {
-		preprocessorOptions: {
-			scss: {
-				additionalData: '@import "@shared/styles/_vars.scss";',
-			},
-		},
-	},
 }))
