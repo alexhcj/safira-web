@@ -210,7 +210,7 @@ export const Checkout = () => {
 										<td>
 											{item.name} <strong>x {item.quantity}</strong>
 										</td>
-										<td>${item.price * item.quantity}</td>
+										<td>{formatPrice(item.price * item.quantity)}</td>
 									</tr>
 								)
 							})}
