@@ -1,4 +1,5 @@
-@import '../../../shared/styles/table';
+@use '@shared/styles/table';
+@use '@shared/styles/vars' as *;
 
 .footer {
 	display: flex;

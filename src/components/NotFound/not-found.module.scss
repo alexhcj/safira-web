@@ -1,4 +1,4 @@
-@import '../../shared/styles/vars';
+@use '@shared/styles/vars' as *;
 
 .not_found {
 	padding: 150px 100px 200px;

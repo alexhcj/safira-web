@@ -1,4 +1,4 @@
-@import '../../../shared/styles/vars';
+@use '@shared/styles/vars' as *;
 
 .box {
 	display: grid;

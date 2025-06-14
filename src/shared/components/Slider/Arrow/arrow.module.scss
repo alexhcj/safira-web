@@ -1,4 +1,4 @@
-@import '../../../styles/vars';
+@use '@shared/styles/vars' as *;
 
 .arrow:hover svg path {
 	fill: $color-primary;

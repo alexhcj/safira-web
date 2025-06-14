@@ -1,4 +1,5 @@
-@import '../../../shared/styles/vars';
+@use "sass:color";
+@use '@shared/styles/vars' as *;
 
 .action {
 	display: grid;
@@ -19,6 +20,6 @@
 	@include transition-all;
 
 	&:hover {
-		color: darken($color-primary, 8%);
+		color: color.adjust($color-primary, $lightness: -8%);
 	}
 }

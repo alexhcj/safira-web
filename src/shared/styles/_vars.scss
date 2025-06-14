@@ -1,13 +1,15 @@
+@use "sass:color";
+
 // colors
 $color-white: #ffffff;
 $color-black: #000000;
 $color-primary: #40a944;
-$color-primary-40: lighten($color-primary, 40%);
+$color-primary-40: color.adjust($color-primary,  $lightness: 40%);
 $color-secondary: #fc8a35;
 $color-error: #ff7063;
 $color-warning: #f3cd01;
 $color-confidence: #016fd0;
-$color-confidence-40: lighten($color-confidence, 40%);;
+$color-confidence-40: color.adjust($color-confidence,  $lightness: 40%);
 $color-dark: #222222;
 $color-dark2: #333333;
 $color-dark3: #555555;
@@ -26,7 +28,7 @@ $color-border3: #dddddd;
 $color-border4: #e8e8e8;
 $color-border5: #3d3e40;
 $color-border-sort: #999999;
-$color-border-focus: darken($color-border3, 25%);
+$color-border-focus: color.adjust($color-border3, $lightness: -25%);
 $color-border-hover: #aeaeae;
 $separator: #ededed;
 $color-section-bg: #f4f4f4ff;

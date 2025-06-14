@@ -1,4 +1,4 @@
-@import '../../../styles/vars';
+@use '@shared/styles/vars' as *;
 
 .review {
 	margin-bottom: 70px;

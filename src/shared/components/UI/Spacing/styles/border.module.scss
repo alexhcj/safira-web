@@ -1,0 +1,7 @@
+@use '@shared/styles/vars' as *;
+
+.border {
+  width: 100%;
+  height: 1px;
+  background-color: $separator;
+}
