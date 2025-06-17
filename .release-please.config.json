@@ -1,0 +1,11 @@
+{
+	"release-type": "node",
+	"packages": {
+		".": {
+			"release-type": "node",
+			"bump-minor-pre-major": true,
+			"changelog-path": "CHANGELOG.md",
+			"draft": true
+		}
+	}
+}
