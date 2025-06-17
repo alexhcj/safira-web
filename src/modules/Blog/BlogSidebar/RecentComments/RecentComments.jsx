@@ -28,7 +28,7 @@ export const RecentComments = () => {
 		fetchData()
 	}, [])
 
-	if (!comments) {
+	if (comments.length === 0) {
 		return null
 	}
 
