@@ -107,7 +107,7 @@ export const ProductDetails = () => {
 						{isProductInWishlist(slug) ? (
 							<ButtonPopover
 								className={s.btn}
-								onClick={removeFromWishlist}
+								onClick={() => removeFromWishlist(slug)}
 								onMouseEnter={handlePopover}
 								onMouseLeave={handlePopover}
 								text='Remove from wishlist'
