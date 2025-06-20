@@ -26,8 +26,9 @@ export const DbWarmUpPopup = () => {
 	// check if modal should be shown based on localStorage
 	useEffect(() => {
 		const now = Date.now()
+		const timeoutValue = timeout ? parseInt(timeout) : 0
 
-		if (!timeout || now - parseInt(timeout) >= COOLDOWN_DURATION) {
+		if (!timeout || now - timeoutValue >= COOLDOWN_DURATION) {
 			setIsOpen(true)
 			setTimeout(now.toString())
 		}
