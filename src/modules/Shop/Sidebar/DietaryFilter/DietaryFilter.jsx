@@ -1,23 +1,53 @@
+import { useEffect, useState } from 'react'
+
 import cn from 'classnames'
 import { useSearchParams } from 'react-router-dom'
+
+import { useProductsNew } from '@hooks/services/useProductsNew'
+import { useTags } from '@hooks/services/useTags'
 
 import { enumToStr } from '@utils/string'
 
 import s from './dietary-filter.module.scss'
 
-const dietaryTypesList = [
-	'HALAL',
-	'GLUTEN_FREE',
-	'HEALTHIER_CHOICE',
-	'HYPOALLERGENIC',
-	'LACTOSE_FREE',
-	'ORGANIC',
-	'TRANS_FAT_FREE',
-	'VEGETARIAN',
-]
-
 export const DietaryFilter = () => {
 	const [params, setParams] = useSearchParams()
+	const { findUniqueDietaryTags } = useTags()
+	const { findQueryTags } = useProductsNew()
+	const [tags, setTags] = useState([])
+	const [availableTags, setAvailableTags] = useState([])
+
+	const { primeCategory, subCategory, basicCategory, minPrice, maxPrice, slug, brand } = Object.fromEntries([...params])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await findUniqueDietaryTags()
+
+			if (res && res.success) {
+				setTags(res.tags)
+			}
+		}
+
+		fetchData()
+	}, [])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const queryWithoutTags = { ...Object.fromEntries([...params]) }
+
+			if (queryWithoutTags.dietary) {
+				delete queryWithoutTags.dietary
+			}
+
+			const res = await findQueryTags(queryWithoutTags)
+
+			if (res && res.success) {
+				setAvailableTags(res.tags)
+			}
+		}
+
+		fetchData()
+	}, [primeCategory, subCategory, basicCategory, minPrice, maxPrice, slug, brand])
 
 	const selectDietary = (dietary) => {
 		const query = Object.fromEntries([...params])
@@ -40,9 +70,17 @@ export const DietaryFilter = () => {
 		}
 	}
 
+	const filterTags = () => {
+		return tags.filter((tag) => availableTags.includes(tag))
+	}
+
+	if (availableTags.length === 0) {
+		return <div className={s.no_tags}>No tags found for the current selection</div>
+	}
+
 	return (
 		<div className={s.dietaries}>
-			{dietaryTypesList.map((dietary) => (
+			{filterTags().map((dietary) => (
 				<button
 					className={cn(s.dietary, {
 						[s.active]: params.get('dietary') && params.get('dietary').split('+').includes(dietary),

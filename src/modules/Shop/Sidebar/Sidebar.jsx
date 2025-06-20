@@ -24,7 +24,7 @@ export const Sidebar = ({ meta }) => {
 				<BrandFilter />
 			</div>
 			<div>
-				<FilterTitle text='Dietary tags' />
+				<FilterTitle text='Select by tag' />
 				<DietaryFilter />
 			</div>
 			<BannerOffer imgSize='shop' />
