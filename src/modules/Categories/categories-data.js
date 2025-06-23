@@ -126,7 +126,10 @@ export const categories = [
 				{
 					name: 'Beer',
 					subCategory: 'beer',
-					basicCategories: [{ name: 'Lager &  pilsner', basicCategory: 'lager-and-pilsner' }],
+					basicCategories: [
+						{ name: 'Lager &  pilsner', basicCategory: 'lager-and-pilsner' },
+						{ name: 'Ale & IPA', basicCategory: 'ale-and-ipa' },
+					],
 				},
 			],
 		},
@@ -159,7 +162,7 @@ export const categories = [
 				{
 					name: 'Frozen seafood',
 					subCategory: 'frozen-seafood',
-					basicCategories: [{ name: 'Fresh fish seafood', basicCategory: 'fresh-fish-seafood' }],
+					basicCategories: [{ name: 'Frozen fish', basicCategory: 'frozen-fish' }],
 				},
 			],
 		},
