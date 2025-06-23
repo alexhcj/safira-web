@@ -30,6 +30,7 @@
 	display: flex;
 	justify-self: flex-start;
 	text-transform: uppercase;
+	white-space: nowrap;
 	line-height: 30px;
 	font-size: 14px;
 	font-weight: $weight-medium;
