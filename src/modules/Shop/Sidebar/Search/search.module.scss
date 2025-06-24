@@ -109,6 +109,31 @@
 }
 
 .current_search {
+	position: relative;
 	text-transform: capitalize;
 	text-align: right;
+	vertical-align: middle;
+}
+.reset_current_search {
+	position: absolute;
+	top: 50%;
+	right: -5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2px;
+	font-size: 10px;
+	line-height: 10px;
+	border-radius: 5px;
+	opacity: 0;
+	transform: translateX(100%) translateY(-50%);
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+}
+.reset_svg {
+	width: 10px;
+	height: 10px;
 }

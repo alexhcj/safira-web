@@ -86,7 +86,7 @@ export const PriceRange = () => {
 				max={priceRanges[1]}
 			/>
 			<div className={s.bottom}>
-				<ButtonFilter onClick={filterPriceHandler} />
+				<ButtonFilter onClick={filterPriceHandler} disabled={priceRanges[0] === priceRanges[1]} />
 				<div
 					className={cn(s.thumbs, { [s.active]: minPrice && maxPrice })}
 					onMouseEnter={() => setShowResetPrice(true)}

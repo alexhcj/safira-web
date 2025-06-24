@@ -31,7 +31,7 @@ export const PostDetails = () => {
 		}
 
 		fetchData()
-	}, [])
+	}, [slug])
 
 	return (
 		<>

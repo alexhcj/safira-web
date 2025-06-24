@@ -15,7 +15,9 @@ export const BrandFilter = () => {
 	const [availableBrands, setAvailableBrands] = useState([])
 	const [showMore, setShowMore] = useState(false)
 
-	const { category, subCategory, minPrice, maxPrice, slug, brand } = Object.fromEntries([...params])
+	const { primeCategory, subCategory, basicCategory, minPrice, maxPrice, slug, brand, dietary } = Object.fromEntries([
+		...params,
+	])
 
 	const selectedBrands = brand ? brand.split('+') : []
 
@@ -35,7 +37,7 @@ export const BrandFilter = () => {
 		}
 
 		fetchData()
-	}, [category, subCategory, minPrice, maxPrice, slug])
+	}, [primeCategory, subCategory, basicCategory, minPrice, maxPrice, slug, dietary])
 
 	const toggleBrandSelection = (brandSlug) => {
 		const query = Object.fromEntries([...params])

@@ -12,6 +12,9 @@ export const productsAPI = {
 	async findQueryBrands(params) {
 		return API.get(`${BASE_URL}/list-brands`, params)
 	},
+	async findQueryTags(params) {
+		return API.get(`${BASE_URL}/list-tags`, params)
+	},
 	async findAllBrands() {
 		return API.get(`${BASE_URL}/all-brands`)
 	},

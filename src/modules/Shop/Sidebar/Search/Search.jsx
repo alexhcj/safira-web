@@ -30,8 +30,10 @@ const searchFormValidationSchema = {
 export const Search = () => {
 	const [params, setParams] = useSearchParams()
 	const [search, setSearch] = useState('')
-	const [currentSearch, setCurrentSearch] = useState((params.get('slug') && slugToStr(params.get('slug'))) || '')
+	const slug = params.get('slug') || ''
+	const [currentSearch, setCurrentSearch] = useState(slugToStr(slug))
 	const [popoverToggle, setPopoverToggle] = useState(false)
+	const [resetButton, showResetButton] = useState(false)
 
 	const searchContainerRef = useRef(null)
 	const inputRef = useRef(null)
@@ -47,6 +49,10 @@ export const Search = () => {
 	})
 
 	const POPOVER_LIMIT = 5
+
+	useEffect(() => {
+		if (!slug) setCurrentSearch('')
+	}, [slug])
 
 	// Fetch products when search changes
 	useEffect(() => {
@@ -121,6 +127,12 @@ export const Search = () => {
 		inputRef.current?.focus()
 	}
 
+	const resetCurrentSearch = () => {
+		setSearch('')
+		params.delete('slug')
+		setParams({ ...Object.fromEntries([...params]) })
+	}
+
 	const submitSearch = useCallback(() => {
 		if (!isValid()) {
 			setPopoverToggle(false)
@@ -187,7 +199,22 @@ export const Search = () => {
 						</Text>
 					)}
 				</Button>
-				<span className={s.current_search}>{currentSearch}</span>
+				<span
+					className={s.current_search}
+					onMouseEnter={() => showResetButton(true)}
+					onMouseLeave={() => showResetButton(false)}
+				>
+					{currentSearch}
+					{slug && (
+						<button
+							className={cn(s.reset_current_search, { [s.active]: resetButton })}
+							onClick={resetCurrentSearch}
+							type='button'
+						>
+							<Close className={s.reset_svg} />
+						</button>
+					)}
+				</span>
 			</div>
 		</aside>
 	)

@@ -49,6 +49,23 @@ export const useProductsNew = () => {
 		}
 	}
 
+	const findQueryTags = async (params) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await productsAPI.findQueryTags(params)
+
+			return {
+				success: true,
+				tags: res,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
 	const findAllBrands = async () => {
 		setIsLoading(true)
 		try {
@@ -66,5 +83,5 @@ export const useProductsNew = () => {
 		}
 	}
 
-	return { findProducts, findQueryBrands, findAllBrands, isLoading }
+	return { findProducts, findQueryBrands, findQueryTags, findAllBrands, isLoading }
 }
