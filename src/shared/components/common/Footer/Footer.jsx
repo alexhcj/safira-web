@@ -54,6 +54,7 @@ export const Footer = () => {
 				<div className={s.extra}>
 					<h3 className={s.title}>Extras</h3>
 					<div className={s.list}>
+						<NavLink to='/brands'>Brands</NavLink>
 						<NavLink to='/'>Order History</NavLink>
 						<NavLink to='/'>Gift Cards</NavLink>
 						<NavLink to='/'>Specials</NavLink>
