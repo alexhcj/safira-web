@@ -49,16 +49,18 @@ export const Footer = () => {
 						<NavLink to='/'>Privacy Policy</NavLink>
 						<NavLink to='/'>Terms & Conditions</NavLink>
 						<NavLink to='/'>Contact us</NavLink>
+						<NavLink to='/'>Site map</NavLink>
 					</div>
 				</div>
 				<div className={s.extra}>
 					<h3 className={s.title}>Extras</h3>
 					<div className={s.list}>
 						<NavLink to='/brands'>Brands</NavLink>
-						<NavLink to='/'>Order History</NavLink>
 						<NavLink to='/'>Gift Cards</NavLink>
+						<NavLink to='/'>Affiliate</NavLink>
 						<NavLink to='/'>Specials</NavLink>
-						<NavLink to='/'>Site map</NavLink>
+						<NavLink to='/'>Returns</NavLink>
+						<NavLink to='/'>Order History</NavLink>
 					</div>
 				</div>
 				<div className={s.newsletter}>
