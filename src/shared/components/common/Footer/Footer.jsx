@@ -9,6 +9,71 @@ import logo from '@assets/images/logo.png'
 
 import s from './footer.module.scss'
 
+const shoppingToolsList = [
+	{
+		text: 'Brands',
+		link: '/brands',
+	},
+	{
+		text: 'Gift Cards',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Affiliate',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Specials',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Returns',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Order History',
+		link: '/',
+		badge: 'Coming soon',
+	},
+]
+
+const informationList = [
+	{
+		text: 'About us',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Delivery',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Privacy Policy',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Terms & Conditions',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Contact us',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Site map',
+		link: '/',
+		badge: 'Coming soon',
+	},
+]
+
 export const Footer = () => {
 	const location = useLocation()
 	const isBlankPage = location.pathname.slice(1) === 'blank-page'
@@ -41,26 +106,30 @@ export const Footer = () => {
 						<a href='tel:792134777999'>(921) 34 777 999</a>
 					</div>
 				</div>
-				<div className={s.info}>
-					<h3 className={s.title}>Information</h3>
+				<div className={s.links_column}>
+					<h3 className={s.title}>Shopping tools</h3>
 					<div className={s.list}>
-						<NavLink to='/'>About us</NavLink>
-						<NavLink to='/'>Delivery Information</NavLink>
-						<NavLink to='/'>Privacy Policy</NavLink>
-						<NavLink to='/'>Terms & Conditions</NavLink>
-						<NavLink to='/'>Contact us</NavLink>
-						<NavLink to='/'>Site map</NavLink>
+						{shoppingToolsList.map((item, index) => (
+							<div className={s.item} key={index}>
+								<NavLink class={s.link} to={item.link}>
+									{item.text}
+								</NavLink>
+								{item.badge && <span className={s.badge}>{item.badge}</span>}
+							</div>
+						))}
 					</div>
 				</div>
-				<div className={s.extra}>
-					<h3 className={s.title}>Extras</h3>
+				<div className={s.links_column}>
+					<h3 className={s.title}>Information</h3>
 					<div className={s.list}>
-						<NavLink to='/brands'>Brands</NavLink>
-						<NavLink to='/'>Gift Cards</NavLink>
-						<NavLink to='/'>Affiliate</NavLink>
-						<NavLink to='/'>Specials</NavLink>
-						<NavLink to='/'>Returns</NavLink>
-						<NavLink to='/'>Order History</NavLink>
+						{informationList.map((item, index) => (
+							<div className={s.item} key={index}>
+								<NavLink class={s.link} to={item.link}>
+									{item.text}
+								</NavLink>
+								{item.badge && <span className={s.badge}>{item.badge}</span>}
+							</div>
+						))}
 					</div>
 				</div>
 				<div className={s.newsletter}>
