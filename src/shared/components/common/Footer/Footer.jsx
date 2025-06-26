@@ -111,7 +111,7 @@ export const Footer = () => {
 					<div className={s.list}>
 						{shoppingToolsList.map((item, index) => (
 							<div className={s.item} key={index}>
-								<NavLink class={s.link} to={item.link}>
+								<NavLink className={s.link} to={item.link}>
 									{item.text}
 								</NavLink>
 								{item.badge && <span className={s.badge}>{item.badge}</span>}
@@ -124,7 +124,7 @@ export const Footer = () => {
 					<div className={s.list}>
 						{informationList.map((item, index) => (
 							<div className={s.item} key={index}>
-								<NavLink class={s.link} to={item.link}>
+								<NavLink className={s.link} to={item.link}>
 									{item.text}
 								</NavLink>
 								{item.badge && <span className={s.badge}>{item.badge}</span>}
