@@ -22,6 +22,8 @@ $color-grey5: #cecece;
 $color-grey6: #747474;
 $color-grey7: #eef0f1;
 $color-grey8: #9d9b9b;
+$color-grey9: #f8f8f8;
+$color-grey10: #e7e7e7;
 $color-border: #ebebeb;
 $color-border2: #ededed;
 $color-border3: #dddddd;
@@ -88,6 +90,8 @@ $transition-opacity: opacity 0.18s ease-in;
 $transition-tooltip: opacity 0.18s ease-in-out;
 $transition-progress-bar: width 0.5s ease;
 $transition-sidebar-modal: translate 0.5s;
+$transition-icon-rotate: rotate 0.5s;
+$transition-accordion: 0.4s ease-in-out;
 
 // grid
 $popover-indent: 20px;

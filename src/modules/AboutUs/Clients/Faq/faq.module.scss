@@ -1,0 +1,89 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	width: 50%;
+}
+.title {
+	margin-bottom: 28px;
+	text-align: center;
+	text-transform: capitalize;
+	line-height: 33px;
+	font-size: 28px;
+	font-weight: 400;
+}
+.accordion {
+	overflow: hidden;
+
+	&__item {
+		margin-bottom: 21px;
+	}
+
+	&__label {
+		position: relative;
+		display: block;
+		padding: 14px 20px;
+		font-weight: $weight-medium;
+		border-radius: $default-border-radius $default-border-radius 0 0;
+		background-color: $color-white;
+		cursor: pointer;
+		@include transition-sort;
+
+		&::after {
+			position: absolute;
+			content: "";
+			right: 20px;
+			top: calc(50% + 4px);
+			width: 10px;
+			height: 10px;
+			display: inline-block;
+			border: 6px solid transparent;
+			border-top: 7px solid $color-dark;
+			transform: translateY(-50%);
+			transition: $transition-accordion;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			top: 50%;
+			right: 15px;
+			width: 22px;
+			height: 22px;
+			border-radius: 50%;
+			background-color: transparent;
+			transform: translateY(-50%);
+			transition: $transition-accordion;
+		}
+	}
+
+	&__toggle:checked + &__label {
+		color: $color-white;
+		background-color: $color-primary;
+
+		&::after {
+			border-top-color: $color-primary;
+		}
+
+		&::before {
+			background-color: $color-white;
+		}
+	}
+
+	&__content {
+		max-height: 0;
+		padding: 0 15px;
+		border: 1px solid transparent;
+		overflow: hidden;
+		transition: $transition-accordion;
+
+		p {
+			margin-bottom: 16px;
+		}
+	}
+
+	&__toggle:checked + &__label + &__content {
+		max-height: 300px;
+		padding: 15px;
+		border-color: $color-border3;
+	}
+}

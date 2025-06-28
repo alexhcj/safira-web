@@ -44,8 +44,7 @@ const shoppingToolsList = [
 const informationList = [
 	{
 		text: 'About us',
-		link: '/',
-		badge: 'Coming soon',
+		link: '/about-us',
 	},
 	{
 		text: 'Delivery',

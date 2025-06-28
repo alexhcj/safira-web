@@ -1,0 +1,25 @@
+@use '@shared/styles/vars' as *;
+
+.img {
+	margin-bottom: 26px;
+	height: 582px;
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.title {
+	text-transform: capitalize;
+	margin-bottom: 21px;
+	letter-spacing: $letter-spacing-lg;
+	font-size: 24px;
+	font-weight: $weight-normal;
+}
+.text {
+	margin: 0 auto 25px;
+	max-width: 880px;
+	letter-spacing: $letter-spacing-lg;
+	line-height: 26px;
+}
