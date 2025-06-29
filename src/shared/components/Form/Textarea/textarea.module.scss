@@ -54,12 +54,12 @@
 		border-color: $color-primary;
 	}
 
-	&.error {
-		border-color: $color-error;
-	}
-
 	&:hover {
 		border-color: $color-border-focus;
+	}
+
+	&.error {
+		border-color: $color-error;
 	}
 
 	&:focus {

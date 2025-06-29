@@ -1,0 +1,52 @@
+@use '@shared/styles/vars' as *;
+
+.title {
+	margin-bottom: 25px;
+	text-transform: capitalize;
+	line-height: 20px;
+	font-size: 21px;
+	font-weight: $weight-medium;
+}
+.input {
+	margin-bottom: 20px;
+
+	label {
+		margin-bottom: 10px;
+		text-transform: capitalize;
+		line-height: 18px;
+		font-weight: $weight-medium;
+	}
+
+	span {
+		top: 27px;
+		height: 45px;
+	}
+
+	input {
+		padding: 0 20px;
+		height: 45px;
+		border-color: $color-border2;
+	}
+
+	&.textarea {
+		margin-bottom: 25px;
+		height: 170px;
+
+		label {
+			&::after {
+				color: $color-dark;
+			}
+		}
+	}
+}
+.button {
+	padding: 0 30px;
+	height: 42px;
+	line-height: 42px;
+	background-color: $color-dark;
+	border-radius: $border-radius-s;
+
+	&:hover {
+		background-color: $color-primary;
+	}
+}

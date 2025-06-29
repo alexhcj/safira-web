@@ -63,8 +63,7 @@ const informationList = [
 	},
 	{
 		text: 'Contact us',
-		link: '/',
-		badge: 'Coming soon',
+		link: '/contact-us',
 	},
 	{
 		text: 'Site map',

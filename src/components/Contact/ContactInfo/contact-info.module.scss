@@ -1,0 +1,32 @@
+@use '@shared/styles/vars' as *;
+
+.title {
+	margin-bottom: 25px;
+	text-transform: capitalize;
+	line-height: 20px;
+	font-size: 21px;
+	font-weight: $weight-medium;
+}
+.description {
+	margin-bottom: 20px;
+}
+.item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 13px 0;
+	border-top: 1px solid $color-border2;
+}
+.link {
+	&:hover {
+		color: $color-primary;
+	}
+}
+.icon {
+	width: 14px;
+	height: 14px;
+
+	&.phone_icon {
+		width: 13px;
+	}
+}

@@ -42,6 +42,9 @@ const VerifyEmailPage = lazy(() =>
 	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
 )
 const AboutUsPage = lazy(() => import('../../pages/AboutUsPage').then((module) => ({ default: module.AboutUsPage })))
+const ContactUsPage = lazy(() =>
+	import('../../pages/ContactUsPage').then((module) => ({ default: module.ContactUsPage })),
+)
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -50,6 +53,7 @@ export const AppRoutes = () => {
 		<Routes>
 			<Route path='/' element={<HomePage />} />
 			<Route path='/about-us' element={<AboutUsPage />} />
+			<Route path='/contact-us' element={<ContactUsPage />} />
 			<Route path='/blank-page' element={<BlankPage />} />
 			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />

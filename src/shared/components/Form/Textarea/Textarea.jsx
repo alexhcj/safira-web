@@ -32,7 +32,6 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 				onFocus={handleFocus}
 				onBlur={handleBlur}
 				placeholder={placeholder}
-				required={required}
 			/>
 			<ErrorPopover error={isError && error} />
 		</div>
