@@ -93,9 +93,13 @@ $transition-progress-bar: width 0.5s ease;
 $transition-sidebar-modal: translate 0.5s;
 $transition-icon-rotate: rotate 0.5s;
 $transition-accordion: 0.4s ease-in-out;
+$transition-faq-item: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+$transition-faq-icon: rotate .2s ease-in-out, fill .15s ease-in-out;
+$transition-faq-content: max-height 0.35s ease, padding 0.35s ease;
 
 // grid
 $popover-indent: 20px;
 
 // box-shadow
 $box-shadow: 0 0 5.76px 0.24px rgb(0 0 0 / 10%);
+$box-shadow-faq-item: inset 0 -1px 0 rgba(0, 0, 0, .125);

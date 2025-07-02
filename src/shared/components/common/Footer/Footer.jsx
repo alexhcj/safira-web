@@ -62,6 +62,10 @@ const informationList = [
 		badge: 'Coming soon',
 	},
 	{
+		text: 'Frequently Questions',
+		link: '/faq',
+	},
+	{
 		text: 'Contact us',
 		link: '/contact-us',
 	},

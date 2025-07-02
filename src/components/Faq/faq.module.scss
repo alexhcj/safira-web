@@ -1,0 +1,88 @@
+@use '@shared/styles/vars' as *;
+
+.title {
+	margin-bottom: 15px;
+	line-height: 18px;
+	font-size: 18px;
+	font-weight: $weight-semi;
+}
+.text {
+	margin-bottom: 65px;
+}
+.accordion {
+	overflow: hidden;
+
+	&__item {
+		&:not(:last-of-type) {
+			margin-bottom: 10px;
+		}
+	}
+
+	&__label {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: 16px 20px;
+		height: 45px;
+		font-weight: $weight-medium;
+		background-color: $color-border2;
+		border: 1px solid $color-border2;
+		border-radius: $default-border-radius $default-border-radius 0 0;
+		cursor: pointer;
+		box-shadow: $box-shadow-faq-item;
+		transition: $transition-faq-item;
+
+		&.checked {
+			box-shadow: none;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		width: 24px;
+		height: 24px;
+		rotate: 90deg;
+		translate: 0 -50%;
+		transition: $transition-faq-icon;
+
+		path {
+			fill: $color-primary;
+		}
+
+		&.active {
+			rotate: -90deg;
+
+			path {
+				fill: $color-primary!important;
+			}
+		}
+
+		&.checked {
+			path {
+				fill: $color-dark;
+			}
+		}
+
+		&.unchecked {
+			rotate: -90deg;
+		}
+	}
+
+	&__content {
+		max-height: 0;
+		padding: 0 15px;
+		overflow: hidden;
+		transition: $transition-faq-content;
+
+		p {
+			margin-bottom: 16px;
+		}
+	}
+
+	&__toggle:checked + &__label + &__content {
+		max-height: 200px;
+		padding: 15px;
+	}
+}
