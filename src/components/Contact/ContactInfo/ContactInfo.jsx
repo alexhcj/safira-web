@@ -22,8 +22,8 @@ const contacts = [
 	{
 		icon: <PhoneSVG className={cn(s.icon, s.phone_icon)} />,
 		alt: 'Phone number',
-		text: '(921) 34 777 999',
-		link: 'tel:792134777999',
+		text: '(812) 34 777 999',
+		link: 'tel:781234777999',
 	},
 ]
 

@@ -511,7 +511,7 @@ export const PrivacyPolicy = () => {
 							</a>
 						</div>
 						<div className={s.contacts_item}>
-							<a className={s.contacts_link} href='tel:792134777999'>
+							<a className={s.contacts_link} href='tel:781234777999'>
 								<strong>Phone:</strong>
 								<span>+7 (812) 34 777 999</span>
 							</a>

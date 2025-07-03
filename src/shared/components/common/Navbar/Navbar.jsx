@@ -54,8 +54,8 @@ export const Navbar = () => {
 					<div className={s.support}>
 						<img src={phone} alt='Phone support icon' />
 						<div className={s.support__block}>
-							<a className={s.support__link} href='tel:792134777999'>
-								(921) 34 777 999
+							<a className={s.support__link} href='tel:781234777999'>
+								(812) 34 777 999
 							</a>
 							<span className={s.support__text}>Customer support</span>
 						</div>
