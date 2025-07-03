@@ -1,0 +1,7 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	padding: 35px 45px;
+	border-left: 4px solid $color-primary;
+	background-color: $color-sort;
+}
