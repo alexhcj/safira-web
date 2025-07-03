@@ -53,8 +53,7 @@ const informationList = [
 	},
 	{
 		text: 'Privacy Policy',
-		link: '/',
-		badge: 'Coming soon',
+		link: '/privacy-policy',
 	},
 	{
 		text: 'Terms & Conditions',
@@ -105,7 +104,7 @@ export const Footer = () => {
 					</div>
 					<div className={s.phone}>
 						Call us:
-						<a href='tel:792134777999'>(921) 34 777 999</a>
+						<a href='tel:781234777999'>(812) 34 777 999</a>
 					</div>
 				</div>
 				<div className={s.links_column}>
