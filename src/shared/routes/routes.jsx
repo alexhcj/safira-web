@@ -49,6 +49,9 @@ const FaqPage = lazy(() => import('@pages/FaqPage').then((module) => ({ default:
 const PrivacyPolicyPage = lazy(() =>
 	import('@pages/PrivacyPolicyPage').then((module) => ({ default: module.PrivacyPolicyPage })),
 )
+const TermsConditionsPage = lazy(() =>
+	import('@pages/TermsConditionsPage').then((module) => ({ default: module.TermsConditionsPage })),
+)
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -61,6 +64,7 @@ export const AppRoutes = () => {
 			<Route path='/blank-page' element={<BlankPage />} />
 			<Route path='/faq' element={<FaqPage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
+			<Route path='/terms-conditions' element={<TermsConditionsPage />} />
 			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />

@@ -151,11 +151,11 @@ export const RegisterForm = () => {
 					>
 						<div className='terms'>
 							I agree to the{' '}
-							<Link className='terms-link' to='/'>
+							<Link className='terms-link' to='/terms-conditions'>
 								Terms of Use
 							</Link>{' '}
 							and{' '}
-							<Link className='terms-link' to='/'>
+							<Link className='terms-link' to='/privacy-policy'>
 								Privacy Policy
 							</Link>
 							.

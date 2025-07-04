@@ -57,8 +57,7 @@ const informationList = [
 	},
 	{
 		text: 'Terms & Conditions',
-		link: '/',
-		badge: 'Coming soon',
+		link: '/terms-conditions',
 	},
 	{
 		text: 'Frequently Questions',
