@@ -54,7 +54,6 @@
 }
 .block_note {
 	margin-bottom: 10px;
-	padding: 20px;
 	box-shadow: $box-shadow;
 }
 .updated {
@@ -85,6 +84,10 @@
 	p {
 		margin-bottom: 15px;
 		color: $color-dark;
+	}
+
+	strong + p {
+		margin-bottom: 0;
 	}
 
 	ul {

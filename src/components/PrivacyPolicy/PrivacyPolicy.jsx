@@ -148,11 +148,14 @@ export const PrivacyPolicy = () => {
 	return (
 		<div className='container'>
 			<div className={s.box}>
-				<div className={s.content}>
-					<BlockNote className={s.block_note}>
-						<strong>Your Privacy Matters:</strong> At Safira, we are committed to protecting your personal information
-						and being transparent about how we collect, use, and share your data. This privacy policy explains our
-						practices in clear, understandable terms.
+				<div>
+					<BlockNote type='notification' className={s.block_note}>
+						<strong>Your Privacy Matters</strong>
+						<p>
+							At Safira, we are committed to protecting your personal information and being transparent about how we
+							collect, use, and share your data. This privacy policy explains our practices in clear, understandable
+							terms.
+						</p>
 					</BlockNote>
 
 					<span className={s.updated}>Last updated: July 1, 2025</span>
@@ -317,10 +320,13 @@ export const PrivacyPolicy = () => {
 							<li>Background checks for employees with access to personal data</li>
 						</ul>
 
-						<div className='highlight-box'>
-							<strong>Data Breach Notification:</strong> In the unlikely event of a data breach affecting your personal
-							information, we will notify you within 72 hours and provide guidance on protective measures you can take.
-						</div>
+						<BlockNote type='notification' className={s.block_note}>
+							<strong>Data Breach Notification</strong>
+							<p>
+								In the unlikely event of a data breach affecting your personal information, we will notify you within 72
+								hours and provide guidance on protective measures you can take.
+							</p>
+						</BlockNote>
 					</Section>
 
 					<Section order={5} id='cookies' title='Cookies and Tracking Technologies' className={s.section}>
@@ -417,7 +423,7 @@ export const PrivacyPolicy = () => {
 					</Section>
 
 					<Section order={7} id='children-privacy' title="Children's Privacy" className={s.section}>
-						<p>Safira is committed to protecting children`s privacy online:</p>
+						<p>Safira is committed to protecting children&apos;s privacy online:</p>
 						<ul>
 							<li>Our services are not intended for children under 13 years of age</li>
 							<li>We do not knowingly collect personal information from children under 13</li>
@@ -426,15 +432,17 @@ export const PrivacyPolicy = () => {
 								Parents who believe their child has provided information to us can contact us for immediate removal
 							</li>
 						</ul>
-
-						<div className='highlight-box'>
-							<strong>Parental Notice:</strong> If you are a parent or guardian and believe your child has provided
-							personal information to Safira, please contact us immediately at{' '}
-							<a className={s.link} href='mailto:privacy@safira.com'>
-								privacy@safira.com
-							</a>{' '}
-							so we can remove the information.
-						</div>
+						<BlockNote type='notification' className={s.block_note}>
+							<strong>Parental Notice</strong>
+							<p>
+								If you are a parent or guardian and believe your child has provided personal information to Safira,
+								please contact us immediately at{' '}
+								<a className={s.link} href='mailto:privacy@safira.com'>
+									privacy@safira.com
+								</a>{' '}
+								so we can remove the information.
+							</p>
+						</BlockNote>
 					</Section>
 
 					<Section order={8} id='international-transfers' title='International Data Transfers' className={s.section}>
