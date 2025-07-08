@@ -1,0 +1,15 @@
+@use '@shared/styles/vars' as *;
+
+.badge {
+	text-transform: uppercase;
+	white-space: nowrap;
+	padding: 0 4px;
+	height: 18px;
+	letter-spacing: $letter-spacing-lg-neg;
+	line-height: 18px;
+	font-size: 10px;
+	font-weight: $weight-medium;
+	color: $color-white;
+	background-color: $color-primary;
+	border-radius: $border-radius-md;
+}
