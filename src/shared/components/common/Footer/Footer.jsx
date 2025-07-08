@@ -1,5 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom'
 
+import { Badge } from '@shared/components/UI/Badge/Badge'
+
 import { Button } from '../../UI/Buttons/Button/Button'
 import { Border } from '../../UI/Spacing/Border'
 import { Space } from '../../UI/Spacing/Space'
@@ -69,8 +71,7 @@ const informationList = [
 	},
 	{
 		text: 'Site map',
-		link: '/',
-		badge: 'Coming soon',
+		link: '/site-map',
 	},
 ]
 
@@ -114,7 +115,7 @@ export const Footer = () => {
 								<NavLink className={s.link} to={item.link}>
 									{item.text}
 								</NavLink>
-								{item.badge && <span className={s.badge}>{item.badge}</span>}
+								{item.badge && <Badge text={item.badge} />}
 							</div>
 						))}
 					</div>
@@ -127,7 +128,7 @@ export const Footer = () => {
 								<NavLink className={s.link} to={item.link}>
 									{item.text}
 								</NavLink>
-								{item.badge && <span className={s.badge}>{item.badge}</span>}
+								{item.badge && <Badge text={item.badge} />}
 							</div>
 						))}
 					</div>
