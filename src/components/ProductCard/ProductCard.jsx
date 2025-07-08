@@ -19,22 +19,23 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	const [priceToggle, setPriceToggle] = useState(false)
 	const navigate = useNavigate()
 
-	const { slug, tags, name, subCategory, price, description, createdAt } = product
+	const { slug, tags, name, primeCategory, subCategory, price, description, createdAt } = product
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
-	const url = {
-		pathname: `/products/${slug}`,
-		state: {
-			name: name,
-			subCategory: subCategory,
-		},
+	const url = `/products/${slug}`
+
+	const linkState = {
+		name: name,
 	}
 
 	const handleSubCategoryClick = () => {
 		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({ subCategory }),
+			state: JSON.stringify({
+				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
+				subCategory: { name: slugToStr(subCategory), slug: subCategory },
+			}),
 		})
 	}
 
@@ -56,13 +57,15 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 			onMouseLeave={handleMenuToggle}
 			className={cn(s.product, size && s[`product_${size}`], className)}
 		>
-			<NavLink className={s.img_link} to={url}>
+			<NavLink className={s.img_link} to={url} state={linkState}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
 				{size !== 'xs' && size !== 'row-xs' && <Tags {...price} createdAt={createdAt} />}
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-					<NavLink to={url}>{name}</NavLink>
+					<NavLink to={url} state={linkState}>
+						{name}
+					</NavLink>
 				</h3>
 				{size !== 'row-xs' && (
 					<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>

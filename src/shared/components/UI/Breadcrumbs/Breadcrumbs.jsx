@@ -39,16 +39,20 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 	const renderCategories = (categories) => {
 		return (
 			categories &&
-			Object.entries(categories).map(([key, value], index) => (
-				<div className={s.category} key={value}>
-					<Text span>/</Text>
-					<div onClick={() => categoryNavigate(key, value, index)}>
-						<Text className={cn(s.breadcrumb, s.link)} span>
-							{slugToStr(value)}
-						</Text>
+			Object.entries(categories).map(([key, value], index) => {
+				const { name, slug } = value
+
+				return (
+					<div className={s.category} key={slug}>
+						<Text span>/</Text>
+						<div onClick={() => categoryNavigate(key, slug, index)}>
+							<Text className={cn(s.breadcrumb, s.link)} span>
+								{name}
+							</Text>
+						</div>
 					</div>
-				</div>
-			))
+				)
+			})
 		)
 	}
 
@@ -71,8 +75,15 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 							</Text>
 						</>
 					)}
+					{type === 'product' && state && (
+						<>
+							<Text span>/ </Text>
+							<Text className={s.page_breadcrumb} span>
+								{state.name}
+							</Text>
+						</>
+					)}
 					{type === 'shop' && renderCategories(JSON.parse(state))}
-					{/*{renderCategories(JSON.parse(state))}*/}
 				</div>
 			</div>
 		</div>

@@ -64,7 +64,9 @@ export const CategoriesDropdown = () => {
 			sort: 'popularity',
 			order: 'desc',
 		}
-		navigate(`/shop?${new URLSearchParams(query)}`, { state: JSON.stringify({ primeCategory: name }) })
+		navigate(`/shop?${new URLSearchParams(query)}`, {
+			state: JSON.stringify({ primeCategory: { name, slug: primeCategory } }),
+		})
 		setPopupToggle(false)
 	}
 
@@ -107,6 +109,7 @@ export const CategoriesDropdown = () => {
 										subCategories={subCategories}
 										setPopupToggle={setPopupToggle}
 										primeCategory={primeCategory}
+										primeCategoryName={name}
 									/>
 								)}
 							</ul>
