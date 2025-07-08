@@ -33,4 +33,13 @@ export const productsAPI = {
 	async findRandom() {
 		return API.get(`${BASE_URL}/random`)
 	},
+	async findAllBasicCategories() {
+		return API.get(`${BASE_URL}/all-basic-categories`)
+	},
+	async findTopPopular({ limit }) {
+		return API.get(`${BASE_URL}/top-popular?limit=${limit}`)
+	},
+	async findTopByPrimeCategories() {
+		return API.get(`${BASE_URL}/top-by-prime-categories`)
+	},
 }

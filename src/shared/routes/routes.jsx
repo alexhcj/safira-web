@@ -52,6 +52,7 @@ const PrivacyPolicyPage = lazy(() =>
 const TermsConditionsPage = lazy(() =>
 	import('@pages/TermsConditionsPage').then((module) => ({ default: module.TermsConditionsPage })),
 )
+const SiteMapPage = lazy(() => import('@pages/SiteMapPage').then((module) => ({ default: module.SiteMapPage })))
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -65,6 +66,7 @@ export const AppRoutes = () => {
 			<Route path='/faq' element={<FaqPage />} />
 			<Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
 			<Route path='/terms-conditions' element={<TermsConditionsPage />} />
+			<Route path='/site-map' element={<SiteMapPage />} />
 			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />
