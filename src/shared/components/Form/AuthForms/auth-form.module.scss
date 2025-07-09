@@ -63,8 +63,19 @@
 	align-items: center;
 }
 
-.btn_auth {
+.btn_auth_register,
+.btn_auth_login {
 	justify-self: flex-end;
+
+	&.loading {
+		background-color: $color-dark;
+	}
+}
+.btn_auth_register {
+	min-width: 101px;
+}
+.btn_auth_login {
+	min-width: 78px;
 }
 
 .btn_auth_text {
