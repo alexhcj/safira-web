@@ -96,7 +96,7 @@ export const LoginForm = () => {
 						className={s.input}
 						key='email'
 						id='email'
-						type='email'
+						type='text'
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
