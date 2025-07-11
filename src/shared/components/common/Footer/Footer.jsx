@@ -1,11 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom'
 
+import { Subscribe } from '@shared/components/Subscribe/Subscribe'
 import { Badge } from '@shared/components/UI/Badge/Badge'
 
-import { Button } from '../../UI/Buttons/Button/Button'
 import { Border } from '../../UI/Spacing/Border'
 import { Space } from '../../UI/Spacing/Space'
-import { Text } from '../../UI/Text/Text'
 
 import logo from '@assets/images/logo.png'
 
@@ -133,20 +132,7 @@ export const Footer = () => {
 						))}
 					</div>
 				</div>
-				<div className={s.newsletter}>
-					<h3 className={s.title}>Sign Up Newsletter</h3>
-					<p>Get updates by subscribe our weekly newsletter</p>
-					<form action='src/shared/components/common/Footer/Footer.jsx'>
-						<div className={s.input}>
-							<input type='text' placeholder='Enter your email' />
-							<Button type='subscribe'>
-								<Text span color='white'>
-									Subscribe
-								</Text>
-							</Button>
-						</div>
-					</form>
-				</div>
+				<Subscribe />
 			</footer>
 			<Space space={64} />
 		</div>

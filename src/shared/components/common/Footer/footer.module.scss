@@ -74,33 +74,3 @@
 	font-size: 17px;
 	font-weight: 500;
 }
-
-.newsletter {
-	width: 100%;
-
-	p {
-		margin-bottom: 22px;
-		line-height: 22px;
-	}
-}
-
-.input {
-	position: relative;
-	width: 100%;
-	height: 46px;
-
-	input {
-		padding: 0 120px 0 20px;
-		width: 100%;
-		height: 100%;
-		border: 1px solid #ededed;
-		border-radius: 30px;
-
-		&::placeholder {
-			letter-spacing: normal;
-			font-size: 13px;
-			font-family: 'Work Sans', sans-serif;
-			color: $color-dark;
-		}
-	}
-}

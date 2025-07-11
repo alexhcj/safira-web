@@ -1,0 +1,16 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	width: 100%;
+}
+.text {
+	margin-bottom: 22px;
+	line-height: 22px;
+}
+.title {
+	text-transform: capitalize;
+	margin-bottom: 20px;
+	line-height: 18px;
+	font-size: 17px;
+	font-weight: 500;
+}
