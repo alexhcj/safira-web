@@ -1,0 +1,42 @@
+@use '@shared/styles/vars' as *;
+
+tr {
+	border: 1px solid $color-border2;
+}
+
+td {
+	&:not(:last-child) {
+		border-right: 1px solid $color-border2;
+	}
+}
+
+.type,
+.status,
+.action {
+	text-align: center;
+	text-transform: capitalize;
+	padding: 8px;
+	width: 170px;
+	font-weight: $weight-medium;
+}
+
+.action {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
+button {
+	text-transform: capitalize;
+	font-weight: $weight-medium;
+
+	&.subscribed {
+		color: $color-error;
+	}
+
+	&.unsubscribed {
+		color: $color-primary;
+	}
+
+}

@@ -28,6 +28,9 @@ const ProfileDetails = lazy(() =>
 )
 const ProductPage = lazy(() => import('../../pages/ProductPage').then((module) => ({ default: module.ProductPage })))
 const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
+const Subscriptions = lazy(() =>
+	import('../../modules/Profile/Subscriptions/Subscriptions').then((module) => ({ default: module.Subscriptions })),
+)
 const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
 )
@@ -88,6 +91,7 @@ export const AppRoutes = () => {
 				<Route index element={<ProfileDetails />} />
 				<Route path='profile-details' element={<ProfileDetails />} />
 				<Route path='orders' element={<Orders />} />
+				<Route path='subscriptions' element={<Subscriptions />} />
 			</Route>
 			<Route
 				path='/change-email'
