@@ -1,0 +1,62 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	padding-top: 20px;
+	border-top: 1px solid $color-border;
+}
+.text {
+	margin-bottom: 20px;
+}
+.list {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 10px;
+	margin-bottom: 25px;
+}
+.reason {
+	padding: 4px 13px;
+	font-size: 13px;
+	line-height: 24px;
+	border: 1px solid $color-border4;
+	border-radius: 3px;
+	cursor: pointer;
+	@include transition-all;
+
+	&.active {
+		border-color: $color-primary;
+	}
+
+	&:hover {
+		border-color: $color-primary;
+	}
+}
+.textarea {
+	height: 160px;
+	margin-bottom: 25px;
+}
+.actions {
+	display: flex;
+	justify-self: end;
+	gap: 10px;
+}
+.button_send {
+	padding: 9px 15px;
+	min-width: 120px;
+	border-radius: 0;
+	line-height: 20px;
+	font-size: 12px;
+	font-weight: $weight-semi;
+}
+.button_skip {
+	padding: 9px 15px;
+	height: 38px;
+	border-radius: 0;
+
+	&_text {
+		line-height: 20px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
+}
+

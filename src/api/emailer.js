@@ -12,4 +12,10 @@ export const emailerAPI = {
 	async update(data) {
 		return API.put(`${BASE_URL}/update-subscription`, data)
 	},
+	async unsubscribe(data) {
+		return API.put(`${BASE_URL}/unsubscribe`, data)
+	},
+	async sendFeedback(data) {
+		return API.post(`${BASE_URL}/send-feedback`, data)
+	},
 }

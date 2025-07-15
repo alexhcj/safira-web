@@ -59,10 +59,46 @@ export const useEmailer = () => {
 		}
 	}
 
+	const unsubscribe = async (data) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await emailerAPI.unsubscribe(data)
+
+			return {
+				success: true,
+				res,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const sendFeedback = async (data) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await emailerAPI.sendFeedback(data)
+
+			return {
+				success: true,
+				res,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
 	return {
 		subscribe,
 		findSubscription,
 		updateSubscription,
+		unsubscribe,
+		sendFeedback,
 		isLoading,
 	}
 }
