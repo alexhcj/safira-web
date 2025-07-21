@@ -8,7 +8,6 @@ import { Input } from '@shared/components/Form/Input/Input'
 import { Radio } from '@shared/components/Form/Radio/Radio'
 import { Textarea } from '@shared/components/Form/Textarea/Textarea'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
@@ -250,7 +249,6 @@ export const Checkout = () => {
 				</div>
 			</div>
 			<Space size='l' />
-			<Border />
 		</div>
 	)
 }
