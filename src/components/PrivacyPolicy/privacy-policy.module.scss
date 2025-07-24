@@ -1,0 +1,142 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	gap: 30px;
+}
+.sidebar {
+	position: relative;
+}
+.sidebar_list {
+	position: sticky;
+	top: 80px;
+	left: 0;
+	display: grid;
+	justify-content: start;
+	gap: 10px;
+	list-style: none;
+}
+.sidebar_button {
+	text-align: left;
+	letter-spacing: $letter-spacing-lg-neg;
+	font-size: 13px;
+	color: $color-grey;
+	@include transition-all;
+
+	&:hover {
+		font-weight: $weight-medium;
+		color: $color-dark;
+	}
+
+	&.active {
+		font-weight: $weight-medium;
+		color: $color-dark;
+		letter-spacing: 0;
+	}
+}
+.subnav {
+	display: grid;
+	justify-content: start;
+	gap: 8px;
+	margin-top: 8px;
+	padding-left: 10px;
+
+	.sidebar_button {
+		justify-self: start;
+		font-size: 12px;
+
+		&.active {
+			font-weight: $weight-medium;
+			color: $color-primary;
+		}
+	}
+}
+.block_note {
+	margin-bottom: 10px;
+	box-shadow: $box-shadow;
+}
+.updated {
+	display: block;
+	margin-bottom: 30px;
+	font-size: 13px;
+}
+.section {
+	margin-bottom: 40px;
+
+	h2 {
+		text-transform: capitalize;
+		margin-bottom: 20px;
+		padding-bottom: 10px;
+		font-size: 1.8rem;
+		border-bottom: 3px solid $color-primary;
+		color: $color-dark;
+	}
+
+	h3 {
+		text-transform: capitalize;
+		margin: 25px 0 15px 0;
+		font-size: 1.3rem;
+		font-weight: $weight-semi;
+		color: $color-dark;
+	}
+
+	p {
+		margin-bottom: 15px;
+		color: $color-dark;
+	}
+
+	strong + p {
+		margin-bottom: 0;
+	}
+
+	ul {
+		margin: 15px 0 15px 20px;
+		list-style: square;
+	}
+
+	li {
+		position: relative;
+		margin-bottom: 8px;
+		padding-left: 10px;
+		color: $color-dark;
+
+		strong {
+			text-transform: capitalize;
+			font-weight: $weight-semi;
+		}
+	}
+}
+.contacts {
+	padding: 0 30px 30px;
+	text-align: center;
+
+	&_item {
+		display: inline-block;
+
+		&:not(:last-of-type) {
+			margin: 10px 20px;
+			border: 1px solid $color-border2;
+			cursor: pointer;
+			@include transition-all;
+
+			&:hover {
+				border-color: $color-primary;
+			}
+		}
+	}
+
+	&_link,
+	&_hours {
+		display: flex;
+		gap: 5px;
+		padding: 10px 20px;
+	}
+}
+.link {
+	text-decoration: underline;
+
+	&:hover {
+		color: $color-primary;
+	}
+}

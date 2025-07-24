@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@hooks/services/useAuth'
@@ -151,18 +152,18 @@ export const RegisterForm = () => {
 					>
 						<div className='terms'>
 							I agree to the{' '}
-							<Link className='terms-link' to='/'>
+							<Link className='terms-link' to='/terms-conditions'>
 								Terms of Use
 							</Link>{' '}
 							and{' '}
-							<Link className='terms-link' to='/'>
+							<Link className='terms-link' to='/privacy-policy'>
 								Privacy Policy
 							</Link>
 							.
 						</div>
 					</Checkbox>
 					<div className={s.form_actions}>
-						<Button htmlType='submit' type='auth' className={s.btn_auth}>
+						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_register, isLoading && s.loading)}>
 							{isLoading ? (
 								<Preloader width={20} height={20} />
 							) : (

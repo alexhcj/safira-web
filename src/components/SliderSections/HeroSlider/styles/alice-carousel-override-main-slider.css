@@ -3,6 +3,7 @@
 	left: 50%;
 	bottom: 5px;
 	margin: 0;
+	translate: -50% 0;
 }
 
 .alice-carousel__dots-item span {

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 
+import cn from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
 
 import { useAuth } from '@hooks/services/useAuth'
 import { useFormValidation } from '@hooks/useFormValidation'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 
 import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
@@ -40,7 +43,7 @@ const loginFormValidationSchema = {
  */
 export const LoginForm = () => {
 	const { user } = useAuthContext()
-	const { login } = useAuth()
+	const { login, isLoading } = useAuth()
 	const navigate = useNavigate()
 	const location = useLocation()
 	const initialFormState = {
@@ -93,7 +96,7 @@ export const LoginForm = () => {
 						className={s.input}
 						key='email'
 						id='email'
-						type='email'
+						type='text'
 						value={form['email']}
 						label='Email address'
 						handleChange={handleChange('email')}
@@ -112,10 +115,14 @@ export const LoginForm = () => {
 						required
 					/>
 					<div className={s.form_actions}>
-						<Button htmlType='submit' type='auth' className={s.btn_auth}>
-							<Text span color='white' className={s.btn_auth_text}>
-								Login
-							</Text>
+						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_login, isLoading && s.loading)}>
+							{isLoading ? (
+								<Preloader width={20} height={20} />
+							) : (
+								<Text span color='white' className={s.btn_auth_text}>
+									Login
+								</Text>
+							)}
 						</Button>
 					</div>
 				</form>

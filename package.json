@@ -1,6 +1,6 @@
 {
 	"name": "safira-web",
-	"version": "0.2.2",
+	"version": "0.3.0",
 	"description": "Safira web application frontend built with React and Vite - an e-commerce platform for implementing React native patterns and practices to build food store.",
 	"author": {
 		"name": "Alex",
@@ -34,6 +34,7 @@
 		"prettier:fix": "npx prettier --write ."
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",
 		"@testing-library/user-event": "^12.1.10",

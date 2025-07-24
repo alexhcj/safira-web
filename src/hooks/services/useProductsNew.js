@@ -83,5 +83,67 @@ export const useProductsNew = () => {
 		}
 	}
 
-	return { findProducts, findQueryBrands, findQueryTags, findAllBrands, isLoading }
+	const findAllBasicCategories = async () => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await productsAPI.findAllBasicCategories()
+
+			return {
+				success: true,
+				categories: res.categories,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const findTopPopular = async ({ limit }) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await productsAPI.findTopPopular({ limit })
+
+			const products = res.map(({ name, slug }) => ({ name, slug }))
+
+			return {
+				success: true,
+				products,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const findTopByPrimeCategories = async () => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await productsAPI.findTopByPrimeCategories()
+
+			return {
+				success: true,
+				categories: res,
+			}
+		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	return {
+		findProducts,
+		findQueryBrands,
+		findQueryTags,
+		findAllBrands,
+		findAllBasicCategories,
+		findTopPopular,
+		findTopByPrimeCategories,
+		isLoading,
+	}
 }

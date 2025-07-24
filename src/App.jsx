@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { useLocation } from 'react-router-dom'
+
 import { setupErrorHandling } from '@api/api'
 
 import { AuthProvider } from '@context/AuthContext'
@@ -31,7 +33,26 @@ const AxiosErrorHandler = ({ children }) => {
 	return <>{children}</>
 }
 
-function App() {
+const AppLayout = ({ children }) => {
+	const location = useLocation()
+	const isUnsubscribePage = location.pathname === '/unsubscribe'
+
+	if (isUnsubscribePage) {
+		return (
+			<div className='app'>
+				<ErrorProvider>
+					<AxiosErrorHandler>
+						<AuthProvider>
+							{children}
+							<ResponseError />
+							<EnvStatus />
+						</AuthProvider>
+					</AxiosErrorHandler>
+				</ErrorProvider>
+			</div>
+		)
+	}
+
 	return (
 		<div className='app'>
 			<ErrorProvider>
@@ -42,7 +63,7 @@ function App() {
 								<CartPopupProvider>
 									<CompareProvider>
 										<Header />
-										<AppRoutes />
+										{children}
 										<Footer />
 										<Copyright />
 										<ButtonScroll />
@@ -50,7 +71,6 @@ function App() {
 										<DbWarmUpPopup />
 										<CartPopup />
 										<EnvStatus />
-										{/*<ButtonDocs />*/}
 									</CompareProvider>
 								</CartPopupProvider>
 							</CartProvider>
@@ -59,6 +79,14 @@ function App() {
 				</AxiosErrorHandler>
 			</ErrorProvider>
 		</div>
+	)
+}
+
+function App() {
+	return (
+		<AppLayout>
+			<AppRoutes />
+		</AppLayout>
 	)
 }
 

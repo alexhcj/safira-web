@@ -1,0 +1,17 @@
+@use '@shared/styles/vars' as *;
+
+.note {
+	border-left: 4px solid $color-primary;
+	background-color: $color-sort;
+
+	&_notification {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 20px 35px;
+	}
+
+	&_blocknote {
+		padding: 35px 45px;
+	}
+}

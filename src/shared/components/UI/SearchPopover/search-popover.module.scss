@@ -31,7 +31,12 @@
 
 .btn_related {
 	display: inline-flex;
-	margin-top: 5px;
+	margin-top: 10px;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+	}
 }
 
 .divider {

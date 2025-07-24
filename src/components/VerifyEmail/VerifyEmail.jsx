@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { NavLink, useLocation } from 'react-router-dom'
+import { Navigate, NavLink, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
 
@@ -39,6 +39,10 @@ export const VerifyEmail = () => {
 	}
 	const [form, setForm] = useState(initialFormState)
 	const { isValid, getFieldError, resetForm } = useFormValidation(form, verifyEmailFormValidationSchema)
+
+	if (!location.state?.email) {
+		return <Navigate to='/' replace />
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()

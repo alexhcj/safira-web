@@ -10,7 +10,7 @@ export const ProductPage = () => {
 	return (
 		<ProductProvider>
 			<ScrollToTop>
-				<Breadcrumbs />
+				<Breadcrumbs type='product' />
 				<ProductDetails />
 				<ProductQuickView />
 			</ScrollToTop>

@@ -46,9 +46,10 @@ backend with api, services and database.
 - [ ] Forget password
 - [x] Change email
 - [x] Subscribe
-- [ ] Unsubscribe
-  - [ ] From email
-  - [ ] From profile
+  - [x] From profile
+- [x] Unsubscribe
+  - [x] From email
+  - [x] From profile
 - [x] Redis queues & schedulers
 
 ### Navigation
@@ -62,12 +63,12 @@ backend with api, services and database.
 
 ### Support pages
 
-- [ ] About us
+- [x] About us
 - [ ] Delivery information
-- [ ] Privacy Policy
-- [ ] Terms & Conditions
-- [ ] Contact us
-- [ ] Site map
+- [x] Privacy Policy
+- [x] Terms & Conditions
+- [x] Contact us
+- [x] Site map
 - [ ] Specials
 
 ### Common
@@ -112,6 +113,7 @@ backend with api, services and database.
 - [ ] Profile (public)
 - [ ] Order history
 - [x] Avatars (stored by server)
+- [ ] Returns
 
 ### Discount System & Payment
 
@@ -120,6 +122,7 @@ backend with api, services and database.
 - [ ] Checkout
 - [ ] Coupons
 - [ ] Gift cards
+- [ ] Affiliate
 
 ### Marketing
 

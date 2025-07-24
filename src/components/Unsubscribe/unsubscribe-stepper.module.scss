@@ -1,0 +1,26 @@
+@use '@shared/styles/vars' as *;
+
+.wrapper {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	overflow-x: hidden;
+}
+.box {
+	margin-top: 100px;
+	max-width: 535px;
+	width: 100%;
+}
+.title {
+	padding: 5px 15px;
+	text-transform: uppercase;
+	letter-spacing: $letter-spacing-lg;
+	line-height: 36px;
+	font-size: 16px;
+	font-weight: $weight-medium;
+	color: $color-white;
+	background-color: $color-dark;
+}

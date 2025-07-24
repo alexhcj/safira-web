@@ -28,6 +28,9 @@ const ProfileDetails = lazy(() =>
 )
 const ProductPage = lazy(() => import('../../pages/ProductPage').then((module) => ({ default: module.ProductPage })))
 const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
+const Subscriptions = lazy(() =>
+	import('../../modules/Profile/Subscriptions/Subscriptions').then((module) => ({ default: module.Subscriptions })),
+)
 const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
 )
@@ -41,6 +44,21 @@ const ChangePasswordPage = lazy(() =>
 const VerifyEmailPage = lazy(() =>
 	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
 )
+const AboutUsPage = lazy(() => import('../../pages/AboutUsPage').then((module) => ({ default: module.AboutUsPage })))
+const ContactUsPage = lazy(() =>
+	import('../../pages/ContactUsPage').then((module) => ({ default: module.ContactUsPage })),
+)
+const FaqPage = lazy(() => import('@pages/FaqPage').then((module) => ({ default: module.FaqPage })))
+const PrivacyPolicyPage = lazy(() =>
+	import('@pages/PrivacyPolicyPage').then((module) => ({ default: module.PrivacyPolicyPage })),
+)
+const TermsConditionsPage = lazy(() =>
+	import('@pages/TermsConditionsPage').then((module) => ({ default: module.TermsConditionsPage })),
+)
+const SiteMapPage = lazy(() => import('@pages/SiteMapPage').then((module) => ({ default: module.SiteMapPage })))
+const UnsubscribePage = lazy(() =>
+	import('@pages/UnsubscribePage').then((module) => ({ default: module.UnsubscribePage })),
+)
 
 export const AppRoutes = () => {
 	const { user } = useAuthContext()
@@ -48,7 +66,14 @@ export const AppRoutes = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<HomePage />} />
+			<Route path='/about-us' element={<AboutUsPage />} />
+			<Route path='/contact-us' element={<ContactUsPage />} />
 			<Route path='/blank-page' element={<BlankPage />} />
+			<Route path='/faq' element={<FaqPage />} />
+			<Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
+			<Route path='/terms-conditions' element={<TermsConditionsPage />} />
+			<Route path='/site-map' element={<SiteMapPage />} />
+			<Route path='/unsubscribe' element={<UnsubscribePage />} />
 			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />
 			<Route path='/login' element={<LoginPage />} />
@@ -70,6 +95,7 @@ export const AppRoutes = () => {
 				<Route index element={<ProfileDetails />} />
 				<Route path='profile-details' element={<ProfileDetails />} />
 				<Route path='orders' element={<Orders />} />
+				<Route path='subscriptions' element={<Subscriptions />} />
 			</Route>
 			<Route
 				path='/change-email'

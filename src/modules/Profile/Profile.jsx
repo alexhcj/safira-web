@@ -8,12 +8,14 @@ import { Logout } from '@shared/components/UI/Logout/Logout'
 
 import { Orders } from './Orders/Orders'
 import { ProfileDetails } from './ProfileDetails/ProfileDetails'
+import { Subscriptions } from './Subscriptions/Subscriptions'
 
 import s from './profile.module.scss'
 
 const profileNavList = [
 	{ component: <ProfileDetails />, text: 'Profile Details', url: 'profile-details' },
 	{ component: <Orders />, text: 'Orders', url: 'orders' },
+	{ component: <Subscriptions />, text: 'Subscriptions', url: 'subscriptions' },
 ]
 
 export const Profile = () => {

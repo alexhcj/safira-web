@@ -1,0 +1,28 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 30px;
+}
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	font-size: 18px;
+	font-weight: $weight-bold;
+}
+.text {
+	text-align: center;
+}
+.svg {
+	width: 25px;
+	height: 25px;
+
+	path {
+		fill: $color-primary;
+	}
+}

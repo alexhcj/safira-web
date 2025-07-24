@@ -1,13 +1,78 @@
 import { NavLink, useLocation } from 'react-router-dom'
 
-import { Button } from '../../UI/Buttons/Button/Button'
+import { Subscribe } from '@shared/components/Subscribe/Subscribe'
+import { Badge } from '@shared/components/UI/Badge/Badge'
+
 import { Border } from '../../UI/Spacing/Border'
 import { Space } from '../../UI/Spacing/Space'
-import { Text } from '../../UI/Text/Text'
 
 import logo from '@assets/images/logo.png'
 
 import s from './footer.module.scss'
+
+const shoppingToolsList = [
+	{
+		text: 'Brands',
+		link: '/brands',
+	},
+	{
+		text: 'Gift Cards',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Affiliate',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Specials',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Returns',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Order History',
+		link: '/',
+		badge: 'Coming soon',
+	},
+]
+
+const informationList = [
+	{
+		text: 'About us',
+		link: '/about-us',
+	},
+	{
+		text: 'Delivery',
+		link: '/',
+		badge: 'Coming soon',
+	},
+	{
+		text: 'Privacy Policy',
+		link: '/privacy-policy',
+	},
+	{
+		text: 'Terms & Conditions',
+		link: '/terms-conditions',
+	},
+	{
+		text: 'Frequently Questions',
+		link: '/faq',
+	},
+	{
+		text: 'Contact us',
+		link: '/contact-us',
+	},
+	{
+		text: 'Site map',
+		link: '/site-map',
+	},
+]
 
 export const Footer = () => {
 	const location = useLocation()
@@ -38,42 +103,36 @@ export const Footer = () => {
 					</div>
 					<div className={s.phone}>
 						Call us:
-						<a href='tel:792134777999'>(921) 34 777 999</a>
+						<a href='tel:781234777999'>(812) 34 777 999</a>
 					</div>
 				</div>
-				<div className={s.info}>
+				<div className={s.links_column}>
+					<h3 className={s.title}>Shopping tools</h3>
+					<div className={s.list}>
+						{shoppingToolsList.map((item, index) => (
+							<div className={s.item} key={index}>
+								<NavLink className={s.link} to={item.link}>
+									{item.text}
+								</NavLink>
+								{item.badge && <Badge text={item.badge} />}
+							</div>
+						))}
+					</div>
+				</div>
+				<div className={s.links_column}>
 					<h3 className={s.title}>Information</h3>
 					<div className={s.list}>
-						<NavLink to='/'>About us</NavLink>
-						<NavLink to='/'>Delivery Information</NavLink>
-						<NavLink to='/'>Privacy Policy</NavLink>
-						<NavLink to='/'>Terms & Conditions</NavLink>
-						<NavLink to='/'>Contact us</NavLink>
+						{informationList.map((item, index) => (
+							<div className={s.item} key={index}>
+								<NavLink className={s.link} to={item.link}>
+									{item.text}
+								</NavLink>
+								{item.badge && <Badge text={item.badge} />}
+							</div>
+						))}
 					</div>
 				</div>
-				<div className={s.extra}>
-					<h3 className={s.title}>Extras</h3>
-					<div className={s.list}>
-						<NavLink to='/'>Order History</NavLink>
-						<NavLink to='/'>Gift Cards</NavLink>
-						<NavLink to='/'>Specials</NavLink>
-						<NavLink to='/'>Site map</NavLink>
-					</div>
-				</div>
-				<div className={s.newsletter}>
-					<h3 className={s.title}>Sign Up Newsletter</h3>
-					<p>Get updates by subscribe our weekly newsletter</p>
-					<form action='src/shared/components/common/Footer/Footer.jsx'>
-						<div className={s.input}>
-							<input type='text' placeholder='Enter your email' />
-							<Button type='subscribe'>
-								<Text span color='white'>
-									Subscribe
-								</Text>
-							</Button>
-						</div>
-					</form>
-				</div>
+				<Subscribe />
 			</footer>
 			<Space space={64} />
 		</div>

@@ -1,0 +1,28 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	padding-bottom: 63px;
+	border-bottom: 1px solid $color-border;
+}
+.list {
+	display: flex;
+	gap: 24px;
+}
+.item {
+	text-align: center;
+}
+.img {
+	margin-bottom: 21px;
+	height: 230px;
+	object-fit: cover;
+}
+.title {
+	margin-bottom: 12px;
+	line-height: 33px;
+	font-size: 28px;
+	font-weight: $weight-normal;
+}
+.text {
+	line-height: 26px;
+	text-wrap: balance;
+}
