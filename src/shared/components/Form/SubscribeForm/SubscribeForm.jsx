@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import cn from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
 import { maxLength, pattern, required } from '@/utils'
 
@@ -30,6 +31,7 @@ const subscribeFormValidationSchema = {
  * @constructor
  */
 export const SubscribeForm = () => {
+	const navigate = useNavigate()
 	const { user } = useAuth()
 	const { subscribe, isLoading } = useEmailer()
 	const initialFormState = {
@@ -42,6 +44,11 @@ export const SubscribeForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+		if (!user) {
+			navigate('/register')
+			return
+		}
 
 		if (isValid(true)) {
 			const formData = {
