@@ -97,7 +97,6 @@ export const Subscriptions = () => {
 				message='Verify email address to get access for managing subscriptions.'
 				actionMessage='Click here to verify email'
 				icon={<EmailSVG className={s.svg} />}
-				className={s.verify_email}
 				onClick={handleVerifyEmail}
 			/>
 		)
