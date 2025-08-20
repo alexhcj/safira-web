@@ -56,6 +56,7 @@ const TermsConditionsPage = lazy(() =>
 	import('@pages/TermsConditionsPage').then((module) => ({ default: module.TermsConditionsPage })),
 )
 const SiteMapPage = lazy(() => import('@pages/SiteMapPage').then((module) => ({ default: module.SiteMapPage })))
+const RoadMapPage = lazy(() => import('@pages/RoadMapPage').then((module) => ({ default: module.RoadMapPage })))
 const UnsubscribePage = lazy(() =>
 	import('@pages/UnsubscribePage').then((module) => ({ default: module.UnsubscribePage })),
 )
@@ -73,6 +74,7 @@ export const AppRoutes = () => {
 			<Route path='/privacy-policy' element={<PrivacyPolicyPage />} />
 			<Route path='/terms-conditions' element={<TermsConditionsPage />} />
 			<Route path='/site-map' element={<SiteMapPage />} />
+			<Route path='/road-map' element={<RoadMapPage />} />
 			<Route path='/unsubscribe' element={<UnsubscribePage />} />
 			{/*<PublicRoute user={user}>*/}
 			<Route path='/register' element={<RegisterPage />} />

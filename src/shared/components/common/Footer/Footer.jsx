@@ -72,6 +72,10 @@ const informationList = [
 		text: 'Site map',
 		link: '/site-map',
 	},
+	{
+		text: 'Roadmap',
+		link: '/road-map',
+	},
 ]
 
 export const Footer = () => {

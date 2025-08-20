@@ -17,15 +17,14 @@ and [NestJS](https://nestjs.com/) in conjunction with [MongoDB](https://www.mong
 **Main idea** is to develop frontend with minimum dependencies based writer on React.
 
 **MVP** version would consist of frontend part with most used features of necessary real life e-commerce solutions and
-backend with api, services and database.
+backend with api, services, and database.
 
-**Final** project form would have:
+In the **LTS** 1.0.0 version would be added some more features like: info pages, responsive design, improved product and auth management logic. The full list you can view at [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) and also future beyond LTS.
 
-- Web (maybe with [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps))
-- Admin panel
-- [CMS](https://developer.mozilla.org/en-US/docs/Glossary/CMS)
-- Mobile
-- Backend
+The complete application ecosystem will include web platform (possibly with PWA), admin panel, content management system, mobile application, and robust backend infrastructure.
+
+## Roadmap
+View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest feature releases.
 
 ## Features
 
@@ -70,6 +69,7 @@ backend with api, services and database.
 - [x] Contact us
 - [x] Site map
 - [ ] Specials
+- [x] Roadmap
 
 ### Common
 
