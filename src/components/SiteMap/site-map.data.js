@@ -20,6 +20,7 @@ export const siteMap = {
 		{ page: 'Login', url: '/login' },
 		{ page: 'Gift cards', url: '/gift-cards', badge: 'Coming soon' },
 		{ page: 'Returns', url: '/returns', badge: 'Coming soon' },
+		{ page: 'Roadmap', url: '/road-map' },
 		{ page: 'Profile', url: '/profile/profile-details' },
 		{ page: 'About us', url: '/about-us' },
 		{ page: 'Frequently Questions', url: '/faq' },

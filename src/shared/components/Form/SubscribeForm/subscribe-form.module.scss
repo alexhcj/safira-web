@@ -25,6 +25,8 @@
 	}
 }
 .btn_subscribe {
+	min-width: 110px;
+
 	&.loading {
 		background-color: $color-dark;
 	}

@@ -1,0 +1,121 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	border: 1px solid $color-border;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	padding: 20px 20px 15px;
+	border-bottom: 1px solid $color-border;
+}
+.text {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.title {
+	font-size: 20px;
+	font-weight: $weight-semi;
+}
+.button {
+	padding: 9px 15px;
+	text-transform: capitalize;
+	line-height: 20px;
+	font-size: 12px;
+	font-weight: $weight-semi;
+	border-radius: 0;
+}
+.stages {
+	display: flex;
+	padding: 0 20px;
+	gap: 15px;
+}
+.separator {
+	align-self: stretch;
+	width: 1px;
+	height: inherit;
+	background-color: $color-border;
+}
+.stage {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 15px 0;
+	width: 50%;
+
+	&_header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&_title {
+		line-height: 14px;
+		font-size: 12px;
+		font-weight: $weight-medium;
+	}
+
+	&_count {
+		color: $color-dark4;
+	}
+
+	&_list {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&_item {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 10px 15px;
+		border: 1px solid $color-border;
+		box-shadow: $box-shadow-feature-item;
+
+		&_meta {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		&_header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&_title {
+			text-transform: capitalize;
+			line-height: 17px;
+			font-size: 15px;
+			font-weight: $weight-medium;
+		}
+
+		&_text {
+			line-height: 15px;
+			font-size: 13px;
+		}
+	}
+}
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px 0;
+	color: $color-grey;
+	border-top: 1px solid $color-border;
+
+	a {
+		text-decoration: underline;
+		color: inherit;
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}

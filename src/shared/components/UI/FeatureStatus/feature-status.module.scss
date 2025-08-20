@@ -1,0 +1,40 @@
+@use '@shared/styles/vars' as *;
+
+.status {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 0 6px;
+	letter-spacing: $letter-spacing-lg-neg;
+	line-height: 14px;
+	font-size: 10px;
+	color: $color-primary;
+
+	&.in_progress {
+		color: $color-dark4;
+
+		& > svg {
+			width: 12px;
+			height: 12px;
+
+			path {
+				stroke: $color-grey6;
+				stroke-width: 4px;
+			}
+		}
+	}
+
+	&.shipped {
+		font-weight: $weight-semi;
+		color: $color-primary;
+
+		& > svg {
+			width: 12px;
+			height: 12px;
+
+			path {
+				fill: $color-primary;
+			}
+		}
+	}
+}

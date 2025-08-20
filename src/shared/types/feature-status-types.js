@@ -1,0 +1,4 @@
+export const FEATURE_STATUS = {
+	IN_PROGRESS: 'IN_PROGRESS',
+	SHIPPED: 'SHIPPED',
+}
