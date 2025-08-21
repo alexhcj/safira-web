@@ -4,7 +4,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const RecentSearchContext = createContext([])
 
-export const useRecentSearchContext = () => useContext(RecentSearchContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useRecentSearchContext() {
+	const context = useContext(RecentSearchContext)
+
+	if (context === undefined) {
+		throw new Error('useRecentSearchContext must be used within an RecentSearchProvider')
+	}
+
+	return context
+}
 
 export const RecentSearchProvider = ({ children }) => {
 	const [recentSearch, setRecentSearch] = useLocalStorage('recent-search', [])

@@ -2,6 +2,17 @@ import React, { createContext, createRef, useCallback, useContext, useEffect, us
 
 const ErrorContext = createContext(undefined)
 
+// Vite HMR - use function declaration instead of arrow function
+export function useErrorContext() {
+	const context = useContext(ErrorContext)
+
+	if (!context) {
+		throw new Error('useErrorContext must be used within an ErrorProvider')
+	}
+
+	return context
+}
+
 export const ErrorProvider = ({ children }) => {
 	const [errors, setErrors] = useState([])
 	const timeoutIdsRef = useRef({})
@@ -87,12 +98,4 @@ export const ErrorProvider = ({ children }) => {
 			{children}
 		</ErrorContext.Provider>
 	)
-}
-
-export const useErrorContext = () => {
-	const context = useContext(ErrorContext)
-	if (!context) {
-		throw new Error('useErrorContext must be used within an ErrorProvider')
-	}
-	return context
 }

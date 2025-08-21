@@ -4,7 +4,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const AuthContext = createContext(null)
 
-export const useAuthContext = () => useContext(AuthContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useAuthContext() {
+	const context = useContext(AuthContext)
+
+	if (context === undefined) {
+		throw new Error('useAuthContext must be used within an AuthProvider')
+	}
+
+	return context
+}
 
 export const AuthProvider = ({ children }) => {
 	const [state, setState] = useLocalStorage('user', null)

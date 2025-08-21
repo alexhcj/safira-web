@@ -6,7 +6,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const CompareContext = createContext([])
 
-export const useCompareContext = () => useContext(CompareContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useCompareContext() {
+	const context = useContext(CompareContext)
+
+	if (context === undefined) {
+		throw new Error('useCompareContext must be used within an CompareProvider')
+	}
+
+	return context
+}
 
 export const CompareProvider = ({ children }) => {
 	const location = useLocation()
