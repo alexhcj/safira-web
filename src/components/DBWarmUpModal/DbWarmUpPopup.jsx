@@ -32,7 +32,7 @@ export const DbWarmUpPopup = () => {
 			setIsOpen(true)
 			setStoredTimeout(now.toString())
 		}
-	}, [])
+	}, [setStoredTimeout, timeout])
 
 	// progress bar logic - only runs when modal is open
 	useEffect(() => {
