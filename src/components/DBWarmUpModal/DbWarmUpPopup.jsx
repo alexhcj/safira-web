@@ -19,7 +19,7 @@ const STORAGE_KEY = 'safira-db-warmup-modal'
 const COOLDOWN_DURATION = 15 * 60 * 1000 // 15 mins
 
 export const DbWarmUpPopup = () => {
-	const [timeout, setTimeout] = useLocalStorage(STORAGE_KEY, null)
+	const [timeout, setStoredTimeout] = useLocalStorage(STORAGE_KEY, null)
 	const [isOpen, setIsOpen] = useState(false)
 	const [progress, setProgress] = useState(0)
 
@@ -30,7 +30,7 @@ export const DbWarmUpPopup = () => {
 
 		if (!timeout || now - timeoutValue >= COOLDOWN_DURATION) {
 			setIsOpen(true)
-			setTimeout(now.toString())
+			setStoredTimeout(now.toString())
 		}
 	}, [])
 
