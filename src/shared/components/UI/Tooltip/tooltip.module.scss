@@ -1,0 +1,128 @@
+@use '@shared/styles/vars' as *;
+
+.wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip {
+	position: absolute;
+	display: block;
+	opacity: 0;
+	padding: 6px 10px;
+	white-space: nowrap;
+	height: 30px;
+	line-height: 14px;
+	font-size: 14px;
+	border-radius: $default-border-radius;
+	color: $color-white;
+	background-color: $color-dark2;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: $z-index-1;
+	@include transition-all;
+
+	&.visible {
+		opacity: 1;
+		z-index: $z-index90;
+		visibility: visible;
+	}
+
+	// default positioning (top)
+	&.tooltip_top {
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%) translateY(8px);
+		margin-bottom: 8px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			bottom: -7px;
+			left: 50%;
+			transform: translateX(-50%);
+			border-style: solid;
+			border-width: 8px 8px 0 8px;
+			border-color: $color-dark2 transparent transparent transparent;
+		}
+
+		&.visible {
+			transform: translateX(-50%) translateY(-2px);
+		}
+	}
+
+	&.tooltip_bottom {
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%) translateY(8px);
+		margin-top: 8px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			top: -7px;
+			left: 50%;
+			transform: translateX(-50%);
+			border-style: solid;
+			border-width: 0 8px 8px 8px;
+			border-color: transparent transparent $color-dark2 transparent;
+		}
+
+		&.visible {
+			transform: translateX(-50%) translateY(2px);
+		}
+	}
+
+	&.tooltip_left {
+		right: 100%;
+		top: 50%;
+		transform: translateY(-50%) translateX(-8px);
+		margin-right: 8px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			right: -7px;
+			top: 50%;
+			transform: translateY(-50%);
+			border-style: solid;
+			border-width: 8px 0 8px 8px;
+			border-color: transparent transparent transparent $color-dark2;
+		}
+
+		&.visible {
+			transform: translateY(-50%) translateX(-2px);
+		}
+	}
+
+	&.tooltip_right {
+		left: 100%;
+		top: 50%;
+		transform: translateY(-50%) translateX(8px);
+		margin-left: 8px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			left: -7px;
+			top: 50%;
+			transform: translateY(-50%);
+			border-style: solid;
+			border-width: 8px 8px 8px 0;
+			border-color: transparent $color-dark2 transparent transparent;
+		}
+
+		&.visible {
+			transform: translateY(-50%) translateX(2px);
+		}
+	}
+
+	// tooltip types
+	//&.tooltip_default {
+	//	background-color: $color-primary;
+	//	&::after {
+	//		border-top-color: $color-primary;
+	//	}
+	//}
+}
+

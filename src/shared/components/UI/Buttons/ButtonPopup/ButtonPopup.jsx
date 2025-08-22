@@ -1,14 +1,23 @@
 import cn from 'classnames'
-import { useLocation } from 'react-router-dom'
+
+import { Tooltip } from '@shared/components/UI/Tooltip/Tooltip'
 
 import s from './button-popup.module.scss'
 
 // sizes: lg
-export const ButtonPopup = ({ text = 'Add to Cart', size, onClick, className, outline, children }) => {
-	const location = useLocation()
-
+export const ButtonPopup = ({
+	text = 'Add to Cart',
+	size,
+	onClick,
+	className,
+	outline,
+	children,
+	showTooltip = true,
+	tooltipType = 'default',
+	tooltipPosition = 'top',
+}) => {
 	return (
-		<div className={s.wrapper}>
+		<Tooltip text={showTooltip ? text : ''} type={tooltipType} position={tooltipPosition}>
 			<button
 				className={cn(s.btn, { [s.outline]: outline }, s[`btn_${size}`], className)}
 				type='button'
@@ -16,7 +25,6 @@ export const ButtonPopup = ({ text = 'Add to Cart', size, onClick, className, ou
 			>
 				{children}
 			</button>
-			{location.pathname !== '/compare' && <span className={s.popup}>{text}</span>}
-		</div>
+		</Tooltip>
 	)
 }

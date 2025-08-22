@@ -111,7 +111,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}
 						onClick={handleAddToWishlist}
 						size='lg'
-						text='Add to Wishlist'
+						showTooltip={false}
 					>
 						<HeartSVG />
 					</ButtonPopup>

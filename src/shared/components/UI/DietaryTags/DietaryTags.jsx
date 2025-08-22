@@ -1,5 +1,9 @@
 import cn from 'classnames'
 
+import { enumToStr, titleCase } from '@/utils'
+
+import { Tooltip } from '@shared/components/UI/Tooltip/Tooltip'
+
 import GlutenFreeSVG from '@assets/svg/dietaries/gluten-free.svg?react'
 import HalalSVG from '@assets/svg/dietaries/halal.svg?react'
 import HealthierChoiceSVG from '@assets/svg/dietaries/healthier-choice.svg?react'
@@ -27,9 +31,11 @@ export const DietaryTags = ({ tags, size = 'sm', className }) => {
 	const dietaryTags =
 		tags &&
 		tags.map((tag) => (
-			<div className={s.tag} key={tag}>
-				{dietaryTagsType[tag]}
-			</div>
+			<Tooltip key={tag} text={titleCase(enumToStr(tag))} delay={200}>
+				<div className={s.tag} key={tag}>
+					{dietaryTagsType[tag]}
+				</div>
+			</Tooltip>
 		))
 
 	return <div className={cn(s.tags, s[`size_${size}`], className)}>{dietaryTags}</div>
