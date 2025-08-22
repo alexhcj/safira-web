@@ -10,6 +10,7 @@
 .sticky {
 	position: fixed;
 	top: 0;
+	background-color: rgba(255, 255, 255, 0.9);
 	box-shadow: 0 1px 3px rgb(0 0 0 / 11%);
 	animation-name: navbarAppear;
 	animation-duration: 0.9s;
