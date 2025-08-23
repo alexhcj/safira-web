@@ -18,7 +18,7 @@ import { Reviews } from '@shared/components/Reviews/Reviews'
 import { Specification } from '@shared/components/Specification/Specification'
 import { Tab, Tabs } from '@shared/components/Tabs/Tabs'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { ButtonPopover } from '@shared/components/UI/Buttons/ButtonPopover/ButtonPopover'
+import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Space } from '@shared/components/UI/Spacing/Space'
@@ -43,7 +43,6 @@ export const ProductDetails = () => {
 	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
 	const { slug } = useParams()
 	const [product, setProduct] = useState({})
-	const [isPopoverHovered, setIsPopoverHovered] = useState(false)
 
 	useEffect(() => {
 		window.scrollTo({ top: 0 })
@@ -67,9 +66,6 @@ export const ProductDetails = () => {
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
-	const handlePopover = () => {
-		setIsPopoverHovered(!isPopoverHovered)
-	}
 	return (
 		<div className='container'>
 			<div className={s.product}>
@@ -105,32 +101,30 @@ export const ProductDetails = () => {
 					<Space size='s' />
 					<div className={s.actions}>
 						{isProductInWishlist(slug) ? (
-							<ButtonPopover
+							<ButtonWithTooltip
 								className={s.btn}
 								onClick={() => removeFromWishlist(slug)}
-								onMouseEnter={handlePopover}
-								onMouseLeave={handlePopover}
-								text='Remove from wishlist'
+								text='Remove from Wishlist'
+								tooltipPosition='right'
 							>
 								<HeartSVG className={s.icon} />
 								<HeartBrokenSVG className={s.icon_remove} />
-							</ButtonPopover>
+							</ButtonWithTooltip>
 						) : (
 							<Button type='text' onClick={() => addToWishlist(product)}>
 								<Text span>+ Add to WishList</Text>
 							</Button>
 						)}
 						{isProductInCompare(slug, basicCategory) ? (
-							<ButtonPopover
+							<ButtonWithTooltip
 								className={s.btn}
 								onClick={() => removeItemFromCompare(slug, basicCategory)}
-								onMouseEnter={handlePopover}
-								onMouseLeave={handlePopover}
-								text='Remove from compare'
+								text='Remove from Compare'
+								tooltipPosition='right'
 							>
 								<CompareSVG className={cn(s.icon, s.compare)} />
 								<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
-							</ButtonPopover>
+							</ButtonWithTooltip>
 						) : (
 							<Button type='text' onClick={() => addToCompare(product)}>
 								<Text span>+ Add to Compare</Text>

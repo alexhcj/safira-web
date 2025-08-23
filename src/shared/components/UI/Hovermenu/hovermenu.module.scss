@@ -64,25 +64,25 @@
 	line-height: 40px;
 }
 
-.btn_popup {
-	z-index: $z-index-1;
+.btn_action {
+	&:hover {
+		.icon path {
+			fill: $color-white;
+		}
 
-	&.compare {
-		svg {
-			width: 18px;
-			height: 18px;
+		.icon_compare path {
+			stroke: $color-white;
 		}
 	}
 
 	&.active {
 		background-color: $color-primary;
 
-		svg:not(.copmare) path {
+		.icon path {
 			fill: $color-white;
 		}
 
-		&.compare svg path {
-			fill: $color-primary;
+		.icon_compare path {
 			stroke: $color-white;
 		}
 	}

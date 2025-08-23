@@ -12,7 +12,7 @@ import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWit
 import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
 import { ButtonCart } from '@shared/components/UI/Buttons/ButtonCart/ButtonCart'
-import { ButtonPopup } from '@shared/components/UI/Buttons/ButtonPopup/ButtonPopup'
+import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
 
@@ -107,14 +107,15 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				</h4>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
-					<ButtonPopup
+					<ButtonWithTooltip
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}
-						onClick={handleAddToWishlist}
-						size='lg'
 						showTooltip={false}
+						onClick={handleAddToWishlist}
+						buttonSize='lg'
+						buttonType='outline'
 					>
-						<HeartSVG />
-					</ButtonPopup>
+						<HeartSVG className={s.icon} width={16} height={16} />
+					</ButtonWithTooltip>
 					<ButtonCart type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
 							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
@@ -142,9 +143,9 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				<h3 className={s.name}>{name}</h3>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
-					<ButtonPopup onClick={handleAddToWishlist} size='lg' text='Add to Wishlist'>
+					<ButtonWithTooltip onClick={handleAddToWishlist} size='lg' text='Add to Wishlist'>
 						<HeartSVG />
-					</ButtonPopup>
+					</ButtonWithTooltip>
 					<ButtonCart type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
 							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
