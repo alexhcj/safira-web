@@ -72,9 +72,13 @@ export const LoginForm = () => {
 				if (res.success && res.user.accessToken) {
 					setForm({ email: '', password: '' })
 
-					!res.isEmailVerified
-						? navigate('/verify-email', { state: { email: form.email } })
-						: navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
+					if (!res.isEmailVerified) {
+						navigate('/verify-email', { state: { email: form.email } })
+					} else {
+						location.state?.from?.pathname === '/reset-password'
+							? navigate('/')
+							: navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
+					}
 				}
 			}
 		}
@@ -85,6 +89,10 @@ export const LoginForm = () => {
 			...form,
 			[field]: e.target.value,
 		})
+	}
+
+	const handleForgotPassword = () => {
+		navigate('/reset-password')
 	}
 
 	return (
@@ -115,6 +123,11 @@ export const LoginForm = () => {
 						required
 					/>
 					<div className={s.form_actions}>
+						<Button className={s.btn_forgot_password} type='text' onClick={handleForgotPassword}>
+							<Text className={s.forgot_password_text} span>
+								Lost your password?
+							</Text>
+						</Button>
 						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_login, isLoading && s.loading)}>
 							{isLoading ? (
 								<Preloader width={20} height={20} />

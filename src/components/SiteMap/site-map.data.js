@@ -28,6 +28,7 @@ export const siteMap = {
 		{ page: 'Checkout', url: '/checkout' },
 		{ page: 'Order history', url: '/order-history', badge: 'Coming soon' },
 		{ page: 'Change password', url: '/change-password' },
+		{ page: 'Reset password', url: '/reset-password' },
 		{ page: 'Register', url: '/register' },
 	],
 }
