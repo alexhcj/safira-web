@@ -1,3 +1,5 @@
+import { ResetFilters } from '@modules/Shop/Sidebar/ResetFilters/ResetFilters'
+
 import { FilterTitle } from '@shared/components/UI/Sidebar/FilterTitle/FilterTitle'
 
 import { BannerOffer } from './BannerOffer/BannerOffer'
@@ -27,6 +29,7 @@ export const Sidebar = ({ meta }) => {
 				<FilterTitle text='Select by tag' />
 				<DietaryFilter />
 			</div>
+			<ResetFilters />
 			<BannerOffer imgSize='shop' />
 		</aside>
 	)
