@@ -1,7 +1,7 @@
 import cn from 'classnames'
 
-import { useSmoothScroll } from '@hooks/useScmoothScroll'
 import { useScrollSpy } from '@hooks/useScrollSpy'
+import { useSmoothScroll } from '@hooks/useSmoothScroll'
 
 import { BlockNote } from '@shared/components/UI/BlockNote/BlockNote'
 

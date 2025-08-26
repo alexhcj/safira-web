@@ -45,7 +45,7 @@ export const ProductDetails = () => {
 	const [product, setProduct] = useState({})
 
 	useEffect(() => {
-		window.scrollTo({ top: 0 })
+		scroll.scrollTo({ top: 0 })
 		const fetchData = async () => {
 			try {
 				const { product } = await productsAPI.findOne(slug)
