@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { animateScroll as scroll } from 'react-scroll'
 
 import { productsAPI } from '@api/products'
 
@@ -45,7 +46,6 @@ export const ProductDetails = () => {
 	const [product, setProduct] = useState({})
 
 	useEffect(() => {
-		scroll.scrollTo({ top: 0 })
 		const fetchData = async () => {
 			try {
 				const { product } = await productsAPI.findOne(slug)

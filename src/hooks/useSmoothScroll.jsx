@@ -1,13 +1,21 @@
+import { animateScroll as scroll } from 'react-scroll'
+
+const types = {
+	section: 80,
+	subnav: 75,
+}
+
 export function useSmoothScroll() {
-	return (sectionId) => {
-		const element = document.getElementById(sectionId)
+	return (id, type) => {
+		const element = document.getElementById(id)
+
 		if (element) {
-			const navbarHeight = 80 // 50px navbar + 30px extra spacing
+			const navbarHeight = types[type] // 50px navbar + 30px extra spacing
 			const elementPosition = element.offsetTop - navbarHeight
 
-			window.scrollTo({
-				top: elementPosition,
-				behavior: 'smooth',
+			scroll.scrollTo(elementPosition, {
+				duration: 500,
+				delay: 0,
 			})
 		}
 	}

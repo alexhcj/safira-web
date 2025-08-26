@@ -19,8 +19,6 @@ export const Blog = () => {
 	let lastScroll = 0 // throttle trigger
 
 	useEffect(() => {
-		window.onbeforeunload = () => window.scrollTo(0, 0)
-
 		if (params.size === 0) setParams(import.meta.env.VITE_BLOG_DEFAULT_QUERY)
 	}, [])
 
