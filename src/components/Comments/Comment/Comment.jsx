@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import cn from 'classnames'
+import { animateScroll as scroll } from 'react-scroll'
 
 import { useAuthContext } from '@context/AuthContext'
 
@@ -28,6 +29,16 @@ export const Comment = ({
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
 	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
+	const handleScroll = () => {
+		const element = document.getElementById('reply-user-actions')
+		const elementPosition = element.offsetTop
+
+		scroll.scrollTo(elementPosition, {
+			duration: 500,
+			delay: 0,
+		})
+	}
+
 	return (
 		<div className={s.wrapper} style={{ paddingLeft: 50 }}>
 			<div className={cn(s.comment, type && s[`comment_${type}`])}>
@@ -45,7 +56,12 @@ export const Comment = ({
 						<p className={s.text}>{capitalize(text)}</p>
 					</div>
 					{user && userId !== user.id && (
-						<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)} disabled={!user}>
+						<Button className={s.btn} onClick={() => setIsReplyHidden(!isReplyHidden)}>
+							Reply
+						</Button>
+					)}
+					{!user && (
+						<Button className={s.btn} onClick={() => handleScroll()}>
 							Reply
 						</Button>
 					)}

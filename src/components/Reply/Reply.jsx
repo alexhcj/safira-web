@@ -31,7 +31,7 @@ export const Reply = ({ nestedLvl, type, action }) => {
 
 			{!user ? (
 				<>
-					<div className={s.user_actions}>
+					<div className={s.user_actions} id='reply-user-actions'>
 						<UserActions
 							icon={<MessageSVG />}
 							message='Wanna left comment?'
