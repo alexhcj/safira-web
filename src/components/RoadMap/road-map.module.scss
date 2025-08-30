@@ -3,7 +3,9 @@
 .box {
 	border: 1px solid $color-border;
 }
+
 .header {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -11,15 +13,33 @@
 	padding: 20px 20px 15px;
 	border-bottom: 1px solid $color-border;
 }
+
 .text {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
+
 .title {
 	font-size: 20px;
 	font-weight: $weight-semi;
 }
+
+.version {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 13px;
+
+	.link {
+		text-decoration: underline;
+	}
+
+	&:hover .link {
+		color: $color-primary;
+	}
+}
+
 .button {
 	padding: 9px 15px;
 	text-transform: capitalize;
@@ -28,17 +48,20 @@
 	font-weight: $weight-semi;
 	border-radius: 0;
 }
+
 .stages {
 	display: flex;
 	padding: 0 20px;
 	gap: 15px;
 }
+
 .separator {
 	align-self: stretch;
 	width: 1px;
 	height: inherit;
 	background-color: $color-border;
 }
+
 .stage {
 	display: flex;
 	flex-direction: column;
@@ -102,6 +125,7 @@
 		}
 	}
 }
+
 .footer {
 	display: flex;
 	justify-content: center;
