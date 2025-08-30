@@ -220,7 +220,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								</Text>
 							</Button>
 						</div>
-						<div className={s.credential_password} onClick={handleChangePassword}>
+						<div className={s.credential_password}>
 							<Input
 								className={s.credential_input}
 								key='password'
@@ -228,7 +228,12 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								defaultValue='••••••••••••••'
 								label='Password'
 							/>
-							<Button type='profile' className={s.btn_credential} disabled={!user.isEmailVerified}>
+							<Button
+								type='profile'
+								className={s.btn_credential}
+								onClick={handleChangePassword}
+								disabled={!user.isEmailVerified}
+							>
 								<Text span color='white' weight='semi' className={s.btn_credential_text}>
 									Change password
 								</Text>
