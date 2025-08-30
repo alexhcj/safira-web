@@ -11,8 +11,14 @@ import MessageSVG from '@assets/svg/message.svg?react'
 
 import s from './reply.module.scss'
 
-// action: 'create' (create new entity) | 'update' (updates comments array)
-// type: 'short'
+/**
+ * Form component for creating and updating comments/replies
+ *
+ * @param {string} nestedLvl - The nesting level path (e.g., "0", "0.1", "1.2.0")
+ * @param {string} type - Visual type of the form ('short' for compact version)
+ * @param {string} action - Action to perform ('create' for new root comment or 'update' for nested reply)
+ * @returns {JSX.Element} If user authenticated returns reply form component else user actions for authentication
+ */
 export const Reply = ({ nestedLvl, type, action }) => {
 	const { user } = useAuthContext()
 	const navigate = useNavigate()

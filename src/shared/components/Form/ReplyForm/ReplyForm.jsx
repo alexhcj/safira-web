@@ -9,6 +9,8 @@ import { useErrorContext } from '@context/ErrorContext'
 import { useComments } from '@hooks/services/useComments'
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+
 import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { Button } from '../../UI/Buttons/Button/Button'
@@ -28,16 +30,17 @@ const replyFormValidationSchema = {
 /**
  * Form component for creating and updating comments/replies
  *
- * @param {number} nestedLvl - The nesting level of the reply in comments hierarchy
+ * @param {string} nestedLvl - The nesting level path (e.g., "0", "0.1", "1.2.0")
  * @param {string} type - Visual type of the form ('short' for compact version)
- * @param {string} action - Action to perform ('create' for new comment or 'update' to modify existing comments array)
+ * @param {string} action - Action to perform ('create' for new root comment or 'update' for nested reply)
+ * @param {function} onReplySuccess - Callback function called after successful reply submission
  * @returns {JSX.Element} Reply form component
  */
-export const ReplyForm = ({ nestedLvl = 0, type, action = 'create' }) => {
+export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySuccess }) => {
 	const { user } = useAuthContext()
 	const { isResponseValid, clearErrors } = useErrorContext()
 	const { slug } = useParams()
-	const { createComment, updateComment } = useComments()
+	const { createComment, updateComment, isLoading } = useComments()
 	const initialFormState = {
 		reply: '',
 	}
@@ -55,19 +58,21 @@ export const ReplyForm = ({ nestedLvl = 0, type, action = 'create' }) => {
 			}
 
 			if (user && user.id && user.accessToken) {
-				if (action === 'update') {
-					const res = await updateComment(slug, formData, { nestedLvl })
+				let res
 
-					if (res && res.success) {
-						setForm(initialFormState)
-					}
+				if (action === 'update' && nestedLvl !== null) {
+					// adding reply to existing comment
+					res = await updateComment(slug, formData, { nestedLvl })
+				} else if (action === 'create') {
+					// creating new root comment
+					res = await createComment(slug, formData)
 				}
 
-				if (action === 'create') {
-					const res = await createComment(slug, formData)
-
-					if (res && res.success) {
-						setForm(initialFormState)
+				if (res && res.success) {
+					setForm(initialFormState)
+					// call success callback to hide reply form
+					if (onReplySuccess) {
+						onReplySuccess()
 					}
 				}
 			}
@@ -89,16 +94,17 @@ export const ReplyForm = ({ nestedLvl = 0, type, action = 'create' }) => {
 			<Textarea
 				className={s.reply}
 				key='reply'
-				id='reply'
+				id={`reply-${nestedLvl || 'root'}`}
 				type='text'
-				value={form['reply']}
-				label='Comment'
+				value={form.reply}
+				label={action === 'create' ? 'Comment' : 'Reply'}
 				handleChange={handleChange('reply')}
 				error={getFieldError('reply')}
+				placeholder={action === 'create' ? 'Share your thoughts...' : 'Write your reply...'}
 			/>
 			<div>
-				<Button htmlType='submit' type='auth' className={s.btn}>
-					Post comment
+				<Button htmlType='submit' type='auth' className={s.btn} disabled={isLoading}>
+					{isLoading ? <Preloader width={20} height={20} /> : action === 'create' ? 'Post comment' : 'Post reply'}
 				</Button>
 			</div>
 		</form>
