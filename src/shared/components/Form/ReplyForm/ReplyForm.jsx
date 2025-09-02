@@ -23,7 +23,7 @@ const replyFormValidationSchema = {
 		required('Comment should be filled.'),
 		minLength(30, 'Comment should be minimum 30 characters length.'),
 		maxLength(100, 'Comment should be maximum 100 characters length.'),
-		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/g, 'Comment should contain letters, numbers, spaces and basic punctuation.'),
+		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/, 'Comment should contain letters, numbers, spaces and basic punctuation.'),
 	],
 }
 
@@ -46,7 +46,7 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 		reply: '',
 	}
 	const [form, setForm] = useState(initialFormState)
-	const { isValid, getFieldError, resetFieldError } = useFormValidation(form, replyFormValidationSchema, {
+	const { isValid, getFieldError, resetFieldError, resetForm } = useFormValidation(form, replyFormValidationSchema, {
 		validateOnChange: false,
 	})
 
@@ -83,6 +83,7 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 
 				if (res && res.success) {
 					setForm(initialFormState)
+					resetForm()
 
 					setTimeout(() => {
 						resetTextareaHeight()
@@ -98,7 +99,7 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 	}
 
 	const handleChange = (field) => (e) => {
-		if (!isValid(false)) resetFieldError(field)
+		resetFieldError(field)
 		if (!isResponseValid()) clearErrors()
 
 		setForm({
