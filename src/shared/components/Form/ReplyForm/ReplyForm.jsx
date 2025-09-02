@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import cn from 'classnames'
 import { useParams } from 'react-router-dom'
@@ -41,6 +41,7 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 	const { isResponseValid, clearErrors } = useErrorContext()
 	const { slug } = useParams()
 	const { createComment, updateComment, isLoading } = useComments()
+	const textareaRef = useRef(null)
 	const initialFormState = {
 		reply: '',
 	}
@@ -48,6 +49,18 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 	const { isValid, getFieldError, resetFieldError } = useFormValidation(form, replyFormValidationSchema, {
 		validateOnChange: false,
 	})
+
+	useEffect(() => {
+		if (type === 'short' && textareaRef.current) {
+			if (form.reply === '') {
+				textareaRef.current.style.height = 'auto' // collapse back
+				textareaRef.current.style.height = '39px'
+			} else {
+				textareaRef.current.style.height = 'auto'
+				textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 80) + 'px' // 80px = 5 rem
+			}
+		}
+	}, [type, form.reply])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -70,6 +83,11 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 
 				if (res && res.success) {
 					setForm(initialFormState)
+
+					setTimeout(() => {
+						resetTextareaHeight()
+					}, 0)
+
 					// call success callback to hide reply form
 					if (onReplySuccess) {
 						onReplySuccess()
@@ -89,9 +107,22 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 		})
 	}
 
+	const resetTextareaHeight = useCallback(() => {
+		if (textareaRef.current) {
+			textareaRef.current.style.height = 'auto'
+
+			if (type === 'short') {
+				textareaRef.current.style.height = '39px'
+			} else {
+				textareaRef.current.style.height = '170px'
+			}
+		}
+	}, [type])
+
 	return (
 		<form className={cn(s.form, type && s[`form_${type}`])} onSubmit={handleSubmit}>
 			<Textarea
+				textareaRef={textareaRef}
 				className={s.reply}
 				key='reply'
 				id={`reply-${nestedLvl || 'root'}`}
@@ -102,11 +133,9 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 				error={getFieldError('reply')}
 				placeholder={action === 'create' ? 'Share your thoughts...' : 'Write your reply...'}
 			/>
-			<div>
-				<Button htmlType='submit' type='auth' className={s.btn} disabled={isLoading}>
-					{isLoading ? <Preloader width={20} height={20} /> : action === 'create' ? 'Post comment' : 'Post reply'}
-				</Button>
-			</div>
+			<Button htmlType='submit' type='auth' className={cn(s.btn, s[`btn_${type}`])} disabled={isLoading}>
+				{isLoading ? <Preloader width={20} height={20} /> : action === 'create' ? 'Post comment' : 'Post reply'}
+			</Button>
 		</form>
 	)
 }

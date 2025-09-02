@@ -14,16 +14,18 @@
 
 		.reply {
 			margin-bottom: 0;
-			height: 69px;
 
 			& > textarea {
-				padding: 10px 130px 10px 10px;
+				padding: 10px 30px 10px 10px;
 				min-height: 39px;
+				max-height: 5rem;
+				overflow: hidden;
 			}
 		}
 
 		.btn {
 			padding: 0 15px;
+			min-width: 103.5px;
 			height: 38px;
 			line-height: 38px;
 			font-size: 12px;
@@ -33,15 +35,17 @@
 
 .reply {
 	margin-bottom: 15px;
-	height: 200px;
-	resize: none;
-	border-color: $color-border2;
 
 	& > label {
 		margin-bottom: 10px;
 		line-height: 20px;
 		font-size: 13px;
 		font-weight: $weight-medium;
+	}
+
+	& > textarea {
+		min-height: 170px;
+		border-color: $color-border2;
 	}
 
 	& > span {

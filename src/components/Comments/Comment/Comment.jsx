@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { animateScroll as scroll } from 'react-scroll'
 
 import { useAuthContext } from '@context/AuthContext'
+import { useCommentThread } from '@context/CommentThreadContext'
 
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
@@ -11,6 +12,8 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { capitalize, convertISODate } from '@utils/index'
 
 import { Reply } from '../../Reply/Reply'
+
+import HorizontalMoreSVG from '@assets/svg/more-horizontal.svg?react'
 
 import s from './comment.module.scss'
 
@@ -36,20 +39,30 @@ export const Comment = ({
 	depth = 0,
 }) => {
 	const { user } = useAuthContext()
+	const { toggleThread, isThreadCollapsed } = useCommentThread()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
-	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
-	// calculate current comment's nested level
 	const currentNestedLvl = nestedLvl === null ? currentIndex.toString() : `${nestedLvl}.${currentIndex}`
 
-	// calculate padding based on depth (more semantic than hardcoded 50px)
-	const calculatePaddingLeft = () => {
-		let paddingLeft
+	const childrenThreadId = `thread-${currentNestedLvl}`
+	const areChildrenHidden = isThreadCollapsed(childrenThreadId)
 
-		if (depth === 0) paddingLeft = 50
-		if (depth >= 1 && depth <= 4) paddingLeft = 70
-		if (depth >= 5) paddingLeft = (depth - 1) * 10 + 10
-		return { paddingLeft }
+	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
+
+	const shouldShowToggleButton = comments && comments.length > 0 && depth >= 3
+	const shouldRenderChildren = comments && comments.length > 0 && !areChildrenHidden
+
+	const calculatePaddingLeft = () => {
+		const baseIndent = 50
+		const levelIndent = 20
+		const maxVisualDepth = 3
+
+		const visualDepth = Math.min(depth, maxVisualDepth)
+		return { paddingLeft: depth > 3 ? 0 : baseIndent + visualDepth * levelIndent }
+	}
+
+	const handleToggleThread = () => {
+		toggleThread(childrenThreadId)
 	}
 
 	const handleScroll = () => {
@@ -81,9 +94,18 @@ export const Comment = ({
 				/>
 				<div className={s.box}>
 					<div>
+						{depth >= 4 && <span className={s.lvl}>L{depth}</span>}
 						<h5 className={s.author}>{firstName || 'User'}</h5>
 						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
-						<p className={s.text}>{capitalize(text)}</p>
+						<p className={cn(s.text, { [s.short]: shouldShowToggleButton })}>{capitalize(text)}</p>
+
+						{/* toggle button for children - only show if has children and at depth 3+ */}
+						{shouldShowToggleButton && (
+							<button className={s.button_thread} onClick={handleToggleThread}>
+								{areChildrenHidden ? 'Show thread' : 'Hide thread'} ({comments.length}){' '}
+								<HorizontalMoreSVG className={s.svg} width={16} height={16} />
+							</button>
+						)}
 					</div>
 					{user && userId !== user.id && (
 						<Button className={s.btn} onClick={handleToggleReply}>
@@ -109,12 +131,12 @@ export const Comment = ({
 			)}
 
 			{/* nested comments */}
-			{comments && comments.length > 0 && (
+			{shouldRenderChildren && (
 				<div className={s.replies}>
 					{comments.map((nestedComment, index) => (
 						<Comment
 							comment={nestedComment}
-							key={index}
+							key={nestedComment.id || index}
 							nestedLvl={currentNestedLvl}
 							currentIndex={index}
 							depth={depth + 1}

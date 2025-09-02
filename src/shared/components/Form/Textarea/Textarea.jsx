@@ -6,7 +6,18 @@ import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 
 import s from './textarea.module.scss'
 
-export const Textarea = ({ name, label, id, value, handleChange, placeholder, error, required, className }) => {
+export const Textarea = ({
+	textareaRef,
+	name,
+	label,
+	id,
+	value,
+	handleChange,
+	placeholder,
+	error,
+	required,
+	className,
+}) => {
 	const [isFocused, setIsFocused] = useState(false)
 	const isError = useMemo(() => !isFocused && error, [isFocused, error])
 
@@ -24,6 +35,7 @@ export const Textarea = ({ name, label, id, value, handleChange, placeholder, er
 				{label}
 			</label>
 			<textarea
+				ref={textareaRef}
 				className={cn(s.textarea, { [s.error]: isError })}
 				value={value}
 				id={id}

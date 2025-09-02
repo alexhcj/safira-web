@@ -21,11 +21,24 @@
 }
 
 .box {
+	position: relative;
 	display: grid;
 	gap: 15px;
 	width: 100%;
 	padding: 15px;
 	border: 1px solid $color-border;
+	border-radius: $default-border-radius;
+}
+
+.lvl {
+	position: absolute;
+	top: -7px;
+	left: -7px;
+	padding: 0 4px;
+	line-height: 20px;
+	font-size: 12px;
+	color: $color-white;
+	background-color: $color-primary;
 	border-radius: $default-border-radius;
 }
 
@@ -42,6 +55,33 @@
 	line-height: 18px;
 	font-size: 13px;
 	font-style: italic;
+}
+
+.text {
+	&.short {
+		max-width: 73%;
+	}
+}
+
+.button_thread {
+	position: absolute;
+	right: 12px;
+	bottom: 15px;
+	line-height: 20px;
+	font-size: 12px;
+	@include transition-all;
+
+	&:hover {
+		color: $color-primary;
+
+		.svg path {
+			fill: $color-primary;
+		}
+	}
+
+	.svg {
+		margin-bottom: -4px;
+	}
 }
 
 .btn {
