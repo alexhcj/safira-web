@@ -19,11 +19,15 @@ and [NestJS](https://nestjs.com/) in conjunction with [MongoDB](https://www.mong
 **MVP** version would consist of frontend part with most used features of necessary real life e-commerce solutions and
 backend with api, services, and database.
 
-In the **LTS** 1.0.0 version would be added some more features like: info pages, responsive design, improved product and auth management logic. The full list you can view at [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) and also future beyond LTS.
+In the **LTS** 1.0.0 version would be added some more features like: info pages, responsive design, improved product and
+auth management logic. The full list you can view at [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) and
+also future beyond LTS.
 
-The complete application ecosystem will include web platform (possibly with PWA), admin panel, content management system, mobile application, and robust backend infrastructure.
+The complete application ecosystem will include web platform (possibly with PWA), admin panel, content management
+system, mobile application, and robust backend infrastructure.
 
 ## Roadmap
+
 View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest feature releases.
 
 ## Features
@@ -42,13 +46,13 @@ View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest fe
 
 - [x] Verify email with code
 - [x] Change password
-- [ ] Forget password
+- [x] Forget password
 - [x] Change email
 - [x] Subscribe
-  - [x] From profile
+	- [x] From profile
 - [x] Unsubscribe
-  - [x] From email
-  - [x] From profile
+	- [x] From email
+	- [x] From profile
 - [x] Redis queues & schedulers
 
 ### Navigation
@@ -150,10 +154,11 @@ Used scss modules in combination with [classnames](https://www.npmjs.com/package
 - [ ] 320 - 480
 
 ## Project
+
 - [x] Vite integration
-  - [x] Aliases
+	- [x] Aliases
 - [x] Eslint
-  - [x] Imports sorting
+	- [x] Imports sorting
 
 ## Additional Packages
 
