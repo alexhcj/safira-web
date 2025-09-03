@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 import jsconfigPaths from 'vite-jsconfig-paths'
 import svgr from 'vite-plugin-svgr'
 
+import { version } from './package.json'
+
 export default defineConfig(({ mode }) => ({
 	plugins: [
 		react({
@@ -15,6 +17,7 @@ export default defineConfig(({ mode }) => ({
 	],
 	define: {
 		__APP_ENV__: JSON.stringify(mode),
+		'import.meta.env.VITE_APP_VERSION': JSON.stringify(version), // if use name __APP_VERSION__ => warning about declaring var
 	},
 	resolve: {
 		alias: {

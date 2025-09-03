@@ -162,6 +162,8 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
+		if (!user.isEmailVerified) return navigate('/verify-email', { state: { email } })
+
 		if (!isValid(false)) {
 			if (isFormsSame()) return
 		}
@@ -185,11 +187,11 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	}
 
 	const handleChangeEmail = () => {
-		navigate('/change-email')
+		!user.isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-email')
 	}
 
 	const handleChangePassword = () => {
-		navigate('/change-password')
+		!user.isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-password')
 	}
 
 	return (
@@ -207,13 +209,18 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								defaultValue={email}
 								label='Email'
 							/>
-							<Button type='profile' className={s.btn_credential} onClick={handleChangeEmail}>
+							<Button
+								type='profile'
+								className={s.btn_credential}
+								onClick={handleChangeEmail}
+								disabled={!user.isEmailVerified}
+							>
 								<Text span color='white' weight='semi' className={s.btn_credential_text}>
 									Change email
 								</Text>
 							</Button>
 						</div>
-						<div className={s.credential_password} onClick={handleChangePassword}>
+						<div className={s.credential_password}>
 							<Input
 								className={s.credential_input}
 								key='password'
@@ -221,7 +228,12 @@ export const ProfileForm = ({ user, profile, loading }) => {
 								defaultValue='••••••••••••••'
 								label='Password'
 							/>
-							<Button type='profile' className={s.btn_credential}>
+							<Button
+								type='profile'
+								className={s.btn_credential}
+								onClick={handleChangePassword}
+								disabled={!user.isEmailVerified}
+							>
 								<Text span color='white' weight='semi' className={s.btn_credential_text}>
 									Change password
 								</Text>
@@ -269,7 +281,12 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							error={getFieldError('location')}
 						/>
 						<div className={s.form_actions}>
-							<Button htmlType='submit' type='submit' className={s.btn_update_profile} disabled={loading}>
+							<Button
+								htmlType='submit'
+								type='submit'
+								className={s.btn_update_profile}
+								disabled={loading || !user.isEmailVerified}
+							>
 								<Text span color='white' className={s.btn_update_profile_text}>
 									Update profile
 								</Text>

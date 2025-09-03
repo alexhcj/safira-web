@@ -31,11 +31,6 @@
 .dietaries {
 	justify-content: start;
 	gap: 5px;
-
-	div {
-		width: 30px;
-		height: 30px;
-	}
 }
 
 .actions {
@@ -55,10 +50,13 @@
 		}
 	}
 
-	.icon {
+	.icon,
+	.icon_remove {
 		cursor: pointer;
 		@include transition-all;
+	}
 
+	.icon {
 		path {
 			fill: $color-primary;
 		}
@@ -71,9 +69,10 @@
 
 	.icon_remove {
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: 50%;
+		left: 50%;
 		opacity: 0;
+		translate: -50% -50%;
 		@include transition-all;
 
 		path {

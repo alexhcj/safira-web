@@ -1,0 +1,27 @@
+@use '@shared/styles/vars' as *;
+
+.actions {
+	display: flex;
+	justify-content: center;
+}
+
+.btn {
+	width: 100%;
+	height: 34px;
+	line-height: 34px;
+	color: $color-dark4;
+
+	&:hover {
+		color: $color-dark;
+	}
+
+	&:disabled {
+		color: $color-border-hover;
+		background-color: $color-grey11;
+
+		&:hover {
+			border-color: $color-border;
+			background-color: $color-grey11;
+		}
+	}
+}

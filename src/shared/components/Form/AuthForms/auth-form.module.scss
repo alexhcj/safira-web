@@ -59,8 +59,19 @@
 
 .form_actions {
 	display: grid;
-	grid-auto-flow: column;
+	grid-template-columns: repeat(2, max-content);
+	justify-content: space-between;
 	align-items: center;
+
+	.btn_forgot_password {
+		line-height: 39px;
+		height: 39px;
+	}
+
+	.forgot_password_text {
+		line-height: inherit;
+		font-size: 15px;
+	}
 }
 
 .btn_auth_register,
@@ -71,9 +82,11 @@
 		background-color: $color-dark;
 	}
 }
+
 .btn_auth_register {
 	min-width: 101px;
 }
+
 .btn_auth_login {
 	min-width: 78px;
 }

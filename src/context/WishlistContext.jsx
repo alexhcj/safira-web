@@ -4,7 +4,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const WishlistContext = createContext([])
 
-export const useWishlistContext = () => useContext(WishlistContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useWishlistContext() {
+	const context = useContext(WishlistContext)
+
+	if (context === undefined) {
+		throw new Error('useWishlistContext must be used within an WishlistProvider')
+	}
+
+	return context
+}
 
 export const WishlistProvider = ({ children }) => {
 	const [wishlist, setWishlist] = useLocalStorage('wishlist', [])

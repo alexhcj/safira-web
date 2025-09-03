@@ -132,6 +132,40 @@ export function useVerifications() {
 		}
 	}
 
+	const forgotPassword = async (data) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const { statusCode } = await verificationsAPI.forgotPassword(data)
+
+			return {
+				success: true,
+				statusCode,
+			}
+		} catch (error) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const resetForgotPassword = async (data) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const { statusCode } = await verificationsAPI.resetForgotPassword(data)
+
+			return {
+				success: true,
+				statusCode,
+			}
+		} catch (error) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
 	/**
 	 * @param {Object} data
 	 * @param {string} data.type - Type of email verification (VERIFY_EMAIL enum)
@@ -161,6 +195,8 @@ export function useVerifications() {
 		changePassword,
 		verifyCode,
 		resetPassword,
+		forgotPassword,
+		resetForgotPassword,
 		resendVerifyEmail,
 		isLoading,
 	}

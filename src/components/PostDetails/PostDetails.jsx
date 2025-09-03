@@ -62,7 +62,7 @@ export const PostDetails = () => {
 					{/*<RelatedPosts category={category} />*/}
 					{post.comments && <Comments comments={post.comments.comments} isLoading={isLoading} />}
 					{!isLoading && !post.comments && <ItemsNotFound type='comments' />}
-					<Reply action={post.comments && post.comments.length !== 0 ? 'update' : 'create'} />
+					<Reply action='create' />
 				</>
 			)}
 		</>

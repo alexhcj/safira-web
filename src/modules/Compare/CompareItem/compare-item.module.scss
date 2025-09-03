@@ -124,11 +124,21 @@
 }
 
 .button_wishlist {
+	.icon path {
+		fill: $color-dark2;
+	}
+
+	&:hover {
+		.icon path {
+			fill: $color-white;
+		}
+	}
+
 	&.active {
 		background-color: $color-primary;
 		border-color: $color-primary;
 
-		svg path {
+		.icon path {
 			fill: $color-white;
 		}
 	}

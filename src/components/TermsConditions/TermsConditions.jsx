@@ -1,7 +1,7 @@
 import cn from 'classnames'
 
-import { useSmoothScroll } from '@hooks/useScmoothScroll'
 import { useScrollSpy } from '@hooks/useScrollSpy'
+import { useSmoothScroll } from '@hooks/useSmoothScroll'
 
 import { BlockNote } from '@shared/components/UI/BlockNote/BlockNote'
 
@@ -20,7 +20,10 @@ const Section = ({ order, id, title, children, className }) => (
 // sidebar navigation link component
 const NavLink = ({ order, href, children, isActive, onClick, subNavs, activeInnerId }) => (
 	<div>
-		<button className={cn(s.sidebar_button, isActive && s.active)} onClick={() => onClick(href.replace('#', ''))}>
+		<button
+			className={cn(s.sidebar_button, isActive && s.active)}
+			onClick={() => onClick(href.replace('#', ''), 'section')}
+		>
 			{children}
 		</button>
 		{subNavs && (
@@ -29,20 +32,7 @@ const NavLink = ({ order, href, children, isActive, onClick, subNavs, activeInne
 					<button
 						key={index}
 						className={cn(s.sidebar_button, isActive && activeInnerId === subNav.id && s.active)}
-						onClick={() => {
-							const element = document.getElementById(subNav.id)
-
-							if (element) {
-								// calculate offset for navbar height plus extra spacing for h3 elements
-								const navbarHeight = 75 // 50px navbar + 25px extra spacing
-								const elementPosition = element.offsetTop - navbarHeight
-
-								window.scrollTo({
-									top: elementPosition,
-									behavior: 'smooth',
-								})
-							}
-						}}
+						onClick={() => onClick(subNav.id, 'subnav')}
 					>
 						{order}.{subNav.order}. {subNav.title}
 					</button>

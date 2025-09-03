@@ -20,6 +20,12 @@
 	max-width: 300px;
 }
 
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
 .btn {
 	border-radius: $default-border-radius;
 }

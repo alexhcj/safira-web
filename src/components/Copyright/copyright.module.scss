@@ -1,6 +1,7 @@
 @use '@shared/styles/vars' as *;
 
 .section {
+	position: relative;
 	padding: 30px 0;
 	background-color: $color-primary;
 }
@@ -35,4 +36,11 @@
 .payments {
 	display: flex;
 	gap: 11px;
+}
+
+.version {
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	opacity: 0.3;
 }

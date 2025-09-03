@@ -6,7 +6,16 @@ import GridImage3 from '@assets/images/shop/grid-list.png'
 
 const GridContext = createContext(null)
 
-export const useGridContext = () => useContext(GridContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useGridContext() {
+	const context = useContext(GridContext)
+
+	if (context === undefined) {
+		throw new Error('useGridContext must be used within an GridProvider')
+	}
+
+	return context
+}
 
 export const GridProvider = ({ children }) => {
 	const [grid, setGrid] = useState(gridTypes[0].type)

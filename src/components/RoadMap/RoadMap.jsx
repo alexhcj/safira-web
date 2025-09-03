@@ -1,3 +1,5 @@
+import { Link, NavLink } from 'react-router-dom'
+
 import { beyondFirstStage, firstStage } from '@components/RoadMap/road-map-data'
 
 import { FeatureStatus } from '@shared/components/UI/FeatureStatus/FeatureStatus'
@@ -12,10 +14,16 @@ export const RoadMap = () => {
 				<div className={s.header}>
 					<div className={s.text}>
 						<h3 className={s.title}>Roadmap</h3>
-						<p className={s.description}>
+						<p>
 							Here is complete roadmap structured by rational features delivery from drafts to MVP and LTS versions.
 						</p>
 					</div>
+					<span className={s.version}>
+						Current stable{' '}
+						<Link className={s.link} target='_blank' to='https://safira-store.shop'>
+							v{import.meta.env.VITE_APP_VERSION}
+						</Link>
+					</span>
 				</div>
 				<div className={s.stages}>
 					<div className={s.stage}>

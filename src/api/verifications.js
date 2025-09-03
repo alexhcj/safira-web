@@ -24,6 +24,12 @@ export const verificationsAPI = {
 	async resetPassword(data = {}) {
 		return API.post(`${BASE_URL}/reset-password?${data.query}`, data.form)
 	},
+	async forgotPassword(data = {}) {
+		return API.post(`${BASE_URL}/forgot-password`, data)
+	},
+	async resetForgotPassword(data = {}) {
+		return API.post(`${BASE_URL}/reset-forgot-password?${data.query}`, data.form)
+	},
 	async resendVerifyEmail(data = {}) {
 		return API.post(`${BASE_URL}/resend-verify-email`, data)
 	},

@@ -5,8 +5,9 @@ import { useCompareContext } from '@context/CompareContext'
 import { useProductModalContext } from '@context/ProductContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
+import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
+
 import { ButtonCart } from '../Buttons/ButtonCart/ButtonCart'
-import { ButtonPopup } from '../Buttons/ButtonPopup/ButtonPopup'
 import { Text } from '../Text/Text'
 
 import CartSVG from '@assets/svg/cart.svg?react'
@@ -47,39 +48,43 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 					</Text>
 				</ButtonCart>
 			) : (
-				<ButtonPopup
-					className={cn(s.btn_popup, isProductInCartList && s.active)}
-					onClick={handleCartClick}
+				<ButtonWithTooltip
+					className={cn(s.btn_action, isProductInCartList && s.active)}
+					buttonSize={size === 'row' ? 'lg' : 'default'}
+					buttonType='primary'
 					text={isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
+					onClick={handleCartClick}
 				>
-					<CartSVG />
-				</ButtonPopup>
+					<CartSVG className={s.icon} width={16} height={16} />
+				</ButtonWithTooltip>
 			)}
-			<ButtonPopup
-				className={s.btn_popup}
-				size={size === 'row' && 'lg'}
+			<ButtonWithTooltip
+				className={s.btn_action}
+				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonType='primary'
 				text='Quick View'
 				onClick={() => previewProduct(product)}
 			>
-				<MagnifierSVG />
-			</ButtonPopup>
-			<ButtonPopup
-				className={cn(s.btn_popup, isProductInWishList && s.active)}
-				onClick={handleWishlistClick}
-				size={size === 'row' && 'lg'}
+				<MagnifierSVG className={s.icon} width={16} height={16} />
+			</ButtonWithTooltip>
+			<ButtonWithTooltip
+				className={cn(s.btn_action, isProductInWishList && s.active)}
+				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonType='primary'
 				text={isProductInWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
+				onClick={handleWishlistClick}
 			>
-				<HeartSVG />
-			</ButtonPopup>
-			<ButtonPopup
-				className={cn(s.btn_popup, s.compare, isProductInCompareList && s.active)}
-				onClick={handleCompareClick}
-				size={size === 'row' && 'lg'}
+				<HeartSVG className={s.icon} width={16} height={16} />
+			</ButtonWithTooltip>
+			<ButtonWithTooltip
+				className={cn(s.btn_action, isProductInCompareList && s.active)}
+				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonType='primary'
 				text={isProductInCompareList ? 'Remove from Compare' : 'Add to Compare'}
-				outline
+				onClick={handleCompareClick}
 			>
-				<CompareSVG className={s.compare_svg} />
-			</ButtonPopup>
+				<CompareSVG className={s.icon_compare} width={18} height={18} />
+			</ButtonWithTooltip>
 		</div>
 	)
 }

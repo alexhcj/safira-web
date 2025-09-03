@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { payment1, payment2, payment3, payment4 } from '@assets/images/footer'
 
@@ -30,6 +30,11 @@ export const Copyright = () => {
 						<img className={s.img} src={payment3} alt='' />
 						<img className={s.img} src={payment4} alt='' />
 					</div>
+					<span className={s.version}>
+						<Link className={s.link} target='_blank' to='https://safira-store.shop'>
+							v{import.meta.env.VITE_APP_VERSION}
+						</Link>
+					</span>
 				</div>
 			</div>
 		</div>

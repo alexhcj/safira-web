@@ -41,6 +41,9 @@ const ChangeEmailPage = lazy(() =>
 const ChangePasswordPage = lazy(() =>
 	import('../../pages/ChangePasswordPage').then((module) => ({ default: module.ChangePasswordPage })),
 )
+const ResetPasswordPage = lazy(() =>
+	import('../../pages/ResetPasswordPage').then((module) => ({ default: module.ResetPasswordPage })),
+)
 const VerifyEmailPage = lazy(() =>
 	import('../../pages/VerifyEmailPage').then((module) => ({ default: module.VerifyEmailPage })),
 )
@@ -85,6 +88,7 @@ export const AppRoutes = () => {
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/checkout' element={<CheckoutPage />} />
 			<Route path='/wishlist' element={<WishlistPage />} />
+			<Route path='/reset-password' element={<ResetPasswordPage />} />
 			<Route path='/products/:slug' element={<ProductPage />} />
 			<Route
 				path='/profile'

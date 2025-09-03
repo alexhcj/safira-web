@@ -6,20 +6,39 @@ export const useLocalStorage = (
 	{ serialize = JSON.stringify, deserialize = JSON.parse } = {},
 ) => {
 	const [state, setState] = useState(() => {
-		const valueInLocalStorage = window.localStorage.getItem(key)
-		if (valueInLocalStorage) return deserialize(valueInLocalStorage)
+		try {
+			const valueInLocalStorage = window.localStorage.getItem(key)
 
-		return typeof defaultValue === 'function' ? defaultValue() : defaultValue
+			if (valueInLocalStorage === null) {
+				return typeof defaultValue === 'function' ? defaultValue() : defaultValue
+			}
+
+			return deserialize(valueInLocalStorage)
+		} catch (error) {
+			console.warn(`Failed to read localStorage key "${key}":`, error)
+			return typeof defaultValue === 'function' ? defaultValue() : defaultValue
+		}
 	})
 
 	const prevKeyRef = useRef(key)
 
 	useEffect(() => {
 		const prevKey = prevKeyRef.current
-		if (prevKey !== key) window.localStorage.removeItem(prevKey)
+		if (prevKey !== key) {
+			try {
+				window.localStorage.removeItem(prevKey)
+			} catch (error) {
+				console.warn(`Failed to remove localStorage key "${prevKey}":`, error)
+			}
+		}
 
 		prevKeyRef.current = key
-		window.localStorage.setItem(key, serialize(state))
+
+		try {
+			window.localStorage.setItem(key, serialize(state))
+		} catch (error) {
+			console.warn(`Failed to set localStorage key "${key}":`, error)
+		}
 	}, [key, state, serialize])
 
 	return [state, setState]

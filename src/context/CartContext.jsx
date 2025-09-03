@@ -6,7 +6,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 const CartContext = createContext([])
 
-export const useCartContext = () => useContext(CartContext)
+// Vite HMR - use function declaration instead of arrow function
+export function useCartContext() {
+	const context = useContext(CartContext)
+
+	if (context === undefined) {
+		throw new Error('useCartContext must be used within an CartProvider')
+	}
+
+	return context
+}
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useLocalStorage('cart', [])
