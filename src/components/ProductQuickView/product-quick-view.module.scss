@@ -6,12 +6,15 @@
 	grid-template-columns: auto 1fr;
 	gap: 25px;
 }
+
 .img_link {
 	max-width: 428px;
 	max-height: 428px;
 }
+
 .product {
 }
+
 .name {
 	margin-bottom: 14px;
 	text-transform: uppercase;
@@ -25,12 +28,20 @@
 		color: $color-primary;
 	}
 }
+
 .price {
 	margin-bottom: 12px;
 }
+
+.dietaries {
+	justify-content: start;
+	gap: 5px;
+}
+
 .description {
 	margin-bottom: 20px;
 }
+
 .category {
 	display: flex;
 	margin-bottom: 25px;
@@ -43,9 +54,11 @@
 		color: $color-primary;
 	}
 }
+
 .price {
 	justify-content: flex-start;
 }
+
 .btn {
 	width: 230px;
 	background-color: $color-dark;
