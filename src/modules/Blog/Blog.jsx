@@ -46,14 +46,12 @@ export const Blog = () => {
 	}
 
 	const postsList = posts.map((post) => <Post key={post.slug} {...post} />)
+	const mainContent = posts.length > 0 ? postsList : <ItemsNotFound type='post' />
 
 	return (
 		<section>
 			<div className='container'>
-				<SidebarLayout
-					main={postsList || <ItemsNotFound type='post' />}
-					aside={<BlogSidebar isLoading={isLoading} />}
-				/>
+				<SidebarLayout main={mainContent} aside={<BlogSidebar isLoading={isLoading} />} />
 				<div ref={infiniteTrigger}></div>
 				{isLoading && <Preloader />}
 				<Space size='l' />
