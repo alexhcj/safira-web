@@ -26,6 +26,28 @@
 }
 
 // sizes
+.sm {
+	gap: 5px;
+
+	.price {
+		line-height: 12px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+
+		&.default {
+			line-height: 12px;
+			font-size: 12px;
+			font-weight: $weight-normal;
+		}
+	}
+
+	.discount_price {
+		line-height: 12px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
+}
+
 .large {
 	.price {
 		font-size: 23px;

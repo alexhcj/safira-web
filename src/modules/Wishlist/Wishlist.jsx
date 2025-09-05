@@ -37,7 +37,7 @@ export const Wishlist = () => {
 							const product = {
 								slug: item.slug,
 								name: item.name,
-								price: { price: item.price },
+								price: item.price,
 								specifications: { quantity: item.maxQuantity },
 							}
 							return (

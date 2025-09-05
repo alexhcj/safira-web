@@ -21,7 +21,12 @@ export const WishlistProvider = ({ children }) => {
 	const addToWishlist = ({ slug, name, price, specifications }) => {
 		if (wishlist.find((product) => product.slug === slug)) return
 
-		const product = { slug, name, price: price.price, maxQuantity: specifications.quantity }
+		const product = {
+			slug,
+			name,
+			price,
+			maxQuantity: specifications.quantity,
+		}
 		setWishlist([...wishlist, product])
 	}
 
