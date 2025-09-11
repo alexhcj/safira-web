@@ -7,20 +7,17 @@
 	align-items: start;
 	gap: 25px;
 }
+
 .list {
 	display: grid;
 	gap: 5px;
 	margin-bottom: 20px;
 }
+
 .link {
 	width: 100%;
 }
-.component {
-	background-color: $color-section-bg;
-}
-.component {
-	padding: 20px;
-}
+
 .btn {
 	justify-content: start;
 	width: 100%;
@@ -35,4 +32,8 @@
 		color: $color-white;
 		background-color: $color-primary;
 	}
+}
+
+.border {
+	margin-bottom: 10px;
 }

@@ -5,11 +5,10 @@
 	grid-auto-flow: column;
 	align-items: center;
 	justify-content: start;
+	justify-self: start;
 	gap: 15px;
-	padding-top: 10px;
 	font-size: 13px;
 	color: $color-dark2;
-	border-top: 1px solid $color-border;
 	@include transition-all;
 	cursor: pointer;
 
@@ -19,6 +18,7 @@
 		}
 	}
 }
+
 .icon {
 	width: 13px;
 	height: 11px;

@@ -5,6 +5,7 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Logout } from '@shared/components/UI/Logout/Logout'
+import { Border } from '@shared/components/UI/Spacing/Border'
 
 import { Orders } from './Orders/Orders'
 import { ProfileDetails } from './ProfileDetails/ProfileDetails'
@@ -27,9 +28,9 @@ export const Profile = () => {
 	}
 
 	return (
-		<div className={s.profile}>
+		<>
 			<div className={s.layout}>
-				<aside className={s.aside}>
+				<aside>
 					<ul className={s.list}>
 						{profileNavList.map((item, index) => (
 							<li key={index} data-section={item.url}>
@@ -44,10 +45,11 @@ export const Profile = () => {
 							</li>
 						))}
 					</ul>
+					<Border className={s.border} />
 					<Logout onClick={handleLogout} />
 				</aside>
 				<Outlet />
 			</div>
-		</div>
+		</>
 	)
 }
