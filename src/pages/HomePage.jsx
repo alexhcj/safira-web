@@ -4,6 +4,7 @@ import { OfferLinks } from '@components/OfferLinks/OfferLinks'
 import { Offers } from '@components/Offers/Offers'
 import { ProductQuickView } from '@components/ProductQuickView/ProductQuickView'
 import { Promo } from '@components/Promo/Promo'
+import { BrandsSlider } from '@components/SliderSections/BrandsSlider/BrandsSlider'
 import { FeaturedProducts } from '@components/SliderSections/FeaturedProducts/FeaturedProducts'
 import { HeroSlider } from '@components/SliderSections/HeroSlider/HeroSlider'
 import { MostviewProducts } from '@components/SliderSections/MostviewProducts/MostviewProducts'
@@ -29,7 +30,8 @@ export const HomePage = () => {
 				<OurBlogPosts />
 				<Space space={65} />
 				<FeaturedProducts />
-				<Space space={46} />
+				<Space space={30} />
+				<BrandsSlider />
 				<ProductQuickView />
 			</ScrollToTop>
 		</ProductProvider>

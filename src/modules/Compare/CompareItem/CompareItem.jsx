@@ -105,7 +105,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 						</>
 					)}
 				</h4>
-				<Price price={price} className={s.price} />
+				<Price price={price} discount_price={discount_price} className={s.price} />
 				<div className={s.actions}>
 					<ButtonWithTooltip
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}

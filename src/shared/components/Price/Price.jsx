@@ -6,6 +6,7 @@ import { Text } from '../UI/Text/Text'
 
 import s from './price.module.scss'
 
+// types: 'sm' | 'large'
 export const Price = ({ price, discount_price, type, className }) => {
 	return (
 		<div className={cn(s.box, type && s[type], className)}>

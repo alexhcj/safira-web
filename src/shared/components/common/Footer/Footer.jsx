@@ -80,11 +80,11 @@ const informationList = [
 
 export const Footer = () => {
 	const location = useLocation()
-	const isBlankPage = location.pathname.slice(1) === 'blank-page'
+	const isPageWithoutBorder = location.pathname.slice(1) === 'blank-page' || location.pathname === '/'
 
 	return (
 		<div className='container'>
-			{!isBlankPage && <Border />}
+			{!isPageWithoutBorder && <Border />}
 			<Space space={70} />
 			<footer className={s.footer}>
 				<div className={s.meta}>

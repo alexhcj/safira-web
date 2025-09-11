@@ -6,36 +6,58 @@
 	align-items: baseline;
 	gap: 10px;
 }
+
 .price {
-	line-height: 20px;
+	line-height: 16px;
 	font-size: 17px;
 
 	&.default {
 		text-decoration: line-through;
-		line-height: 18px;
 		font-size: 15px;
 		font-weight: $weight-normal;
 	}
 }
+
 .discount_price {
-	line-height: 20px;
+	line-height: 16px;
 	font-size: 17px;
 	font-weight: $weight-medium;
 	color: $color-primary;
 }
 
 // sizes
+.sm {
+	gap: 5px;
+
+	.price {
+		line-height: 12px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+
+		&.default {
+			line-height: 12px;
+			font-size: 12px;
+			font-weight: $weight-normal;
+		}
+	}
+
+	.discount_price {
+		line-height: 12px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
+}
+
 .large {
 	.price {
-		line-height: 27px;
 		font-size: 23px;
+
+		&.default {
+			font-size: 20px;
+		}
 	}
-	.old {
-		line-height: 24px;
-		font-size: 20px;
-	}
+
 	.discount_price {
-		line-height: 27px;
 		font-size: 23px;
 	}
 }

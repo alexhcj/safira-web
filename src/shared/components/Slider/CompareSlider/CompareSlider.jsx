@@ -8,6 +8,7 @@ import { CompareItem } from '@modules/Compare/CompareItem/CompareItem'
 
 import { Arrow } from '../Arrow/Arrow'
 
+import './alice-carousel-override-compare-slider.css'
 import s from './compare-slider.module.scss'
 
 const createItems = (type, products, activeCategory, removeSlide) => {

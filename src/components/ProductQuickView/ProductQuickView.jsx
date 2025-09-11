@@ -7,6 +7,7 @@ import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Modal } from '@shared/components/Modal/Modal'
 import { Price } from '@shared/components/Price/Price'
+import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { slugToStr } from '@utils/string'
@@ -17,7 +18,7 @@ export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const navigate = useNavigate()
-	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications } = product
+	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications, tags } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
@@ -46,6 +47,7 @@ export const ProductQuickView = () => {
 							<h2 className={s.name}>{product.name}</h2>
 						</NavLink>
 						<Price className={s.price} {...price} />
+						{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
 						<p className={s.description}>{description}</p>
 						<div className={s.category}>
 							<Text span weight='medium'>
