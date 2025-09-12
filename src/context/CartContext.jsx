@@ -20,7 +20,7 @@ export function useCartContext() {
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useLocalStorage('cart', [])
 
-	const addToCart = ({ name, slug, price, discountPrice, specifications }, quantity) => {
+	const addToCart = ({ name, slug, price, specifications }, quantity) => {
 		const productInCart = cart.find((product) => product.slug === slug)
 
 		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
