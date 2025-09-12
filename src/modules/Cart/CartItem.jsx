@@ -8,7 +8,7 @@ import Trash from '@assets/svg/trash.svg?react'
 
 import s from './styles/cart-item.module.scss'
 
-export const CartItem = ({ slug, img, name, price, discount_price, quantity, maxQuantity, onInput, onDelete }) => {
+export const CartItem = ({ slug, img, name, price, discountPrice, quantity, maxQuantity, onInput, onDelete }) => {
 	return (
 		<tr className={s.item}>
 			<td className={s.delete}>
@@ -29,7 +29,7 @@ export const CartItem = ({ slug, img, name, price, discount_price, quantity, max
 				</Link>
 			</td>
 			<td className={s.price}>
-				<Price className={s.price_font} price={price} discount_price={discount_price} />
+				<Price className={s.price_font} price={price} discountPrice={discountPrice} />
 			</td>
 			<td className={s.quantity}>
 				<form>
@@ -47,7 +47,7 @@ export const CartItem = ({ slug, img, name, price, discount_price, quantity, max
 					</div>
 				</form>
 			</td>
-			<td className={s.total}>${(discount_price ? discount_price * quantity : price * quantity).toFixed(2)}</td>
+			<td className={s.total}>${(discountPrice ? discountPrice * quantity : price * quantity).toFixed(2)}</td>
 		</tr>
 	)
 }

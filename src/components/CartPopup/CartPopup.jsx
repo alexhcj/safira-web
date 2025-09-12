@@ -38,7 +38,7 @@ export const CartPopup = () => {
 				<h3 className={s.title}>Cart</h3>
 			</div>
 			<ul className={s.list}>
-				{cart.map(({ slug, name, img, subCategory, price, discount_price }) => {
+				{cart.map(({ slug, name, img, subCategory, price, discountPrice }) => {
 					const url = {
 						pathname: `/products/${slug}`,
 						state: {
@@ -57,7 +57,7 @@ export const CartPopup = () => {
 									<h2 className={s.name}>{name}</h2>
 								</Link>
 								<div className={s.price}>
-									{productQuantityInCart(slug)} x <Price type='sm' price={price} discount_price={discount_price} />
+									{productQuantityInCart(slug)} x <Price type='sm' price={price} discountPrice={discountPrice} />
 								</div>
 							</div>
 							<button className={s.btn_remove} type='button' onClick={() => removeFromCart(slug)}>

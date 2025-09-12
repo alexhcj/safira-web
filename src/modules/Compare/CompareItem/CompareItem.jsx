@@ -29,7 +29,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
-	const { slug, name, quantity, rating, price, discount_price, tags, subCategory } = product
+	const { slug, name, quantity, rating, price, discountPrice, tags, subCategory } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const isProductInCartList = isProductInCart(slug)
 	const isProductInWishList = isProductInWishlist(slug)
@@ -61,7 +61,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				name,
 				price: {
 					price,
-					discount_price,
+					discountPrice,
 				},
 				specifications: { quantity },
 			}
@@ -105,7 +105,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 						</>
 					)}
 				</h4>
-				<Price price={price} discount_price={discount_price} className={s.price} />
+				<Price price={price} discountPrice={discountPrice} className={s.price} />
 				<div className={s.actions}>
 					<ButtonWithTooltip
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}

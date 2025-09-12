@@ -37,8 +37,8 @@ export const Cart = () => {
 							</td>
 						</tr>
 					) : (
-						cart.map(({ slug, name, img, price, discount_price, quantity }) => {
-							const product = { slug, name, img, price, discount_price, quantity }
+						cart.map(({ slug, name, img, price, discountPrice, quantity }) => {
+							const product = { slug, name, img, price, discountPrice, quantity }
 
 							return <CartItem key={slug} {...product} onInput={handleQuantity} onDelete={removeFromCart} />
 						})
