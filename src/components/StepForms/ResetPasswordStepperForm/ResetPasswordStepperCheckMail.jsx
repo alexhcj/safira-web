@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Link, useLocation } from 'react-router-dom'
 
-import { useProfile } from '@hooks/services/useProfile'
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
+import { useResetPasswordStepperContext } from '@context/ResetPasswordStepperContext'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Text } from '@shared/components/UI/Text/Text'
@@ -12,7 +11,7 @@ import s from './reset-password-stepper-form.module.scss'
 
 export const ResetPasswordStepperCheckMail = ({ onSubmit }) => {
 	const location = useLocation()
-	const [step, setStep] = useLocalStorage('reset-password-stepper')
+	const { step, setStep } = useResetPasswordStepperContext()
 	const [isLoading, setIsLoading] = useState(false)
 	// const [linkError, setLinkError] = useState({ isError: true, message: 'Link expired', type: 'expiration' })
 

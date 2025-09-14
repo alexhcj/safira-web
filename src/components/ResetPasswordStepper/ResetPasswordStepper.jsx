@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { useResetPasswordStepperContext } from '@context/ResetPasswordStepperContext'
+
 import { useVerifications } from '@hooks/services/useVerifications'
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { ResetPasswordStepperCheckMail } from '@components/StepForms/ResetPasswordStepperForm/ResetPasswordStepperCheckMail'
 import { ResetPasswordStepperFormEmail } from '@components/StepForms/ResetPasswordStepperForm/ResetPasswordStepperFormEmail'
@@ -48,11 +49,11 @@ const steps = [
 export const ResetPasswordStepper = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
+	const { step, setStep } = useResetPasswordStepperContext()
 	const { forgotPassword, resetForgotPassword, isLoading } = useVerifications()
-	const [step, setStep] = useLocalStorage('reset-password-stepper', { step: 0 })
 
 	useEffect(() => {
-		if (step.step === 'finish') setStep({ step: 0 })
+		if (step.step === 'finish') setStep({ step: 0, email: '' })
 	}, [])
 
 	useEffect(() => {
@@ -66,7 +67,7 @@ export const ResetPasswordStepper = () => {
 			case 'enter-profile-email': {
 				const res = await forgotPassword(value)
 
-				if (res && res.statusCode === 200) {
+				if (res && res.success && res.statusCode === 200) {
 					setStep({ step: 1, email: value.email })
 				}
 				break
@@ -80,7 +81,7 @@ export const ResetPasswordStepper = () => {
 			case 'reset-password': {
 				const res = await resetForgotPassword(value)
 
-				if (res && res.statusCode === 200) {
+				if (res && res.success && res.statusCode === 200) {
 					setStep({ step: 'finish' })
 					navigate('/reset-password', { replace: true })
 				} else {
