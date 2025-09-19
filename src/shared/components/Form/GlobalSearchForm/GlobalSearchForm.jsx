@@ -17,8 +17,12 @@ const globalSearchFormValidationSchema = {
 		required('Search field should not be empty.'),
 		minLength(2, 'Search should be at least 2 characters.'),
 		maxLength(100, 'Search cannot exceed 100 characters.'),
-		pattern(/^[a-zA-Z0-9\s.,!?'"()]+$/, 'Search can only contain letters, numbers, spaces and basic punctuation.'),
+		pattern(
+			/^[a-zA-Z0-9\s.,!?'"()\-+=&%#@]+$/,
+			'Search can only contain letters, numbers, spaces and basic punctuation.',
+		),
 		pattern(/^(?!\s*$).+/, 'Search cannot contain only whitespace.'),
+		pattern(/^(?!.*[.,!?'"()\-+=&%#@]{3,}).*$/, 'Too many consecutive special characters.'),
 	],
 }
 
