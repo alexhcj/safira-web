@@ -51,8 +51,10 @@ export const GlobalSearch = () => {
 	const handleSubmit = async (state) => {
 		if (state.search === '') return
 
-		addToSearch(state.search.trim())
-		const res = await findAllMatches({ search: strToSlug(state.search.trim()) })
+		const trimmedSearch = state.search.trim()
+
+		addToSearch(trimmedSearch)
+		const res = await findAllMatches({ search: trimmedSearch })
 
 		if (res && res.success) {
 			setSearch(res.search)
