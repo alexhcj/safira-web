@@ -31,7 +31,7 @@ export const Copyright = () => {
 						<img className={s.img} src={payment4} alt='' />
 					</div>
 					<span className={s.version}>
-						<Link className={s.link} target='_blank' to='https://safira-store.shop'>
+						<Link className={s.link} target='_blank' to='https://safira-store.online'>
 							v{import.meta.env.VITE_APP_VERSION}
 						</Link>
 					</span>

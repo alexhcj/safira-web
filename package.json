@@ -24,7 +24,7 @@
 		"node": ">=22.16.0",
 		"npm": ">=8.0.0"
 	},
-	"homepage": "https://safira-store.shop/",
+	"homepage": "https://safira-store.online/",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
