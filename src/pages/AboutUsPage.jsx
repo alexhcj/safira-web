@@ -18,7 +18,6 @@ export const AboutUsPage = () => {
 			<Works />
 			<Space space={64} />
 			<Clients />
-			<Space space={53} />
 		</ScrollToTop>
 	)
 }
