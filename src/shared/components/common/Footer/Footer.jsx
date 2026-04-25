@@ -73,7 +73,7 @@ const informationList = [
 		link: '/site-map',
 	},
 	{
-		text: 'Roadmap',
+		text: 'Road map',
 		link: '/road-map',
 	},
 ]
