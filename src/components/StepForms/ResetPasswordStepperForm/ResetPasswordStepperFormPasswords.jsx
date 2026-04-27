@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 import { useLocation } from 'react-router-dom'
 
+import { useResetPasswordStepperContext } from '@context/ResetPasswordStepperContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
-import { useLocalStorage } from '@hooks/useLocalStorage.hook'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
@@ -34,7 +35,7 @@ const changePasswordFormValidationSchema = {
 
 export const ResetPasswordStepperFormPasswords = ({ type, isLoading, onSubmit }) => {
 	const location = useLocation()
-	const [step] = useLocalStorage('reset-password-stepper')
+	const { step } = useResetPasswordStepperContext()
 	const initialFormState = {
 		password: '',
 		confirmPassword: '',

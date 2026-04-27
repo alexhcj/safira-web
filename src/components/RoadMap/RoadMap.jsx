@@ -20,7 +20,7 @@ export const RoadMap = () => {
 					</div>
 					<span className={s.version}>
 						Current stable{' '}
-						<Link className={s.link} target='_blank' to='https://safira-store.shop'>
+						<Link className={s.link} target='_blank' to='https://safira-store.online'>
 							v{import.meta.env.VITE_APP_VERSION}
 						</Link>
 					</span>
@@ -28,7 +28,7 @@ export const RoadMap = () => {
 				<div className={s.stages}>
 					<div className={s.stage}>
 						<div className={s.stage_header}>
-							<h4 className={s.stage_title}>Safira v1.0.0 — Coming Fall 2025</h4>
+							<h4 className={s.stage_title}>Safira v1.0.0 — Coming Summer 2026</h4>
 							<span className={s.stage_count}>{firstStage.length}</span>
 						</div>
 						<ul className={s.stage_list}>

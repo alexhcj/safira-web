@@ -7,15 +7,15 @@ import { Text } from '../UI/Text/Text'
 import s from './price.module.scss'
 
 // types: 'sm' | 'large'
-export const Price = ({ price, discount_price, type, className }) => {
+export const Price = ({ price, discountPrice, type, className }) => {
 	return (
 		<div className={cn(s.box, type && s[type], className)}>
-			{discount_price && (
+			{discountPrice && (
 				<Text className={s.discount_price} span>
-					{formatPrice(discount_price)}
+					{formatPrice(discountPrice)}
 				</Text>
 			)}
-			<Text className={cn(s.price, discount_price && s.default)} span>
+			<Text className={cn(s.price, discountPrice && s.default)} span>
 				{formatPrice(price)}
 			</Text>
 		</div>

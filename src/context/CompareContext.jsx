@@ -41,7 +41,7 @@ export const CompareProvider = ({ children }) => {
 			tags,
 			subCategory,
 			price: price.price,
-			discount_price: price.discount_price,
+			discountPrice: price.discountPrice,
 			specifications,
 		}
 

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '@context/AuthContext'
 
 import { Logout } from '@shared/components/UI/Logout/Logout'
+import { Border } from '@shared/components/UI/Spacing/Border'
 
 import s from './profile-popover-menu.module.scss'
 
@@ -17,8 +18,8 @@ export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
 	}
 
 	return (
-		<div className={s.profile}>
-			<ul>
+		<>
+			<ul className={s.list}>
 				{profileNavList.map((item, index) => (
 					<li key={index}>
 						<NavLink className={s.link} to={'/profile'}>
@@ -27,7 +28,8 @@ export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
 					</li>
 				))}
 			</ul>
+			<Border className={s.border} />
 			<Logout onClick={handleLogout} />
-		</div>
+		</>
 	)
 }

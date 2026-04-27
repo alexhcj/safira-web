@@ -59,6 +59,7 @@ export const Testimonials = () => {
 				animationType='fadeout'
 				animationDuration={250}
 				renderDotsItem={dot}
+				autoHeight
 			/>
 		</div>
 	)

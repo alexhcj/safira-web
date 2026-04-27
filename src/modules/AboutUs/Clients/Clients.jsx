@@ -5,7 +5,7 @@ import s from './clients.module.scss'
 
 export const Clients = () => {
 	return (
-		<section>
+		<section className={s.section}>
 			<div className='container'>
 				<div className={s.box}>
 					<Faq />

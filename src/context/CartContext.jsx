@@ -20,7 +20,7 @@ export function useCartContext() {
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useLocalStorage('cart', [])
 
-	const addToCart = ({ name, slug, price, discount_price, specifications }, quantity) => {
+	const addToCart = ({ name, slug, price, specifications }, quantity) => {
 		const productInCart = cart.find((product) => product.slug === slug)
 
 		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
 			name,
 			img,
 			price: price.price,
-			discount_price: price.discount_price,
+			discountPrice: price.discountPrice,
 			maxQuantity: specifications.quantity,
 		}
 
@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
 	const cartTotalPrice = () => {
 		const items = cart.map((product) => ({
 			quantity: product.quantity,
-			price: product.discount_price ? product.discount_price : product.price,
+			price: product.discountPrice ? product.discountPrice : product.price,
 		}))
 
 		return calculateTotalPrice(items)

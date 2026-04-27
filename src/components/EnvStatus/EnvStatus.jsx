@@ -26,7 +26,7 @@ export const EnvStatus = () => {
 		},
 		production: {
 			name: 'Production',
-			url: 'https://safira-store.shop',
+			url: 'https://safira-store.online',
 			current: import.meta.env.MODE === 'production',
 		},
 	}
