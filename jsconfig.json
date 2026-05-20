@@ -12,7 +12,8 @@
 			"@shared/*": ["src/shared/*"],
 			"@utils/*": ["src/utils/*"],
 			"@assets/*": ["src/assets/*"]
-		}
+		},
+		"jsx": "react-jsx"
 	},
 	"include": ["src"]
 }
