@@ -13,7 +13,7 @@ import { slugToStr } from '@utils/string'
 
 import s from './productcard.module.scss'
 
-// sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'row' | 'row-xs'
+// sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'list' | 'list-xs'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
@@ -40,7 +40,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	}
 
 	const handleMenuToggle = (e) => {
-		if (size === 'row') return
+		if (size === 'list') return
 
 		if (e.type === 'mouseenter') {
 			setMenuToggle(true)
@@ -59,7 +59,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 		>
 			<NavLink className={s.img_link} to={url} state={linkState}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
-				{size !== 'xs' && size !== 'row-xs' && <Tags {...price} createdAt={createdAt} />}
+				{size !== 'xs' && size !== 'list-xs' && <Tags {...price} createdAt={createdAt} />}
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
@@ -67,31 +67,33 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 						{name}
 					</NavLink>
 				</h3>
-				{size !== 'row-xs' && (
-					<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-						<button
-							type='button'
-							onClick={handleSubCategoryClick}
-							className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
-						>
-							{slugToStr(subCategory)}
-						</button>
-						{tags && (
-							<>
-								<span className={s.subCategory_divider}>•</span>
-								<DietaryTags tags={tags.dietaries} />
-							</>
-						)}
-					</h4>
-				)}
-				{size !== 'row-xs' && (
-					<Price
-						{...price}
-						className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'row') && s.flex_start)}
-					/>
-				)}
-				{size === 'row' && <p className={s.description}>{description}</p>}
-				{size !== 'row-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
+				<div className={s.card_bottom}>
+					{size !== 'list-xs' && (
+						<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
+							<button
+								type='button'
+								onClick={handleSubCategoryClick}
+								className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
+							>
+								{slugToStr(subCategory)}
+							</button>
+							{tags && (
+								<>
+									<span className={s.subCategory_divider}>•</span>
+									<DietaryTags tags={tags.dietaries} />
+								</>
+							)}
+						</h4>
+					)}
+					{size !== 'list-xs' && (
+						<Price
+							{...price}
+							className={cn(s.prices, priceToggle && s.hide, (size === 'xs' || size === 'list') && s.flex_start)}
+						/>
+					)}
+					{size === 'list' && <p className={s.description}>{description}</p>}
+					{size !== 'list-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
+				</div>
 			</div>
 		</div>
 	)
