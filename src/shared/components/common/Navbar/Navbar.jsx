@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { NavLink, useLocation } from 'react-router-dom'
 
+import { SupportBadge } from '@shared/components/UI/SupportBadge/SupportBadge'
 import { CategoriesDropdown } from '../../UI/CategoriesDropdown/CategoriesDropdown'
 
 import phone from '@assets/images/phone.png'
@@ -9,6 +10,8 @@ import phone from '@assets/images/phone.png'
 import s from './navbar.module.scss'
 
 export const Navbar = () => {
+	// Tablet + mobile
+	const isTablet = useIsBelow(991)
 	const [sticky, setSticky] = useState(false)
 	const location = useLocation()
 
@@ -51,15 +54,7 @@ export const Navbar = () => {
 							Contact us
 						</NavLink>
 					</nav>
-					<div className={s.support}>
-						<img src={phone} alt='Phone support icon' />
-						<div className={s.support__block}>
-							<a className={s.support__link} href='tel:781234777999'>
-								(812) 34 777 999
-							</a>
-							<span className={s.support__text}>Customer support</span>
-						</div>
-					</div>
+					{!isTablet && <SupportBadge />}
 				</div>
 			</div>
 		</div>

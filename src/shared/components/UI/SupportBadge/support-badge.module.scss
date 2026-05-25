@@ -1,0 +1,27 @@
+@use '@shared/styles/vars' as *;
+
+.support {
+	display: flex;
+	align-items: center;
+
+	&_block {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		margin-left: 10px;
+	}
+
+	&_link {
+		line-height: 15px;
+		font-size: 15px;
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	&_text {
+		line-height: 15px;
+		font-size: 13px;
+	}
+}
