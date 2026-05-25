@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .env {
 	position: fixed;
@@ -8,7 +9,17 @@
 	height: 40px;
 	display: block;
 	z-index: $z-index100;
+	@include transition-all;
+
+	@include breakpoint-max(450px) {
+		left: 12px;
+
+		&.footer_reached {
+			bottom: 142px;
+		}
+	}
 }
+
 .env_icon {
 	display: block;
 
@@ -22,6 +33,7 @@
 		}
 	}
 }
+
 .popover {
 	position: absolute;
 	bottom: 0;
@@ -31,28 +43,33 @@
 	background-color: $color-white;
 	border: 1px solid $color-border;
 }
+
 .header {
 	margin-bottom: 15px;
 	padding-bottom: 12px;
 	border-bottom: 1px solid $color-border;
 }
+
 .title {
 	letter-spacing: 0;
 	line-height: 22px;
 	font-size: 14px;
 	font-weight: $weight-normal;
 }
+
 .env_list {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
+
 .env_row {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 20px;
 }
+
 .env_item {
 	display: flex;
 	align-items: center;
@@ -63,6 +80,7 @@
 		padding-left: 5px;
 	}
 }
+
 .env_indicator {
 	position: relative;
 	width: 12px;
@@ -73,6 +91,7 @@
 			.env_pulse {
 				background-color: $color-primary-40;
 			}
+
 			.env_dot {
 				background-color: $color-primary;
 			}
@@ -82,12 +101,14 @@
 			.env_pulse {
 				background-color: $color-confidence-40;
 			}
+
 			.env_dot {
 				background-color: $color-confidence;
 			}
 		}
 	}
 }
+
 .env_pulse {
 	position: absolute;
 	top: 50%;
@@ -98,6 +119,7 @@
 	transform: translate(-50%, -50%);
 	animation: pulseAnimation 1.5s ease-out infinite;
 }
+
 .env_dot {
 	position: absolute;
 	top: 50%;
@@ -108,6 +130,7 @@
 	background-color: $color-dark;
 	transform: translate(-50%, -50%);
 }
+
 @keyframes pulseAnimation {
 	0% {
 		transform: translate(-50%, -50%) scale(1);
@@ -122,15 +145,18 @@
 		opacity: 0.8;
 	}
 }
+
 .env_name {
 	line-height: 20px;
 	font-size: 14px;
 }
+
 .actions {
 	display: flex;
 	align-items: center;
 	gap: 7px;
 }
+
 .action_button {
 	display: flex;
 	align-items: center;
@@ -141,6 +167,7 @@
 		}
 	}
 }
+
 .copied_icon {
 	width: 15px;
 	height: 15px;
@@ -149,6 +176,7 @@
 		fill: $color-primary;
 	}
 }
+
 .animateEnter {
 	opacity: 0;
 	transform: translateX(0);

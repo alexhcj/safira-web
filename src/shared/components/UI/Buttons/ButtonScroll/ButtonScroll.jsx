@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 
-import classNames from 'classnames/bind'
+import cn from 'classnames'
 import { Link, animateScroll as scroll } from 'react-scroll'
 
-import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
+import { useFooterProximity } from '@hooks/useFooterProximity'
 
+import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
 
 import s from './button-scroll.module.scss'
 
 export const ButtonScroll = () => {
+	const isFooterReached = useFooterProximity('#copyright')
 	const [scrollBtn, setScrollBtn] = useState(false)
 
 	const showScroll = () => {
@@ -31,11 +33,14 @@ export const ButtonScroll = () => {
 		scroll.scrollToTop()
 	}
 
-	let cx = classNames.bind(s)
-	let btnCN = cx(s.btn, { [s.show]: scrollBtn })
-
 	return (
-		<Link to='nav' className={btnCN} onClick={toggleHome} duration={400} spy={true}>
+		<Link
+			to='nav'
+			className={cn(s.btn, { [s.show]: scrollBtn, [s.footer_reached]: isFooterReached })}
+			onClick={toggleHome}
+			duration={400}
+			spy={true}
+		>
 			<DoubleArrowSVG />
 		</Link>
 	)
