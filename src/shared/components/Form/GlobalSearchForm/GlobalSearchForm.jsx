@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 
+import cn from 'classnames'
+
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -26,7 +28,7 @@ const globalSearchFormValidationSchema = {
 	],
 }
 
-export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
+export const GlobalSearchForm = ({ isSticky, handleInputClick, handleSubmit }) => {
 	const { state, addCurrentSearch } = useRecentSearchContext()
 	const inputRef = useRef(null)
 	const searchRef = useRef(null)
@@ -91,7 +93,7 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 	}
 
 	return (
-		<div className={s.search} ref={searchRef}>
+		<div className={cn(s.search, isSticky && s.sticky)} ref={searchRef}>
 			<form>
 				<input
 					ref={inputRef}

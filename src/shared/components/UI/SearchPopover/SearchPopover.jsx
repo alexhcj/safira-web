@@ -18,6 +18,7 @@ export const SearchPopover = ({
 	randomProduct,
 	search,
 	isSearched,
+	isSticky,
 }) => {
 	const navigate = useNavigate()
 	const { recentSearch, addCurrentSearch, removeFromSearch, state } = useRecentSearchContext()
@@ -43,10 +44,10 @@ export const SearchPopover = ({
 	}
 
 	return (
-		<div className={cn(s.popover, { [s.active]: isOpen })}>
+		<div className={cn(s.popover, { [s.active]: isOpen, [s.sticky]: isSticky })}>
 			<ul className={s.list} onClick={handleSearchClick} data-link='link'>
 				{Object.keys(search).length === 0 && Object.keys(randomProduct).length > 0 && !isSearched && (
-					<ProductCard product={randomProduct} imgSize='xs' size='row-xs' data-link='link' />
+					<ProductCard product={randomProduct} imgSize='xs' size='list-xs' data-link='link' />
 				)}
 				{Object.keys(search).length > 0 && search.search.length === 0 && isSearched && (
 					<div>Nothing was found. Try searching other keywords</div>
@@ -56,7 +57,7 @@ export const SearchPopover = ({
 					search.search.map((item) =>
 						item.type === 'product' ? (
 							<li key={item.slug} onClick={handleSearchClick} data-link='link'>
-								<ProductCard product={item} imgSize='xs' size='row-xs' />
+								<ProductCard product={item} imgSize='xs' size='list-xs' />
 							</li>
 						) : (
 							<li key={item.slug} onClick={handleSearchClick} data-link='link'>

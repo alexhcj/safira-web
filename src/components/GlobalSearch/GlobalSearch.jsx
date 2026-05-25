@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
+import cn from 'classnames'
+
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
 import { useRandomProduct } from '@hooks/services/useRandomProduct'
@@ -8,11 +10,10 @@ import { useSearch } from '@hooks/services/useSearch'
 import { GlobalSearchForm } from '@shared/components/Form/GlobalSearchForm/GlobalSearchForm'
 import { SearchPopover } from '@shared/components/UI/SearchPopover/SearchPopover'
 
-import { strToSlug } from '@utils/string'
-
 import s from './global-search.module.scss'
 
-export const GlobalSearch = () => {
+// view: mobile
+export const GlobalSearch = ({ className, isSticky }) => {
 	const { addToSearch } = useRecentSearchContext()
 	const { product } = useRandomProduct()
 	const { findAllMatches } = useSearch()
@@ -74,8 +75,8 @@ export const GlobalSearch = () => {
 	}
 
 	return (
-		<div className={s.search} ref={searchRef} onKeyDown={onKeyDownHandler}>
-			<GlobalSearchForm handleInputClick={handleInputClick} handleSubmit={handleSubmit} />
+		<div className={cn(s.search, className)} ref={searchRef} onKeyDown={onKeyDownHandler}>
+			<GlobalSearchForm handleInputClick={handleInputClick} handleSubmit={handleSubmit} isSticky={isSticky} />
 			<SearchPopover
 				isOpen={isPopoverToggled}
 				setIsPopoverToggled={setIsPopoverToggled}
@@ -83,6 +84,7 @@ export const GlobalSearch = () => {
 				randomProduct={product}
 				search={search}
 				isSearched={isSearched}
+				isSticky={isSticky}
 			/>
 		</div>
 	)

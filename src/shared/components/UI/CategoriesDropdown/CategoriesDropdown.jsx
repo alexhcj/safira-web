@@ -3,7 +3,12 @@ import { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
+import { useAccordion } from '@hooks/useAccordion'
+import { useIsBelow } from '@hooks/useIsBelow'
+
 import { categories } from '@modules/Categories/categories-data'
+
+import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
 
 import { SubNav } from './SubNav/SubNav'
 
@@ -11,38 +16,49 @@ import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './categories-dropdown.module.scss'
 
-export const CategoriesDropdown = () => {
+export const CategoriesDropdown = ({ isSticky }) => {
+	// Tablet + mobile
+	const isTablet = useIsBelow(991)
 	const [popupToggle, setPopupToggle] = useState(false)
 	const [toggleNavSubCategory, setToggleNavSubCategory] = useState(null)
 	const navigate = useNavigate()
 	const ref = useRef(null)
 
+	const accordion = useAccordion((primeCategory) => {
+		const cat = categories.find((c) => c.primeCategory === primeCategory)
+		const query = { primeCategory, limit: '12', offset: '0', sort: 'popularity', order: 'desc' }
+		navigate(`/shop?${new URLSearchParams(query)}`, {
+			state: JSON.stringify({ primeCategory: { name: cat?.name, slug: primeCategory } }),
+		})
+		closePopup()
+	})
+
+	// close + full reset when popup closes
+	const closePopup = () => {
+		setPopupToggle(false)
+		accordion.reset()
+	}
+
 	useEffect(() => {
+		const escKeyHandler = (e) => {
+			if (e.key === 'Escape') closePopup()
+		}
+		const clickOutsideHandler = (e) => {
+			if (ref.current && !ref.current.contains(e.target)) closePopup()
+		}
 		document.addEventListener('keydown', escKeyHandler)
 		document.addEventListener('click', clickOutsideHandler)
-
 		return () => {
 			document.removeEventListener('keydown', escKeyHandler)
 			document.removeEventListener('click', clickOutsideHandler)
 		}
 	}, [])
 
-	const escKeyHandler = (e) => {
-		if (e.key === 'Escape') {
-			setPopupToggle(false)
-		}
-	}
-
+	// ---- Desktop handlers ----
 	const onCategoriesClickHandler = (e) => {
 		if (e.target.id !== 'categories') return
 		setPopupToggle(false)
 		navigate('/categories')
-	}
-
-	const clickOutsideHandler = (e) => {
-		if (ref.current && !ref.current.contains(e.target)) {
-			setPopupToggle(false)
-		}
 	}
 
 	const handleNavSubToggle = (e, category) => {
@@ -70,28 +86,67 @@ export const CategoriesDropdown = () => {
 		setPopupToggle(false)
 	}
 
+	// ---- Mobile/tablet handlers ----
+	const onMobileCategoriesTap = () => {
+		if (!popupToggle) {
+			setPopupToggle(true)
+		} else {
+			closePopup()
+			navigate('/categories')
+		}
+	}
+
+	// ---- Render ----
 	return (
 		<div
-			className={s.categories}
+			className={cn(s.categories, isSticky && s.sticky)}
 			role='presentation'
-			onMouseEnter={() => setPopupToggle(true)}
-			onMouseLeave={() => setPopupToggle(false)}
-			onClick={onCategoriesClickHandler}
+			onMouseEnter={!isTablet ? () => setPopupToggle(true) : undefined}
+			onMouseLeave={!isTablet ? () => setPopupToggle(false) : undefined}
+			onClick={!isTablet ? onCategoriesClickHandler : undefined}
+			onPointerUp={isTablet ? onMobileCategoriesTap : undefined}
 			ref={ref}
 			id='categories'
 		>
 			<div className={s.burger}>
-				<span></span>
-				<span></span>
-				<span></span>
+				<span />
+				<span />
+				<span />
 			</div>
-			All categories
+			<span className={s.text}>All categories</span>
 			<ArrowSVG className={s.svg} />
+
 			<nav className={cn(s.popup, popupToggle && s.active)}>
 				{categories
 					.sort((a, b) => (b.name < a.name ? 1 : -1))
 					.map(({ name, primeCategory, subCategories }) => {
-						return (
+						const isOpen = accordion.openId === primeCategory
+						const isPending = accordion.pendingId === primeCategory
+
+						return isTablet ? (
+							<AccordionItem
+								key={primeCategory}
+								label={name}
+								isLeaf={!subCategories}
+								isOpen={isOpen}
+								isPending={isPending}
+								onRowTap={() => accordion.handleRowTap(primeCategory)}
+								onCollapse={() => accordion.handleCollapse(primeCategory)}
+							>
+								{subCategories && (
+									<SubNav
+										key={accordion.openId}
+										subCategories={subCategories}
+										setPopupToggle={setPopupToggle}
+										resetAccordion={accordion.reset}
+										primeCategory={primeCategory}
+										primeCategoryName={name}
+										isTablet
+									/>
+								)}
+							</AccordionItem>
+						) : (
+							// ---- Desktop row ----
 							<ul
 								className={s.prime_category}
 								key={primeCategory}
@@ -101,7 +156,7 @@ export const CategoriesDropdown = () => {
 							>
 								<li className={s.link} id={primeCategory} data-name={name}>
 									{name}
-									{subCategories && <ArrowSVG className={s.svg_subcategories} />}
+									{subCategories && <ArrowSVG className={s.svg} />}
 								</li>
 								{subCategories && (
 									<SubNav
@@ -110,6 +165,7 @@ export const CategoriesDropdown = () => {
 										setPopupToggle={setPopupToggle}
 										primeCategory={primeCategory}
 										primeCategoryName={name}
+										isTablet={false}
 									/>
 								)}
 							</ul>
