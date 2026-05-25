@@ -1,0 +1,115 @@
+@use "sass:map";
+@use '@shared/styles/vars' as *;
+
+// Breakpoint mixins
+@mixin mobile-s {
+	@media (min-width: #{map.get($breakpoints, mobile-s)}) {
+		@content;
+	}
+}
+
+@mixin mobile-m {
+	@media (min-width: #{map.get($breakpoints, mobile-m)}) {
+		@content;
+	}
+}
+
+@mixin mobile-l {
+	@media (min-width: #{map.get($breakpoints, mobile-l)}) {
+		@content;
+	}
+}
+
+@mixin tablet-s {
+	@media (min-width: #{map.get($breakpoints, tablet-s)}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{map.get($breakpoints, tablet)}) {
+		@content;
+	}
+}
+
+@mixin tablet-l {
+	@media (min-width: #{map.get($breakpoints, tablet-l)}) {
+		@content;
+	}
+}
+
+@mixin laptop-m {
+	@media (min-width: #{map.get($breakpoints, laptop-m)}) {
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media (min-width: #{map.get($breakpoints, laptop)}) {
+		@content;
+	}
+}
+
+@mixin laptop-s {
+	@media (min-width: #{map.get($breakpoints, laptop-s)}) {
+		@content;
+	}
+}
+
+@mixin laptop-l {
+	@media (min-width: #{map.get($breakpoints, laptop-l)}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{map.get($breakpoints, desktop)}) {
+		@content;
+	}
+}
+
+// Custom breakpoint mixin
+@mixin breakpoint($size) {
+	@if map-has-key($breakpoints, $size) {
+		@media (min-width: #{map.get($breakpoints, $size)}) {
+			@content;
+		}
+	} @else {
+		@media (min-width: #{$size}) {
+			@content;
+		}
+	}
+}
+
+// Max-width breakpoints (for mobile-first exceptions)
+@mixin mobile-only {
+	@media (max-width: #{map.get($breakpoints, tablet-s) - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet-only {
+	@media (min-width: #{map.get($breakpoints, tablet)}) and (max-width: #{map.get($breakpoints, laptop) - 1px}) {
+		@content;
+	}
+}
+
+// Between breakpoints
+@mixin between($min, $max) {
+	@media (min-width: #{map.get($breakpoints, $min)}) and (max-width: #{map.get($breakpoints, $max) - 1px}) {
+		@content;
+	}
+}
+
+// Custom max-width breakpoint
+@mixin breakpoint-max($size) {
+	@if map-has-key($breakpoints, $size) {
+		@media (max-width: #{map.get($breakpoints, $size)}) {
+			@content;
+		}
+	} @else {
+		@media (max-width: #{$size}) {
+			@content;
+		}
+	}
+}

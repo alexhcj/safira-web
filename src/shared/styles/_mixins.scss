@@ -1,0 +1,33 @@
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+// Responsive Grid Mixins
+@mixin responsive-grid($mobile: 1, $tablet: 2, $laptop: 3, $desktop: 3) {
+	display: grid;
+	gap: var(--grid-gap);
+	grid-template-columns: repeat(#{$mobile}, 1fr);
+
+	@include tablet {
+		grid-template-columns: repeat(#{$tablet}, 1fr);
+	}
+
+	@include laptop {
+		grid-template-columns: repeat(#{$laptop}, 1fr);
+	}
+
+	@include laptop-l {
+		grid-template-columns: repeat(#{$desktop}, 1fr);
+	}
+}
+
+// Container mixin
+@mixin container($max-width: $container-m) {
+	margin: 0 auto;
+	padding: 0 var(--container-padding, 12px);
+	max-width: #{$max-width};
+	width: 100%;
+
+	@include tablet {
+		max-width: $container;
+	}
+}
