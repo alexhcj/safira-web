@@ -78,37 +78,62 @@ const informationList = [
 	},
 ]
 
+const contactsList = [
+	{
+		type: 'address',
+		label: 'Address',
+		text: 'Saint Petersburg, Russia, 191040',
+		href: 'https://goo.gl/maps/STZQGHm5kxchbajm8',
+	},
+	{
+		type: 'email',
+		label: 'Email',
+		text: 'foodstore@ecommerce.com',
+		href: 'mailto:foodstore@ecommerce.com',
+	},
+	{
+		type: 'phone',
+		label: 'Call us',
+		text: '(921) 34 777 999',
+		href: 'tel:781234777999',
+	},
+]
+
 export const Footer = () => {
 	const location = useLocation()
 	const isPageWithoutBorder = location.pathname.slice(1) === 'blank-page' || location.pathname === '/'
 
 	return (
 		<div className='container'>
-			{!isPageWithoutBorder && <Border />}
-			<Space space={70} />
+			{!isPageWithoutBorder && <Border className={s.border} />}
 			<footer className={s.footer}>
 				<div className={s.meta}>
-					<NavLink to='/'>
-						<img className={s.img} src={logo} alt='' />
+					<NavLink className={s.logo_link} to='/'>
+						<img src={logo} alt='Safira logo' />
 					</NavLink>
-					<div>
+					<div className={s.description}>
 						We are a team of developers and designers that create high quality and flexible projects with variety stack
 						technology.
 					</div>
-					<div className={s.address}>
-						Address:
-						<a target='_blank' rel='noreferrer' href='https://goo.gl/maps/STZQGHm5kxchbajm8'>
-							Saint Petersburg, Russia, 191040
-						</a>
-					</div>
-					<div className={s.email}>
-						Email:
-						<a href='mailto:foodstore@ecommerce.com'>foodstore@ecommerce.com</a>
-					</div>
-					<div className={s.phone}>
-						Call us:
-						<a href='tel:781234777999'>(812) 34 777 999</a>
-					</div>
+					<ul className={s.contacts}>
+						{contactsList.map((item) =>
+							item.type === 'address' ? (
+								<li className={s.contact} key={item.type}>
+									<strong className={s.label}>{item.label}:</strong>
+									<a className={s.contact_link} target='_blank' rel='noreferrer' href={item.href}>
+										{item.text}
+									</a>
+								</li>
+							) : (
+								<li className={s.contact} key={item.type}>
+									<strong className={s.label}>{item.label}:</strong>
+									<a className={s.contact_link} href={item.href}>
+										{item.text}
+									</a>
+								</li>
+							),
+						)}
+					</ul>
 				</div>
 				<div className={s.links_column}>
 					<h3 className={s.title}>Shopping tools</h3>
@@ -138,7 +163,7 @@ export const Footer = () => {
 				</div>
 				<Subscribe />
 			</footer>
-			<Space space={64} />
+			<Space size='md' />
 		</div>
 	)
 }

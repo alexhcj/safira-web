@@ -1,76 +1,200 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.border {
+	margin-top: var(--space-2xl);
+
+	@include tablet {
+		margin-top: var(--space-3xl);
+	}
+}
 
 .footer {
 	display: flex;
-}
-
-.img {
-	margin-bottom: 24px;
-	width: 118px;
-	height: 28px;
-}
-
-.meta {
-	max-width: 340px;
-	width: 100%;
-	padding-right: 30px;
-
-	div {
-		margin-bottom: 6px;
-		line-height: 22px;
-		font-size: 14px;
-
-		&:nth-child(2) {
-			margin-bottom: 22px;
-		}
-
-		a {
-			margin-left: 5px;
-			font-weight: 400;
-		}
-	}
-}
-
-.address,
-.email,
-.phone {
-	font-weight: 600;
-
-	a:hover {
-		color: $color-primary;
-	}
-}
-
-.list {
-	display: flex;
 	flex-direction: column;
-}
-
-.item {
-	display: flex;
 	align-items: center;
-	gap: 10px;
-}
+	gap: var(--space-1xl);
+	padding-top: var(--space-2xl);
 
-.link {
-	text-transform: capitalize;
-	letter-spacing: $letter-spacing-lg;
-	line-height: 30px;
-	white-space: nowrap;
+	@include tablet-s {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto auto;
+		align-items: start;
+		gap: 60px var(--space-xl);
+	}
 
-	&:hover {
-		color: $color-primary;
+	@include tablet {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto auto;
+		gap: var(--space-xl);
+		padding-top: var(--space-3xl);
+	}
+
+	@include laptop-s {
+		display: flex;
+		flex-direction: row;
+		gap: var(--grid-gap);
+	}
+
+	.meta {
+		width: 100%;
+		text-align: center;
+
+		@include tablet-s {
+			grid-column: 1 / 4;
+			grid-row: 1 / 2;
+			text-align: left;
+		}
+
+		@include tablet {
+			grid-column: 1 / -1;
+			grid-row: 1 / 2;
+		}
+
+		@include laptop-s {
+			max-width: 320px;
+		}
+
+		.logo_link {
+			margin-bottom: 18px;
+
+			@include laptop-s {
+				margin-bottom: 24px;
+			}
+		}
+
+		.description {
+			margin-bottom: 16px;
+			line-height: 22px;
+
+			@include tablet-s {
+				margin-bottom: 10px;
+				font-size: 13px;
+			}
+
+			@include laptop-s {
+				margin-bottom: 22px;
+			}
+		}
+
+		.contacts {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 6px;
+
+			@include tablet-s {
+				align-items: start;
+			}
+
+			.contact {
+				display: flex;
+				gap: 6px;
+				line-height: 22px;
+
+				@include tablet-s {
+					font-size: 13px;
+				}
+
+				.label {
+					font-weight: $weight-semi;
+				}
+
+				&_link {
+					white-space: pre;
+
+					&:hover {
+						color: $color-primary;
+					}
+				}
+			}
+		}
 	}
 }
 
 .links_column {
-	padding-right: 30px;
-}
+	text-align: center;
 
-.title {
-	text-transform: capitalize;
-	margin-bottom: 20px;
-	line-height: 18px;
-	font-size: 17px;
-	font-weight: 500;
+	@include tablet-s {
+		&:nth-child(2) {
+			grid-column: 4 / -1;
+			grid-row: 1 / 2;
+		}
+
+		&:nth-child(3) {
+			grid-column: 1 / 2;
+			grid-row: 2 / 3;
+		}
+	}
+
+	@include tablet {
+		&:nth-child(2) {
+			grid-column: 1 / 2;
+			grid-row: 2 / 3;
+		}
+
+		&:nth-child(3) {
+			grid-column: 2 / 3;
+			grid-row: 2 / 3;
+		}
+	}
+
+	.title {
+		text-transform: capitalize;
+		margin-bottom: 10px;
+		line-height: 18px;
+		font-size: 17px;
+		font-weight: $weight-medium;
+
+		@include tablet-s {
+			text-align: left;
+		}
+
+		@include tablet {
+			margin-bottom: 16px;
+		}
+
+		@include tablet-l {
+			margin-bottom: 20px;
+		}
+	}
+
+	.list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		@include tablet-s {
+			align-items: start;
+		}
+	}
+
+	.item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		position: relative;
+
+		@include tablet-s {
+			position: initial;
+		}
+	}
+
+	.link {
+		text-transform: capitalize;
+		letter-spacing: $letter-spacing-lg;
+		line-height: 30px;
+		white-space: nowrap;
+
+		@include tablet-s {
+			line-height: 25px;
+			font-size: 13px;
+		}
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
 }
