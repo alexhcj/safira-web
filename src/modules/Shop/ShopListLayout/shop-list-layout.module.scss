@@ -1,10 +1,17 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .list {
 	display: flex;
 	align-items: center;
 	gap: 16px;
+	margin-bottom: 20px;
+
+	@include tablet {
+		margin-bottom: 0;
+	}
 }
+
 .item {
 	position: relative;
 	display: flex;
@@ -22,6 +29,7 @@
 		opacity: 1;
 	}
 }
+
 .image {
 	opacity: 0.2;
 	transition: $transition-opacity;
@@ -30,6 +38,7 @@
 		opacity: 1;
 	}
 }
+
 .tooltip {
 	position: absolute;
 	right: -25px;

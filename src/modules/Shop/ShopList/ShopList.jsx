@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { gridTypes, useGridContext } from '@context/GridContext'
+import { useGridContext } from '@context/GridContext'
 
 import { ProductCard } from '@components/ProductCard/ProductCard'
 
@@ -10,9 +10,11 @@ import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound
 import s from './shop-list.module.scss'
 
 const gridTypesToProduct = {
+	'grid-1': 'lg',
+	'grid-2': 'lg',
 	'grid-3': 'lg',
 	'grid-4': 'md-lg',
-	'grid-list': 'row',
+	'grid-list': 'list',
 }
 
 export const ShopList = ({ products, loading }) => {
