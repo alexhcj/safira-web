@@ -5,12 +5,14 @@ import { useLocation } from 'react-router-dom'
 import { setupErrorHandling } from '@api/api'
 
 import { AuthProvider } from '@context/AuthContext'
+import { BurgerPopupProvider } from '@context/BurgerPopupContext'
 import { CartProvider } from '@context/CartContext'
 import { CartPopupProvider } from '@context/CartPopupContext'
 import { CompareProvider } from '@context/CompareContext'
 import { ErrorProvider, useErrorContext } from '@context/ErrorContext'
 import { WishlistProvider } from '@context/WishlistContext'
 
+import { BurgerPopup } from '@components/BurgerPopup/BurgerPopup'
 import { CartPopup } from '@components/CartPopup/CartPopup'
 import { Copyright } from '@components/Copyright/Copyright'
 import { DbWarmUpPopup } from '@components/DBWarmUpModal/DbWarmUpPopup'
@@ -61,17 +63,20 @@ const AppLayout = ({ children }) => {
 						<WishlistProvider>
 							<CartProvider>
 								<CartPopupProvider>
-									<CompareProvider>
-										<Header />
-										{children}
-										<Footer />
-										<Copyright />
-										<ButtonScroll />
-										<ResponseError />
-										<DbWarmUpPopup />
-										<CartPopup />
-										<EnvStatus />
-									</CompareProvider>
+									<BurgerPopupProvider>
+										<CompareProvider>
+											<Header />
+											{children}
+											<Footer />
+											<Copyright />
+											<ButtonScroll />
+											<ResponseError />
+											<DbWarmUpPopup />
+											<CartPopup />
+											<BurgerPopup />
+											<EnvStatus />
+										</CompareProvider>
+									</BurgerPopupProvider>
 								</CartPopupProvider>
 							</CartProvider>
 						</WishlistProvider>

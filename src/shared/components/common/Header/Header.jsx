@@ -4,14 +4,19 @@ import cn from 'classnames'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
+import { useBurgerPopupContext } from '@context/BurgerPopupContext'
 import { useCartContext } from '@context/CartContext'
 import { useCartPopupContext } from '@context/CartPopupContext'
 import { useCompareContext } from '@context/CompareContext'
 import { RecentSearchProvider } from '@context/RecentSearchContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+
 import { GlobalSearch } from '@components/GlobalSearch/GlobalSearch'
 import { ProfilePopoverMenu } from '@components/ProfilePopoverMenu/ProfilePopoverMenu'
+
+import { Burger } from '@shared/components/UI/Burger/Burger'
 
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
 import { Popover } from '../../UI/Popover/Popover'
@@ -64,7 +69,11 @@ const socialsList = [
 // ]
 
 export const Header = () => {
+	// Tablet + mobile
+	const isTablet = useIsBelow(991)
+	const isMobileM = useIsBelow(375)
 	const location = useLocation()
+	const { isOpen: isBurgerOpen, setIsOpen: setIsBurgerOpen } = useBurgerPopupContext()
 	const { setIsOpen } = useCartPopupContext()
 	const [sticky, setSticky] = useState(false)
 	const [isPopoverShown, setIsPopoverShown] = useState(false)
@@ -96,83 +105,93 @@ export const Header = () => {
 		}
 	}, [location.pathname])
 
+	const handleBurgerToggle = () => {
+		setIsBurgerOpen(!isBurgerOpen)
+	}
+
 	return (
-		<div className={`${s.navbar}`}>
-			<span className={s.navbar__border}></span>
-			<div className={s.top}>
-				<div className='container'>
-					<div className={s.navbar__top}>
-						<div className={s.meta}>
-							<MetaPopup text='Language' data={languages} />
-							<span className={s.meta__divider}>|</span>
-							<MetaPopup text='Currency' data={currencies} />
+		<RecentSearchProvider>
+			<div className={`${s.navbar}`}>
+				<span className={s.navbar__border}></span>
+				<div className={s.top}>
+					<div className='container'>
+						<div className={s.navbar__top}>
+							<div className={s.meta}>
+								<MetaPopup text='Language' data={languages} />
+								<span className={s.meta__divider}>|</span>
+								<MetaPopup text='Currency' data={currencies} />
+							</div>
+							<Socials socials={socialsList} />
 						</div>
-						<Socials socials={socialsList} />
 					</div>
 				</div>
-			</div>
-			<div className={`${s.navbar__center} ${sticky ? `${s.padding}` : ''} `}>
-				<div className='container'>
-					<div className={s.center}>
-						<NavLink to='/'>
-							<img src={logo} alt='' />
-						</NavLink>
-						<div className={s.search}>
-							<RecentSearchProvider>
-								<GlobalSearch />
-							</RecentSearchProvider>
-						</div>
-						<div className={s.account}>
-							{user ? (
-								<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
+				<div className={`${s.navbar__center} ${sticky ? `${s.padding}` : ''} `}>
+					<div className='container'>
+						<div className={s.center}>
+							<NavLink className={s.logo_link} to='/'>
+								<img className={s.logo} src={logo} alt='' />
+							</NavLink>
+							{!isTablet && <GlobalSearch className={s.search} />}
+							<div className={s.account}>
+								{user ? (
+									<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
+										<NavLink
+											to='/profile'
+											className={cn(s.account_link, location.pathname.slice(1) === 'profile' && s.active)}
+										>
+											<ProfileSVG />
+										</NavLink>
+										<Popover isOpen={isPopoverShown}>
+											<ProfilePopoverMenu setIsPopoverShown={setIsPopoverShown} />
+										</Popover>
+									</div>
+								) : (
+									<div className={s.auth}>
+										<NavLink to='/register' className={s.auth__link}>
+											Register
+										</NavLink>
+										<span className={s.auth__divider}>/</span>
+										<NavLink to='/login' state={{ from: location }} replace className={s.auth__link}>
+											Login
+										</NavLink>
+									</div>
+								)}
+								{!isMobileM && (
 									<NavLink
-										to='/profile'
-										className={cn(s.account_link, location.pathname.slice(1) === 'profile' && s.active)}
+										to='/compare'
+										className={cn(s.account_link, location.pathname.slice(1) === 'compare' && s.active)}
 									>
-										<ProfileSVG />
+										<CompareSVG className={cn(s.account_link_svg, s.compare_link)} />
+										<span className={s.count}>{calcTotalCompareItems()}</span>
 									</NavLink>
-									<Popover isOpen={isPopoverShown}>
-										<ProfilePopoverMenu setIsPopoverShown={setIsPopoverShown} />
-									</Popover>
-								</div>
-							) : (
-								<div className={s.auth}>
-									<NavLink to='/register' className={s.auth__link}>
-										Register
-									</NavLink>
-									<span className={s.auth__divider}>/</span>
-									<NavLink to='/login' state={{ from: location }} replace className={s.auth__link}>
-										Login
-									</NavLink>
+								)}
+								<NavLink
+									to='/wishlist'
+									className={cn(s.account_link, location.pathname.slice(1) === 'wishlist' && s.active)}
+								>
+									<HeartSVG className={s.account_link_svg} />
+									<span className={s.count}>{wishlist.length}</span>
+								</NavLink>
+								<button
+									type='button'
+									className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}
+									onClick={() => setIsOpen(true)}
+								>
+									<CartSVG className={s.account_link_svg} />
+									<span className={s.count}>{cart.length}</span>
+								</button>
+							</div>
+
+							{isTablet && (
+								<div className={s.burger}>
+									<Burger onClick={handleBurgerToggle} />
 								</div>
 							)}
-							<NavLink
-								to='/compare'
-								className={cn(s.account_link, location.pathname.slice(1) === 'compare' && s.active)}
-							>
-								<CompareSVG className={s.compare_link} />
-								<span className={s.count}>{calcTotalCompareItems()}</span>
-							</NavLink>
-							<NavLink
-								to='/wishlist'
-								className={cn(s.account_link, location.pathname.slice(1) === 'wishlist' && s.active)}
-							>
-								<HeartSVG />
-								<span className={s.count}>{wishlist.length}</span>
-							</NavLink>
-							<button
-								type='button'
-								className={cn(s.account_link, location.pathname.slice(1) === 'cart' && s.active)}
-								onClick={() => setIsOpen(true)}
-							>
-								<CartSVG />
-								<span className={s.count}>{cart.length}</span>
-							</button>
 						</div>
 					</div>
 				</div>
+				<Navbar />
 			</div>
-			<Navbar />
-		</div>
+		</RecentSearchProvider>
 	)
 }
