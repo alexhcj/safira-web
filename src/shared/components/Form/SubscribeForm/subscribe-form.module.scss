@@ -1,21 +1,30 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .input {
 	position: relative;
 	width: 100%;
-	height: 46px;
+	height: 40px;
+
+	@include tablet-l {
+		height: 46px;
+	}
 
 	input {
-		padding: 0 120px 0 20px;
+		padding: 0 94px 0 20px;
 		width: 100%;
 		height: 100%;
-		border: 1px solid #ededed;
+		border: 1px solid $color-border2;
 		border-radius: 30px;
+
+		@include tablet {
+			padding: 0 120px 0 20px;
+		}
 
 		&::placeholder {
 			letter-spacing: normal;
 			font-size: 13px;
-			font-family: 'Work Sans', sans-serif;
+			font-family: $WorkSans;
 			color: $color-dark;
 		}
 	}
@@ -24,8 +33,24 @@
 		min-height: 46px;
 	}
 }
+
 .btn_subscribe {
-	min-width: 110px;
+	padding: 0 11px;
+
+	@include tablet {
+		padding: 0 15px;
+	}
+
+	span {
+		letter-spacing: normal;
+		font-size: 12px;
+	}
+
+	@include tablet {
+		span {
+			font-size: 14px;
+		}
+	}
 
 	&.loading {
 		background-color: $color-dark;
