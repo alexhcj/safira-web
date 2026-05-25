@@ -1,4 +1,14 @@
+@use '@shared/styles/breakpoints' as *;
+
 .aside {
 	display: grid;
-	gap: 33px;
+	gap: 48px;
+
+	@include tablet {
+		gap: 57px;
+	}
+
+	@include tablet-l {
+		gap: 33px;
+	}
 }

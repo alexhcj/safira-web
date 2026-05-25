@@ -16,7 +16,7 @@ export const Shop = () => {
 	return (
 		<>
 			<div className='container'>
-				<div className={s.wrapper}>
+				<div className='row'>
 					<div className={s.main}>
 						<GridProvider>
 							<ShopSort meta={meta} />

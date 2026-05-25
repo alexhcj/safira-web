@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .title {
 	margin-bottom: 20px;
@@ -8,4 +9,12 @@
 	font-size: 15px;
 	font-weight: $weight-medium;
 	border-bottom: 1px solid $color-border2;
+
+	@include tablet-l {
+		font-size: 18px;
+	}
+
+	@include laptop-m {
+		font-size: 15px;
+	}
 }
