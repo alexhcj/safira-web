@@ -1,33 +1,70 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
-	margin-bottom: 70px;
-	padding: 58px 0;
-	background: url('../../../../assets/images/breadcrumb/1.jpg') no-repeat 100% 50%;
+	margin-bottom: var(--space-2xl);
+	padding: var(--space-lg) 0;
+	background-color: $color-section-bg;
+	background-image: url('../../../../assets/images/breadcrumb/breadcrumb-1.jpg'), url('../../../../assets/images/breadcrumb/breadcrumb-2.jpg');
+	background-repeat: no-repeat, no-repeat;
+	background-position: -50px 0, calc(100% + 70px) 100%;
+	background-size: 30%, 30%;
+
+	@include tablet-s {
+		background-position: -30px 0, calc(100% + 50px) 100%;
+		background-size: 30%, 30%;
+	}
+
+	@include tablet {
+		margin-bottom: var(--space-3xl);
+		padding: var(--space-2xl) 0;
+		background-position: -80px 0, calc(100% + 180px) 100%;
+	}
+
+	@include laptop {
+		background-position: -60px 0, calc(100% + 110px) 100%;
+	}
+
+	@include laptop-m {
+		background-position: -40px 0, calc(100% + 50px) 100%;
+	}
+
+	@include laptop-l {
+		background-position: 0 0, 100% 100%;
+	}
 }
+
 .content {
 	display: grid;
 	justify-content: center;
 	justify-items: center;
+	gap: 10px;
 }
+
 .page {
 	text-transform: capitalize;
-	line-height: 50px;
-	font-size: 42px;
+	line-height: 26px;
+	font-size: 26px;
 	font-weight: $weight-normal;
+
+	@include tablet {
+		line-height: 50px;
+		font-size: 42px;
+	}
 }
+
 .breadcrumbs {
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
 	gap: 7px;
 }
+
 .breadcrumb,
 .page_breadcrumb {
 	text-transform: capitalize;
-	line-height: 24px;
-	font-size: 14px;
 }
+
 .breadcrumb {
 	cursor: pointer;
 
@@ -35,6 +72,7 @@
 		color: $color-primary;
 	}
 }
+
 .category {
 	display: flex;
 	align-items: center;

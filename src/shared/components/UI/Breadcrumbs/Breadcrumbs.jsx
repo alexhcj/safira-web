@@ -60,7 +60,6 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 		<div className={s.section}>
 			<div className={s.content}>
 				<h3 className={s.page}>{pagePathname}</h3>
-				<Space space={9} />
 				<div className={s.breadcrumbs}>
 					<div>
 						<NavLink to='/' className={cn(s.breadcrumb, s.link)}>
