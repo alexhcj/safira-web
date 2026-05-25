@@ -6,7 +6,7 @@ import s from './copyright.module.scss'
 
 export const Copyright = () => {
 	return (
-		<div className={s.section}>
+		<div className={s.section} id='copyright'>
 			<div className='container'>
 				<div className={s.block}>
 					<div className={s.copyright}>
