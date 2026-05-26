@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import cn from 'classnames'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -18,6 +18,23 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 	const navigate = useNavigate()
+	const cardRef = useRef(null)
+
+	// Close the menu when the user taps/clicks outside the card.
+	// Covers both mouse (click) and touch (pointerdown) dismissal.
+	useEffect(() => {
+		if (!menuToggle) return
+
+		const handleOutside = (e) => {
+			if (cardRef.current && !cardRef.current.contains(e.target)) {
+				setMenuToggle(false)
+				setPriceToggle(false)
+			}
+		}
+
+		document.addEventListener('pointerdown', handleOutside)
+		return () => document.removeEventListener('pointerdown', handleOutside)
+	}, [menuToggle])
 
 	const { slug, tags, name, primeCategory, subCategory, price, description, createdAt } = product
 
@@ -39,22 +56,44 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 		})
 	}
 
-	const handleMenuToggle = (e) => {
+	// pointerType distinguishes how the user is actually interacting right now:
+	//   'mouse' → standard hover/click desktop flow
+	//   'touch' → finger on phone/tablet
+	//   'pen'   → stylus; treat the same as touch
+	const handlePointerEnter = (e) => {
 		if (size === 'list') return
+		if (e.pointerType !== 'mouse') return // touch/pen use tap toggle instead
 
-		if (e.type === 'mouseenter') {
-			setMenuToggle(true)
-			!size && setPriceToggle(true) // don't change opacity for large
-		} else {
-			setMenuToggle(false)
-			!size && setPriceToggle(false)
-		}
+		setMenuToggle(true)
+		!size && setPriceToggle(true)
+	}
+
+	const handlePointerLeave = (e) => {
+		if (size === 'list') return
+		if (e.pointerType !== 'mouse') return
+
+		setMenuToggle(false)
+		!size && setPriceToggle(false)
+	}
+
+	const handlePointerDown = (e) => {
+		if (size === 'list') return
+		if (e.pointerType === 'mouse') return // mouse is handled by enter/leave
+
+		// Touch/pen: toggle the menu on each tap.
+		// No preventDefault() needed — we're not suppressing scroll or click,
+		// Hovermenu child buttons receive their click events normally.
+		const next = !menuToggle
+		setMenuToggle(next)
+		!size && setPriceToggle(next)
 	}
 
 	return (
 		<div
-			onMouseEnter={handleMenuToggle}
-			onMouseLeave={handleMenuToggle}
+			ref={cardRef}
+			onPointerEnter={handlePointerEnter}
+			onPointerLeave={handlePointerLeave}
+			onPointerDown={handlePointerDown}
 			className={cn(s.product, size && s[`product_${size}`], className)}
 		>
 			<NavLink className={s.img_link} to={url} state={linkState}>

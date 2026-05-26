@@ -17,7 +17,7 @@ import MagnifierSVG from '@assets/svg/magnifier.svg?react'
 
 import s from './hovermenu.module.scss'
 
-// sizes: 'xs' | 'sm' | 'lg' | 'row'
+// sizes: 'xs' | 'sm' | 'lg' | 'list'
 export const Hovermenu = ({ menuToggle, size, product }) => {
 	const { previewProduct } = useProductModalContext()
 	const { addToWishlist, isProductInWishlist, removeFromWishlist } = useWishlistContext()
@@ -41,8 +41,8 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 
 	return (
 		<div className={cn(s.menu, menuToggle && s.active, s[`menu_${size}`])}>
-			{size === 'row' ? (
-				<ButtonCart type='button' onClick={handleCartClick}>
+			{size === 'list' ? (
+				<ButtonCart type='button' onClick={handleCartClick} className={s.button_cart}>
 					<Text span color='white' weight='semi' className={s.button_cart_text}>
 						Add to cart
 					</Text>
@@ -50,7 +50,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 			) : (
 				<ButtonWithTooltip
 					className={cn(s.btn_action, isProductInCartList && s.active)}
-					buttonSize={size === 'row' ? 'lg' : 'default'}
+					buttonSize={size === 'list' ? 'lg' : 'default'}
 					buttonType='primary'
 					text={isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 					onClick={handleCartClick}
@@ -60,7 +60,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 			)}
 			<ButtonWithTooltip
 				className={s.btn_action}
-				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonSize={size === 'list' ? 'lg' : 'default'}
 				buttonType='primary'
 				text='Quick View'
 				onClick={() => previewProduct(product)}
@@ -69,7 +69,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 			</ButtonWithTooltip>
 			<ButtonWithTooltip
 				className={cn(s.btn_action, isProductInWishList && s.active)}
-				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonSize={size === 'list' ? 'lg' : 'default'}
 				buttonType='primary'
 				text={isProductInWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
 				onClick={handleWishlistClick}
@@ -78,7 +78,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 			</ButtonWithTooltip>
 			<ButtonWithTooltip
 				className={cn(s.btn_action, isProductInCompareList && s.active)}
-				buttonSize={size === 'row' ? 'lg' : 'default'}
+				buttonSize={size === 'list' ? 'lg' : 'default'}
 				buttonType='primary'
 				text={isProductInCompareList ? 'Remove from Compare' : 'Add to Compare'}
 				onClick={handleCompareClick}
