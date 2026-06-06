@@ -9,25 +9,23 @@ import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
 
 import s from './button-scroll.module.scss'
 
+const BUTTON_TRIGGER = 300
+
 export const ButtonScroll = () => {
 	const isFooterReached = useIntersection('#copyright')
-	const [scrollBtn, setScrollBtn] = useState(false)
-
-	const showScroll = () => {
-		if (window.scrollY >= 300) {
-			setScrollBtn(true)
-		} else {
-			setScrollBtn(false)
-		}
-	}
+	const [isBtnShown, setIsBtnShown] = useState(false)
 
 	useEffect(() => {
-		window.addEventListener('scroll', showScroll)
-
-		return function cleanup() {
-			window.removeEventListener('scroll', showScroll)
+		const handleScroll = () => {
+			setIsBtnShown(window.scrollY >= BUTTON_TRIGGER)
 		}
-	}, [scrollBtn])
+
+		window.addEventListener('scroll', handleScroll)
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
 
 	const toggleHome = () => {
 		scroll.scrollToTop()
@@ -36,7 +34,7 @@ export const ButtonScroll = () => {
 	return (
 		<Link
 			to='nav'
-			className={cn(s.btn, { [s.show]: scrollBtn, [s.footer_reached]: isFooterReached })}
+			className={cn(s.btn, { [s.show]: isBtnShown, [s.footer_reached]: isFooterReached })}
 			onClick={toggleHome}
 			duration={400}
 			spy={true}
