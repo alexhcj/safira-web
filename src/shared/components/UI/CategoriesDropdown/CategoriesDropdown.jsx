@@ -56,7 +56,7 @@ export const CategoriesDropdown = ({ isSticky }) => {
 
 	// ---- Desktop handlers ----
 	const onCategoriesClickHandler = (e) => {
-		if (e.target.id !== 'categories') return
+		if (e.currentTarget.id !== 'categories') return
 		setPopupToggle(false)
 		navigate('/categories')
 	}
