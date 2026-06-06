@@ -1,12 +1,14 @@
-import { createRef, useEffect, useMemo, useState } from 'react'
+import { createRef, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useProductsNew } from '@hooks/services/useProductsNew'
+import { useIntersection } from '@hooks/useIntersection'
+import { useIsBelow } from '@hooks/useIsBelow'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { BrandsNav } from './BrandsNav/BrandsNav'
 import { BrandsRow } from './BrandsRow/BrandsRow'
@@ -15,6 +17,15 @@ import s from './brands.module.scss'
 
 export const Brands = () => {
 	const navigate = useNavigate()
+	const isTablet = useIsBelow(BREAKPOINTS.tablet)
+	const triggerRef = useRef(null)
+	const observerOptions = useMemo(
+		() => ({
+			rootMargin: isTablet ? '-180px 0px 0px 0px' : '-36px 0px 0px 0px',
+		}),
+		[isTablet],
+	)
+	const isSticky = useIntersection(triggerRef, observerOptions)
 	const location = useLocation()
 	const { findAllBrands, isLoading } = useProductsNew()
 	const [brands, setBrands] = useState([])
@@ -61,18 +72,26 @@ export const Brands = () => {
 			<div className={s.block}>
 				<div>
 					<span className={s.title}>Browse by</span>
-					<div className={s.actions}>
-						<Button type={isBrandsPage ? 'secondary' : 'submit'} onClick={handleCategoriesNavigate}>
-							<Text span className={s.secondary_text}>
+					<div className={s.actions} ref={triggerRef}>
+						<Button
+							className={s.categories_action_btn}
+							type={isBrandsPage ? 'secondary' : 'submit'}
+							onClick={handleCategoriesNavigate}
+						>
+							<Text className={s.categories_btn} span>
 								Categories
 							</Text>
 						</Button>
-						<Button type={isBrandsPage ? 'submit' : 'secondary'} onClick={handleBrandsNavigate}>
-							<Text span color='white'>
+						<Button
+							className={s.brands_action_btn}
+							type={isBrandsPage ? 'submit' : 'secondary'}
+							onClick={handleBrandsNavigate}
+						>
+							<Text className={s.brands_btn} span>
 								Brands
 							</Text>
 						</Button>
-						<BrandsNav chars={availableChars} onClick={handleCharAnchorClick} />
+						<BrandsNav chars={availableChars} onClick={handleCharAnchorClick} isSticky={isSticky} isTablet={isTablet} />
 					</div>
 				</div>
 				<nav className={s.nav}>
@@ -82,7 +101,6 @@ export const Brands = () => {
 					))}
 				</nav>
 			</div>
-			<Space size='l' />
 		</div>
 	)
 }

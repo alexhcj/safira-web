@@ -31,20 +31,22 @@ const alphabet = [
 	'Z',
 ]
 
-export const BrandsNav = ({ chars, onClick }) => {
+export const BrandsNav = ({ chars, onClick, isSticky, isTablet }) => {
 	return (
-		<nav className={s.nav}>
-			{alphabet.map((char) => {
-				return (
-					<span
-						className={cn(s.char, { [s.available]: chars.includes(char) })}
-						key={char}
-						onClick={() => chars.includes(char) && onClick(chars[chars.indexOf(char)])}
-					>
-						{char}
-					</span>
-				)
-			})}
-		</nav>
+		<div className={cn(s.box, { [isTablet ? s.visible : s.sticky]: !isSticky })}>
+			<nav className={s.nav}>
+				{alphabet.map((char) => {
+					return (
+						<span
+							className={cn(s.char, { [s.available]: chars.includes(char) })}
+							key={char}
+							onClick={() => chars.includes(char) && onClick(chars[chars.indexOf(char)])}
+						>
+							{char}
+						</span>
+					)
+				})}
+			</nav>
+		</div>
 	)
 }
