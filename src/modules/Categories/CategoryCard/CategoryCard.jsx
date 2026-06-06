@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
+import { slugToStr } from '@/utils'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 
 import s from './category-card.module.scss'
@@ -7,12 +9,12 @@ import s from './category-card.module.scss'
 export const CategoryCard = ({ category }) => {
 	const navigate = useNavigate()
 	const { name, primeCategory, subCategories } = category
-	const img = `${import.meta.env.VITE_WEB_PUBLIC_URL}/assets/images/categories/${primeCategory}.jpg`
+	const img = `${import.meta.env.VITE_WEB_PUBLIC_URL}/assets/images/categories/${primeCategory}/72x72.jpg`
 
 	const handlePrimeCategoryClick = () => {
 		const query = `primeCategory=${primeCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({ primeCategory }),
+			state: JSON.stringify({ primeCategory: { name: slugToStr(primeCategory), slug: primeCategory } }),
 		})
 	}
 
@@ -31,7 +33,10 @@ export const CategoryCard = ({ category }) => {
 						const handleSubCategoryClick = () => {
 							const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 							navigate(`/shop?${new URLSearchParams(query)}`, {
-								state: JSON.stringify({ subCategory }),
+								state: JSON.stringify({
+									primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
+									subCategory: { name: slugToStr(subCategory), slug: subCategory },
+								}),
 							})
 						}
 

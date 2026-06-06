@@ -1,9 +1,9 @@
-//@import '../../shared/styles/grid';
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .block {
 	display: grid;
-	gap: 16px;
+	gap: var(--grid-gap);
 }
 
 .title {
@@ -20,14 +20,62 @@
 	gap: 10px;
 }
 
-.nav {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
+.categories_action_btn,
+.brands_action_btn {
+	width: 100px;
 }
 
-.secondary_text {
+.brands_action_btn {
+	align-self: center;
+	height: 40px;
+}
+
+.categories_action_btn {
+	height: 38px;
+}
+
+.categories_btn,
+.brands_btn {
+	line-height: 20px;
 	font-size: 12px;
 	font-weight: $weight-semi;
-	color: $color-dark;
+}
+
+.categories_btn {
+	color: $color-white;
+}
+
+// ─── Desktop grid: > 991px (original, untouched) ───
+.nav {
+	display: none;
+
+	@include tablet-l {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 8px;
+	}
+}
+
+// ─── Responsive wrapper ───
+.nav_responsive {
+	display: block;
+
+	@include tablet-l {
+		display: none;
+	}
+}
+
+// ─── Card grid — also hosts the panel as a full-width grid child ───
+.card_grid {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(2, 1fr);
+
+	@include tablet-s {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include tablet {
+		grid-template-columns: repeat(5, 1fr);
+	}
 }
