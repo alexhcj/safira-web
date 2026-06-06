@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { Link, animateScroll as scroll } from 'react-scroll'
 
-import { useFooterProximity } from '@hooks/useFooterProximity'
+import { useIntersection } from '@hooks/useIntersection'
 
 import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
 
 import s from './button-scroll.module.scss'
 
 export const ButtonScroll = () => {
-	const isFooterReached = useFooterProximity('#copyright')
+	const isFooterReached = useIntersection('#copyright')
 	const [scrollBtn, setScrollBtn] = useState(false)
 
 	const showScroll = () => {
