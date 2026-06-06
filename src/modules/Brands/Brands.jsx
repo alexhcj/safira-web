@@ -7,6 +7,7 @@ import { useIntersection } from '@hooks/useIntersection'
 import { useIsBelow } from '@hooks/useIsBelow'
 import { usePassedElement } from '@hooks/usePassedElement'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 import { BREAKPOINTS } from '@shared/data/breakpoints'
@@ -92,7 +93,9 @@ export const Brands = () => {
 					</div>
 				</div>
 				<nav className={s.nav}>
-					{isLoading && <div>loading...</div>}
+					{isLoading && <div className={s.preloader}>
+						<Preloader />
+					</div>}
 					{brands.map((item) => (
 						<BrandsRow {...item} key={item.name} rowRef={refs[item.name]} />
 					))}
