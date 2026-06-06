@@ -106,7 +106,7 @@ export const Footer = () => {
 	return (
 		<div className='container'>
 			{!isPageWithoutBorder && <Border className={s.border} />}
-			<footer className={s.footer}>
+			<footer className={s.footer} id='footer'>
 				<div className={s.meta}>
 					<NavLink className={s.logo_link} to='/'>
 						<img src={logo} alt='Safira logo' />

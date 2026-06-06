@@ -34,7 +34,7 @@ const alphabet = [
 
 export const BrandsNav = ({ chars, onClick, isSticky, isTablet }) => {
 	return (
-		<div className={cn(s.box, { [isTablet ? s.visible : s.sticky]: !isSticky })}>
+		<div className={cn(s.box, { [isTablet ? s.visible : s.sticky]: isSticky })}>
 			<nav className={s.nav}>
 				{alphabet.map((char) => {
 					return (

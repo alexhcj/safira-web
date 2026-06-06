@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 import { useIntersection } from '@hooks/useIntersection'
 import { useIsBelow } from '@hooks/useIsBelow'
+import { usePassedElement } from '@hooks/usePassedElement'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
@@ -19,13 +20,9 @@ export const Brands = () => {
 	const navigate = useNavigate()
 	const isTablet = useIsBelow(BREAKPOINTS.tablet)
 	const triggerRef = useRef(null)
-	const observerOptions = useMemo(
-		() => ({
-			rootMargin: isTablet ? '-180px 0px 0px 0px' : '-36px 0px 0px 0px',
-		}),
-		[isTablet],
-	)
-	const isSticky = useIntersection(triggerRef, observerOptions)
+	const hasPassedBrands = usePassedElement(triggerRef, isTablet ? 100 : 36)
+	const isFooterVisible = useIntersection('#footer')
+	const isSticky = hasPassedBrands && !isFooterVisible
 	const location = useLocation()
 	const { findAllBrands, isLoading } = useProductsNew()
 	const [brands, setBrands] = useState([])
