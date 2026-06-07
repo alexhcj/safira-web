@@ -57,13 +57,13 @@ export const HeroSlider = () => {
 		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
 			<img className={s.img} src={img} alt={title} />
 			<div className={s.inner}>
-				<div className='container'>
+				<div className={cn('container', s.container)}>
 					<div className={s.content}>
 						<h1 className={s.title}>{title}</h1>
 						<h2 className={s.subTitle}>{subTitle}</h2>
 						<p className={s.text}>{text}</p>
 						<NavLink to={url}>
-							<Button>
+							<Button className={s.btn}>
 								<Text className={s.btn_text} color='white'>
 									Read more
 								</Text>
@@ -82,8 +82,8 @@ export const HeroSlider = () => {
 			<AliceCarousel
 				responsive={responsive}
 				items={slides}
-				autoPlay={true}
-				autoPlayInterval={5000}
+				// autoPlay={true}
+				// autoPlayInterval={5000}
 				mouseTracking={true}
 				infinite={true}
 				disableButtonsControls={true}

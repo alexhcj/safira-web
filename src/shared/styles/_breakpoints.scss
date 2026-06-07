@@ -62,6 +62,12 @@
 	}
 }
 
+@mixin desktop-s {
+	@media (min-width: #{map.get($breakpoints, desktop-s)}) {
+		@content;
+	}
+}
+
 @mixin desktop {
 	@media (min-width: #{map.get($breakpoints, desktop)}) {
 		@content;

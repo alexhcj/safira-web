@@ -15,6 +15,7 @@ $breakpoints: (
 	laptop-s: 1100px,
 	laptop-m: 1200px,
 	laptop-l: 1440px,
+	desktop-s: 1600px,
 	desktop: 2560px
 );
 
@@ -82,7 +83,7 @@ $color-border-sort: #999999;
 $color-border-focus: color.adjust($color-border3, $lightness: -25%);
 $color-border-hover: #aeaeae;
 $separator: #ededed;
-$color-section-bg: #f4f4f4ff;
+$color-section-bg: #f4f4f4;
 $color-pagination-item-background: #f1f1f1;
 $color-sort: #f6f6f6;
 $color-timer-border: #e1e1e1;
@@ -104,12 +105,14 @@ $border-round: 50%;
 $color-modal-border: rgba(0, 0, 0, 0.6);
 
 // weights
+$weight-light: 300;
 $weight-normal: 400;
 $weight-medium: 500;
 $weight-semi: 600;
 $weight-bold: 700;
 
 // letter-spacing
+$letter-spacing-md: 0.28px;
 $letter-spacing-lg: 0.32px;
 $letter-spacing-lg-neg: -0.32px;
 
