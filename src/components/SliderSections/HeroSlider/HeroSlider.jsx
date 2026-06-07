@@ -82,8 +82,8 @@ export const HeroSlider = () => {
 			<AliceCarousel
 				responsive={responsive}
 				items={slides}
-				// autoPlay={true}
-				// autoPlayInterval={5000}
+				autoPlay={true}
+				autoPlayInterval={5000}
 				mouseTracking={true}
 				infinite={true}
 				disableButtonsControls={true}
