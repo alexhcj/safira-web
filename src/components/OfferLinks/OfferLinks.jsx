@@ -34,7 +34,7 @@ export const OfferLinks = () => {
 						return (
 							<li key={strToSlug(title)} onClick={(e) => handleOfferClick(link)}>
 								<button type='button' className={s.offer}>
-									<ImageWithFallback onlySrc imgSize='offer-link' src={offerUrl} alt={title} className={s.img} />
+									<ImageWithFallback onlySrc imgSize='offer-link' src={offerUrl} alt={title} />
 								</button>
 							</li>
 						)

@@ -1,12 +1,20 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .block {
 	display: grid;
-	grid-auto-flow: column;
+	grid-auto-flow: row;
 	align-items: center;
-	gap: 40px;
-	height: 190px;
+	gap: 30px;
+	padding: 60px 0 53px;
+
+	@include tablet {
+		grid-auto-flow: column;
+		gap: 40px;
+		padding: 70px 0 65px;
+	}
 }
+
 .offer {
 	position: relative;
 
@@ -49,9 +57,4 @@
 			@include transition-offer;
 		}
 	}
-}
-.img {
-	width: 540px;
-	height: 190px;
-	object-fit: cover;
 }
