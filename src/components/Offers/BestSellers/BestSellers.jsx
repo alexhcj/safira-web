@@ -33,9 +33,9 @@ export const BestSellers = () => {
 
 	const items = to2DArray(bestsellers, 2).map((col, index) => {
 		return (
-			<div key={index} style={{ padding: '0 10px' }}>
+			<div className={s.box} key={index}>
 				{col.map((product) => {
-					return <ProductCard className={s.product} size='xs' imgSize='xs' key={product.slug} product={product} />
+					return <ProductCard size='xs' imgSize='xs' key={product.slug} product={product} />
 				})}
 			</div>
 		)
@@ -43,6 +43,15 @@ export const BestSellers = () => {
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		576: {
+			items: 2,
+		},
+		768: {
+			items: 1,
+		},
+		991: {
 			items: 2,
 		},
 	}

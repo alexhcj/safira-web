@@ -1,16 +1,29 @@
-.product_tower {
-	display: grid;
-	gap: 30px;
-	padding: 0 10px;
+@use '@shared/styles/breakpoints' as *;
 
-	&.big {
-		gap: 45px;
+.slider {
+	padding: 30px 20px;
+
+	@include tablet-s {
+		& > div {
+			margin: 0 -10px;
+		}
 	}
 }
-.product {
-	margin-bottom: 0;
 
-	& > a + div {
-		align-self: center;
+.box {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	@include tablet-s {
+		margin: 0 10px;
+	}
+
+	&.mid {
+		gap: 45px;
+	}
+
+	&.big {
+		gap: 60px;
 	}
 }

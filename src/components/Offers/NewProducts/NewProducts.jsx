@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import { productsAPI } from '@api/products'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
 
 import { to2DArray } from '@utils/array'
@@ -42,12 +43,15 @@ export const NewProducts = () => {
 	}, [])
 
 	const items = to2DArray(newProducts, 2).map((col, index) => {
-		const isTopProductHeightBig = col[0].name.length < 28
+		const nameLength = col[0].name.length
 
 		return (
-			<div className={cn(s.product_tower, isTopProductHeightBig && s.big)} key={index}>
+			<div
+				className={cn(s.box, { [s.big]: nameLength < 28, [s.mid]: nameLength >= 28 && nameLength <= 43 })}
+				key={index}
+			>
 				{col.map((product) => {
-					return <ProductCard size='sm' imgSize='sm' key={product.slug} product={product} className={s.product} />
+					return <ProductCard size='sm' imgSize='sm' key={product.slug} product={product} />
 				})}
 			</div>
 		)
@@ -55,9 +59,21 @@ export const NewProducts = () => {
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		576: {
+			items: 2,
+		},
+		991: {
 			items: 3,
 		},
 	}
 
-	return <RowSlider title='New products' items={items} responsive={responsive} />
+	if (isLoading) {
+		return <Preloader />
+	}
+
+	return (
+		<RowSlider title='New products' type='new-products' items={items} responsive={responsive} className={s.slider} />
+	)
 }

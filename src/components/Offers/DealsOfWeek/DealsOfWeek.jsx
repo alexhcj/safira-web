@@ -33,7 +33,7 @@ export const DealsOfWeek = () => {
 		deals.map((product) => {
 			return (
 				<div className={s.deal} key={product.deal.slug}>
-					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='md-lg' />
+					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='lg' />
 					<Timer className={s.timer} type='days' date={product.expiresDate} />
 					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
 						Add to cart
@@ -46,10 +46,16 @@ export const DealsOfWeek = () => {
 		0: {
 			items: 1,
 		},
+		576: {
+			items: 2,
+		},
+		768: {
+			items: 1,
+		},
 	}
 
 	return (
-		<div>
+		<div className={s.box}>
 			<h2 className={s.heading}>Deals Of The Week</h2>
 			<div className={s.deals}>{<DealsOfWeekSlider items={items} responsive={responsive} />}</div>
 		</div>

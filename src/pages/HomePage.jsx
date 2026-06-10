@@ -19,7 +19,6 @@ export const HomePage = () => {
 			<ScrollToTop>
 				<HeroSlider />
 				<OfferLinks />
-				<Space space={65} />
 				<Offers />
 				<Space space={65} />
 				<Promo />
