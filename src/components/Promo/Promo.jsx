@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
 import { useBannerOffer } from '@hooks/services/useBannerOffer'
@@ -35,7 +36,7 @@ export const Promo = () => {
 		return (
 			<div className={s.section}>
 				<ImageWithFallback className={s.img} src={img} imgSize='promo' alt={text} />
-				<div className='container'>
+				<div className={cn('container', s.container)}>
 					<div className={s.block}>
 						<h4 className={s.upTitle}>{upTitle}</h4>
 						<h2 className={s.title}>{title}</h2>
