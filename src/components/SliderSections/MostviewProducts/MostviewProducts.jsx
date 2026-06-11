@@ -29,18 +29,34 @@ export const MostviewProducts = () => {
 		fetchData()
 	}, [])
 
-	const items = mostviewProducts.map((product) => {
-		return <ProductCard key={product.slug} product={product} className={s.product} size='sm' imgSize='sm' />
+	const items = mostviewProducts.map((product, idx) => {
+		return (
+			<div className={s.box} key={idx}>
+				<ProductCard product={product} size='sm' imgSize='sm' />
+			</div>
+		)
 	})
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		576: {
+			items: 2,
+		},
+		768: {
+			items: 3,
+		},
+		991: {
+			items: 4,
+		},
+		1200: {
 			items: 5,
 		},
 	}
 
 	return (
-		<>
+		<section className={s.section}>
 			<div className='container'>
 				<SectionSlider
 					title='Mostview products'
@@ -49,6 +65,6 @@ export const MostviewProducts = () => {
 					responsive={responsive}
 				/>
 			</div>
-		</>
+		</section>
 	)
 }

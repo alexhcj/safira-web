@@ -1,4 +1,15 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.box {
+	@include tablet-s {
+		margin: 0 -10px;
+	}
+
+	@include tablet-l {
+		margin: 0 -10px;
+	}
+}
 
 .slider {
 	background-color: transparent;
@@ -14,22 +25,20 @@
 }
 
 .arrow {
-	position: absolute;
-	top: 185px;
-	left: 1135px;
-	display: inline-flex;
-	padding: 0;
-	width: 22px;
-	height: 26px;
-	opacity: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	@include transition-all;
 
-	&.active {
-		opacity: 1;
+	@include laptop-m {
+		opacity: 0;
+
+		&.active {
+			opacity: 1;
+		}
 	}
 }
 
 .arrow_prev {
-	left: 0;
-	transform: scale(-1) translateX(100%);
+	transform: scale(-1);
 }
