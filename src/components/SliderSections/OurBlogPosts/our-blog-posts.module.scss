@@ -1,13 +1,17 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
+	padding: 53px 0 60px;
 	background-color: $color-section-bg;
+
+	@include tablet {
+		padding: 63px 0 70px;
+	}
 }
 
-.slider_bg {
-	background-color: $color-section-bg;
-}
-
-.post {
-	margin: 0 15px;
+.box {
+	@include tablet {
+		margin: 0 15px;
+	}
 }

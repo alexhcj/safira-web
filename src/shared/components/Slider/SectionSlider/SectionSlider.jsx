@@ -13,7 +13,7 @@ import { Arrow } from '../Arrow/Arrow'
 import os from './styles/alice-carousel-isolated.module.scss'
 import s from './styles/section-slider.module.scss'
 
-export const SectionSlider = ({ title, subtitle, items, responsive, className }) => {
+export const SectionSlider = ({ title, subtitle, type, items, responsive, className }) => {
 	const isLaptopM = useIsBelow(BREAKPOINTS.laptopM)
 	const [isArrowsShown, setIsArrowsShown] = useState(false)
 
@@ -22,7 +22,7 @@ export const SectionSlider = ({ title, subtitle, items, responsive, className })
 
 	return (
 		<div
-			className={cn(s.slider, os.sectionSliderWrapper, className)}
+			className={cn(s.slider, os.sectionSliderWrapper, type && os[type], className)}
 			onMouseEnter={() => setIsArrowsShown(true)}
 			onMouseLeave={() => setIsArrowsShown(false)}
 			onPointerDown={() => setIsArrowsShown(true)}

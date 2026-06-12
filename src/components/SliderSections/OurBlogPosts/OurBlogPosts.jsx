@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { postsAPI } from '@api/posts'
 
 import { SectionSlider } from '@shared/components/Slider/SectionSlider/SectionSlider'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { PostCard } from '../../PostCard/PostCard'
 
@@ -33,27 +32,35 @@ export const OurBlogPosts = () => {
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		768: {
+			items: 2,
+		},
+		991: {
 			items: 3,
 		},
 	}
 
-	const items = ourPosts.map((post) => {
-		return <PostCard key={post.slug} post={post} imgSize='md-lg' className={s.post} />
+	const items = ourPosts.map((post, idx) => {
+		return (
+			<div className={s.box} key={idx}>
+				<PostCard post={post} imgSize='md-lg' />
+			</div>
+		)
 	})
 
 	return (
 		<section className={s.section}>
-			<Space space={63} />
 			<div className='container'>
 				<SectionSlider
 					title='Our Blog Posts'
 					subtitle='Our recent articles abour Organic'
+					type='our-blog-posts'
 					items={items}
 					responsive={responsive}
-					className={s.slider_bg}
 				/>
 			</div>
-			<Space size='l' />
 		</section>
 	)
 }

@@ -22,7 +22,6 @@ export const HomePage = () => {
 				<Offers />
 				<Promo />
 				<MostviewProducts />
-				<Space space={65} />
 				<OurBlogPosts />
 				<Space space={65} />
 				<FeaturedProducts />
