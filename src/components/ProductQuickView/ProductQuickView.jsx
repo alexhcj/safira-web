@@ -31,34 +31,40 @@ export const ProductQuickView = () => {
 	const onClickHandler = () => {
 		setIsOpen(false)
 		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
-			state: JSON.stringify({ primeCategory, subCategory, basicCategory }),
+			state: JSON.stringify({
+				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
+				subCategory: { name: slugToStr(subCategory), slug: subCategory },
+				basicCategory: { name: slugToStr(basicCategory), slug: basicCategory },
+			}),
 		})
 	}
 
 	return (
 		<>
-			<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+			<Modal isOpen={isOpen} setIsOpen={setIsOpen} className={s.product_modal}>
 				<div className={s.content}>
-					<NavLink className={s.img_link} to={url}>
+					<NavLink to={url}>
 						<ImageWithFallback src={img} alt={name} imgSize='xl' />
 					</NavLink>
-					<div className={s.product}>
+					<div>
 						<NavLink to={url}>
 							<h2 className={s.name}>{product.name}</h2>
 						</NavLink>
 						<Price className={s.price} {...price} />
-						{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
-						<p className={s.description}>{description}</p>
-						<div className={s.category}>
-							<Text span weight='medium'>
-								Category:
-							</Text>
+						<div className={s.meta}>
 							<button type='button' onClick={onClickHandler}>
-								<Text className={s.tag} span>
+								<Text className={s.category} span>
 									{basicCategory && slugToStr(basicCategory)}
 								</Text>
 							</button>
+							{tags && (
+								<>
+									<span className={s.divider}>•</span>
+									<DietaryTags className={s.dietaries} size='m' tags={tags.dietaries} />
+								</>
+							)}
 						</div>
+						<p className={s.description}>{description}</p>
 						{specifications && (
 							<GoodToCart
 								maxQuantity={specifications.quantity}
@@ -69,6 +75,7 @@ export const ProductQuickView = () => {
 								label='none'
 								rounded={false}
 								btnClassName={s.btn}
+								className={s.action_btn}
 							/>
 						)}
 					</div>

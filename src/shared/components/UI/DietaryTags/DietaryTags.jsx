@@ -26,7 +26,7 @@ const dietaryTagsType = {
 	VEGETARIAN: <VegetarianSVG />,
 }
 
-// sizes: 'sm' | 'md'
+// sizes: 'sm' | 'm' | 'md'
 export const DietaryTags = ({ tags, size = 'sm', className }) => {
 	const dietaryTags =
 		tags &&

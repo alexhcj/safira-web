@@ -1,18 +1,73 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.product_modal {
+	@include breakpoint-max(575px) {
+		padding: 8px;
+	}
+
+	// .wrapper
+	& > div {
+		padding: 42px 6px 38px;
+		max-width: 728px;
+		border: 1px solid $color-product-modal-border;
+		background-clip: padding-box;
+
+		@include tablet {
+			padding-top: 30px;
+		}
+
+		@include tablet-l {
+			max-width: 948px;
+		}
+
+		@include laptop-m {
+			max-width: 1000px;
+		}
+
+		@include desktop-s {
+			max-width: 1100px;
+		}
+	}
+
+	// .btn_close
+	& > div > div > button {
+		top: 6px;
+		right: 6px;
+		width: 32px;
+		height: 32px;
+
+		@include tablet {
+			top: 10px;
+			right: 30px;
+			width: 35px;
+			height: 35px;
+		}
+	}
+}
 
 .content {
-	display: grid;
-	grid-auto-flow: column;
-	grid-template-columns: auto 1fr;
-	gap: 25px;
-}
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
 
-.img_link {
-	max-width: 428px;
-	max-height: 428px;
-}
+	@include tablet {
+		display: grid;
+		grid-template-columns: 275px 1fr;
+		gap: var(--grid-gap);
+	}
 
-.product {
+	@include tablet-l {
+		grid-template-columns: 366px 1fr;
+	}
+
+	@include laptop-m {
+		grid-template-columns: 386px 1fr;
+	}
+
+	@include desktop-s {
+		grid-template-columns: 428px 1fr;
+	}
 }
 
 .name {
@@ -35,21 +90,26 @@
 
 .dietaries {
 	justify-content: start;
-	gap: 5px;
 }
 
 .description {
-	margin-bottom: 20px;
+	margin-bottom: 25px;
+	letter-spacing: 0;
+	font-size: 15px;
+}
+
+.meta {
+	display: flex;
+	align-items: center;
+	margin-bottom: 12px;
+
+	.divider {
+		margin: 0 4px;
+		color: $color-dark4;
+	}
 }
 
 .category {
-	display: flex;
-	margin-bottom: 25px;
-}
-
-.tag {
-	margin-left: 10px;
-
 	&:hover {
 		color: $color-primary;
 	}
@@ -59,9 +119,22 @@
 	justify-content: flex-start;
 }
 
+.action_btn {
+	gap: 15px;
+
+	& > div > input {
+		height: 45px;
+	}
+}
+
 .btn {
-	width: 230px;
+	width: max-content;
+	height: 45px;
 	background-color: $color-dark;
+
+	@include tablet {
+		width: 230px;
+	}
 
 	&:hover {
 		background-color: $color-primary;

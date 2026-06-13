@@ -11,7 +11,6 @@ import { MostviewProducts } from '@components/SliderSections/MostviewProducts/Mo
 import { OurBlogPosts } from '@components/SliderSections/OurBlogPosts/OurBlogPosts'
 
 import { ScrollToTop } from '@shared/components/ScrollToTop/ScrollToTop'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 export const HomePage = () => {
 	return (

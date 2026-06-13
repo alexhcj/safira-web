@@ -88,7 +88,7 @@ $color-pagination-item-background: #f1f1f1;
 $color-sort: #f6f6f6;
 $color-timer-border: #e1e1e1;
 $color-slider-range: #dbdbdb;
-$color-modal-overlay: rgba($color-dark, 0.5);
+$color-modal-overlay: rgba($color-dark, 0.58);
 
 // radiuses
 $default-border-radius: 3px;
@@ -103,6 +103,7 @@ $border-round: 50%;
 
 // colors with opacity
 $color-modal-border: rgba(0, 0, 0, 0.6);
+$color-product-modal-border: rgba(0, 0, 0, 0.2);
 
 // weights
 $weight-light: 300;

@@ -6,8 +6,10 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: $z-index100;
+	z-index: $z-index300;
+	overflow-y: auto;
 }
+
 .overlay {
 	position: fixed;
 	top: 0;
