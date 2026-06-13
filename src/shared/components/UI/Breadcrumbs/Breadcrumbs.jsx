@@ -1,15 +1,20 @@
 import cn from 'classnames'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+
+import { BREAKPOINTS } from '@shared/data/breakpoints'
+
 import { shallowEqual, slugToStr } from '@utils/index'
 
-import { Space } from '../Spacing/Space'
 import { Text } from '../Text/Text'
 
 import s from './breadcrumbs.module.scss'
 
 // types: 'page' (prevent state through for Breadcrumbs)
 export const Breadcrumbs = ({ type = 'page' }) => {
+	const isMobileL = useIsBelow(BREAKPOINTS.mobileL)
+	const isTabletS = useIsBelow(BREAKPOINTS.tabletS)
 	let { pathname, state } = useLocation()
 	const navigate = useNavigate()
 	const isMultiPaths = pathname.match(/\//g).length > 1
@@ -37,23 +42,23 @@ export const Breadcrumbs = ({ type = 'page' }) => {
 	}
 
 	const renderCategories = (categories) => {
-		return (
-			categories &&
-			Object.entries(categories).map(([key, value], index) => {
-				const { name, slug } = value
+		const categoriesArr = Object.entries(categories)
+		const startIndex = isMobileL ? 2 : isTabletS ? 1 : 0
 
-				return (
-					<div className={s.category} key={slug}>
-						<Text span>/</Text>
-						<div onClick={() => categoryNavigate(key, slug, index)}>
-							<Text className={cn(s.breadcrumb, s.link)} span>
-								{name}
-							</Text>
-						</div>
+		return categoriesArr.slice(startIndex).map(([key, value], index) => {
+			const { name, slug } = value
+			return (
+				<div className={s.category} key={slug}>
+					<Text span>/</Text>
+
+					<div onClick={() => categoryNavigate(key, slug, index)}>
+						<Text className={cn(s.breadcrumb, s.link)} span>
+							{name}
+						</Text>
 					</div>
-				)
-			})
-		)
+				</div>
+			)
+		})
 	}
 
 	return (
