@@ -24,7 +24,6 @@ export const HomePage = () => {
 				<MostviewProducts />
 				<OurBlogPosts />
 				<FeaturedProducts />
-				<Space space={30} />
 				<BrandsSlider />
 				<ProductQuickView />
 			</ScrollToTop>

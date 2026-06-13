@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
+import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
+
+import { useIsBelow } from '@hooks/useIsBelow'
+
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import FourPinesLogo from '@assets/images/brands/4-pines.png'
 import AsahiLogo from '@assets/images/brands/asahi.png'
@@ -74,7 +79,9 @@ const shuffleArray = (array) => {
 }
 
 export const BrandsSlider = () => {
+	const laptopM = useIsBelow(BREAKPOINTS.laptopM)
 	const [randomBrands, setRandomBrands] = useState([])
+	const [highlightBrands, setHighlightBrands] = useState(false)
 
 	useEffect(() => {
 		// check if we already stored selection for this session
@@ -92,31 +99,46 @@ export const BrandsSlider = () => {
 
 	const responsive = {
 		0: {
+			items: 2,
+		},
+		480: {
+			items: 3,
+		},
+		768: {
+			items: 4,
+		},
+		991: {
 			items: 5,
 		},
 	}
 
 	const items = randomBrands.map((brand, index) => {
 		return (
-			<div className={s.item} key={index} style={{ padding: '0 15px' }}>
-				<img className={s.logo} src={brand.img} alt={brand.alt} draggable='false' />
+			<div className={s.item} key={index}>
+				<img className={cn(s.logo, highlightBrands && s.active)} src={brand.img} alt={brand.alt} draggable='false' />
 			</div>
 		)
 	})
 
 	return (
-		<div className='container'>
-			<div className={s.box}>
-				<AliceCarousel
-					responsive={responsive}
-					items={items}
-					infinite={true}
-					disableDotsControls={true}
-					disableButtonsControls={true}
-					mouseTracking={true}
-					animationDuration={250}
-				/>
+		<section
+			onMouseEnter={() => laptopM && setHighlightBrands(true)}
+			onMouseLeave={() => laptopM && setHighlightBrands(false)}
+			onPointerDown={() => laptopM && setHighlightBrands(true)}
+		>
+			<div className='container'>
+				<div className={s.box}>
+					<AliceCarousel
+						responsive={responsive}
+						items={items}
+						infinite={true}
+						disableDotsControls={true}
+						disableButtonsControls={true}
+						mouseTracking={true}
+						animationDuration={250}
+					/>
+				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
