@@ -38,6 +38,7 @@ export const SectionSlider = ({ title, subtitle, type, items, responsive, classN
 					renderPrevButton={prevButton}
 					renderNextButton={nextButton}
 					disableButtonsControls={isLaptopM}
+					mouseTracking
 				/>
 			</div>
 		</div>

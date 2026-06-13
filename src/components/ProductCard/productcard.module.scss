@@ -20,6 +20,8 @@
 
 		.img {
 			width: 100%;
+			user-select: none;
+			-webkit-user-drag: none;
 		}
 	}
 
@@ -96,22 +98,27 @@
 		}
 
 		.img_link {
-			max-width: 85px;
+			width: 85px;
+			height: 85px;
 
 			@include mobile-l {
-				max-width: 110px;
+				width: 110px;
+				height: 110px;
 			}
 
 			@include tablet-s {
-				max-width: 85px;
+				width: 85px;
+				height: 85px;
 			}
 
 			@include tablet {
-				max-width: 110px;
+				width: 110px;
+				height: 110px;
 			}
 
 			@include laptop-m {
-				max-width: 120px;
+				width: 120px;
+				height: 120px;
 			}
 		}
 
