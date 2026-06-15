@@ -30,12 +30,28 @@ export const RelatedProducts = ({ slug }) => {
 		fetchData()
 	}, [slug])
 
-	const items = products.map((product) => {
-		return <ProductCard key={product.slug} product={product} className={s.product} size='sm' imgSize='sm' />
+	const items = products.map((product, idx) => {
+		return (
+			<div className={s.box} key={idx}>
+				<ProductCard product={product} size='sm' imgSize='sm' />
+			</div>
+		)
 	})
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		576: {
+			items: 2,
+		},
+		768: {
+			items: 3,
+		},
+		991: {
+			items: 4,
+		},
+		1200: {
 			items: 5,
 		},
 	}

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import cn from 'classnames'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
-import { animateScroll as scroll } from 'react-scroll'
 
 import { productsAPI } from '@api/products'
 
@@ -10,6 +9,7 @@ import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
@@ -22,7 +22,6 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Border } from '@shared/components/UI/Spacing/Border'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { slugToStr } from '@utils/string'
@@ -33,7 +32,6 @@ import CompareRemoveSVG from '@assets/svg/compare-remove.svg?react'
 import CompareSVG from '@assets/svg/compare.svg?react'
 import HeartBrokenSVG from '@assets/svg/heart-broken.svg?react'
 import HeartSVG from '@assets/svg/heart.svg?react'
-import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
 import s from './productdetails.module.scss'
 
@@ -69,36 +67,36 @@ export const ProductDetails = () => {
 	return (
 		<div className='container'>
 			<div className={s.product}>
-				<div className={s.img}>
-					{img ? (
-						<ImageWithFallback className={s.product_img} src={img} imgSize='xl' alt={name} />
-					) : (
-						<img src={PreloaderSVG} alt='Preloader' />
-					)}
-				</div>
-				<div className={s.content}>
+				{img ? <ImageWithFallback src={img} imgSize='xl' alt={name} /> : <Preloader />}
+				<div>
 					<h4 className={s.name}>{name}</h4>
-					<Space size='ss' />
-					<Rating rating={rating} />
-					{/* dietaries */}
-					<Space size='xss' />
+					<Rating className={s.rating} rating={rating} />
 					{price && <Price className={s.price} {...price} type='large' />}
-					<Space size='xs' />
-					{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
-					<Space size='xs' />
-					<Text>{description}</Text>
-					<Space size='m' />
+					<div className={s.meta}>
+						<div className={s.category}>
+							<Text span weight='medium'>
+								Category:
+							</Text>
+							<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
+								<Text className={s.tag} span>
+									{basicCategory && slugToStr(basicCategory)}
+								</Text>
+							</NavLink>
+						</div>
+						{tags && <DietaryTags className={s.dietaries} size='mm' tags={tags.dietaries} />}
+					</div>
+					<Text className={s.description}>{description}</Text>
 					<Border />
-					<Space size='m' />
 					{specifications && (
 						<GoodToCart
+							className={s.add_actions}
+							btnClassName={s.btn_add}
 							maxQuantity={specifications.quantity}
 							onClick={addToCart}
 							product={product}
 							productQuantityInCart={productQuantityInCart(slug)}
 						/>
 					)}
-					<Space size='s' />
 					<div className={s.actions}>
 						{isProductInWishlist(slug) ? (
 							<ButtonWithTooltip
@@ -111,7 +109,7 @@ export const ProductDetails = () => {
 								<HeartBrokenSVG className={s.icon_remove} />
 							</ButtonWithTooltip>
 						) : (
-							<Button type='text' onClick={() => addToWishlist(product)}>
+							<Button className={s.btn_add_text} type='text' onClick={() => addToWishlist(product)}>
 								<Text span>+ Add to WishList</Text>
 							</Button>
 						)}
@@ -126,25 +124,13 @@ export const ProductDetails = () => {
 								<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
 							</ButtonWithTooltip>
 						) : (
-							<Button type='text' onClick={() => addToCompare(product)}>
+							<Button className={s.btn_add_text} type='text' onClick={() => addToCompare(product)}>
 								<Text span>+ Add to Compare</Text>
 							</Button>
 						)}
 					</div>
-					<Space size='m' />
-					<div className={s.category}>
-						<Text span weight='medium'>
-							Category:
-						</Text>
-						<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
-							<Text className={s.tag} span>
-								{basicCategory && slugToStr(basicCategory)}
-							</Text>
-						</NavLink>
-					</div>
 				</div>
 			</div>
-			<Space size='l' />
 			{specifications && (
 				<div className={s.specifications}>
 					<Tabs className={s.tabs}>
@@ -158,7 +144,6 @@ export const ProductDetails = () => {
 				</div>
 			)}
 			<RelatedProducts slug={slug} />
-			<Space space={65} />
 		</div>
 	)
 }

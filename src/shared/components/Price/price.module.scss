@@ -63,14 +63,26 @@
 
 .large {
 	.price {
-		font-size: 23px;
+		font-size: 17px;
+
+		@include tablet {
+			font-size: 23px;
+		}
 
 		&.default {
-			font-size: 20px;
+			font-size: 17px;
+
+			@include tablet {
+				font-size: 20px;
+			}
 		}
 	}
 
 	.discount_price {
-		font-size: 23px;
+		font-size: 18px;
+
+		@include tablet {
+			font-size: 23px;
+		}
 	}
 }

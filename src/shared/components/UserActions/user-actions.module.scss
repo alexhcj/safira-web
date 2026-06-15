@@ -1,20 +1,29 @@
 @use "sass:color";
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .action {
 	display: grid;
-	grid-auto-flow: column;
+	grid-auto-flow: row;
 	justify-content: start;
 	align-items: center;
 	gap: 5px;
 	padding: 15px 10px;
+	line-height: 16px;
+	font-size: 13px;
 	border-top: 3px solid $color-primary;
 	background-color: $color-grey3;
+
+	@include mobile-l {
+		grid-auto-flow: column;
+	}
 }
+
 .icon {
-	width: 12px;
+	width: 13px;
 	height: 14px;
 }
+
 .btn {
 	color: $color-primary;
 	@include transition-all;

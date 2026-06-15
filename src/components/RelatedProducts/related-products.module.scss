@@ -1,8 +1,15 @@
+@use '@shared/styles/breakpoints' as *;
+
 .section {
-	margin-top: 65px;
+	margin-top: 57px;
+
+	@include tablet-l {
+		margin-top: 65px;
+	}
 }
 
-.product {
-	margin: 0 10px;
-	align-items: center;
+.box {
+	@include tablet-s {
+		margin: 0 10px;
+	}
 }
