@@ -1,23 +1,53 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
-.link {
+.img_link {
 	display: flex;
+	margin-bottom: 18px;
+
+	@include tablet {
+		margin-bottom: 24px;
+	}
 
 	&:hover {
 		opacity: 0.8;
 	}
 }
 
+.title_link {
+	margin-bottom: 8px;
+}
+
 .title {
 	line-height: 18px;
-	font-size: 17px;
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: $weight-medium;
 	color: $color-dark;
+
+	@include tablet {
+		line-height: 23px;
+		font-size: 16px;
+	}
+
+	@include tablet-l {
+		line-height: 18px;
+		font-size: 16px;
+	}
+
+	@include laptop-m {
+		font-size: 17px;
+	}
 }
 
 .meta {
+	display: flex;
+	margin-bottom: 12px;
 	line-height: 15px;
 	color: $color-dark;
+
+	@include tablet {
+		margin-bottom: 16px;
+	}
 }
 
 .divider {
@@ -31,6 +61,7 @@
 }
 
 .text {
+	margin-bottom: 17px;
 	max-width: 700px;
 	max-height: 72px;
 	overflow: hidden;
@@ -40,15 +71,30 @@
 	-webkit-line-clamp: 3;
 	line-clamp: 3;
 	-webkit-box-orient: vertical;
+
+	@include tablet {
+		margin-bottom: 20px;
+	}
 }
 
 .post_button {
-	padding: 0 20px;
+	padding: 0 17px;
+	height: 38px;
+
+	@include tablet {
+		padding: 0 20px;
+		height: 42px;
+	}
 }
 
 .post_button_text {
 	text-transform: capitalize;
-	line-height: 42px;
-	font-size: 16px;
+	line-height: 38px;
+	font-size: 15px;
 	font-weight: $weight-medium;
+
+	@include tablet {
+		line-height: 42px;
+		font-size: 16px;
+	}
 }

@@ -18,27 +18,23 @@ export const Post = ({ slug, id, title, createdAt, category, text }) => {
 		<>
 			<div key={id}>
 				{img ? (
-					<Link className={s.link} to={url}>
-						<ImageWithFallback src={img} imgSize='blog-post' alt={name} />
+					<Link className={s.img_link} to={url}>
+						<ImageWithFallback src={img} imgSize='blog-post' alt='' />
 					</Link>
 				) : (
 					<Preloader />
 				)}
-				<Space space={24} />
-				<Link className={s.link} to={url}>
+				<Link className={s.title_link} to={url}>
 					<h2 className={s.title}>{title}</h2>
 				</Link>
-				<Space space={4} />
 				<span className={s.meta}>
-					{convertISODate(createdAt)}
+					<span>{convertISODate(createdAt)}</span>
 					<span className={s.divider}>|</span>
 					<Link className={s.category} to='/'>
 						{category}
 					</Link>
 				</span>
-				<Space space={16} />
 				<p className={s.text}>{text}</p>
-				<Space space={20} />
 				<Link to={url}>
 					<Button className={s.post_button} type='post'>
 						<Text className={s.post_button_text} color='white'>
@@ -47,7 +43,6 @@ export const Post = ({ slug, id, title, createdAt, category, text }) => {
 					</Button>
 				</Link>
 			</div>
-			<Space space={32} />
 		</>
 	)
 }

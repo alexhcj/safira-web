@@ -1,9 +1,16 @@
-.main {
-	max-width: 852px;
-	width: 100%;
-}
+@use '@shared/styles/vars' as *;
 
-.aside {
-	max-width: 263px;
-	width: 100%;
+.btn_more {
+	justify-self: center;
+	padding: 0 15px;
+	height: 38px;
+	width: max-content;
+
+	p {
+		text-transform: capitalize;
+		letter-spacing: 0;
+		line-height: 20px;
+		font-size: 12px;
+		font-weight: $weight-semi;
+	}
 }

@@ -37,26 +37,26 @@ export const RecentComments = () => {
 			<FilterTitle text='Recent Comments' />
 			<ul className={s.comments}>
 				{comments.map(({ text, user, postSlug }, index) => {
-					const author = user && user.firstName
+					const author = user && user.fullName
+					const authorName = author.split(' ')[0]
 					const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${user.avatarId}`
 					// const postUrl = `/blog/${postSlug}`
 
-					const cropText = text && text.length > 28 ? text.slice(0, 25) + '...' : text
-
 					return (
 						<div className={s.comment} key={index}>
-							<NavLink className={s.img_link} to='/user/profile/id'>
+							<NavLink to='/user/profile/id'>
 								<ImageWithFallback onlySrc src={avatarUrl} imgSize='avatar' alt='User avatar' className={s.img} />
 							</NavLink>
 							<div className={s.message}>
 								<span className={s.says}>
-									<NavLink className={s.name} to='/user/profile/id'>
-										{author}
+									{/* to='/user/profile/id' */}
+									<NavLink className={s.name} to='/'>
+										{authorName ?? 'User'}
 									</NavLink>
 									&#160;says:&#160;
 								</span>
 								<NavLink className={s.text} to='/'>
-									{cropText}
+									{text}
 								</NavLink>
 							</div>
 						</div>

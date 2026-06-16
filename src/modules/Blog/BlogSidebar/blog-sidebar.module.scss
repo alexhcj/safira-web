@@ -1,6 +1,8 @@
+@use '@shared/styles/breakpoints' as *;
+
+
 .wrapper {
 	position: relative;
-	padding-bottom: 70px;
 	width: 100%;
 	height: 100%;
 }
@@ -9,5 +11,13 @@
 	position: sticky;
 	top: 60px;
 	display: grid;
-	gap: 28px;
+	gap: 56px;
+
+	@include tablet {
+		gap: 65px;
+	}
+
+	@include tablet-l {
+		gap: 33px;
+	}
 }

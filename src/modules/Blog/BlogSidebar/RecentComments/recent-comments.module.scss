@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .comments {
 	display: grid;
@@ -6,24 +7,25 @@
 }
 
 .comment {
-	display: flex;
-	gap: 14px;
-}
+	display: grid;
+	grid-template-columns: 50px 1fr;
+	gap: 20px;
 
-.img_link {
-	width: 50px;
-	height: 50px;
+	@include tablet-l {
+		gap: 10px;
+	}
 }
 
 .img {
-	width: inherit;
-	height: inherit;
 	border-radius: 50%;
-	object-fit: cover;
 }
 
 .message {
 	padding-top: 2px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
 }
 
 .name {
