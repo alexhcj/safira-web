@@ -1,23 +1,52 @@
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
+@use "@shared/styles/breakpoints" as *;
 
 .validation {
-	position: absolute;
+	position: static;
+	max-width: 100%;
+	width: 100%;
+	letter-spacing: 0;
+	line-height: 25px;
 	display: block;
 	align-content: center;
-	top: 0;
-	right: 0;
-	padding: 0 12px;
-	width: max-content;
-	max-width: 264px;
-	min-height: 35px;
-	line-height: 30px;
-	font-weight: 500;
+	padding: 0;
+	border: none;
+	min-height: 40px;
+	font-weight: $weight-medium;
 	cursor: default;
 	color: $color-error;
-	border: 1px solid $color-error;
 	background-color: $color-white;
-	transform: translateX(100%);
 	z-index: $z-index100;
+	transform: translateX(0);
+
+	@include tablet-s {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: max-content;
+		max-width: max-content;
+	}
+
+	@include tablet-l {
+		position: absolute;
+		top: 24px;
+		right: -20px;
+		width: max-content;
+		max-width: 175px;
+		padding: 0 12px;
+		line-height: 30px;
+		border: 1px solid $color-error;
+		transform: translateX(100%);
+	}
+
+	@include laptop-m {
+		max-width: 264px;
+	}
+
+	&.type_text {
+		padding: 0 !important;
+		border: none !important;
+	}
 
 	&.no_result {
 		color: $color-warning;
@@ -31,32 +60,80 @@
 
 .animateEnter {
 	opacity: 0;
-	transform: translateX(calc(100% + 10px));
+	transform: translateX(15px);
+
+	@include tablet-s {
+		transform: translateY(-25px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
+	}
 }
 
 .animateEnterActive {
 	opacity: 1;
-	transform: translateX(calc(100% + 20px));
 	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateY(-16px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
 }
 
 .animateEnterDone {
 	opacity: 1;
-	transform: translateX(calc(100% + 20px));
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateY(-16px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
 }
 
 .animateExit {
 	opacity: 1;
-	transform: translateX(calc(100% + 20px));
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateY(-16px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
 }
 
 .animateExitActive {
 	opacity: 0;
-	transform: translateX(calc(100% + 10px));
+	transform: translateX(15px);
 	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-s {
+		transform: translateY(-25px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
+	}
 }
 
 .animateExitDone {
 	opacity: 0;
-	transform: translateX(calc(100% + 10px));
+	transform: translateX(15px);
+
+	@include tablet-s {
+		transform: translateY(-25px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
+	}
 }

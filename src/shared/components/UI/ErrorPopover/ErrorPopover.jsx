@@ -5,7 +5,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import s from './error-popover.module.scss'
 
-export const ErrorPopover = ({ error, className }) => {
+// types: 'text'
+export const ErrorPopover = ({ type, error, className }) => {
 	const [toggle, setToggle] = useState(false)
 	const nodeRef = useRef(null)
 
@@ -31,7 +32,10 @@ export const ErrorPopover = ({ error, className }) => {
 					unmountOnExit
 					nodeRef={nodeRef}
 				>
-					<span ref={nodeRef} className={cn(s.validation, { [s.no_result]: error.id === 4 }, className)}>
+					<span
+						ref={nodeRef}
+						className={cn(s.validation, type && s[`type_${type}`], { [s.no_result]: error.id === 4 }, className)}
+					>
 						{error}
 					</span>
 				</CSSTransition>

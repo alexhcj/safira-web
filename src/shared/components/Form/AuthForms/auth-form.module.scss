@@ -1,9 +1,9 @@
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
+@use "@shared/styles/breakpoints" as *;
 
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding-bottom: 70px;
 }
 
 .box {
@@ -15,18 +15,23 @@
 }
 
 .title {
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	text-transform: capitalize;
 	line-height: 22px;
-	font-size: 28px;
+	font-size: 24px;
 	font-weight: $weight-medium;
+
+	@include tablet {
+		margin-bottom: 30px;
+		font-size: 28px;
+	}
 }
 
 .form {
 	display: grid;
 	gap: 20px;
 	width: 100%;
-	padding: 25px 20px 29px;
+	padding: 25px 20px 30px;
 	border: 1px solid $color-border2;
 	border-radius: 5px;
 }
@@ -49,12 +54,6 @@
 	& > input {
 		border-color: $color-border2;
 	}
-
-	& > span {
-		top: 24px;
-		right: -20px;
-		min-height: 40px;
-	}
 }
 
 .form_actions {
@@ -76,6 +75,7 @@
 
 .btn_auth_register,
 .btn_auth_login {
+	letter-spacing: 0;
 	justify-self: flex-end;
 
 	&.loading {
