@@ -1,23 +1,31 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .wrapper {
 	display: grid;
-	gap: 30px;
+	gap: 15px;
+
+	@include tablet {
+		gap: 20px;
+	}
+
+	@include tablet-l {
+		gap: 30px;
+	}
 }
 
 .comment {
 	position: relative;
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: 50px 1fr;
-	gap: 20px;
+	grid-template-columns: 40px 1fr;
+	gap: 15px;
 	@include transition-all;
-}
 
-.img {
-	width: 50px;
-	height: 50px;
-	object-fit: cover;
+	@include tablet-s {
+		grid-template-columns: 50px 1fr;
+		gap: 20px;
+	}
 }
 
 .box {
@@ -28,6 +36,19 @@
 	padding: 15px;
 	border: 1px solid $color-border;
 	border-radius: $default-border-radius;
+
+	&.big {
+		padding: 15px 15px 38px;
+
+		@include tablet-s {
+			padding: 15px;
+		}
+	}
+
+	@include tablet-s {
+		padding: 15px;
+		gap: 10px;
+	}
 }
 
 .lvl {
@@ -40,6 +61,14 @@
 	color: $color-white;
 	background-color: $color-primary;
 	border-radius: $default-border-radius;
+
+	&.lvl_desktop_hidden {
+		display: none;
+
+		@include tablet {
+			display: inline;
+		}
+	}
 }
 
 .author {
@@ -59,17 +88,31 @@
 
 .text {
 	&.short {
-		max-width: 73%;
+		max-width: 100%;
+
+		@include tablet-s {
+			max-width: 72%;
+		}
+
+		@include tablet {
+			max-width: 76%;
+		}
 	}
 }
 
 .button_thread {
 	position: absolute;
-	right: 12px;
-	bottom: 15px;
+	right: 15px;
+	bottom: 12px;
 	line-height: 20px;
 	font-size: 12px;
 	@include transition-all;
+
+	@include tablet-s {
+		position: absolute;
+		right: 15px;
+		bottom: 12px;
+	}
 
 	&:hover {
 		color: $color-primary;
@@ -81,25 +124,47 @@
 
 	.svg {
 		margin-bottom: -4px;
+		@include transition-all;
+	}
+
+	&.active {
+		.svg {
+			margin-left: -4px;
+			rotate: 90deg;
+		}
 	}
 }
 
 .btn {
 	position: absolute;
-	top: 20px;
+	top: 15px;
 	right: 12px;
 	padding: 2px 10px;
-	height: 28px;
-	line-height: 28px;
+	height: 24px;
+	line-height: 20px;
+	font-size: 13px;
 	border-radius: $default-border-radius;
 	background-color: $color-dark;
 
 	&:hover {
 		background-color: $color-primary;
 	}
+
+	@include tablet-s {
+		top: 20px;
+		right: 12px;
+		padding: 2px 8px;
+		height: 24px;
+		line-height: 24px;
+		font-size: 12px;
+	}
 }
 
 .replies {
 	display: grid;
 	gap: 15px;
+
+	@include tablet {
+		gap: 20px;
+	}
 }

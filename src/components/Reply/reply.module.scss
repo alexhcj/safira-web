@@ -7,6 +7,13 @@
 		margin-top: -15px;
 	}
 }
+
+.note {
+	margin-bottom: 12px;
+	line-height: 17px;
+	font-size: 13px;
+}
+
 .title {
 	margin-bottom: 20px;
 	text-transform: uppercase;
@@ -14,10 +21,12 @@
 	font-size: 15px;
 	font-weight: $weight-medium;
 }
+
 .user_actions {
 	display: grid;
 	gap: 20px;
 }
+
 .message_icon > svg {
 	width: 15px;
 	height: 14px;

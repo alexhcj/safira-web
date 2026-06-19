@@ -25,6 +25,10 @@
 	@include tablet-l {
 		width: calc(75% - 12px);
 	}
+
+	.post-details & {
+		gap: 0;
+	}
 }
 
 .aside {

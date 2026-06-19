@@ -1,8 +1,8 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .form {
 	position: relative;
-	margin-bottom: 70px;
 
 	&_short {
 		display: grid;
@@ -68,13 +68,19 @@
 
 .btn {
 	text-transform: uppercase;
-	padding: 0 22px;
-	height: 45px;
-	font-size: 13px;
+	padding: 0 10px;
+	height: 38px;
+	letter-spacing: 0;
 	line-height: 36px;
+	font-size: 13px;
 	font-weight: $weight-medium;
 	border-radius: $default-border-radius;
 	background-color: $color-dark;
+
+	@include tablet {
+		padding: 0 22px;
+		height: 38px;
+	}
 
 	&:hover {
 		background-color: $color-primary;

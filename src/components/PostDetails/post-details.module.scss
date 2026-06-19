@@ -1,26 +1,49 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .post {
-	margin-bottom: 62px;
+	margin-bottom: 59px;
+
+	@include tablet {
+		margin-bottom: 62px;
+	}
 }
+
 .header {
-	margin-bottom: 28px;
+	margin-bottom: 22px;
+
+	@include tablet {
+		margin-bottom: 28px;
+	}
 }
+
 .title {
 	margin-bottom: 4px;
-	line-height: 35px;
-	font-size: 30px;
+	line-height: 24px;
+	font-size: 17px;
 	font-weight: $weight-medium;
+
+	@include tablet {
+		line-height: 35px;
+		font-size: 30px;
+	}
 }
+
 .meta {
 	display: grid;
 	grid-auto-flow: column;
 	justify-content: start;
 	align-items: center;
 	gap: 5px;
-	line-height: 24px;
-	font-size: 14px;
+	line-height: 20px;
+	font-size: 13px;
+
+	@include tablet {
+		line-height: 24px;
+		font-size: 14px;
+	}
 }
+
 .author,
 .date {
 	span {
@@ -28,9 +51,15 @@
 		color: $color-primary;
 	}
 }
+
 .img {
-	margin-bottom: 30px;
+	margin-bottom: 22px;
+
+	@include tablet {
+		margin-bottom: 30px;
+	}
 }
+
 .text {
 	line-height: 24px;
 	font-size: 15px;
