@@ -1,10 +1,26 @@
 @use '@shared/styles/table';
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.table {
+	margin-bottom: 60px;
+
+	@include tablet {
+		margin-bottom: 70px;
+	}
+}
 
 .footer {
 	display: flex;
-	gap: 24px;
+	flex-direction: column;
+	gap: 59px;
+
+	@include tablet {
+		flex-direction: row;
+		gap: 24px;
+	}
 }
+
 .coupons,
 .totals {
 	flex: 1 1 50%;
@@ -18,40 +34,69 @@
 .title {
 	text-transform: uppercase;
 	padding: 5px 0 5px 15px;
-	line-height: 36px;
-	font-size: 16px;
+	line-height: 28px;
+	font-size: 15px;
 	font-weight: $weight-medium;
 	color: $color-white;
 	background-color: $color-dark;
+
+	@include tablet {
+		line-height: 36px;
+		font-size: 16px;
+	}
 }
 
 .text {
+	margin-bottom: 20px;
 	font-weight: $weight-medium;
 }
 
 .input {
 	padding: 14px 20px;
+	width: 100%;
 	height: 42px;
 	border: 1px solid $color-border2;
 
 	&::placeholder {
 		letter-spacing: normal;
 		line-height: normal;
-		font-size: 14px;
-		font-family: 'Work Sans', sans-serif;
+		font-size: 12px;
+		font-family: $WorkSans;
 	}
 }
 
 .coupon,
 .gift_card {
-	display: flex;
+	display: grid;
+	grid-template-rows: auto auto;
 	gap: 25px;
+
+	@include tablet-s {
+		grid-template-rows: max-content;
+		grid-template-columns: 1fr minmax(139px, max-content);
+	}
+}
+
+.button_coupon,
+.button_gift {
+	justify-self: start;
+}
+
+.coupon {
+	@include tablet-s {
+		margin-bottom: 20px;
+	}
 }
 
 .button_coupon {
+	margin-bottom: 20px;
 	padding: 9px 15px;
 	height: 38px;
 	background-color: $color-dark;
+
+	@include tablet-s {
+		margin-bottom: 0;
+	}
 
 	&:hover {
 		background-color: $color-primary;
@@ -85,6 +130,7 @@
 	&_box {
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: 20px;
 	}
 
 	&_text {
@@ -92,8 +138,12 @@
 	}
 
 	&_price {
-		font-size: 18px;
+		font-size: 14px;
 		font-weight: $weight-medium;
+
+		@include tablet {
+			font-size: 18px;
+		}
 	}
 }
 

@@ -4,7 +4,6 @@ import { useCartContext } from '@context/CartContext'
 
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { formatPrice } from '@utils/number/convert'
@@ -29,7 +28,7 @@ export const Cart = () => {
 						<th className={s.total}>Total</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className={s.tbody}>
 					{cart.length === 0 ? (
 						<tr>
 							<td colSpan={6}>
@@ -45,13 +44,11 @@ export const Cart = () => {
 					)}
 				</tbody>
 			</table>
-			<Space size='l' />
 			<div className={s.footer}>
 				<div className={s.coupons}>
 					<h3 className={s.title}>Coupon & gift card</h3>
 					<div className={s.content}>
 						<p className={s.text}>Enter your coupon code or a gift card number here.</p>
-						<Space space={20} />
 						<form>
 							<div className={s.coupon}>
 								<input className={s.input} type='text' placeholder='Coupon code' />
@@ -61,7 +58,6 @@ export const Cart = () => {
 									</Text>
 								</Button>
 							</div>
-							<Space space={20} />
 							<div className={s.gift_card}>
 								<input className={s.input} type='text' placeholder='Gift card number' />
 								<Button type='submit' className={s.button_gift}>
@@ -80,7 +76,6 @@ export const Cart = () => {
 							<p className={s.totals_text}>Total</p>
 							<span className={s.totals_price}>{formatPrice(cartTotalPrice())}</span>
 						</div>
-						<Space space={20} />
 						<Link to='/checkout'>
 							<Button type='submit' className={s.button_proceed}>
 								<Text color='white' className={s.proceed_text}>
@@ -91,7 +86,6 @@ export const Cart = () => {
 					</div>
 				</div>
 			</div>
-			<Space size='l' />
 		</div>
 	)
 }
