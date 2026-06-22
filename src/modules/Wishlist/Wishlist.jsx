@@ -2,7 +2,6 @@ import { useCartContext } from '@context/CartContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { WishlistItem } from './WishlistItem'
 
@@ -53,7 +52,6 @@ export const Wishlist = () => {
 					)}
 				</tbody>
 			</table>
-			<Space size='l' />
 		</div>
 	)
 }

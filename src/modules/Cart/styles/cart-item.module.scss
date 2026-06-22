@@ -13,10 +13,6 @@
 		display: table-row;
 	}
 
-	@include tablet-l {
-		height: 190px;
-	}
-
 	td {
 		display: block;
 		text-align: center;
@@ -66,14 +62,6 @@
 
 				.img {
 					width: 100%;
-
-					@include tablet {
-						min-width: 75px;
-					}
-
-					@include tablet-l {
-						min-width: 130px;
-					}
 				}
 			}
 

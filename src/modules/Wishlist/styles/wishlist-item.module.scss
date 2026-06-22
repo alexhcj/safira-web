@@ -1,15 +1,30 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .item {
-	height: 190px;
+	display: block;
+	padding: 15px 0 10px;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid $color-border2;
+	}
+
+	@include tablet {
+		display: table-row;
+	}
 
 	td {
+		display: block;
 		text-align: center;
 		vertical-align: middle;
 		padding: 10px;
-		border-right: 1px solid $color-border2;
-		border-bottom: 1px solid $color-border2;
-		height: 190px;
+
+		@include tablet {
+			display: table-cell;
+			padding: 10px;
+			border-right: 1px solid $color-border2;
+			border-bottom: 1px solid $color-border2;
+		}
 
 		.delete {
 			&_button {
@@ -26,12 +41,34 @@
 		}
 
 		&.image {
-			padding: 15px;
+			padding: 0 30px;
+
+			@include tablet {
+				padding: 15px;
+			}
+
+			@include tablet-l {
+				padding: 20px;
+			}
 
 			.link {
-				max-width: 150px;
-				max-height: 150px;
+				display: block;
+				width: 100%;
 				@include transition-all;
+
+				@include breakpoint(480px) {
+					margin: 0 auto;
+					max-width: 260px;
+				}
+
+				@include tablet {
+					margin: 0;
+					max-width: 100%;
+				}
+
+				.img {
+					width: 100%;
+				}
 			}
 
 			&:hover {
@@ -41,18 +78,26 @@
 			}
 		}
 
-		.link {
-			&:hover {
-				color: $color-primary;
+		&.name {
+			padding: 10px;
+
+			.link {
+				line-height: 16px;
+
+				&:hover {
+					color: $color-primary;
+				}
 			}
 		}
 
 		&.price {
+			padding: 10px;
 			font-size: 16px;
 			font-weight: $weight-medium;
 		}
 
 		&.stock {
+			padding: 10px 10px 5px;
 			text-transform: capitalize;
 
 			&.less {
@@ -118,6 +163,7 @@
 						animation-iteration-count: infinite;
 						animation-fill-mode: both;
 					}
+
 					&::before {
 						animation-name: trace;
 						animation-timing-function: ease;
@@ -144,6 +190,15 @@
 				padding: 10px 20px;
 				height: 34px;
 				border-radius: 3px;
+
+				@include tablet {
+					white-space: nowrap;
+					padding: 10px 10px;
+				}
+
+				@include breakpoint(880px) {
+					padding: 10px 20px;
+				}
 			}
 
 			.add_text {

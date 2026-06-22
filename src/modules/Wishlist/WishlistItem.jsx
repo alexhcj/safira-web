@@ -35,7 +35,7 @@ export const WishlistItem = ({
 			<td className={s.image}>
 				{slug ? (
 					<Link className={s.link} to={`/products/${slug}`}>
-						<ImageWithFallback src={img} imgSize='sm' alt={name} />
+						<ImageWithFallback className={s.img} src={img} imgSize='sm' alt={name} />
 					</Link>
 				) : (
 					<img src={PreloaderSVG} alt='Preloader' />
