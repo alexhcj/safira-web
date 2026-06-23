@@ -1,0 +1,35 @@
+@use '@shared/styles/breakpoints' as *;
+
+.compareSliderWrapper {
+	:global(.alice-carousel__stage) {
+		display: grid;
+		grid-auto-flow: column;
+	}
+
+	:global(.alice-carousel__stage-item) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	:global(.alice-carousel__stage-item) {
+		// title
+		div h3 {
+			line-height: 18px;
+		}
+
+		// category
+		div h4 button {
+			line-height: 12px;
+		}
+
+		// price
+		div > div > span {
+			line-height: 16px;
+		}
+
+		// button
+		div > div > button > span {
+			line-height: 40px;
+		}
+	}
+}

@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .row {
 	display: grid;
@@ -33,7 +34,9 @@
 .list {
 	display: grid;
 	grid-auto-flow: column;
-	grid-template-columns: repeat(auto-fit, 25%);
+	// Use the CSS custom property set by CompareAttributesRow to match visible slider items.
+	// Fallback to 25% (4 items) for SSR / environments where the var isn't set.
+	grid-template-columns: repeat(var(--visible-items, 4), calc(100% / var(--visible-items, 4)));
 	padding: 14px 0;
 }
 

@@ -88,8 +88,9 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				<Link className={s.img_link} to={`/products/${slug}`}>
 					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} />
 				</Link>
-				<h3 className={s.name}>{name}</h3>
-				<Rating rating={rating} className={s.rating} />
+				<Link to={`/products/${slug}`}>
+					<h3 className={s.name}>{name}</h3>
+				</Link>
 				<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
 					<button
 						type='button'
@@ -106,6 +107,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 					)}
 				</h4>
 				<Price price={price} discountPrice={discountPrice} className={s.price} />
+				<Rating rating={rating} className={s.rating} />
 				<div className={s.actions}>
 					<ButtonWithTooltip
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}
@@ -116,14 +118,14 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 					>
 						<HeartSVG className={s.icon} width={16} height={16} />
 					</ButtonWithTooltip>
-					<ButtonCart type='button' onClick={handleAddToCart}>
+					<ButtonCart className={s.button_cart} type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
 							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 						</Text>
 					</ButtonCart>
 				</div>
 				<div className={cn(s.remove, { [s.active]: isHovered })} onClick={() => removeSlide(slug, category)}>
-					<TrashSVG />
+					<TrashSVG className={s.icon} />
 				</div>
 			</div>
 		)
