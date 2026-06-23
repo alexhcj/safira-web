@@ -23,10 +23,20 @@ export const CompareProvider = ({ children }) => {
 	const [activeCategory, setActiveCategory] = useState(Object.keys(compares)[0])
 	const [activeIndex, setActiveIndex] = useState(0)
 
-	// reset range when location changes
+	// reset slider position when location changes
 	useEffect(() => {
 		setActiveIndex(0)
 	}, [location])
+
+	/**
+	 * Always resets the slider to position 0 when switching categories.
+	 * Use this everywhere instead of calling setActiveCategory directly —
+	 * that prevents stale index from a previous category bleeding into the new one.
+	 */
+	const switchActiveCategory = (category) => {
+		setActiveCategory(category)
+		setActiveIndex(0)
+	}
 
 	const addToCompare = ({ slug, price, specifications, name, tags, basicCategory, subCategory }) => {
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
@@ -47,7 +57,7 @@ export const CompareProvider = ({ children }) => {
 
 		if (Object.keys(compares).length === 0) {
 			setCompares({ [basicCategory]: [item] })
-			setActiveCategory(basicCategory)
+			switchActiveCategory(basicCategory)
 		} else if (!compares[basicCategory]) {
 			setCompares({ ...compares, [basicCategory]: [item] })
 		} else {
@@ -90,7 +100,7 @@ export const CompareProvider = ({ children }) => {
 
 	const makeFirstCompareListActive = (compareKeys) => {
 		if (compareKeys.length > 0) {
-			setActiveCategory(compareKeys[0])
+			switchActiveCategory(compareKeys[0])
 		}
 	}
 
@@ -104,16 +114,14 @@ export const CompareProvider = ({ children }) => {
 			if (remainingCategories.length > 0) {
 				makeFirstCompareListActive(remainingCategories)
 			} else {
-				setActiveCategory(null)
-				setActiveIndex(0)
+				switchActiveCategory(null)
 			}
 		}
 	}
 
 	const removeAllCompares = () => {
 		setCompares({})
-		setActiveCategory(null)
-		setActiveIndex(0)
+		switchActiveCategory(null)
 	}
 
 	const isProductInCompare = (slug, category) => {
@@ -124,7 +132,7 @@ export const CompareProvider = ({ children }) => {
 		<CompareContext.Provider
 			value={{
 				activeCategory,
-				setActiveCategory,
+				setActiveCategory: switchActiveCategory,
 				activeIndex,
 				setActiveIndex,
 				addToCompare,
