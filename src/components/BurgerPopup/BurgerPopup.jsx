@@ -16,7 +16,7 @@ import { Socials } from '@shared/components/UI/Socials/Socials'
 import { SupportBadge } from '@shared/components/UI/SupportBadge/SupportBadge'
 
 import ArrowSVG from '@assets/svg/arrow.svg?react'
-import EmailSVG from '@assets/svg/email.svg?react'
+import EmailSVG from '@assets/svg/envelope.svg?react'
 import GooglePlusSVG from '@assets/svg/google-plus.svg?react'
 import FacebookSVG from '@assets/svg/socials/facebook.svg?react'
 import InstagramSVG from '@assets/svg/socials/instagram.svg?react'

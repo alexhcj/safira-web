@@ -9,7 +9,7 @@ import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
-import EmailSVG from '@assets/svg/email.svg?react'
+import EmailSVG from '@assets/svg/envelope.svg?react'
 
 import s from './unsubscribe.module.scss'
 
@@ -33,15 +33,15 @@ export const Unsubscribe = () => {
 		const subsToUpdate =
 			subType === 'ALL'
 				? {
-						devNews: false,
-						marketingNews: false,
-						blogNews: false,
-					}
+					devNews: false,
+					marketingNews: false,
+					blogNews: false,
+				}
 				: {
-						devNews: subType === 'DEV_NEWS',
-						marketingNews: subType === 'MARKETING_NEWS',
-						blogNews: subType === 'STORE_NEWS',
-					}
+					devNews: subType === 'DEV_NEWS',
+					marketingNews: subType === 'MARKETING_NEWS',
+					blogNews: subType === 'STORE_NEWS',
+				}
 
 		const res = await unsubscribe({
 			email: params.get('email'),

@@ -12,7 +12,7 @@ import { SubscriptionItem } from '@modules/Profile/Subscriptions/SubscriptionIte
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
-import EmailSVG from '@assets/svg/email.svg?react'
+import EmailSVG from '@assets/svg/envelope.svg?react'
 
 import s from './subscriptions.module.scss'
 
