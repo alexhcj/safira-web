@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
@@ -195,7 +195,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 	}
 
 	return (
-		<>
+		<div className={s.layout}>
 			<div className={s.main}>
 				<section>
 					<h3 className={s.title}>Credentials</h3>
@@ -323,6 +323,6 @@ export const ProfileForm = ({ user, profile, loading }) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

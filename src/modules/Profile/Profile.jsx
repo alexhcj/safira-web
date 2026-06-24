@@ -32,18 +32,20 @@ export const Profile = () => {
 			<div className={s.layout}>
 				<aside>
 					<ul className={s.list}>
-						{profileNavList.map((item, index) => (
-							<li key={index} data-section={item.url}>
-								<Link className={s.link} to={item.url}>
-									<Button
-										type='form'
-										className={cn(s.btn, { [s.active]: item.url === location.pathname.replace('/profile/', '') })}
-									>
-										{item.text}
-									</Button>
-								</Link>
-							</li>
-						))}
+						{profileNavList.map((item, index) => {
+							const currentTab =
+								location.pathname === '/profile' ? 'profile-details' : location.pathname.replace('/profile/', '')
+
+							return (
+								<li key={index} data-section={item.url}>
+									<Link className={s.link} to={item.url}>
+										<Button type='form' className={cn(s.btn, { [s.active]: item.url === currentTab })}>
+											{item.text}
+										</Button>
+									</Link>
+								</li>
+							)
+						})}
 					</ul>
 					<Border className={s.border} />
 					<Logout onClick={handleLogout} />

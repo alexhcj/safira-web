@@ -1,4 +1,17 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.layout {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 30px;
+
+	@include tablet-l {
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 0 100px;
+	}
+}
 
 .main {
 	display: grid;
@@ -20,19 +33,41 @@
 
 .credentials_list {
 	display: grid;
-	gap: 12px;
+	gap: 16px;
+
+	@include mobile-l {
+		gap: 20px;
+	}
 }
 
 .credential_email,
 .credential_password {
 	display: grid;
-	grid-template-columns: 335px 135px;
+	grid-auto-flow: row;
+	justify-items: start;
 	align-items: end;
-	gap: 10px;
+	gap: 20px;
+
+	@include mobile-l {
+		grid-auto-flow: column;
+		grid-template-columns: 1fr auto;
+		gap: 10px;
+	}
+
+	@include tablet-l {
+		grid-template-columns: minmax(200px, 335px) auto;
+	}
 }
 
 .credential_input {
+	label {
+		margin-bottom: 12px;
+		line-height: 12px;
+		font-size: 16px;
+	}
+
 	& > input {
+		padding: 8px 15px 8px 20px;
 		cursor: default;
 
 		&:hover {
@@ -47,6 +82,8 @@
 
 .btn_credential {
 	margin-bottom: 1px;
+	padding: 9px 15px;
+	min-width: 140px;
 }
 
 .btn_credential_text {
@@ -57,35 +94,47 @@
 
 .form {
 	display: grid;
-	gap: 15px;
+	gap: 16px;
 }
 
 .avatar {
 	position: relative;
+	display: inline-flex;
+	flex-direction: column;
 
 	.label {
-		text-transform: capitalize;
-		font-size: 14px;
+		line-height: 12px;
+		font-size: 16px;
 	}
 
 	img {
-		margin: 5px auto 0;
-		width: 130px;
-		height: 130px;
+		margin: 10px 20px 0;
+		width: 100px;
+		height: 100px;
 		border-radius: 50%;
 		object-fit: cover;
 		cursor: pointer;
+
+		@include tablet-l {
+			margin: 5px auto 0;
+			width: 130px;
+			height: 130px;
+		}
 	}
 
 	.edit {
 		position: absolute;
-		bottom: 10px;
+		bottom: 0;
 		right: 20px;
 		cursor: pointer;
 		@include transition-all;
 
+		@include tablet-l {
+			right: 0;
+		}
+
 		&_text {
-			padding: 4px 8px;
+			padding: 3px 6px;
 			font-size: 12px;
 			font-weight: $weight-medium;
 			color: $color-white;
@@ -140,9 +189,9 @@
 
 .input {
 	& > label {
-		text-transform: capitalize;
-		line-height: 24px;
-		font-size: 14px;
+		margin-bottom: 12px;
+		line-height: 12px;
+		font-size: 16px;
 	}
 
 	& > input {
@@ -174,6 +223,9 @@
 
 .btn_update_profile {
 	justify-self: flex-end;
+	margin-top: 4px;
+	padding: 9px 15px;
+	min-width: 135px;
 }
 
 .btn_update_profile_text {
