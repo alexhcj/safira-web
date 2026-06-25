@@ -6,7 +6,7 @@
 	grid-auto-flow: column;
 	grid-template: auto auto / 1fr;
 	align-items: start;
-	gap: 25px;
+	gap: var(--grid-gap);
 
 	@include tablet {
 		grid-template: 1fr / clamp(168px, 22vw, 250px) minmax(540px, 1fr);

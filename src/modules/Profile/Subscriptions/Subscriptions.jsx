@@ -107,7 +107,7 @@ export const Subscriptions = () => {
 	}
 
 	return (
-		<section>
+		<section className={s.section}>
 			<h3 className={s.title}>Subscriptions</h3>
 			<table className={s.table}>
 				<thead className={s.thead}>

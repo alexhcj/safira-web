@@ -18,6 +18,7 @@ td {
 	padding: 8px;
 	width: 170px;
 	font-weight: $weight-medium;
+	white-space: nowrap;
 }
 
 .action {
@@ -25,6 +26,7 @@ td {
 	justify-content: center;
 	align-items: center;
 	gap: 5px;
+	width: 100%;
 }
 
 button {

@@ -4,6 +4,11 @@
 	width: 16px;
 	height: 16px;
 }
+
+.section {
+	overflow-x: auto;
+}
+
 .title {
 	margin-bottom: 15px;
 	letter-spacing: $letter-spacing-lg-neg;
@@ -11,11 +16,12 @@
 	font-size: 20px;
 	font-weight: $weight-medium;
 }
+
 .table {
 	border: 1px solid $color-border2;
 	border-collapse: collapse;
 	width: 100%;
-	max-width: 510px;
+	min-width: 510px;
 
 	.thead {
 		background-color: $color-border2;
