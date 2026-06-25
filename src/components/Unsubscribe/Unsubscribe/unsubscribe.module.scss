@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .content {
 	display: flex;
@@ -8,24 +9,41 @@
 	border: 1px solid $color-border2;
 	border-top: none;
 }
+
 .text {
 	margin-bottom: 25px;
+	text-align: center;
+	color: $color-black;
+
+	@include tablet-s {
+		text-align: left;
+	}
 }
+
 .email {
 	font-weight: $weight-semi;
 }
+
 .actions {
 	margin-bottom: 30px;
+	grid-auto-flow: row;
+
+	@include breakpoint(530px) {
+		grid-auto-flow: column;
+	}
 
 	button {
 		text-transform: none;
 		font-weight: $weight-normal;
+		text-align: left;
 	}
 }
+
 .svg {
 	width: 16px;
 	height: 16px;
 }
+
 .button {
 	min-width: 103px;
 	padding: 9px 15px;

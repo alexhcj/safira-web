@@ -9,11 +9,13 @@
 	align-items: flex-start;
 	overflow-x: hidden;
 }
+
 .box {
-	margin-top: 100px;
+	margin: 100px auto 0;
 	max-width: 535px;
 	width: 100%;
 }
+
 .title {
 	padding: 5px 15px;
 	text-transform: uppercase;

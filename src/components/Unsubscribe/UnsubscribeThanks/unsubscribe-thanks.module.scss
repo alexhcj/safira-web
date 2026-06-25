@@ -8,6 +8,7 @@
 	border: 1px solid $color-border2;
 	border-top: none;
 }
+
 .content {
 	display: flex;
 	flex-direction: column;
@@ -17,14 +18,17 @@
 	max-width: 325px;
 	text-align: center;
 }
+
 .svg {
 	width: 30px;
 	height: 30px;
 }
+
 .actions {
 	display: flex;
 	gap: 20px;
 }
+
 .button {
 	padding: 9px 15px;
 	line-height: 20px;
@@ -32,7 +36,9 @@
 	font-weight: $weight-semi;
 	border-radius: 0;
 }
+
 .close_text {
+	text-align: center;
 	margin-top: 25px;
 	line-height: 20px;
 	font-size: 12px;
