@@ -14,6 +14,15 @@ import { hideEmailPartial } from '@utils/string'
 
 import s from './change-email-stepper-form.module.scss'
 
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
 const changePasswordFormValidationSchema = {
 	password: [
 		required('Password should be filled.'),
@@ -57,6 +66,7 @@ export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) =>
 			)}
 			<Input
 				className={s.input_password}
+				errorTransitionClasses={errorPopoverTransition}
 				type='password'
 				id='password'
 				value={password}

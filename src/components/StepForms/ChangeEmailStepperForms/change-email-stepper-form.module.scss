@@ -1,16 +1,20 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .form {
 	display: flex;
 	flex-direction: column;
+	justify-self: center;
 	gap: 20px;
-	max-width: 420px;
+	max-width: 377px;
 	padding: 25px 20px 30px;
 	border: 1px solid $color-border2;
 }
 
 .input {
 	input {
+		border-color: $color-border2;
+
 		&::placeholder {
 			font-size: 12px;
 			color: $color-grey6;
@@ -18,12 +22,224 @@
 	}
 
 	& > span {
-		min-height: 40px;
-		transform: translateX(calc(100% + 40px));
+		@include tablet-s {
+			position: static;
+		}
+
+		@include tablet-l {
+			padding: 0;
+			max-width: 100%;
+			border: none;
+		}
+
+		@include breakpoint(1300px) {
+			position: absolute;
+			top: 0;
+			max-width: 180px;
+			padding: 0 12px;
+			line-height: 40px;
+			border: 1px solid $color-error;
+		}
+	}
+}
+
+// ErrorPopover animations for 1-st & 3-rd steps (enter new email & enter password)
+.animateEnter {
+	opacity: 0;
+	transform: translateX(10px);
+
+	@include tablet-s {
+		transform: translateX(10px);
+	}
+
+	@include tablet-l {
+		transform: translateX(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateX(0);
+	}
+
+	@include tablet-l {
+		transform: translateX(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateX(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include tablet-s {
+		transform: translateX(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(10px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-s {
+		transform: translateX(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(10px);
+
+	@include tablet-s {
+		transform: translateX(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+// ErrorPopover animations for 2-st step (enter code)
+.codeAnimateEnter {
+	opacity: 0;
+	transform: translateY(10px);
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateY(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.codeAnimateEnterActive {
+	opacity: 1;
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateY(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.codeAnimateEnterDone {
+	opacity: 1;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateY(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.codeAnimateExit {
+	opacity: 1;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateY(0);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.codeAnimateExitActive {
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateY(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.codeAnimateExitDone {
+	opacity: 0;
+	transform: translateY(10px);
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateY(10px);
+	}
+
+	@include breakpoint(1300px) {
+		transform: translateX(calc(100% + 10px));
 	}
 }
 
 .text {
+	letter-spacing: 0;
+
 	strong {
 		font-weight: $weight-semi;
 	}
@@ -47,8 +263,28 @@
 	}
 
 	& > span {
-		min-height: 40px;
-		transform: translateX(calc(100% + 40px));
+		text-align: center;
+
+		@include tablet-s {
+			position: static;
+			max-width: initial;
+			width: initial;
+		}
+
+		@include tablet-l {
+			padding: 0;
+			max-width: max-content;
+			border: none;
+		}
+
+		@include breakpoint(1300px) {
+			position: absolute;
+			top: 0;
+			max-width: 180px;
+			padding: 0 12px;
+			line-height: 40px;
+			border: 1px solid $color-error;
+		}
 	}
 }
 
@@ -58,12 +294,33 @@
 
 .input_password {
 	button {
+		top: 20px;
 		translate: 0 -50%;
 	}
 
 	& > span {
-		min-height: 40px;
-		transform: translateX(calc(100% + 40px));
+		@include tablet-s {
+			position: static;
+		}
+
+		@include tablet-l {
+			padding: 0;
+			max-width: max-content;
+			border: none;
+		}
+
+		@include laptop-m {
+			position: absolute;
+		}
+	
+		@include breakpoint(1300px) {
+			position: absolute;
+			top: 0;
+			max-width: 180px;
+			padding: 0 12px;
+			line-height: 40px;
+			border: 1px solid $color-error;
+		}
 	}
 }
 

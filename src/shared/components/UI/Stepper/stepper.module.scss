@@ -1,12 +1,40 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
-	padding-bottom: 40px;
+	display: flex;
+	padding-bottom: 25px;
+	justify-content: center;
+
+	@include tablet {
+		padding-bottom: 30px;
+	}
+
+	@include tablet-l {
+		padding-bottom: 40px;
+	}
 }
 
 .list {
 	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
 	gap: 16px;
+
+	&_full {
+		display: none;
+
+		@include tablet-s {
+			display: flex;
+		}
+	}
+
+	&_mobile {
+		@include tablet-s {
+			display: none;
+			gap: 0;
+		}
+	}
 }
 
 .item {
@@ -42,6 +70,15 @@
 	}
 
 	&.done {
+		@include tablet {
+			min-width: 115px;
+			flex-shrink: 0;
+
+			.text {
+				display: block;
+			}
+		}
+
 		&:not(:last-child)::before {
 			background-color: $color-primary;
 		}
@@ -64,8 +101,70 @@
 	}
 }
 
+.item_mobile {
+	flex-direction: column;
+	overflow: visible;
+
+	&::before {
+		display: none;
+	}
+
+	&.has_line::before {
+		display: block;
+		position: absolute;
+		content: '';
+		top: 14px;
+		left: 38px; // 10px left gap
+		width: calc(100% - 38px); // 16px right gap
+		height: 1px;
+		background-color: $color-border2;
+	}
+
+	&.done {
+		text-align: center;
+
+		.icon {
+			margin: 0 auto;
+		}
+
+		.has_line::before {
+			background-color: $color-primary;
+		}
+	}
+
+	.text {
+		display: block;
+	}
+}
+
+.item_collapsed {
+	min-width: 28px;
+	flex-shrink: 0;
+	align-items: flex-start;
+}
+
+.icon_wrap {
+	position: relative;
+	display: inline-flex;
+
+	&.layer {
+		&::before {
+			position: absolute;
+			content: '';
+			top: 0;
+			left: 4px;
+			width: 28px;
+			height: 28px;
+			background-color: $color-border3;
+			border-radius: $border-round;
+			z-index: $z-index-1;
+		}
+	}
+}
+
 .icon {
 	display: flex;
+	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
 	width: 28px;
@@ -83,17 +182,29 @@
 	}
 }
 
+.badge {
+	position: absolute;
+	top: -1px;
+	right: -16px;
+	font-size: 10px;
+	font-weight: $weight-medium;
+	line-height: 16px;
+	color: $color-dark;
+	white-space: nowrap;
+}
+
 .text {
 	padding-left: 2px;
 }
 
 .step {
+	display: block;
 	text-transform: lowercase;
 	line-height: 17px;
 	font-size: 11px;
 	font-family: $PlayfairDisplay;
 	font-style: italic;
-	color: $color-grey4;
+	color: $color-dark2;
 }
 
 .title {

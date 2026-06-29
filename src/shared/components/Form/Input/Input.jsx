@@ -25,6 +25,7 @@ export const Input = forwardRef(
 			errorType,
 			warning,
 			className,
+			errorTransitionClasses,
 		},
 		ref,
 	) => {
@@ -68,7 +69,7 @@ export const Input = forwardRef(
 						{isShowPassword && <EyeClosedSVG className={s.password_icon} />}
 					</button>
 				)}
-				<ErrorPopover type={errorType} error={isError && error} />
+				<ErrorPopover type={errorType} error={isError && error} transitionClasses={errorTransitionClasses} />
 			</div>
 		)
 	},

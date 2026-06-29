@@ -5,8 +5,17 @@ import { CSSTransition } from 'react-transition-group'
 
 import s from './error-popover.module.scss'
 
+const defaultTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
 // types: 'text'
-export const ErrorPopover = ({ type, error, className }) => {
+export const ErrorPopover = ({ type, error, transitionClasses = defaultTransition, className }) => {
 	const [toggle, setToggle] = useState(false)
 	const nodeRef = useRef(null)
 
@@ -20,14 +29,7 @@ export const ErrorPopover = ({ type, error, className }) => {
 				<CSSTransition
 					in={toggle}
 					timeout={300}
-					classNames={{
-						enter: s.animateEnter,
-						enterActive: s.animateEnterActive,
-						enterDone: s.animateEnterDone,
-						exit: s.animateExit,
-						exitActive: s.animateExitActive,
-						exitDone: s.animateExitDone,
-					}}
+					classNames={transitionClasses}
 					mountOnEnter
 					unmountOnExit
 					nodeRef={nodeRef}

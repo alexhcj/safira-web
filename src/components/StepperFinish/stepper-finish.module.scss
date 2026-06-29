@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
@@ -16,7 +17,7 @@
 }
 
 .text {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	max-width: 300px;
 }
 
@@ -27,11 +28,14 @@
 }
 
 .btn {
+	padding: 0 15px;
+	height: 38px;
 	border-radius: $default-border-radius;
 }
 
 .btn_text {
 	text-transform: uppercase;
+	letter-spacing: 0;
 	font-weight: $weight-semi;
 	line-height: 20px;
 	font-size: 12px;
