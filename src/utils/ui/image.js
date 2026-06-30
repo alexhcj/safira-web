@@ -1,4 +1,5 @@
 export const imgSizeTypes = [
+	{ type: 'payment-method', size: '60x36' },
 	{ type: 'avatar', size: '50x50' },
 	{ type: 'category', size: '72x72' },
 	{ type: 'xxs', size: '75x53' },

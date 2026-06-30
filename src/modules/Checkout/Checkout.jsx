@@ -7,18 +7,12 @@ import { useCartContext } from '@context/CartContext'
 import { Input } from '@shared/components/Form/Input/Input'
 import { Radio } from '@shared/components/Form/Radio/Radio'
 import { Textarea } from '@shared/components/Form/Textarea/Textarea'
+import { PaymentMethods } from '@shared/components/PaymentMethods/PaymentMethods'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { formatPrice } from '@utils/number/convert'
 
-import AmericanExpress from '@assets/images/american-express.png'
-import HSBC from '@assets/images/hsbc.png'
-import ICBC from '@assets/images/icbc.png'
-import Maestro from '@assets/images/maestro.png'
-import Mir from '@assets/images/mir.png'
-import Paypal from '@assets/images/paypal.png'
-import Visa from '@assets/images/visa.png'
 import Check from '@assets/svg/check.svg?react'
 
 import s from './checkout.module.scss'
@@ -225,15 +219,7 @@ export const Checkout = () => {
 						<span>Create an account?</span>
 					</button>
 					<div className={s.payment}>
-						<div className={s.methods}>
-							<img src={Paypal} alt='Paypal' />
-							<img src={Maestro} alt='Maestro' />
-							<img src={Visa} alt='Visa' />
-							<img src={AmericanExpress} alt='AmericanExpress' />
-							<img src={Mir} alt='Mir' />
-							<img src={ICBC} alt='ICBC' />
-							<img src={HSBC} alt='HSBC' />
-						</div>
+						<PaymentMethods className={s.methods} />
 						<Button className={s.button} type='submit' onClick={onSubmit}>
 							<Text className={s.button_text} color='white'>
 								Proceed to payment

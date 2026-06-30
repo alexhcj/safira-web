@@ -13,7 +13,8 @@
 			"@utils/*": ["src/utils/*"],
 			"@assets/*": ["src/assets/*"]
 		},
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"checkJs": true
 	},
 	"include": ["src"]
 }
