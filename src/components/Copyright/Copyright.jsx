@@ -24,7 +24,7 @@ export const Copyright = () => {
 							</NavLink>
 						</div>
 					</div>
-					<PaymentMethods variant='white' />
+					<PaymentMethods className={s.payment} variant='white' />
 					<span className={s.version}>
 						<Link className={s.link} target='_blank' to='https://safira-store.online'>
 							v{import.meta.env.VITE_APP_VERSION}

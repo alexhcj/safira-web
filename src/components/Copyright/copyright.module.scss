@@ -40,8 +40,17 @@
 	color: $color-white;
 
 	@include tablet {
+		text-align: left;
 		line-height: 24px;
 		font-size: 14px;
+	}
+}
+
+.payment {
+	justify-content: center;
+
+	@include tablet {
+		justify-content: flex-start;
 	}
 }
 
