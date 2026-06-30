@@ -1,5 +1,20 @@
+@use '@shared/styles/breakpoints' as *;
+
+.section {
+	margin-top: var(--grid-gap);
+
+	@include tablet {
+		margin-top: 70px;
+	}
+}
+
 .box {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 25px;
+	grid-auto-flow: row;
+	gap: 30px;
+
+	@include tablet {
+		grid-template-columns: 1fr 1fr;
+		gap: var(--grid-gap);
+	}
 }
