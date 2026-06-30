@@ -8,12 +8,13 @@ import { Input } from '@shared/components/Form/Input/Input'
 import { Radio } from '@shared/components/Form/Radio/Radio'
 import { Textarea } from '@shared/components/Form/Textarea/Textarea'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { formatPrice } from '@utils/number/convert'
 
 import AmericanExpress from '@assets/images/american-express.png'
+import HSBC from '@assets/images/hsbc.png'
+import ICBC from '@assets/images/icbc.png'
 import Maestro from '@assets/images/maestro.png'
 import Mir from '@assets/images/mir.png'
 import Paypal from '@assets/images/paypal.png'
@@ -104,8 +105,7 @@ export const Checkout = () => {
 			<div className={s.checkout}>
 				<div className={s.col_6}>
 					<h3 className={s.title}>Billing details</h3>
-					<Space space={8} />
-					<form>
+					<form className={s.form}>
 						<div className={s.box}>
 							<Input
 								className={s.label}
@@ -124,7 +124,6 @@ export const Checkout = () => {
 								required
 							/>
 						</div>
-						<Space space={20} />
 						<fieldset className={s.radio}>
 							{radioData.map((item) => (
 								<Radio
@@ -137,7 +136,6 @@ export const Checkout = () => {
 								/>
 							))}
 						</fieldset>
-						<Space space={20} />
 						<Input
 							className={s.label}
 							value={address}
@@ -146,7 +144,6 @@ export const Checkout = () => {
 							handleChange={handleAddressChange}
 							required
 						/>
-						<Space space={20} />
 						<Input
 							className={s.label}
 							value={city}
@@ -155,7 +152,6 @@ export const Checkout = () => {
 							handleChange={handleCityChange}
 							required
 						/>
-						<Space space={20} />
 						<div className={s.box}>
 							<Input
 								className={s.label}
@@ -179,7 +175,6 @@ export const Checkout = () => {
 								required
 							/>
 						</div>
-						<Space space={20} />
 						<Textarea
 							className={s.label}
 							value={notes}
@@ -193,7 +188,6 @@ export const Checkout = () => {
 				</div>
 				<div className={s.col_6}>
 					<h3 className={s.title}>Your order</h3>
-					<Space space={8} />
 					<table className={s.order}>
 						<thead>
 							<tr>
@@ -206,10 +200,10 @@ export const Checkout = () => {
 							{cart.map((item) => {
 								return (
 									<tr key={item.name}>
-										<td>
+										<td className={s.name}>
 											{item.name} <strong>x {item.quantity}</strong>
 										</td>
-										<td>{formatPrice(item.price * item.quantity)}</td>
+										<td className={s.price}>{formatPrice(item.price * item.quantity)}</td>
 									</tr>
 								)
 							})}
@@ -219,7 +213,6 @@ export const Checkout = () => {
 							</tr>
 						</tbody>
 					</table>
-					<Space space={25} />
 					<button
 						className={s.account}
 						onClick={() => {
@@ -231,14 +224,15 @@ export const Checkout = () => {
 						</div>
 						<span>Create an account?</span>
 					</button>
-					<Space space={20} />
 					<div className={s.payment}>
 						<div className={s.methods}>
 							<img src={Paypal} alt='Paypal' />
-							<img src={Visa} alt='Visa' />
 							<img src={Maestro} alt='Maestro' />
+							<img src={Visa} alt='Visa' />
 							<img src={AmericanExpress} alt='AmericanExpress' />
 							<img src={Mir} alt='Mir' />
+							<img src={ICBC} alt='ICBC' />
+							<img src={HSBC} alt='HSBC' />
 						</div>
 						<Button className={s.button} type='submit' onClick={onSubmit}>
 							<Text className={s.button_text} color='white'>
@@ -248,7 +242,6 @@ export const Checkout = () => {
 					</div>
 				</div>
 			</div>
-			<Space size='l' />
 		</div>
 	)
 }
