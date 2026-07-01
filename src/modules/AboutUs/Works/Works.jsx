@@ -27,7 +27,7 @@ const list = [
 
 export const Works = () => {
 	return (
-		<section>
+		<section className={s.section}>
 			<div className='container'>
 				<div className={s.box}>
 					<ul className={s.list}>

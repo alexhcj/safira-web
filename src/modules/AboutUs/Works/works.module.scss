@@ -1,28 +1,65 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.section {
+	padding: 50px 0;
+
+	@include tablet {
+		padding: 70px 0 64px;
+	}
+}
 
 .box {
-	padding-bottom: 63px;
+	padding-bottom: 50px;
 	border-bottom: 1px solid $color-border;
+
+	@include tablet {
+		padding-bottom: 63px;
+	}
 }
+
 .list {
 	display: flex;
-	gap: 24px;
+	flex-direction: column;
+	gap: 30px;
+
+	@include tablet {
+		flex-direction: row;
+		gap: var(--grid-gap);
+	}
 }
+
 .item {
 	text-align: center;
 }
+
 .img {
-	margin-bottom: 21px;
-	height: 230px;
+	margin-bottom: 18px;
 	object-fit: cover;
+
+	@include tablet-s {
+		margin-bottom: 21px;
+	}
 }
+
 .title {
-	margin-bottom: 12px;
-	line-height: 33px;
-	font-size: 28px;
-	font-weight: $weight-normal;
-}
-.text {
+	margin-bottom: 10px;
 	line-height: 26px;
+	font-size: 20px;
+	font-weight: $weight-normal;
+
+	@include tablet-s {
+		margin-bottom: 12px;
+		line-height: 33px;
+		font-size: 28px;
+	}
+}
+
+.text {
 	text-wrap: balance;
+	line-height: 22px;
+
+	@include tablet-s {
+		line-height: 26px;
+	}
 }

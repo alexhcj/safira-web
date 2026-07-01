@@ -1,16 +1,28 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
-	width: 50%;
+	width: 100%;
+
+	@include tablet {
+		width: 50%;
+	}
 }
+
 .title {
 	margin-bottom: 28px;
 	text-align: center;
 	text-transform: capitalize;
-	line-height: 33px;
-	font-size: 28px;
+	line-height: 24px;
+	font-size: 22px;
 	font-weight: $weight-normal;
+
+	@include tablet-s {
+		line-height: 33px;
+		font-size: 28px;
+	}
 }
+
 .item {
 	position: relative;
 	display: flex;
@@ -21,9 +33,11 @@
 	padding: 70px 20px 80px;
 	background-color: $color-grey9;
 }
+
 .quotes {
 	margin-bottom: 28px;
 }
+
 .img {
 	position: absolute;
 	top: -50px;
@@ -33,13 +47,16 @@
 	width: 100px;
 	height: 100px;
 }
+
 .text {
 	margin-bottom: 15px;
 	line-height: 24px;
 }
+
 .name {
 	font-weight: $weight-semi;
 }
+
 .dot {
 	display: inline-block;
 	margin: 0 3px;

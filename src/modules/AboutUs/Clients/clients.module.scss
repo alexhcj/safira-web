@@ -1,8 +1,12 @@
-.section {
-	height: calc(419px + 53px);
-}
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
-	gap: 24px;
+	flex-direction: column-reverse;
+	gap: 30px;
+
+	@include tablet {
+		flex-direction: row;
+		gap: var(--grid-gap);
+	}
 }
