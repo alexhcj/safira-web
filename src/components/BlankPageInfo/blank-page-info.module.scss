@@ -1,24 +1,39 @@
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
+@use "@shared/styles/breakpoints" as *;
 
 .section {
 	background-color: $color-section-bg;
 }
+
 .page {
 	display: grid;
 	justify-content: center;
 	text-align: center;
-	padding: 200px 100px;
+	padding: 60px 0 50px;
+
+	@include tablet {
+		padding: 200px 100px;
+	}
 }
+
 .title {
 	text-transform: capitalize;
 	margin-bottom: 15px;
-	font-size: 32px;
+	line-height: 30px;
+	font-size: 30px;
+
+	@include tablet {
+		line-height: 24px;
+		font-size: 32px;
+	}
 }
+
 .text {
 	font-size: 16px;
 	margin-bottom: 30px;
 	color: $color-dark3;
 }
+
 .hello {
 	margin-bottom: 15px;
 	font-size: 19px;
@@ -29,10 +44,12 @@
 		color: $color-primary;
 	}
 }
+
 .description {
 	margin: 0 auto;
 	max-width: 430px;
 }
+
 .contact {
 	margin: 40px auto 0;
 	max-width: 280px;
