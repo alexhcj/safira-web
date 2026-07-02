@@ -11,7 +11,6 @@
 	align-content: center;
 	padding: 0;
 	border: none;
-	min-height: 25px;
 	font-weight: $weight-medium;
 	cursor: default;
 	color: $color-error;
@@ -23,9 +22,9 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		max-width: max-content;
-		min-height: 30px;
 		width: max-content;
+		max-width: max-content;
+		line-height: 30px;
 	}
 
 	@include tablet-l {
@@ -36,6 +35,7 @@
 		max-width: 175px;
 		padding: 0 12px;
 		line-height: 30px;
+		min-height: 40px;
 		border: 1px solid $color-error;
 		transform: translateX(100%);
 	}
@@ -64,7 +64,7 @@
 	transform: translateX(15px);
 
 	@include tablet-s {
-		transform: translateY(-25px);
+		transform: translateY(-16px);
 	}
 
 	@include tablet-l {
@@ -82,7 +82,7 @@
 	transform: translateX(0);
 
 	@include tablet-s {
-		transform: translateY(-16px);
+		transform: translateY(-6px);
 	}
 
 	@include tablet-l {
@@ -99,7 +99,7 @@
 	transform: translateX(0);
 
 	@include tablet-s {
-		transform: translateY(-16px);
+		transform: translateY(-6px);
 	}
 
 	@include tablet-l {
@@ -116,7 +116,7 @@
 	transform: translateX(0);
 
 	@include tablet-s {
-		transform: translateY(-16px);
+		transform: translateY(-6px);
 	}
 
 	@include tablet-l {
@@ -134,7 +134,7 @@
 	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 
 	@include tablet-s {
-		transform: translateY(-25px);
+		transform: translateY(-16px);
 	}
 
 	@include tablet-l {
@@ -151,7 +151,7 @@
 	transform: translateX(15px);
 
 	@include tablet-s {
-		transform: translateY(-25px);
+		transform: translateY(-16px);
 	}
 
 	@include tablet-l {

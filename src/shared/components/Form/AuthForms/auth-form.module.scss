@@ -40,9 +40,156 @@
 	position: relative;
 }
 
-.password_strength {
-	margin-top: 24px;
+.password_strength_box {
+	display: flex;
+	flex-direction: column-reverse;
+
+	&:focus {
+		.password_strength {
+			opacity: 0;
+		}
+	}
 }
+
+.password_strength {
+	position: static;
+	margin-top: 10px;
+
+	@include laptop-m {
+		position: absolute;
+		top: 0;
+		left: -20px;
+	}
+}
+
+.animateEnter {
+	opacity: 0;
+	transform: translateX(15px);
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+// ErrorPopover animations for password strength
+.animateEnterDone {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateX(15px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateX(15px);
+
+	@include laptop-m {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
+.checkbox {
+	& + span {
+		@include tablet-s {
+			position: static;
+		}
+
+		@include tablet-l {
+			position: absolute;
+			top: 5px;
+			left: -20px;
+		}
+	}
+}
+
+// ErrorPopover animations for privacy checkbox
+.privacyAnimateEnter {
+	opacity: 0;
+	transform: translateX(15px);
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
+.privacyAnimateEnterActive {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+.privacyAnimateEnterDone {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+.privacyAnimateExit {
+	opacity: 1;
+	transform: translateX(0);
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 20px));
+	}
+}
+
+.privacyAnimateExitActive {
+	opacity: 0;
+	transform: translateX(15px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
+.privacyAnimateExitDone {
+	opacity: 0;
+	transform: translateX(15px);
+
+	@include tablet-l {
+		transform: translateX(calc(-100% - 10px));
+	}
+}
+
 
 .input {
 	& > label {
@@ -56,15 +203,27 @@
 	}
 }
 
+.agree {
+	margin-left: 4px;
+}
+
+.dot {
+	margin-left: -3px;
+}
+
 .form_actions {
 	display: grid;
 	grid-template-columns: repeat(2, max-content);
 	justify-content: space-between;
 	align-items: center;
 
+	&.register_actions {
+		justify-content: end;
+	}
+
 	.btn_forgot_password {
-		line-height: 39px;
-		height: 39px;
+		line-height: 34px;
+		height: 34px;
 	}
 
 	.forgot_password_text {

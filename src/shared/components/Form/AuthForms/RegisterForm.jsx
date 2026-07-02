@@ -42,6 +42,24 @@ const registerFormValidationSchema = {
 	isPrivacyConfirmed: [required('Terms and policies should be confirmed.')],
 }
 
+const passwordStrengthTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
+const privacyPolicyTransition = {
+	enter: s.privacyAnimateEnter,
+	enterActive: s.privacyAnimateEnterActive,
+	enterDone: s.privacyAnimateEnterDone,
+	exit: s.privacyAnimateExit,
+	exitActive: s.privacyAnimateExitActive,
+	exitDone: s.privacyAnimateExitDone,
+}
+
 /**
  * Register form component
  * @returns {JSX.Element}
@@ -112,9 +130,10 @@ export const RegisterForm = () => {
 							required
 						/>
 					</div>
-					<div className={s.input_box}>
+					<div className={cn(s.input_box, s.password_strength_box)}>
 						<PasswordStrength
 							classNames={s.password_strength}
+							transitionClasses={passwordStrengthTransition}
 							value={form['password']}
 							isActive={form['password'].length > 0}
 						/>
@@ -142,6 +161,8 @@ export const RegisterForm = () => {
 						required
 					/>
 					<Checkbox
+						className={s.checkbox}
+						transitionClasses={privacyPolicyTransition}
 						key='checkbox'
 						type='terms'
 						checked={form['isPrivacyConfirmed']}
@@ -150,19 +171,17 @@ export const RegisterForm = () => {
 						error={getFieldError('isPrivacyConfirmed')}
 						required
 					>
-						<div className='terms'>
-							I agree to the{' '}
-							<Link className='terms-link' to='/terms-conditions'>
-								Terms of Use
-							</Link>{' '}
-							and{' '}
-							<Link className='terms-link' to='/privacy-policy'>
-								Privacy Policy
-							</Link>
-							.
-						</div>
+						<span className={s.agree}>I agree to the</span>
+						<Link className='terms-link' to='/terms-conditions'>
+							Terms of Use
+						</Link>
+						and
+						<Link className='terms-link' to='/privacy-policy'>
+							Privacy Policy
+						</Link>
+						<span className={s.dot}>.</span>
 					</Checkbox>
-					<div className={s.form_actions}>
+					<div className={cn(s.form_actions, s.register_actions)}>
 						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_register, isLoading && s.loading)}>
 							{isLoading ? (
 								<Preloader width={20} height={20} />

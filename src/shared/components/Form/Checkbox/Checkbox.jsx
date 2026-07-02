@@ -6,7 +6,18 @@ import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 
 import s from './checkbox.module.scss'
 
-export const Checkbox = ({ children, type, id, name, checked = false, handleChange, error, required, className }) => {
+export const Checkbox = ({
+	children,
+	type,
+	id,
+	name,
+	checked = false,
+	handleChange,
+	error,
+	required,
+	transitionClasses,
+	className,
+}) => {
 	const [isTouched, setIsTouched] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
 	const isError = useMemo(() => !isFocused && isTouched && error, [isFocused, isTouched, error])
@@ -23,7 +34,7 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 	return (
 		<div className={s.box}>
 			{type === 'terms' ? (
-				<>
+				<div className={cn('terms', className)}>
 					<input
 						className={cn(s.checkbox, { [s.active]: checked, [s.error]: isError })}
 						id={id}
@@ -35,8 +46,8 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 						onBlur={handleBlur}
 					/>
 					{children}
-					<label className={cn(s.label, required && s.required, className)} htmlFor={id}></label>
-				</>
+					<label className={cn(s.label, required && s.required)} htmlFor={id}></label>
+				</div>
 			) : (
 				<>
 					<label className={cn(s.label, required && s.required, className)}>
@@ -53,7 +64,7 @@ export const Checkbox = ({ children, type, id, name, checked = false, handleChan
 					{children}
 				</>
 			)}
-			<ErrorPopover error={isError && error} className={s.error_popover} />
+			<ErrorPopover error={isError && error} className={s.error_popover} transitionClasses={transitionClasses} />
 		</div>
 	)
 }
