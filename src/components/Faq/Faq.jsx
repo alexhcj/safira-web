@@ -6,7 +6,16 @@ import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './faq.module.scss'
 
-const questions = [
+/**
+ * FAQ question item.
+ *
+ * @typedef {Object} QuestionItem
+ * @property {string} title - Question title.
+ * @property {string} text - Answer displayed when the question is expanded.
+ */
+
+/** @type {Readonly<QuestionItem[]>} */
+export const DEFAULT_QUESTIONS = Object.freeze([
 	{
 		title: 'What are your delivery hours and areas?',
 		text: 'We deliver Monday through Sunday from 8 AM to 10 PM. Our delivery area covers most metropolitan areas within a 25-mile radius of our distribution centers. You can check if we deliver to your location by entering your zip code during checkout. Same-day delivery is available for orders placed before 2 PM.',
@@ -43,9 +52,23 @@ const questions = [
 		title: 'Are there any delivery fees or minimum order requirements?',
 		text: 'Delivery is free for orders over $35. Orders under $35 have a $4.99 delivery fee. We also offer a premium membership program for $9.99/month that includes free delivery on all orders, exclusive discounts, and early access to sales and new products.',
 	},
-]
+])
 
-export const Faq = () => {
+/**
+ * Component props.
+ *
+ * @typedef {Object} FaqProps
+ * @property {Readonly<QuestionItem[]>} [questions=DEFAULT_QUESTIONS]
+ *   List of FAQ questions to display.
+ */
+
+/**
+ * Renders an accordion with frequently asked questions.
+ *
+ * @param {FaqProps} [props]
+ * @returns {JSX.Element}
+ */
+export const Faq = ({ questions = DEFAULT_QUESTIONS }) => {
 	const [checkedQuestions, setCheckedQuestions] = useState([]) // user already looked
 	const [activeQuestions, setActiveQuestions] = useState([]) // currently opened
 
