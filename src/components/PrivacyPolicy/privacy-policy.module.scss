@@ -1,13 +1,26 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
-	display: grid;
-	grid-template-columns: 1fr 300px;
-	gap: 30px;
-}
-.sidebar {
 	position: relative;
+	display: grid;
+	grid-template-columns: 1fr;
+
+	@include tablet {
+		grid-template-columns: 1fr min(250px, 300px);
+		gap: 30px;
+	}
 }
+
+.sidebar {
+	display: none;
+
+	@include tablet {
+		position: relative;
+		display: block;
+	}
+}
+
 .sidebar_list {
 	position: sticky;
 	top: 80px;
@@ -17,6 +30,7 @@
 	gap: 10px;
 	list-style: none;
 }
+
 .sidebar_button {
 	text-align: left;
 	letter-spacing: $letter-spacing-lg-neg;
@@ -35,6 +49,7 @@
 		letter-spacing: 0;
 	}
 }
+
 .subnav {
 	display: grid;
 	justify-content: start;
@@ -52,37 +67,78 @@
 		}
 	}
 }
+
 .block_note {
 	margin-bottom: 10px;
 	box-shadow: $box-shadow;
+	border-left: none;
+	border-top: 4px solid #40a944;
+
+	strong {
+		letter-spacing: 0;
+		line-height: 15px;
+		font-size: 13px;
+	}
+
+	p {
+		letter-spacing: 0;
+		line-height: 15px;
+		font-size: 13px;
+	}
 }
+
 .updated {
 	display: block;
 	margin-bottom: 30px;
 	font-size: 13px;
 }
+
 .section {
-	margin-bottom: 40px;
+	&:not(:last-of-type) {
+		margin-bottom: 30px;
+
+		@include tablet {
+			margin-bottom: 40px;
+		}
+	}
 
 	h2 {
 		text-transform: capitalize;
 		margin-bottom: 20px;
 		padding-bottom: 10px;
-		font-size: 1.8rem;
+		line-height: 26px;
+		font-size: 1.5rem;
 		border-bottom: 3px solid $color-primary;
 		color: $color-dark;
+
+		@include tablet-s {
+			line-height: 24px;
+			font-size: 1.75rem;
+		}
 	}
 
 	h3 {
 		text-transform: capitalize;
-		margin: 25px 0 15px 0;
-		font-size: 1.3rem;
+		margin: 20px 0 12px 0;
+		line-height: 22px;
+		font-size: 1.125rem;
 		font-weight: $weight-semi;
 		color: $color-dark;
+
+		@include tablet-s {
+			margin: 25px 0 15px 0;
+			line-height: 24px;
+			font-size: 1.313rem;
+		}
+	}
+
+	h3 + ul {
+		margin: 12px 0 15px 40px;
 	}
 
 	p {
 		margin-bottom: 15px;
+		font-size: 0.813rem;
 		color: $color-dark;
 	}
 
@@ -91,7 +147,7 @@
 	}
 
 	ul {
-		margin: 15px 0 15px 20px;
+		margin: 15px 0 15px 40px;
 		list-style: square;
 	}
 
@@ -107,8 +163,8 @@
 		}
 	}
 }
+
 .contacts {
-	padding: 0 30px 30px;
 	text-align: center;
 
 	&_item {
@@ -124,6 +180,10 @@
 				border-color: $color-primary;
 			}
 		}
+
+		span {
+			text-align: left;
+		}
 	}
 
 	&_link,
@@ -133,10 +193,40 @@
 		padding: 10px 20px;
 	}
 }
+
 .link {
 	text-decoration: underline;
 
 	&:hover {
 		color: $color-primary;
 	}
+}
+
+.modal {
+	min-width: 250px;
+	padding: 20px;
+
+	@include tablet-s {
+		min-width: 300px;
+	}
+
+	& > button {
+		right: 12px;
+		width: 25px;
+		height: 25px;
+		background-color: $color-grey2;
+		border-radius: $border-round;
+
+		svg {
+			width: 10px !important;
+			height: 10px !important;
+		}
+	}
+}
+
+
+.sticky {
+	position: fixed;
+	top: 50px;
+	right: 12px;
 }
