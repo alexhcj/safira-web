@@ -13,6 +13,7 @@
 	border: 2px solid $color-white;
 	background-color: $color-primary;
 	opacity: 0;
+	visibility: hidden;
 	@include transition-all;
 }
 
