@@ -11,7 +11,7 @@ import { SidebarModal } from '@shared/components/Modal/SidebarModal'
 import { BlockNote } from '@shared/components/UI/BlockNote/BlockNote'
 import { ButtonSidebar } from '@shared/components/UI/Buttons/ButtonSidebar/ButtonSidebar'
 import { BREAKPOINTS } from '@shared/data/breakpoints'
-import { navigationItems } from '@shared/data/privacy-policy-navigation'
+import { NAVIGATION_ITEMS } from '@shared/data/privacy-policy'
 
 import s from './privacy-policy.module.scss'
 
@@ -55,10 +55,10 @@ export const PrivacyPolicy = () => {
 	const triggerRef = useRef(null)
 	const hadEnterList = usePassedElement(triggerRef, -100)
 	const [isOpen, setIsOpen] = useState(false)
-	const ids = navigationItems.map((item) => item.id)
+	const ids = NAVIGATION_ITEMS.map((item) => item.id)
 
 	// collect all inner section IDs
-	const innerIds = navigationItems.reduce((acc, item) => {
+	const innerIds = NAVIGATION_ITEMS.reduce((acc, item) => {
 		if (item.subNavs && item.subNavs.length > 0) {
 			item.subNavs.forEach((subNav) => {
 				acc.push(subNav.id)
@@ -471,7 +471,7 @@ export const PrivacyPolicy = () => {
 				{!isTablet && (
 					<div className={s.sidebar}>
 						<nav className={s.sidebar_list}>
-							{navigationItems.map(({ order, id, title, subNavs }) => (
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
 								<NavLink
 									order={order}
 									key={id}
@@ -490,7 +490,7 @@ export const PrivacyPolicy = () => {
 				{isTablet && (
 					<SidebarModal isOpen={isOpen} setIsOpen={setIsOpen} className={s.modal}>
 						<nav className={s.sidebar_list}>
-							{navigationItems.map(({ order, id, title, subNavs }) => (
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
 								<NavLink
 									order={order}
 									key={id}
@@ -509,7 +509,7 @@ export const PrivacyPolicy = () => {
 						</nav>
 					</SidebarModal>
 				)}
-				{isTablet && <ButtonSidebar className={cn({ [s.sticky]: hadEnterList })} onClick={() => setIsOpen(!isOpen)} />}
+				{isTablet && <ButtonSidebar className={cn({ [s.visible]: hadEnterList })} onClick={() => setIsOpen(!isOpen)} />}
 			</div>
 		</div>
 	)

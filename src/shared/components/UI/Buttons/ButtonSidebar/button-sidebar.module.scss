@@ -1,9 +1,9 @@
 @use '@shared/styles/vars' as *;
 
 .btn {
-	position: absolute;
-	top: 235px;
-	right: 0;
+	position: fixed;
+	top: 50px;
+	right: 12px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -12,6 +12,7 @@
 	border-radius: $border-round;
 	border: 2px solid $color-white;
 	background-color: $color-primary;
+	opacity: 0;
 	@include transition-all;
 }
 

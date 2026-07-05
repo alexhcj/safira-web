@@ -1,4 +1,4 @@
-export const navigationItems = [
+export const NAVIGATION_ITEMS = [
 	{
 		order: 1,
 		id: 'information-collection',

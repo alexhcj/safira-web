@@ -1,9 +1,17 @@
+import { useRef, useState } from 'react'
+
 import cn from 'classnames'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+import { usePassedElement } from '@hooks/usePassedElement'
 import { useScrollSpy } from '@hooks/useScrollSpy'
 import { useSmoothScroll } from '@hooks/useSmoothScroll'
 
+import { SidebarModal } from '@shared/components/Modal/SidebarModal'
 import { BlockNote } from '@shared/components/UI/BlockNote/BlockNote'
+import { ButtonSidebar } from '@shared/components/UI/Buttons/ButtonSidebar/ButtonSidebar'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
+import { NAVIGATION_ITEMS } from '@shared/data/terms-conditions'
 
 import s from './terms-conditions.module.scss'
 
@@ -43,84 +51,14 @@ const NavLink = ({ order, href, children, isActive, onClick, subNavs, activeInne
 )
 
 export const TermsConditions = () => {
-	const navigationItems = [
-		{
-			order: 1,
-			id: 'agreement-to-terms',
-			title: 'Agreement to Terms',
-		},
-		{
-			order: 2,
-			id: 'use-license',
-			title: 'Use License',
-			subNavs: [
-				{ order: 1, id: 'permitted-use', title: 'Permitted Use' },
-				{ order: 2, id: 'license-termination', title: 'License Termination' },
-			],
-		},
-		{
-			order: 3,
-			id: 'user-account',
-			title: 'User Account',
-			subNavs: [
-				{ order: 1, id: 'account-creation', title: 'Account Creation' },
-				{ order: 2, id: 'account-suspension', title: 'Account Suspension' },
-			],
-		},
-		{
-			order: 4,
-			id: 'prohibited-uses',
-			title: 'Prohibited Uses',
-			subNavs: [{ order: 1, id: 'prohibited-activities', title: 'Specifically Prohibited Activities' }],
-		},
-		{
-			order: 5,
-			id: 'service-availability',
-			title: 'Service Availability',
-			subNavs: [
-				{ order: 1, id: 'maintenance', title: 'Uptime and Maintenance' },
-				{ order: 2, id: 'service-modifications', title: 'Service Modifications' },
-			],
-		},
-		{
-			order: 6,
-			id: 'payment-terms',
-			title: 'Payment Terms',
-			subNavs: [
-				{ order: 1, id: 'billing-payments', title: 'Billing and Payments' },
-				{ order: 2, id: 'refund-policy', title: 'Refund Policy' },
-				{ order: 3, id: 'late-payments', title: 'Late Payments' },
-			],
-		},
-		{
-			order: 7,
-			id: 'intellectual-property',
-			title: 'Intellectual Property',
-			subNavs: [
-				{ order: 1, id: 'our-content', title: 'Our Content' },
-				{ order: 2, id: 'user-content', title: 'User Content' },
-			],
-		},
-		{ order: 8, id: 'limitation-liability', title: 'Limitation of Liability' },
-		{
-			order: 9,
-			id: 'indemnification',
-			title: 'Indemnification',
-		},
-		{ order: 10, id: 'governing-law', title: 'Governing Law' },
-		{
-			order: 11,
-			id: 'change-terms',
-			title: 'Changes to Terms',
-			subNavs: [{ order: 1, id: 'notification-changes', title: 'Notification of Changes' }],
-		},
-		{ order: 12, id: 'contact', title: 'Contact Information' },
-	]
-
-	const ids = navigationItems.map((item) => item.id)
+	const isTablet = useIsBelow(BREAKPOINTS.tablet)
+	const triggerRef = useRef(null)
+	const hadEnterList = usePassedElement(triggerRef, -100)
+	const [isOpen, setIsOpen] = useState(false)
+	const ids = NAVIGATION_ITEMS.map((item) => item.id)
 
 	// collect all inner section IDs
-	const innerIds = navigationItems.reduce((acc, item) => {
+	const innerIds = NAVIGATION_ITEMS.reduce((acc, item) => {
 		if (item.subNavs && item.subNavs.length > 0) {
 			item.subNavs.forEach((subNav) => {
 				acc.push(subNav.id)
@@ -134,7 +72,7 @@ export const TermsConditions = () => {
 
 	return (
 		<div className='container'>
-			<div className={s.box}>
+			<div className={s.box} ref={triggerRef}>
 				<div>
 					<BlockNote type='notification' className={s.block_note}>
 						<strong>Important Notice</strong>
@@ -346,23 +284,50 @@ export const TermsConditions = () => {
 						</div>
 					</Section>
 				</div>
-				<div className={s.sidebar}>
-					<nav className={s.sidebar_list}>
-						{navigationItems.map(({ order, id, title, subNavs }) => (
-							<NavLink
-								order={order}
-								key={id}
-								href={`#${id}`}
-								isActive={activeId === id}
-								onClick={scrollToSection}
-								subNavs={subNavs}
-								activeInnerId={activeInnerId}
-							>
-								{order}. {title}
-							</NavLink>
-						))}
-					</nav>
-				</div>
+				{!isTablet && (
+					<div className={s.sidebar}>
+						<nav className={s.sidebar_list}>
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
+								<NavLink
+									order={order}
+									key={id}
+									href={`#${id}`}
+									isActive={activeId === id}
+									onClick={scrollToSection}
+									subNavs={subNavs}
+									activeInnerId={activeInnerId}
+								>
+									{order}. {title}
+								</NavLink>
+							))}
+						</nav>
+					</div>
+				)}
+				{isTablet && (
+					<SidebarModal isOpen={isOpen} setIsOpen={setIsOpen} className={s.modal}>
+						<nav className={s.sidebar_list}>
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
+								<NavLink
+									order={order}
+									key={id}
+									href={`#${id}`}
+									isActive={activeId === id}
+									onClick={(id, type) => {
+										scrollToSection(id, type)
+										setIsOpen(false)
+									}}
+									subNavs={subNavs}
+									activeInnerId={activeInnerId}
+								>
+									{order}. {title}
+								</NavLink>
+							))}
+						</nav>
+					</SidebarModal>
+				)}
+				{isTablet && (
+					<ButtonSidebar className={cn(s.btn, { [s.visible]: hadEnterList })} onClick={() => setIsOpen(!isOpen)} />
+				)}
 			</div>
 		</div>
 	)
