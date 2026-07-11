@@ -11,9 +11,13 @@
 .title {
 	margin-bottom: 13px;
 	letter-spacing: $letter-spacing-lg-neg;
-	line-height: 19px;
+	line-height: 21px;
 	font-size: 20px;
 	font-weight: $weight-medium;
+
+	@include tablet-s {
+		line-height: 19px;
+	}
 }
 
 .text {

@@ -14,6 +14,24 @@ import { required, pattern, minLength, maxLength, matchField } from '@utils/vali
 
 import s from './change-password-stepper-form.module.scss'
 
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
+const passwordStrengthTransition = {
+	enter: s.passwordStrengthAnimateEnter,
+	enterActive: s.passwordStrengthAnimateEnterActive,
+	enterDone: s.passwordStrengthAnimateEnterDone,
+	exit: s.passwordStrengthAnimateExit,
+	exitActive: s.passwordStrengthAnimateExitActive,
+	exitDone: s.passwordStrengthAnimateExitDone,
+}
+
 const changePasswordFormValidationSchema = {
 	password: [
 		required('Password should be filled.'),
@@ -60,11 +78,13 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, onSubmit }
 			<div className={s.input_box}>
 				<PasswordStrength
 					classNames={s.password_strength}
+					transitionClasses={passwordStrengthTransition}
 					value={form['password']}
 					isActive={form['password'].length > 0}
 				/>
 				<Input
 					className={s.input_password}
+					errorTransitionClasses={errorPopoverTransition}
 					key='password'
 					type='password'
 					id='password'
@@ -77,6 +97,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, onSubmit }
 			</div>
 			<Input
 				className={s.input_password}
+				errorTransitionClasses={errorPopoverTransition}
 				key='confirmPassword'
 				type='password'
 				id='confirmPassword'
@@ -91,7 +112,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, onSubmit }
 					<Preloader width={20} height={20} />
 				) : (
 					<Text className={s.btn_text} color='white' span>
-						Confirm password
+						Change password
 					</Text>
 				)}
 			</Button>

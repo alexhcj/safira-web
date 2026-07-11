@@ -11,6 +11,15 @@ import { Text } from '@shared/components/UI/Text/Text'
 
 import s from './change-password-stepper-form.module.scss'
 
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
 const emailFormValidationSchema = {
 	// email: no minLength, pattern min 5 chars
 	email: [
@@ -44,6 +53,7 @@ export const ChangePasswordStepperFormEmail = ({ type, isLoading, onSubmit }) =>
 			<p className={s.text}>Enter profile email address and we’ll send to it a verification code.</p>
 			<Input
 				className={s.input_email}
+				errorTransitionClasses={errorPopoverTransition}
 				type='text'
 				id='email'
 				value={email}
