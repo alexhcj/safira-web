@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Navigate, NavLink, useLocation } from 'react-router-dom'
 
@@ -21,6 +21,15 @@ import { ResendCode } from './ResendCode/ResendCode'
 import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './verify-email.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
 
 const verifyEmailFormValidationSchema = {
 	code: [
@@ -101,18 +110,17 @@ export const VerifyEmail = () => {
 								<span className={s.email}>{hideEmailPartial(location.state.email)}</span>. Enter this code into input to
 								verify that address is yours.
 							</p>
-							<div className={s.input_box}>
-								<Input
-									className={s.input}
-									handleChange={handleChange}
-									key='code'
-									id='code'
-									type='text'
-									value={form.code}
-									error={getFieldError('code')}
-									placeholder='726482'
-								/>
-							</div>
+							<Input
+								className={s.input}
+								errorTransitionClasses={errorPopoverTransition}
+								handleChange={handleChange}
+								key='code'
+								id='code'
+								type='text'
+								value={form.code}
+								error={getFieldError('code')}
+								placeholder='726482'
+							/>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
 							<Button className={s.btn_verify} htmlType='submit' type='auth'>
 								{isLoading && <Preloader width={20} height={20} className={s.preloader} />}

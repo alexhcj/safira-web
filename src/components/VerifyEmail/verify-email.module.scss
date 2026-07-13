@@ -1,9 +1,9 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding-bottom: 70px;
 }
 
 .box {
@@ -56,12 +56,10 @@
 }
 
 .input {
-	position: static;
-	justify-self: center;
-	max-width: 115px;
-
 	& > input {
+		align-self: center;
 		text-align: center;
+		max-width: 150px;
 		letter-spacing: $letter-spacing-lg;
 		line-height: 26px;
 		font-size: 20px;
@@ -75,8 +73,104 @@
 	}
 
 	& > span {
-		min-height: 40px;
-		transform: translateX(calc(100% + 40px));
+		text-align: center;
+
+		@include tablet-s {
+			position: static;
+			max-width: 100%;
+			width: 100%;
+		}
+
+		@include tablet-l {
+			position: absolute;
+			top: 0;
+			text-align: start;
+			padding: 0 12px;
+			max-width: 200px;
+			width: max-content;
+			min-height: 40px;
+			border: 1px solid $color-error;
+		}
+	}
+}
+
+.animateEnter {
+	opacity: 0;
+	transform: translateY(10px);
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.animateEnterActive {
+	opacity: 1;
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateEnterDone {
+	opacity: 1;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateExit {
+	opacity: 1;
+	transform: translateY(0);
+
+	@include tablet-s {
+		transform: translateY(0);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 20px));
+	}
+}
+
+.animateExitActive {
+	opacity: 0;
+	transform: translateY(10px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
+	}
+}
+
+.animateExitDone {
+	opacity: 0;
+	transform: translateY(10px);
+
+	@include tablet-s {
+		transform: translateY(10px);
+	}
+
+	@include tablet-l {
+		transform: translateX(calc(100% + 10px));
 	}
 }
 
