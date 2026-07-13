@@ -37,7 +37,7 @@
 			top: 0;
 			max-width: 180px;
 			padding: 0 12px;
-			line-height: 40px;
+			min-height: 40px;
 			border: 1px solid $color-error;
 		}
 	}
@@ -273,16 +273,17 @@
 
 		@include tablet-l {
 			padding: 0;
-			max-width: max-content;
 			border: none;
+			min-height: 30px;
 		}
 
 		@include breakpoint(1300px) {
 			position: absolute;
 			top: 0;
+			text-align: start;
 			max-width: 180px;
 			padding: 0 12px;
-			line-height: 40px;
+			min-height: 40px;
 			border: 1px solid $color-error;
 		}
 	}
@@ -303,23 +304,28 @@
 			position: static;
 		}
 
-		@include tablet-l {
-			padding: 0;
-			max-width: max-content;
-			border: none;
+		@include tablet {
+			width: 100%;
 		}
 
-		@include laptop-m {
-			position: absolute;
+		@include tablet-l {
+			padding: 0;
+			max-width: 100%;
+			border: none;
+			min-height: 30px;
 		}
-	
+
 		@include breakpoint(1300px) {
 			position: absolute;
 			top: 0;
 			max-width: 180px;
 			padding: 0 12px;
-			line-height: 40px;
+			min-height: 40px;
 			border: 1px solid $color-error;
+		}
+
+		@include breakpoint(1400px) {
+			max-width: 220px;
 		}
 	}
 }
