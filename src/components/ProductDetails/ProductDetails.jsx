@@ -47,14 +47,10 @@ export const ProductDetails = () => {
 		const fetchData = async () => {
 			try {
 				const { product } = await productsAPI.findOne(slug)
-
-				if (!product) {
-					navigate('/not-found')
-				}
-
 				setProduct(product)
-			} catch (e) {
-				console.log(e)
+			} catch (error) {
+				if (error.status === 404) navigate('/not-found', { replace: true })
+				return null
 			}
 		}
 		fetchData()

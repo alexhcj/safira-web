@@ -35,7 +35,7 @@ export const usePosts = () => {
 				post: res,
 			}
 		} catch (error) {
-			if (error.status === 404) navigate('/not-found')
+			if (error.status === 404) navigate('/not-found', { replace: true })
 			return null
 		} finally {
 			setIsLoading(false)

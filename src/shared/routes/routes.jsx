@@ -134,7 +134,7 @@ export const AppRoutes = () => {
 			<Route path='/categories' element={<CategoriesPage />} />
 			<Route path='/brands' element={<BrandsPage />} />
 			<Route path='/not-found' element={<NotFoundPage />} />
-			<Route path='*' element={<Navigate to='/not-found' />} />
+			<Route path='*' element={<Navigate to='/not-found' replace />} />
 		</Routes>
 	)
 }
