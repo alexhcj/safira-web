@@ -102,7 +102,7 @@ export const Navbar = () => {
 	}, [location.pathname])
 
 	return (
-		<div className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}>
+		<div id='navbar' className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}>
 			<div className='container'>
 				<div className={s.bottom}>
 					<GlobalSearch className={s.search} isSticky={sticky} />

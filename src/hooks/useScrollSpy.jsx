@@ -6,7 +6,7 @@ export function useScrollSpy(ids, innerIds = []) {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			const scrollPos = window.scrollY + 100
+			const scrollPos = window.scrollY - 280
 
 			let current = null
 			let currentInner = null

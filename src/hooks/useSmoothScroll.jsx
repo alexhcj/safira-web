@@ -1,8 +1,17 @@
 import { animateScroll as scroll } from 'react-scroll'
 
-const types = {
-	section: 80,
-	subnav: 75,
+const EXTRA_SPACING = {
+	section: 24,
+	subnav: 16,
+}
+
+function getNavbarHeight() {
+	const navbar = document.getElementById('navbar')
+	return navbar ? navbar.getBoundingClientRect().height : 0
+}
+
+function getDocumentTop(element) {
+	return element.getBoundingClientRect().top + window.scrollY
 }
 
 export function useSmoothScroll() {
@@ -10,8 +19,8 @@ export function useSmoothScroll() {
 		const element = document.getElementById(id)
 
 		if (element) {
-			const navbarHeight = types[type] // 50px navbar + 30px extra spacing
-			const elementPosition = element.offsetTop - navbarHeight
+			const gap = getNavbarHeight() + (EXTRA_SPACING[type] ?? 0)
+			const elementPosition = getDocumentTop(element) - gap
 
 			scroll.scrollTo(elementPosition, {
 				duration: 500,
