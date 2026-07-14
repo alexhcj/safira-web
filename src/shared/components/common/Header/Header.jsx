@@ -17,6 +17,8 @@ import { GlobalSearch } from '@components/GlobalSearch/GlobalSearch'
 import { AccountPopoverMenu } from '@components/ProfilePopoverMenu/AccountPopoverMenu'
 
 import { Burger } from '@shared/components/UI/Burger/Burger'
+import { CURRENCY_LIST } from '@shared/data/currency'
+import { LANGUAGE_LIST } from '@shared/data/languages'
 
 import { MetaPopup } from '../../UI/MetaPopup/MetaPopup'
 import { Popover } from '../../UI/Popover/Popover'
@@ -36,18 +38,6 @@ import YoutubeSVG from '@assets/svg/socials/youtube.svg?react'
 
 import s from './header.module.scss'
 
-const languages = [
-	{ id: 1, text: 'Russian' },
-	{ id: 2, text: 'English' },
-	{ id: 3, text: 'Deutsch' },
-]
-
-const currencies = [
-	{ id: 1, text: '₽ Ruble' },
-	{ id: 2, text: '$ US Dollar' },
-	{ id: 3, text: '€ Euro' },
-]
-
 const socialsList = [
 	{ icon: <TwitterSVG />, url: '/blank-page' },
 	{ icon: <GooglePlusSVG />, url: '/blank-page' },
@@ -55,18 +45,6 @@ const socialsList = [
 	{ icon: <FacebookSVG />, url: '/blank-page' },
 	{ icon: <InstagramSVG />, url: '/blank-page' },
 ]
-
-// const languages = [
-// 	{ id: 1, language: 'Russian', code: 'ru' },
-// 	{ id: 2, language: 'English', code: 'en' },
-// 	{ id: 3, language: 'Deutsch', code: 'deu' },
-// ]
-
-// const currencies = [
-// 	{ id: 1, currency: 'Ruble', symbol: '₽' },
-// 	{ id: 2, currency: 'US Dollar', symbol: '$' },
-// 	{ id: 3, currency: 'Euro', symbol: '€' },
-// ]
 
 export const Header = () => {
 	// Tablet + mobile
@@ -117,9 +95,13 @@ export const Header = () => {
 					<div className='container'>
 						<div className={s.navbar__top}>
 							<div className={s.meta}>
-								<MetaPopup text='Language' data={languages} />
+								<MetaPopup text='Language' data={LANGUAGE_LIST} getLabel={(item) => item.language} />
 								<span className={s.meta__divider}>|</span>
-								<MetaPopup text='Currency' data={currencies} />
+								<MetaPopup
+									text='Currency'
+									data={CURRENCY_LIST}
+									getLabel={(item) => `${item.currency} (${item.symbol})`}
+								/>
 							</div>
 							<Socials socials={socialsList} />
 						</div>
