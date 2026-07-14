@@ -78,7 +78,7 @@ export const Blog = () => {
 					isLoadingMore={isLoadingMore}
 					showDesktopTrailingPreloader={!isTabletL}
 					loadButton={
-						!meta.isLastPage && isTabletL ? (
+						!meta.isLastPage && !notFound && isTabletL ? (
 							<Button className={s.btn_more} type='secondary' onClick={handleShowMore} disabled={isLoadingMore}>
 								{isLoadingMore ? <Preloader width={20} height={20} /> : <Text>Show more</Text>}
 							</Button>
