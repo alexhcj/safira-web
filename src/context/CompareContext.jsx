@@ -38,7 +38,7 @@ export const CompareProvider = ({ children }) => {
 		setActiveIndex(0)
 	}
 
-	const addToCompare = ({ slug, price, specifications, name, tags, basicCategory, subCategory }) => {
+	const addToCompare = ({ slug, price, specifications, name, tags, primeCategory, basicCategory, subCategory }) => {
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
 		if (itemInCompare) return
 
@@ -49,7 +49,9 @@ export const CompareProvider = ({ children }) => {
 			name,
 			img,
 			tags,
+			primeCategory,
 			subCategory,
+			basicCategory,
 			price: price.price,
 			discountPrice: price.discountPrice,
 			specifications,

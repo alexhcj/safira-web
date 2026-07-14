@@ -29,7 +29,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
-	const { slug, name, quantity, rating, price, discountPrice, tags, subCategory } = product
+	const { slug, name, quantity, rating, price, discountPrice, tags, primeCategory, subCategory } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const isProductInCartList = isProductInCart(slug)
 	const isProductInWishList = isProductInWishlist(slug)
@@ -72,7 +72,10 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	const handleSubCategoryClick = () => {
 		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({ subCategory }),
+			state: JSON.stringify({
+				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
+				subCategory: { name: slugToStr(subCategory), slug: subCategory },
+			}),
 		})
 	}
 

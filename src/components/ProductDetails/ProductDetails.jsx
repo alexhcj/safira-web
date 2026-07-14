@@ -60,9 +60,16 @@ export const ProductDetails = () => {
 		fetchData()
 	}, [navigate, slug])
 
-	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
+	const { name, price, description, primeCategory, subCategory, basicCategory, rating, tags, specifications, reviews } =
+		product
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
+
+	const linkState = JSON.stringify({
+		primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
+		subCategory: { name: slugToStr(subCategory), slug: subCategory },
+		basicCategory: { name: slugToStr(basicCategory), slug: basicCategory },
+	})
 
 	return (
 		<div className='container'>
@@ -77,7 +84,10 @@ export const ProductDetails = () => {
 							<Text span weight='medium'>
 								Category:
 							</Text>
-							<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
+							<NavLink
+								to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
+								state={linkState}
+							>
 								<Text className={s.tag} span>
 									{basicCategory && slugToStr(basicCategory)}
 								</Text>
