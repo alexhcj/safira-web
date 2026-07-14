@@ -20,16 +20,18 @@ const ShopPage = lazy(() => import('../../pages/ShopPage').then((module) => ({ d
 const RegisterPage = lazy(() => import('../../pages/RegisterPage').then((module) => ({ default: module.RegisterPage })))
 const LoginPage = lazy(() => import('../../pages/LoginPage').then((module) => ({ default: module.LoginPage })))
 const BlankPage = lazy(() => import('../../pages/BlankPage').then((module) => ({ default: module.BlankPage })))
-const ProfilePage = lazy(() => import('../../pages/ProfilePage').then((module) => ({ default: module.ProfilePage })))
+const AccountPage = lazy(() => import('../../pages/AccountPage').then((module) => ({ default: module.AccountPage })))
 const ComparePage = lazy(() => import('../../pages/ComparePage').then((module) => ({ default: module.ComparePage })))
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage').then((module) => ({ default: module.NotFoundPage })))
 const ProfileDetails = lazy(() =>
-	import('../../modules/Profile/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
+	import('@modules/Account/ProfileDetails/ProfileDetails').then((module) => ({ default: module.ProfileDetails })),
 )
 const ProductPage = lazy(() => import('../../pages/ProductPage').then((module) => ({ default: module.ProductPage })))
-const Orders = lazy(() => import('../../modules/Profile/Orders/Orders').then((module) => ({ default: module.Orders })))
+const OrderHistory = lazy(() =>
+	import('@modules/Account/OrderHistory/OrderHistory').then((module) => ({ default: module.OrderHistory })),
+)
 const Subscriptions = lazy(() =>
-	import('../../modules/Profile/Subscriptions/Subscriptions').then((module) => ({ default: module.Subscriptions })),
+	import('@modules/Account/Subscriptions/Subscriptions').then((module) => ({ default: module.Subscriptions })),
 )
 const CategoriesPage = lazy(() =>
 	import('../../pages/CategoriesPage').then((module) => ({ default: module.CategoriesPage })),
@@ -91,16 +93,16 @@ export const AppRoutes = () => {
 			<Route path='/reset-password' element={<ResetPasswordPage />} />
 			<Route path='/products/:slug' element={<ProductPage />} />
 			<Route
-				path='/profile'
+				path='/account'
 				element={
 					<ProtectedRoute user={user}>
-						<ProfilePage />
+						<AccountPage />
 					</ProtectedRoute>
 				}
 			>
 				<Route index element={<ProfileDetails />} />
 				<Route path='profile-details' element={<ProfileDetails />} />
-				<Route path='orders' element={<Orders />} />
+				<Route path='order-history' element={<OrderHistory />} />
 				<Route path='subscriptions' element={<Subscriptions />} />
 			</Route>
 			<Route

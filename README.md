@@ -46,7 +46,7 @@ View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest fe
 
 - [x] Verify email with code
 - [x] Change password
-- [x] Forget password
+- [x] Reset password
 - [x] Change email
 - [x] Subscribe
 	- [x] From profile
@@ -123,7 +123,7 @@ View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest fe
 
 - [ ] Promotions
 - [ ] Promo codes
-- [ ] Checkout
+- [x] Checkout
 - [ ] Coupons
 - [ ] Gift cards
 - [ ] Affiliate

@@ -14,7 +14,7 @@ import { useWishlistContext } from '@context/WishlistContext'
 import { useIsBelow } from '@hooks/useIsBelow'
 
 import { GlobalSearch } from '@components/GlobalSearch/GlobalSearch'
-import { ProfilePopoverMenu } from '@components/ProfilePopoverMenu/ProfilePopoverMenu'
+import { AccountPopoverMenu } from '@components/ProfilePopoverMenu/AccountPopoverMenu'
 
 import { Burger } from '@shared/components/UI/Burger/Burger'
 
@@ -136,13 +136,13 @@ export const Header = () => {
 								{user ? (
 									<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
 										<NavLink
-											to='/profile'
-											className={cn(s.account_link, location.pathname.slice(1) === 'profile' && s.active)}
+											to='/account'
+											className={cn(s.account_link, location.pathname.slice(1) === 'account' && s.active)}
 										>
 											<ProfileSVG />
 										</NavLink>
 										<Popover isOpen={isPopoverShown}>
-											<ProfilePopoverMenu setIsPopoverShown={setIsPopoverShown} />
+											<AccountPopoverMenu setIsPopoverShown={setIsPopoverShown} />
 										</Popover>
 									</div>
 								) : (

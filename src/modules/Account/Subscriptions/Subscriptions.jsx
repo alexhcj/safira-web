@@ -7,7 +7,7 @@ import { useAuthContext } from '@context/AuthContext'
 import { useEmailer } from '@hooks/services/useEmailer'
 import { useProfile } from '@hooks/services/useProfile'
 
-import { SubscriptionItem } from '@modules/Profile/Subscriptions/SubscriptionItem/SubscriptionItem'
+import { SubscriptionItem } from '@modules/Account/Subscriptions/SubscriptionItem/SubscriptionItem'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { UserActions } from '@shared/components/UserActions/UserActions'

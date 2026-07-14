@@ -3,23 +3,24 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
 
+import { OrderHistory } from '@modules/Account/OrderHistory/OrderHistory'
+
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Logout } from '@shared/components/UI/Logout/Logout'
 import { Border } from '@shared/components/UI/Spacing/Border'
 
-import { Orders } from './Orders/Orders'
 import { ProfileDetails } from './ProfileDetails/ProfileDetails'
 import { Subscriptions } from './Subscriptions/Subscriptions'
 
-import s from './profile.module.scss'
+import s from './account.module.scss'
 
 const profileNavList = [
-	{ component: <ProfileDetails />, text: 'Profile Details', url: 'profile-details' },
-	{ component: <Orders />, text: 'Orders', url: 'orders' },
+	{ component: <ProfileDetails />, text: 'Profile details', url: 'profile-details' },
+	{ component: <OrderHistory />, text: 'Order history', url: 'order-history' },
 	{ component: <Subscriptions />, text: 'Subscriptions', url: 'subscriptions' },
 ]
 
-export const Profile = () => {
+export const Account = () => {
 	const location = useLocation()
 	const { logout } = useAuthContext()
 

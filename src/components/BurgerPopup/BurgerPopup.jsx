@@ -48,12 +48,12 @@ const socialsList = [
 const accountNavMap = {
 	authed: [
 		{
-			title: 'Profile',
-			route: '/profile',
+			title: 'Profile details',
+			route: '/profile-details',
 		},
 		{
-			title: 'Orders',
-			route: '/orders',
+			title: 'Order history',
+			route: '/order-history',
 		},
 		{
 			title: 'Subscriptions',

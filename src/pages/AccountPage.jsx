@@ -1,14 +1,14 @@
-import { Profile } from '@modules/Profile/Profile'
+import { Account } from '@modules/Account/Account'
 
 import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 import { DefaultLayout } from '@shared/layouts/DefaultLayout/DefaultLayout'
 
-export const ProfilePage = () => {
+export const AccountPage = () => {
 	return (
 		<>
 			<Breadcrumbs />
 			<DefaultLayout>
-				<Profile />
+				<Account />
 			</DefaultLayout>
 		</>
 	)

@@ -6,9 +6,8 @@ import { slugToStr } from '@/utils'
 
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
-import { siteMap } from '@components/SiteMap/site-map.data'
-
 import { Badge } from '@shared/components/UI/Badge/Badge'
+import { NAVIGATION_ITEMS } from '@shared/data/site-map'
 
 import s from './site-map.module.scss'
 
@@ -49,16 +48,14 @@ export const SiteMap = () => {
 					<div className={s.group}>
 						<h3 className={s.title}>Pages</h3>
 						<ul className={s.list}>
-							{siteMap.pages
-								.sort((a, b) => (b.page[0] < a.page[0] ? 1 : -1))
-								.map(({ page, url, badge }, index) => (
-									<li className={s.item} key={index}>
-										<NavLink className={s.url} to={url}>
-											{page}
-										</NavLink>
-										{badge && <Badge text={badge} />}
-									</li>
-								))}
+							{NAVIGATION_ITEMS.sort((a, b) => (b.page[0] < a.page[0] ? 1 : -1)).map(({ page, url, badge }, index) => (
+								<li className={s.item} key={index}>
+									<NavLink className={s.url} to={url}>
+										{page}
+									</NavLink>
+									{badge && <Badge text={badge} />}
+								</li>
+							))}
 						</ul>
 					</div>
 				</section>

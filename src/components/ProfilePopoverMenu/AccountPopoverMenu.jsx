@@ -7,9 +7,13 @@ import { Border } from '@shared/components/UI/Spacing/Border'
 
 import s from './profile-popover-menu.module.scss'
 
-const profileNavList = [{ text: 'Profile', url: '/profile' }]
+const accountNavList = [
+	{ text: 'Profile details', url: '/account/profile-details' },
+	{ text: 'Order history', url: '/account/order-history' },
+	{ text: 'Subscriptions', url: '/account/subscriptions' },
+]
 
-export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
+export const AccountPopoverMenu = ({ setIsPopoverShown }) => {
 	const { logout } = useAuthContext()
 
 	const handleLogout = () => {
@@ -20,10 +24,10 @@ export const ProfilePopoverMenu = ({ setIsPopoverShown }) => {
 	return (
 		<>
 			<ul className={s.list}>
-				{profileNavList.map((item, index) => (
+				{accountNavList.map(({ url, text }, index) => (
 					<li key={index}>
-						<NavLink className={s.link} to={'/profile'}>
-							Profile
+						<NavLink className={s.link} to={url}>
+							{text}
 						</NavLink>
 					</li>
 				))}
