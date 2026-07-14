@@ -35,7 +35,7 @@ export const Account = () => {
 					<ul className={s.list}>
 						{profileNavList.map((item, index) => {
 							const currentTab =
-								location.pathname === '/profile' ? 'profile-details' : location.pathname.replace('/profile/', '')
+								location.pathname === '/account' ? 'profile-details' : location.pathname.replace('/account/', '')
 
 							return (
 								<li key={index} data-section={item.url}>

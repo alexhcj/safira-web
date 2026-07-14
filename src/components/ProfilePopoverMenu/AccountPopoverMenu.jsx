@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
@@ -26,7 +27,7 @@ export const AccountPopoverMenu = ({ setIsPopoverShown }) => {
 			<ul className={s.list}>
 				{accountNavList.map(({ url, text }, index) => (
 					<li key={index}>
-						<NavLink className={s.link} to={url}>
+						<NavLink className={({ isActive }) => cn(s.link, { [s.active]: isActive })} to={url}>
 							{text}
 						</NavLink>
 					</li>

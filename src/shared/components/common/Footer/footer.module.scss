@@ -193,6 +193,10 @@
 			font-size: 13px;
 		}
 
+		&.active {
+			color: $color-primary;
+		}
+
 		&:hover {
 			color: $color-primary;
 		}

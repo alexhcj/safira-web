@@ -108,7 +108,7 @@ export const Navbar = () => {
 					<GlobalSearch className={s.search} isSticky={sticky} />
 					<CategoriesDropdown isSticky={sticky} />
 					<nav className={s.nav}>
-						<NavLink className={s.nav_link} to='/'>
+						<NavLink className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })} to='/'>
 							Home
 						</NavLink>
 						<div className={s.sub_nav_trigger}>
@@ -120,7 +120,7 @@ export const Navbar = () => {
 										<ul className={s.nav_list}>
 											{value.map(({ title, route }, idx) => (
 												<li className={s.nav_item} key={`${key}-${idx}`}>
-													<NavLink className={s.nav_link} to={route}>
+													<NavLink className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })} to={route}>
 														{title}
 													</NavLink>
 												</li>
@@ -130,7 +130,10 @@ export const Navbar = () => {
 								))}
 							</div>
 						</div>
-						<NavLink className={s.nav_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
+						<NavLink
+							className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })}
+							to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}
+						>
 							Blog
 						</NavLink>
 						<div className={s.sub_nav_trigger}>
@@ -139,7 +142,7 @@ export const Navbar = () => {
 								<ul className={s.nav_list}>
 									{pagesNavList.map(({ title, route }, idx) => (
 										<li className={s.nav_item} key={`pages-${idx}`}>
-											<NavLink className={s.nav_link} to={route}>
+											<NavLink className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })} to={route}>
 												{title}
 											</NavLink>
 										</li>
@@ -147,7 +150,7 @@ export const Navbar = () => {
 								</ul>
 							</div>
 						</div>
-						<NavLink className={s.nav_link} to='/contact-us'>
+						<NavLink className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })} to='/contact-us'>
 							Contact us
 						</NavLink>
 					</nav>

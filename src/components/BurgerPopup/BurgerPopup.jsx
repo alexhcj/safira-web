@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import cn from 'classnames'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { useBurgerPopupContext } from '@context/BurgerPopupContext'
 
@@ -14,6 +14,7 @@ import { BurgerModal } from '@shared/components/Modal/BurgerModal'
 import { MetaPopup } from '@shared/components/UI/MetaPopup/MetaPopup'
 import { Socials } from '@shared/components/UI/Socials/Socials'
 import { SupportBadge } from '@shared/components/UI/SupportBadge/SupportBadge'
+import { ACCOUNT_NAVIGATION_ITEMS, STORE_NAVIGATION_ITEMS } from '@shared/data/store-navigation'
 
 import ArrowSVG from '@assets/svg/arrow.svg?react'
 import EmailSVG from '@assets/svg/envelope.svg?react'
@@ -45,96 +46,6 @@ const socialsList = [
 	{ icon: <InstagramSVG />, url: '/blank-page' },
 ]
 
-const accountNavMap = {
-	authed: [
-		{
-			title: 'Profile details',
-			route: '/profile-details',
-		},
-		{
-			title: 'Order history',
-			route: '/order-history',
-		},
-		{
-			title: 'Subscriptions',
-			route: '/subscriptions',
-		},
-	],
-	notAuthed: [
-		{
-			title: 'Login',
-			route: '/login',
-		},
-		{
-			title: 'Register',
-			route: '/register',
-		},
-	],
-}
-
-const navMap = {
-	home: '/',
-	shop: {
-		browse: [
-			{
-				title: 'Products',
-				route: `/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`,
-			},
-			{
-				title: 'Categories',
-				route: '/categories',
-			},
-			{
-				title: 'Brands',
-				route: '/brands',
-			},
-		],
-		quickAccess: [
-			{
-				title: 'Cart',
-				route: '/cart',
-			},
-			{
-				title: 'Wishlist',
-				route: '/wishlist',
-			},
-			{
-				title: 'Compare',
-				route: '/compare',
-			},
-		],
-	},
-	blog: `/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`,
-	pages: [
-		{
-			title: 'About us',
-			route: '/about-us',
-		},
-		{
-			title: 'Privacy policy',
-			route: '/privacy-policy',
-		},
-		{
-			title: 'Terms & Conditions',
-			route: '/terms-conditions',
-		},
-		{
-			title: 'Frequently Questions',
-			route: '/faq',
-		},
-		{
-			title: 'Site map',
-			route: '/site-map',
-		},
-		{
-			title: 'Roadmap',
-			route: '/road-map',
-		},
-	],
-	account: null, // position marker — resolved via accountNavMap at render time
-	contactUs: '/contact-us',
-}
-
 function CollapsibleGroup({ title, links, activeKey, setActiveKey, groupKey, onNavigate }) {
 	const open = activeKey === groupKey
 
@@ -151,9 +62,13 @@ function CollapsibleGroup({ title, links, activeKey, setActiveKey, groupKey, onN
 			<ul className={cn(s.nested_list, open && s.open)}>
 				{links.map((link) => (
 					<li key={link.route}>
-						<Link className={s.link} to={link.route} onClick={onNavigate}>
+						<NavLink
+							className={({ isActive }) => cn(s.link, { [s.active]: isActive })}
+							to={link.route}
+							onClick={onNavigate}
+						>
 							{link.title}
-						</Link>
+						</NavLink>
 					</li>
 				))}
 			</ul>
@@ -185,7 +100,7 @@ function ShopGroup({ activeKey, setActiveKey, onNavigate }) {
 				<li>
 					<CollapsibleGroup
 						title='Browse'
-						links={navMap.shop.browse}
+						links={STORE_NAVIGATION_ITEMS.shop.browse}
 						groupKey='browse'
 						activeKey={nestedActiveKey}
 						setActiveKey={setNestedActiveKey}
@@ -195,7 +110,7 @@ function ShopGroup({ activeKey, setActiveKey, onNavigate }) {
 				<li>
 					<CollapsibleGroup
 						title='Quick Access'
-						links={navMap.shop.quickAccess}
+						links={STORE_NAVIGATION_ITEMS.shop.quickAccess}
 						groupKey='quickAccess'
 						activeKey={nestedActiveKey}
 						setActiveKey={setNestedActiveKey}
@@ -214,7 +129,7 @@ export const BurgerPopup = () => {
 	const { isOpen, setIsOpen } = useBurgerPopupContext()
 	const [activeKey, setActiveKey] = useState(null)
 
-	const accountLinks = user ? accountNavMap.authed : accountNavMap.notAuthed
+	const accountLinks = user ? ACCOUNT_NAVIGATION_ITEMS.authed : ACCOUNT_NAVIGATION_ITEMS.notAuthed
 
 	const handleOnNavigate = () => {
 		setActiveKey(null)
@@ -236,22 +151,30 @@ export const BurgerPopup = () => {
 			<nav>
 				<ul className={s.list}>
 					<li>
-						<Link className={s.link} to={navMap.home} onClick={handleOnNavigate}>
+						<NavLink
+							className={({ isActive }) => cn(s.link, { [s.active]: isActive })}
+							to={STORE_NAVIGATION_ITEMS.home}
+							onClick={handleOnNavigate}
+						>
 							Home
-						</Link>
+						</NavLink>
 					</li>
 					<li>
 						<ShopGroup activeKey={activeKey} setActiveKey={setActiveKey} onNavigate={handleOnNavigate} />
 					</li>
 					<li>
-						<Link className={s.link} to={navMap.blog} onClick={handleOnNavigate}>
+						<NavLink
+							className={({ isActive }) => cn(s.link, { [s.active]: isActive })}
+							to={STORE_NAVIGATION_ITEMS.blog}
+							onClick={handleOnNavigate}
+						>
 							Blog
-						</Link>
+						</NavLink>
 					</li>
 					<li>
 						<CollapsibleGroup
 							title='Pages'
-							links={navMap.pages}
+							links={STORE_NAVIGATION_ITEMS.pages}
 							groupKey='pages'
 							activeKey={activeKey}
 							setActiveKey={setActiveKey}
@@ -271,9 +194,13 @@ export const BurgerPopup = () => {
 						</li>
 					)}
 					<li>
-						<Link className={s.link} to={navMap.contactUs} onClick={handleOnNavigate}>
+						<NavLink
+							className={({ isActive }) => cn(s.link, { [s.active]: isActive })}
+							to={STORE_NAVIGATION_ITEMS.contactUs}
+							onClick={handleOnNavigate}
+						>
 							Contact Us
-						</Link>
+						</NavLink>
 					</li>
 				</ul>
 			</nav>

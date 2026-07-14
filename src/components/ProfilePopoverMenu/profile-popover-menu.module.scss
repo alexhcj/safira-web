@@ -8,6 +8,10 @@
 	text-transform: capitalize;
 	width: 100%;
 
+	&.active {
+		color: $color-primary;
+	}
+
 	&:hover {
 		color: $color-primary;
 	}

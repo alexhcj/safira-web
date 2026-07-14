@@ -43,6 +43,10 @@
 	padding: 10px 0;
 	border-bottom: 1px solid $color-border2;
 
+	&.active {
+		color: $color-primary;
+	}
+
 	.svg {
 		width: 14px;
 		height: 14px;

@@ -75,6 +75,12 @@
 		gap: 37px;
 	}
 
+	&_link {
+		&.active {
+			color: $color-primary;
+		}
+	}
+
 	&_link,
 	.sub_nav_trigger {
 		text-transform: capitalize;

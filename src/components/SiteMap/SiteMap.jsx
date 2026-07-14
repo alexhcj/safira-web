@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { slugToStr } from '@/utils'
@@ -50,7 +51,7 @@ export const SiteMap = () => {
 						<ul className={s.list}>
 							{NAVIGATION_ITEMS.sort((a, b) => (b.page[0] < a.page[0] ? 1 : -1)).map(({ page, url, badge }, index) => (
 								<li className={s.item} key={index}>
-									<NavLink className={s.url} to={url}>
+									<NavLink className={({ isActive }) => cn(s.url, { [s.active]: isActive })} to={url}>
 										{page}
 									</NavLink>
 									{badge && <Badge text={badge} />}
