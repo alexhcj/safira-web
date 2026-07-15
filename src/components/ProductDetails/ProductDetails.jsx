@@ -104,12 +104,12 @@ export const ProductDetails = () => {
 					<Border />
 					{specifications && (
 						<GoodToCart
-							className={s.add_actions}
-							btnClassName={s.btn_add}
-							maxQuantity={specifications.quantity}
-							onClick={addToCart}
+							quantity={specifications.quantity}
 							product={product}
 							productQuantityInCart={productQuantityInCart(slug)}
+							onClick={addToCart}
+							btnClassName={s.btn_add}
+							className={s.add_actions}
 						/>
 					)}
 					<div className={s.actions}>

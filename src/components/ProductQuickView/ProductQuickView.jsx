@@ -70,13 +70,11 @@ export const ProductQuickView = () => {
 							<>
 								<ProductInStock quantity={specifications.quantity} className={s.stock} />
 								<GoodToCart
-									maxQuantity={specifications.quantity}
-									onClick={addToCart}
+									quantity={specifications.quantity}
 									product={product}
 									productQuantityInCart={productQuantityInCart(slug)}
-									type='straight'
-									label='none'
-									rounded={false}
+									showLabel={false}
+									onClick={addToCart}
 									btnClassName={s.btn}
 									className={s.action_btn}
 								/>

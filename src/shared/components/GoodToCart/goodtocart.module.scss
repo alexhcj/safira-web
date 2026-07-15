@@ -21,10 +21,6 @@
 	font-size: 14px;
 	line-height: 24px;
 	font-weight: $weight-medium;
-
-	&_none {
-		display: none;
-	}
 }
 
 .input {
@@ -38,10 +34,6 @@
 
 	@include tablet-l {
 		min-width: 110px;
-	}
-
-	&_straight {
-		border-radius: 0;
 	}
 }
 
