@@ -1,9 +1,9 @@
-import cn from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import CartSVG from '@assets/svg/cart.svg?react'
@@ -16,7 +16,7 @@ export const WishlistItem = ({
 		slug,
 		name,
 		price,
-		specifications: { quantity: maxQuantity },
+		specifications: { quantity },
 	},
 	onClick,
 	onDelete,
@@ -49,8 +49,8 @@ export const WishlistItem = ({
 			<td className={s.price}>
 				<Price {...price} />
 			</td>
-			<td className={cn(s.stock, maxQuantity < 100 && s.less, maxQuantity < 30 && s.low)}>
-				{maxQuantity > 100 ? 'In stoke' : `Left less than ${maxQuantity}`}
+			<td className={s.stock}>
+				<ProductInStock quantity={quantity} />
 			</td>
 			<td className={s.add}>
 				{productQuantityInCart ? (

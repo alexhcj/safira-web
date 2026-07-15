@@ -99,16 +99,6 @@
 		&.stock {
 			padding: 10px 10px 5px;
 			text-transform: capitalize;
-
-			&.less {
-				text-transform: none;
-				color: $color-warning;
-			}
-
-			&.low {
-				text-transform: none;
-				color: $color-error;
-			}
 		}
 
 		&.add {
