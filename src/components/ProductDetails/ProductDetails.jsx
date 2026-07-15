@@ -21,6 +21,7 @@ import { Tab, Tabs } from '@shared/components/Tabs/Tabs'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Text } from '@shared/components/UI/Text/Text'
 
@@ -89,6 +90,14 @@ export const ProductDetails = () => {
 								</Text>
 							</NavLink>
 						</div>
+						{specifications && (
+							<div className={s.stock}>
+								<Text span weight='medium'>
+									Availability:
+								</Text>
+								<ProductInStock quantity={specifications.quantity} />
+							</div>
+						)}
 						{tags && <DietaryTags className={s.dietaries} size='mm' tags={tags.dietaries} />}
 					</div>
 					<Text className={s.description}>{description}</Text>

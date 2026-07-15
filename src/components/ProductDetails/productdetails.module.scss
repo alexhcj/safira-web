@@ -52,13 +52,25 @@
 }
 
 .meta {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		'category tags'
+		'stock .';
+	gap: 5px 24px;
+	align-items: center; // start
 	margin-bottom: 15px;
 }
 
+.stock {
+	display: flex;
+	grid-area: stock;
+	gap: 10px;
+}
+
 .dietaries {
+	grid-area: tags;
+	justify-self: end;
 	justify-content: start;
 	gap: 6px;
 }
@@ -152,6 +164,7 @@
 
 .category {
 	display: flex;
+	grid-area: category;
 }
 
 .tag {
