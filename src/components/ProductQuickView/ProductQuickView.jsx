@@ -8,6 +8,7 @@ import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWit
 import { Modal } from '@shared/components/Modal/Modal'
 import { Price } from '@shared/components/Price/Price'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { slugToStr } from '@utils/string'
@@ -66,17 +67,20 @@ export const ProductQuickView = () => {
 						</div>
 						<p className={s.description}>{description}</p>
 						{specifications && (
-							<GoodToCart
-								maxQuantity={specifications.quantity}
-								onClick={addToCart}
-								product={product}
-								productQuantityInCart={productQuantityInCart(slug)}
-								type='straight'
-								label='none'
-								rounded={false}
-								btnClassName={s.btn}
-								className={s.action_btn}
-							/>
+							<>
+								<ProductInStock quantity={specifications.quantity} className={s.stock} />
+								<GoodToCart
+									maxQuantity={specifications.quantity}
+									onClick={addToCart}
+									product={product}
+									productQuantityInCart={productQuantityInCart(slug)}
+									type='straight'
+									label='none'
+									rounded={false}
+									btnClassName={s.btn}
+									className={s.action_btn}
+								/>
+							</>
 						)}
 					</div>
 				</div>

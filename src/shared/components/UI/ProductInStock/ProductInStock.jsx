@@ -13,10 +13,11 @@ import s from './product-in-stock.module.scss'
  *
  * @param {Object} props Component props.
  * @param {number} props.quantity Current number of items available in stock.
+ * @param {string} className - Optional CSS class names.
  * @returns {JSX.Element} Product inventory status label.
  */
 
-export const ProductInStock = ({ quantity }) => {
+export const ProductInStock = ({ quantity, className }) => {
 	const stock = Number.isFinite(quantity) && quantity > 0 ? Math.floor(quantity) : 0
 
 	const isOutOfStock = stock === 0
@@ -26,6 +27,8 @@ export const ProductInStock = ({ quantity }) => {
 	const label = isOutOfStock ? 'Out Of Stock' : isLow || isLimited ? `Left Less Than ${stock}` : 'In Stock'
 
 	return (
-		<div className={cn(s.stock, isLimited && s.limited, isLow && s.low, isOutOfStock && s.out_of_stock)}>{label}</div>
+		<div className={cn(s.stock, isLimited && s.limited, isLow && s.low, isOutOfStock && s.out_of_stock, className)}>
+			{label}
+		</div>
 	)
 }
