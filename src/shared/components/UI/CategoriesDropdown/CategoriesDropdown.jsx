@@ -70,6 +70,7 @@ export const CategoriesDropdown = ({ isSticky }) => {
 	}
 
 	const onClickHandler = (e) => {
+		e.stopPropagation()
 		const primeCategory = e.target.id
 		const name = e.target.dataset.name
 
