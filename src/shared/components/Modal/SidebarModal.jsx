@@ -13,15 +13,21 @@ export const SidebarModal = ({ isOpen, setIsOpen, children, className }) => {
 	const [isMounted, setIsMounted] = useState(false)
 	const [isAnimating, setIsAnimating] = useState(false)
 
-	// handle body scroll
+	// handle body scrollbar & compensation gap
 	useEffect(() => {
 		if (isOpen) {
+			const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+
 			document.body.style.overflow = 'hidden'
+			document.body.style.paddingRight = `${scrollbarWidth}px`
 		} else {
 			document.body.style.overflow = ''
+			document.body.style.paddingRight = ''
 		}
+
 		return () => {
 			document.body.style.overflow = ''
+			document.body.style.paddingRight = ''
 		}
 	}, [isOpen])
 
