@@ -25,6 +25,8 @@ export const NAVIGATION_ITEMS = [
 	{ page: 'About us', url: '/about-us' },
 	{ page: 'Frequently Questions', url: '/faq' },
 	{ page: 'Shop', url: '/shop' },
+	{ page: 'Product details', url: '/products/orgo-fresh-premium-sweet-thai-susu-gold-mango' },
+	{ page: 'Post details', url: '/blog/fresh-tomatoes' },
 	{ page: 'Checkout', url: '/checkout' },
 	{ page: 'Order history', url: '/account/order-history', badge: 'Coming soon' },
 	{ page: 'Change password', url: '/change-password' },
