@@ -16,8 +16,6 @@ import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithToolt
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { slugToStr } from '@utils/string'
-
 import HeartSVG from '@assets/svg/heart.svg?react'
 import TrashSVG from '@assets/svg/trash.svg?react'
 
@@ -70,11 +68,11 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory.slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
 			state: JSON.stringify({
-				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
-				subCategory: { name: slugToStr(subCategory), slug: subCategory },
+				primeCategory,
+				subCategory,
 			}),
 		})
 	}
@@ -100,7 +98,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 						onClick={handleSubCategoryClick}
 						className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 					>
-						{slugToStr(subCategory)}
+						{subCategory.name}
 					</button>
 					{tags && (
 						<>

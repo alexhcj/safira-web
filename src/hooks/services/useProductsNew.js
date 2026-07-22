@@ -1,10 +1,13 @@
 import { useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { productsAPI } from '@api/products'
 
 import { useErrorContext } from '@context/ErrorContext'
 
 export const useProductsNew = () => {
+	const navigate = useNavigate()
 	const { clearErrors } = useErrorContext()
 	const [isLoading, setIsLoading] = useState(false)
 	// const [params] = useSearchParams({
@@ -26,6 +29,24 @@ export const useProductsNew = () => {
 				meta: res.meta,
 			}
 		} catch (err) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const findBySlug = async (slug) => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await productsAPI.findBySlug(slug)
+
+			return {
+				success: true,
+				product: res.product,
+			}
+		} catch (err) {
+			if (err.status === 404) navigate('/not-found', { replace: true })
 			return null
 		} finally {
 			setIsLoading(false)
@@ -83,23 +104,6 @@ export const useProductsNew = () => {
 		}
 	}
 
-	const findAllBasicCategories = async () => {
-		setIsLoading(true)
-		try {
-			clearErrors()
-			const res = await productsAPI.findAllBasicCategories()
-
-			return {
-				success: true,
-				categories: res.categories,
-			}
-		} catch (err) {
-			return null
-		} finally {
-			setIsLoading(false)
-		}
-	}
-
 	const findTopPopular = async ({ limit }) => {
 		setIsLoading(true)
 		try {
@@ -138,10 +142,10 @@ export const useProductsNew = () => {
 
 	return {
 		findProducts,
+		findBySlug,
 		findQueryBrands,
 		findQueryTags,
 		findAllBrands,
-		findAllBasicCategories,
 		findTopPopular,
 		findTopByPrimeCategories,
 		isLoading,

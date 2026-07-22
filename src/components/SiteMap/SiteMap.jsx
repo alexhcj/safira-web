@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { slugToStr } from '@/utils'
 
+import { useCategories } from '@hooks/services/useCategories'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
 import { Badge } from '@shared/components/UI/Badge/Badge'
@@ -12,22 +13,40 @@ import { NAVIGATION_ITEMS } from '@shared/data/site-map'
 
 import s from './site-map.module.scss'
 
+// Flattens the prime -> sub -> basic tree into a list of basic categories,
+// each carrying the full breadcrumb trail for that branch.
+const flattenCategoryTree = (tree = []) =>
+	tree.flatMap((prime) =>
+		prime.subCategories.items.flatMap((sub) =>
+			sub.basicCategories.map((basic) => ({
+				name: basic.name,
+				slug: basic.basicCategory,
+				breadcrumbs: [
+					{ name: prime.name, slug: prime.primeCategory },
+					{ name: sub.name, slug: sub.subCategory },
+					{ name: basic.name, slug: basic.basicCategory },
+				],
+			})),
+		),
+	)
+
 export const SiteMap = () => {
-	const { findAllBasicCategories, findTopPopular, findTopByPrimeCategories, isLoading } = useProductsNew()
-	const [productsCategories, setProductsCategories] = useState([])
+	const { findTree } = useCategories()
+	const { findTopPopular, findTopByPrimeCategories, isLoading } = useProductsNew()
+	const [basicCategories, setBasicCategories] = useState([])
 	const [top20Products, setTop20Products] = useState([])
 	const [primeCategories, setPrimeCategories] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const [basicCategoriesRes, popularRes, primeCategoriesRes] = await Promise.all([
-				findAllBasicCategories(),
+			const [categoryTreeRes, popularRes, primeCategoriesRes] = await Promise.all([
+				findTree(),
 				findTopPopular({ limit: 20 }),
 				findTopByPrimeCategories(),
 			])
 
-			if (basicCategoriesRes?.success) {
-				setProductsCategories(basicCategoriesRes.categories)
+			if (categoryTreeRes?.success) {
+				setBasicCategories(flattenCategoryTree(categoryTreeRes.tree))
 			}
 
 			if (popularRes?.success) {
@@ -41,6 +60,11 @@ export const SiteMap = () => {
 
 		fetchData()
 	}, [])
+
+	const sortedBasicCategories = useMemo(
+		() => [...basicCategories].sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
+		[basicCategories],
+	)
 
 	return (
 		<div className='container'>
@@ -66,18 +90,17 @@ export const SiteMap = () => {
 						<h3 className={s.title}>Product categories</h3>
 						<ul className={s.list}>
 							{!isLoading &&
-								productsCategories
-									.sort((a, b) => (b[0] < a[0] ? 1 : -1))
-									.map((basicCategory, index) => (
-										<li className={s.item} key={index}>
-											<NavLink
-												className={s.url}
-												to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
-											>
-												{slugToStr(basicCategory)}
-											</NavLink>
-										</li>
-									))}
+								sortedBasicCategories.map(({ name, slug, breadcrumbs }, index) => (
+									<li className={s.item} key={index}>
+										<NavLink
+											className={s.url}
+											to={`/shop?basicCategory=${slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
+											state={JSON.stringify({ ...breadcrumbs })}
+										>
+											{name}
+										</NavLink>
+									</li>
+								))}
 						</ul>
 					</div>
 

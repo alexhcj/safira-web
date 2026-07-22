@@ -9,8 +9,6 @@ import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Hovermenu } from '@shared/components/UI/Hovermenu/Hovermenu'
 import { Tags } from '@shared/components/UI/Tags/Tags'
 
-import { slugToStr } from '@utils/string'
-
 import s from './productcard.module.scss'
 
 // sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'list' | 'list-xs'
@@ -47,12 +45,9 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory.slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({
-				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
-				subCategory: { name: slugToStr(subCategory), slug: subCategory },
-			}),
+			state: JSON.stringify({ primeCategory, subCategory }),
 		})
 	}
 
@@ -114,7 +109,7 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 								onClick={handleSubCategoryClick}
 								className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 							>
-								{slugToStr(subCategory)}
+								{subCategory.name}
 							</button>
 							{tags && (
 								<>

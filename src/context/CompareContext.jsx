@@ -58,12 +58,12 @@ export const CompareProvider = ({ children }) => {
 		}
 
 		if (Object.keys(compares).length === 0) {
-			setCompares({ [basicCategory]: [item] })
-			switchActiveCategory(basicCategory)
-		} else if (!compares[basicCategory]) {
-			setCompares({ ...compares, [basicCategory]: [item] })
+			setCompares({ [basicCategory.slug]: [item] })
+			switchActiveCategory(basicCategory.slug)
+		} else if (!compares[basicCategory.slug]) {
+			setCompares({ ...compares, [basicCategory.slug]: [item] })
 		} else {
-			setCompares({ ...compares, [basicCategory]: [...compares[basicCategory], item] })
+			setCompares({ ...compares, [basicCategory.slug]: [...compares[basicCategory.slug], item] })
 		}
 	}
 

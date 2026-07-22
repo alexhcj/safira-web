@@ -2,13 +2,15 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { useCategories } from '@hooks/services/useCategories'
+
 import { CategoryCardMini } from '@modules/Categories/CategoryCardMini/CategoryCardMini'
 import { SubCategoryPanel } from '@modules/Categories/SubCategoryPanel/SubCategoryPanel'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { categories } from './categories-data'
 import { CategoryCard } from './CategoryCard/CategoryCard'
 
 import s from './categories.module.scss'
@@ -27,11 +29,37 @@ const getColCount = (gridEl) => {
 export const Categories = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
+	const { findTree, isLoading } = useCategories()
 	const isCategoriesPage = location.pathname.slice(1) === 'brands'
 
+	const [categories, setCategories] = useState(null)
 	const [activePrimeCategory, setActivePrimeCategory] = useState(null)
 	const [cols, setCols] = useState(5) // live column count, updated by ResizeObserver
 	const gridRef = useRef(null)
+
+	useEffect(() => {
+		let isCancelled = false
+
+		async function fetchData() {
+			setCategories(null)
+
+			const res = await findTree()
+
+			if (isCancelled) return
+
+			if (res && res.success) {
+				setCategories(res.tree)
+			}
+		}
+
+		fetchData()
+
+		return () => {
+			isCancelled = true
+		}
+	}, [])
+
+	const isReady = !isLoading && Boolean(categories)
 
 	// Keep cols in sync whenever the grid resizes (breakpoint changes)
 	useEffect(() => {
@@ -53,13 +81,9 @@ export const Categories = () => {
 		setActivePrimeCategory((prev) => (prev === primeCategory ? null : primeCategory))
 	}, [])
 
-	const sortedCategories = [...categories].sort((a, b) => (b.name < a.name ? 1 : -1))
+	const activeIndex = activePrimeCategory ? categories.findIndex((c) => c.primeCategory === activePrimeCategory) : -1
 
-	const activeIndex = activePrimeCategory
-		? sortedCategories.findIndex((c) => c.primeCategory === activePrimeCategory)
-		: -1
-
-	const activeCategory = activeIndex >= 0 ? sortedCategories[activeIndex] : null
+	const activeCategory = activeIndex >= 0 ? categories[activeIndex] : null
 
 	// The panel sits visually after the last card in the active card's row.
 	// CSS `order` integers: cards get their array index (0-based);
@@ -98,9 +122,11 @@ export const Categories = () => {
 
 				{/* ─── Desktop grid (> 991px) — original, unchanged ─── */}
 				<nav className={s.nav}>
-					{sortedCategories.map((category) => (
-						<CategoryCard key={category.primeCategory} category={category} />
-					))}
+					{!isReady ? (
+						<Preloader />
+					) : (
+						categories.map((category) => <CategoryCard key={category.primeCategory} category={category} />)
+					)}
 				</nav>
 
 				{/* ─── Responsive grid + inline panel (≤ 991px) ─── */}
@@ -111,16 +137,19 @@ export const Categories = () => {
 					 * integer slot available between any two rows for the panel.
 					 */}
 					<div className={s.card_grid} ref={gridRef}>
-						{sortedCategories.map((category, index) => (
-							<CategoryCardMini
-								key={category.primeCategory}
-								category={category}
-								isActive={activePrimeCategory === category.primeCategory}
-								order={index * 2}
-								onClick={() => handleCardClick(category.primeCategory)}
-							/>
-						))}
-
+						{!isReady ? (
+							<Preloader />
+						) : (
+							categories.map((category, index) => (
+								<CategoryCardMini
+									key={category.primeCategory}
+									category={category}
+									isActive={activePrimeCategory === category.primeCategory}
+									order={index * 2}
+									onClick={() => handleCardClick(category.primeCategory)}
+								/>
+							))
+						)}
 						{activeCategory && (
 							<SubCategoryPanel
 								key={activeCategory.primeCategory}

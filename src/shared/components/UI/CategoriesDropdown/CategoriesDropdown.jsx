@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
+import { useCategories } from '@hooks/services/useCategories'
 import { useAccordion } from '@hooks/useAccordion'
 import { useIsBelow } from '@hooks/useIsBelow'
 
-import { categories } from '@modules/Categories/categories-data'
-
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
 
 import { SubNav } from './SubNav/SubNav'
@@ -23,6 +23,20 @@ export const CategoriesDropdown = ({ isSticky }) => {
 	const [toggleNavSubCategory, setToggleNavSubCategory] = useState(null)
 	const navigate = useNavigate()
 	const ref = useRef(null)
+	const { findTree, isLoading } = useCategories()
+	const [categories, setCategories] = useState([])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await findTree()
+
+			if (res && res.success) {
+				setCategories(res.tree)
+			}
+		}
+
+		fetchData()
+	}, [])
 
 	const accordion = useAccordion((primeCategory) => {
 		const cat = categories.find((c) => c.primeCategory === primeCategory)
@@ -118,6 +132,7 @@ export const CategoriesDropdown = ({ isSticky }) => {
 			<ArrowSVG className={s.svg} />
 
 			<nav className={cn(s.popup, popupToggle && s.active)}>
+				{isLoading && <Preloader />}
 				{categories
 					.sort((a, b) => (b.name < a.name ? 1 : -1))
 					.map(({ name, primeCategory, subCategories }) => {
