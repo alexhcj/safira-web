@@ -10,8 +10,6 @@
 	height: 100%;
 	border-right: 1px dashed $color-border2;
 	border-left: 1px dashed $color-border2;
-	-webkit-user-drag: none;
-	user-select: none;
 
 	@include laptop-m {
 		border-right-color: transparent;

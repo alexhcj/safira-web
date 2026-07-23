@@ -1,3 +1,15 @@
+.alice-carousel {
+	user-select: none;
+
+	&:active {
+		cursor: grab;
+	}
+}
+
+.alice-carousel img {
+	-webkit-user-drag: none;
+}
+
 /*.alice-carousel__prev-btn {*/
 /*	position: absolute;*/
 /*	top: 50%;*/

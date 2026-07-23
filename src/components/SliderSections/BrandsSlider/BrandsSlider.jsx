@@ -115,7 +115,7 @@ export const BrandsSlider = () => {
 	const items = randomBrands.map((brand, index) => {
 		return (
 			<div className={s.item} key={index}>
-				<img className={cn(s.logo, highlightBrands && s.active)} src={brand.img} alt={brand.alt} draggable='false' />
+				<img className={cn(s.logo, highlightBrands && s.active)} src={brand.img} alt={brand.alt} />
 			</div>
 		)
 	})

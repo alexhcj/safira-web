@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
@@ -66,6 +66,7 @@ export const CompareSlider = ({
 	className,
 	type,
 }) => {
+	const isDragging = useRef(false)
 	const isTabletS = useIsBelow(BREAKPOINTS.tabletS)
 	const [carouselRef, setCarouselRef] = useState(null)
 	const [items, setItems] = useState([])
@@ -116,8 +117,47 @@ export const CompareSlider = ({
 		setActiveIndex(e.item)
 	}
 
+	const start = useRef({ x: 0, y: 0 })
+
+	const handlePointerDown = (e) => {
+		isDragging.current = false
+
+		start.current = {
+			x: e.clientX,
+			y: e.clientY,
+		}
+	}
+
+	const handlePointerMove = (e) => {
+		const dx = Math.abs(e.clientX - start.current.x)
+		const dy = Math.abs(e.clientY - start.current.y)
+
+		if (dx > 6 || dy > 6) {
+			isDragging.current = true
+		}
+	}
+
+	const handlePointerUp = () => {
+		requestAnimationFrame(() => {
+			isDragging.current = false
+		})
+	}
+
+	const handleClickCapture = (e) => {
+		if (!isDragging.current) return
+
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	return (
-		<div className={cn(s.compare_carousel, os.compareSliderWrapper, className)}>
+		<div
+			className={cn(s.compare_carousel, os.compareSliderWrapper, className)}
+			onPointerDown={handlePointerDown}
+			onPointerMove={handlePointerMove}
+			onPointerUp={handlePointerUp}
+			onClickCapture={handleClickCapture}
+		>
 			<AliceCarousel
 				ref={setCarouselRef}
 				responsive={responsive}

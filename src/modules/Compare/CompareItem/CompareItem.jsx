@@ -86,10 +86,10 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				onMouseMove={handleMouseMove}
 				data-value={dataValue}
 			>
-				<Link className={s.img_link} to={`/products/${slug}`}>
+				<Link className={s.img_link} to={`/products/${slug}`} draggable={false}>
 					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} />
 				</Link>
-				<Link to={`/products/${slug}`}>
+				<Link to={`/products/${slug}`} draggable={false}>
 					<h3 className={s.name}>{name}</h3>
 				</Link>
 				<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
@@ -140,10 +140,12 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				onMouseLeave={handleMouseLeave}
 				data-value={dataValue}
 			>
-				<Link className={s.img_link} to={`/products/${slug}`}>
-					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} />
+				<Link className={s.img_link} to={`/products/${slug}`} draggable={false}>
+					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} draggable={false} />
 				</Link>
-				<h3 className={s.name}>{name}</h3>
+				<h3 className={s.name} draggable={false}>
+					{name}
+				</h3>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
 					<ButtonWithTooltip onClick={handleAddToWishlist} size='lg' text='Add to Wishlist'>

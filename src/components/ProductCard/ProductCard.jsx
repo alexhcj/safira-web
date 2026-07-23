@@ -91,13 +91,13 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 			onPointerDown={handlePointerDown}
 			className={cn(s.product, size && s[`product_${size}`], className)}
 		>
-			<NavLink className={s.img_link} to={url} state={linkState}>
+			<NavLink className={s.img_link} to={url} state={linkState} draggable={false}>
 				<ImageWithFallback className={s.img} src={img} alt={name} imgSize={imgSize} />
 				{size !== 'xs' && size !== 'list-xs' && <Tags {...price} createdAt={createdAt} />}
 			</NavLink>
 			<div className={s.info}>
 				<h3 className={cn(s.name, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
-					<NavLink to={url} state={linkState}>
+					<NavLink to={url} state={linkState} draggable={false}>
 						{name}
 					</NavLink>
 				</h3>

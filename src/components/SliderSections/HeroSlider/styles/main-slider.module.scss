@@ -7,10 +7,6 @@
 	background-color: $color-section-bg;
 	overflow: hidden;
 
-	&:active {
-		cursor: grab;
-	}
-
 	@include tablet {
 		height: 320px;
 	}
