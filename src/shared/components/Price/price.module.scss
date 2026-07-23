@@ -12,6 +12,10 @@
 	}
 }
 
+// Regular price.
+// - No discount: rendered alone, this is the primary price.
+// - With discount: becomes the "old" price via &.old below, and must stay
+//   SMALLER than .discount_price at every breakpoint/size.
 .price {
 	line-height: 16px;
 	font-size: 15px;
@@ -20,16 +24,25 @@
 		font-size: 17px;
 	}
 
-	&.default {
+	// Old/original price, shown crossed out next to .discount_price.
+	// Must always be smaller than .discount_price (same breakpoint/size).
+	&.old {
 		text-decoration: line-through;
-		font-size: 15px;
+		font-size: 13px;
 		font-weight: $weight-normal;
+
+		@include tablet {
+			font-size: 15px;
+		}
 	}
 }
 
+// Discounted price — what the customer actually pays.
+// Always the primary/emphasized price when present, so it must be
+// LARGER than .price.old at every matching breakpoint/size.
 .discount_price {
 	line-height: 16px;
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: $weight-medium;
 	color: $color-primary;
 
@@ -39,7 +52,7 @@
 }
 
 // sizes
-.sm {
+.small {
 	gap: 5px;
 
 	.price {
@@ -47,9 +60,9 @@
 		font-size: 12px;
 		font-weight: $weight-semi;
 
-		&.default {
+		&.old {
 			line-height: 12px;
-			font-size: 12px;
+			font-size: 10px;
 			font-weight: $weight-normal;
 		}
 	}
@@ -62,14 +75,16 @@
 }
 
 .large {
+	gap: 10px;
+
 	.price {
-		font-size: 17px;
+		font-size: 18px;
 
 		@include tablet {
 			font-size: 23px;
 		}
 
-		&.default {
+		&.old {
 			font-size: 17px;
 
 			@include tablet {

@@ -24,6 +24,7 @@ import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Text } from '@shared/components/UI/Text/Text'
+import { PRICE_TYPE } from '@shared/data/price'
 
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
 
@@ -93,7 +94,7 @@ export const ProductDetails = () => {
 					<div>
 						<h4 className={s.name}>{name}</h4>
 						<Rating className={s.rating} rating={rating} />
-						{price && <Price className={s.price} {...price} type='large' />}
+						{price && <Price className={s.price} {...price} type={PRICE_TYPE.LARGE} />}
 						<div className={s.meta}>
 							<div className={s.category}>
 								<Text span weight='medium'>
