@@ -15,7 +15,7 @@ export function useProductModalContext() {
 
 export const ProductProvider = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [product, setProduct] = useState({})
+	const [product, setProduct] = useState(null)
 
 	const previewProduct = (product) => {
 		setIsOpen(true)

@@ -11,31 +11,32 @@ import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { slugToStr } from '@utils/string'
-
 import s from './product-quick-view.module.scss'
 
 export const ProductQuickView = () => {
 	const { isOpen, setIsOpen, product } = useProductModalContext()
 	const { addToCart, productQuantityInCart } = useCartContext()
 	const navigate = useNavigate()
+
+	if (!product) return null
+
 	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications, tags } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
 		state: {
 			name: name,
-			category: basicCategory,
+			category: basicCategory.slug,
 		},
 	}
 
 	const onClickHandler = () => {
 		setIsOpen(false)
-		navigate(`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
+		navigate(`/shop?basicCategory=${basicCategory.slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`, {
 			state: JSON.stringify({
-				primeCategory: { name: slugToStr(primeCategory), slug: primeCategory },
-				subCategory: { name: slugToStr(subCategory), slug: subCategory },
-				basicCategory: { name: slugToStr(basicCategory), slug: basicCategory },
+				primeCategory,
+				subCategory,
+				basicCategory,
 			}),
 		})
 	}
@@ -49,13 +50,13 @@ export const ProductQuickView = () => {
 					</NavLink>
 					<div>
 						<NavLink to={url}>
-							<h2 className={s.name}>{product.name}</h2>
+							<h2 className={s.name}>{name}</h2>
 						</NavLink>
 						<Price className={s.price} {...price} />
 						<div className={s.meta}>
 							<button type='button' onClick={onClickHandler}>
 								<Text className={s.category} span>
-									{basicCategory && slugToStr(basicCategory)}
+									{basicCategory.name}
 								</Text>
 							</button>
 							{tags && (
