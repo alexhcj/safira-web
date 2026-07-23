@@ -36,11 +36,17 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 25px 20px 29px;
+	padding: 25px 20px 30px;
 	width: 100%;
 	min-height: 330px;
 	border: 1px solid $color-border2;
 	border-radius: $border-radius-md;
+}
+
+.stepper_finish {
+	p {
+		max-width: 380px;
+	}
 }
 
 .form {
@@ -225,6 +231,9 @@
 }
 
 .btn_search {
+	padding: 9px 15px;
+	height: 38px;
+	line-height: 38px;
 	border-radius: $default-border-radius;
 }
 
@@ -252,5 +261,7 @@
 
 .btns {
 	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	gap: 10px;
 }

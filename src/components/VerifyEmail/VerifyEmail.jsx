@@ -7,6 +7,8 @@ import { useAuthContext } from '@context/AuthContext'
 import { useVerifications } from '@hooks/services/useVerifications'
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { StepperFinish } from '@components/StepperFinish/StepperFinish'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
@@ -84,23 +86,26 @@ export const VerifyEmail = () => {
 				<h2 className={s.title}>Verify email address</h2>
 				{user.isEmailVerified ? (
 					<div className={s.content}>
-						<h2 className={s.title_success}>Email verified successfully!</h2>
-						<p className={s.text_success}>
-							Check out our fresh products at reasonable prices. Also look for best promos, products benefits and latest
-							news in our Blog.
-						</p>
-						<div className={s.btns}>
-							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
-									Search products
-								</NavLink>
-							</Button>
-							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
-									Read blog
-								</NavLink>
-							</Button>
-						</div>
+						<StepperFinish
+							title='Email verified successfully!'
+							text='Check out our fresh products at reasonable prices. Also look for best promos, products benefits and latest
+							news in our Blog.'
+							actions={
+								<div className={s.btns}>
+									<Button className={s.btn_search}>
+										<NavLink className={s.search_link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
+											Search products
+										</NavLink>
+									</Button>
+									<Button className={s.btn_search}>
+										<NavLink className={s.search_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
+											Read blog
+										</NavLink>
+									</Button>
+								</div>
+							}
+							className={s.stepper_finish}
+						/>
 					</div>
 				) : (
 					<div className={s.content}>
