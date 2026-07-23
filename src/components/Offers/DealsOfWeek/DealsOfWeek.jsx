@@ -14,7 +14,7 @@ import s from './dealsweek.module.scss'
 
 export const DealsOfWeek = () => {
 	const [deals, setDeals] = useState([])
-	const { addToCart } = useCartContext()
+	const { addToCart, isProductInCart } = useCartContext()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -36,7 +36,7 @@ export const DealsOfWeek = () => {
 					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='lg' />
 					<Timer className={s.timer} type='days' date={product.expiresDate} />
 					<Button className={s.btn} onClick={() => addToCart(product.deal)}>
-						Add to cart
+						{isProductInCart(product.deal.slug) ? 'Add more' : 'Add to cart'}
 					</Button>
 				</div>
 			)
