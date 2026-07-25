@@ -79,7 +79,7 @@ export const SidebarModal = ({ isOpen, setIsOpen, children, className }) => {
 	return (
 		<Portal>
 			<div className={cn(ds.modal, { [s.active]: isAnimating })}>
-				<div role='presentation' className={ds.overlay} onClick={handleClose} />
+				<div role='presentation' className={cn(ds.overlay, !isAnimating && ds.hide)} onClick={handleClose} />
 				<div className={cn(s.sidebar, { [s.active]: isAnimating }, className)}>
 					<button className={s.btn_close} onClick={handleClose} type='button'>
 						<Close className={s.close_svg} />

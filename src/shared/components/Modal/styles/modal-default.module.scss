@@ -18,4 +18,8 @@
 	height: 100%;
 	background-color: $color-modal-overlay;
 	z-index: $z-index10;
+
+	&.hide {
+		background-color: transparent;
+	}
 }
