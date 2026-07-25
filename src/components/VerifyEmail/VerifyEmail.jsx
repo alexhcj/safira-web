@@ -129,10 +129,13 @@ export const VerifyEmail = () => {
 							/>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
 							<Button className={cn(s.btn_verify, isLoading && s.loading)} htmlType='submit' type='auth'>
-								{isLoading && <Preloader width={20} height={20} />}
-								<Text className={s.btn_verify_text} span color='white' weight='bold'>
-									Verify email
-								</Text>
+								{isLoading ? (
+									<Preloader width={20} height={20} />
+								) : (
+									<Text className={s.btn_verify_text} span color='white' weight='bold'>
+										Verify email
+									</Text>
+								)}
 							</Button>
 							{location.state.from === '/register' && (
 								<NavLink className={s.btn_later} to='/'>

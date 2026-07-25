@@ -70,10 +70,10 @@
 		line-height: 26px;
 		font-size: 20px;
 		font-weight: $weight-semi;
-		color: $color-primary;
 		caret-color: $color-grey;
 
 		&::placeholder {
+			letter-spacing: $letter-spacing-lg;
 			color: $color-grey;
 		}
 	}
