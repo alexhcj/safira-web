@@ -1,6 +1,5 @@
 @use '@shared/styles/breakpoints' as *;
 
-
 .wrapper {
 	position: relative;
 	width: 100%;
@@ -8,8 +7,6 @@
 }
 
 .sidebar {
-	position: sticky;
-	top: 60px;
 	display: grid;
 	gap: 56px;
 
