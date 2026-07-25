@@ -13,6 +13,8 @@ import { ButtonSidebar } from '@shared/components/UI/Buttons/ButtonSidebar/Butto
 import { BREAKPOINTS } from '@shared/data/breakpoints'
 import { NAVIGATION_ITEMS } from '@shared/data/privacy-policy'
 
+import { useResponsiveOffset } from '@utils/ui/breakpoints'
+
 import s from './privacy-policy.module.scss'
 
 // content section component
@@ -53,7 +55,8 @@ const NavLink = ({ order, href, children, isActive, onClick, subNavs, activeInne
 export const PrivacyPolicy = () => {
 	const isTablet = useIsBelow(BREAKPOINTS.tablet)
 	const triggerRef = useRef(null)
-	const hadEnterList = usePassedElement(triggerRef, -100)
+	const offset = useResponsiveOffset()
+	const hadEnterList = usePassedElement(triggerRef, offset)
 	const [isOpen, setIsOpen] = useState(false)
 	const ids = NAVIGATION_ITEMS.map((item) => item.id)
 
