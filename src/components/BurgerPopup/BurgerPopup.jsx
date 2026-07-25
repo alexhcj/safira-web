@@ -146,7 +146,7 @@ export const BurgerPopup = () => {
 				</div>
 				<Socials className={s.socials} socials={socialsList} />
 				<SupportBadge className={s.badge} />
-				{isMobileM && <CompareBlock />}
+				{isMobileM && <CompareBlock handlePopupClose={setIsOpen} />}
 			</div>
 			<nav>
 				<ul className={s.list}>
