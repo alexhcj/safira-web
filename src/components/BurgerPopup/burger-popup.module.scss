@@ -17,6 +17,12 @@
 	}
 }
 
+.currency {
+	& > div {
+		translate: -60% 0;
+	}
+}
+
 .socials {
 	justify-content: center;
 	gap: 18px;

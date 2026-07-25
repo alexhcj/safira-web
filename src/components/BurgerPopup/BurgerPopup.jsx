@@ -14,6 +14,8 @@ import { BurgerModal } from '@shared/components/Modal/BurgerModal'
 import { MetaPopup } from '@shared/components/UI/MetaPopup/MetaPopup'
 import { Socials } from '@shared/components/UI/Socials/Socials'
 import { SupportBadge } from '@shared/components/UI/SupportBadge/SupportBadge'
+import { CURRENCY_LIST } from '@shared/data/currency'
+import { LANGUAGE_LIST } from '@shared/data/languages'
 import { ACCOUNT_NAVIGATION_ITEMS, STORE_NAVIGATION_ITEMS } from '@shared/data/store-navigation'
 
 import ArrowSVG from '@assets/svg/arrow.svg?react'
@@ -25,18 +27,6 @@ import TwitterSVG from '@assets/svg/socials/twitter.svg?react'
 import YoutubeSVG from '@assets/svg/socials/youtube.svg?react'
 
 import s from './burger-popup.module.scss'
-
-const languages = [
-	{ id: 1, text: 'Russian' },
-	{ id: 2, text: 'English' },
-	{ id: 3, text: 'Deutsch' },
-]
-
-const currencies = [
-	{ id: 1, text: '₽ Ruble' },
-	{ id: 2, text: '$ US Dollar' },
-	{ id: 3, text: '€ Euro' },
-]
 
 const socialsList = [
 	{ icon: <TwitterSVG />, url: '/blank-page' },
@@ -140,9 +130,14 @@ export const BurgerPopup = () => {
 		<BurgerModal isOpen={isOpen} setIsOpen={setIsOpen}>
 			<div className={s.box}>
 				<div className={s.meta}>
-					<MetaPopup text='Language' data={languages} />
+					<MetaPopup text='Language' data={LANGUAGE_LIST} getLabel={(item) => item.language} />
 					<span className={s.meta_divider}>|</span>
-					<MetaPopup text='Currency' data={currencies} />
+					<MetaPopup
+						className={s.currency}
+						text='Currency'
+						data={CURRENCY_LIST}
+						getLabel={(item) => `${item.currency} (${item.symbol})`}
+					/>
 				</div>
 				<Socials className={s.socials} socials={socialsList} />
 				<SupportBadge className={s.badge} />

@@ -1,12 +1,14 @@
+import cn from 'classnames'
+
 import { Badge } from '@shared/components/UI/Badge/Badge'
 
 import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './meta-popup.module.scss'
 
-export const MetaPopup = ({ text = 'Meta text', data = [], getLabel }) => {
+export const MetaPopup = ({ text = 'Meta text', data = [], getLabel, className }) => {
 	return (
-		<div className={s.list}>
+		<div className={cn(s.list, className)}>
 			{text}
 			<ArrowSVG className={s.svg} />
 			<div className={s.popup}>
@@ -20,7 +22,7 @@ export const MetaPopup = ({ text = 'Meta text', data = [], getLabel }) => {
 						>
 							{getLabel(item)}
 						</a>
-						{item.badge && <Badge text={item.badge} />}
+						{item.badge && <Badge className={s.badge} text={item.badge} />}
 					</div>
 				))}
 			</div>
