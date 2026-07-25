@@ -2,7 +2,7 @@
 @use '@shared/styles/breakpoints' as *;
 
 .modal {
-	min-width: 360px;
+	min-width: 300px;
 	height: 100%;
 	padding: 18px 18px 33px;
 
@@ -30,13 +30,14 @@
 
 .product {
 	position: relative;
-	display: flex;
-	align-items: start;
+	display: grid;
+	grid-template-columns: 70px 1fr;
 	gap: 10px;
 	padding: 20px 0;
 	border-bottom: 1px solid $color-border;
 
 	@include tablet {
+		grid-template-columns: 85px 1fr;
 		gap: 20px;
 	}
 
@@ -50,14 +51,7 @@
 }
 
 .img_link {
-	width: 70px;
-	height: 70px;
 	border: 1px solid transparent;
-
-	@include tablet-l {
-		width: 85px;
-		height: 85px;
-	}
 
 	&:hover {
 		border-color: $color-primary;
