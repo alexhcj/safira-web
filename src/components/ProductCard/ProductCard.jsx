@@ -3,16 +3,20 @@ import { useState, useEffect, useRef } from 'react'
 import cn from 'classnames'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Hovermenu } from '@shared/components/UI/Hovermenu/Hovermenu'
 import { Tags } from '@shared/components/UI/Tags/Tags'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import s from './productcard.module.scss'
 
 // sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'list' | 'list-xs'
 export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
+	const isTabletL = useIsBelow(BREAKPOINTS.tabletL)
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
 	const navigate = useNavigate()
@@ -126,7 +130,9 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 						/>
 					)}
 					{size === 'list' && <p className={s.description}>{description}</p>}
-					{size !== 'list-xs' && <Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />}
+					{!isTabletL && size !== 'list-xs' && (
+						<Hovermenu menuToggle={menuToggle} size={size} slug={slug} product={product} />
+					)}
 				</div>
 			</div>
 		</div>
