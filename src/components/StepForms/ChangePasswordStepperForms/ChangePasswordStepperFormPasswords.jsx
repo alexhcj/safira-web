@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
 import { useLocation } from 'react-router-dom'
 
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -107,7 +108,7 @@ export const ChangePasswordStepperFormPasswords = ({ type, isLoading, onSubmit }
 				handleChange={handleChange('confirmPassword')}
 				error={getFieldError('confirmPassword')}
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={cn(s.btn, s.btn_password, isLoading && s.loading)} htmlType='submit' disabled={isLoading}>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

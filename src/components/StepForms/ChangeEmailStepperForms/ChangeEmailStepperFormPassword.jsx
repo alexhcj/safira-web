@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { maxLength, minLength, pattern, required } from '@/utils'
 
 import { useProfile } from '@hooks/services/useProfile'
@@ -74,7 +76,7 @@ export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) =>
 				placeholder='********'
 				error={getFieldError('password')}
 			/>
-			<Button className={s.btn} htmlType='submit'>
+			<Button className={cn(s.btn, s.btn_password, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

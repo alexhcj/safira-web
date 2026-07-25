@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { maxLength, pattern, required } from '@/utils'
 
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -34,7 +36,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
 		validateOnChange: false,
 	})
-
+	const yes = true
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
@@ -62,7 +64,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 				placeholder='johnsmith99@gmail.com'
 				error={getFieldError('email')}
 			/>
-			<Button className={s.btn} htmlType='submit'>
+			<Button className={cn(s.btn, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

@@ -182,16 +182,15 @@
 
 .btn_verify {
 	gap: 5px;
+	min-width: 127.5px;
+
+	&.loading {
+		background-color: $color-dark;
+	}
 }
 
 .preloader {
 	width: auto;
-
-	svg {
-		circle {
-			stroke: $color-white;
-		}
-	}
 }
 
 .btn_verify_text {

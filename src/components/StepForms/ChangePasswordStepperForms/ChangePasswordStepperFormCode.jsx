@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { exactLength, pattern, required } from '@/utils'
 
 import { useProfile } from '@hooks/services/useProfile'
@@ -73,7 +75,7 @@ export const ChangePasswordStepperFormCode = ({ type, isLoading, onSubmit }) => 
 				error={getFieldError('code')}
 			/>
 			<ResendCode classNames={s.resend_code} type={VERIFY_EMAIL.CHANGE_PASSWORD} />
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={cn(s.btn, s.btn_code, isLoading && s.loading)} htmlType='submit' disabled={isLoading}>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

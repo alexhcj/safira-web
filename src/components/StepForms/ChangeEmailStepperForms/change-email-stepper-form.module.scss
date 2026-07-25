@@ -334,8 +334,21 @@
 	display: inline-flex;
 	align-self: center;
 	border-radius: $border-radius-xl;
+	min-width: 74px;
 	height: 34px;
 	padding: 0 20px;
+
+	&.loading {
+		background-color: $color-dark;
+	}
+
+	&.btn_code {
+		min-width: 122.5px;
+	}
+
+	&.btn_password {
+		min-width: 173px;
+	}
 }
 
 .btn_text {

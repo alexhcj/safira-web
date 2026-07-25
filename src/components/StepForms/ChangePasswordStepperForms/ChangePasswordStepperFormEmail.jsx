@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { maxLength, pattern, required } from '@/utils'
 
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -61,7 +63,7 @@ export const ChangePasswordStepperFormEmail = ({ type, isLoading, onSubmit }) =>
 				placeholder='johnsmith99@gmail.com'
 				error={getFieldError('email')}
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={cn(s.btn, isLoading && s.loading)} htmlType='submit' disabled={isLoading}>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
 import { Navigate, NavLink, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
@@ -127,8 +128,8 @@ export const VerifyEmail = () => {
 								placeholder='726482'
 							/>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
-							<Button className={s.btn_verify} htmlType='submit' type='auth'>
-								{isLoading && <Preloader width={20} height={20} className={s.preloader} />}
+							<Button className={cn(s.btn_verify, isLoading && s.loading)} htmlType='submit' type='auth'>
+								{isLoading && <Preloader width={20} height={20} />}
 								<Text className={s.btn_verify_text} span color='white' weight='bold'>
 									Verify email
 								</Text>
