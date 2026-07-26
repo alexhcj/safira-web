@@ -12,11 +12,11 @@
 
 	@include tablet {
 		grid-auto-flow: column;
-		grid-template-columns: minmax(343px, 420px) max-content;
+		grid-template-columns: minmax(343px, 420px) minmax(360px, 420px);
 	}
 
-	@include tablet-l {
-		grid-template-columns: minmax(343px, 480px) max-content;
+	@include laptop-s {
+		grid-template-columns: minmax(343px, 480px) minmax(360px, max-content);
 	}
 }
 

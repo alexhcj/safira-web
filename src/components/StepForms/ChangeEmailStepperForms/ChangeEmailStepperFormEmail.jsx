@@ -36,7 +36,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ email }, emailFormValidationSchema, {
 		validateOnChange: false,
 	})
-	const yes = true
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
