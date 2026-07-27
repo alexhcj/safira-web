@@ -31,6 +31,12 @@
 				display: block;
 			}
 		}
+
+		@include tablet-l {
+			align-self: end;
+			margin: 0;
+			height: 43px;
+		}
 	}
 
 	@include tablet {
