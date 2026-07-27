@@ -179,15 +179,22 @@
 			.add_button {
 				padding: 10px 20px;
 				height: 34px;
+				min-width: 123px;
 				border-radius: 3px;
 
 				@include tablet {
 					white-space: nowrap;
 					padding: 10px 10px;
+					min-width: 103px;
 				}
 
 				@include breakpoint(880px) {
 					padding: 10px 20px;
+					min-width: 123px;
+				}
+
+				&.loading {
+					background-color: $color-dark;
 				}
 			}
 

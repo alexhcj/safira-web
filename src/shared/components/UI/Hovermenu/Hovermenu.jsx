@@ -5,6 +5,7 @@ import { useCompareContext } from '@context/CompareContext'
 import { useProductModalContext } from '@context/ProductContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 
 import { ButtonCart } from '../Buttons/ButtonCart/ButtonCart'
@@ -20,12 +21,12 @@ import s from './hovermenu.module.scss'
 // sizes: 'xs' | 'sm' | 'lg' | 'list'
 export const Hovermenu = ({ menuToggle, size, product }) => {
 	const { previewProduct } = useProductModalContext()
-	const { addToWishlist, isProductInWishlist, removeFromWishlist } = useWishlistContext()
-	const { addToCart, isProductInCart, removeFromCart } = useCartContext()
-	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
+	const { addToWishlist, isProductInWishlist, removeFromWishlist, isLoading: wishlistIsLoading } = useWishlistContext()
+	const { addToCart, isProductInCart, removeFromCart, isLoading: cartIsLoading } = useCartContext()
+	const { addToCompare, isProductInCompare, removeItemFromCompare, isLoading: compareIsLoading } = useCompareContext()
 	const isProductInCartList = isProductInCart(product.slug)
 	const isProductInWishList = isProductInWishlist(product.slug)
-	const isProductInCompareList = isProductInCompare(product.slug, product.basicCategory)
+	const isProductInCompareList = isProductInCompare(product.slug, product.basicCategory.slug)
 
 	const handleCartClick = () => {
 		isProductInCartList ? removeFromCart(product.slug) : addToCart(product)
@@ -36,7 +37,7 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 	}
 
 	const handleCompareClick = () => {
-		isProductInCompareList ? removeItemFromCompare(product.slug, product.basicCategory) : addToCompare(product)
+		isProductInCompareList ? removeItemFromCompare(product.slug, product.basicCategory.slug) : addToCompare(product)
 	}
 
 	return (
@@ -49,13 +50,13 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 				</ButtonCart>
 			) : (
 				<ButtonWithTooltip
-					className={cn(s.btn_action, isProductInCartList && s.active)}
+					className={cn(s.btn_action, cartIsLoading && s.loading, isProductInCartList && s.active)}
 					buttonSize={size === 'list' ? 'lg' : 'default'}
 					buttonType='primary'
 					text={isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 					onClick={handleCartClick}
 				>
-					<CartSVG className={s.icon} width={16} height={16} />
+					{cartIsLoading ? <Preloader width={25} height={25} /> : <CartSVG className={s.icon} width={16} height={16} />}
 				</ButtonWithTooltip>
 			)}
 			<ButtonWithTooltip
@@ -68,22 +69,30 @@ export const Hovermenu = ({ menuToggle, size, product }) => {
 				<MagnifierSVG className={s.icon} width={16} height={16} />
 			</ButtonWithTooltip>
 			<ButtonWithTooltip
-				className={cn(s.btn_action, isProductInWishList && s.active)}
+				className={cn(s.btn_action, wishlistIsLoading && s.loading, isProductInWishList && s.active)}
 				buttonSize={size === 'list' ? 'lg' : 'default'}
 				buttonType='primary'
 				text={isProductInWishList ? 'Remove from Wishlist' : 'Add to Wishlist'}
 				onClick={handleWishlistClick}
 			>
-				<HeartSVG className={s.icon} width={16} height={16} />
+				{wishlistIsLoading ? (
+					<Preloader width={25} height={25} />
+				) : (
+					<HeartSVG className={s.icon} width={16} height={16} />
+				)}
 			</ButtonWithTooltip>
 			<ButtonWithTooltip
-				className={cn(s.btn_action, isProductInCompareList && s.active)}
+				className={cn(s.btn_action, compareIsLoading && s.loading, isProductInCompareList && s.active)}
 				buttonSize={size === 'list' ? 'lg' : 'default'}
 				buttonType='primary'
 				text={isProductInCompareList ? 'Remove from Compare' : 'Add to Compare'}
 				onClick={handleCompareClick}
 			>
-				<CompareSVG className={s.icon_compare} width={18} height={18} />
+				{compareIsLoading ? (
+					<Preloader width={25} height={25} />
+				) : (
+					<CompareSVG className={s.icon_compare} width={18} height={18} />
+				)}
 			</ButtonWithTooltip>
 		</div>
 	)

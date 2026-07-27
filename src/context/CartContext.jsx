@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 import { calculateTotalPrice } from '@/utils'
 
@@ -19,8 +19,10 @@ export function useCartContext() {
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useLocalStorage('cart', [])
+	const [isLoading, setIsLoading] = useState(false)
 
 	const addToCart = ({ name, slug, price, specifications }, quantity) => {
+		setIsLoading(true)
 		const productInCart = cart.find((product) => product.slug === slug)
 
 		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
@@ -36,9 +38,11 @@ export const CartProvider = ({ children }) => {
 		if (productInCart) {
 			quantity ? (productInCart.quantity += +quantity) : productInCart.quantity++
 			setCart([...cart])
+			setIsLoading(false)
 		} else {
 			quantity ? (product.quantity = +quantity) : (product.quantity = 1)
 			setCart([...cart, product])
+			setIsLoading(false)
 		}
 	}
 
@@ -64,8 +68,10 @@ export const CartProvider = ({ children }) => {
 	}
 
 	const removeFromCart = (slug) => {
+		setIsLoading(true)
 		const filteredCart = cart.filter((product) => product.slug !== slug)
 		setCart([...filteredCart])
+		setIsLoading(false)
 	}
 
 	return (
@@ -78,6 +84,7 @@ export const CartProvider = ({ children }) => {
 				cartTotalPrice,
 				isProductInCart,
 				removeFromCart,
+				isLoading,
 			}}
 		>
 			{children}

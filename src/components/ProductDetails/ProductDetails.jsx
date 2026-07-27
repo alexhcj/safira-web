@@ -36,9 +36,9 @@ import HeartSVG from '@assets/svg/heart.svg?react'
 import s from './productdetails.module.scss'
 
 export const ProductDetails = () => {
-	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
-	const { addToCart, productQuantityInCart } = useCartContext()
-	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
+	const { addToWishlist, removeFromWishlist, isProductInWishlist, isLoading: wishlistIsLoading } = useWishlistContext()
+	const { addToCart, productQuantityInCart, isLoading: cartIsLoading } = useCartContext()
+	const { addToCompare, isProductInCompare, removeItemFromCompare, isLoading: compareIsLoading } = useCompareContext()
 	const { slug } = useParams()
 	const { findBySlug, isLoading } = useProductsNew()
 	const [product, setProduct] = useState(null)
@@ -124,6 +124,7 @@ export const ProductDetails = () => {
 							product={product}
 							productQuantityInCart={productQuantityInCart(slug)}
 							onClick={addToCart}
+							isLoading={cartIsLoading}
 							btnClassName={s.btn_add}
 							className={s.add_actions}
 						/>
@@ -135,12 +136,18 @@ export const ProductDetails = () => {
 									text='Remove from Wishlist'
 									tooltipPosition='right'
 								>
-									<HeartSVG className={s.icon} />
-									<HeartBrokenSVG className={s.icon_remove} />
+									{wishlistIsLoading ? (
+										<Preloader width={25} height={25} />
+									) : (
+										<>
+											<HeartSVG className={s.icon} />
+											<HeartBrokenSVG className={s.icon_remove} />
+										</>
+									)}
 								</ButtonWithTooltip>
 							) : (
 								<Button className={s.btn_add_text} type='text' onClick={() => addToWishlist(product)}>
-									<Text span>+ Add to WishList</Text>
+									{wishlistIsLoading ? <Preloader width={25} height={25} /> : <Text span>+ Add to WishList</Text>}
 								</Button>
 							)}
 							{isProductInCompare(slug, basicCategory.slug) ? (
@@ -150,12 +157,18 @@ export const ProductDetails = () => {
 									text='Remove from Compare'
 									tooltipPosition='right'
 								>
-									<CompareSVG className={cn(s.icon, s.compare)} />
-									<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
+									{compareIsLoading ? (
+										<Preloader width={25} height={25} />
+									) : (
+										<>
+											<CompareSVG className={cn(s.icon, s.compare)} />
+											<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
+										</>
+									)}
 								</ButtonWithTooltip>
 							) : (
 								<Button className={s.btn_add_text} type='text' onClick={() => addToCompare(product)}>
-									<Text span>+ Add to Compare</Text>
+									{compareIsLoading ? <Preloader width={25} height={25} /> : <Text span>+ Add to Compare</Text>}
 								</Button>
 							)}
 						</div>

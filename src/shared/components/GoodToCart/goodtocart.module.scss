@@ -39,4 +39,8 @@
 
 .btn_add {
 	text-transform: capitalize;
+
+	&.loading {
+		background-color: $color-dark;
+	}
 }

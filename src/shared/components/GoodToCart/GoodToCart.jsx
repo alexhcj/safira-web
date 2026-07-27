@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import cn from 'classnames'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
+
 import { Button } from '../UI/Buttons/Button/Button'
 import { Text } from '../UI/Text/Text'
 
@@ -39,6 +41,7 @@ export const GoodToCart = ({
 	productQuantityInCart,
 	showLabel = true,
 	onClick,
+	isLoading,
 	className,
 	btnClassName,
 }) => {
@@ -84,13 +87,13 @@ export const GoodToCart = ({
 				</div>
 			)}
 			<Button
-				className={cn(s.btn_add, btnClassName)}
+				className={cn(s.btn_add, isLoading && s.loading, btnClassName)}
 				type='submit'
 				disabled={isOutOfStock || isInvalidQuantity || productQuantityInCart}
 				onClick={() => onClick(product, numericValue)}
 			>
 				<Text size='medium' color='white' weight='medium' span>
-					{productQuantityInCart ? 'Already in cart' : 'Add to cart'}
+					{productQuantityInCart ? 'Already in cart' : isLoading ? <Preloader width={25} height={25} /> : 'Add to cart'}
 				</Text>
 			</Button>
 		</div>

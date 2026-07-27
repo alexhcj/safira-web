@@ -22,6 +22,7 @@ export const CompareProvider = ({ children }) => {
 	const [compares, setCompares] = useLocalStorage('compare', {})
 	const [activeCategory, setActiveCategory] = useState(Object.keys(compares)[0])
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [isLoading, setIsLoading] = useState(false)
 
 	// reset slider position when location changes
 	useEffect(() => {
@@ -39,6 +40,7 @@ export const CompareProvider = ({ children }) => {
 	}
 
 	const addToCompare = ({ slug, price, specifications, name, tags, primeCategory, basicCategory, subCategory }) => {
+		setIsLoading(true)
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
 		if (itemInCompare) return
 
@@ -62,8 +64,10 @@ export const CompareProvider = ({ children }) => {
 			switchActiveCategory(basicCategory.slug)
 		} else if (!compares[basicCategory.slug]) {
 			setCompares({ ...compares, [basicCategory.slug]: [item] })
+			setIsLoading(false)
 		} else {
 			setCompares({ ...compares, [basicCategory.slug]: [...compares[basicCategory.slug], item] })
+			setIsLoading(false)
 		}
 	}
 
@@ -86,6 +90,7 @@ export const CompareProvider = ({ children }) => {
 	}
 
 	const removeItemFromCompare = (slug, category) => {
+		setIsLoading(true)
 		const currentItems = compares[category] || []
 		const filteredComparedCategory = currentItems.filter((item) => item.slug !== slug)
 
@@ -97,6 +102,7 @@ export const CompareProvider = ({ children }) => {
 			}
 		} else {
 			removeListFromCompare(category)
+			setIsLoading(false)
 		}
 	}
 
@@ -146,6 +152,7 @@ export const CompareProvider = ({ children }) => {
 				removeListFromCompare,
 				removeAllCompares,
 				isProductInCompare,
+				isLoading,
 			}}
 		>
 			{children}

@@ -1,5 +1,7 @@
+import cn from 'classnames'
 import { Link } from 'react-router-dom'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
@@ -21,6 +23,7 @@ export const WishlistItem = ({
 	onClick,
 	onDelete,
 	productQuantityInCart,
+	isLoading,
 }) => {
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	return (
@@ -59,9 +62,13 @@ export const WishlistItem = ({
 						<span>{productQuantityInCart}</span>
 					</Link>
 				) : (
-					<Button className={s.add_button} onClick={onClick} disabled={productQuantityInCart}>
+					<Button
+						className={cn(s.add_button, isLoading && s.loading)}
+						onClick={onClick}
+						disabled={productQuantityInCart}
+					>
 						<Text color='white' className={s.add_text}>
-							Add to cart
+							{isLoading ? <Preloader width={25} height={25} /> : 'Add to cart'}
 						</Text>
 					</Button>
 				)}

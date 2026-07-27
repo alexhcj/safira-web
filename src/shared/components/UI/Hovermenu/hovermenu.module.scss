@@ -109,4 +109,8 @@
 			stroke: $color-white;
 		}
 	}
+
+	&.loading {
+		background-color: $color-dark;
+	}
 }

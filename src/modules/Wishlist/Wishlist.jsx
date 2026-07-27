@@ -9,7 +9,7 @@ import s from './styles/wishlist.module.scss'
 
 export const Wishlist = () => {
 	const { wishlist, removeFromWishlist } = useWishlistContext()
-	const { addToCart, productQuantityInCart } = useCartContext()
+	const { addToCart, productQuantityInCart, isLoading } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -46,6 +46,7 @@ export const Wishlist = () => {
 									onClick={() => addToCart(product)}
 									onDelete={() => removeFromWishlist(item.slug)}
 									productQuantityInCart={productQuantityInCart(item.slug)}
+									isLoading={isLoading}
 								/>
 							)
 						})
