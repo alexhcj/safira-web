@@ -8,6 +8,7 @@ import { profilesAPI } from '@api/profiles'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 
 import { convertISODate, maxLength, pattern, dateToISO } from '@utils/index'
@@ -284,12 +285,16 @@ export const ProfileForm = ({ user, profile, loading }) => {
 							<Button
 								htmlType='submit'
 								type='submit'
-								className={s.btn_update_profile}
-								disabled={loading || !user.isEmailVerified}
+								className={cn(s.btn_update_profile, loading && s.loading)}
+								disabled={!user.isEmailVerified}
 							>
-								<Text span color='white' className={s.btn_update_profile_text}>
-									Update profile
-								</Text>
+								{loading ? (
+									<Preloader width={24} height={24} />
+								) : (
+									<Text span color='white' className={s.btn_update_profile_text}>
+										Update profile
+									</Text>
+								)}
 							</Button>
 						</div>
 					</form>

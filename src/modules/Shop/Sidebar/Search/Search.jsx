@@ -190,7 +190,7 @@ export const Search = () => {
 			</ul>
 
 			<div className={s.bottom}>
-				<Button type='filter' disabled={isLoading} onClick={submitSearch}>
+				<Button className={s.btn_search} type='filter' disabled={isLoading} onClick={submitSearch}>
 					{isLoading ? (
 						<Preloader width={20} height={20} />
 					) : (

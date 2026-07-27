@@ -147,7 +147,7 @@ export const ContactForm = () => {
 				/>
 				<Button htmlType='submit' className={s.button}>
 					{isLoading ? (
-						<Preloader width={20} height={20} />
+						<Preloader width={25} height={25} />
 					) : (
 						<Text span color='white'>
 							Send

@@ -2,11 +2,9 @@ import { useState } from 'react'
 
 import cn from 'classnames'
 
-import MagnifierSVG from '@assets/svg/magnifier.svg?react'
-
 import s from './button.module.scss'
 
-// types: 'submit' | 'subscribe' | 'search' | 'text' | 'form' | 'post' | 'auth' | 'secondary' | 'profile'
+// types: 'submit' | 'subscribe' | 'text' | 'form' | 'post' | 'auth' | 'secondary' | 'profile'
 // htmlTypes: 'button' | 'submit'
 // rounded: false
 export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded = true, className, children }) => {
@@ -46,7 +44,6 @@ export const Button = ({ type, htmlType = 'button', onClick, disabled, rounded =
 			disabled={disabled}
 		>
 			{children}
-			{type === 'search' && <MagnifierSVG />}
 		</button>
 	)
 }

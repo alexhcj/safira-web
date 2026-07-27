@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import cn from 'classnames'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'

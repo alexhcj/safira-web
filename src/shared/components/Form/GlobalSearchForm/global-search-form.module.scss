@@ -26,15 +26,38 @@
 		}
 	}
 
-	button {
-		padding: 0;
+	.btn_search {
+		position: absolute;
+		top: 0;
+		right: 0;
 		width: 48px;
+		padding: 0;
 		height: 43px;
 		border-radius: 0 $border-radius-m $border-radius-m 0;
+
+		&.loading {
+			background-color: $color-dark;
+		}
+
+		@include tablet-l {
+			padding: 0 20px;
+			width: 60px;
+			height: 100%;
+			border-radius: 0 30px 30px 0;
+		}
 
 		svg {
 			width: 15px;
 			height: 15px;
+
+			@include tablet-l {
+				width: 20px;
+				height: 20px;
+			}
+
+			path {
+				fill: $color-white;
+			}
 		}
 	}
 

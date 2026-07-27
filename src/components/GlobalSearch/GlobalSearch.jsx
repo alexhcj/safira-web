@@ -16,7 +16,7 @@ import s from './global-search.module.scss'
 export const GlobalSearch = ({ className, isSticky }) => {
 	const { addToSearch } = useRecentSearchContext()
 	const { product } = useRandomProduct()
-	const { findAllMatches } = useSearch()
+	const { findAllMatches, isLoading } = useSearch()
 
 	const [isPopoverToggled, setIsPopoverToggled] = useState(false)
 	const [search, setSearch] = useState({})
@@ -76,7 +76,12 @@ export const GlobalSearch = ({ className, isSticky }) => {
 
 	return (
 		<div className={cn(s.search, className)} ref={searchRef} onKeyDown={onKeyDownHandler}>
-			<GlobalSearchForm handleInputClick={handleInputClick} handleSubmit={handleSubmit} isSticky={isSticky} />
+			<GlobalSearchForm
+				handleInputClick={handleInputClick}
+				handleSubmit={handleSubmit}
+				isSticky={isSticky}
+				isLoading={isLoading}
+			/>
 			<SearchPopover
 				isOpen={isPopoverToggled}
 				setIsPopoverToggled={setIsPopoverToggled}

@@ -108,12 +108,17 @@
 	justify-content: space-between;
 }
 
+.btn_search {
+	min-width: 98.5px;
+}
+
 .current_search {
 	position: relative;
 	text-transform: capitalize;
 	text-align: right;
 	vertical-align: middle;
 }
+
 .reset_current_search {
 	position: absolute;
 	top: 50%;
@@ -133,6 +138,7 @@
 		opacity: 1;
 	}
 }
+
 .reset_svg {
 	width: 10px;
 	height: 10px;

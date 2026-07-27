@@ -80,7 +80,7 @@ export const Blog = () => {
 					loadButton={
 						!meta.isLastPage && !notFound && isTabletL ? (
 							<Button className={s.btn_more} type='secondary' onClick={handleShowMore} disabled={isLoadingMore}>
-								{isLoadingMore ? <Preloader width={20} height={20} /> : <Text>Show more</Text>}
+								{isLoadingMore ? <Preloader width={25} height={25} /> : <Text>Show more</Text>}
 							</Button>
 						) : null
 					}
