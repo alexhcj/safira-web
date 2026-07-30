@@ -12,7 +12,7 @@ export const useProducts = () => {
 		order: 'desc',
 	})
 
-	const [loading, setLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState(false)
 	const [products, setProducts] = useState([])
 	const [meta, setMeta] = useState({})
@@ -29,11 +29,11 @@ export const useProducts = () => {
 			} catch (err) {
 				return null
 			} finally {
-				setLoading(false)
+				setIsLoading(false)
 			}
 		}
 		fetchData()
 	}, [params])
 
-	return { products, meta, loading, error }
+	return { products, meta, isLoading, error }
 }

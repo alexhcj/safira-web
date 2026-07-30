@@ -1,0 +1,38 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 30px 5px;
+	padding-left: 50px;
+}
+
+.box,
+.list {
+	display: flex;
+	flex-direction: column;
+}
+
+.box {
+	gap: 10px;
+}
+
+.list {
+	gap: 6px;
+	padding-left: 20px;
+}
+
+.category {
+	width: 50px;
+	min-height: 18px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.link {
+	width: 250px;
+	min-height: 16px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

@@ -9,6 +9,7 @@ import { SubCategoryPanel } from '@modules/Categories/SubCategoryPanel/SubCatego
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { CategoriesSkeleton } from '@shared/components/UI/Skeletons/CategoriesSkeleton/CategoriesSkeleton'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import { CategoryCard } from './CategoryCard/CategoryCard'
@@ -121,13 +122,15 @@ export const Categories = () => {
 				</div>
 
 				{/* ─── Desktop grid (> 991px) — original, unchanged ─── */}
-				<nav className={s.nav}>
-					{!isReady ? (
-						<Preloader />
-					) : (
-						categories.map((category) => <CategoryCard key={category.primeCategory} category={category} />)
-					)}
-				</nav>
+				{!isReady ? (
+					<CategoriesSkeleton quantity={6} />
+				) : (
+					<nav className={s.nav}>
+						{categories.map((category) => (
+							<CategoryCard key={category.primeCategory} category={category} />
+						))}
+					</nav>
+				)}
 
 				{/* ─── Responsive grid + inline panel (≤ 991px) ─── */}
 				<div className={s.nav_responsive}>

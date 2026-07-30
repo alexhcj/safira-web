@@ -6,13 +6,15 @@ import { useSearchParams } from 'react-router-dom'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 import { useTags } from '@hooks/services/useTags'
 
+import { TagsFilterSkeleton } from '@shared/components/UI/Skeletons/TagsFilterSkeleton/TagsFilterSkeleton'
+
 import { enumToStr } from '@utils/string'
 
 import s from './dietary-filter.module.scss'
 
 export const DietaryFilter = () => {
 	const [params, setParams] = useSearchParams()
-	const { findUniqueDietaryTags } = useTags()
+	const { findUniqueDietaryTags, isLoading } = useTags()
 	const { findQueryTags } = useProductsNew()
 	const [tags, setTags] = useState([])
 	const [availableTags, setAvailableTags] = useState([])
@@ -78,7 +80,9 @@ export const DietaryFilter = () => {
 		return <div className={s.no_tags}>No tags found for the current selection</div>
 	}
 
-	return (
+	return isLoading ? (
+		<TagsFilterSkeleton quantity={9} />
+	) : (
 		<div className={s.dietaries}>
 			{filterTags().map((dietary) => (
 				<button

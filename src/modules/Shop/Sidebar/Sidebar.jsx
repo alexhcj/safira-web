@@ -30,7 +30,7 @@ export const Sidebar = ({ meta }) => {
 				<DietaryFilter />
 			</div>
 			<ResetFilters />
-			<BannerOffer imgSize='shop' />
+			<BannerOffer type='shop' imgSize='shop' />
 		</aside>
 	)
 }

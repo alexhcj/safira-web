@@ -9,7 +9,7 @@ import { useProfile } from '@hooks/services/useProfile'
 
 import { SubscriptionItem } from '@modules/Account/Subscriptions/SubscriptionItem/SubscriptionItem'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { SubscriptionsSkeleton } from '@shared/components/UI/Skeletons/SubscriptionsSkeleton/SubscriptionsSkeleton'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
 import EmailSVG from '@assets/svg/envelope.svg?react'
@@ -26,7 +26,6 @@ export const Subscriptions = () => {
 		blogNews: false,
 		marketingNews: false,
 	})
-	const [isInitialLoading, setIsInitialLoading] = useState(true)
 	const [loadingStates, setLoadingStates] = useState({
 		blogNews: false,
 		devNews: false,
@@ -36,11 +35,9 @@ export const Subscriptions = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsInitialLoading(true)
 			const res = await findSubscription()
 
 			if (res && res.success) setSubscription(res.subscription)
-			setIsInitialLoading(false)
 		}
 
 		fetchData()
@@ -102,52 +99,52 @@ export const Subscriptions = () => {
 		)
 	}
 
-	if (isInitialLoading) {
-		return <Preloader width={20} height={20} />
-	}
-
 	return (
 		<section className={s.section}>
 			<h3 className={s.title}>Subscriptions</h3>
-			<table className={s.table}>
-				<thead className={s.thead}>
-					<tr>
-						<th>Type</th>
-						<th>Status</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<SubscriptionItem
-						title='Store news'
-						status={subscription.blogNews ? 'Subscribed' : 'Unsubscribed'}
-						subscriptionKey='blogNews'
-						onClick={handleSubscription}
-						isLoading={loadingStates.blogNews}
-					/>
-					<SubscriptionItem
-						title='Tech news'
-						status={subscription.devNews ? 'Subscribed' : 'Unsubscribed'}
-						subscriptionKey='devNews'
-						onClick={handleSubscription}
-						isLoading={loadingStates.devNews}
-					/>
-					<SubscriptionItem
-						title='Sales & Proposals'
-						status={subscription.marketingNews ? 'Subscribed' : 'Unsubscribed'}
-						subscriptionKey='marketingNews'
-						onClick={handleSubscription}
-						isLoading={loadingStates.marketingNews}
-					/>
-					<SubscriptionItem
-						title='All'
-						status={checkSubscriptionsStatus()}
-						subscriptionKey='all'
-						onClick={handleSubscription}
-						isLoading={loadingStates.all}
-					/>
-				</tbody>
-			</table>
+			{isLoading ? (
+				<SubscriptionsSkeleton quantity={4} />
+			) : (
+				<table className={s.table}>
+					<thead className={s.thead}>
+						<tr>
+							<th>Type</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<SubscriptionItem
+							title='Store news'
+							status={subscription.blogNews ? 'Subscribed' : 'Unsubscribed'}
+							subscriptionKey='blogNews'
+							onClick={handleSubscription}
+							isLoading={loadingStates.blogNews}
+						/>
+						<SubscriptionItem
+							title='Tech news'
+							status={subscription.devNews ? 'Subscribed' : 'Unsubscribed'}
+							subscriptionKey='devNews'
+							onClick={handleSubscription}
+							isLoading={loadingStates.devNews}
+						/>
+						<SubscriptionItem
+							title='Sales & Proposals'
+							status={subscription.marketingNews ? 'Subscribed' : 'Unsubscribed'}
+							subscriptionKey='marketingNews'
+							onClick={handleSubscription}
+							isLoading={loadingStates.marketingNews}
+						/>
+						<SubscriptionItem
+							title='All'
+							status={checkSubscriptionsStatus()}
+							subscriptionKey='all'
+							onClick={handleSubscription}
+							isLoading={loadingStates.all}
+						/>
+					</tbody>
+				</table>
+			)}
 		</section>
 	)
 }

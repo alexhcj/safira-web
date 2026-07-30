@@ -31,3 +31,19 @@
 		max-width: $container;
 	}
 }
+
+// Skeleton loading animation
+@mixin skeleton {
+	background: linear-gradient(90deg, $color-grey9 25%, $color-border4 50%, $color-grey9 75%);
+	background-size: 200% 100%;
+	animation: skeleton-loading 1.5s infinite;
+
+	@keyframes skeleton-loading {
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
+	}
+}

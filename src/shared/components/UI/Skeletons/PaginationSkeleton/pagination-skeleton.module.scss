@@ -1,0 +1,19 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: flex;
+	gap: 9px;
+}
+
+.button {
+	width: 30px;
+	min-height: 30px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	&:nth-child(2),
+	&:nth-last-child(2) {
+		width: 41px;
+	}
+}

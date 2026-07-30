@@ -1,0 +1,47 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--grid-gap);
+	margin-bottom: 40px;
+}
+
+.box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.img {
+	width: 100%;
+	margin-bottom: 16px;
+	border-radius: $border-radius-m;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+}
+
+.name {
+	margin-bottom: 18px;
+	width: 150px;
+	min-height: 15px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.category {
+	margin-bottom: 15px;
+	width: 66px;
+	min-height: 14px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.price {
+	width: 90px;
+	min-height: 17px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

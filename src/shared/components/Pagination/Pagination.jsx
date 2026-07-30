@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { useSearchParams } from 'react-router-dom'
 
+import { PaginationSkeleton } from '@shared/components/UI/Skeletons/PaginationSkeleton/PaginationSkeleton'
+
 import s from './pagination.module.scss'
 
-export const Pagination = ({ meta, loading }) => {
+export const Pagination = ({ meta, isLoading }) => {
 	const perPage = 3
 	const { page, total, isLastPage } = meta
 	const [params, setParams] = useSearchParams()
@@ -88,32 +90,38 @@ export const Pagination = ({ meta, loading }) => {
 
 	return (
 		<div className={s.pagination}>
-			{page > perPage && (
-				<button className={s.btn} onClick={selectStart}>
-					&lt;&lt;
-				</button>
-			)}
-			{page >= 2 && (
-				<button className={s.btn} onClick={selectPrev} disabled={page === 1}>
-					prev
-				</button>
-			)}
-			<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
-				{!loading &&
-					page &&
-					calcCurrentPages().map((num) => (
-						<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
-							{num}
+			{isLoading ? (
+				<PaginationSkeleton />
+			) : (
+				<>
+					{page > perPage && (
+						<button className={s.btn} onClick={selectStart}>
+							&lt;&lt;
 						</button>
-					))}
-			</div>
-			<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
-				next
-			</button>
-			{!isLastPage && (
-				<button className={s.btn} onClick={selectFinish} disabled={total === 0}>
-					&gt;&gt;
-				</button>
+					)}
+					{page >= 2 && (
+						<button className={s.btn} onClick={selectPrev} disabled={page === 1}>
+							prev
+						</button>
+					)}
+					<div role='presentation' className={s.list} onClick={(e) => selectPage(e)}>
+						{!isLoading &&
+							page &&
+							calcCurrentPages().map((num) => (
+								<button className={cn(s.btn, { [s.active]: page === num })} id={num} key={num}>
+									{num}
+								</button>
+							))}
+					</div>
+					<button className={s.btn} onClick={selectNext} disabled={isLastPage || total === 0}>
+						next
+					</button>
+					{!isLastPage && (
+						<button className={s.btn} onClick={selectFinish} disabled={total === 0}>
+							&gt;&gt;
+						</button>
+					)}
+				</>
 			)}
 		</div>
 	)

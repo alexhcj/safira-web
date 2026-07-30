@@ -1,0 +1,51 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.grid {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+}
+
+.title {
+	margin-bottom: 5px;
+	min-height: 19px;
+	width: 108px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.fieldset {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.field {
+	width: 485px;
+	min-height: 50px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.button {
+	align-self: end;
+	min-height: 42px;
+	width: 135px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.avatar {
+	align-self: start;
+	min-height: 130px;
+	border-radius: $border-round;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+}

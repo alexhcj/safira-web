@@ -3,23 +3,25 @@ import { useEffect, useState } from 'react'
 import { offersAPI } from '@api/offers'
 
 export const useOfferLinks = (type) => {
-	const [loading, setLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState(false)
 	const [links, setLinks] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
+			setIsLoading(true)
+
 			try {
 				const res = await offersAPI.getAll({ type })
 				setLinks(res)
 			} catch (err) {
 				setError(err)
 			} finally {
-				setLoading(false)
+				setIsLoading(false)
 			}
 		}
 		fetchData()
 	}, [])
 
-	return { links, loading, error }
+	return { links, isLoading, error }
 }

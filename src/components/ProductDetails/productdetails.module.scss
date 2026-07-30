@@ -1,10 +1,12 @@
 @use '@shared/styles/vars' as *;
 @use '@shared/styles/breakpoints' as *;
 
-.product {
-	display: flex;
-	flex-direction: column;
-	gap: var(--grid-gap);
+.box {
+	display: grid;
+	grid-template-areas:
+	'img product'
+	'specifications specifications';
+	gap: 70px var(--grid-gap);
 	margin-bottom: 60px;
 
 	@include tablet {
@@ -15,6 +17,14 @@
 	@include tablet-l {
 		margin-bottom: 70px;
 	}
+}
+
+.img {
+	grid-area: img;
+}
+
+.product {
+	grid-area: product;
 }
 
 .name {
@@ -176,6 +186,7 @@
 }
 
 .specifications {
+	grid-area: specifications;
 	padding: 20px 20px 27px;
 	border: 1px solid $color-border2;
 

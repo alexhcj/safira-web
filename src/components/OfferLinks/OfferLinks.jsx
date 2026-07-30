@@ -2,15 +2,15 @@ import { useNavigate } from 'react-router-dom'
 
 import { useOfferLinks } from '@hooks/services/useOfferLinks'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { OfferLinksSkeleton } from '@shared/components/UI/Skeletons/OfferLinksSkeleton/OfferLinksSkeleton'
 
 import { enumToCamelCase, enumToStr, titleCase, enumToDashStr, strToSlug } from '@utils/string'
 
 import s from './offer-links.module.scss'
 
 export const OfferLinks = () => {
-	const { links, loading } = useOfferLinks('offer-link')
+	const { links } = useOfferLinks('offer-link')
 	const navigate = useNavigate()
 
 	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
@@ -25,20 +25,23 @@ export const OfferLinks = () => {
 	return (
 		<div className='container'>
 			<ul className={s.block}>
-				{loading && <Preloader width={35} height={35} />}
-				{!loading &&
-					links &&
-					links.map(({ img, title, link }) => {
-						const offerUrl = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/offer-links/${img}`
+				{links.map(({ img, title, link }) => {
+					const offerUrl = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/offer-links/${img}`
 
-						return (
-							<li key={strToSlug(title)} onClick={(e) => handleOfferClick(link)}>
-								<button type='button' className={s.offer}>
-									<ImageWithFallback onlySrc imgSize='offer-link' src={offerUrl} alt={title} />
-								</button>
-							</li>
-						)
-					})}
+					return (
+						<li key={strToSlug(title)} onClick={() => handleOfferClick(link)}>
+							<button type='button' className={s.offer}>
+								<ImageWithFallback
+									onlySrc
+									imgSize='offer-link'
+									src={offerUrl}
+									alt={title}
+									skeleton={<OfferLinksSkeleton />}
+								/>
+							</button>
+						</li>
+					)
+				})}
 			</ul>
 		</div>
 	)

@@ -22,6 +22,9 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
+import { ProductSkeleton } from '@shared/components/UI/Skeletons/ProductSkeleton/ProductSkeleton'
+import { ReviewsSkeleton } from '@shared/components/UI/Skeletons/ReviewsSkeleton/ReviewsSkeleton'
+import { SpecificationsSkeleton } from '@shared/components/UI/Skeletons/SpecificationsSkeleton/SpecificationsSkeleton'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Text } from '@shared/components/UI/Text/Text'
 import { PRICE_TYPE } from '@shared/data/price'
@@ -86,12 +89,12 @@ export const ProductDetails = () => {
 
 	return (
 		<div className='container'>
-			<div className={s.product}>
-				{img ? <ImageWithFallback src={img} imgSize='xl' alt={name} /> : <Preloader />}
+			<div className={s.box}>
+				<ImageWithFallback className={s.img} src={img} imgSize='xl' alt={name} />
 				{!isReady ? (
-					<Preloader />
+					<ProductSkeleton />
 				) : (
-					<div>
+					<div className={s.product}>
 						<h4 className={s.name}>{name}</h4>
 						<Rating className={s.rating} rating={rating} />
 						{price && <Price className={s.price} {...price} type={PRICE_TYPE.LARGE} />}
@@ -174,16 +177,21 @@ export const ProductDetails = () => {
 						</div>
 					</div>
 				)}
-			</div>
-			<div className={s.specifications}>
-				<Tabs className={s.tabs}>
-					<Tab id='spec' text='Specifications'>
-						<Specification {...specifications} />
-					</Tab>
-					<Tab id='rev' text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
-						{reviews ? <Reviews reviews={reviews.reviews} /> : <NewReview />}
-					</Tab>
-				</Tabs>
+				<div className={s.specifications}>
+					<Tabs className={s.tabs}>
+						<Tab id='spec' text='Specifications'>
+							{!isReady ? <SpecificationsSkeleton quantity={5} /> : <Specification {...specifications} />}
+						</Tab>
+						<Tab id='rev' text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
+							{!isReady ? (
+								<ReviewsSkeleton quantity={3} />
+							) : (
+								reviews.reviews.length !== 0 && <Reviews reviews={reviews.reviews} />
+							)}
+							<NewReview />
+						</Tab>
+					</Tabs>
+				</div>
 			</div>
 			<RelatedProducts slug={slug} />
 		</div>

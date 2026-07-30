@@ -4,8 +4,8 @@ import { useAuthContext } from '@context/AuthContext'
 
 import { useProfile } from '@hooks/services/useProfile'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ProfileForm } from '@shared/components/Form/ProfileForm/ProfileForm'
+import { ProfileSkeleton } from '@shared/components/UI/Skeletons/ProfileSkeleton/ProfileSkeleton'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
 import EmailSVG from '@assets/svg/email.svg?react'
@@ -15,7 +15,7 @@ import s from './profile-details.module.scss'
 export const ProfileDetails = () => {
 	const navigate = useNavigate()
 	const { user } = useAuthContext()
-	const { profile, loading } = useProfile()
+	const { profile, isLoading } = useProfile()
 
 	const handleVerifyEmail = () => {
 		navigate('/verify-email', {
@@ -34,9 +34,11 @@ export const ProfileDetails = () => {
 					onClick={handleVerifyEmail}
 				/>
 			)}
-			{loading && <Preloader />}
-			{!loading && typeof profile !== 'undefined' && Object.keys(profile).length !== 0 && (
-				<ProfileForm user={user} profile={profile} loading={loading} />
+			{isLoading ? (
+				<ProfileSkeleton />
+			) : (
+				typeof profile !== 'undefined' &&
+				Object.keys(profile).length !== 0 && <ProfileForm user={user} profile={profile} loading={isLoading} />
 			)}
 		</div>
 	)

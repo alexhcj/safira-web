@@ -6,6 +6,7 @@ import { useCartContext } from '@context/CartContext'
 
 import { DealsOfWeekSlider } from '@shared/components/Slider/DealsOfWeekSlider/DealsOfWeekSlider'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { DealOfWeekSkeleton } from '@shared/components/UI/Skeletons/DealOfWeekSkeleton/DealOfWeekSkeleton'
 import { Timer } from '@shared/components/UI/Timer/Timer'
 
 import { ProductCard } from '../../ProductCard/ProductCard'
@@ -13,24 +14,31 @@ import { ProductCard } from '../../ProductCard/ProductCard'
 import s from './dealsweek.module.scss'
 
 export const DealsOfWeek = () => {
-	const [deals, setDeals] = useState([])
 	const { addToCart, isProductInCart } = useCartContext()
+	const [deals, setDeals] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
+			setIsLoading(true)
+
 			try {
 				const data = await offersAPI.getAll({ type: 'deals-of-week' })
 				setDeals(data)
 			} catch (e) {
 				console.log(e)
+			} finally {
+				setIsLoading(false)
 			}
 		}
 		fetchData()
 	}, [])
 
-	const items =
-		deals &&
-		deals.map((product) => {
+	const skeletonMock = Array.from({ length: 1 }).map((_, idx) => <DealOfWeekSkeleton key={idx} />)
+
+	const items = isLoading
+		? skeletonMock
+		: deals.map((product) => {
 			return (
 				<div className={s.deal} key={product.deal.slug}>
 					<ProductCard className={s.product} product={product.deal} size='md-lg' imgSize='lg' />

@@ -1,0 +1,38 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.row {
+	display: flex;
+	gap: 100px;
+}
+
+.attr {
+	min-height: 24px;
+	width: 200px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.separator {
+	position: absolute;
+	top: 0;
+	left: 250px;
+	height: 100%;
+	width: 1px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.value {
+	min-height: 24px;
+	width: 150px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

@@ -13,7 +13,7 @@ export const Offers = () => {
 				<div className={s.wrapper}>
 					<div className={s.left}>
 						<DealsOfWeek />
-						<BannerOffer imgSize='special' />
+						<BannerOffer type='special' imgSize='special' />
 					</div>
 					<div className={s.right}>
 						<BestSellers />

@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { offersAPI } from '@api/offers'
 
 export const useBannerOffer = (type) => {
-	const [loading, setLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState(false)
-	const [offer, setOffer] = useState({})
+	const [offer, setOffer] = useState(null)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -15,11 +15,11 @@ export const useBannerOffer = (type) => {
 			} catch (err) {
 				setError(err)
 			} finally {
-				setLoading(false)
+				setIsLoading(false)
 			}
 		}
 		fetchData()
-	}, [])
+	}, [type])
 
-	return { offer, loading, error }
+	return { offer, isLoading, error }
 }

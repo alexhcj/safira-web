@@ -1,0 +1,9 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.offer {
+	max-width: 540px;
+	min-height: 190px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

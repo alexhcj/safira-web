@@ -11,7 +11,7 @@ import { Sidebar } from './Sidebar/Sidebar'
 import s from './shop.module.scss'
 
 export const Shop = () => {
-	const { products, meta, loading } = useProducts()
+	const { products, meta, isLoading } = useProducts()
 
 	return (
 		<>
@@ -20,12 +20,12 @@ export const Shop = () => {
 					<div className={s.main}>
 						<GridProvider>
 							<ShopSort meta={meta} />
-							<ShopList products={products} loading={loading} />
+							<ShopList products={products} isLoading={isLoading} />
 						</GridProvider>
-						<Pagination meta={meta} loading={loading} />
+						<Pagination meta={meta} isLoading={isLoading} />
 					</div>
 					<div className={s.sidebar}>
-						<Sidebar isLoading={loading} meta={meta} />
+						<Sidebar meta={meta} />
 					</div>
 				</div>
 			</div>

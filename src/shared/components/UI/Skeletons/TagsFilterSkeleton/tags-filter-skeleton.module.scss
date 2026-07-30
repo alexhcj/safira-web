@@ -1,0 +1,53 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px 10px;
+}
+
+.item {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 10px;
+}
+
+.tag {
+	min-height: 34px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	&:first-child {
+		width: 146px;
+	}
+
+	&:nth-child(2) {
+		width: 156px;
+	}
+
+	&:nth-child(3) {
+		width: 120px;
+	}
+
+	&:nth-child(4) {
+		width: 88px;
+	}
+
+	&:nth-child(5) {
+		width: 138px;
+	}
+
+	&:nth-child(6) {
+		width: 110px;
+	}
+
+	&:nth-child(7) {
+		width: 71px;
+	}
+
+	&:nth-child(8) {
+		width: 127px;
+	}
+}

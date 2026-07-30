@@ -1,0 +1,45 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: grid;
+	grid-template:
+    "img name" 15px
+    "img category" 12px
+    "img price" 18px
+    / 120px 1fr;
+	gap: 18px 16px;
+	min-height: 120px;
+}
+
+.img {
+	grid-area: img;
+	min-height: 120px;
+	border-radius: $border-radius-m;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+}
+
+.name {
+	grid-area: name;
+	min-height: 15px;
+	width: 152px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.category {
+	grid-area: category;
+	min-height: 15px;
+	width: 30px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.price {
+	grid-area: price;
+	min-height: 15px;
+	width: 92px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

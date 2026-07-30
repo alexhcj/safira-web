@@ -1,0 +1,16 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(100px, 1fr));
+	gap: 10px 45px;
+	padding-left: 50px;
+}
+
+.link {
+	width: 150px;
+	min-height: 16px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

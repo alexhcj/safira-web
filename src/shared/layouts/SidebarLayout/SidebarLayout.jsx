@@ -1,6 +1,7 @@
 import cn from 'classnames'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
+import { PostsSkeleton } from '@shared/components/UI/Skeletons/PostsSkeleton/PostsSkeleton'
 
 import s from './sidebar-layout.module.scss'
 
@@ -9,7 +10,7 @@ export const SidebarLayout = (props) => {
 		<div className={cn(s.layout, props.type && s[props.type])}>
 			<main className={s.main}>
 				{props.isInitialLoading ? (
-					<Preloader />
+					<PostsSkeleton quantity={2} />
 				) : (
 					<>
 						{props.main}

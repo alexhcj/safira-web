@@ -9,6 +9,8 @@ import { useCategories } from '@hooks/services/useCategories'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
 import { Badge } from '@shared/components/UI/Badge/Badge'
+import { ProductCategoriesSkeleton } from '@shared/components/UI/Skeletons/ProductCategoriesSkeleton/ProductCategoriesSkeleton'
+import { ProductsByCategorySkeleton } from '@shared/components/UI/Skeletons/ProductsByCategorySkeleton/ProductsByCategorySkeleton'
 import { NAVIGATION_ITEMS } from '@shared/data/site-map'
 
 import s from './site-map.module.scss'
@@ -88,9 +90,11 @@ export const SiteMap = () => {
 				<section className={s.section}>
 					<div className={s.group}>
 						<h3 className={s.title}>Product categories</h3>
-						<ul className={s.list}>
-							{!isLoading &&
-								sortedBasicCategories.map(({ name, slug, breadcrumbs }, index) => (
+						{isLoading ? (
+							<ProductCategoriesSkeleton quantity={26} />
+						) : (
+							<ul className={s.list}>
+								{sortedBasicCategories.map(({ name, slug, breadcrumbs }, index) => (
 									<li className={s.item} key={index}>
 										<NavLink
 											className={s.url}
@@ -101,14 +105,17 @@ export const SiteMap = () => {
 										</NavLink>
 									</li>
 								))}
-						</ul>
+							</ul>
+						)}
 					</div>
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products top 20</h3>
-						<ul className={s.list}>
-							{!isLoading &&
-								top20Products
+						{isLoading ? (
+							<ProductsByCategorySkeleton quantity={22} />
+						) : (
+							<ul className={s.list}>
+								{top20Products
 									.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
 									.map(({ name, slug }, index) => (
 										<li className={s.item} key={index}>
@@ -117,14 +124,17 @@ export const SiteMap = () => {
 											</NavLink>
 										</li>
 									))}
-						</ul>
+							</ul>
+						)}
 					</div>
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products by category</h3>
-						<div className={s.category_group}>
-							{!isLoading &&
-								primeCategories
+						{isLoading ? (
+							<ProductsByCategorySkeleton quantity={9} />
+						) : (
+							<div className={s.category_group}>
+								{primeCategories
 									.sort((a, b) => (b.category < a.category ? 1 : -1))
 									.map((group) => ({
 										products: group.products.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
@@ -144,7 +154,8 @@ export const SiteMap = () => {
 											</ul>
 										</li>
 									))}
-						</div>
+							</div>
+						)}
 					</div>
 				</section>
 			</div>

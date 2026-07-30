@@ -1,0 +1,45 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	margin-bottom: 12px;
+	width: 320px;
+	min-height: 30px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.meta {
+	margin-bottom: 28px;
+	width: 200px;
+	min-height: 20px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.img {
+	margin-bottom: 30px;
+	min-height: 532px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.description {
+	margin-bottom: 62px;
+	width: 100%;
+	min-height: 130px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.separator {
+	width: 100%;
+	min-height: 1px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
