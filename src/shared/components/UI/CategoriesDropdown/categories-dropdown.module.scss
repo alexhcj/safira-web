@@ -104,11 +104,12 @@
 .popup {
 	position: absolute;
 	top: 50px;
-	left: 0;
+	right: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	max-height: 0;
+	min-width: 296px;
 	width: 100%;
 	opacity: 0;
 	visibility: hidden;
@@ -120,9 +121,15 @@
 	box-shadow: 0 0 5.76px 0.24px rgb(0 0 0 / 10%);
 	overflow: auto;
 	transition: .5s opacity, .55s max-height ease-out;
-	z-index: $z-index200;
+	z-index: $z-index300;
+
+	@include mobile-l {
+		min-width: 350px;
+	}
 
 	@include tablet-l {
+		min-width: auto;
+		
 		&.active {
 			max-height: 800px;
 			overflow: initial;
@@ -133,7 +140,7 @@
 		max-height: 400px;
 		visibility: visible;
 		opacity: 1;
-		z-index: $z-index100;
+		z-index: $z-index300;
 	}
 }
 

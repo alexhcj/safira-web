@@ -100,7 +100,7 @@ export const Navbar = () => {
 			<div className='container'>
 				<div className={s.bottom}>
 					<GlobalSearch className={s.search} isSticky={sticky} />
-					<CategoriesDropdown isSticky={sticky} />
+					<CategoriesDropdown isSticky={sticky} isVisible={visible} />
 					<nav className={s.nav}>
 						<NavLink className={({ isActive }) => cn(s.nav_link, { [s.active]: isActive })} to='/'>
 							Home

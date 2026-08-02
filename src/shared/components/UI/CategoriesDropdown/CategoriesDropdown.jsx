@@ -9,6 +9,7 @@ import { useIsBelow } from '@hooks/useIsBelow'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { SubNav } from './SubNav/SubNav'
 
@@ -16,9 +17,9 @@ import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './categories-dropdown.module.scss'
 
-export const CategoriesDropdown = ({ isSticky }) => {
+export const CategoriesDropdown = ({ isSticky, isVisible }) => {
 	// Tablet + mobile
-	const isTablet = useIsBelow(991)
+	const isTablet = useIsBelow(BREAKPOINTS.tabletL)
 	const [popupToggle, setPopupToggle] = useState(false)
 	const [toggleNavSubCategory, setToggleNavSubCategory] = useState(null)
 	const navigate = useNavigate()
@@ -37,6 +38,10 @@ export const CategoriesDropdown = ({ isSticky }) => {
 
 		fetchData()
 	}, [])
+
+	useEffect(() => {
+		popupToggle && setPopupToggle(false)
+	}, [isVisible])
 
 	const accordion = useAccordion((primeCategory) => {
 		const cat = categories.find((c) => c.primeCategory === primeCategory)

@@ -2,9 +2,10 @@
 @use '@shared/styles/breakpoints' as *;
 
 .navbar {
+	position: relative;
 	width: 100%;
 	background-color: $color-white;
-	z-index: $z-index100;
+	z-index: $z-index200;
 	@include transition-all;
 }
 
