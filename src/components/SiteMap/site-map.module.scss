@@ -1,9 +1,14 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
 	flex-direction: column;
-	gap: 45px;
+	gap: 20px;
+
+	@include tablet {
+		gap: 45px;
+	}
 }
 
 .section {
@@ -11,7 +16,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 25px;
-	padding: 20px 0 20px 42px;
+	padding: 15px 0 20px 22px;
+
+	@include tablet {
+		padding: 20px 0 20px 42px;
+	}
 
 	&::before {
 		position: absolute;
@@ -19,11 +28,16 @@
 		top: 0;
 		bottom: 0;
 		left: 0;
-		width: 60px;
+		width: 37px;
 		border-left: 4px solid $color-primary;
 		background-color: $color-sort;
 		z-index: $z-index-1;
+
+		@include tablet {
+			width: 60px;
+		}
 	}
+
 }
 
 .group {
@@ -34,15 +48,51 @@
 
 .title {
 	text-transform: capitalize;
-	line-height: 35px;
-	font-size: 30px;
+	line-height: 28px;
+	font-size: 24px;
 	font-weight: $weight-bold;
+
+	@include tablet-s {
+		line-height: 30px;
+		font-size: 26px;
+	}
+
+	@include tablet {
+		line-height: 35px;
+		font-size: 30px;
+	}
 }
 
 .list {
-	column-count: 3;
+	column-count: 1;
 	column-gap: 50px;
 	padding-left: 40px;
+
+	&.top_20 {
+		@include tablet-s {
+			column-count: 1;
+		}
+
+		@include tablet {
+			column-count: 2;
+		}
+
+		@include tablet-l {
+			column-count: 3;
+		}
+	}
+
+	@include tablet-s {
+		column-count: 2;
+	}
+
+	@include tablet {
+		column-count: 2;
+	}
+
+	@include tablet-l {
+		column-count: 3;
+	}
 }
 
 .item {
@@ -52,6 +102,7 @@
 	padding-left: 20px;
 	gap: 10px;
 	break-inside: avoid;
+	max-width: max-content;
 
 	&::before {
 		position: absolute;
@@ -65,6 +116,10 @@
 
 	&:not(:last-of-type) {
 		margin-bottom: 1px;
+	}
+
+	.badge {
+		right: -10px;
 	}
 }
 
@@ -83,10 +138,19 @@
 
 .category_group {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr;
 	align-items: start;
-	gap: 20px 5px;
-	padding-left: 40px;
+	gap: 15px 0;
+	padding-left: 30px;
+
+	@include tablet-s {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px var(--grid-gap);
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .category_group_title {

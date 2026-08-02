@@ -80,7 +80,7 @@ export const SiteMap = () => {
 									<NavLink className={({ isActive }) => cn(s.url, { [s.active]: isActive })} to={url}>
 										{page}
 									</NavLink>
-									{badge && <Badge text={badge} />}
+									{badge && <Badge className={s.badge} text={badge} />}
 								</li>
 							))}
 						</ul>
@@ -114,7 +114,7 @@ export const SiteMap = () => {
 						{isLoading ? (
 							<ProductsByCategorySkeleton quantity={22} />
 						) : (
-							<ul className={s.list}>
+							<ul className={cn(s.list, s.top_20)}>
 								{top20Products
 									.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
 									.map(({ name, slug }, index) => (
