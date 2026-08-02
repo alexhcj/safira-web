@@ -42,7 +42,11 @@
 		height: 70px;
 
 		&.padding {
-			padding-bottom: 120px;
+			padding-bottom: 180px;
+
+			@include tablet {
+				padding-bottom: 120px;
+			}
 		}
 
 		@include tablet-l {

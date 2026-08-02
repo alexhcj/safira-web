@@ -6,10 +6,12 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { camelToStr } from '@/utils'
 
 import { useIsBelow } from '@hooks/useIsBelow'
+import { useNavbarVisibility } from '@hooks/useNavbarVisibility'
 
 import { GlobalSearch } from '@components/GlobalSearch/GlobalSearch'
 
 import { SupportBadge } from '@shared/components/UI/SupportBadge/SupportBadge'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { CategoriesDropdown } from '../../UI/CategoriesDropdown/CategoriesDropdown'
 
@@ -76,33 +78,25 @@ const pagesNavList = [
 ]
 
 export const Navbar = () => {
-	// Tablet + mobile
-	const isTablet = useIsBelow(991)
-	const [sticky, setSticky] = useState(false)
 	const location = useLocation()
+	const isTablet = useIsBelow(BREAKPOINTS.tabletL)
 
-	const fixNavbarToTop = () => {
-		if (window.scrollY >= 150) {
-			setSticky(true)
-		} else {
-			setSticky(false)
-		}
-	}
+	const EXCLUDED_STICKY_PATHS = ['/compare', '/categories', '/brands']
+	const isStickyExcluded = EXCLUDED_STICKY_PATHS.includes(location.pathname)
 
-	useEffect(() => {
-		if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
-			return
-		window.addEventListener('scroll', fixNavbarToTop)
+	const { visible, sticky } = useNavbarVisibility({ threshold: 10, topOffset: 150, enabled: !isStickyExcluded })
 
-		return () => {
-			if (location.pathname === '/compare' || location.pathname === '/categories' || location.pathname === '/brands')
-				return
-			window.removeEventListener('scroll', fixNavbarToTop)
-		}
-	}, [location.pathname])
+	const hideOnScrollActive = isTablet && !isStickyExcluded
 
 	return (
-		<div id='navbar' className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}>
+		<div
+			id='navbar'
+			className={`${s.navbar} ${sticky ? `${s.sticky}` : ''} `}
+			style={{
+				transform: hideOnScrollActive && !visible ? 'translateY(-100%)' : 'translateY(0)',
+				transition: 'transform 0.25s ease',
+			}}
+		>
 			<div className='container'>
 				<div className={s.bottom}>
 					<GlobalSearch className={s.search} isSticky={sticky} />
