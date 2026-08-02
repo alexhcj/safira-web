@@ -1,11 +1,35 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--grid-gap);
-	margin-bottom: 40px;
+	margin-bottom: var(--space-2xl);
+	@include responsive-grid(1, 1, 2, 2, 3, 4);
+
+	@include tablet {
+		margin-bottom: 40px;
+	}
+
+	&.grid-1 {
+		grid-template-columns: 1fr;
+	}
+
+	&.grid-2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	&.grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&.grid-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	&.grid-list {
+		grid-template-columns: 1fr;
+		gap: var(--space-xl);
+	}
 }
 
 .box {
@@ -13,35 +37,109 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	&.grid-list {
+		.content {
+			align-items: start;
+			justify-content: start;
+		}
+
+		@include tablet {
+			flex-direction: row;
+			align-items: start;
+			gap: var(--grid-gap);
+
+			.img {
+				width: 31%;
+			}
+
+			.content {
+				display: flex;
+				flex-direction: column;
+				width: 69%;
+
+				.name {
+					width: 45%;
+				}
+			}
+		}
+
+		.img {
+			margin-bottom: 20px;
+
+			@include tablet {
+				margin-bottom: 0;
+			}
+		}
+
+		.name {
+			margin-bottom: 14px;
+		}
+
+		.category {
+			margin-bottom: 14px;
+		}
+
+		.price {
+			margin-bottom: 14px;
+		}
+	}
 }
 
 .img {
-	width: 100%;
 	margin-bottom: 16px;
+	width: 100%;
 	border-radius: $border-radius-m;
 	aspect-ratio: 1 / 1;
 	@include skeleton;
 }
 
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
 .name {
 	margin-bottom: 18px;
-	width: 150px;
+	width: 65%;
 	min-height: 15px;
 	border-radius: $border-radius-m;
 	@include skeleton;
+
+	@include tablet {
+		width: 135px;
+	}
 }
 
 .category {
 	margin-bottom: 15px;
-	width: 66px;
+	width: 50px;
 	min-height: 14px;
 	border-radius: $border-radius-m;
 	@include skeleton;
+
+	@include tablet {
+		width: 66px;
+	}
 }
 
 .price {
-	width: 90px;
+	width: 70px;
 	min-height: 17px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet {
+		width: 90px;
+	}
+}
+
+.description {
+	width: 100%;
+	min-height: 96px;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }

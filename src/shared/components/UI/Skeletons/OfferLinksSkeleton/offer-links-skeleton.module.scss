@@ -2,8 +2,7 @@
 @use '@shared/styles/vars' as *;
 
 .offer {
-	max-width: 540px;
-	min-height: 190px;
+	aspect-ratio: 296 / 102;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }

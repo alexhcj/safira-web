@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
 import { useOfferLinks } from '@hooks/services/useOfferLinks'
@@ -9,9 +10,39 @@ import { enumToCamelCase, enumToStr, titleCase, enumToDashStr, strToSlug } from 
 
 import s from './offer-links.module.scss'
 
-export const OfferLinks = () => {
-	const { links } = useOfferLinks('offer-link')
+export const OfferLinks = ({ className }) => {
 	const navigate = useNavigate()
+	const { links, isLoading, error } = useOfferLinks('offer-link')
+
+	if (isLoading) {
+		return (
+			<div className='container'>
+				<button className={cn(s.block, isLoading && s.loading, className)} type='button' disabled>
+					<button type='button' className={s.offer}>
+						<OfferLinksSkeleton />
+					</button>
+					<button type='button' className={s.offer}>
+						<OfferLinksSkeleton />
+					</button>
+				</button>
+			</div>
+		)
+	}
+
+	if (error || links.length === 0) {
+		return (
+			<div className='container'>
+				<button className={cn(s.block, (error || links.length === 0) && s.error, className)} type='button' disabled>
+					<button type='button' className={s.offer}>
+						<ImageWithFallback imgSize='offer-link' alt='' forceDefault />
+					</button>
+					<button type='button' className={s.offer}>
+						<ImageWithFallback imgSize='offer-link' alt='' forceDefault />
+					</button>
+				</button>
+			</div>
+		)
+	}
 
 	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
 		const query = `${enumToCamelCase(categoryType)}=${enumToDashStr(categoryValue)}&${

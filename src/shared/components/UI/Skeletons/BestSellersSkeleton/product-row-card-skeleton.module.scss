@@ -1,5 +1,6 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: grid;
@@ -7,23 +8,81 @@
     "img name" 15px
     "img category" 12px
     "img price" 18px
+    / 85px 1fr;
+	gap: 10px;
+	min-height: 85px;
+
+	@include mobile-l {
+		grid-template:
+    "img name" 15px
+    "img category" 12px
+    "img price" 18px
+    / 110px 1fr;
+		gap: 16px;
+		min-height: 110px;
+	}
+
+	@include tablet-s {
+		grid-template:
+    "img name" 15px
+    "img category" 12px
+    "img price" 18px
+    / 85px 1fr;
+		gap: 10px;
+		min-height: 85px;
+	}
+
+	@include tablet {
+		grid-template:
+    "img name" 15px
+    "img category" 12px
+    "img price" 18px
+    / 110px 1fr;
+		min-height: 110px;
+	}
+
+	@include laptop-m {
+		grid-template:
+    "img name" 15px
+    "img category" 12px
+    "img price" 18px
     / 120px 1fr;
-	gap: 18px 16px;
-	min-height: 120px;
+		min-height: 120px;
+	}
 }
 
 .img {
 	grid-area: img;
-	min-height: 120px;
+	min-height: 85px;
 	border-radius: $border-radius-m;
 	aspect-ratio: 1 / 1;
 	@include skeleton;
+
+	@include mobile-l {
+		width: 110px;
+		height: 110px;
+	}
+
+	@include tablet-s {
+		width: 85px;
+		height: 85px;
+	}
+
+	@include tablet {
+		width: 110px;
+		height: 110px;
+	}
+
+	@include laptop-m {
+		width: 120px;
+		height: 120px;
+	}
 }
 
 .name {
 	grid-area: name;
 	min-height: 15px;
-	width: 152px;
+	width: 85%;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }
@@ -31,7 +90,7 @@
 .category {
 	grid-area: category;
 	min-height: 15px;
-	width: 30px;
+	width: 30%;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }
@@ -39,7 +98,7 @@
 .price {
 	grid-area: price;
 	min-height: 15px;
-	width: 92px;
+	width: 55%;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }

@@ -10,7 +10,7 @@
 
 .grid {
 	margin-bottom: var(--space-2xl);
-	@include responsive-grid(1, 2, 3, 4);
+	@include responsive-grid(1, 1, 2, 2, 3, 4);
 
 	@include tablet {
 		margin-bottom: 40px;

@@ -1,11 +1,20 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr;
 	gap: 30px 5px;
-	padding-left: 50px;
+	padding-left: 40px;
+
+	@include tablet {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .box,
@@ -24,14 +33,14 @@
 }
 
 .category {
-	width: 50px;
+	width: 60px;
 	min-height: 18px;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }
 
 .link {
-	width: 250px;
+	width: 80%;
 	min-height: 16px;
 	border-radius: $border-radius-m;
 	@include skeleton;

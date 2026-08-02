@@ -112,7 +112,7 @@ export const SiteMap = () => {
 					<div className={s.group}>
 						<h3 className={s.title}>Products top 20</h3>
 						{isLoading ? (
-							<ProductsByCategorySkeleton quantity={22} />
+							<ProductCategoriesSkeleton quantity={22} type='top-20' />
 						) : (
 							<ul className={cn(s.list, s.top_20)}>
 								{top20Products

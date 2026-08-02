@@ -13,3 +13,9 @@
 		gap: 33px;
 	}
 }
+
+.banner {
+	@include tablet {
+		max-width: 255px;
+	}
+}

@@ -10,12 +10,12 @@
 
 .row {
 	display: flex;
-	gap: 100px;
+	gap: 60px;
 }
 
 .attr {
 	min-height: 24px;
-	width: 200px;
+	width: 30%;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }
@@ -23,7 +23,7 @@
 .separator {
 	position: absolute;
 	top: 0;
-	left: 250px;
+	left: calc(30% + 30px);
 	height: 100%;
 	width: 1px;
 	border-radius: $border-radius-m;
@@ -32,7 +32,7 @@
 
 .value {
 	min-height: 24px;
-	width: 150px;
+	width: 30%;
 	border-radius: $border-radius-m;
 	@include skeleton;
 }

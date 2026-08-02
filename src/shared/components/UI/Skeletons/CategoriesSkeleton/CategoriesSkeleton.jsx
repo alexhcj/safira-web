@@ -1,5 +1,3 @@
-import { CATEGORIES_NAV_ITEMS } from '@shared/data/skeletons'
-
 import s from './categories-skeleton.module.scss'
 
 export const CategoriesSkeleton = ({ quantity = 1 }) => {
@@ -15,11 +13,7 @@ export const CategoriesSkeleton = ({ quantity = 1 }) => {
 						<div className={s.button} />
 					</div>
 					<div className={s.separator} />
-					<div className={s.list}>
-						{Array.from({ length: CATEGORIES_NAV_ITEMS[idx + 1] }).map((_, index) => (
-							<div key={index} className={s.link} />
-						))}
-					</div>
+					<div className={s.list} />
 				</div>
 			))}
 		</div>

@@ -4,7 +4,6 @@ import cn from 'classnames'
 
 import { productsAPI } from '@api/products'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
 import { ProductCardSkeleton } from '@shared/components/UI/Skeletons/ProductCardSkeleton/ProductCardSkeleton'
 
@@ -78,10 +77,6 @@ export const NewProducts = () => {
 		991: {
 			items: 3,
 		},
-	}
-
-	if (isLoading) {
-		return <Preloader />
 	}
 
 	return (

@@ -1,8 +1,13 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .reply {
 	margin-top: 55px;
 	width: 100%;
+
+	@include tablet {
+		margin-top: 65px;
+	}
 
 	&_short {
 		margin-top: -15px;

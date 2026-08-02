@@ -1,5 +1,6 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
@@ -26,16 +27,24 @@
 
 .author {
 	grid-area: author;
-	width: 60%;
-	height: 14px;
+	width: 210px;
+	height: 13px;
 	border-radius: $border-radius-m;
 	@include skeleton;
+
+	@include tablet-l {
+		width: 85%;
+	}
 }
 
 .text {
 	grid-area: text;
-	width: 100%;
-	height: 24px;
+	width: 130px;
+	height: 12px;
 	border-radius: $border-radius-m;
 	@include skeleton;
+
+	@include tablet-l {
+		width: 50%;
+	}
 }

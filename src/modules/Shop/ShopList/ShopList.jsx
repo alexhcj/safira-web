@@ -23,7 +23,7 @@ export const ShopList = ({ products, isLoading }) => {
 	return (
 		<>
 			{isLoading ? (
-				<ShopGridSkeleton quantity={9} />
+				<ShopGridSkeleton quantity={12} grid={grid} />
 			) : (
 				<div className={cn(s.grid, s[`${grid}`])}>
 					{products.map((product, index) => (

@@ -1,5 +1,6 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
@@ -14,6 +15,11 @@
 
 	&:nth-child(2),
 	&:nth-last-child(2) {
+		display: none;
 		width: 41px;
+
+		@include mobile-l {
+			display: block;
+		}
 	}
 }

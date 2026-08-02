@@ -2,13 +2,21 @@
 @use '@shared/styles/breakpoints' as *;
 
 // Responsive Grid Mixins
-@mixin responsive-grid($mobile: 1, $tablet: 2, $laptop: 3, $desktop: 3) {
+@mixin responsive-grid($mobile: 1, $tablet-s: 2, $tablet: 2, $tablet-l: 3, $laptop: 3, $desktop: 3) {
 	display: grid;
 	gap: var(--grid-gap);
 	grid-template-columns: repeat(#{$mobile}, 1fr);
 
+	@include tablet-s {
+		grid-template-columns: repeat(#{$tablet-s}, 1fr);
+	}
+
 	@include tablet {
 		grid-template-columns: repeat(#{$tablet}, 1fr);
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(#{$tablet-l}, 1fr);
 	}
 
 	@include laptop {

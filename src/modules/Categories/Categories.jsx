@@ -7,7 +7,6 @@ import { useCategories } from '@hooks/services/useCategories'
 import { CategoryCardMini } from '@modules/Categories/CategoryCardMini/CategoryCardMini'
 import { SubCategoryPanel } from '@modules/Categories/SubCategoryPanel/SubCategoryPanel'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { CategoriesSkeleton } from '@shared/components/UI/Skeletons/CategoriesSkeleton/CategoriesSkeleton'
 import { Text } from '@shared/components/UI/Text/Text'
@@ -123,7 +122,7 @@ export const Categories = () => {
 
 				{/* ─── Desktop grid (> 991px) — original, unchanged ─── */}
 				{!isReady ? (
-					<CategoriesSkeleton quantity={6} />
+					<CategoriesSkeleton quantity={9} />
 				) : (
 					<nav className={s.nav}>
 						{categories.map((category) => (
@@ -139,11 +138,11 @@ export const Categories = () => {
 					 * Each card gets `order: index * 2` so there's always an odd
 					 * integer slot available between any two rows for the panel.
 					 */}
-					<div className={s.card_grid} ref={gridRef}>
-						{!isReady ? (
-							<Preloader />
-						) : (
-							categories.map((category, index) => (
+					{!isReady ? (
+						<CategoriesSkeleton quantity={9} />
+					) : (
+						<div className={s.card_grid} ref={gridRef}>
+							{categories.map((category, index) => (
 								<CategoryCardMini
 									key={category.primeCategory}
 									category={category}
@@ -151,17 +150,17 @@ export const Categories = () => {
 									order={index * 2}
 									onClick={() => handleCardClick(category.primeCategory)}
 								/>
-							))
-						)}
-						{activeCategory && (
-							<SubCategoryPanel
-								key={activeCategory.primeCategory}
-								category={activeCategory}
-								navigate={navigate}
-								order={panelOrder}
-							/>
-						)}
-					</div>
+							))}
+							{activeCategory && (
+								<SubCategoryPanel
+									key={activeCategory.primeCategory}
+									category={activeCategory}
+									navigate={navigate}
+									order={panelOrder}
+								/>
+							)}
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

@@ -10,14 +10,27 @@
 
 	@include tablet {
 		grid-auto-flow: column;
-		gap: 40px;
+		gap: var(--grid-gap);
 		padding: 70px 0 65px;
+	}
+
+	@include laptop-m {
+		gap: 60px;
 	}
 }
 
 .offer {
 	position: relative;
 	width: 100%;
+
+	&.loading,
+	&.error {
+		&::before,
+		&::after {
+			display: none;
+			opacity: 0;
+		}
+	}
 
 	&::before {
 		background: rgba(255, 255, 255, 0.3);

@@ -2,16 +2,18 @@
 @use '@shared/styles/breakpoints' as *;
 
 .box {
-	display: grid;
-	grid-template-areas:
-	'img product'
-	'specifications specifications';
-	gap: 70px var(--grid-gap);
+	display: flex;
+	flex-direction: column;
+	gap: 0;
 	margin-bottom: 60px;
 
 	@include tablet {
 		display: grid;
+		grid-template-areas:
+		'img product'
+		'specifications specifications';
 		grid-template-columns: 1fr 1fr;
+		gap: var(--space-3xl) var(--grid-gap);
 	}
 
 	@include tablet-l {
@@ -21,10 +23,20 @@
 
 .img {
 	grid-area: img;
+	margin-bottom: var(--space-lg);
+
+	@include tablet {
+		margin-bottom: 0;
+	}
 }
 
 .product {
 	grid-area: product;
+	margin-bottom: var(--space-2xl);
+
+	@include tablet {
+		margin-bottom: 0;
+	}
 }
 
 .name {

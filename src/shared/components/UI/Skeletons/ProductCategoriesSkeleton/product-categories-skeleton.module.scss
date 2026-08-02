@@ -1,15 +1,38 @@
 @use '@shared/styles/mixins' as *;
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .list {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(100px, 1fr));
+	grid-template-columns: 1fr;
 	gap: 10px 45px;
 	padding-left: 50px;
+
+	&.top_20 {
+		@include tablet-s {
+			grid-template-columns: 1fr;
+		}
+
+		@include tablet {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include tablet-l {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	@include tablet-s {
+		grid-template-columns: repeat(2, minmax(100px, 1fr));
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(3, minmax(100px, 1fr));
+	}
 }
 
 .link {
-	width: 150px;
+	width: 80%;
 	min-height: 16px;
 	border-radius: $border-radius-m;
 	@include skeleton;
