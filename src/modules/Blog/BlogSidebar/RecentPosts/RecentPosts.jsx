@@ -41,6 +41,7 @@ export const RecentPosts = () => {
 	return (
 		<div>
 			<FilterTitle text='Recent Posts' />
+			{!isLoading && posts.length === 0 && <div className={s.no_posts}>No recent posts found</div>}
 			<ul className={s.posts}>
 				{isLoading ? (
 					<RecentPostsSkeleton quantity={3} />

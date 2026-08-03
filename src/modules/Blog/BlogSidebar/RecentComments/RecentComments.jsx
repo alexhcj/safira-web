@@ -34,14 +34,11 @@ export const RecentComments = () => {
 		fetchData()
 	}, [])
 
-	if (comments.length === 0) {
-		return null
-	}
-
 	return (
 		<div>
 			<FilterTitle text='Recent Comments' />
 			<ul className={s.comments}>
+				{!isLoading && comments.length === 0 && <div className={s.no_comments}>No recent comments found</div>}
 				{isLoading ? (
 					<RecentCommentsSkeleton quantity={3} />
 				) : (

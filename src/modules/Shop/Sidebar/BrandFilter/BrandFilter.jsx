@@ -95,7 +95,7 @@ export const BrandFilter = () => {
 		setShowMore(!showMore)
 	}
 
-	if (availableBrands.length === 0) {
+	if (!isLoading && availableBrands.length === 0) {
 		return <div className={s.no_brands}>No brands found for the current selection</div>
 	}
 

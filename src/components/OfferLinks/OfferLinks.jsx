@@ -17,14 +17,10 @@ export const OfferLinks = ({ className }) => {
 	if (isLoading) {
 		return (
 			<div className='container'>
-				<button className={cn(s.block, isLoading && s.loading, className)} type='button' disabled>
-					<button type='button' className={s.offer}>
-						<OfferLinksSkeleton />
-					</button>
-					<button type='button' className={s.offer}>
-						<OfferLinksSkeleton />
-					</button>
-				</button>
+				<div className={cn(s.block, isLoading && s.loading, className)}>
+					<OfferLinksSkeleton />
+					<OfferLinksSkeleton />
+				</div>
 			</div>
 		)
 	}
