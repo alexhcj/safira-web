@@ -9,6 +9,7 @@ import { useIsBelow } from '@hooks/useIsBelow'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
+import { CategoriesDropdownSkeleton } from '@shared/components/UI/Skeletons/CategoriesDropdownSkeleton/CategoriesDropdownSkeleton'
 import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { SubNav } from './SubNav/SubNav'
@@ -137,61 +138,64 @@ export const CategoriesDropdown = ({ isSticky, isVisible }) => {
 			<ArrowSVG className={s.svg} />
 
 			<nav className={cn(s.popup, popupToggle && s.active)}>
-				{isLoading && <Preloader />}
-				{categories
-					.sort((a, b) => (b.name < a.name ? 1 : -1))
-					.map(({ name, primeCategory, subCategories }) => {
-						const isOpen = accordion.openId === primeCategory
-						const isPending = accordion.pendingId === primeCategory
+				{isLoading ? (
+					<CategoriesDropdownSkeleton quantity={9} />
+				) : (
+					categories
+						.sort((a, b) => (b.name < a.name ? 1 : -1))
+						.map(({ name, primeCategory, subCategories }) => {
+							const isOpen = accordion.openId === primeCategory
+							const isPending = accordion.pendingId === primeCategory
 
-						return isTablet ? (
-							<AccordionItem
-								key={primeCategory}
-								label={name}
-								isLeaf={!subCategories}
-								isOpen={isOpen}
-								isPending={isPending}
-								onRowTap={() => accordion.handleRowTap(primeCategory)}
-								onCollapse={() => accordion.handleCollapse(primeCategory)}
-							>
-								{subCategories && (
-									<SubNav
-										key={accordion.openId}
-										subCategories={subCategories}
-										setPopupToggle={setPopupToggle}
-										resetAccordion={accordion.reset}
-										primeCategory={primeCategory}
-										primeCategoryName={name}
-										isTablet
-									/>
-								)}
-							</AccordionItem>
-						) : (
-							// ---- Desktop row ----
-							<ul
-								className={s.prime_category}
-								key={primeCategory}
-								onMouseEnter={(e) => handleNavSubToggle(e, primeCategory)}
-								onMouseLeave={(e) => handleNavSubToggle(e, primeCategory)}
-								onClick={onClickHandler}
-							>
-								<li className={s.link} id={primeCategory} data-name={name}>
-									{name}
-									{subCategories && <ArrowSVG className={s.svg} />}
-								</li>
-								{subCategories && (
-									<SubNav
-										subNavToggleCategory={toggleNavSubCategory}
-										subCategories={subCategories}
-										setPopupToggle={setPopupToggle}
-										primeCategory={primeCategory}
-										primeCategoryName={name}
-										isTablet={false}
-									/>
-								)}
-							</ul>
-						)
-					})}
+							return isTablet ? (
+								<AccordionItem
+									key={primeCategory}
+									label={name}
+									isLeaf={!subCategories}
+									isOpen={isOpen}
+									isPending={isPending}
+									onRowTap={() => accordion.handleRowTap(primeCategory)}
+									onCollapse={() => accordion.handleCollapse(primeCategory)}
+								>
+									{subCategories && (
+										<SubNav
+											key={accordion.openId}
+											subCategories={subCategories}
+											setPopupToggle={setPopupToggle}
+											resetAccordion={accordion.reset}
+											primeCategory={primeCategory}
+											primeCategoryName={name}
+											isTablet
+										/>
+									)}
+								</AccordionItem>
+							) : (
+								// ---- Desktop row ----
+								<ul
+									className={s.prime_category}
+									key={primeCategory}
+									onMouseEnter={(e) => handleNavSubToggle(e, primeCategory)}
+									onMouseLeave={(e) => handleNavSubToggle(e, primeCategory)}
+									onClick={onClickHandler}
+								>
+									<li className={s.link} id={primeCategory} data-name={name}>
+										{name}
+										{subCategories && <ArrowSVG className={s.svg} />}
+									</li>
+									{subCategories && (
+										<SubNav
+											subNavToggleCategory={toggleNavSubCategory}
+											subCategories={subCategories}
+											setPopupToggle={setPopupToggle}
+											primeCategory={primeCategory}
+											primeCategoryName={name}
+											isTablet={false}
+										/>
+									)}
+								</ul>
+							)
+						})
+				)}
 			</nav>
 		</div>
 	)
