@@ -57,9 +57,16 @@ export const HeroSlider = () => {
 
 	const handleDragStart = (e) => e.preventDefault()
 
-	const slides = data.map(({ id, title, subTitle, text, img, url }) => (
+	const slides = data.map(({ id, title, subTitle, text, img, url }, index) => (
 		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
-			<img className={s.img} src={img} alt={title} />
+			<img
+				className={s.img}
+				src={img}
+				alt={title}
+				loading={index === 0 ? 'eager' : 'lazy'}
+				fetchPriority={index === 0 ? 'high' : 'auto'}
+				decoding={index === 0 ? 'sync' : 'async'}
+			/>
 			<div className={s.inner}>
 				<div className={cn('container', s.container)}>
 					<div className={s.content}>
