@@ -137,21 +137,20 @@ View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest fe
 - [ ] Multi language
 - [ ] Multi currency
 
-## Features Admin & CMS
-
-🔜 In developing
-
 ## Styles
 
 Used scss modules in combination with [classnames](https://www.npmjs.com/package/classnames) package
 
-- **Response supported screens**
-- [x] 1440+
-- [ ] 1201 - 1440
-- [ ] 1025 - 1200
-- [ ] 769 - 1024
-- [ ] 481 - 768
-- [ ] 320 - 480
+Six core supported responsive view ranges:
+
+| # | Range (px)        | Typical target            |
+|---|-------------------|---------------------------|
+| 1 | 320 – 375         | Small phones (iPhone SE)  |
+| 2 | 375 – 425         | Standard phones           |
+| 3 | 425 – 576         | Large phones / phablets   |
+| 4 | 576 – 768         | Small tablets, split-view |
+| 5 | 768 – 991         | Tablets                   |
+| 6 | 991 – 1200 / 1440 | Laptop → desktop          |
 
 ## Project
 
