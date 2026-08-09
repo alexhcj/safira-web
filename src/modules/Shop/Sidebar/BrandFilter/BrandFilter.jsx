@@ -33,7 +33,7 @@ export const BrandFilter = () => {
 			const res = await findQueryBrands(queryWithoutBrand)
 
 			if (res && res.success) {
-				setAvailableBrands(res.brands || [])
+				setAvailableBrands((res.brands || []).filter((b) => b?.brand?.slug))
 			}
 		}
 
@@ -68,6 +68,8 @@ export const BrandFilter = () => {
 
 		// First sort by selection status
 		sortedBrands.sort((a, b) => {
+			if (!a?.brand || !b?.brand) return 0
+
 			const aIsSelected = selectedSlugs.includes(a.brand.slug)
 			const bIsSelected = selectedSlugs.includes(b.brand.slug)
 
