@@ -15,7 +15,7 @@ import { BREAKPOINTS } from '@shared/data/breakpoints'
 import s from './productcard.module.scss'
 
 // sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'list' | 'list-xs'
-export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
+export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className }) => {
 	const isTabletL = useIsBelow(BREAKPOINTS.tabletL)
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
