@@ -4,6 +4,8 @@ import cn from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
+import { useIntersection } from '@hooks/useIntersection'
+
 import CheckSVG from '@assets/svg/check.svg?react'
 import CopySVG from '@assets/svg/copy.svg?react'
 import EnvSVG from '@assets/svg/env.svg?react'
@@ -12,6 +14,7 @@ import ExternalLinkSVG from '@assets/svg/external-link.svg?react'
 import s from './env-status.module.scss'
 
 export const EnvStatus = () => {
+	const isFooterReached = useIntersection('#copyright')
 	const location = useLocation()
 	const [isOpen, setIsOpen] = useState(false)
 	const [copiedUrl, setCopiedUrl] = useState(null)
@@ -86,7 +89,7 @@ export const EnvStatus = () => {
 	}
 
 	return (
-		<div className={s.env}>
+		<div className={cn(s.env, { [s.footer_reached]: isFooterReached })}>
 			<button
 				ref={buttonRef}
 				onMouseEnter={() => setIsOpen(true)}

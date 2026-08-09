@@ -1,9 +1,15 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .header {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	margin-bottom: 25px;
+
+	@include tablet-l {
+		margin-bottom: 30px;
+	}
 }
 
 .subtitle {
@@ -16,8 +22,13 @@
 
 .title {
 	text-transform: capitalize;
-	line-height: 35px;
-	font-size: 32px;
+	line-height: 22px;
+	font-size: 22px;
 	font-weight: $weight-medium;
 	color: $color-dark;
+
+	@include tablet {
+		line-height: 35px;
+		font-size: 32px;
+	}
 }

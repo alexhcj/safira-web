@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 
 import cn from 'classnames'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
-import { animateScroll as scroll } from 'react-scroll'
-
-import { productsAPI } from '@api/products'
+import { NavLink, useParams } from 'react-router-dom'
 
 import { useCartContext } from '@context/CartContext'
 import { useCompareContext } from '@context/CompareContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
+import { useProductsNew } from '@hooks/services/useProductsNew'
+
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Price } from '@shared/components/Price/Price'
@@ -21,11 +21,13 @@ import { Tab, Tabs } from '@shared/components/Tabs/Tabs'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
+import { ProductInStock } from '@shared/components/UI/ProductInStock/ProductInStock'
+import { ProductSkeleton } from '@shared/components/UI/Skeletons/ProductSkeleton/ProductSkeleton'
+import { ReviewsSkeleton } from '@shared/components/UI/Skeletons/ReviewsSkeleton/ReviewsSkeleton'
+import { SpecificationsSkeleton } from '@shared/components/UI/Skeletons/SpecificationsSkeleton/SpecificationsSkeleton'
 import { Border } from '@shared/components/UI/Spacing/Border'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Text } from '@shared/components/UI/Text/Text'
-
-import { slugToStr } from '@utils/string'
+import { PRICE_TYPE } from '@shared/data/price'
 
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
 
@@ -33,132 +35,165 @@ import CompareRemoveSVG from '@assets/svg/compare-remove.svg?react'
 import CompareSVG from '@assets/svg/compare.svg?react'
 import HeartBrokenSVG from '@assets/svg/heart-broken.svg?react'
 import HeartSVG from '@assets/svg/heart.svg?react'
-import PreloaderSVG from '@assets/svg/preloader.svg?react'
 
 import s from './productdetails.module.scss'
 
 export const ProductDetails = () => {
-	const navigate = useNavigate()
-	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
-	const { addToCart, productQuantityInCart } = useCartContext()
-	const { addToCompare, isProductInCompare, removeItemFromCompare } = useCompareContext()
+	const { addToWishlist, removeFromWishlist, isProductInWishlist, isLoading: wishlistIsLoading } = useWishlistContext()
+	const { addToCart, productQuantityInCart, isLoading: cartIsLoading } = useCartContext()
+	const { addToCompare, isProductInCompare, removeItemFromCompare, isLoading: compareIsLoading } = useCompareContext()
 	const { slug } = useParams()
-	const [product, setProduct] = useState({})
+	const { findBySlug, isLoading } = useProductsNew()
+	const [product, setProduct] = useState(null)
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const { product } = await productsAPI.findOne(slug)
+		let isCancelled = false
 
-				if (!product) {
-					navigate('/not-found')
-				}
+		async function fetchData() {
+			setProduct(null)
 
-				setProduct(product)
-			} catch (e) {
-				console.log(e)
+			const res = await findBySlug(slug)
+
+			if (isCancelled) return
+
+			if (res && res.success) {
+				setProduct(res.product)
 			}
 		}
-		fetchData()
-	}, [navigate, slug])
 
-	const { name, price, description, basicCategory, rating, tags, specifications, reviews } = product
+		fetchData()
+
+		return () => {
+			isCancelled = true
+		}
+	}, [slug])
+
+	const isReady = !isLoading && Boolean(product)
+
+	const {
+		name,
+		price,
+		description,
+		primeCategory,
+		subCategory,
+		basicCategory,
+		rating,
+		tags,
+		specifications = {},
+		reviews,
+	} = product ?? {}
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
+	const linkState = JSON.stringify({ primeCategory, subCategory, basicCategory })
+
 	return (
 		<div className='container'>
-			<div className={s.product}>
-				<div className={s.img}>
-					{img ? (
-						<ImageWithFallback className={s.product_img} src={img} imgSize='xl' alt={name} />
-					) : (
-						<img src={PreloaderSVG} alt='Preloader' />
-					)}
-				</div>
-				<div className={s.content}>
-					<h4 className={s.name}>{name}</h4>
-					<Space size='ss' />
-					<Rating rating={rating} />
-					{/* dietaries */}
-					<Space size='xss' />
-					{price && <Price className={s.price} {...price} type='large' />}
-					<Space size='xs' />
-					{tags && <DietaryTags className={s.dietaries} size='md' tags={tags.dietaries} />}
-					<Space size='xs' />
-					<Text>{description}</Text>
-					<Space size='m' />
-					<Border />
-					<Space size='m' />
-					{specifications && (
+			<div className={s.box}>
+				<ImageWithFallback className={s.img} src={img} imgSize='xl' alt={name} />
+				{!isReady ? (
+					<ProductSkeleton />
+				) : (
+					<div className={s.product}>
+						<h4 className={s.name}>{name}</h4>
+						<Rating className={s.rating} rating={rating} />
+						{price && <Price className={s.price} {...price} type={PRICE_TYPE.LARGE} />}
+						<div className={s.meta}>
+							<div className={s.category}>
+								<Text span weight='medium'>
+									Category:
+								</Text>
+								<NavLink
+									to={`/shop?basicCategory=${basicCategory.slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
+									state={linkState}
+								>
+									<Text className={s.tag} span>
+										{basicCategory.name}
+									</Text>
+								</NavLink>
+							</div>
+							<div className={s.stock}>
+								<Text span weight='medium'>
+									Availability:
+								</Text>
+								<ProductInStock quantity={specifications.quantity} />
+							</div>
+							{tags && <DietaryTags className={s.dietaries} size='mm' tags={tags.dietaries} />}
+						</div>
+						<Text className={s.description}>{description}</Text>
+						<Border />
 						<GoodToCart
-							maxQuantity={specifications.quantity}
-							onClick={addToCart}
+							quantity={specifications.quantity}
 							product={product}
 							productQuantityInCart={productQuantityInCart(slug)}
+							onClick={addToCart}
+							isLoading={cartIsLoading}
+							btnClassName={s.btn_add}
+							className={s.add_actions}
 						/>
-					)}
-					<Space size='s' />
-					<div className={s.actions}>
-						{isProductInWishlist(slug) ? (
-							<ButtonWithTooltip
-								className={s.btn}
-								onClick={() => removeFromWishlist(slug)}
-								text='Remove from Wishlist'
-								tooltipPosition='right'
-							>
-								<HeartSVG className={s.icon} />
-								<HeartBrokenSVG className={s.icon_remove} />
-							</ButtonWithTooltip>
-						) : (
-							<Button type='text' onClick={() => addToWishlist(product)}>
-								<Text span>+ Add to WishList</Text>
-							</Button>
-						)}
-						{isProductInCompare(slug, basicCategory) ? (
-							<ButtonWithTooltip
-								className={s.btn}
-								onClick={() => removeItemFromCompare(slug, basicCategory)}
-								text='Remove from Compare'
-								tooltipPosition='right'
-							>
-								<CompareSVG className={cn(s.icon, s.compare)} />
-								<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
-							</ButtonWithTooltip>
-						) : (
-							<Button type='text' onClick={() => addToCompare(product)}>
-								<Text span>+ Add to Compare</Text>
-							</Button>
-						)}
+						<div className={s.actions}>
+							{isProductInWishlist(slug) ? (
+								<ButtonWithTooltip
+									className={s.btn}
+									onClick={() => removeFromWishlist(slug)}
+									text='Remove from Wishlist'
+									tooltipPosition='right'
+								>
+									{wishlistIsLoading ? (
+										<Preloader width={25} height={25} />
+									) : (
+										<>
+											<HeartSVG className={s.icon} />
+											<HeartBrokenSVG className={s.icon_remove} />
+										</>
+									)}
+								</ButtonWithTooltip>
+							) : (
+								<Button className={s.btn_add_text} type='text' onClick={() => addToWishlist(product)}>
+									{wishlistIsLoading ? <Preloader width={25} height={25} /> : <Text span>+ Add to WishList</Text>}
+								</Button>
+							)}
+							{isProductInCompare(slug, basicCategory.slug) ? (
+								<ButtonWithTooltip
+									className={s.btn}
+									onClick={() => removeItemFromCompare(slug, basicCategory.slug)}
+									text='Remove from Compare'
+									tooltipPosition='right'
+								>
+									{compareIsLoading ? (
+										<Preloader width={25} height={25} />
+									) : (
+										<>
+											<CompareSVG className={cn(s.icon, s.compare)} />
+											<CompareRemoveSVG className={cn(s.icon_remove, s.compare)} />
+										</>
+									)}
+								</ButtonWithTooltip>
+							) : (
+								<Button className={s.btn_add_text} type='text' onClick={() => addToCompare(product)}>
+									{compareIsLoading ? <Preloader width={25} height={25} /> : <Text span>+ Add to Compare</Text>}
+								</Button>
+							)}
+						</div>
 					</div>
-					<Space size='m' />
-					<div className={s.category}>
-						<Text span weight='medium'>
-							Category:
-						</Text>
-						<NavLink to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
-							<Text className={s.tag} span>
-								{basicCategory && slugToStr(basicCategory)}
-							</Text>
-						</NavLink>
-					</div>
-				</div>
-			</div>
-			<Space size='l' />
-			{specifications && (
+				)}
 				<div className={s.specifications}>
 					<Tabs className={s.tabs}>
 						<Tab id='spec' text='Specifications'>
-							<Specification {...specifications} />
+							{!isReady ? <SpecificationsSkeleton quantity={5} /> : <Specification {...specifications} />}
 						</Tab>
 						<Tab id='rev' text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
-							{reviews ? <Reviews reviews={reviews.reviews} /> : <NewReview />}
+							{!isReady ? (
+								<ReviewsSkeleton quantity={3} />
+							) : (
+								reviews.reviews.length !== 0 && <Reviews reviews={reviews.reviews} />
+							)}
+							<NewReview />
 						</Tab>
 					</Tabs>
 				</div>
-			)}
+			</div>
 			<RelatedProducts slug={slug} />
-			<Space space={65} />
 		</div>
 	)
 }

@@ -1,0 +1,42 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.grid {
+	display: grid;
+	gap: 30px;
+	margin-top: var(--space-1xl);
+
+	@include tablet {
+		margin-top: var(--space-2xl);
+	}
+}
+
+.box {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+	align-items: start;
+	gap: 15px;
+
+	@include tablet {
+		grid-template-columns: 50px 1fr;
+		gap: 20px;
+	}
+}
+
+.author {
+	min-height: 40px;
+	aspect-ratio: 1;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet {
+		min-height: 50px;
+	}
+}
+
+.content {
+	height: 135px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}

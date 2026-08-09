@@ -1,21 +1,51 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
+	padding: 60px 0;
 	background-color: $color-section-bg;
+
+	@include tablet {
+		padding: 70px 0;
+	}
 }
 
 .wrapper {
 	display: flex;
-	gap: 25px;
+	flex-direction: column;
+	gap: 60px;
+
+	@include tablet {
+		flex-direction: row;
+		gap: 25px;
+	}
 }
 
 .left {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	width: 32.8251%;
+	width: 100%;
+
+	@include tablet {
+		width: calc(40% - 12.5px);
+	}
+
+	@include tablet-l {
+		width: calc(33% - 12.5px);
+	}
 }
 
 .right {
-	width: 65.702%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	@include tablet {
+		width: calc(60% - 12.5px);
+	}
+
+	@include tablet-l {
+		width: calc(67% - 12.5px);
+	}
 }

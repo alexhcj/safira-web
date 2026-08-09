@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+
 import cn from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
 import { NavLink } from 'react-router-dom'
@@ -42,6 +44,8 @@ const data = [
 ]
 
 export const HeroSlider = () => {
+	const isDragging = useRef(false)
+
 	const responsive = {
 		0: {
 			items: 1,
@@ -53,17 +57,24 @@ export const HeroSlider = () => {
 
 	const handleDragStart = (e) => e.preventDefault()
 
-	const slides = data.map(({ id, title, subTitle, text, img, url }) => (
+	const slides = data.map(({ id, title, subTitle, text, img, url }, index) => (
 		<div className={s.item} key={id} onDragStart={handleDragStart} role='presentation'>
-			<img className={s.img} src={img} alt={title} />
+			<img
+				className={s.img}
+				src={img}
+				alt={title}
+				loading={index === 0 ? 'eager' : 'lazy'}
+				fetchPriority={index === 0 ? 'high' : 'auto'}
+				decoding={index === 0 ? 'sync' : 'async'}
+			/>
 			<div className={s.inner}>
-				<div className='container'>
+				<div className={cn('container', s.container)}>
 					<div className={s.content}>
 						<h1 className={s.title}>{title}</h1>
 						<h2 className={s.subTitle}>{subTitle}</h2>
 						<p className={s.text}>{text}</p>
 						<NavLink to={url}>
-							<Button>
+							<Button className={s.btn}>
 								<Text className={s.btn_text} color='white'>
 									Read more
 								</Text>
@@ -77,8 +88,47 @@ export const HeroSlider = () => {
 
 	const dot = () => <span className={cn(s.dot)}></span>
 
+	const start = useRef({ x: 0, y: 0 })
+
+	const handlePointerDown = (e) => {
+		isDragging.current = false
+
+		start.current = {
+			x: e.clientX,
+			y: e.clientY,
+		}
+	}
+
+	const handlePointerMove = (e) => {
+		const dx = Math.abs(e.clientX - start.current.x)
+		const dy = Math.abs(e.clientY - start.current.y)
+
+		if (dx > 6 || dy > 6) {
+			isDragging.current = true
+		}
+	}
+
+	const handlePointerUp = () => {
+		requestAnimationFrame(() => {
+			isDragging.current = false
+		})
+	}
+
+	const handleClickCapture = (e) => {
+		if (!isDragging.current) return
+
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	return (
-		<div className={os.heroSliderWrapper}>
+		<div
+			className={os.heroSliderWrapper}
+			onPointerDown={handlePointerDown}
+			onPointerMove={handlePointerMove}
+			onPointerUp={handlePointerUp}
+			onClickCapture={handleClickCapture}
+		>
 			<AliceCarousel
 				responsive={responsive}
 				items={slides}

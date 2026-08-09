@@ -1,11 +1,11 @@
 {
 	"name": "safira-web",
-	"version": "0.5.2",
+	"version": "0.6.0",
 	"description": "Safira web application frontend built with React and Vite - an e-commerce platform for implementing React native patterns and practices to build food store.",
 	"author": {
 		"name": "Alex",
 		"email": "alexhcj@yandex.ru",
-		"url": "https://t.me/alex_hcj"
+		"url": "https://t.me/alexhcj"
 	},
 	"repository": {
 		"type": "git",

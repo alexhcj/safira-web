@@ -5,6 +5,15 @@ import { CSSTransition } from 'react-transition-group'
 
 import s from './password-strength.module.scss'
 
+const defaultTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
 /**
  * Calculates password strength based on length and character types
  * @param {string} password - The password to evaluate
@@ -22,7 +31,7 @@ const calcStrength = (password) => {
 	return { status: 'good', value: 100 }
 }
 
-export const PasswordStrength = ({ value = '', isActive, classNames }) => {
+export const PasswordStrength = ({ value = '', isActive, transitionClasses = defaultTransition, classNames }) => {
 	const [toggle, setToggle] = useState(false)
 	const nodeRef = useRef(null)
 
@@ -38,14 +47,7 @@ export const PasswordStrength = ({ value = '', isActive, classNames }) => {
 				<CSSTransition
 					in={toggle}
 					timeout={300}
-					classNames={{
-						enter: s.animateEnter,
-						enterActive: s.animateEnterActive,
-						enterDone: s.animateEnterDone,
-						exit: s.animateExit,
-						exitActive: s.animateExitActive,
-						exitDone: s.animateExitDone,
-					}}
+					classNames={transitionClasses}
 					mountOnEnter
 					unmountOnExit
 					nodeRef={nodeRef}

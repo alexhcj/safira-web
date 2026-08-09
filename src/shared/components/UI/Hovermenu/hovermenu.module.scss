@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .menu {
 	display: flex;
@@ -21,7 +22,7 @@
 	}
 
 	&_xs {
-		bottom: -12px;
+		bottom: 10px;
 		left: 0;
 		transform: translateY(-20px);
 
@@ -48,20 +49,42 @@
 		transform: translateY(15px) translateX(-50%);
 	}
 
-	&_row {
+	&_list {
 		position: relative;
-		gap: 10px;
+		gap: 5px;
 		margin-top: 22px;
 		padding: 0;
 		box-shadow: none;
 		opacity: 1;
 		z-index: $z-index90;
+
+		@include tablet {
+			gap: 10px;
+		}
+
+		.btn_action {
+			border: 1px solid $color-border2;
+		}
 	}
 }
 
-.button_cart_text {
-	text-transform: capitalize;
-	line-height: 40px;
+.button_cart {
+	padding: 0 20px;
+	height: 38px;
+
+	@include tablet {
+		padding: 0 30px;
+		height: 42px;
+	}
+
+	.button_cart_text {
+		text-transform: capitalize;
+		line-height: 38px;
+
+		@include tablet {
+			line-height: 40px;
+		}
+	}
 }
 
 .btn_action {
@@ -85,5 +108,9 @@
 		.icon_compare path {
 			stroke: $color-white;
 		}
+	}
+
+	&.loading {
+		background-color: $color-dark;
 	}
 }

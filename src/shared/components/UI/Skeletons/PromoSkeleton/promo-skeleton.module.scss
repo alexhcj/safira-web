@@ -1,0 +1,10 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.img {
+	border-radius: $border-radius-m;
+	width: 100%;
+	min-height: 440px;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+}

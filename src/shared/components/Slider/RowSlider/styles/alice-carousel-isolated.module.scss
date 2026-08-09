@@ -1,3 +1,5 @@
+@use '@shared/styles/breakpoints' as *;
+
 .rowSliderWrapper {
 	:global(.alice-carousel__stage-item) {
 		// tags
@@ -24,5 +26,60 @@
 		div > div > div > div:nth-of-type(2) > div > span {
 			line-height: 14px;
 		}
+	}
+
+	:global(.alice-carousel__prev-btn) {
+		position: absolute;
+		top: -49px;
+		right: 16px;
+		width: 0;
+		padding: 0;
+
+		@include tablet-s {
+			right: 26px;
+		}
+
+		@include tablet {
+			right: 16px;
+		}
+
+		@include tablet-l {
+			right: 26px;
+		}
+	}
+
+	:global(.alice-carousel__next-btn) {
+		position: absolute;
+		top: -49px;
+		right: 16px;
+		width: 0;
+		padding: 0;
+
+		@include tablet-s {
+			right: 26px;
+		}
+
+		@include tablet {
+			right: 16px;
+		}
+
+		@include tablet-l {
+			right: 26px;
+		}
+	}
+
+	&.new-products {
+		:global(.alice-carousel__prev-btn) {
+			@include tablet {
+				right: 26px;
+			}
+		}
+
+		:global(.alice-carousel__next-btn) {
+			@include tablet {
+				right: 26px;
+			}
+		}
+
 	}
 }

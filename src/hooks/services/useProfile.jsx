@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { profilesAPI } from '@api/profiles'
 
 export const useProfile = () => {
-	const [loading, setLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState(false)
 	const [profile, setProfile] = useState({})
 
@@ -16,11 +16,11 @@ export const useProfile = () => {
 			} catch (err) {
 				setError(err)
 			} finally {
-				setLoading(false)
+				setIsLoading(false)
 			}
 		}
 		fetchData()
 	}, [])
 
-	return { profile, loading, error }
+	return { profile, isLoading, error }
 }

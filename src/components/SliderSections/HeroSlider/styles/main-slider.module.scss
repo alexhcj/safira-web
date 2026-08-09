@@ -1,25 +1,72 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .item {
-	height: 550px;
+	position: relative;
+	height: 280px;
 	background-color: $color-section-bg;
+	overflow: hidden;
 
-	&:active {
-		cursor: grab;
+	@include tablet {
+		height: 320px;
+	}
+
+	@include tablet-l {
+		height: 350px;
+	}
+
+	@include tablet-l {
+		height: 350px;
+	}
+
+	@include laptop-m {
+		height: 386px;
+	}
+
+	@include desktop-s {
+		height: 550px;
 	}
 }
 
 .img {
-	height: 100%;
+	position: absolute;
+	top: 110px;
+	right: -75px;
+	height: 70%;
+	width: auto;
 	object-fit: cover;
+	z-index: $z-index10;
+	transform: translateX(clamp(0%, 50vw, 0%));
+
+	@include mobile-l {
+		top: 50px;
+		right: -80px;
+		height: 82%;
+	}
+
+	@include tablet-s {
+		top: 0;
+		right: -80px;
+		height: 100%;
+	}
+
+	@include tablet {
+		right: -50px;
+	}
+
+	@include breakpoint(1300px) {
+		right: 0;
+		transform: translateX(clamp(0%, 4vw, 20%));
+	}
 }
 
 .inner {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	width: 100%;
+	position: relative;
+	height: 100%;
+	z-index: $z-index90;
+}
+
+.container {
 	height: 100%;
 }
 
@@ -30,37 +77,104 @@
 	align-items: flex-start;
 	max-width: 480px;
 	height: 100%;
+
+	@include laptop-m {
+		max-width: 550px;
+	}
 }
 
 .title {
-	margin-bottom: 8px;
+	margin-bottom: 6px;
 	text-transform: capitalize;
-	line-height: 48px;
-	font-size: 48px;
-	font-weight: 600;
+	line-height: 26px;
+	font-size: 25px;
+	font-weight: $weight-semi;
+
+	@include tablet {
+		margin-bottom: 8px;
+		font-size: 35px;
+	}
+
+	@include tablet-l {
+		font-size: 38px;
+	}
+
+	@include laptop-m {
+		font-size: 48px;
+	}
 }
 
 .subTitle {
-	margin-bottom: 18px;
+	margin-bottom: 14px;
 	text-transform: capitalize;
-	line-height: 36px;
-	font-size: 36px;
-	font-weight: 300;
-}
+	font-size: 22px;
+	font-weight: $weight-light;
 
-.btn_text {
-	text-transform: uppercase;
-	line-height: 44px;
-	font-size: 15px;
+	@include tablet {
+		font-size: 26px;
+	}
+
+	@include tablet-l {
+		margin-bottom: 18px;
+		font-size: 30px;
+	}
+
+	@include laptop-m {
+		font-size: 36px;
+	}
 }
 
 .text {
 	text-align: left;
-	margin-bottom: 40px;
-	max-width: 420px;
-	line-height: 22px;
-	font-size: 16px;
-	font-weight: 300;
+	margin-bottom: 20px;
+	max-width: 70%;
+	line-height: 23px;
+	font-size: 14px;
+	font-weight: $weight-light;
+
+	@include mobile-l {
+		max-width: 60%;
+	}
+
+	@include tablet-s {
+		max-width: 300px;
+	}
+
+	@include tablet {
+		margin-bottom: 34px;
+		max-width: 350px;
+		font-size: 15px;
+	}
+
+	@include laptop {
+		margin-bottom: 40px;
+		max-width: 75%;
+		font-size: 16px;
+	}
+
+	@include desktop-s {
+		max-width: 65%;
+	}
+}
+
+.btn {
+	padding: 0 20px;
+	height: 35px;
+
+	@include tablet {
+		padding: 0 25px;
+		height: 44px;
+	}
+}
+
+.btn_text {
+	text-transform: uppercase;
+	letter-spacing: $letter-spacing-md;
+	font-size: 12px;
+
+	@include tablet {
+		font-size: 15px;
+	}
 }
 
 .loading {
@@ -71,7 +185,7 @@
 	min-height: 550px;
 	line-height: 550px;
 	font-size: 28px;
-	font-weight: 500;
+	font-weight: $weight-medium;
 }
 
 .dot {

@@ -1,62 +1,115 @@
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
+import { useAccordion } from '@hooks/useAccordion'
+
+import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
+
 import s from './sub-nav.module.scss'
 
 export const SubNav = ({
 	subNavToggleCategory,
 	setPopupToggle,
+	resetAccordion,
 	primeCategory,
 	primeCategoryName,
 	subCategories: { items, parentCategory },
+	isTablet,
 }) => {
 	const navigate = useNavigate()
 
+	const buildQuery = (key, id) => ({
+		[key]: id,
+		limit: '12',
+		offset: '0',
+		sort: 'popularity',
+		order: 'desc',
+	})
+
+	const navigateTo = (query, state) => {
+		navigate(`/shop?${new URLSearchParams(query)}`, { state: JSON.stringify(state) })
+		setPopupToggle(false)
+		resetAccordion?.()
+	}
+
+	const accordion = useAccordion((subCategoryId) => {
+		const sub = items.find((i) => i.subCategory === subCategoryId)
+		navigateTo(buildQuery('subCategory', subCategoryId), {
+			primeCategory: { name: primeCategoryName, slug: primeCategory },
+			subCategory: { name: sub?.name, slug: subCategoryId },
+		})
+	})
+
+	// Desktop click handler
 	const onClickHandler = (e) => {
 		e.stopPropagation()
 		const isSubCategory = e.target.nodeName === 'H5'
 		const subCategory = isSubCategory
 			? { name: e.target.dataset.name, slug: e.target.id }
 			: {
-					name: items.find((item) => item.subCategory === e.target.dataset.subcategory).name,
-					slug: e.target.dataset.subcategory,
-				}
+				name: items.find((item) => item.subCategory === e.target.dataset.subcategory).name,
+				slug: e.target.dataset.subcategory,
+			}
 		const basicCategory = !isSubCategory ? { name: e.target.dataset.name, slug: e.target.id } : undefined
-		const category = isSubCategory ? 'subCategory' : 'basicCategory'
 
-		const query = {
-			[category]: e.target.id,
-			limit: '12',
-			offset: '0',
-			sort: 'popularity',
-			order: 'desc',
-		}
-
-		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({
-				primeCategory: {
-					name: primeCategoryName,
-					slug: primeCategory,
-				},
-				subCategory,
-				basicCategory,
-			}),
+		navigateTo(buildQuery(isSubCategory ? 'subCategory' : 'basicCategory', e.target.id), {
+			primeCategory: { name: primeCategoryName, slug: primeCategory },
+			subCategory,
+			basicCategory,
 		})
-		setPopupToggle(false)
+	}
+
+	// Tablet render
+	if (isTablet) {
+		return (
+			<ul className={cn(s.nav, s.tablet)}>
+				{items.map((sub) => {
+					const hasChildren = !!sub.basicCategories?.length
+					return (
+						<AccordionItem
+							key={sub.subCategory}
+							label={sub.name}
+							isLeaf={!hasChildren}
+							isOpen={accordion.openId === sub.subCategory}
+							isPending={accordion.pendingId === sub.subCategory}
+							onRowTap={() => accordion.handleRowTap(sub.subCategory)}
+							onCollapse={() => accordion.handleCollapse(sub.subCategory)}
+						>
+							{sub.basicCategories
+								?.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
+								.map((basic) => (
+									<AccordionItem
+										key={basic.basicCategory}
+										label={basic.name}
+										isLeaf
+										onRowTap={() =>
+											navigateTo(buildQuery('basicCategory', basic.basicCategory), {
+												primeCategory: { name: primeCategoryName, slug: primeCategory },
+												subCategory: { name: sub.name, slug: sub.subCategory },
+												basicCategory: { name: basic.name, slug: basic.basicCategory },
+											})
+										}
+									/>
+								))}
+						</AccordionItem>
+					)
+				})}
+			</ul>
+		)
 	}
 
 	return (
-		<nav className={cn(s.nav_sub, subNavToggleCategory === parentCategory && s.active)} onClick={onClickHandler}>
+		<nav className={cn(s.nav, subNavToggleCategory === parentCategory && s.active)} onClick={onClickHandler}>
 			{items.map((subCategory) => (
-				<ul className={s.sub_category_item} key={subCategory.subCategory}>
-					<h5 className={s.sub_category_title} id={subCategory.subCategory} data-name={subCategory.name}>
+				<ul className={s.item} key={subCategory.subCategory}>
+					<h5 className={s.title} id={subCategory.subCategory} data-name={subCategory.name}>
 						{subCategory.name}
 					</h5>
 					{subCategory.basicCategories
-						.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
+						?.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
 						.map((basicCategory) => (
 							<li
-								className={s.sub_category_link}
+								className={s.link}
 								key={basicCategory.basicCategory}
 								id={basicCategory.basicCategory}
 								data-name={basicCategory.name}

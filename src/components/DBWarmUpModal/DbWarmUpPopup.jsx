@@ -85,7 +85,9 @@ export const DbWarmUpPopup = () => {
 		<Modal isOpen={isOpen} setIsOpen={setIsOpen} className={s.modal}>
 			<div className={s.content}>
 				<h1>Database Warming Up</h1>
-				<p>We&apos;re preparing our database for optimal performance. This may take up to 50 seconds.</p>
+				<p className={s.text}>
+					We&apos;re preparing our database for optimal performance. This may take up to 50 seconds.
+				</p>
 
 				<div className={s.progress}>
 					<div className={s.bar} style={{ width: `${progress}%` }} />

@@ -16,7 +16,6 @@ import { maxLength, minLength, pattern, required } from '@utils/validation/form'
 
 import { NewRating } from '../../Rating/NewRating'
 import { Button } from '../../UI/Buttons/Button/Button'
-import { Space } from '../../UI/Spacing/Space'
 import { Text } from '../../UI/Text/Text'
 import { Textarea } from '../Textarea/Textarea'
 
@@ -93,16 +92,13 @@ export const NewReviewForm = () => {
 		<div className={s.box}>
 			<h4 className={s.title}>Add a review</h4>
 			<Text className={s.text}>Select rating and describe your filling about product</Text>
-			<Space space={20} />
 			<div className={s.rating}>
 				<Text span className={cn(s.rating_text, s.required)}>
 					Your rating
 				</Text>
-				<Space space={8} />
 				<NewRating ref={ratingRef} onClick={handleSelectRating} />
 				<ErrorPopover error={getFieldError('rating')} className={s.error_popover} />
 			</div>
-			<Space space={20} />
 			<form className={s.form} onSubmit={handleSubmit}>
 				<Textarea
 					className={s.textarea}

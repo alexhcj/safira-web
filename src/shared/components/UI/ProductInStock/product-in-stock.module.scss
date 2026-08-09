@@ -1,0 +1,17 @@
+@use '@shared/styles/vars' as *;
+
+.stock {
+	text-transform: capitalize;
+
+	&.limited {
+		color: $color-warning;
+	}
+
+	&.low {
+		color: $color-error;
+	}
+
+	&.out_of_stock {
+		color: $color-grey13;
+	}
+}

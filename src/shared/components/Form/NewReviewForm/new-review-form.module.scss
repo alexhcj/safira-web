@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: grid;
@@ -9,16 +10,24 @@
 	text-transform: capitalize;
 	margin-bottom: 8px;
 	line-height: 36px;
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: $weight-medium;
+
+	@include tablet {
+		font-size: 18px;
+	}
 }
 
 .text {
+	margin-bottom: 20px;
 	line-height: 24px;
 }
 
 .rating {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
 }
 
 .error_popover {
@@ -27,6 +36,7 @@
 }
 
 .rating_text {
+	margin-bottom: 8px;
 	text-transform: capitalize;
 	line-height: 30px;
 	font-weight: $weight-bold;

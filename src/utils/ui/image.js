@@ -1,7 +1,9 @@
 export const imgSizeTypes = [
+	{ type: 'payment-method', size: '60x36' },
 	{ type: 'avatar', size: '50x50' },
 	{ type: 'category', size: '72x72' },
 	{ type: 'xxs', size: '75x53' },
+	{ type: 'xxm', size: '85x85' },
 	{ type: 'xs', size: '120x120' },
 	{ type: 'avatar-s', size: '150x150' },
 	{ type: 'sm', size: '225x225' },
@@ -10,7 +12,7 @@ export const imgSizeTypes = [
 	{ type: 'lg', size: '326x326' },
 	{ type: 'xl', size: '600x600' },
 	{ type: 'offer-link', size: '590x140' },
-	{ type: 'special', size: '350x461' },
+	{ type: 'special', size: '366x484' },
 	{ type: 'blog-post', size: '870x550' },
 	{ type: 'promo', size: '1920x440' },
 	{ type: 'hero-slider', size: '1920x550' },

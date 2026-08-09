@@ -1,10 +1,59 @@
 @use "sass:color";
 
+// ============================================
+// SCSS VARIABLES (compile-time, internal use)
+// ============================================
+
+$breakpoints: (
+	mobile-s: 320px,
+	mobile-m: 375px,
+	mobile-l: 425px,
+	tablet-s: 576px,
+	tablet: 768px,
+	tablet-l: 991px,
+	laptop: 1024px,
+	laptop-s: 1100px,
+	laptop-m: 1200px,
+	laptop-l: 1440px,
+	desktop-s: 1600px,
+	desktop: 2560px
+);
+
+$spacing: (
+	xs: 10px,
+	sm: 12px,
+	md: 15px,
+	lg: 24px,
+	xl: 30px,
+	1xl: 50px,
+	2xl: 60px,
+	3xl: 70px
+);
+
+// Grid system (SCSS only - used in mixins)
+$container-mobile: 100%;
+$container-tablet: 768px;
+$container-m: 576px;
+$container: 1170px;
+
+// Spacing values (SCSS)
+$gutter-x-mobile: 12px;
+$gutter-x-tablet: 15px;
+$gutter-x-desktop: 15px;
+
+$grid-gap-mobile: 24px;
+$grid-gap-tablet: 24px;
+$grid-gap-desktop: 24px;
+
+// Component-specific spacing
+$popover-indent: 20px;
+
 // colors
 $color-white: #ffffff;
 $color-black: #000000;
 $color-primary: #40a944;
 $color-primary-40: color.adjust($color-primary, $lightness: 40%);
+$color-primary-108: color.adjust($color-primary, $lightness: -8%);
 $color-secondary: #fc8a35;
 $color-error: #ff7063;
 $color-warning: #f3cd01;
@@ -18,7 +67,7 @@ $color-grey: #acacac;
 $color-grey2: #f0f0f0;
 $color-grey3: #f7f6f7;
 $color-grey4: #e6e6e6;
-$color-grey5: #cecece;
+$color-grey5: #d3d3d3;
 $color-grey6: #747474;
 $color-grey7: #eef0f1;
 $color-grey8: #9d9b9b;
@@ -26,6 +75,7 @@ $color-grey9: #f8f8f8;
 $color-grey10: #e7e7e7;
 $color-grey11: rgba(0, 0, 0, 0.06);
 $color-grey12: #efefef;
+$color-grey13: #c3c3c3;
 $color-border: #ebebeb;
 $color-border2: #ededed;
 $color-border3: #dddddd;
@@ -35,32 +85,37 @@ $color-border-sort: #999999;
 $color-border-focus: color.adjust($color-border3, $lightness: -25%);
 $color-border-hover: #aeaeae;
 $separator: #ededed;
-$color-section-bg: #f4f4f4ff;
+$color-section-bg: #f4f4f4;
 $color-pagination-item-background: #f1f1f1;
 $color-sort: #f6f6f6;
 $color-timer-border: #e1e1e1;
 $color-slider-range: #dbdbdb;
-$color-modal-overlay: rgba($color-dark, 0.5);
+$color-modal-overlay: rgba($color-dark, 0.58);
 
 // radiuses
 $default-border-radius: 3px;
 $border-radius-s: 4px;
 $border-radius-md: 5px;
+$border-radius-m: 6px;
 $border-radius-l: 7px;
 $border-radius-lg: 10px;
+$border-radius-xlg: 30px;
 $border-radius-xl: 100px;
 $border-round: 50%;
 
 // colors with opacity
 $color-modal-border: rgba(0, 0, 0, 0.6);
+$color-product-modal-border: rgba(0, 0, 0, 0.2);
 
 // weights
+$weight-light: 300;
 $weight-normal: 400;
 $weight-medium: 500;
 $weight-semi: 600;
 $weight-bold: 700;
 
 // letter-spacing
+$letter-spacing-md: 0.28px;
 $letter-spacing-lg: 0.32px;
 $letter-spacing-lg-neg: -0.32px;
 
@@ -100,10 +155,39 @@ $transition-faq-item: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 $transition-faq-icon: rotate .2s ease-in-out, fill .15s ease-in-out;
 $transition-faq-content: max-height 0.35s ease, padding 0.35s ease;
 
-// grid
-$popover-indent: 20px;
-
 // box-shadow
 $box-shadow: 0 0 5.76px 0.24px rgb(0 0 0 / 10%);
 $box-shadow-faq-item: inset 0 -1px 0 rgba(0, 0, 0, .125);
 $box-shadow-feature-item: 0 1px 3px rgb(0 0 0 / 11%);
+$box-shadow-header-nav-list: rgba(0, 0, 0, 0.1) 0px 3px 11px 0px;
+
+// ============================================
+// CSS CUSTOM PROPERTIES (runtime, component use)
+// ============================================
+
+:root {
+	// Spacing - available to components at runtime
+	--space-xs: 10px;
+	--space-sm: 12px;
+	--space-md: 15px;
+	--space-lg: 24px;
+	--space-xl: 30px;
+	--space-1xl: 50px;
+	--space-2xl: 60px;
+	--space-3xl: 70px;
+
+	// Container
+	--container-padding: #{$gutter-x-mobile};
+	--container-max-width: #{$container};
+	--grid-gap: #{$grid-gap-mobile};
+
+	@media (min-width: 768px) {
+		--container-padding: #{$gutter-x-tablet};
+		--grid-gap: #{$grid-gap-tablet};
+	}
+
+	@media (min-width: 1024px) {
+		--container-padding: #{$gutter-x-desktop};
+		--grid-gap: #{$grid-gap-desktop};
+	}
+}

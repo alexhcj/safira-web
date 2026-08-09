@@ -1,5 +1,8 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .arrow:hover svg path {
-	fill: $color-primary;
+	@include tablet-l {
+		fill: $color-primary;
+	}
 }

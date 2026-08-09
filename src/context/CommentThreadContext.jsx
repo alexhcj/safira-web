@@ -1,5 +1,9 @@
 import { useState, createContext, useContext } from 'react'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+
+import { BREAKPOINTS } from '@shared/data/breakpoints'
+
 const CommentThreadContext = createContext()
 
 export const useCommentThread = () => {
@@ -11,6 +15,9 @@ export const useCommentThread = () => {
 }
 
 export const CommentThreadProvider = ({ children, comments }) => {
+	const isTablet = useIsBelow(BREAKPOINTS.tablet)
+	const collapseLvl = isTablet ? 0 : 3
+
 	// initialize with threads collapsed by default at depth 3+
 	const getInitialCollapsedThreads = (comments, parentNestedLvl = '', depth = 0) => {
 		const collapsed = new Set()
@@ -19,8 +26,8 @@ export const CommentThreadProvider = ({ children, comments }) => {
 			const currentNestedLvl = parentNestedLvl === '' ? index.toString() : `${parentNestedLvl}.${index}`
 			const childrenThreadId = `thread-${currentNestedLvl}`
 
-			// auto-collapse threads at depth 3+ that have replies
-			if (depth >= 3 && comment.comments && comment.comments.length > 0) {
+			// auto-collapse threads at depth 0+ (mobile), depth 3+ (desktop) that have replies
+			if (depth >= collapseLvl && comment.comments && comment.comments.length > 0) {
 				collapsed.add(childrenThreadId)
 			}
 

@@ -2,7 +2,6 @@ import { useCartContext } from '@context/CartContext'
 import { useWishlistContext } from '@context/WishlistContext'
 
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { WishlistItem } from './WishlistItem'
 
@@ -10,7 +9,7 @@ import s from './styles/wishlist.module.scss'
 
 export const Wishlist = () => {
 	const { wishlist, removeFromWishlist } = useWishlistContext()
-	const { addToCart, productQuantityInCart } = useCartContext()
+	const { addToCart, productQuantityInCart, isLoading } = useCartContext()
 
 	return (
 		<div className='container'>
@@ -47,13 +46,13 @@ export const Wishlist = () => {
 									onClick={() => addToCart(product)}
 									onDelete={() => removeFromWishlist(item.slug)}
 									productQuantityInCart={productQuantityInCart(item.slug)}
+									isLoading={isLoading}
 								/>
 							)
 						})
 					)}
 				</tbody>
 			</table>
-			<Space size='l' />
 		</div>
 	)
 }

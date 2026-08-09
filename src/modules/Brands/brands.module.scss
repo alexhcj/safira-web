@@ -1,5 +1,5 @@
-//@import '../../shared/styles/grid';
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .block {
 	display: grid;
@@ -17,13 +17,39 @@
 .actions {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 20px 10px;
+
+	@include tablet {
+		display: grid;
+		grid-template-columns: auto auto 1fr;
+	}
 }
 
-.secondary_text {
+.categories_action_btn,
+.brands_action_btn {
+	width: 100px;
+}
+
+.brands_action_btn {
+	align-self: center;
+	height: 38px;
+}
+
+.categories_action_btn {
+	height: 40px;
+}
+
+.categories_btn,
+.brands_btn {
+	line-height: 20px;
 	font-size: 12px;
 	font-weight: $weight-semi;
-	color: $color-dark;
+}
+
+.brands_btn {
+	color: $color-white;
 }
 
 .nav {

@@ -1,0 +1,135 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.grid {
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: space-between;
+	gap: 35px;
+
+	@include tablet {
+		gap: 30px;
+	}
+
+	@include tablet-l {
+		flex-direction: row;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+}
+
+.title {
+	min-height: 19px;
+	width: 108px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet-s {
+		margin-bottom: -5px;
+	}
+}
+
+.fieldset {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+
+	@include tablet {
+		gap: 20px;
+	}
+
+	&:last-of-type {
+		@include tablet {
+			max-width: 335px;
+		}
+	}
+}
+
+.credentials_field {
+	@include tablet-s {
+		display: grid;
+		grid-template-columns: 1fr 135px;
+		align-items: center;
+		gap: 10px;
+	}
+
+	@include tablet {
+		grid-template-columns: 335px 135px;
+	}
+}
+
+.label {
+	margin-bottom: 12px;
+	width: 78px;
+	min-height: 12px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.credentials_input,
+.profile_input {
+	width: 100%;
+	min-height: 40px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.credentials_input {
+	margin-bottom: 20px;
+
+	@include tablet-s {
+		margin-bottom: 0;
+	}
+}
+
+.button,
+.profile_button {
+	align-self: end;
+	min-height: 38px;
+	width: 135px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet {
+		min-height: 40px;
+	}
+}
+
+.profile_button {
+	margin-top: 5px;
+}
+
+.avatar {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+	gap: 10px;
+	width: 140px;
+}
+
+.avatar_title {
+	width: 120px;
+	min-height: 12px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+}
+
+.avatar_img {
+	margin: 0 auto;
+	width: 100px;
+	min-height: 100px;
+	border-radius: $border-round;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+
+	@include tablet {
+		width: 130px;
+		min-height: 130px;
+	}
+}

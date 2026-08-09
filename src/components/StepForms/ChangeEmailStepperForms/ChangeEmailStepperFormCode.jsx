@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { exactLength, pattern, required } from '@/utils'
 
 import { useEmailStepperContext } from '@context/EmailStepperContext'
@@ -17,6 +19,15 @@ import { VERIFY_EMAIL } from '@shared/types/api-types'
 import { hideEmailPartial } from '@utils/string'
 
 import s from './change-email-stepper-form.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.codeAnimateEnter,
+	enterActive: s.codeAnimateEnterActive,
+	enterDone: s.codeAnimateEnterDone,
+	exit: s.codeAnimateExit,
+	exitActive: s.codeAnimateExitActive,
+	exitDone: s.codeAnimateExitDone,
+}
 
 const codeFormValidationSchema = {
 	code: [
@@ -54,6 +65,7 @@ export const ChangeEmailStepperFormCode = ({ type, isLoading, onSubmit }) => {
 			</p>
 			<Input
 				className={s.input_code}
+				errorTransitionClasses={errorPopoverTransition}
 				type='text'
 				id='code'
 				value={code}
@@ -62,7 +74,7 @@ export const ChangeEmailStepperFormCode = ({ type, isLoading, onSubmit }) => {
 				error={getFieldError('code')}
 			/>
 			<ResendCode classNames={s.resend_code} type={VERIFY_EMAIL.CHANGE_EMAIL} />
-			<Button className={s.btn} htmlType='submit'>
+			<Button className={cn(s.btn, s.btn_code, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .block {
 	display: grid;
@@ -7,11 +8,17 @@
 
 .header {
 	display: grid;
-	grid-auto-flow: column;
+	grid-auto-flow: row;
 	justify-content: space-between;
+	gap: 20px;
 	align-items: center;
 	padding: 35px 20px;
 	border-bottom: 1px solid $color-border;
+
+	@include tablet-l {
+		grid-auto-flow: column;
+		gap: 0;
+	}
 }
 
 .title {
@@ -22,6 +29,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
+	justify-content: start;
 	gap: 10px;
 }
 

@@ -13,7 +13,7 @@ export const PostPage = () => {
 			<ScrollToTop>
 				<Breadcrumbs />
 				<DefaultLayout>
-					<SidebarLayout main={<PostDetails />} aside={<BlogSidebar />} />
+					<SidebarLayout type='post-details' main={<PostDetails />} aside={<BlogSidebar />} />
 				</DefaultLayout>
 			</ScrollToTop>
 		</>

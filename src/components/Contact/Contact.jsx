@@ -6,11 +6,13 @@ import s from './contact.module.scss'
 
 export const Contact = () => {
 	return (
-		<div className='container'>
-			<div className={s.box}>
-				<ContactInfo />
-				<ContactForm />
+		<section className={s.section}>
+			<div className='container'>
+				<div className={s.box}>
+					<ContactInfo />
+					<ContactForm />
+				</div>
 			</div>
-		</div>
+		</section>
 	)
 }

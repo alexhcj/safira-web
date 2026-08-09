@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import EmailSVG from '@assets/svg/email.svg?react'
+import EmailSVG from '@assets/svg/envelope.svg?react'
 import MapSVG from '@assets/svg/map.svg?react'
 import PhoneSVG from '@assets/svg/phone.svg?react'
 

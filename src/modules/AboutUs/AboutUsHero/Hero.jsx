@@ -7,7 +7,7 @@ import s from './hero.module.scss'
 
 export const Hero = () => {
 	return (
-		<section>
+		<section className={s.section}>
 			<div className='container'>
 				<ImageWithFallback className={s.img} src={office} onlySrc />
 				<div className={s.content}>
@@ -18,7 +18,7 @@ export const Hero = () => {
 						ensure every product meets our strict quality standards. Our mission is simple: make fresh, healthy, and
 						delicious food accessible to everyone, delivered with care and convenience that fits your lifestyle.
 					</p>
-					<ImageWithFallback src={signature} onlySrc />
+					<ImageWithFallback className={s.signature} src={signature} onlySrc />
 				</div>
 			</div>
 		</section>

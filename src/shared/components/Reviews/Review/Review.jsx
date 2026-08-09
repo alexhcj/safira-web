@@ -1,4 +1,7 @@
+import { useIsBelow } from '@hooks/useIsBelow'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { convertISODate } from '@utils/date'
 
@@ -15,6 +18,7 @@ export const Review = ({
 		rating,
 	},
 }) => {
+	const isMobileM = useIsBelow(BREAKPOINTS.mobileM)
 	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
 	return (
@@ -25,13 +29,13 @@ export const Review = ({
 					<div className={s.meta}>
 						<Text className={s.author}>
 							{firstName ? firstName : 'Anonymous'}
-							{' - '}
+							{!isMobileM && <span>{' - '}</span>}
 						</Text>
 						<Text className={s.date} span>
 							{convertISODate(createdAt, 'full')}
 						</Text>
 					</div>
-					<Rating rating={rating} />
+					<Rating className={s.rating} rating={rating} />
 				</div>
 				{text && <Text className={s.text}>{text}</Text>}
 			</div>

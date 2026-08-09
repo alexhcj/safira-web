@@ -2,12 +2,17 @@ import { useState } from 'react'
 
 import cn from 'classnames'
 
+import { useViewport } from '@hooks/useViewport.hook'
+
 import { CompareAttributesRow } from './CompareAttributeItem/CompareAttributesRow'
 
 import s from './compare-attributes.module.scss'
 
 export const CompareAttributes = ({ getActiveCompares, activeCategory, activeIndex }) => {
 	const [showOnlyDifferent, setShowOnlyDifferent] = useState(false)
+
+	// Keep attribute columns in sync with however many slides are visible
+	const visibleItems = useViewport()
 
 	const combineCompareAttributesRows = () => {
 		const activeProducts = getActiveCompares(activeCategory)
@@ -48,21 +53,14 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, activeInd
 		})
 	}
 
-	const getVisibleProductsForAttributes = (activeProducts, activeIndex) => {
-		const ITEMS_PER_VIEW = 4
-		return activeProducts.slice(activeIndex, activeIndex + ITEMS_PER_VIEW)
-	}
-
 	const filterRowsForVisibleProducts = (rows, activeProducts, activeIndex) => {
-		const visibleProducts = getVisibleProductsForAttributes(activeProducts, activeIndex)
-		const visibleCount = visibleProducts.length
+		// Slice the visible window based on the current viewport's item count
+		const visibleCount = Math.min(visibleItems, activeProducts.length - activeIndex)
 
-		return rows.map((item) => {
-			return {
-				...item,
-				values: item.values.slice(activeIndex, activeIndex + visibleCount).filter((value) => value !== undefined),
-			}
-		})
+		return rows.map((item) => ({
+			...item,
+			values: item.values.slice(activeIndex, activeIndex + visibleCount).filter((value) => value !== undefined),
+		}))
 	}
 
 	const renderRows = (rows, different) => {
@@ -97,7 +95,7 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, activeInd
 			</div>
 			<div className={s.list}>
 				{renderRows(visibleRows, showOnlyDifferent).map((row) => (
-					<CompareAttributesRow key={row.attribute} row={row} />
+					<CompareAttributesRow key={row.attribute} row={row} visibleItems={visibleItems} />
 				))}
 			</div>
 		</div>

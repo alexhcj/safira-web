@@ -1,33 +1,54 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
+import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 import { slugToStr } from '@/utils'
 
+import { useCategories } from '@hooks/services/useCategories'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
-import { siteMap } from '@components/SiteMap/site-map.data'
-
 import { Badge } from '@shared/components/UI/Badge/Badge'
+import { ProductCategoriesSkeleton } from '@shared/components/UI/Skeletons/ProductCategoriesSkeleton/ProductCategoriesSkeleton'
+import { ProductsByCategorySkeleton } from '@shared/components/UI/Skeletons/ProductsByCategorySkeleton/ProductsByCategorySkeleton'
+import { NAVIGATION_ITEMS } from '@shared/data/site-map'
 
 import s from './site-map.module.scss'
 
+// Flattens the prime -> sub -> basic tree into a list of basic categories,
+// each carrying the full breadcrumb trail for that branch.
+const flattenCategoryTree = (tree = []) =>
+	tree.flatMap((prime) =>
+		prime.subCategories.items.flatMap((sub) =>
+			sub.basicCategories.map((basic) => ({
+				name: basic.name,
+				slug: basic.basicCategory,
+				breadcrumbs: [
+					{ name: prime.name, slug: prime.primeCategory },
+					{ name: sub.name, slug: sub.subCategory },
+					{ name: basic.name, slug: basic.basicCategory },
+				],
+			})),
+		),
+	)
+
 export const SiteMap = () => {
-	const { findAllBasicCategories, findTopPopular, findTopByPrimeCategories, isLoading } = useProductsNew()
-	const [productsCategories, setProductsCategories] = useState([])
+	const { findTree } = useCategories()
+	const { findTopPopular, findTopByPrimeCategories, isLoading } = useProductsNew()
+	const [basicCategories, setBasicCategories] = useState([])
 	const [top20Products, setTop20Products] = useState([])
 	const [primeCategories, setPrimeCategories] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const [basicCategoriesRes, popularRes, primeCategoriesRes] = await Promise.all([
-				findAllBasicCategories(),
+			const [categoryTreeRes, popularRes, primeCategoriesRes] = await Promise.all([
+				findTree(),
 				findTopPopular({ limit: 20 }),
 				findTopByPrimeCategories(),
 			])
 
-			if (basicCategoriesRes?.success) {
-				setProductsCategories(basicCategoriesRes.categories)
+			if (categoryTreeRes?.success) {
+				setBasicCategories(flattenCategoryTree(categoryTreeRes.tree))
 			}
 
 			if (popularRes?.success) {
@@ -42,6 +63,11 @@ export const SiteMap = () => {
 		fetchData()
 	}, [])
 
+	const sortedBasicCategories = useMemo(
+		() => [...basicCategories].sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
+		[basicCategories],
+	)
+
 	return (
 		<div className='container'>
 			<div className={s.box}>
@@ -49,16 +75,14 @@ export const SiteMap = () => {
 					<div className={s.group}>
 						<h3 className={s.title}>Pages</h3>
 						<ul className={s.list}>
-							{siteMap.pages
-								.sort((a, b) => (b.page[0] < a.page[0] ? 1 : -1))
-								.map(({ page, url, badge }, index) => (
-									<li className={s.item} key={index}>
-										<NavLink className={s.url} to={url}>
-											{page}
-										</NavLink>
-										{badge && <Badge text={badge} />}
-									</li>
-								))}
+							{NAVIGATION_ITEMS.sort((a, b) => (b.page[0] < a.page[0] ? 1 : -1)).map(({ page, url, badge }, index) => (
+								<li className={s.item} key={index}>
+									<NavLink className={({ isActive }) => cn(s.url, { [s.active]: isActive })} to={url}>
+										{page}
+									</NavLink>
+									{badge && <Badge className={s.badge} text={badge} />}
+								</li>
+							))}
 						</ul>
 					</div>
 				</section>
@@ -66,28 +90,32 @@ export const SiteMap = () => {
 				<section className={s.section}>
 					<div className={s.group}>
 						<h3 className={s.title}>Product categories</h3>
-						<ul className={s.list}>
-							{!isLoading &&
-								productsCategories
-									.sort((a, b) => (b[0] < a[0] ? 1 : -1))
-									.map((basicCategory, index) => (
-										<li className={s.item} key={index}>
-											<NavLink
-												className={s.url}
-												to={`/shop?basicCategory=${basicCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
-											>
-												{slugToStr(basicCategory)}
-											</NavLink>
-										</li>
-									))}
-						</ul>
+						{isLoading ? (
+							<ProductCategoriesSkeleton quantity={26} />
+						) : (
+							<ul className={s.list}>
+								{sortedBasicCategories.map(({ name, slug, breadcrumbs }, index) => (
+									<li className={s.item} key={index}>
+										<NavLink
+											className={s.url}
+											to={`/shop?basicCategory=${slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}
+											state={JSON.stringify({ ...breadcrumbs })}
+										>
+											{name}
+										</NavLink>
+									</li>
+								))}
+							</ul>
+						)}
 					</div>
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products top 20</h3>
-						<ul className={s.list}>
-							{!isLoading &&
-								top20Products
+						{isLoading ? (
+							<ProductCategoriesSkeleton quantity={22} type='top-20' />
+						) : (
+							<ul className={cn(s.list, s.top_20)}>
+								{top20Products
 									.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1))
 									.map(({ name, slug }, index) => (
 										<li className={s.item} key={index}>
@@ -96,14 +124,17 @@ export const SiteMap = () => {
 											</NavLink>
 										</li>
 									))}
-						</ul>
+							</ul>
+						)}
 					</div>
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products by category</h3>
-						<div className={s.category_group}>
-							{!isLoading &&
-								primeCategories
+						{isLoading ? (
+							<ProductsByCategorySkeleton quantity={9} />
+						) : (
+							<div className={s.category_group}>
+								{primeCategories
 									.sort((a, b) => (b.category < a.category ? 1 : -1))
 									.map((group) => ({
 										products: group.products.sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
@@ -123,7 +154,8 @@ export const SiteMap = () => {
 											</ul>
 										</li>
 									))}
-						</div>
+							</div>
+						)}
 					</div>
 				</section>
 			</div>

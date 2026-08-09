@@ -35,6 +35,8 @@ export const Reply = ({ nestedLvl, type, action }) => {
 		<div className={cn(s.reply, type && s[`reply_${type}`])}>
 			{type !== 'short' && <h3 className={s.title}>Leave a reply</h3>}
 
+			<p className={s.note}>Your email address will not be published. Required fields are marked *</p>
+
 			{!user ? (
 				<>
 					<div className={s.user_actions} id='reply-user-actions'>

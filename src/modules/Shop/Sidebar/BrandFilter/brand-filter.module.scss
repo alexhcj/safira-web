@@ -5,16 +5,17 @@
 	flex-direction: column;
 	max-height: 200px;
 	overflow: hidden;
-	@include transition-all;
+	transition: max-height 0.3s ease;
 
 	&.active {
 		max-height: 270px;
 		overflow-y: scroll;
 	}
 }
+
 .brand_item {
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	cursor: pointer;
 	padding: 4px 0;
 }
@@ -25,6 +26,7 @@
 	line-height: 20px;
 	font-size: 14px;
 }
+
 .quantity {
 	margin-left: auto;
 	line-height: 22px;
@@ -35,6 +37,7 @@
 		color: $color-dark;
 	}
 }
+
 .btn_show_more {
 	display: inline-flex;
 	margin-top: 10px;

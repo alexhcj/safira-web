@@ -2,21 +2,24 @@
 
 .table {
 	width: 100%;
-	border-top: 1px solid $color-border2;
 	font-size: 14px;
+	border-top: 1px solid $color-border2;
 }
+
 .spec {
 	padding: 7px 17px;
 	width: 30%;
 	line-height: 24px;
-	font-weight: 700;
+	font-weight: $weight-bold;
 	border-right: 1px solid $color-border3;
 
 	&_value {
+		vertical-align: middle;
 		padding: 7px 17px;
 		line-height: 24px;
 	}
 }
+
 .table tr {
 	border-bottom: 1px solid $color-border3;
 }

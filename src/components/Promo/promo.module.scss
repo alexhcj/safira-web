@@ -1,17 +1,75 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
 	position: relative;
-	height: 317px;
+	margin-top: 55px;
+	height: 208px;
 	background-color: $color-section-bg;
+	overflow: hidden;
+
+	@include tablet {
+		margin-top: 64px;
+		height: 280px;
+	}
+
+	@include tablet-l {
+		height: 317px;
+	}
 }
 
 .img {
 	position: absolute;
 	height: 100%;
-	left: 50%;
-	transform: translateX(-50%);
-	object-fit: none;
+	object-fit: cover;
+	right: -91px;
+	bottom: -28%;
+
+	@include mobile-m {
+		right: -54px;
+		bottom: -28%;
+	}
+
+	@include mobile-l {
+		right: -69px;
+		bottom: -8%;
+	}
+
+	@include tablet-s {
+		right: -15px;
+		bottom: -5px;
+	}
+
+	@include tablet {
+		right: -40px;
+		bottom: -5px;
+	}
+
+	@include tablet-l {
+		left: 4%;
+		bottom: 0;
+	}
+
+	@include laptop-s {
+		left: 0;
+		bottom: 0;
+	}
+
+	@include breakpoint(1383px) {
+		height: auto;
+	}
+
+	@include breakpoint(1600px) {
+		top: -11%;
+	}
+
+	@include breakpoint(1700px) {
+		top: -20%;
+	}
+}
+
+.container {
+	height: 100%;
 }
 
 .block {
@@ -24,35 +82,90 @@
 }
 
 .upTitle {
-	margin-bottom: 9px;
+	margin-bottom: 6px;
 	text-transform: uppercase;
-	line-height: 24px;
-	font-size: 20px;
+	line-height: 20px;
+	font-size: 15px;
 	font-weight: $weight-normal;
 	color: $color-primary;
+
+	@include tablet {
+		margin-bottom: 7px;
+		line-height: 21px;
+		font-size: 17px;
+	}
+
+	@include tablet-l {
+		margin-bottom: 9px;
+		line-height: 24px;
+		font-size: 20px;
+	}
 }
 
 .title {
 	text-transform: uppercase;
-	line-height: 50px;
-	font-size: 46px;
-	font-weight: 500;
+	line-height: 35px;
+	font-size: 26px;
+	font-weight: $weight-medium;
 	color: $color-dark;
+
+	@include tablet {
+		line-height: 38px;
+		font-size: 36px;
+	}
+
+	@include tablet-l {
+		line-height: 50px;
+		font-size: 46px;
+	}
 }
 
 .text {
-	margin-bottom: 45px;
+	margin-bottom: 20px;
 	text-transform: uppercase;
-	line-height: 30px;
-	font-size: 28px;
+	line-height: 19px;
+	font-size: 15px;
+
+	@include tablet {
+		margin-bottom: 30px;
+		line-height: 30px;
+		font-size: 23px;
+	}
+
+	@include tablet-l {
+		margin-bottom: 45px;
+		line-height: 30px;
+		font-size: 28px;
+	}
 }
 
 .btn {
-	padding: 0 30px;
+	padding: 0 18px;
+	height: 38px;
 	text-transform: uppercase;
+
+	@include tablet {
+		padding: 0 22px;
+		height: 40px;
+	}
+
+	@include tablet-l {
+		padding: 0 30px;
+		height: 44px;
+	}
 }
 
 .btn_text {
-	line-height: 44px;
-	font-size: 15px;
+	line-height: 38px;
+	font-size: 13px;
+
+	@include tablet {
+		line-height: 40px;
+		font-size: 14px;
+	}
+
+	@include tablet-l {
+		line-height: 44px;
+		font-size: 15px;
+	}
 }

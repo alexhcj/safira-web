@@ -5,6 +5,7 @@ import cn from 'classnames'
 import { productsAPI } from '@api/products'
 
 import { RowSlider } from '@shared/components/Slider/RowSlider/RowSlider'
+import { ProductCardSkeleton } from '@shared/components/UI/Skeletons/ProductCardSkeleton/ProductCardSkeleton'
 
 import { to2DArray } from '@utils/array'
 
@@ -33,31 +34,52 @@ export const NewProducts = () => {
 				setNewProducts(products)
 			} catch (e) {
 				console.log(e)
+			} finally {
+				setIsLoading(false)
 			}
-
-			setIsLoading(false)
 		}
 
 		fetchData()
 	}, [])
 
-	const items = to2DArray(newProducts, 2).map((col, index) => {
-		const isTopProductHeightBig = col[0].name.length < 28
+	const skeletonMock = to2DArray(Array.from({ length: 6 }), 2).map((col, idx) => (
+		<div className={s.box} key={idx}>
+			{col.map((_, index) => (
+				<ProductCardSkeleton key={`${idx}-${index}`} />
+			))}
+		</div>
+	))
 
-		return (
-			<div className={cn(s.product_tower, isTopProductHeightBig && s.big)} key={index}>
-				{col.map((product) => {
-					return <ProductCard size='sm' imgSize='sm' key={product.slug} product={product} className={s.product} />
-				})}
-			</div>
-		)
-	})
+	const items = isLoading
+		? skeletonMock
+		: to2DArray(newProducts, 2).map((col, index) => {
+			const nameLength = col[0].name.length
+
+			return (
+				<div
+					className={cn(s.box, { [s.big]: nameLength < 28, [s.mid]: nameLength >= 28 && nameLength <= 43 })}
+					key={index}
+				>
+					{col.map((product) => {
+						return <ProductCard size='sm' imgSize='sm' key={product.slug} product={product} />
+					})}
+				</div>
+			)
+		})
 
 	const responsive = {
 		0: {
+			items: 1,
+		},
+		576: {
+			items: 2,
+		},
+		991: {
 			items: 3,
 		},
 	}
 
-	return <RowSlider title='New products' items={items} responsive={responsive} />
+	return (
+		<RowSlider title='New products' type='new-products' items={items} responsive={responsive} className={s.slider} />
+	)
 }

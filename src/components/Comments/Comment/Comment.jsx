@@ -6,8 +6,11 @@ import { animateScroll as scroll } from 'react-scroll'
 import { useAuthContext } from '@context/AuthContext'
 import { useCommentThread } from '@context/CommentThreadContext'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
 
 import { capitalize, convertISODate } from '@utils/index'
 
@@ -38,6 +41,9 @@ export const Comment = ({
 	currentIndex = 0,
 	depth = 0,
 }) => {
+	const isTablet = useIsBelow(BREAKPOINTS.tablet)
+	const isTabletL = useIsBelow(BREAKPOINTS.tabletL)
+	const collapseLvl = isTablet ? 0 : 3
 	const { user } = useAuthContext()
 	const { toggleThread, isThreadCollapsed } = useCommentThread()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
@@ -49,16 +55,17 @@ export const Comment = ({
 
 	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 
-	const shouldShowToggleButton = comments && comments.length > 0 && depth >= 3
+	const shouldShowToggleButton = comments && comments.length > 0 && depth >= collapseLvl
 	const shouldRenderChildren = comments && comments.length > 0 && !areChildrenHidden
 
 	const calculatePaddingLeft = () => {
-		const baseIndent = 50
-		const levelIndent = 20
+		if (isTablet) return { paddingLeft: 0 }
+
+		const baseIndent = isTabletL ? 25 : 50
 		const maxVisualDepth = 3
 
 		const visualDepth = Math.min(depth, maxVisualDepth)
-		return { paddingLeft: depth > 3 ? 0 : baseIndent + visualDepth * levelIndent }
+		return { paddingLeft: depth > 3 ? 0 : baseIndent + visualDepth }
 	}
 
 	const handleToggleThread = () => {
@@ -82,6 +89,8 @@ export const Comment = ({
 		setIsReplyHidden(!isReplyHidden)
 	}
 
+	const showBadge = isTablet ? depth >= 1 : depth >= 4
+
 	return (
 		<div className={s.wrapper} style={calculatePaddingLeft()}>
 			<div className={cn(s.comment, type && s[`comment_${type}`])}>
@@ -92,16 +101,19 @@ export const Comment = ({
 					alt={avatarId ? `${firstName}'s avatar` : 'User default avatar'}
 					className={s.img}
 				/>
-				<div className={s.box}>
+				<div className={cn(s.box, { [s.big]: shouldShowToggleButton })}>
 					<div>
-						{depth >= 4 && <span className={s.lvl}>L{depth}</span>}
+						{showBadge && <span className={s.lvl}>L{depth}</span>}
 						<h5 className={s.author}>{firstName || 'User'}</h5>
 						<span className={s.date}>{capitalize(convertISODate(createdAt, 'full-time').toLowerCase())}</span>
 						<p className={cn(s.text, { [s.short]: shouldShowToggleButton })}>{capitalize(text)}</p>
 
 						{/* toggle button for children - only show if has children and at depth 3+ */}
 						{shouldShowToggleButton && (
-							<button className={s.button_thread} onClick={handleToggleThread}>
+							<button
+								className={cn(s.button_thread, { [s.active]: shouldRenderChildren })}
+								onClick={handleToggleThread}
+							>
 								{areChildrenHidden ? 'Show thread' : 'Hide thread'} ({comments.length}){' '}
 								<HorizontalMoreSVG className={s.svg} width={16} height={16} />
 							</button>

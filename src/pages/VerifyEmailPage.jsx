@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+
 import { Navigate } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
@@ -10,18 +12,16 @@ import { DefaultLayout } from '@shared/layouts/DefaultLayout/DefaultLayout'
 export const VerifyEmailPage = () => {
 	const { user } = useAuthContext()
 
-	if (user.isEmailVerified) return <Navigate to='/profile' replace />
+	const wasAlreadyVerifiedRef = useRef(user.isEmailVerified)
+
+	if (wasAlreadyVerifiedRef.current) return <Navigate to='/' replace />
 
 	return (
 		<>
-			{!user.isEmailVerified && (
-				<>
-					<Breadcrumbs />
-					<DefaultLayout>
-						<VerifyEmail />
-					</DefaultLayout>
-				</>
-			)}
+			<Breadcrumbs />
+			<DefaultLayout>
+				<VerifyEmail />
+			</DefaultLayout>
 		</>
 	)
 }

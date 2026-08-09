@@ -1,0 +1,9 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.img {
+	grid-area: img;
+	border-radius: $border-radius-m;
+	aspect-ratio: 1 / 1;
+	@include skeleton;
+}

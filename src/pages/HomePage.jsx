@@ -11,26 +11,18 @@ import { MostviewProducts } from '@components/SliderSections/MostviewProducts/Mo
 import { OurBlogPosts } from '@components/SliderSections/OurBlogPosts/OurBlogPosts'
 
 import { ScrollToTop } from '@shared/components/ScrollToTop/ScrollToTop'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 export const HomePage = () => {
 	return (
 		<ProductProvider>
 			<ScrollToTop>
 				<HeroSlider />
-				<Space size='l' />
 				<OfferLinks />
-				<Space space={65} />
 				<Offers />
-				<Space space={65} />
 				<Promo />
-				<Space space={65} />
 				<MostviewProducts />
-				<Space space={65} />
 				<OurBlogPosts />
-				<Space space={65} />
 				<FeaturedProducts />
-				<Space space={30} />
 				<BrandsSlider />
 				<ProductQuickView />
 			</ScrollToTop>

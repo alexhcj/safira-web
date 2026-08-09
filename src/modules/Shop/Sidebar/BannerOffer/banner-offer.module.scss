@@ -5,6 +5,21 @@
 	display: inline-flex;
 	justify-self: start;
 
+	&.skeleton {
+		div {
+			aspect-ratio: 1 / 1.685;
+		}
+	}
+
+	&.loading,
+	&.error {
+		&::before,
+		&::after {
+			display: none;
+			opacity: 0;
+		}
+	}
+
 	&::before {
 		background: rgba(255, 255, 255, 0.3);
 		bottom: 0;
@@ -48,6 +63,5 @@
 
 .img {
 	width: 100%;
-	//height: 100%;
 	object-fit: cover;
 }

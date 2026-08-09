@@ -6,12 +6,13 @@ import { useSearchParams } from 'react-router-dom'
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
 import { CheckboxFilter } from '@shared/components/UI/Checkbox/CheckboxFilter'
+import { BrandsFilterSkeleton } from '@shared/components/UI/Skeletons/BrandsFilterSkeleton/BrandsFilterSkeleton'
 
 import s from './brand-filter.module.scss'
 
 export const BrandFilter = () => {
 	const [params, setParams] = useSearchParams()
-	const { findQueryBrands } = useProductsNew()
+	const { findQueryBrands, isLoading } = useProductsNew()
 	const [availableBrands, setAvailableBrands] = useState([])
 	const [showMore, setShowMore] = useState(false)
 
@@ -90,10 +91,11 @@ export const BrandFilter = () => {
 	}
 
 	const toggleShowMore = () => {
+		if (isLoading) return null
 		setShowMore(!showMore)
 	}
 
-	if (availableBrands.length === 0) {
+	if (!isLoading && availableBrands.length === 0) {
 		return <div className={s.no_brands}>No brands found for the current selection</div>
 	}
 
@@ -102,26 +104,30 @@ export const BrandFilter = () => {
 
 	return (
 		<>
-			<div className={cn(s.brands, { [s.active]: showMore && availableBrands.length > 5 })}>
-				{sortedBrands.map(({ brand: { slug, displayName }, quantity }, index) => {
-					// Only show first 5 brands if not expanded (excluding selected ones which are always shown)
-					const isSelected = selectedBrands.includes(slug)
+			{isLoading ? (
+				<BrandsFilterSkeleton quantity={5} />
+			) : (
+				<div className={cn(s.brands, { [s.active]: showMore && availableBrands.length > 5 })}>
+					{sortedBrands.map(({ brand: { slug, displayName }, quantity }, index) => {
+						// Only show first 5 brands if not expanded (excluding selected ones which are always shown)
+						const isSelected = selectedBrands.includes(slug)
 
-					if (!showMore && index > 4 && !isSelected) return null
+						if (!showMore && index > 4 && !isSelected) return null
 
-					return (
-						<CheckboxFilter
-							className={s.brand_item}
-							isChecked={isSelected}
-							key={slug}
-							onClick={() => toggleBrandSelection(slug)}
-						>
-							<span className={s.brand}>{displayName}</span>
-							<span className={cn(s.quantity, { [s.active]: isSelected })}>({quantity})</span>
-						</CheckboxFilter>
-					)
-				})}
-			</div>
+						return (
+							<CheckboxFilter
+								className={s.brand_item}
+								isChecked={isSelected}
+								key={slug}
+								onClick={() => toggleBrandSelection(slug)}
+							>
+								<span className={s.brand}>{displayName}</span>
+								<span className={cn(s.quantity, { [s.active]: isSelected })}>({quantity})</span>
+							</CheckboxFilter>
+						)
+					})}
+				</div>
+			)}
 			{sortedBrands.length > 5 && (
 				<button className={cn(s.btn_show_more, { [s.active]: showMore })} onClick={() => toggleShowMore(showMore)}>
 					{showMore ? 'Show less' : 'Show more'}

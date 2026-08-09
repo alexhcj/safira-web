@@ -1,17 +1,44 @@
+import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
 import { useOfferLinks } from '@hooks/services/useOfferLinks'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
+import { OfferLinksSkeleton } from '@shared/components/UI/Skeletons/OfferLinksSkeleton/OfferLinksSkeleton'
 
 import { enumToCamelCase, enumToStr, titleCase, enumToDashStr, strToSlug } from '@utils/string'
 
 import s from './offer-links.module.scss'
 
-export const OfferLinks = () => {
-	const { links, loading } = useOfferLinks('offer-link')
+export const OfferLinks = ({ className }) => {
 	const navigate = useNavigate()
+	const { links, isLoading, error } = useOfferLinks('offer-link')
+
+	if (isLoading) {
+		return (
+			<div className='container'>
+				<div className={cn(s.block, isLoading && s.loading, className)}>
+					<OfferLinksSkeleton />
+					<OfferLinksSkeleton />
+				</div>
+			</div>
+		)
+	}
+
+	if (error || links.length === 0) {
+		return (
+			<div className='container'>
+				<button className={cn(s.block, (error || links.length === 0) && s.error, className)} type='button' disabled>
+					<button type='button' className={s.offer}>
+						<ImageWithFallback imgSize='offer-link' alt='' forceDefault />
+					</button>
+					<button type='button' className={s.offer}>
+						<ImageWithFallback imgSize='offer-link' alt='' forceDefault />
+					</button>
+				</button>
+			</div>
+		)
+	}
 
 	const handleOfferClick = ({ page, categoryType, categoryValue }) => {
 		const query = `${enumToCamelCase(categoryType)}=${enumToDashStr(categoryValue)}&${
@@ -25,20 +52,23 @@ export const OfferLinks = () => {
 	return (
 		<div className='container'>
 			<ul className={s.block}>
-				{loading && <Preloader width={35} height={35} />}
-				{!loading &&
-					links &&
-					links.map(({ img, title, link }) => {
-						const offerUrl = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/offer-links/${img}`
+				{links.map(({ img, title, link }) => {
+					const offerUrl = `${import.meta.env.VITE_API_PUBLIC_URL}/images/offers/offer-links/${img}`
 
-						return (
-							<li key={strToSlug(title)} onClick={(e) => handleOfferClick(link)}>
-								<button type='button' className={s.offer}>
-									<ImageWithFallback onlySrc imgSize='offer-link' src={offerUrl} alt={title} className={s.img} />
-								</button>
-							</li>
-						)
-					})}
+					return (
+						<li key={strToSlug(title)} onClick={() => handleOfferClick(link)}>
+							<button type='button' className={s.offer}>
+								<ImageWithFallback
+									onlySrc
+									imgSize='offer-link'
+									src={offerUrl}
+									alt={title}
+									skeleton={<OfferLinksSkeleton />}
+								/>
+							</button>
+						</li>
+					)
+				})}
 			</ul>
 		</div>
 	)

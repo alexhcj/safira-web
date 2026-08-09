@@ -1,9 +1,9 @@
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
 
 .box {
 	position: relative;
 	display: flex;
-	gap: 10px;
+	flex-direction: column;
 	@include transition-all;
 }
 
@@ -12,8 +12,7 @@
 
 	&.required {
 		&::after {
-			content: '*';
-			margin-left: -5px;
+			content: "*";
 		}
 	}
 }
@@ -22,12 +21,11 @@
 	position: relative;
 	display: grid;
 	place-content: center;
-	margin-top: 6px;
 	appearance: none;
 	outline: none;
-	min-width: 14px;
-	width: 14px;
-	height: 14px;
+	min-width: 15px;
+	width: 15px;
+	height: 15px;
 	font: inherit;
 	color: inherit;
 	border: 1px solid $color-border4;
@@ -38,7 +36,7 @@
 	transition: inherit;
 
 	&::before {
-		content: '';
+		content: "";
 		width: 10px;
 		height: 10px;
 		background-color: $color-primary;

@@ -1,25 +1,55 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.section {
+	margin-bottom: 50px;
+
+	@include tablet {
+		margin-bottom: 70px;
+	}
+}
 
 .img {
 	margin-bottom: 26px;
-	height: 582px;
 }
+
 .content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
 }
+
 .title {
 	text-transform: capitalize;
 	margin-bottom: 21px;
-	letter-spacing: $letter-spacing-lg;
-	font-size: 24px;
+	letter-spacing: $letter-spacing-md;
+	font-size: 20px;
 	font-weight: $weight-normal;
+
+	@include tablet-s {
+		line-height: 28px;
+		font-size: 24px;
+	}
+
+	@include tablet {
+		line-height: 24px;
+	}
 }
+
 .text {
 	margin: 0 auto 25px;
 	max-width: 880px;
-	letter-spacing: $letter-spacing-lg;
+	letter-spacing: $letter-spacing-md;
 	line-height: 26px;
+}
+
+.signature {
+	width: 150px;
+	height: 85px;
+
+	@include tablet-s {
+		width: auto;
+		height: 100%;
+	}
 }

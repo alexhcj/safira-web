@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
+import cn from 'classnames'
 import { Navigate, NavLink, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
 
 import { useVerifications } from '@hooks/services/useVerifications'
 import { useFormValidation } from '@hooks/useFormValidation'
+
+import { StepperFinish } from '@components/StepperFinish/StepperFinish'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { Input } from '@shared/components/Form/Input/Input'
@@ -21,6 +24,15 @@ import { ResendCode } from './ResendCode/ResendCode'
 import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './verify-email.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
 
 const verifyEmailFormValidationSchema = {
 	code: [
@@ -75,23 +87,26 @@ export const VerifyEmail = () => {
 				<h2 className={s.title}>Verify email address</h2>
 				{user.isEmailVerified ? (
 					<div className={s.content}>
-						<h2 className={s.title_success}>Email verified successfully!</h2>
-						<p className={s.text_success}>
-							Check out our fresh products at reasonable prices. Also look for best promos, products benefits and latest
-							news in our Blog.
-						</p>
-						<div className={s.btns}>
-							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
-									Search products
-								</NavLink>
-							</Button>
-							<Button className={s.btn_search}>
-								<NavLink className={s.search_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
-									Read blog
-								</NavLink>
-							</Button>
-						</div>
+						<StepperFinish
+							title='Email verified successfully!'
+							text='Check out our fresh products at reasonable prices. Also look for best promos, products benefits and latest
+							news in our Blog.'
+							actions={
+								<div className={s.btns}>
+									<Button className={s.btn_search}>
+										<NavLink className={s.search_link} to={`/shop?${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`}>
+											Search products
+										</NavLink>
+									</Button>
+									<Button className={s.btn_search}>
+										<NavLink className={s.search_link} to={`/blog?${import.meta.env.VITE_BLOG_DEFAULT_QUERY}`}>
+											Read blog
+										</NavLink>
+									</Button>
+								</div>
+							}
+							className={s.stepper_finish}
+						/>
 					</div>
 				) : (
 					<div className={s.content}>
@@ -101,24 +116,26 @@ export const VerifyEmail = () => {
 								<span className={s.email}>{hideEmailPartial(location.state.email)}</span>. Enter this code into input to
 								verify that address is yours.
 							</p>
-							<div className={s.input_box}>
-								<Input
-									className={s.input}
-									handleChange={handleChange}
-									key='code'
-									id='code'
-									type='text'
-									value={form.code}
-									error={getFieldError('code')}
-									placeholder='726482'
-								/>
-							</div>
+							<Input
+								className={s.input}
+								errorTransitionClasses={errorPopoverTransition}
+								handleChange={handleChange}
+								key='code'
+								id='code'
+								type='text'
+								value={form.code}
+								error={getFieldError('code')}
+								placeholder='726482'
+							/>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
-							<Button className={s.btn_verify} htmlType='submit' type='auth'>
-								{isLoading && <Preloader width={20} height={20} className={s.preloader} />}
-								<Text className={s.btn_verify_text} span color='white' weight='bold'>
-									Verify email
-								</Text>
+							<Button className={cn(s.btn_verify, isLoading && s.loading)} htmlType='submit' type='auth'>
+								{isLoading ? (
+									<Preloader width={20} height={20} />
+								) : (
+									<Text className={s.btn_verify_text} span color='white' weight='bold'>
+										Verify email
+									</Text>
+								)}
 							</Button>
 							{location.state.from === '/register' && (
 								<NavLink className={s.btn_later} to='/'>

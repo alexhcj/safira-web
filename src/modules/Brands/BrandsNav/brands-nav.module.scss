@@ -1,18 +1,78 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.box {
+	position: fixed;
+	top: 50px;
+	right: 20px;
+	align-self: flex-start;
+	opacity: 0;
+	z-index: $z-index100;
+	@include transition-all;
+
+	&.visible {
+		opacity: 1;
+	}
+
+	@include tablet {
+		position: relative;
+		top: 0;
+		right: 0;
+		align-self: center;
+		opacity: 1;
+
+		&.sticky {
+			position: fixed;
+			top: 20px;
+			left: 50%;
+			width: max-content;
+			transform: translateX(-50%);
+		}
+	}
+}
 
 .nav {
 	display: flex;
-	justify-content: center;
-	gap: 6px;
-	padding: 0 5px;
-	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+	gap: 2px;
+	padding: 0 3px;
+	max-height: calc(100dvh - 150px);
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	@include mobile-l {
+		max-height: calc(100dvh - 205px);
+	}
+
+	@include tablet {
+		flex-direction: row;
+		justify-content: center;
+		padding: 0 5px;
+		max-height: initial;
+		width: 100%;
+
+		.sticky & {
+			justify-content: flex-start;
+		}
+	}
 }
 
 .char {
-	line-height: 20px;
+	padding: 0 5px;
+	line-height: 24px;
 	font-weight: $weight-semi;
 	color: $color-border-hover;
 	cursor: not-allowed;
+
+	@include tablet {
+		padding: 0 2px;
+		line-height: 20px;
+	}
 
 	&.available {
 		color: $color-dark;

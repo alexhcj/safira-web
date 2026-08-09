@@ -1,14 +1,30 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .item {
-	height: 190px;
+	display: block;
+	padding-bottom: 15px;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid $color-border2;
+	}
+
+	@include tablet {
+		display: table-row;
+	}
 
 	td {
+		display: block;
 		text-align: center;
 		vertical-align: middle;
-		padding: 10px;
-		border-right: 1px solid $color-border2;
-		border-bottom: 1px solid $color-border2;
+		padding: 25px 10px 5px;
+
+		@include tablet {
+			display: table-cell;
+			padding: 10px;
+			border-right: 1px solid $color-border2;
+			border-bottom: 1px solid $color-border2;
+		}
 
 		& .delete_svg {
 			cursor: pointer;
@@ -19,12 +35,34 @@
 		}
 
 		&.image {
-			padding: 15px;
+			padding: 0 30px;
+
+			@include tablet {
+				padding: 15px;
+			}
+
+			@include tablet-l {
+				padding: 20px;
+			}
 
 			.link {
-				width: 150px;
-				height: 150px;
+				display: block;
+				width: 100%;
 				@include transition-all;
+
+				@include breakpoint(480px) {
+					margin: 0 auto;
+					max-width: 260px;
+				}
+
+				@include tablet {
+					margin: 0;
+					max-width: 100%;
+				}
+
+				.img {
+					width: 100%;
+				}
 			}
 
 			&:hover {
@@ -34,18 +72,26 @@
 			}
 		}
 
-		.link {
-			&:hover {
-				color: $color-primary;
+		&.name {
+			padding: 10px;
+
+			.link {
+				line-height: 16px;
+
+				&:hover {
+					color: $color-primary;
+				}
 			}
 		}
 
 		&.price {
+			padding: 10px;
 			font-size: 16px;
 			font-weight: $weight-medium;
 		}
 
 		&.quantity {
+			padding: 10px;
 			font-weight: $weight-medium;
 
 			.box {
@@ -61,6 +107,10 @@
 				height: 40px;
 				border: 1px solid $color-border2;
 			}
+		}
+
+		&.total {
+			padding: 10px;
 		}
 	}
 }

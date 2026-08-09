@@ -1,16 +1,50 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
+	text-align: center;
 	width: 100%;
+
+	@include tablet-s {
+		grid-column: 2 / -1;
+		grid-row: 2 / 3;
+	}
+
+	@include tablet {
+		grid-column: 3 / -1;
+		grid-row: 2 / 3;
+	}
 }
-.text {
-	margin-bottom: 22px;
-	line-height: 22px;
-}
+
 .title {
 	text-transform: capitalize;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	line-height: 18px;
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: $weight-medium;
+
+	@include tablet-s {
+		text-align: left;
+	}
+
+	@include tablet {
+		margin-bottom: 16px;
+	}
+
+	@include tablet-l {
+		margin-bottom: 20px;
+	}
 }
+
+.text {
+	margin-bottom: 18px;
+	line-height: 22px;
+	font-size: 13px;
+
+	@include tablet-s {
+		margin-bottom: 22px;
+		text-align: left;
+		font-size: 14px;
+	}
+}
+

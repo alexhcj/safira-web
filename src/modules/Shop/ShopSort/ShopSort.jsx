@@ -116,7 +116,7 @@ export const ShopSort = ({ meta = {} }) => {
 					})}
 				</ul>
 			</div>
-			<div>
+			<div className={s.total}>
 				{meta && (
 					<>
 						Showing {total === 0 ? 0 : +params.get('offset') + 1}-

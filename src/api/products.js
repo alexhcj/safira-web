@@ -27,7 +27,7 @@ export const productsAPI = {
 	async getProductsByNewPrice({ sort = 'newprice', order = 'desc', limit = 10, newprice_gte = 0 }) {
 		return API.get(`${BASE_URL}?_sort=${sort}&_order=${order}&_limit=${limit}&newprice_gte=${newprice_gte}`)
 	},
-	async findOne(slug = '') {
+	async findBySlug(slug = '') {
 		return API.get(`${BASE_URL}/${slug}`)
 	},
 	async findRandom() {

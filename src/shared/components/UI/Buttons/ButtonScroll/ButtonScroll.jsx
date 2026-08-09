@@ -1,41 +1,44 @@
 import { useEffect, useState } from 'react'
 
-import classNames from 'classnames/bind'
+import cn from 'classnames'
 import { Link, animateScroll as scroll } from 'react-scroll'
+
+import { useIntersection } from '@hooks/useIntersection'
 
 import DoubleArrowSVG from '@assets/svg/double-arrow.svg?react'
 
-
 import s from './button-scroll.module.scss'
 
-export const ButtonScroll = () => {
-	const [scrollBtn, setScrollBtn] = useState(false)
+const BUTTON_TRIGGER = 300
 
-	const showScroll = () => {
-		if (window.scrollY >= 300) {
-			setScrollBtn(true)
-		} else {
-			setScrollBtn(false)
-		}
-	}
+export const ButtonScroll = () => {
+	const isFooterReached = useIntersection('#copyright')
+	const [isBtnShown, setIsBtnShown] = useState(false)
 
 	useEffect(() => {
-		window.addEventListener('scroll', showScroll)
-
-		return function cleanup() {
-			window.removeEventListener('scroll', showScroll)
+		const handleScroll = () => {
+			setIsBtnShown(window.scrollY >= BUTTON_TRIGGER)
 		}
-	}, [scrollBtn])
+
+		window.addEventListener('scroll', handleScroll)
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
 
 	const toggleHome = () => {
 		scroll.scrollToTop()
 	}
 
-	let cx = classNames.bind(s)
-	let btnCN = cx(s.btn, { [s.show]: scrollBtn })
-
 	return (
-		<Link to='nav' className={btnCN} onClick={toggleHome} duration={400} spy={true}>
+		<Link
+			to='nav'
+			className={cn(s.btn, { [s.show]: isBtnShown, [s.footer_reached]: isFooterReached })}
+			onClick={toggleHome}
+			duration={400}
+			spy={true}
+		>
 			<DoubleArrowSVG />
 		</Link>
 	)

@@ -1,9 +1,14 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .block {
-	margin-top: 60px;
-	margin-bottom: 65px;
+	margin-top: 50px;
+
+	@include tablet {
+		margin-top: 60px;
+	}
 }
+
 .title {
 	margin-bottom: 20px;
 	text-transform: uppercase;
@@ -11,11 +16,20 @@
 	font-size: 15px;
 	font-weight: $weight-medium;
 }
+
 .comments {
 	display: grid;
-	gap: 30px;
-	margin-left: -50px;
+	gap: 20px;
+
+	@include tablet {
+		margin-left: -25px;
+	}
+
+	@include tablet-l {
+		gap: 30px;
+	}
 }
+
 .icon {
 	margin-bottom: -2px;
 	width: 15px;

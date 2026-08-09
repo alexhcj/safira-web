@@ -1,0 +1,91 @@
+@use '@shared/styles/vars' as *;
+
+.box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.meta {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 19px;
+
+	&_divider {
+		margin: 0 19px;
+		line-height: 39px;
+	}
+}
+
+.currency {
+	& > div {
+		translate: -60% 0;
+	}
+}
+
+.socials {
+	justify-content: center;
+	gap: 18px;
+	margin-bottom: 26px;
+}
+
+.badge {
+	justify-content: center;
+	margin-bottom: 22px;
+}
+
+.list {
+	margin-top: -10px;
+	margin-bottom: 35px;
+}
+
+.link {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 30px;
+	text-align: left;
+	width: 100%;
+	padding: 10px 0;
+	border-bottom: 1px solid $color-border2;
+
+	&.active {
+		color: $color-primary;
+	}
+
+	.svg {
+		width: 14px;
+		height: 14px;
+		rotate: 90deg;
+		@include transition-all;
+
+		&.open {
+			rotate: -90deg;
+		}
+	}
+}
+
+.nested_list {
+	max-height: 0;
+	padding-left: 20px;
+	overflow: hidden;
+	transition: .4s;
+
+	&.open {
+		max-height: 500px;
+	}
+}
+
+.email {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	margin: auto 0 35px;
+	padding: 15px 0;
+
+	.icon {
+		width: 14px;
+		height: 14px;
+	}
+}

@@ -16,8 +16,6 @@ import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithToolt
 import { DietaryTags } from '@shared/components/UI/DietaryTags/DietaryTags'
 import { Text } from '@shared/components/UI/Text/Text'
 
-import { slugToStr } from '@utils/string'
-
 import HeartSVG from '@assets/svg/heart.svg?react'
 import TrashSVG from '@assets/svg/trash.svg?react'
 
@@ -29,7 +27,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	const { addToWishlist, removeFromWishlist, isProductInWishlist } = useWishlistContext()
 	const [isHovered, setIsHovered] = useState(false)
 	const navigate = useNavigate()
-	const { slug, name, quantity, rating, price, discountPrice, tags, subCategory } = product
+	const { slug, name, quantity, rating, price, discountPrice, tags, primeCategory, subCategory } = product
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const isProductInCartList = isProductInCart(slug)
 	const isProductInWishList = isProductInWishlist(slug)
@@ -70,9 +68,12 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 	}
 
 	const handleSubCategoryClick = () => {
-		const query = `subCategory=${subCategory}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
+		const query = `subCategory=${subCategory.slug}&${import.meta.env.VITE_SHOP_DEFAULT_QUERY}`
 		navigate(`/shop?${new URLSearchParams(query)}`, {
-			state: JSON.stringify({ subCategory }),
+			state: JSON.stringify({
+				primeCategory,
+				subCategory,
+			}),
 		})
 	}
 
@@ -85,18 +86,19 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				onMouseMove={handleMouseMove}
 				data-value={dataValue}
 			>
-				<Link className={s.img_link} to={`/products/${slug}`}>
+				<Link className={s.img_link} to={`/products/${slug}`} draggable={false}>
 					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} />
 				</Link>
-				<h3 className={s.name}>{name}</h3>
-				<Rating rating={rating} className={s.rating} />
+				<Link to={`/products/${slug}`} draggable={false}>
+					<h3 className={s.name}>{name}</h3>
+				</Link>
 				<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
 					<button
 						type='button'
 						onClick={handleSubCategoryClick}
 						className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
 					>
-						{slugToStr(subCategory)}
+						{subCategory.name}
 					</button>
 					{tags && (
 						<>
@@ -106,6 +108,7 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 					)}
 				</h4>
 				<Price price={price} discountPrice={discountPrice} className={s.price} />
+				<Rating rating={rating} className={s.rating} />
 				<div className={s.actions}>
 					<ButtonWithTooltip
 						className={cn(s.button_wishlist, isProductInWishList && s.active)}
@@ -116,14 +119,14 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 					>
 						<HeartSVG className={s.icon} width={16} height={16} />
 					</ButtonWithTooltip>
-					<ButtonCart type='button' onClick={handleAddToCart}>
+					<ButtonCart className={s.button_cart} type='button' onClick={handleAddToCart}>
 						<Text span color='white' weight='semi'>
 							{isProductInCartList ? 'Remove from Cart' : 'Add to Cart'}
 						</Text>
 					</ButtonCart>
 				</div>
 				<div className={cn(s.remove, { [s.active]: isHovered })} onClick={() => removeSlide(slug, category)}>
-					<TrashSVG />
+					<TrashSVG className={s.icon} />
 				</div>
 			</div>
 		)
@@ -137,10 +140,12 @@ export const CompareItem = ({ type = 'default', product, category, removeSlide, 
 				onMouseLeave={handleMouseLeave}
 				data-value={dataValue}
 			>
-				<Link className={s.img_link} to={`/products/${slug}`}>
-					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} />
+				<Link className={s.img_link} to={`/products/${slug}`} draggable={false}>
+					<ImageWithFallback className={s.img} src={img} imgSize='xs' alt={name} draggable={false} />
 				</Link>
-				<h3 className={s.name}>{name}</h3>
+				<h3 className={s.name} draggable={false}>
+					{name}
+				</h3>
 				<Price price={price} className={s.price} />
 				<div className={s.actions}>
 					<ButtonWithTooltip onClick={handleAddToWishlist} size='lg' text='Add to Wishlist'>

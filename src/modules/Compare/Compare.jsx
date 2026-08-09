@@ -2,7 +2,6 @@ import { useCompareContext } from '@context/CompareContext'
 
 import { CompareSlider } from '@shared/components/Slider/CompareSlider/CompareSlider'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
-import { Space } from '@shared/components/UI/Spacing/Space'
 
 import { CompareAttributes } from './CompareAttributes/CompareAttributes'
 import { CompareTabs } from './CompareTabs/CompareTabs'
@@ -49,7 +48,6 @@ export const Compare = () => {
 			) : (
 				<ItemsNotFound type='compare' />
 			)}
-			<Space size='l' />
 		</div>
 	)
 }

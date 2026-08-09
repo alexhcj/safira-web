@@ -7,6 +7,10 @@ import s from './not-found.module.scss'
 export const NotFound = () => {
 	const navigate = useNavigate()
 
+	const handleBack = () => {
+		navigate(-1)
+	}
+
 	const handleHomeClick = () => {
 		navigate('/')
 	}
@@ -19,9 +23,14 @@ export const NotFound = () => {
 				Sorry but the page you are looking for does not exist, have been removed, name changed or is temporarily
 				unavailable.
 			</p>
-			<Button type='submit' className={s.btn} onClick={handleHomeClick}>
-				Back to home page
-			</Button>
+			<div className={s.actions}>
+				<Button className={s.btn} type='submit' onClick={handleBack}>
+					Go back
+				</Button>
+				<Button className={s.btn} type='submit' onClick={handleHomeClick}>
+					Back to home page
+				</Button>
+			</div>
 		</div>
 	)
 }

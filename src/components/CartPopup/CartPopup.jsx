@@ -8,6 +8,7 @@ import { useCartPopupContext } from '@context/CartPopupContext'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { SidebarModal } from '@shared/components/Modal/SidebarModal'
 import { Price } from '@shared/components/Price/Price'
+import { PRICE_TYPE } from '@shared/data/price'
 
 import { formatPrice } from '@utils/number/convert'
 
@@ -57,7 +58,8 @@ export const CartPopup = () => {
 									<h2 className={s.name}>{name}</h2>
 								</Link>
 								<div className={s.price}>
-									{productQuantityInCart(slug)} x <Price type='sm' price={price} discountPrice={discountPrice} />
+									{productQuantityInCart(slug)} x{' '}
+									<Price type={PRICE_TYPE.SMALL} price={price} discountPrice={discountPrice} />
 								</div>
 							</div>
 							<button className={s.btn_remove} type='button' onClick={() => removeFromCart(slug)}>

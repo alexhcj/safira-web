@@ -1,14 +1,19 @@
 import { useCallback, useEffect, useRef } from 'react'
 
+import cn from 'classnames'
+
 import { useRecentSearchContext } from '@context/RecentSearchContext'
 
 import { useFormValidation } from '@hooks/useFormValidation'
 
+import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ErrorPopover } from '@shared/components/UI/ErrorPopover/ErrorPopover'
 
 import { maxLength, minLength, pattern, required } from '@utils/validation'
 
 import { Button } from '../../UI/Buttons/Button/Button'
+
+import MagnifierSVG from '@assets/svg/magnifier.svg?react'
 
 import s from './global-search-form.module.scss'
 
@@ -26,7 +31,7 @@ const globalSearchFormValidationSchema = {
 	],
 }
 
-export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
+export const GlobalSearchForm = ({ isSticky, handleInputClick, handleSubmit, isLoading }) => {
 	const { state, addCurrentSearch } = useRecentSearchContext()
 	const inputRef = useRef(null)
 	const searchRef = useRef(null)
@@ -91,7 +96,7 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 	}
 
 	return (
-		<div className={s.search} ref={searchRef}>
+		<div className={cn(s.search, isSticky && s.sticky)} ref={searchRef}>
 			<form>
 				<input
 					ref={inputRef}
@@ -105,7 +110,9 @@ export const GlobalSearchForm = ({ handleInputClick, handleSubmit }) => {
 					autoComplete='off'
 					value={state.search}
 				/>
-				<Button type='search' onClick={handleSearchSubmit} />
+				<Button className={cn(s.btn_search, isLoading && s.loading)} onClick={handleSearchSubmit}>
+					{isLoading ? <Preloader width={22} height={22} /> : <MagnifierSVG />}
+				</Button>
 			</form>
 			<ErrorPopover className={s.error_popover} error={!isValid(false) && getFieldError('search')} />
 		</div>

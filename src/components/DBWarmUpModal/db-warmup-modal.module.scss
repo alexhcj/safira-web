@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .modal {
 	text-align: center;
@@ -14,6 +15,10 @@
 
 .content {
 	padding: 20px 0 0;
+
+	.text {
+		line-height: 20px;
+	}
 }
 
 .progress {
@@ -53,14 +58,23 @@
 
 .links {
 	display: grid;
-	grid-template: 30px 30px / 50% 50%;
+	justify-content: center;
+	grid-template-columns: repeat(auto-fit, 1fr);
 	gap: 20px;
+
+	@include tablet-s {
+		grid-template: 30px 30px / 50% 50%;
+	}
 }
 
 .link {
 	display: flex;
 	align-items: center;
-	gap: 6px;
+	gap: 10px;
+
+	@include mobile-m {
+		gap: 6px;
+	}
 
 	path {
 		fill: $color-dark;
@@ -72,8 +86,14 @@
 }
 
 .button {
-	margin-top: 30px;
+	margin-top: 25px;
 	height: 36px;
+	padding: 0 20px;
+
+	@include mobile-m {
+		margin-top: 30px;
+		padding: 0 25px;
+	}
 
 	&_text {
 		text-transform: uppercase;

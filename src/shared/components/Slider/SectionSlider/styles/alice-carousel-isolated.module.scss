@@ -1,28 +1,83 @@
+@use '@shared/styles/breakpoints' as *;
+
 .sectionSliderWrapper {
 	:global(.alice-carousel__stage-item) {
 		// tags
-		& > div > a > div > span {
+		div div a div > span {
 			line-height: 20px;
 		}
 
 		// title
-		& > div > div > h3 > a {
+		div div h3 a {
 			line-height: 15px;
 		}
 
 		// category
-		& > div > div > h4 > button {
+		div div h4 button {
 			line-height: 12px;
 		}
 
 		// price
-		& > div > div > div:first-of-type > span {
+		div > div > div > div:first-of-type > span {
 			line-height: 16px;
 		}
 
 		// hover menu
-		& > div > div > div:nth-of-type(2) > div > span {
+		div > div > div > div:nth-of-type(2) > div > span {
 			line-height: 14px;
+		}
+	}
+
+	:global(.alice-carousel__next-btn) {
+		position: absolute;
+		top: calc(50% - 22px);
+		right: -20px;
+		width: 22px;
+		height: 26px;
+		padding: 0;
+	}
+
+	:global(.alice-carousel__prev-btn) {
+		position: absolute;
+		top: calc(50% - 22px);
+		left: -20px;
+		width: 22px;
+		height: 26px;
+		padding: 0;
+	}
+
+	&.our-blog-posts {
+		:global(.box) {
+			div {
+				@include tablet-s {
+					margin: 0;
+				}
+
+				@include tablet {
+					margin: 0 -15px;
+				}
+			}
+		}
+
+		:global(.alice-carousel__stage-item) {
+			// meta
+			div div div div {
+				line-height: 15px;
+			}
+
+			// title
+			div div div h3 a {
+				line-height: 23px;
+
+				@include tablet-l {
+					line-height: 18px;
+				}
+			}
+
+			// button
+			div div div button {
+				line-height: 24px;
+			}
 		}
 	}
 }

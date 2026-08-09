@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { maxLength, pattern, required } from '@/utils'
 
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -10,6 +12,15 @@ import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { Text } from '@shared/components/UI/Text/Text'
 
 import s from './change-email-stepper-form.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
 
 const emailFormValidationSchema = {
 	// email: no minLength, pattern min 5 chars
@@ -45,6 +56,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 			<p className={s.text}>Enter new email address and we’ll send to it a verification code.</p>
 			<Input
 				className={s.input}
+				errorTransitionClasses={errorPopoverTransition}
 				type='text'
 				id='email'
 				value={email}
@@ -52,7 +64,7 @@ export const ChangeEmailStepperFormEmail = ({ type, isLoading, onSubmit }) => {
 				placeholder='johnsmith99@gmail.com'
 				error={getFieldError('email')}
 			/>
-			<Button className={s.btn} htmlType='submit'>
+			<Button className={cn(s.btn, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

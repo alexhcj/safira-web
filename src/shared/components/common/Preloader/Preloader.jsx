@@ -11,3 +11,9 @@ export const Preloader = ({ width = 30, height = 30, className }) => {
 		</div>
 	)
 }
+
+export const FullscreenPreloader = () => (
+	<div className={s.full_screen}>
+		<Preloader />
+	</div>
+)

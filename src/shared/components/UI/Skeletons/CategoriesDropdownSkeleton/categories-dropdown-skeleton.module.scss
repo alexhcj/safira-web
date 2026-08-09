@@ -1,0 +1,22 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+//.grid {
+//	display: flex;
+//	flex-direction: column;
+//	gap: 15px;
+//	padding: 20px 0;
+//}
+
+.category {
+	margin: 0 20px 0 30px;
+	width: calc(100% - 50px);
+	min-height: 26px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	&:not(:last-child) {
+		margin-bottom: 16px;
+	}
+}

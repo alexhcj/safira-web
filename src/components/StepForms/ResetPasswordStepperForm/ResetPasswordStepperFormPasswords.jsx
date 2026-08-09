@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
 import { useLocation } from 'react-router-dom'
 
 import { useResetPasswordStepperContext } from '@context/ResetPasswordStepperContext'
@@ -15,6 +16,24 @@ import { Text } from '@shared/components/UI/Text/Text'
 import { required, pattern, minLength, maxLength, matchField } from '@utils/validation/form'
 
 import s from './reset-password-stepper-form.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
+
+const passwordStrengthTransition = {
+	enter: s.passwordStrengthAnimateEnter,
+	enterActive: s.passwordStrengthAnimateEnterActive,
+	enterDone: s.passwordStrengthAnimateEnterDone,
+	exit: s.passwordStrengthAnimateExit,
+	exitActive: s.passwordStrengthAnimateExitActive,
+	exitDone: s.passwordStrengthAnimateExitDone,
+}
 
 const changePasswordFormValidationSchema = {
 	password: [
@@ -63,11 +82,13 @@ export const ResetPasswordStepperFormPasswords = ({ type, isLoading, onSubmit })
 			<div className={s.input_box}>
 				<PasswordStrength
 					classNames={s.password_strength}
+					transitionClasses={passwordStrengthTransition}
 					value={form['password']}
 					isActive={form['password'].length > 0}
 				/>
 				<Input
 					className={s.input_password}
+					errorTransitionClasses={errorPopoverTransition}
 					key='password'
 					type='password'
 					id='password'
@@ -80,6 +101,7 @@ export const ResetPasswordStepperFormPasswords = ({ type, isLoading, onSubmit })
 			</div>
 			<Input
 				className={s.input_password}
+				errorTransitionClasses={errorPopoverTransition}
 				key='confirmPassword'
 				type='password'
 				id='confirmPassword'
@@ -89,7 +111,7 @@ export const ResetPasswordStepperFormPasswords = ({ type, isLoading, onSubmit })
 				handleChange={handleChange('confirmPassword')}
 				error={getFieldError('confirmPassword')}
 			/>
-			<Button className={s.btn} htmlType='submit' disabled={isLoading}>
+			<Button className={cn(s.btn, s.btn_password, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

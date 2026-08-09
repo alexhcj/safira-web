@@ -1,12 +1,41 @@
+@use '@shared/styles/breakpoints' as *;
+
 .layout {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
-	gap: 25px;
+	gap: 56px;
+
+	@include tablet {
+		gap: 66px;
+	}
+
+	@include tablet-l {
+		flex-direction: row;
+		gap: var(--grid-gap);
+	}
 }
+
 .main {
-	width: 75%;
+	display: grid;
+	grid-auto-flow: row;
+	gap: 32px;
+	width: 100%;
+
+	@include tablet-l {
+		width: calc(75% - 12px);
+	}
+
+	.post-details & {
+		gap: 0;
+	}
 }
+
 .aside {
-	width: 25%;
+	width: 100%;
 	height: auto;
+
+	@include tablet-l {
+		width: calc(25% - 12px);
+	}
 }

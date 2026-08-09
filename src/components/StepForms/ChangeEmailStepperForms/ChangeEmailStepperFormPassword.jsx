@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import cn from 'classnames'
+
 import { maxLength, minLength, pattern, required } from '@/utils'
 
 import { useProfile } from '@hooks/services/useProfile'
@@ -13,6 +15,15 @@ import { Text } from '@shared/components/UI/Text/Text'
 import { hideEmailPartial } from '@utils/string'
 
 import s from './change-email-stepper-form.module.scss'
+
+const errorPopoverTransition = {
+	enter: s.animateEnter,
+	enterActive: s.animateEnterActive,
+	enterDone: s.animateEnterDone,
+	exit: s.animateExit,
+	exitActive: s.animateExitActive,
+	exitDone: s.animateExitDone,
+}
 
 const changePasswordFormValidationSchema = {
 	password: [
@@ -57,6 +68,7 @@ export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) =>
 			)}
 			<Input
 				className={s.input_password}
+				errorTransitionClasses={errorPopoverTransition}
 				type='password'
 				id='password'
 				value={password}
@@ -64,7 +76,7 @@ export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) =>
 				placeholder='********'
 				error={getFieldError('password')}
 			/>
-			<Button className={s.btn} htmlType='submit'>
+			<Button className={cn(s.btn, s.btn_password, isLoading && s.loading)} htmlType='submit'>
 				{isLoading ? (
 					<Preloader width={20} height={20} />
 				) : (

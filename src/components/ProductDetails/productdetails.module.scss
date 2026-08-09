@@ -1,42 +1,135 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
-.product {
+.box {
 	display: flex;
-	gap: 24px;
+	flex-direction: column;
+	gap: 0;
+	margin-bottom: 60px;
+
+	@include tablet {
+		display: grid;
+		grid-template-areas:
+		'img product'
+		'specifications specifications';
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-3xl) var(--grid-gap);
+	}
+
+	@include tablet-l {
+		margin-bottom: 70px;
+	}
 }
 
 .img {
-	max-width: 559px;
-	max-height: 559px;
-	width: 100%;
-	height: 100%;
-	border: 1px solid $separator;
+	grid-area: img;
+	margin-bottom: var(--space-lg);
+
+	@include tablet {
+		margin-bottom: 0;
+	}
 }
 
-.product_img {
-	width: 100%;
-	height: 100%;
+.product {
+	grid-area: product;
+	margin-bottom: var(--space-2xl);
+
+	@include tablet {
+		margin-bottom: 0;
+	}
 }
 
 .name {
-	line-height: 25px;
-	font-size: 22px;
+	margin-bottom: 17px;
+	line-height: 20px;
+	font-size: 18px;
 	font-weight: $weight-normal;
+
+	@include tablet {
+		font-size: 20px;
+	}
+
+	@include tablet-l {
+		margin-bottom: 25px;
+		line-height: 25px;
+		font-size: 22px;
+	}
+}
+
+.rating {
+	margin-bottom: 14px;
+
+	@include tablet {
+		margin-bottom: 17px;
+	}
 }
 
 .price {
 	justify-content: flex-start;
+	margin-bottom: 10px;
+
+	@include tablet {
+		margin-bottom: 12px;
+	}
+}
+
+.meta {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		'category tags'
+		'stock .';
+	gap: 5px 24px;
+	align-items: center; // start
+	margin-bottom: 15px;
+}
+
+.stock {
+	display: flex;
+	grid-area: stock;
+	gap: 10px;
 }
 
 .dietaries {
+	grid-area: tags;
+	justify-self: end;
 	justify-content: start;
-	gap: 5px;
+	gap: 6px;
+}
+
+.description {
+	margin-bottom: 18px;
+
+	@include tablet {
+		margin-bottom: 25px;
+	}
+}
+
+.add_actions {
+	margin: 15px 0 16px;
+
+	@include tablet {
+		margin: 20px 0;
+	}
+}
+
+.btn_add {
+	letter-spacing: 0;
+	padding: 0 25px;
+
+	@include tablet-l {
+		width: 240px;
+	}
 }
 
 .actions {
 	display: inline-grid;
 	justify-items: start;
 	gap: 10px;
+
+	.btn_add_text {
+		height: 24px;
+	}
 
 	.btn {
 		&:hover {
@@ -86,10 +179,6 @@
 	}
 }
 
-.content {
-	max-width: 557px;
-}
-
 .title {
 	font-size: 22px;
 	line-height: 20px;
@@ -97,6 +186,7 @@
 
 .category {
 	display: flex;
+	grid-area: category;
 }
 
 .tag {
@@ -108,8 +198,13 @@
 }
 
 .specifications {
-	padding: 20px 30px 30px 30px;
+	grid-area: specifications;
+	padding: 20px 20px 27px;
 	border: 1px solid $color-border2;
+
+	@include tablet {
+		padding: 20px 30px 27px;
+	}
 }
 
 .tabs {

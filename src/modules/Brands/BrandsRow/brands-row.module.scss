@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
 	border: 1px solid $color-border;
@@ -9,13 +10,27 @@
 .header {
 	padding-top: 16px;
 	padding-left: 16px;
+	letter-spacing: 0;
+	line-height: 20px;
 	font-weight: $weight-semi;
 }
 
 .list {
 	display: grid;
-	grid-template-columns: repeat(4, 25%);
+	grid-template-columns: 1fr;
 	padding-left: 16px;
+
+	@include mobile-l {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include tablet {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 
 .item {
@@ -24,6 +39,8 @@
 
 .link {
 	display: inline-flex;
+	letter-spacing: 0;
+	line-height: 20px;
 	color: $color-primary;
 	cursor: pointer;
 }

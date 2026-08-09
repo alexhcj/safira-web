@@ -85,7 +85,13 @@ export const BlogSearch = ({ isLoading }) => {
 				/>
 				{(params.get('search') || search) && <ButtonClose onClick={resetSearch} classNames={s.btn_close} />}
 			</div>
-			<ButtonSearch type='filter' isLoading={isLoading} disabled={isLoading} onClick={handleSubmit}></ButtonSearch>
+			<ButtonSearch
+				className={s.btn_search}
+				type='filter'
+				isLoading={isLoading}
+				disabled={isLoading}
+				onClick={handleSubmit}
+			></ButtonSearch>
 		</div>
 	)
 }

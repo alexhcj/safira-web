@@ -1,10 +1,24 @@
 @use "sass:color";
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
+@use "@shared/styles/breakpoints" as *;
 
 .terms {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0 4px;
+	line-height: 20px;
 	color: $color-dark4;
+
+	@include tablet-s {
+		line-height: 15px;
+	}
+
+	@include tablet {
+		line-height: 18px;
+	}
 }
+
 .terms-link {
 	text-decoration: underline;
 	color: $color-primary;

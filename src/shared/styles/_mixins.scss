@@ -1,0 +1,62 @@
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+// Responsive Grid Mixins
+@mixin responsive-grid($mobile: 1, $tablet-s: 2, $tablet: 2, $tablet-l: 3, $laptop: 3, $desktop: 3) {
+	display: grid;
+	gap: var(--grid-gap);
+	grid-template-columns: repeat(#{$mobile}, 1fr);
+
+	@include tablet-s {
+		grid-template-columns: repeat(#{$tablet-s}, 1fr);
+	}
+
+	@include tablet {
+		grid-template-columns: repeat(#{$tablet}, 1fr);
+	}
+
+	@include tablet-l {
+		grid-template-columns: repeat(#{$tablet-l}, 1fr);
+	}
+
+	@include laptop {
+		grid-template-columns: repeat(#{$laptop}, 1fr);
+	}
+
+	@include laptop-l {
+		grid-template-columns: repeat(#{$desktop}, 1fr);
+	}
+}
+
+// Container mixin
+@mixin container($max-width: $container-m) {
+	margin: 0 auto;
+	padding: 0 var(--container-padding, 12px);
+	max-width: #{$max-width};
+	width: 100%;
+
+	@include tablet {
+		max-width: $container;
+	}
+}
+
+// Skeleton loading animation
+@mixin skeleton {
+	background: linear-gradient(
+		90deg,
+		$color-grey9 25%,
+		$color-border4 50%,
+		$color-grey9 75%
+	);
+	background-size: 200% 100%;
+	animation: skeleton-loading 2.2s ease-in-out infinite;
+
+	@keyframes skeleton-loading {
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
+	}
+}

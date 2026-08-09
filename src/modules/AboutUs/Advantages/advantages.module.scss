@@ -1,23 +1,36 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .section {
 	position: relative;
-	padding: 64px 0;
-	height: 291px;
+	padding: 50px 0;
+
+	@include tablet {
+		padding: 70px 0 64px;
+	}
 }
+
 .img {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
-	height: inherit;
+	height: 100%;
+	object-fit: cover;
 	z-index: $z-index-1;
 }
+
 .list {
 	display: flex;
-	gap: 25px;
+	flex-direction: column;
+	gap: var(--grid-gap);
+
+	@include tablet {
+		flex-direction: row;
+	}
 }
+
 .item {
 	text-align: center;
 
@@ -32,29 +45,66 @@
 		}
 	}
 }
+
 .icon_box {
 	margin: 0 auto 13px;
-	padding-bottom: 10px;
 	max-width: 80px;
+
+	@include tablet-s {
+		margin: 0 auto 16px;
+	}
+
+	@include tablet {
+		margin: 0 auto 23px;
+	}
 
 	&:hover .icon {
 		rotate: y 180deg;
 		transition: $transition-icon-rotate;
 	}
 }
+
 .icon {
 	margin: 0 auto;
-	width: 48px;
-	height: 48px;
+	width: 40px;
+	height: 40px;
 	transition: $transition-icon-rotate;
+
+	@include tablet-s {
+		width: 48px;
+		height: 48px;
+	}
 }
+
 .title {
-	margin-bottom: 19px;
+	margin-bottom: 10px;
 	letter-spacing: $letter-spacing-lg;
-	line-height: 26px;
-	font-size: 22px;
+	line-height: 22px;
+	font-size: 20px;
 	font-weight: $weight-normal;
+
+	@include tablet-s {
+		margin-bottom: 14px;
+		line-height: 24px;
+		font-size: 22px;
+	}
+
+	@include tablet {
+		margin-bottom: 19px;
+		line-height: 26px;
+	}
 }
+
 .text {
 	padding: 4px 3px;
+	line-height: 22px;
+
+	@include tablet-s {
+		margin: 0 auto;
+		max-width: 400px;
+	}
+
+	@include tablet {
+		max-width: none;
+	}
 }

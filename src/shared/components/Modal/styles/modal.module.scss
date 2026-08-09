@@ -1,29 +1,42 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
+	padding: 12px;
+
+	@include tablet-s {
+		padding: 38px 28px;
+	}
 }
+
 .wrapper {
 	position: relative;
-	padding: 30px 7px 40px;
+	padding: 20px 0 30px;
 	max-width: 1100px;
 	width: 100%;
 	background: $color-white;
 	border: 1px solid $color-modal-border;
 	z-index: $z-index100;
+
+	@include mobile-m {
+		padding: 30px 7px 40px;
+	}
 }
+
 .wrapper::-webkit-scrollbar {
 	width: 0;
 	height: 0;
 	appearance: none;
 }
+
 .btn_close {
 	position: absolute;
 	top: 10px;
-	right: 30px;
+	right: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -31,6 +44,10 @@
 	height: 35px;
 	background-color: $color-grey2;
 	border-radius: 50%;
+
+	@include mobile-m {
+		right: 30px;
+	}
 
 	.close_svg {
 		width: 11px;

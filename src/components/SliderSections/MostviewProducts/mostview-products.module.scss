@@ -1,4 +1,19 @@
-.product {
-	margin: 0 10px;
-	align-items: center;
+@use '@shared/styles/breakpoints' as *;
+
+.section {
+	margin: 54px 0;
+
+	@include tablet {
+		margin: 65px 0;
+	}
+}
+
+.box {
+	@include tablet-s {
+		margin: 0 10px;
+	}
+
+	@include tablet-l {
+		margin: 0 10px;
+	}
 }

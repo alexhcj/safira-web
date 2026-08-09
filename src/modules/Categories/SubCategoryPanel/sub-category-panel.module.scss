@@ -1,0 +1,70 @@
+@use '@shared/styles/vars' as *;
+
+.panel {
+	padding: 20px 20px 12px 20px;
+	border: 1px solid $color-border2;
+}
+
+.view_all_prime {
+	display: block;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: $weight-medium;
+	color: $color-primary;
+	cursor: pointer;
+}
+
+.sub_list {
+	margin-top: 10px;
+}
+
+.sub_row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 7px 8px 7px 0;
+	width: 100%;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.icon {
+	width: 15px;
+	height: 15px;
+	rotate: 90deg;
+	@include transition-all;
+
+	&.open {
+		transform: rotate(180deg);
+	}
+}
+
+.basic_block {
+	padding-left: 24px;
+}
+
+.view_all_sub {
+	display: block;
+	margin-top: 10px;
+	line-height: 20px;
+	font-weight: $weight-medium;
+	color: $color-primary;
+	cursor: pointer;
+}
+
+.basic_list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-top: 8px;
+}
+
+.basic_btn {
+	display: block;
+	width: 100%;
+	line-height: 20px;
+	padding: 7px 8px 7px 0;
+	text-transform: capitalize;
+	text-align: left;
+	cursor: pointer;
+}

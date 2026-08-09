@@ -28,9 +28,11 @@ export const UnsubscribeStepper = () => {
 
 	return (
 		<div className={s.wrapper}>
-			<div className={s.box}>
-				<h3 className={s.title}>Unsubscribe</h3>
-				<UnsubscribeStepperComponent />
+			<div className='container'>
+				<div className={s.box}>
+					<h3 className={s.title}>Unsubscribe</h3>
+					<UnsubscribeStepperComponent />
+				</div>
 			</div>
 		</div>
 	)

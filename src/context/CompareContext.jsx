@@ -22,13 +22,25 @@ export const CompareProvider = ({ children }) => {
 	const [compares, setCompares] = useLocalStorage('compare', {})
 	const [activeCategory, setActiveCategory] = useState(Object.keys(compares)[0])
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [isLoading, setIsLoading] = useState(false)
 
-	// reset range when location changes
+	// reset slider position when location changes
 	useEffect(() => {
 		setActiveIndex(0)
 	}, [location])
 
-	const addToCompare = ({ slug, price, specifications, name, tags, basicCategory, subCategory }) => {
+	/**
+	 * Always resets the slider to position 0 when switching categories.
+	 * Use this everywhere instead of calling setActiveCategory directly —
+	 * that prevents stale index from a previous category bleeding into the new one.
+	 */
+	const switchActiveCategory = (category) => {
+		setActiveCategory(category)
+		setActiveIndex(0)
+	}
+
+	const addToCompare = ({ slug, price, specifications, name, tags, primeCategory, basicCategory, subCategory }) => {
+		setIsLoading(true)
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
 		if (itemInCompare) return
 
@@ -39,19 +51,23 @@ export const CompareProvider = ({ children }) => {
 			name,
 			img,
 			tags,
+			primeCategory,
 			subCategory,
+			basicCategory,
 			price: price.price,
 			discountPrice: price.discountPrice,
 			specifications,
 		}
 
 		if (Object.keys(compares).length === 0) {
-			setCompares({ [basicCategory]: [item] })
-			setActiveCategory(basicCategory)
-		} else if (!compares[basicCategory]) {
-			setCompares({ ...compares, [basicCategory]: [item] })
+			setCompares({ [basicCategory.slug]: [item] })
+			switchActiveCategory(basicCategory.slug)
+		} else if (!compares[basicCategory.slug]) {
+			setCompares({ ...compares, [basicCategory.slug]: [item] })
+			setIsLoading(false)
 		} else {
-			setCompares({ ...compares, [basicCategory]: [...compares[basicCategory], item] })
+			setCompares({ ...compares, [basicCategory.slug]: [...compares[basicCategory.slug], item] })
+			setIsLoading(false)
 		}
 	}
 
@@ -74,6 +90,7 @@ export const CompareProvider = ({ children }) => {
 	}
 
 	const removeItemFromCompare = (slug, category) => {
+		setIsLoading(true)
 		const currentItems = compares[category] || []
 		const filteredComparedCategory = currentItems.filter((item) => item.slug !== slug)
 
@@ -85,12 +102,13 @@ export const CompareProvider = ({ children }) => {
 			}
 		} else {
 			removeListFromCompare(category)
+			setIsLoading(false)
 		}
 	}
 
 	const makeFirstCompareListActive = (compareKeys) => {
 		if (compareKeys.length > 0) {
-			setActiveCategory(compareKeys[0])
+			switchActiveCategory(compareKeys[0])
 		}
 	}
 
@@ -104,16 +122,14 @@ export const CompareProvider = ({ children }) => {
 			if (remainingCategories.length > 0) {
 				makeFirstCompareListActive(remainingCategories)
 			} else {
-				setActiveCategory(null)
-				setActiveIndex(0)
+				switchActiveCategory(null)
 			}
 		}
 	}
 
 	const removeAllCompares = () => {
 		setCompares({})
-		setActiveCategory(null)
-		setActiveIndex(0)
+		switchActiveCategory(null)
 	}
 
 	const isProductInCompare = (slug, category) => {
@@ -124,7 +140,7 @@ export const CompareProvider = ({ children }) => {
 		<CompareContext.Provider
 			value={{
 				activeCategory,
-				setActiveCategory,
+				setActiveCategory: switchActiveCategory,
 				activeIndex,
 				setActiveIndex,
 				addToCompare,
@@ -136,6 +152,7 @@ export const CompareProvider = ({ children }) => {
 				removeListFromCompare,
 				removeAllCompares,
 				isProductInCompare,
+				isLoading,
 			}}
 		>
 			{children}

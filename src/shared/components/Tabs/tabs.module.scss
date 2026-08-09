@@ -1,17 +1,28 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .tabs {
 	display: flex;
-	gap: 35px;
-	padding-bottom: 15px;
+	gap: 25px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid $color-border2;
+
+	@include tablet {
+		gap: 35px;
+	}
 }
+
 .tab {
 	line-height: 26px;
-	font-size: 20px;
+	font-size: 17px;
 	font-weight: $weight-medium;
 	color: $color-dark3;
 	@include transition-all;
+
+	@include tablet {
+		line-height: 26px;
+		font-size: 20px;
+	}
 
 	&.active {
 		color: $color-dark2;

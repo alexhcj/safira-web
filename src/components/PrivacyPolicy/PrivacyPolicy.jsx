@@ -1,9 +1,19 @@
+import { useRef, useState } from 'react'
+
 import cn from 'classnames'
 
+import { useIsBelow } from '@hooks/useIsBelow'
+import { usePassedElement } from '@hooks/usePassedElement'
 import { useScrollSpy } from '@hooks/useScrollSpy'
 import { useSmoothScroll } from '@hooks/useSmoothScroll'
 
+import { SidebarModal } from '@shared/components/Modal/SidebarModal'
 import { BlockNote } from '@shared/components/UI/BlockNote/BlockNote'
+import { ButtonSidebar } from '@shared/components/UI/Buttons/ButtonSidebar/ButtonSidebar'
+import { BREAKPOINTS } from '@shared/data/breakpoints'
+import { NAVIGATION_ITEMS } from '@shared/data/privacy-policy'
+
+import { useResponsiveOffset } from '@utils/ui/breakpoints'
 
 import s from './privacy-policy.module.scss'
 
@@ -43,87 +53,15 @@ const NavLink = ({ order, href, children, isActive, onClick, subNavs, activeInne
 )
 
 export const PrivacyPolicy = () => {
-	const navigationItems = [
-		{
-			order: 1,
-			id: 'information-collection',
-			title: 'Information We Collect',
-			subNavs: [
-				{ order: 1, id: 'personal-information', title: 'Personal Information You Provide' },
-				{ order: 2, id: 'automatic-information', title: 'Information Collected Automatically' },
-				{ order: 3, id: 'third-party-information', title: 'Information from Third Parties' },
-			],
-		},
-		{
-			order: 2,
-			id: 'information-use',
-			title: 'How We Use Your Information',
-			subNavs: [
-				{ order: 1, id: 'order-processing', title: 'Order Processing and Delivery' },
-				{ order: 2, id: 'account-management', title: 'Account Management' },
-				{ order: 3, id: 'communication-marketing', title: 'Communication and Marketing' },
-				{ order: 4, id: 'business-operations', title: 'Business Operations' },
-			],
-		},
-		{
-			order: 3,
-			id: 'information-sharing',
-			title: 'Information Sharing',
-			subNavs: [
-				{ order: 1, id: 'service-providers', title: 'Service Providers' },
-				{ order: 2, id: 'business-transfers', title: 'Business Transfers' },
-				{ order: 3, id: 'legal-requirements', title: 'Legal Requirements' },
-				{ order: 4, id: 'with-consent', title: 'With Your Consent' },
-			],
-		},
-		{
-			order: 4,
-			id: 'data-security',
-			title: 'Data Security',
-			subNavs: [
-				{ order: 1, id: 'technical-safeguards', title: 'Technical Safeguards' },
-				{ order: 2, id: 'operational-safeguards', title: 'Operational Safeguards' },
-			],
-		},
-		{
-			order: 5,
-			id: 'cookies',
-			title: 'Cookies & Tracking',
-			subNavs: [
-				{ order: 1, id: 'cookies-types', title: 'Types of Cookies We Use' },
-				{ order: 2, id: 'cookies-preferences', title: 'Managing Cookie Preferences' },
-			],
-		},
-		{
-			order: 6,
-			id: 'your-rights',
-			title: 'Your Rights',
-			subNavs: [
-				{ order: 1, id: 'access-portability', title: 'Access and Portability' },
-				{ order: 2, id: 'correction-deletion', title: 'Correction and Deletion' },
-				{ order: 3, id: 'communication-preferences', title: 'Communication Preferences' },
-				{ order: 4, id: 'exercising-rights', title: 'Exercising Your Rights' },
-			],
-		},
-		{ order: 7, id: 'children-privacy', title: 'Children`s Privacy' },
-		{ order: 8, id: 'international-transfers', title: 'International Transfers' },
-		{
-			order: 9,
-			id: 'data-retention',
-			title: 'Data Retention',
-			subNavs: [
-				{ order: 1, id: 'retention-periods', title: 'Retention Periods' },
-				{ order: 2, id: 'deletion-process', title: 'Deletion Process' },
-			],
-		},
-		{ order: 10, id: 'policy-changes', title: 'Policy Changes' },
-		{ order: 11, id: 'contact', title: 'Contact Information' },
-	]
-
-	const ids = navigationItems.map((item) => item.id)
+	const isTablet = useIsBelow(BREAKPOINTS.tablet)
+	const triggerRef = useRef(null)
+	const offset = useResponsiveOffset()
+	const hadEnterList = usePassedElement(triggerRef, offset)
+	const [isOpen, setIsOpen] = useState(false)
+	const ids = NAVIGATION_ITEMS.map((item) => item.id)
 
 	// collect all inner section IDs
-	const innerIds = navigationItems.reduce((acc, item) => {
+	const innerIds = NAVIGATION_ITEMS.reduce((acc, item) => {
 		if (item.subNavs && item.subNavs.length > 0) {
 			item.subNavs.forEach((subNav) => {
 				acc.push(subNav.id)
@@ -137,7 +75,7 @@ export const PrivacyPolicy = () => {
 
 	return (
 		<div className='container'>
-			<div className={s.box}>
+			<div className={s.box} ref={triggerRef}>
 				<div>
 					<BlockNote type='notification' className={s.block_note}>
 						<strong>Your Privacy Matters</strong>
@@ -533,23 +471,48 @@ export const PrivacyPolicy = () => {
 						</div>
 					</div>
 				</div>
-				<div className={s.sidebar}>
-					<nav className={s.sidebar_list}>
-						{navigationItems.map(({ order, id, title, subNavs }) => (
-							<NavLink
-								order={order}
-								key={id}
-								href={`#${id}`}
-								isActive={activeId === id}
-								onClick={scrollToSection}
-								subNavs={subNavs}
-								activeInnerId={activeInnerId}
-							>
-								{order}. {title}
-							</NavLink>
-						))}
-					</nav>
-				</div>
+				{!isTablet && (
+					<div className={s.sidebar}>
+						<nav className={s.sidebar_list}>
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
+								<NavLink
+									order={order}
+									key={id}
+									href={`#${id}`}
+									isActive={activeId === id}
+									onClick={scrollToSection}
+									subNavs={subNavs}
+									activeInnerId={activeInnerId}
+								>
+									{order}. {title}
+								</NavLink>
+							))}
+						</nav>
+					</div>
+				)}
+				{isTablet && (
+					<SidebarModal isOpen={isOpen} setIsOpen={setIsOpen} className={s.modal}>
+						<nav className={s.sidebar_list}>
+							{NAVIGATION_ITEMS.map(({ order, id, title, subNavs }) => (
+								<NavLink
+									order={order}
+									key={id}
+									href={`#${id}`}
+									isActive={activeId === id}
+									onClick={(id, type) => {
+										scrollToSection(id, type)
+										setIsOpen(false)
+									}}
+									subNavs={subNavs}
+									activeInnerId={activeInnerId}
+								>
+									{order}. {title}
+								</NavLink>
+							))}
+						</nav>
+					</SidebarModal>
+				)}
+				{isTablet && <ButtonSidebar className={cn({ [s.visible]: hadEnterList })} onClick={() => setIsOpen(!isOpen)} />}
 			</div>
 		</div>
 	)

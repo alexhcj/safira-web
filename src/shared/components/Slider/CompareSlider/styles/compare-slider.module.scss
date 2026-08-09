@@ -1,0 +1,42 @@
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.compare_carousel {
+	position: relative;
+}
+
+.arrow {
+	position: absolute;
+	display: inline-flex;
+	top: 130px;
+	padding: 0;
+	width: 22px;
+	height: 26px;
+	opacity: 0;
+	@include transition-all;
+
+	&.active {
+		opacity: 1;
+	}
+
+	&.disabled {
+		opacity: 0;
+	}
+}
+
+.arrow_prev {
+	left: 0;
+	transform: scale(-1);
+
+	@include laptop-m {
+		left: -25px;
+	}
+}
+
+.arrow_next {
+	right: 0;
+
+	@include laptop-m {
+		right: -25px;
+	}
+}

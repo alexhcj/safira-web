@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .item {
 	position: relative;
@@ -7,8 +8,13 @@
 	text-align: center;
 	padding: 25px 15px;
 	height: 100%;
-	border-right: 1px solid transparent;
-	border-left: 1px solid transparent;
+	border-right: 1px dashed $color-border2;
+	border-left: 1px dashed $color-border2;
+
+	@include laptop-m {
+		border-right-color: transparent;
+		border-left-color: transparent;
+	}
 
 	&:hover {
 		border-right-color: $color-border2;
@@ -59,7 +65,7 @@
 .name {
 	display: inline-flex;
 	justify-self: center;
-	margin-bottom: 6px;
+	margin-bottom: 12px;
 	@include transition-all;
 
 	&:hover {
@@ -72,17 +78,12 @@
 	margin: 0 auto 10px;
 }
 
-.rating {
-	margin-bottom: 10px;
-	justify-self: center;
-}
-
 .subCategory {
 	display: grid;
 	grid-auto-flow: column;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 15px;
+	margin-bottom: 12px;
 	line-height: 12px;
 	font-size: 12px;
 	z-index: 50;
@@ -111,7 +112,13 @@
 }
 
 .price {
-	margin-bottom: 15px;
+	margin-bottom: 12px;
+}
+
+.rating {
+	margin-bottom: 25px;
+	justify-self: center;
+	height: 14px;
 }
 
 .actions {
@@ -144,14 +151,33 @@
 	}
 }
 
+.button_cart {
+	@include tablet {
+		padding: 0 min(10px, 30px);
+	}
+}
+
 .remove {
 	position: absolute;
 	top: 10px;
 	right: 10px;
-	opacity: 0;
-	visibility: hidden;
 	cursor: pointer;
 	@include transition-all;
+
+	@include laptop-m {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.icon path {
+		fill: $color-border-sort;
+	}
+
+	&:hover {
+		svg path {
+			fill: $color-dark;
+		}
+	}
 
 	&.active {
 		opacity: 1;

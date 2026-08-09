@@ -8,14 +8,13 @@ import { ChangePasswordStepperFormCode } from '@components/StepForms/ChangePassw
 import { ChangePasswordStepperFormEmail } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperFormEmail'
 import { ChangePasswordStepperFormPasswords } from '@components/StepForms/ChangePasswordStepperForms/ChangePasswordStepperFormPasswords'
 
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { Stepper } from '@shared/components/UI/Stepper/Stepper'
 
 import { StepperFinish } from '../StepperFinish/StepperFinish'
 
 import CodeSVG from '@assets/svg/code.svg?react'
 import EmailLinkSVG from '@assets/svg/email-link.svg?react'
-import EmailSVG from '@assets/svg/email.svg?react'
+import EmailSVG from '@assets/svg/envelope.svg?react'
 import ChangeEmailStepperSVG from '@assets/svg/illustrations/change-email-stepper.svg?react'
 import PasswordSVG from '@assets/svg/password.svg?react'
 
@@ -105,7 +104,7 @@ export const ChangePasswordStepper = () => {
 	return (
 		<section>
 			<div className={s.box}>
-				<ChangeEmailStepperSVG />
+				<ChangeEmailStepperSVG className={s.svg} />
 				<div className={s.content}>
 					<Stepper data={steps} currentStep={step.step} />
 					{CurrentStepComponent && (
@@ -114,7 +113,6 @@ export const ChangePasswordStepper = () => {
 					{step.step === 'finish' && <StepperFinish title='Password changed successfully!' />}
 				</div>
 			</div>
-			<Space space={70} />
 		</section>
 	)
 }

@@ -1,3 +1,15 @@
+.alice-carousel {
+	user-select: none;
+
+	&:active {
+		cursor: grab;
+	}
+}
+
+.alice-carousel img {
+	-webkit-user-drag: none;
+}
+
 /*.alice-carousel__prev-btn {*/
 /*	position: absolute;*/
 /*	top: 50%;*/
@@ -18,11 +30,11 @@
 /*	transform: translateY(-50%) translateX(100%);*/
 /*}*/
 
-.alice-carousel__prev-btn,
-.alice-carousel__next-btn {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 0;
-	padding: 0;
-}
+/*.alice-carousel__prev-btn,*/
+/*.alice-carousel__next-btn {*/
+/*	position: absolute;*/
+/*	top: 0;*/
+/*	left: 0;*/
+/*	width: 0;*/
+/*	padding: 0;*/
+/*}*/

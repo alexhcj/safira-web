@@ -1,30 +1,47 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .timer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 10px;
+	gap: 5px;
 	min-height: 59px;
+
+	@include tablet {
+		gap: 10px;
+	}
 }
 
 .item {
 	display: flex;
 	flex-direction: column;
-	padding: 11px 10px;
+	padding: 7px 6px;
 	border-radius: 3px;
 	border: 1px solid $color-timer-border;
+
+	@include tablet {
+		padding: 11px 10px;
+	}
 }
 
 .number {
 	text-align: center;
 	text-transform: uppercase;
 	line-height: 18px;
-	font-size: 17px;
+	font-size: 18px;
+
+	@include tablet-l {
+		font-size: 17px;
+	}
 }
 
 .text {
 	text-transform: uppercase;
 	line-height: 17px;
-	font-size: 12px;
+	font-size: 11px;
+
+	@include laptop-m {
+		font-size: 12px;
+	}
 }

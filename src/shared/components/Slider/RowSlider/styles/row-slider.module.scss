@@ -1,14 +1,29 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.box {
+	@include between(tablet-s, tablet) {
+		margin: 0 -10px;
+	}
+
+	@include tablet-l {
+		margin: 0 -10px;
+	}
+}
 
 .slider {
-	padding: 30px 0 20px;
+	position: relative;
+	padding: 25px 15px;
 	border-radius: 10px;
 	background-color: $color-white;
+
+	@include tablet {
+		padding: 30px 20px;
+	}
 }
 
 .title {
 	text-transform: capitalize;
-	padding: 0 20px;
 	line-height: 26px;
 	font-size: 24px;
 	font-weight: 500;
@@ -16,9 +31,6 @@
 }
 
 .arrow {
-	position: absolute;
-	top: -50px;
-	right: -735px;
 	display: inline-flex;
 	padding: 0;
 	width: 22px;

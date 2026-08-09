@@ -1,21 +1,39 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/breakpoints' as *;
+
 .center {
 	display: grid;
 	justify-content: center;
 	align-items: center;
 	min-height: 420px;
 }
+
 .grid {
-	display: grid;
-	gap: 24px;
-	margin-bottom: 34px;
-}
-.grid-3 {
-	grid-template-columns: repeat(3, 1fr);
-}
-.grid-4 {
-	grid-template-columns: repeat(4, 1fr);
-}
-.grid-list {
-	grid-template-columns: 1fr;
-	gap: 30px;
+	margin-bottom: var(--space-2xl);
+	@include responsive-grid(1, 1, 2, 2, 3, 4);
+
+	@include tablet {
+		margin-bottom: 40px;
+	}
+
+	&.grid-1 {
+		grid-template-columns: 1fr;
+	}
+
+	&.grid-2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	&.grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&.grid-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	&.grid-list {
+		grid-template-columns: 1fr;
+		gap: var(--space-xl);
+	}
 }

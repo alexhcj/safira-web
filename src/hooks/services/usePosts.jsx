@@ -9,6 +9,7 @@ export const usePosts = () => {
 	const [posts, setPosts] = useState([])
 	const [meta, setMeta] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
+	const [hasFetchedOnce, setHasFetchedOnce] = useState(false)
 
 	const fetchPosts = async (params = {}) => {
 		setIsLoading(true)
@@ -20,6 +21,7 @@ export const usePosts = () => {
 			return null
 		} finally {
 			setIsLoading(false)
+			setHasFetchedOnce(true)
 		}
 	}
 
@@ -33,12 +35,12 @@ export const usePosts = () => {
 				post: res,
 			}
 		} catch (error) {
-			if (error.status === 404) navigate('/not-found')
+			if (error.status === 404) navigate('/not-found', { replace: true })
 			return null
 		} finally {
 			setIsLoading(false)
 		}
 	}
 
-	return { posts, meta, isLoading, fetchPosts, getPostBySlug }
+	return { posts, meta, isLoading, hasFetchedOnce, fetchPosts, getPostBySlug }
 }

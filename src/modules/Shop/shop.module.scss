@@ -1,12 +1,18 @@
-.wrapper {
-	display: flex;
-	gap: 25px;
-	margin: 0 -15px;
-}
+@use '@shared/styles/breakpoints' as *;
+
 .main {
-	width: 75%;
+	width: 100%;
+
+	@include tablet-l {
+		width: 75%;
+	}
 }
+
 .sidebar {
 	position: relative;
-	width: 25%;
+	width: 100%;
+
+	@include tablet-l {
+		width: 25%;
+	}
 }

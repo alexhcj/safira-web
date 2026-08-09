@@ -1,0 +1,111 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
+
+.grid {
+	display: grid;
+	@include responsive-grid(2, 3, 5, 3, 3, 3);
+	gap: 8px;
+}
+
+.box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	@include tablet-l {
+		min-height: 304px;
+	}
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	padding: 16px 12px 15px;
+	border-radius: $border-radius-m;
+
+	@include tablet-l {
+		display: grid;
+		grid-template: auto auto / 72px 1fr;
+		grid-template-areas:
+			'img category'
+			'img button';
+		align-items: center;
+		gap: 15px 10px;
+		margin-bottom: 10px;
+	}
+}
+
+.img {
+	grid-area: img;
+	width: 92px;
+	min-height: 92px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet-l {
+		width: 72px;
+		min-height: 72px;
+	}
+}
+
+.category {
+	grid-area: category;
+	width: 120px;
+	min-height: 18px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet-l {
+		align-self: end;
+		width: 160px;
+	}
+}
+
+.button {
+	display: none;
+	grid-area: button;
+	align-self: start;
+	width: 57px;
+	min-height: 16px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet-l {
+		display: block;
+	}
+}
+
+.separator {
+	display: none;
+	min-height: 1px;
+	@include skeleton;
+
+	@include tablet-l {
+		display: block;
+	}
+}
+
+.list {
+	display: none;
+	margin-top: 20px;
+	height: 100%;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	@include tablet-l {
+		display: block;
+	}
+}
+
+.link {
+	min-height: 20px;
+	border-radius: $border-radius-m;
+	@include skeleton;
+
+	&:not(:last-child) {
+		margin-bottom: 15px;
+	}
+}

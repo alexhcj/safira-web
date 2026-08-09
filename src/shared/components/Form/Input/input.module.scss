@@ -1,4 +1,4 @@
-@use '@shared/styles/vars' as *;
+@use "@shared/styles/vars" as *;
 
 .box {
 	position: relative;
@@ -14,7 +14,7 @@
 	&.required {
 		&::after {
 			margin-left: 4px;
-			content: '*';
+			content: "*";
 		}
 	}
 
@@ -87,7 +87,7 @@
 
 .password_btn {
 	position: absolute;
-	top: 50%;
+	top: 33px;
 	right: 20px;
 
 	.password_icon {

@@ -4,9 +4,10 @@ import { useLocation } from 'react-router-dom'
 
 import { usePosts } from '@hooks/services/usePosts'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
 import { ItemsNotFound } from '@shared/components/UI/ItemsNotFound/ItemsNotFound'
+import { CommentsSkeleton } from '@shared/components/UI/Skeletons/CommentsSkeleton/CommentsSkeleton'
+import { PostSkeleton } from '@shared/components/UI/Skeletons/PostSkeleton/PostSkeleton'
 import { Border } from '@shared/components/UI/Spacing/Border'
 
 import { convertISODate } from '@utils/date'
@@ -33,38 +34,45 @@ export const PostDetails = () => {
 		fetchData()
 	}, [slug])
 
+	const isReady = !isLoading && Boolean(post)
+
+	const { title, user, createdAt, text, comments } = post ?? {}
+
 	return (
 		<>
-			{isLoading && <Preloader />}
-			{!isLoading && Object.keys(post).length !== 0 && (
-				<>
-					<div className={s.post}>
-						<div className={s.header}>
-							<h3 className={s.title}>{post.title}</h3>
-							<div className={s.meta}>
-								{post.user ? (
-									<div className={s.author}>
-										Posted by : <span>{`${post.user.firstName} ${post.user.lastName}`}</span>
-									</div>
-								) : (
-									<div className={s.author}>Admin</div>
-								)}
-								<span>/</span>
-								<span className={s.date}>
-									On : <span>{convertISODate(post.createdAt, 'full')}</span>
-								</span>
-							</div>
+			{!isReady ? (
+				<PostSkeleton />
+			) : (
+				<div>
+					<div className={s.header}>
+						<h3 className={s.title}>{title}</h3>
+						<div className={s.meta}>
+							{user ? (
+								<div className={s.author}>
+									Posted by : <span>{`${user.firstName} ${user.lastName}`}</span>
+								</div>
+							) : (
+								<div className={s.author}>Admin</div>
+							)}
+							<span>/</span>
+							<span className={s.date}>
+								On : <span>{convertISODate(createdAt, 'full')}</span>
+							</span>
 						</div>
-						<ImageWithFallback className={s.img} src={img} imgSize='blog-post' alt={post.title} />
-						<p className={s.text}>{post.text}</p>
 					</div>
+					<ImageWithFallback className={s.img} src={img} imgSize='blog-post' alt={title} />
+					<p className={s.text}>{text}</p>
 					<Border />
-					{/*<RelatedPosts category={category} />*/}
-					{post.comments && <Comments comments={post.comments.comments} isLoading={isLoading} />}
-					{!isLoading && !post.comments && <ItemsNotFound type='comments' />}
-					<Reply action='create' />
-				</>
+				</div>
 			)}
+			{/*<RelatedPosts category={category} />*/}
+			{!isReady ? (
+				<CommentsSkeleton quantity={3} />
+			) : (
+				comments && <Comments comments={comments.comments} isLoading={isLoading} />
+			)}
+			{isReady && !comments && <ItemsNotFound type='comments' />}
+			<Reply action='create' />
 		</>
 	)
 }

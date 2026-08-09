@@ -1,4 +1,5 @@
 @use '@shared/styles/vars' as *;
+@use '@shared/styles/breakpoints' as *;
 
 .popover {
 	position: absolute;
@@ -21,6 +22,22 @@
 		visibility: visible;
 		opacity: 1;
 		z-index: $z-index200;
+	}
+
+	&.sticky {
+		min-width: min(320px, 92vw);
+
+		@include mobile-m {
+			min-width: min(375px, 93.5vw);
+		}
+
+		@include mobile-l {
+			min-width: min(425px, 94.5vw);
+		}
+
+		@include tablet-s {
+			min-width: initial;
+		}
 	}
 }
 

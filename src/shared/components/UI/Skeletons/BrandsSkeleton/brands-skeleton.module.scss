@@ -1,0 +1,41 @@
+@use '@shared/styles/mixins' as *;
+@use '@shared/styles/vars' as *;
+
+.box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 94px;
+	border-radius: $border-radius-lg;
+	@include skeleton;
+
+	&:nth-of-type(2),
+	&:nth-of-type(4) {
+		min-height: 150px;
+	}
+}
+
+.letter {
+	position: absolute;
+	top: 18px;
+	left: 18px;
+	width: 16px;
+	height: 16px;
+	border-radius: $border-radius-m;
+	background-color: #d8d8d8;
+}
+
+.list {
+	position: absolute;
+	left: 32px;
+	bottom: 15px;
+	display: flex;
+	gap: 15px
+}
+
+.list_item {
+	width: 260px;
+	height: 24px;
+	border-radius: $border-radius-m;
+	background-color: #D8D8D8FF;
+}

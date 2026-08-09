@@ -17,7 +17,7 @@ export const CartItem = ({ slug, img, name, price, discountPrice, quantity, maxQ
 			<td className={s.image}>
 				{img ? (
 					<Link className={s.link} to={`/products/${slug}`}>
-						<ImageWithFallback src={img} imgSize='sm' alt={name} />
+						<ImageWithFallback className={s.img} src={img} imgSize='sm' alt={name} />
 					</Link>
 				) : (
 					<img src={PreloaderSVG} alt='Preloader' />

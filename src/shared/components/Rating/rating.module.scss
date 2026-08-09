@@ -2,8 +2,9 @@
 	display: inline-flex;
 	justify-self: flex-start;
 	align-items: center;
-	height: 24px;
 	gap: 5px;
+	width: max-content;
+	height: 24px;
 
 	&.new {
 		height: 16px;

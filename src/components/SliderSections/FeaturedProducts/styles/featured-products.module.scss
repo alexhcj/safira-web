@@ -1,3 +1,55 @@
+@use '@shared/styles/breakpoints' as *;
+
+.section {
+	padding: 54px 0 60px;
+
+	@include tablet {
+		padding: 65px 0 70px;
+	}
+}
+
+
+.box {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	@include tablet {
+		margin: 0 10px;
+	}
+}
+
 .product {
-	margin-bottom: 30px;
+	gap: 16px;
+
+	& > a {
+		width: 92px !important;
+		height: 92px !important;
+
+		@include tablet {
+			width: 110px !important;
+			height: 110px !important;
+		}
+
+		@include laptop-m {
+			width: 120px !important;
+			height: 120px !important;
+		}
+	}
+
+	div > h3 {
+		margin-bottom: 14px !important;
+
+		@include tablet {
+			margin-bottom: 18px !important;
+		}
+	}
+
+	div div > h4 {
+		margin-bottom: 12px !important;
+
+		@include tablet {
+			margin-bottom: 18px !important;
+		}
+	}
 }
