@@ -81,6 +81,7 @@ export const ProductDetails = () => {
 		tags,
 		specifications = {},
 		reviews,
+		inventory,
 	} = product ?? {}
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
@@ -116,14 +117,14 @@ export const ProductDetails = () => {
 								<Text span weight='medium'>
 									Availability:
 								</Text>
-								<ProductInStock quantity={specifications.quantity} />
+								<ProductInStock quantity={inventory.stockQuantity} />
 							</div>
 							{tags && <DietaryTags className={s.dietaries} size='mm' tags={tags.dietaries} />}
 						</div>
 						<Text className={s.description}>{description}</Text>
 						<Border />
 						<GoodToCart
-							quantity={specifications.quantity}
+							quantity={inventory.stockQuantity}
 							product={product}
 							productQuantityInCart={productQuantityInCart(slug)}
 							onClick={addToCart}
