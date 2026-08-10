@@ -64,7 +64,9 @@ export const HeroSlider = () => {
 				src={img}
 				alt={title}
 				loading={index === 0 ? 'eager' : 'lazy'}
-				fetchPriority={index === 0 ? 'high' : 'auto'}
+				// React 17 doesn't recognize fetchPriority; use native HTML attribute.
+				// eslint-disable-next-line react/no-unknown-property
+				fetchpriority={index === 0 ? 'high' : 'auto'}
 				decoding={index === 0 ? 'sync' : 'async'}
 			/>
 			<div className={s.inner}>
