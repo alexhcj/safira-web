@@ -6,7 +6,7 @@ import ArrowSVG from '@assets/svg/arrow.svg?react'
 
 import s from './sub-category-panel.module.scss'
 
-export const SubCategoryPanel = ({ category, navigate, order }) => {
+export const SubCategoryPanel = ({ category, navigate }) => {
 	const { name: primeCategoryName, primeCategory, subCategories } = category
 	const [openSubs, setOpenSubs] = useState(new Set())
 
@@ -53,7 +53,7 @@ export const SubCategoryPanel = ({ category, navigate, order }) => {
 		<div
 			className={s.panel}
 			// span all columns regardless of how many there are
-			style={{ order, gridColumn: '1 / -1' }}
+			style={{ gridColumn: '1 / -1' }}
 		>
 			<button type='button' className={s.view_all_prime} onClick={goToPrime}>
 				View all
