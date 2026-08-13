@@ -47,11 +47,13 @@
 			}
 		}
 
-		.subCategory {
-			display: grid;
-			grid-auto-flow: column;
+		.meta {
+			display: flex;
+			flex-wrap: wrap;
 			justify-content: center;
 			align-items: center;
+			gap: 8px;
+			text-align: center;
 			margin-bottom: 9px;
 			line-height: 12px;
 			font-size: 12px;
@@ -59,13 +61,21 @@
 			color: $color-dark;
 			z-index: $z-index10;
 
+			@include tablet-s {
+				column-gap: 6px;
+			}
+
 			@include tablet {
 				margin-bottom: 15px;
 			}
 
-			&_divider {
-				margin: 0 2px;
+			.divider {
+				display: none;
 				color: $color-dark4;
+
+				@include tablet-s {
+					display: block;
+				}
 			}
 
 			button {
@@ -75,7 +85,7 @@
 	}
 
 	.name > a:hover,
-	.subCategory > button:hover {
+	.meta > button:hover {
 		color: $color-primary;
 	}
 
@@ -141,7 +151,7 @@
 				margin-top: 0;
 			}
 
-			.subCategory {
+			.meta {
 				justify-content: flex-start;
 				margin-bottom: 12px;
 
@@ -165,7 +175,7 @@
 			margin-left: 0;
 			text-align: center;
 
-			.subCategory {
+			.meta {
 				margin-bottom: 12px;
 			}
 		}
@@ -199,10 +209,10 @@
 			}
 		}
 
-		.subCategory {
+		.meta {
 			margin-bottom: 12px;
 
-			&.subCategory_name {
+			&.subCategory {
 				margin-right: 2px;
 			}
 
@@ -247,7 +257,7 @@
 				}
 			}
 
-			.subCategory {
+			.meta {
 				justify-content: start;
 				margin-bottom: 9px;
 
