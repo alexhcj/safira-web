@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '@context/AuthContext'
 
 import { ReplyForm } from '@shared/components/Form/ReplyForm/ReplyForm'
-import { Space } from '@shared/components/UI/Spacing/Space'
 import { UserActions } from '@shared/components/UserActions/UserActions'
 
 import MessageSVG from '@assets/svg/message.svg?react'
@@ -53,7 +52,6 @@ export const Reply = ({ nestedLvl, type, action }) => {
 							actionMessage='Click here to register'
 						/>
 					</div>
-					<Space size='l' />
 				</>
 			) : (
 				<ReplyForm nestedLvl={nestedLvl} type={type} action={action} />
