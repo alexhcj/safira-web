@@ -41,10 +41,11 @@
 }
 
 .info {
-	display: grid;
+	display: flex;
 	grid-auto-flow: column;
 	justify-content: space-between;
-	gap: 15px;
+	flex-wrap: wrap;
+	gap: 8px 15px;
 }
 
 .meta {
