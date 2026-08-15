@@ -39,10 +39,24 @@ export const CompareProvider = ({ children }) => {
 		setActiveIndex(0)
 	}
 
-	const addToCompare = ({ slug, price, specifications, name, tags, primeCategory, basicCategory, subCategory }) => {
+	const addToCompare = ({
+		slug,
+		name,
+		primeCategory,
+		subCategory,
+		basicCategory,
+		price,
+		tags,
+		specifications,
+		packaging,
+		shippingDetails,
+	}) => {
 		setIsLoading(true)
 		const itemInCompare = compares[basicCategory] && compares[basicCategory].find((it) => it.slug === slug)
-		if (itemInCompare) return
+		if (itemInCompare) {
+			setIsLoading(false)
+			return
+		}
 
 		const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
@@ -50,18 +64,21 @@ export const CompareProvider = ({ children }) => {
 			slug,
 			name,
 			img,
-			tags,
 			primeCategory,
 			subCategory,
 			basicCategory,
+			tags,
 			price: price.price,
 			discountPrice: price.discountPrice,
 			specifications,
+			packaging,
+			shippingDetails,
 		}
 
 		if (Object.keys(compares).length === 0) {
 			setCompares({ [basicCategory.slug]: [item] })
 			switchActiveCategory(basicCategory.slug)
+			setIsLoading(false)
 		} else if (!compares[basicCategory.slug]) {
 			setCompares({ ...compares, [basicCategory.slug]: [item] })
 			setIsLoading(false)
@@ -96,9 +113,11 @@ export const CompareProvider = ({ children }) => {
 
 		if (filteredComparedCategory.length > 0) {
 			setCompares({ ...compares, [category]: filteredComparedCategory })
+			setIsLoading(false)
 			// Reset to first item if current index is out of bounds
 			if (activeIndex >= filteredComparedCategory.length) {
 				setActiveIndex(0)
+				setIsLoading(false)
 			}
 		} else {
 			removeListFromCompare(category)
@@ -119,10 +138,14 @@ export const CompareProvider = ({ children }) => {
 
 		if (category === activeCategory) {
 			const remainingCategories = Object.keys(convertedToObject)
+			setIsLoading(false)
+
 			if (remainingCategories.length > 0) {
 				makeFirstCompareListActive(remainingCategories)
+				setIsLoading(false)
 			} else {
 				switchActiveCategory(null)
+				setIsLoading(false)
 			}
 		}
 	}
@@ -130,6 +153,7 @@ export const CompareProvider = ({ children }) => {
 	const removeAllCompares = () => {
 		setCompares({})
 		switchActiveCategory(null)
+		setIsLoading(false)
 	}
 
 	const isProductInCompare = (slug, category) => {

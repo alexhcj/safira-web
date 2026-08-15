@@ -12,6 +12,10 @@
 	margin-bottom: var(--space-2xl);
 	@include responsive-grid(1, 1, 2, 2, 3, 4);
 
+	> * {
+		min-width: 0; // allow grid items to shrink below content size
+	}
+
 	@include tablet {
 		margin-bottom: 40px;
 	}

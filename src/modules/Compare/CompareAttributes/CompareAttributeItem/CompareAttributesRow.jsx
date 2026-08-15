@@ -1,4 +1,4 @@
-import { camelToStr } from '@utils/string'
+import { camelToStr, capitalizeIfStartsWithLetter } from '@utils/string'
 
 import s from './compare-attribute-item.module.scss'
 
@@ -15,7 +15,7 @@ export const CompareAttributesRow = ({ row: { values, attribute, different }, vi
 		>
 			{values.map((value, index) => (
 				<span className={s.item} key={`${attribute}-${index}`}>
-					{value}
+					{capitalizeIfStartsWithLetter(value)}
 				</span>
 			))}
 		</div>

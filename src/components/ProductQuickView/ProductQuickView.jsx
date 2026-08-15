@@ -20,7 +20,18 @@ export const ProductQuickView = () => {
 
 	if (!product) return null
 
-	const { slug, name, basicCategory, primeCategory, subCategory, price, description, specifications, tags } = product
+	const {
+		slug,
+		name,
+		basicCategory,
+		primeCategory,
+		subCategory,
+		price,
+		excerpt,
+		specifications = {},
+		inventory,
+		tags,
+	} = product ?? {}
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 	const url = {
 		pathname: `/products/${slug}`,
@@ -66,12 +77,12 @@ export const ProductQuickView = () => {
 								</>
 							)}
 						</div>
-						<p className={s.description}>{description}</p>
+						<p className={s.excerpt}>{excerpt}</p>
 						{specifications && (
 							<>
-								<ProductInStock quantity={specifications.quantity} className={s.stock} />
+								<ProductInStock quantity={inventory.stockQuantity} className={s.stock} />
 								<GoodToCart
-									quantity={specifications.quantity}
+									quantity={inventory.stockQuantity}
 									product={product}
 									productQuantityInCart={productQuantityInCart(slug)}
 									showLabel={false}

@@ -9,6 +9,10 @@ import { useWishlistContext } from '@context/WishlistContext'
 
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
+import { CoreSpecifications } from '@components/ProductSpecifications/CoreSpecifications/CoreSpecifications'
+import { NutritionalDataSpecifications } from '@components/ProductSpecifications/NutritionalDataSpecifications/NutritionalDataSpecifications'
+import { ShippingAndPackaging } from '@components/ProductSpecifications/ShippingAndPackaging/ShippingAndPackaging'
+
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { GoodToCart } from '@shared/components/GoodToCart/GoodToCart'
 import { ImageWithFallback } from '@shared/components/ImageWithFallback/ImageWithFallback'
@@ -16,7 +20,6 @@ import { Price } from '@shared/components/Price/Price'
 import { Rating } from '@shared/components/Rating/Rating'
 import { NewReview } from '@shared/components/Reviews/NewReview/NewReview'
 import { Reviews } from '@shared/components/Reviews/Reviews'
-import { Specification } from '@shared/components/Specification/Specification'
 import { Tab, Tabs } from '@shared/components/Tabs/Tabs'
 import { Button } from '@shared/components/UI/Buttons/Button/Button'
 import { ButtonWithTooltip } from '@shared/components/UI/Buttons/ButtonWithTooltip/ButtonWithTooltip'
@@ -27,6 +30,7 @@ import { ReviewsSkeleton } from '@shared/components/UI/Skeletons/ReviewsSkeleton
 import { SpecificationsSkeleton } from '@shared/components/UI/Skeletons/SpecificationsSkeleton/SpecificationsSkeleton'
 import { Border } from '@shared/components/UI/Spacing/Border'
 import { Text } from '@shared/components/UI/Text/Text'
+import { findMicronutrient, NUTRIENT_NAME } from '@shared/data/nutrientnames'
 import { PRICE_TYPE } from '@shared/data/price'
 
 import { RelatedProducts } from '../RelatedProducts/RelatedProducts'
@@ -74,6 +78,7 @@ export const ProductDetails = () => {
 		name,
 		price,
 		description,
+		excerpt,
 		primeCategory,
 		subCategory,
 		basicCategory,
@@ -82,11 +87,44 @@ export const ProductDetails = () => {
 		specifications = {},
 		reviews,
 		inventory,
+		shippingDetails,
+		packaging,
 	} = product ?? {}
 
 	const img = `${import.meta.env.VITE_API_PUBLIC_URL}/images/products/${slug}`
 
 	const linkState = JSON.stringify({ primeCategory, subCategory, basicCategory })
+
+	const micronutrients = specifications.nutritionalData?.micronutrients ?? []
+
+	const nutritionalValues = {
+		energy: { amount: specifications.nutritionalData?.energyKcal, unit: 'kcal' },
+		protein: { amount: specifications.nutritionalData?.protein, unit: 'g' },
+		totalFat: { amount: specifications.nutritionalData?.fat?.total, unit: 'g' },
+		saturatedFat: { amount: specifications.nutritionalData?.fat?.saturated, unit: 'g' },
+		monounsaturatedFat: { amount: specifications.nutritionalData?.fat?.mono, unit: 'g' },
+		polyunsaturatedFat: { amount: specifications.nutritionalData?.fat?.poly, unit: 'g' },
+		transFat: { amount: specifications.nutritionalData?.fat?.trans, unit: 'g' },
+		cholesterol: { amount: specifications.nutritionalData?.cholesterol, unit: 'mg' },
+		carbohydrate: { amount: specifications.nutritionalData?.carbohydrate?.total, unit: 'g' },
+		sugars: { amount: specifications.nutritionalData?.carbohydrate?.sugars, unit: 'g' },
+		dietaryFibre: { amount: specifications.nutritionalData?.carbohydrate?.fibre, unit: 'g' },
+		sodium: { amount: specifications.nutritionalData?.sodium, unit: 'mg' },
+
+		// Micronutrients: name-matched, unit comes from the entry itself (not
+		// assumed), and a missing entry safely resolves to `undefined` instead
+		// of throwing.
+		linoleicAcid: findMicronutrient(micronutrients, NUTRIENT_NAME.LINOLEIC_ACID),
+		omega6: findMicronutrient(micronutrients, NUTRIENT_NAME.OMEGA_6),
+		alphaLinoleinicAcid: findMicronutrient(micronutrients, NUTRIENT_NAME.ALPHA_LINOLENIC_ACID),
+		epaAndDha: findMicronutrient(micronutrients, NUTRIENT_NAME.EPA_AND_DHA),
+		omega3: findMicronutrient(micronutrients, NUTRIENT_NAME.OMEGA_3),
+		vitaminE: findMicronutrient(micronutrients, NUTRIENT_NAME.VITAMIN_E),
+		vitaminA: findMicronutrient(micronutrients, NUTRIENT_NAME.VITAMIN_A),
+		vitaminC: findMicronutrient(micronutrients, NUTRIENT_NAME.VITAMIN_C),
+	}
+
+	const servingSize = `${specifications.nutritionalData?.servingSize.value} ${specifications.nutritionalData?.servingSize.unit}`
 
 	return (
 		<div className='container'>
@@ -121,7 +159,7 @@ export const ProductDetails = () => {
 							</div>
 							{tags && <DietaryTags className={s.dietaries} size='mm' tags={tags.dietaries} />}
 						</div>
-						<Text className={s.description}>{description}</Text>
+						<Text className={s.description}>{description ?? excerpt}</Text>
 						<Border />
 						<GoodToCart
 							quantity={inventory.stockQuantity}
@@ -180,9 +218,38 @@ export const ProductDetails = () => {
 				)}
 				<div className={s.specifications}>
 					<Tabs className={s.tabs}>
-						<Tab id='spec' text='Specifications'>
-							{!isReady ? <SpecificationsSkeleton quantity={5} /> : <Specification {...specifications} />}
+						<Tab id='core-specifications' text='Specifications'>
+							{!isReady ? (
+								<SpecificationsSkeleton quantity={5} />
+							) : (
+								<CoreSpecifications
+									company={specifications.company}
+									producingCountry={specifications.producingCountry}
+									ingredients={specifications.ingredients}
+									shelfLife={specifications.shelfLife}
+									storageInformation={specifications.storageInformation}
+									categorySpecs={specifications.categorySpecs}
+								/>
+							)}
 						</Tab>
+						{specifications.nutritionalData && (
+							<Tab id='nutritional-specifications' text='Nutritional'>
+								{!isReady ? (
+									<SpecificationsSkeleton quantity={5} />
+								) : (
+									<NutritionalDataSpecifications values={nutritionalValues} servingSize={servingSize} />
+								)}
+							</Tab>
+						)}
+						{(shippingDetails || packaging) && (
+							<Tab id='shipping-and-packaging' text='Shipping & Packaging'>
+								{!isReady ? (
+									<SpecificationsSkeleton quantity={5} />
+								) : (
+									<ShippingAndPackaging shippingDetails={shippingDetails} packaging={packaging} />
+								)}
+							</Tab>
+						)}
 						<Tab id='rev' text={`Reviews (${reviews ? reviews.reviews.length : '0'})`}>
 							{!isReady ? (
 								<ReviewsSkeleton quantity={3} />

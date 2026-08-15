@@ -84,7 +84,8 @@
 	margin-bottom: 15px;
 }
 
-.stock {
+.stock,
+.ingredients {
 	display: flex;
 	grid-area: stock;
 	gap: 10px;
