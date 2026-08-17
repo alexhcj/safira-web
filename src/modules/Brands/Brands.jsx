@@ -2,7 +2,7 @@ import { createRef, useEffect, useMemo, useRef, useState } from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useProductsNew } from '@hooks/services/useProductsNew'
+import { useBrands } from '@hooks/services/useBrands'
 import { useIntersection } from '@hooks/useIntersection'
 import { useIsBelow } from '@hooks/useIsBelow'
 import { usePassedElement } from '@hooks/usePassedElement'
@@ -25,13 +25,13 @@ export const Brands = () => {
 	const isFooterVisible = useIntersection('#footer')
 	const isSticky = hasPassedBrands && !isFooterVisible
 	const location = useLocation()
-	const { findAllBrands, isLoading } = useProductsNew()
+	const { findGroupedBrands, isLoading } = useBrands()
 	const [brands, setBrands] = useState([])
 	const isBrandsPage = location.pathname.slice(1) === 'brands'
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const res = await findAllBrands()
+			const res = await findGroupedBrands()
 
 			if (res && res.success) {
 				setBrands(res.brands)

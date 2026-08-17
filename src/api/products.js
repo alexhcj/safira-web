@@ -10,13 +10,10 @@ export const productsAPI = {
 		return API.get(`${BASE_URL}/related?limit=${limit}&slug=${slug}`)
 	},
 	async findQueryBrands(params) {
-		return API.get(`${BASE_URL}/list-brands`, params)
+		return API.get(`${BASE_URL}/query-brands`, params)
 	},
-	async findQueryTags(params) {
-		return API.get(`${BASE_URL}/list-tags`, params)
-	},
-	async findAllBrands() {
-		return API.get(`${BASE_URL}/all-brands`)
+	async findQueryDietaryTags(params) {
+		return API.get(`${BASE_URL}/query-dietary-tags`, params)
 	},
 	async getQueryPriceRange(params) {
 		return API.get(`${BASE_URL}/price-range`, params)

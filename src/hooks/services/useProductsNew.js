@@ -70,32 +70,15 @@ export const useProductsNew = () => {
 		}
 	}
 
-	const findQueryTags = async (params) => {
+	const findQueryDietaryTags = async (params) => {
 		setIsLoading(true)
 		try {
 			clearErrors()
-			const res = await productsAPI.findQueryTags(params)
+			const res = await productsAPI.findQueryDietaryTags(params)
 
 			return {
 				success: true,
 				tags: res,
-			}
-		} catch (err) {
-			return null
-		} finally {
-			setIsLoading(false)
-		}
-	}
-
-	const findAllBrands = async () => {
-		setIsLoading(true)
-		try {
-			clearErrors()
-			const res = await productsAPI.findAllBrands()
-
-			return {
-				success: true,
-				brands: res,
 			}
 		} catch (err) {
 			return null
@@ -144,8 +127,7 @@ export const useProductsNew = () => {
 		findProducts,
 		findBySlug,
 		findQueryBrands,
-		findQueryTags,
-		findAllBrands,
+		findQueryDietaryTags,
 		findTopPopular,
 		findTopByPrimeCategories,
 		isLoading,
