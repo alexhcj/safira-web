@@ -26,6 +26,16 @@ also future beyond LTS.
 The complete application ecosystem will include web platform (possibly with PWA), admin panel, content management
 system, mobile application, and robust backend infrastructure.
 
+## Design attribution
+
+The visual foundation of this project was inspired by the Safira HTML template
+by [HasThemes](https://template.hasthemes.com/safira/index.html). The project has since been substantially extended and
+customized, including the web application, backend architecture, functionality, UI features, and other design
+modifications.
+
+The application code in this repository was developed for this project. Third-party assets, designs, and dependencies
+remain subject to their respective licenses and terms.
+
 ## Roadmap
 
 View [Roadmap](https://safira-shop-web-dev.onrender.com/road-map) for nearest feature releases.

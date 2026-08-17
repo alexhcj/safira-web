@@ -11,17 +11,19 @@ export const Copyright = () => {
 				<div className={s.block}>
 					<div className={s.copyright}>
 						<div className={s.text}>
-							Copyright © {new Date().getFullYear()}{' '}
+							© {new Date().getFullYear()}{' '}
 							<NavLink to='/' className={s.link}>
 								Safira
 							</NavLink>{' '}
-							.&nbsp;
-						</div>
-						<div className={s.text}>
-							Released under MIT License . Design By{' '}
-							<NavLink to='/' className={s.link}>
-								Safira
-							</NavLink>
+							. Code and custom features by{' '}
+							<Link className={s.link} target='_blank' to='https://t.me/alexhcj'>
+								alexhcj
+							</Link>{' '}
+							. Visual design based on the Safira template by{' '}
+							<Link className={s.link} target='_blank' to='https://template.hasthemes.com/safira/index.html'>
+								HasThemes
+							</Link>
+							&nbsp;. MIT License
 						</div>
 					</div>
 					<PaymentMethods className={s.payment} variant='white' />
