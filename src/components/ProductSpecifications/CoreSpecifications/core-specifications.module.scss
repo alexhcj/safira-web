@@ -1,0 +1,12 @@
+@use '@shared/styles/vars' as *;
+
+.ingredient_list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.category_table {
+	border-top: none;
+}

@@ -1,41 +1,37 @@
-import { useCallback, useState } from 'react'
+import { Children, isValidElement, useCallback, useState } from 'react'
 
 import cn from 'classnames'
 
 import s from './tabs.module.scss'
 
 export const Tabs = ({ children, className }) => {
-	const [activeTab, setActiveTab] = useState(children[0].props.id)
+	const tabs = Children.toArray(children).filter((child) => isValidElement(child) && child.type === Tab)
+
+	const [activeTab, setActiveTab] = useState(tabs[0]?.props.id)
 
 	const handleActiveTab = useCallback((id) => {
 		setActiveTab(id)
 	}, [])
 
-	const tabs = children.map((child) => (
+	const tabButtons = tabs.map(({ props }) => (
 		<button
-			className={cn(s.tab, child.props.id === activeTab && s.active)}
-			onClick={(e) => {
-				e.preventDefault()
-				handleActiveTab(child.props.id)
-			}}
-			key={child.props.id}
+			key={props.id}
+			className={cn(s.tab, props.id === activeTab && s.active)}
+			onClick={() => handleActiveTab(props.id)}
 		>
-			{child.props.text}
+			{props.text}
 		</button>
 	))
 
-	const tabContent = children.filter((child) => child.props.id === activeTab)
+	const activeContent = tabs.find(({ props }) => props.id === activeTab)
 
 	return (
 		<>
-			<div className={cn(s.tabs, className)}>{tabs}</div>
-			<div>{tabContent}</div>
+			<div className={cn(s.tabs, className)}>{tabButtons}</div>
+
+			<div>{activeContent}</div>
 		</>
 	)
 }
 
-function Tab(props) {
-	return <>{props.children}</>
-}
-
-export { Tab }
+export const Tab = ({ children }) => children

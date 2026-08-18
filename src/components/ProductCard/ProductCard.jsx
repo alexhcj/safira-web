@@ -15,7 +15,7 @@ import { BREAKPOINTS } from '@shared/data/breakpoints'
 import s from './productcard.module.scss'
 
 // sizes: 'xs' | 'sm' | 'md-lg' | 'lg' | 'list' | 'list-xs'
-export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, className }) => {
+export const ProductCard = ({ size = 'xs', imgSize = 'xs', product, className }) => {
 	const isTabletL = useIsBelow(BREAKPOINTS.tabletL)
 	const [menuToggle, setMenuToggle] = useState(false)
 	const [priceToggle, setPriceToggle] = useState(false)
@@ -107,17 +107,17 @@ export const ProductCard = ({ size = 'xs', imgSize = 'xs', product = true, class
 				</h3>
 				<div className={s.card_bottom}>
 					{size !== 'list-xs' && (
-						<h4 className={cn(s.subCategory, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
+						<h4 className={cn(s.meta, { [s.margin_less]: tags && tags.dietaries && name.length > 32 })}>
 							<button
 								type='button'
 								onClick={handleSubCategoryClick}
-								className={cn({ [s.subCategory_name]: tags && tags.dietaries })}
+								className={cn({ [s.subCategory]: tags && tags.dietaries })}
 							>
 								{subCategory.name}
 							</button>
 							{tags && (
 								<>
-									<span className={s.subCategory_divider}>•</span>
+									<span className={s.divider}>•</span>
 									<DietaryTags tags={tags.dietaries} />
 								</>
 							)}

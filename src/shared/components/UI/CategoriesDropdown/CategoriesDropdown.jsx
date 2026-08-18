@@ -7,7 +7,6 @@ import { useCategories } from '@hooks/services/useCategories'
 import { useAccordion } from '@hooks/useAccordion'
 import { useIsBelow } from '@hooks/useIsBelow'
 
-import { Preloader } from '@shared/components/common/Preloader/Preloader'
 import { AccordionItem } from '@shared/components/UI/CategoriesDropdown/AccordionItem/AccordionItem'
 import { CategoriesDropdownSkeleton } from '@shared/components/UI/Skeletons/CategoriesDropdownSkeleton/CategoriesDropdownSkeleton'
 import { BREAKPOINTS } from '@shared/data/breakpoints'

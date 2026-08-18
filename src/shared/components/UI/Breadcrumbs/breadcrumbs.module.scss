@@ -54,14 +54,17 @@
 }
 
 .breadcrumbs {
-	display: grid;
-	grid-auto-flow: column;
+	display: flex;
+	justify-content: center;
 	align-items: center;
-	gap: 7px;
+	flex-wrap: wrap;
+	gap: 2px 7px;
+	padding: 0 10px;
 }
 
 .breadcrumb,
 .page_breadcrumb {
+	text-align: center;
 	text-transform: capitalize;
 }
 

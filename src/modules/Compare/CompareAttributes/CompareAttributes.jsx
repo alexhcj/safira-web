@@ -4,6 +4,8 @@ import cn from 'classnames'
 
 import { useViewport } from '@hooks/useViewport.hook'
 
+import { FIELD_ORDER, SPEC_FIELD_FORMATTERS } from '@utils/ui/compare-spec-formatter'
+
 import { CompareAttributesRow } from './CompareAttributeItem/CompareAttributesRow'
 
 import s from './compare-attributes.module.scss'
@@ -18,24 +20,58 @@ export const CompareAttributes = ({ getActiveCompares, activeCategory, activeInd
 		const activeProducts = getActiveCompares(activeCategory)
 		if (!activeProducts || activeProducts.length === 0) return []
 
-		let rows = []
-		const allAttributesKeys = Object.keys(Object.assign({}, ...activeProducts.map((product) => product.specifications)))
+		// packaging sits alongside specifications for comparison purposes —
+		// it's just as much a comparable spec as anything nested under `specifications`
+		const sources = activeProducts.map((product) => ({
+			...product.specifications,
+			packaging: product.packaging,
+		}))
 
-		allAttributesKeys.forEach((attrKey, index) => {
-			rows.push({ attribute: attrKey, different: false, values: [] })
+		const presentKeys = new Set()
+		sources.forEach((source) => Object.keys(source).forEach((key) => presentKeys.add(key)))
 
-			activeProducts.forEach(({ specifications }) => {
-				if (attrKey === 'company') {
-					rows[index].values.push(specifications[attrKey] ? specifications[attrKey].displayName : '-')
-					return
-				}
-				if (attrKey === 'shelfLife') {
-					rows[index].values.push(
-						specifications[attrKey] ? `${specifications[attrKey].value} ${specifications[attrKey].unit}` : '-',
-					)
-					return
-				}
-				rows[index].values.push(specifications[attrKey] ? specifications[attrKey] : '-')
+		const orderedKeys = [
+			...FIELD_ORDER.filter((key) => presentKeys.has(key)),
+			...[...presentKeys].filter((key) => !FIELD_ORDER.includes(key)), // anything new we forgot to register, still shows up rather than vanishing
+		]
+
+		const rows = []
+
+		orderedKeys.forEach((attrKey) => {
+			const formatter = SPEC_FIELD_FORMATTERS[attrKey]
+
+			if (!formatter) {
+				rows.push({
+					attribute: attrKey,
+					different: false,
+					values: sources.map((source) => (source[attrKey] !== null ? source[attrKey] : '-')),
+				})
+				return
+			}
+
+			const formattedPerProduct = sources.map((source) => formatter(source[attrKey]))
+			const expandsToObject = formattedPerProduct.some((v) => v && typeof v === 'object')
+
+			if (!expandsToObject) {
+				rows.push({
+					attribute: attrKey,
+					different: false,
+					values: formattedPerProduct.map((v) => v ?? '-'),
+				})
+				return
+			}
+
+			// Compound field -> one row per sub-key, unioned across products
+			// (defensive — normally identical within one basicCategory/archetype)
+			const subKeys = new Set()
+			formattedPerProduct.forEach((v) => v && Object.keys(v).forEach((k) => subKeys.add(k)))
+
+			subKeys.forEach((subKey) => {
+				rows.push({
+					attribute: subKey,
+					different: false,
+					values: formattedPerProduct.map((v) => (v && v[subKey] !== null ? v[subKey] : '-')),
+				})
 			})
 		})
 

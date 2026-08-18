@@ -61,12 +61,9 @@ export const Header = () => {
 	const { calcTotalCompareItems } = useCompareContext()
 
 	const fixNavbarToTop = () => {
-		if (window.scrollY >= 150) {
-			setSticky(true)
-		} else {
-			setSticky(false)
-		}
+		setSticky(window.scrollY >= 150)
 	}
+
 	const handlePopoverShow = (e) => {
 		e.type === 'mouseenter' ? setIsPopoverShown(true) : setIsPopoverShown(false)
 	}
@@ -81,6 +78,10 @@ export const Header = () => {
 				return
 			window.removeEventListener('scroll', fixNavbarToTop)
 		}
+	}, [location.pathname])
+
+	useEffect(() => {
+		setSticky(false)
 	}, [location.pathname])
 
 	const handleBurgerToggle = () => {

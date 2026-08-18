@@ -15,7 +15,7 @@ import s from './dietary-filter.module.scss'
 export const DietaryFilter = () => {
 	const [params, setParams] = useSearchParams()
 	const { findUniqueDietaryTags, isLoading } = useTags()
-	const { findQueryTags } = useProductsNew()
+	const { findQueryDietaryTags } = useProductsNew()
 	const [tags, setTags] = useState([])
 	const [availableTags, setAvailableTags] = useState([])
 
@@ -41,7 +41,7 @@ export const DietaryFilter = () => {
 				delete queryWithoutTags.dietary
 			}
 
-			const res = await findQueryTags(queryWithoutTags)
+			const res = await findQueryDietaryTags(queryWithoutTags)
 
 			if (res && res.success) {
 				setAvailableTags(res.tags)

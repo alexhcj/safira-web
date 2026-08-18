@@ -1,13 +1,21 @@
+@use '@shared/styles/breakpoints' as *;
+
 .tags {
-	display: grid;
-	grid-auto-flow: column;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	align-items: center;
 	gap: 4px;
 
 	&.size {
 		&_sm {
-			margin-top: -4px;
-			margin-bottom: -4px;
+			margin-top: 0;
+			margin-bottom: 0;
+
+			@include mobile-l {
+				margin-top: -4px;
+				margin-bottom: -4px;
+			}
 		}
 
 		&_m {

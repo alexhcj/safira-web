@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { Fragment, useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -15,15 +15,35 @@ import { CategoryCard } from './CategoryCard/CategoryCard'
 
 import s from './categories.module.scss'
 
+const CARD_SELECTOR = '[data-role="category-card"]'
+
 /**
- * Returns how many columns are currently in the grid by reading the computed
- * grid-template-columns value (most reliable cross-browser approach).
+ * Returns how many columns are currently in the grid by measuring the actual
+ * rendered position of the card elements — group them by offsetTop, count
+ * how many share the first row's offsetTop.
+ *
+ * Deliberately NOT reading `grid-template-columns` from computed style:
+ * that string can reflect a stale/unresolved value on first paint, right
+ * after HMR re-injects styles, or on a fresh reload — before the stylesheet
+ * has actually been applied to the element. Measuring rendered box
+ * positions instead is immune to that timing race, since it always
+ * reflects what's actually on screen at the moment we read it.
  */
 const getColCount = (gridEl) => {
-	if (!gridEl) return 5
-	const style = window.getComputedStyle(gridEl)
-	// grid-template-columns returns e.g. "120px 120px 120px" — count spaces+1
-	return style.gridTemplateColumns.split(' ').length
+	if (!gridEl) return 1
+
+	const cards = gridEl.querySelectorAll(CARD_SELECTOR)
+	if (!cards.length) return 1
+
+	const firstTop = cards[0].offsetTop
+	let count = 0
+
+	for (const card of cards) {
+		if (card.offsetTop !== firstTop) break
+		count++
+	}
+
+	return count || 1
 }
 
 export const Categories = () => {
@@ -34,7 +54,7 @@ export const Categories = () => {
 
 	const [categories, setCategories] = useState(null)
 	const [activePrimeCategory, setActivePrimeCategory] = useState(null)
-	const [cols, setCols] = useState(5) // live column count, updated by ResizeObserver
+	const [cols, setCols] = useState(1) // live column count, measured from actual rendered card positions
 	const gridRef = useRef(null)
 
 	useEffect(() => {
@@ -61,18 +81,29 @@ export const Categories = () => {
 
 	const isReady = !isLoading && Boolean(categories)
 
-	// Keep cols in sync whenever the grid resizes (breakpoint changes)
+	// Measure cols synchronously before paint (useLayoutEffect), so there's
+	// never a frame rendered with a wrong/default value — covers first
+	// render, HMR remounts, and full reloads alike. Re-measure whenever the
+	// card list changes, and keep watching for breakpoint/resize changes.
+	useLayoutEffect(() => {
+		if (!isReady) return
+
+		const el = gridRef.current
+		if (!el) return
+
+		setCols(getColCount(el))
+	}, [isReady, categories])
+
 	useEffect(() => {
 		const el = gridRef.current
 		if (!el) return
 
 		const update = () => setCols(getColCount(el))
-		update()
 
 		const ro = new ResizeObserver(update)
 		ro.observe(el)
 		return () => ro.disconnect()
-	}, [])
+	}, [isReady])
 
 	const handleCategoriesNavigate = () => navigate('/categories')
 	const handleBrandsNavigate = () => navigate('/brands')
@@ -81,17 +112,17 @@ export const Categories = () => {
 		setActivePrimeCategory((prev) => (prev === primeCategory ? null : primeCategory))
 	}, [])
 
-	const activeIndex = activePrimeCategory ? categories.findIndex((c) => c.primeCategory === activePrimeCategory) : -1
+	const activeIndex =
+		activePrimeCategory && categories ? categories.findIndex((c) => c.primeCategory === activePrimeCategory) : -1
 
 	const activeCategory = activeIndex >= 0 ? categories[activeIndex] : null
 
-	// The panel sits visually after the last card in the active card's row.
-	// CSS `order` integers: cards get their array index (0-based);
-	// panel gets (last index in that row) + 0.5 — but `order` is integer-only,
-	// so we use (rowLastIndex * 2 + 1) with cards at (index * 2).
-	const rowLastIndex = activeIndex >= 0 ? Math.ceil((activeIndex + 1) / cols) * cols - 1 : -1
-
-	const panelOrder = rowLastIndex * 2 + 1
+	// The panel sits visually right after the last card in the active card's row.
+	// Clamped so a trailing, incomplete row can't push this past the array end.
+	const rowLastIndex =
+		activeIndex >= 0 && categories
+			? Math.min(Math.ceil((activeIndex + 1) / cols) * cols - 1, categories.length - 1)
+			: -1
 
 	return (
 		<div className='container'>
@@ -135,30 +166,32 @@ export const Categories = () => {
 				<div className={s.nav_responsive}>
 					{/*
 					 * Cards AND the panel live inside ONE grid container.
-					 * Each card gets `order: index * 2` so there's always an odd
-					 * integer slot available between any two rows for the panel.
+					 * The panel is spliced into the array right after the last
+					 * card of the active card's row, so DOM order === visual
+					 * order — no reliance on CSS `order` / auto-placement.
 					 */}
 					{!isReady ? (
 						<CategoriesSkeleton quantity={9} />
 					) : (
 						<div className={s.card_grid} ref={gridRef}>
 							{categories.map((category, index) => (
-								<CategoryCardMini
-									key={category.primeCategory}
-									category={category}
-									isActive={activePrimeCategory === category.primeCategory}
-									order={index * 2}
-									onClick={() => handleCardClick(category.primeCategory)}
-								/>
+								<Fragment key={category.primeCategory}>
+									<div data-role='category-card'>
+										<CategoryCardMini
+											category={category}
+											isActive={activePrimeCategory === category.primeCategory}
+											onClick={() => handleCardClick(category.primeCategory)}
+										/>
+									</div>
+									{activeCategory && index === rowLastIndex && (
+										<SubCategoryPanel
+											key={`${activeCategory.primeCategory}-panel`}
+											category={activeCategory}
+											navigate={navigate}
+										/>
+									)}
+								</Fragment>
 							))}
-							{activeCategory && (
-								<SubCategoryPanel
-									key={activeCategory.primeCategory}
-									category={activeCategory}
-									navigate={navigate}
-									order={panelOrder}
-								/>
-							)}
 						</div>
 					)}
 				</div>

@@ -21,7 +21,7 @@ export const PostCard = ({ post: { title, slug, createdAt, category }, size, img
 
 	return (
 		<div className={cn(s.post, size && s[`post_${size}`], className)}>
-			<NavLink className={s.img_link} to={url}>
+			<NavLink className={s.img_link} to={url} draggable={false}>
 				<ImageWithFallback className={s.img} src={img} alt={title} imgSize={imgSize} />
 			</NavLink>
 			<div className={s.info}>
