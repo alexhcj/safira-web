@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useUserProfileContext } from '@context/UserProfileContext'
 
 import { useEmailer } from '@hooks/services/useEmailer'
-import { useProfile } from '@hooks/services/useProfile'
 
 import { SubscriptionItem } from '@modules/Account/Subscriptions/SubscriptionItem/SubscriptionItem'
 
@@ -17,10 +16,9 @@ import EmailSVG from '@assets/svg/envelope.svg?react'
 import s from './subscriptions.module.scss'
 
 export const Subscriptions = () => {
+	const { profile } = useUserProfileContext()
 	const navigate = useNavigate()
-	const { user } = useAuthContext()
-	const { profile } = useProfile()
-	const { findSubscription, updateSubscription, isLoading } = useEmailer()
+	const { findSubscription, updateSubscription, isLoading: isEmailerLoading } = useEmailer()
 	const [subscription, setSubscription] = useState({
 		devNews: false,
 		blogNews: false,
@@ -44,9 +42,7 @@ export const Subscriptions = () => {
 	}, [])
 
 	const handleVerifyEmail = () => {
-		navigate('/verify-email', {
-			state: { email: profile.email, isEmailVerified: user.isEmailVerified },
-		})
+		navigate('/verify-email')
 	}
 
 	const checkSubscriptionsStatus = () => {
@@ -88,7 +84,7 @@ export const Subscriptions = () => {
 		}
 	}
 
-	if (!user.isEmailVerified) {
+	if (!profile.isEmailVerified) {
 		return (
 			<UserActions
 				message='Verify email address to get access for managing subscriptions.'
@@ -102,7 +98,7 @@ export const Subscriptions = () => {
 	return (
 		<section className={s.section}>
 			<h3 className={s.title}>Subscriptions</h3>
-			{isLoading ? (
+			{isEmailerLoading ? (
 				<SubscriptionsSkeleton quantity={4} />
 			) : (
 				<table className={s.table}>

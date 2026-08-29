@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 import cn from 'classnames'
-import { Navigate, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useUserProfileContext } from '@context/UserProfileContext'
 
 import { useVerifications } from '@hooks/services/useVerifications'
 import { useFormValidation } from '@hooks/useFormValidation'
@@ -43,18 +43,14 @@ const verifyEmailFormValidationSchema = {
 }
 
 export const VerifyEmail = () => {
-	const { verifyEmail, isLoading } = useVerifications()
+	const { profile, patchProfile } = useUserProfileContext()
+	const { verifyEmail, isLoading: isVerificationsLoading } = useVerifications()
 	const location = useLocation()
-	const { user, updateEmailVerifiedStatus } = useAuthContext()
 	const initialFormState = {
 		code: '',
 	}
 	const [form, setForm] = useState(initialFormState)
 	const { isValid, getFieldError, resetForm } = useFormValidation(form, verifyEmailFormValidationSchema)
-
-	if (!location.state?.email) {
-		return <Navigate to='/' replace />
-	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -66,8 +62,8 @@ export const VerifyEmail = () => {
 
 			const res = await verifyEmail(formData)
 
-			if (res && res.success && res.code) {
-				updateEmailVerifiedStatus(true)
+			if (res.success) {
+				patchProfile({ isEmailVerified: true })
 			}
 		}
 	}
@@ -85,7 +81,7 @@ export const VerifyEmail = () => {
 		<div className={s.wrapper}>
 			<div className={s.box}>
 				<h2 className={s.title}>Verify email address</h2>
-				{user.isEmailVerified ? (
+				{profile.isEmailVerified ? (
 					<div className={s.content}>
 						<StepperFinish
 							title='Email verified successfully!'
@@ -112,8 +108,8 @@ export const VerifyEmail = () => {
 					<div className={s.content}>
 						<form className={s.form} onSubmit={handleSubmit}>
 							<p className={s.text}>
-								We’ve sent 6-digits verification code to{' '}
-								<span className={s.email}>{hideEmailPartial(location.state.email)}</span>. Enter this code into input to
+								We’ve sent 6-digits verification code to
+								<span className={s.email}> {hideEmailPartial(profile.email)}</span>. Enter this code into input to
 								verify that address is yours.
 							</p>
 							<Input
@@ -128,8 +124,8 @@ export const VerifyEmail = () => {
 								placeholder='726482'
 							/>
 							<ResendCode handleResendCode={handleResendCode} type={VERIFY_EMAIL.SIGN_UP} />
-							<Button className={cn(s.btn_verify, isLoading && s.loading)} htmlType='submit' type='auth'>
-								{isLoading ? (
+							<Button className={cn(s.btn_verify, isVerificationsLoading && s.loading)} htmlType='submit' type='auth'>
+								{isVerificationsLoading ? (
 									<Preloader width={20} height={20} />
 								) : (
 									<Text className={s.btn_verify_text} span color='white' weight='bold'>
@@ -137,7 +133,7 @@ export const VerifyEmail = () => {
 									</Text>
 								)}
 							</Button>
-							{location.state.from === '/register' && (
+							{location.state?.from === '/register' && (
 								<NavLink className={s.btn_later} to='/'>
 									<Text className={s.btn_later_text}>Verify later</Text>
 									<ArrowSVG className={s.svg} />

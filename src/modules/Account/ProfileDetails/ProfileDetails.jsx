@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
-
-import { useProfile } from '@hooks/services/useProfile'
 import { useAuthStateContext } from '@context/AuthContext'
+import { useUserProfileContext } from '@context/UserProfileContext'
 
 import { ProfileForm } from '@shared/components/Form/ProfileForm/ProfileForm'
 import { ProfileSkeleton } from '@shared/components/UI/Skeletons/ProfileSkeleton/ProfileSkeleton'
@@ -15,19 +13,16 @@ import s from './profile-details.module.scss'
 
 export const ProfileDetails = () => {
 	const navigate = useNavigate()
-	const { user } = useAuthContext()
-	const { profile, isLoading } = useProfile()
 	const { user, isAuthenticated } = useAuthStateContext()
+	const { profile, isLoading } = useUserProfileContext()
 
 	const handleVerifyEmail = () => {
-		navigate('/verify-email', {
-			state: { email: profile.email, isEmailVerified: profile.isEmailVerified },
-		})
+		navigate('/verify-email')
 	}
 
 	return (
 		<div className={s.profile}>
-			{!user.isEmailVerified && (
+			{!profile.isEmailVerified && (
 				<UserActions
 					message='Verify email address to get full access of store features.'
 					actionMessage='Click here to verify email'

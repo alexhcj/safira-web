@@ -10,6 +10,7 @@ import { CartProvider } from '@context/CartContext'
 import { CartPopupProvider } from '@context/CartPopupContext'
 import { CompareProvider } from '@context/CompareContext'
 import { ErrorProvider, useErrorContext } from '@context/ErrorContext'
+import { UserProfileProvider } from '@context/UserProfileContext'
 import { WishlistProvider } from '@context/WishlistContext'
 
 import { BurgerPopup } from '@components/BurgerPopup/BurgerPopup'
@@ -81,6 +82,8 @@ const AppLayout = ({ children }) => {
 							</CartProvider>
 						</WishlistProvider>
 					</AuthProvider>
+							<UserProfileProvider>
+							</UserProfileProvider>
 				</AxiosErrorHandler>
 			</ErrorProvider>
 		</div>

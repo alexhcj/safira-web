@@ -1,20 +1,19 @@
-import { useRef } from 'react'
-
 import { Navigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useUserProfileContext } from '@context/UserProfileContext'
 
 import { VerifyEmail } from '@components/VerifyEmail/VerifyEmail'
 
+import { FullscreenPreloader } from '@shared/components/common/Preloader/Preloader'
 import { Breadcrumbs } from '@shared/components/UI/Breadcrumbs/Breadcrumbs'
 import { DefaultLayout } from '@shared/layouts/DefaultLayout/DefaultLayout'
 
 export const VerifyEmailPage = () => {
-	const { user } = useAuthContext()
+	const { profile, isLoading } = useUserProfileContext()
 
-	const wasAlreadyVerifiedRef = useRef(user.isEmailVerified)
+	if (isLoading || profile === null) return <FullscreenPreloader />
 
-	if (wasAlreadyVerifiedRef.current) return <Navigate to='/' replace />
+	if (profile.isEmailVerified) return <Navigate to='/' replace />
 
 	return (
 		<>

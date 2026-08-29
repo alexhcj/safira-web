@@ -4,7 +4,8 @@ import cn from 'classnames'
 
 import { exactLength, pattern, required } from '@/utils'
 
-import { useProfile } from '@hooks/services/useProfile'
+import { useUserProfileContext } from '@context/UserProfileContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { ResendCode } from '@components/VerifyEmail/ResendCode/ResendCode'
@@ -37,7 +38,7 @@ const codeFormValidationSchema = {
 }
 
 export const ChangePasswordStepperFormCode = ({ type, isLoading, onSubmit }) => {
-	const { profile } = useProfile()
+	const { profile } = useUserProfileContext()
 	const [code, setCode] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation({ code }, codeFormValidationSchema, {
 		validateOnChange: false,

@@ -46,7 +46,7 @@ const profileFormValidationSchema = {
 
 export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 	const navigate = useNavigate()
-	const { avatarId, firstName, lastName, dateOfBirth, location, email } = profile
+	const { avatarId, firstName, lastName, dateOfBirth, location, email, isEmailVerified } = profile
 	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
 	const initialFormState = {
 		avatar: null,
@@ -163,7 +163,7 @@ export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!user.isEmailVerified) return navigate('/verify-email', { state: { email } })
+		if (!isEmailVerified) return navigate('/verify-email', { state: { email } })
 
 		if (!isValid(false)) {
 			if (isFormsSame()) return
@@ -188,11 +188,11 @@ export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 	}
 
 	const handleChangeEmail = () => {
-		!user.isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-email')
+		!isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-email')
 	}
 
 	const handleChangePassword = () => {
-		!user.isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-password')
+		!isEmailVerified ? navigate('/verify-email', { state: { email } }) : navigate('/change-password')
 	}
 
 	return (
@@ -214,7 +214,7 @@ export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 								type='profile'
 								className={s.btn_credential}
 								onClick={handleChangeEmail}
-								disabled={!user.isEmailVerified}
+								disabled={!isEmailVerified}
 							>
 								<Text span color='white' weight='semi' className={s.btn_credential_text}>
 									Change email
@@ -233,7 +233,7 @@ export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 								type='profile'
 								className={s.btn_credential}
 								onClick={handleChangePassword}
-								disabled={!user.isEmailVerified}
+								disabled={!isEmailVerified}
 							>
 								<Text span color='white' weight='semi' className={s.btn_credential_text}>
 									Change password
@@ -286,7 +286,7 @@ export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 								htmlType='submit'
 								type='submit'
 								className={cn(s.btn_update_profile, loading && s.loading)}
-								disabled={!user.isEmailVerified}
+								disabled={!isEmailVerified}
 							>
 								{loading ? (
 									<Preloader width={24} height={24} />

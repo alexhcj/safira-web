@@ -4,7 +4,8 @@ import cn from 'classnames'
 
 import { maxLength, minLength, pattern, required } from '@/utils'
 
-import { useProfile } from '@hooks/services/useProfile'
+import { useUserProfileContext } from '@context/UserProfileContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -38,7 +39,7 @@ const changePasswordFormValidationSchema = {
 }
 
 export const ChangeEmailStepperFormPassword = ({ type, isLoading, onSubmit }) => {
-	const { profile } = useProfile()
+	const { profile } = useUserProfileContext()
 	const [password, setPassword] = useState('')
 	const { isValid, getFieldError, resetFieldError } = useFormValidation(
 		{ password },
