@@ -3,7 +3,7 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { animateScroll as scroll } from 'react-scroll'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 import { useCommentThread } from '@context/CommentThreadContext'
 
 import { useIsBelow } from '@hooks/useIsBelow'
@@ -44,7 +44,7 @@ export const Comment = ({
 	const isTablet = useIsBelow(BREAKPOINTS.tablet)
 	const isTabletL = useIsBelow(BREAKPOINTS.tabletL)
 	const collapseLvl = isTablet ? 0 : 3
-	const { user } = useAuthContext()
+	const { user, isAuthenticated } = useAuthStateContext()
 	const { toggleThread, isThreadCollapsed } = useCommentThread()
 	const [isReplyHidden, setIsReplyHidden] = useState(true)
 
@@ -119,12 +119,12 @@ export const Comment = ({
 							</button>
 						)}
 					</div>
-					{user && userId !== user.id && (
+					{isAuthenticated && userId !== user.id && (
 						<Button className={s.btn} onClick={handleToggleReply}>
 							Reply
 						</Button>
 					)}
-					{!user && (
+					{!isAuthenticated && (
 						<Button className={s.btn} onClick={handleScroll}>
 							Reply
 						</Button>
@@ -133,7 +133,7 @@ export const Comment = ({
 			</div>
 
 			{/* reply form - only show when user is authenticated and reply is toggled */}
-			{!isReplyHidden && user && (
+			{!isReplyHidden && isAuthenticated && (
 				<Reply
 					nestedLvl={currentNestedLvl}
 					action='update'

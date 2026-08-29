@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthActionsContext } from '@context/AuthContext'
 
 import { Logout } from '@shared/components/UI/Logout/Logout'
 import { Border } from '@shared/components/UI/Spacing/Border'
@@ -15,11 +15,11 @@ const accountNavList = [
 ]
 
 export const AccountPopoverMenu = ({ setIsPopoverShown }) => {
-	const { logout } = useAuthContext()
+	const { logoutUser } = useAuthActionsContext()
 
 	const handleLogout = () => {
 		setIsPopoverShown(false)
-		logout()
+		logoutUser()
 	}
 
 	return (

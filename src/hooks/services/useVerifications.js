@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 import { verificationsAPI } from '@api/verifications'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthActionsContext } from '@context/AuthContext'
 import { useErrorContext } from '@context/ErrorContext'
 
 export function useVerifications() {
-	const { updateUserCreds } = useAuthContext()
+	const { updateUserCreds } = useAuthActionsContext()
 	const { clearErrors } = useErrorContext()
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -187,6 +187,23 @@ export function useVerifications() {
 		}
 	}
 
+	const emailStatus = async () => {
+		setIsLoading(true)
+		try {
+			clearErrors()
+			const res = await verificationsAPI.emailStatus()
+
+			return {
+				success: true,
+				isEmailVerified: res.isEmailVerified,
+			}
+		} catch (error) {
+			return null
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
 	return {
 		verifyEmail,
 		changeEmail,
@@ -198,6 +215,7 @@ export function useVerifications() {
 		forgotPassword,
 		resetForgotPassword,
 		resendVerifyEmail,
+		emailStatus,
 		isLoading,
 	}
 }

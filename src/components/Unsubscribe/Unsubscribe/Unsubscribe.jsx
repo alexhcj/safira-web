@@ -1,8 +1,8 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
+import { useAuthStateContext } from '@context/AuthContext'
 import { useUnsubscribeContext } from '@context/UnsubscribeContext'
 
-import { useAuth } from '@hooks/services/useAuth'
 import { useEmailer } from '@hooks/services/useEmailer'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -16,12 +16,12 @@ import s from './unsubscribe.module.scss'
 export const Unsubscribe = () => {
 	const [params, _] = useSearchParams()
 	const navigate = useNavigate()
-	const { user } = useAuth()
+	const { isAuthenticated } = useAuthStateContext()
 	const { unsubscribe, isLoading } = useEmailer()
 	const { setUnsubscribeContext } = useUnsubscribeContext()
 
 	const handleAction = () => {
-		!user
+		!isAuthenticated
 			? navigate('/login', { state: { email: params.get('email'), from: '/unsubscribe' } })
 			: navigate('/profile/subscriptions')
 	}

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import { useParams } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 import { useErrorContext } from '@context/ErrorContext'
 
 import { useComments } from '@hooks/services/useComments'
@@ -37,7 +37,7 @@ const replyFormValidationSchema = {
  * @returns {JSX.Element} Reply form component
  */
 export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySuccess }) => {
-	const { user } = useAuthContext()
+	const { isAuthenticated } = useAuthStateContext()
 	const { isResponseValid, clearErrors } = useErrorContext()
 	const { slug } = useParams()
 	const { createComment, updateComment, isLoading } = useComments()
@@ -70,7 +70,7 @@ export const ReplyForm = ({ nestedLvl = null, type, action = 'create', onReplySu
 				text: form.reply,
 			}
 
-			if (user && user.id && user.accessToken) {
+			if (isAuthenticated) {
 				let res
 
 				if (action === 'update' && nestedLvl !== null) {

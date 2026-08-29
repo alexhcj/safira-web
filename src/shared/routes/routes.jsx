@@ -8,10 +8,9 @@ import { HomePage } from '@pages/HomePage'
 import { PostPage } from '@pages/PostPage'
 import { WishlistPage } from '@pages/WishlistPage'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 
-// import { Docs } from '../../pages/Docs'
-import { PublicRoute } from '@shared/layouts/PublicRoute/PublicRoute'
+import { GuestRoute } from '@shared/layouts/GuestRoute/GuestRoute'
 
 import { ProtectedRoute } from '../layouts/ProtectedRoute/ProtectedRoute'
 
@@ -67,7 +66,7 @@ const UnsubscribePage = lazy(() =>
 )
 
 export const AppRoutes = () => {
-	const { user } = useAuthContext()
+	const { status, isAuthenticated } = useAuthStateContext()
 
 	return (
 		<Routes>
@@ -81,21 +80,41 @@ export const AppRoutes = () => {
 			<Route path='/site-map' element={<SiteMapPage />} />
 			<Route path='/road-map' element={<RoadMapPage />} />
 			<Route path='/unsubscribe' element={<UnsubscribePage />} />
-			{/*<PublicRoute user={user}>*/}
-			<Route path='/register' element={<RegisterPage />} />
-			<Route path='/login' element={<LoginPage />} />
+			<Route
+				path='/register'
+				element={
+					<GuestRoute status={status} isAuthenticated={isAuthenticated}>
+						<RegisterPage />
+					</GuestRoute>
+				}
+			/>
+			<Route
+				path='/login'
+				element={
+					<GuestRoute status={status} isAuthenticated={isAuthenticated}>
+						<LoginPage />
+					</GuestRoute>
+				}
+			/>
 			<Route path='/shop' element={<ShopPage />} />
 			<Route path='/blog' element={<BlogPage />} />
 			<Route path='/blog/:slug' element={<PostPage />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/checkout' element={<CheckoutPage />} />
 			<Route path='/wishlist' element={<WishlistPage />} />
-			<Route path='/reset-password' element={<ResetPasswordPage />} />
+			<Route
+				path='/reset-password'
+				element={
+					<GuestRoute status={status} isAuthenticated={isAuthenticated}>
+						<ResetPasswordPage />
+					</GuestRoute>
+				}
+			/>
 			<Route path='/products/:slug' element={<ProductPage />} />
 			<Route
 				path='/account'
 				element={
-					<ProtectedRoute user={user}>
+					<ProtectedRoute status={status} isAuthenticated={isAuthenticated}>
 						<AccountPage />
 					</ProtectedRoute>
 				}
@@ -108,7 +127,7 @@ export const AppRoutes = () => {
 			<Route
 				path='/change-email'
 				element={
-					<ProtectedRoute user={user}>
+					<ProtectedRoute status={status} isAuthenticated={isAuthenticated}>
 						<ChangeEmailPage />
 					</ProtectedRoute>
 				}
@@ -116,7 +135,7 @@ export const AppRoutes = () => {
 			<Route
 				path='/change-password'
 				element={
-					<ProtectedRoute user={user}>
+					<ProtectedRoute status={status} isAuthenticated={isAuthenticated}>
 						<ChangePasswordPage />
 					</ProtectedRoute>
 				}
@@ -124,12 +143,11 @@ export const AppRoutes = () => {
 			<Route
 				path='/verify-email'
 				element={
-					<ProtectedRoute user={user}>
+					<ProtectedRoute status={status} isAuthenticated={isAuthenticated}>
 						<VerifyEmailPage />
 					</ProtectedRoute>
 				}
 			/>
-			{/*<Route path='/docs' element={<Docs />} />*/}
 			<Route path='/compare' element={<ComparePage />} />
 			<Route path='/categories' element={<CategoriesPage />} />
 			<Route path='/brands' element={<BrandsPage />} />

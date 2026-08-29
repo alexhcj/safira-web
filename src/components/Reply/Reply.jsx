@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 
 import { ReplyForm } from '@shared/components/Form/ReplyForm/ReplyForm'
 import { UserActions } from '@shared/components/UserActions/UserActions'
@@ -19,7 +19,7 @@ import s from './reply.module.scss'
  * @returns {JSX.Element} If user authenticated returns reply form component else user actions for authentication
  */
 export const Reply = ({ nestedLvl, type, action }) => {
-	const { user } = useAuthContext()
+	const { isAuthenticated } = useAuthStateContext()
 	const navigate = useNavigate()
 
 	const navigateToLogin = () => {
@@ -36,7 +36,7 @@ export const Reply = ({ nestedLvl, type, action }) => {
 
 			<p className={s.note}>Your email address will not be published. Required fields are marked *</p>
 
-			{!user ? (
+			{!isAuthenticated ? (
 				<>
 					<div className={s.user_actions} id='reply-user-actions'>
 						<UserActions

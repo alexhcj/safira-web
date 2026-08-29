@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { maxLength, pattern, required } from '@/utils'
 
-import { useAuth } from '@hooks/services/useAuth'
+import { useAuthStateContext } from '@context/AuthContext'
+
 import { useEmailer } from '@hooks/services/useEmailer'
 import { useFormValidation } from '@hooks/useFormValidation'
 
@@ -32,7 +33,7 @@ const subscribeFormValidationSchema = {
  */
 export const SubscribeForm = () => {
 	const navigate = useNavigate()
-	const { user } = useAuth()
+	const { isAuthenticated } = useAuthStateContext()
 	const { subscribe, isLoading } = useEmailer()
 	const initialFormState = {
 		email: '',
@@ -45,7 +46,7 @@ export const SubscribeForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (!user) {
+		if (!isAuthenticated) {
 			navigate('/register')
 			return
 		}

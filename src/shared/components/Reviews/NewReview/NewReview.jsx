@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 
 import { NewReviewForm } from '../../Form/NewReviewForm/NewReviewForm'
 import { UserActions } from '../../UserActions/UserActions'
@@ -10,7 +10,7 @@ import MessageSVG from '@assets/svg/message.svg?react'
 import s from './new-review.module.scss'
 
 export const NewReview = () => {
-	const { user } = useAuthContext()
+	const { isAuthenticated } = useAuthStateContext()
 	const navigate = useNavigate()
 	const location = useLocation()
 
@@ -24,7 +24,7 @@ export const NewReview = () => {
 
 	return (
 		<>
-			{!user ? (
+			{!isAuthenticated ? (
 				<div className={s.user_actions}>
 					<UserActions
 						icon={<MessageSVG />}

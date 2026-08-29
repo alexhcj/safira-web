@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import cn from 'classnames'
 import { NavLink } from 'react-router-dom'
 
+import { useAuthStateContext } from '@context/AuthContext'
 import { useBurgerPopupContext } from '@context/BurgerPopupContext'
 
-import { useAuth } from '@hooks/services/useAuth'
 import { useIsBelow } from '@hooks/useIsBelow'
 
 import { CompareBlock } from '@components/CompareBlock/CompareBlock'
@@ -115,11 +115,11 @@ function ShopGroup({ activeKey, setActiveKey, onNavigate }) {
 export const BurgerPopup = () => {
 	const isMobileM = useIsBelow(375)
 	const isMobile = useIsBelow(576)
-	const { user } = useAuth()
+	const { isAuthenticated } = useAuthStateContext()
 	const { isOpen, setIsOpen } = useBurgerPopupContext()
 	const [activeKey, setActiveKey] = useState(null)
 
-	const accountLinks = user ? ACCOUNT_NAVIGATION_ITEMS.authed : ACCOUNT_NAVIGATION_ITEMS.notAuthed
+	const accountLinks = isAuthenticated ? ACCOUNT_NAVIGATION_ITEMS.authed : ACCOUNT_NAVIGATION_ITEMS.notAuthed
 
 	const handleOnNavigate = () => {
 		setActiveKey(null)

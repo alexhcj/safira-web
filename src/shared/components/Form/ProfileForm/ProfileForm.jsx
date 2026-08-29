@@ -44,7 +44,7 @@ const profileFormValidationSchema = {
 	],
 }
 
-export const ProfileForm = ({ user, profile, loading }) => {
+export const ProfileForm = ({ user, isAuthenticated, profile, loading }) => {
 	const navigate = useNavigate()
 	const { avatarId, firstName, lastName, dateOfBirth, location, email } = profile
 	const avatarUrl = `${import.meta.env.VITE_API_URL}/files/avatar/${avatarId}`
@@ -171,7 +171,7 @@ export const ProfileForm = ({ user, profile, loading }) => {
 
 		const formData = createFormDataPayload()
 
-		if (Object.keys(formData).length > 0 && user && user.id && user.accessToken) {
+		if (Object.keys(formData).length > 0 && user && user.id && isAuthenticated) {
 			try {
 				await profilesAPI.update(formData)
 			} catch (error) {

@@ -33,4 +33,7 @@ export const verificationsAPI = {
 	async resendVerifyEmail(data = {}) {
 		return API.post(`${BASE_URL}/resend-verify-email`, data)
 	},
+	async emailStatus() {
+		return API.get(`${BASE_URL}/email-status`)
+	},
 }

@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import cn from 'classnames'
 import { useParams } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 import { useErrorContext } from '@context/ErrorContext'
 
 import { useReviews } from '@hooks/services/useReviews'
@@ -36,7 +36,7 @@ const reviewFormValidationSchema = {
 
 export const NewReviewForm = () => {
 	const { isResponseValid, clearErrors } = useErrorContext()
-	const { user } = useAuthContext()
+	const { isAuthenticated } = useAuthStateContext()
 	const { createReview, isLoading } = useReviews()
 	const { slug } = useParams()
 	const ratingRef = useRef(null)
@@ -53,7 +53,7 @@ export const NewReviewForm = () => {
 		e.preventDefault()
 
 		if (isValid()) {
-			if (user) {
+			if (isAuthenticated) {
 				const formData = {
 					rating: form.rating,
 					text: form.review,

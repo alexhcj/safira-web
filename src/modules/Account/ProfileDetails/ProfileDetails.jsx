@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '@context/AuthContext'
 
 import { useProfile } from '@hooks/services/useProfile'
+import { useAuthStateContext } from '@context/AuthContext'
 
 import { ProfileForm } from '@shared/components/Form/ProfileForm/ProfileForm'
 import { ProfileSkeleton } from '@shared/components/UI/Skeletons/ProfileSkeleton/ProfileSkeleton'
@@ -16,6 +17,7 @@ export const ProfileDetails = () => {
 	const navigate = useNavigate()
 	const { user } = useAuthContext()
 	const { profile, isLoading } = useProfile()
+	const { user, isAuthenticated } = useAuthStateContext()
 
 	const handleVerifyEmail = () => {
 		navigate('/verify-email', {
@@ -37,8 +39,7 @@ export const ProfileDetails = () => {
 			{isLoading ? (
 				<ProfileSkeleton />
 			) : (
-				typeof profile !== 'undefined' &&
-				Object.keys(profile).length !== 0 && <ProfileForm user={user} profile={profile} loading={isLoading} />
+				<ProfileForm user={user} isAuthenticated={isAuthenticated} profile={profile} loading={isLoading} />
 			)}
 		</div>
 	)

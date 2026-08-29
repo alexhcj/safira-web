@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import cn from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthActionsContext } from '@context/AuthContext'
 
-import { useAuth } from '@hooks/services/useAuth'
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -42,8 +41,7 @@ const loginFormValidationSchema = {
  * @constructor
  */
 export const LoginForm = () => {
-	const { user } = useAuthContext()
-	const { login, isLoading } = useAuth()
+	const { loginUser, isLoggingIn } = useAuthActionsContext()
 	const navigate = useNavigate()
 	const location = useLocation()
 	const initialFormState = {
@@ -52,10 +50,6 @@ export const LoginForm = () => {
 	}
 	const [form, setForm] = useState(initialFormState)
 	const { isValid, getFieldError } = useFormValidation(form, loginFormValidationSchema)
-
-	useEffect(() => {
-		if (user !== null) navigate('/')
-	}, [])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -66,19 +60,17 @@ export const LoginForm = () => {
 				password: form.password,
 			}
 
-			const res = await login(formData)
+			const res = await loginUser(formData)
 
-			if (res) {
-				if (res.success && res.user.accessToken) {
-					setForm({ email: '', password: '' })
+			if (res.success && res.data.accessToken) {
+				setForm({ email: '', password: '' })
 
-					if (!res.isEmailVerified) {
-						navigate('/verify-email', { state: { email: form.email } })
-					} else {
-						location.state?.from?.pathname === '/reset-password'
-							? navigate('/')
-							: navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
-					}
+				if (!res.data.isEmailVerified) {
+					navigate('/verify-email', { state: { email: form.email, isEmailVerified: false } })
+				} else {
+					location.state?.from?.pathname === '/reset-password'
+						? navigate('/')
+						: navigate(`${location.state?.from?.pathname || '/'}`, { replace: true })
 				}
 			}
 		}
@@ -128,8 +120,8 @@ export const LoginForm = () => {
 								Lost your password?
 							</Text>
 						</Button>
-						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_login, isLoading && s.loading)}>
-							{isLoading ? (
+						<Button htmlType='submit' type='auth' className={cn(s.btn_auth_login, isLoggingIn && s.loading)}>
+							{isLoggingIn ? (
 								<Preloader width={20} height={20} />
 							) : (
 								<Text span color='white' className={s.btn_auth_text}>

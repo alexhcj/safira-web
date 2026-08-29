@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthActionsContext } from '@context/AuthContext'
 
 import { OrderHistory } from '@modules/Account/OrderHistory/OrderHistory'
 
@@ -22,10 +22,10 @@ const profileNavList = [
 
 export const Account = () => {
 	const location = useLocation()
-	const { logout } = useAuthContext()
+	const { logoutUser } = useAuthActionsContext()
 
 	const handleLogout = () => {
-		logout()
+		logoutUser()
 	}
 
 	return (

@@ -2,36 +2,105 @@ import axios from 'axios'
 
 import { detectErrorType, getErrorMapping } from '@utils/validation/api-errors'
 
-import { getUserStorage } from './storage'
-
-const getAccessToken = () => {
-	const user = getUserStorage()
-	return user?.accessToken
-}
-
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
 	timeout: 90000, // Render DB warm up ~50 sec. TODO: remove to 15 in prod\no warm up DB?
 	headers: {
 		'Content-Type': 'application/json',
 	},
+	withCredentials: true, // sends the httpOnly refresh-token cookie automatically
 })
 
-// Request interceptor to add auth token
-axiosInstance.interceptors.request.use(
-	(config) => {
-		const token = getAccessToken()
-		if (token) {
-			config.headers.Authorization = `Bearer ${token}`
-		}
-		return config
-	},
-	(error) => Promise.reject(error),
-)
+// ---------------------------------------------------------------------------
+// Auth wiring
+//
+// Registered once, unconditionally, at module load - not tied to any React
+// component's mount lifecycle. AuthProvider "plugs in" the real behavior via
+// configureAuthInterceptors() on mount; until then these are harmless no-ops.
+// This guarantees deterministic ordering relative to setupErrorHandling()
+// below (whichever interceptor is *added* first runs first on the way back
+// through a rejected response), and survives StrictMode remounts / HMR
+// without needing to re-register anything.
+// ---------------------------------------------------------------------------
+let getAccessToken = () => null
+let refreshSession = async () => ({ success: false })
+let onSessionExpired = () => {}
+
+export function configureAuthInterceptors({ getToken, refresh, onExpired }) {
+	getAccessToken = getToken
+	refreshSession = refresh
+	onSessionExpired = onExpired
+}
+
+// A 401 from one of these means "no valid session" / "bad credentials" -
+// never "token expired, try refreshing". Two separate reasons this list is
+// needed in both interceptors below:
+// - Response interceptor: retrying /auth/refresh's OWN 401 by calling
+//   refresh-and-retry again is a real deadlock (getOrStartRefresh() would
+//   end up awaiting the very promise it's already inside).
+// - Request interceptor: /auth/refresh should authenticate purely via the
+//   httpOnly cookie (withCredentials). Attaching a - necessarily expired,
+//   that's WHY refresh is being called - access token invites a backend
+//   that inspects Authorization globally to reject the refresh call for a
+//   reason that has nothing to do with the refresh token's actual validity.
+const AUTH_ENDPOINTS_TO_SKIP = ['auth/refresh', 'auth/login', 'auth/register', 'auth/logout', 'auth/logout-all']
+
+function isAuthBootstrapEndpoint(url = '') {
+	return AUTH_ENDPOINTS_TO_SKIP.some((endpoint) => url.includes(endpoint))
+}
+
+axiosInstance.interceptors.request.use((config) => {
+	const token = getAccessToken()
+
+	// Skip on retried requests - the response interceptor below already set
+	// a fresh Authorization header on `originalRequest` before retrying it.
+	if (token && !config._retry && !isAuthBootstrapEndpoint(config.url)) {
+		config.headers.Authorization = `Bearer ${token}`
+	}
+
+	return config
+})
+
+// Multiple requests can 401 around the same moment (a burst of calls right
+// as the token expires). Without this, each one would fire its own
+// concurrent /auth/refresh call - wasteful, and actively broken if your
+// backend rotates refresh tokens on use (only the first would succeed).
+// This makes every concurrent 401 await the *same* in-flight refresh.
+let inFlightRefresh = null
+
+function getOrStartRefresh() {
+	if (!inFlightRefresh) {
+		inFlightRefresh = refreshSession().finally(() => {
+			inFlightRefresh = null
+		})
+	}
+	return inFlightRefresh
+}
 
 axiosInstance.interceptors.response.use(
 	(response) => response,
-	(error) => Promise.reject(error),
+	async (error) => {
+		const originalRequest = error.config
+		const status = error.response?.status
+
+		// 401 = access token missing/invalid/expired (standard for
+		// JwtAuthGuard). `_retry` guards against an infinite loop if the
+		// refresh token itself is also dead - only ever try once per request.
+		if (status === 401 && originalRequest && !originalRequest._retry && !isAuthBootstrapEndpoint(originalRequest.url)) {
+			originalRequest._retry = true
+
+			const res = await getOrStartRefresh()
+
+			if (res.success) {
+				originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`
+				return axiosInstance(originalRequest)
+			}
+
+			onSessionExpired()
+		}
+
+		return Promise.reject(error)
+	},
 )
 
 export const setupErrorHandling = (addErrorFn) => {
@@ -58,19 +127,12 @@ export const setupErrorHandling = (addErrorFn) => {
 					context = { fieldErrors: data.errors }
 				}
 
-				// Handle specific status codes
-				if (statusCode === 401) {
-					// Refresh logic
-					// actions.push({
-					// 	label: 'Refresh session',
-					// 	action: () => refreshToken(),
-					// 	primary: true
-					// })
-
-					console.log('Unauthorized access, redirecting to login...')
-				}
+				// 401 handling (silent refresh + retry) already happened in
+				// the auth interceptor above, which runs first. If a 401
+				// makes it here, refresh already failed - it's a real
+				// "you're logged out" case, so it just gets the default
+				// message from errorMap like any other error type.
 			} else if (error.request) {
-				// Error in request request
 				errorType = detectErrorType(error)
 				errorMessage = !navigator.onLine
 					? 'You appear to be offline. Please check your internet connection.'

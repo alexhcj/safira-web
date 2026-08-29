@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { NavLink, useLocation } from 'react-router-dom'
 
-import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 import { useBurgerPopupContext } from '@context/BurgerPopupContext'
 import { useCartContext } from '@context/CartContext'
 import { useCartPopupContext } from '@context/CartPopupContext'
@@ -55,7 +55,7 @@ export const Header = () => {
 	const { setIsOpen } = useCartPopupContext()
 	const [sticky, setSticky] = useState(false)
 	const [isPopoverShown, setIsPopoverShown] = useState(false)
-	const { user } = useAuthContext()
+	const { isAuthenticated } = useAuthStateContext()
 	const { wishlist } = useWishlistContext()
 	const { cart } = useCartContext()
 	const { calcTotalCompareItems } = useCompareContext()
@@ -116,7 +116,7 @@ export const Header = () => {
 							</NavLink>
 							{!isTablet && <GlobalSearch className={s.search} />}
 							<div className={s.account}>
-								{user ? (
+								{isAuthenticated ? (
 									<div className={s.profile_nav} onMouseEnter={handlePopoverShow} onMouseLeave={handlePopoverShow}>
 										<NavLink
 											to='/account'

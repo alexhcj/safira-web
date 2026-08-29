@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '@context/AuthContext'
+import { useAuthStateContext } from '@context/AuthContext'
 
 import { useProfile } from '@hooks/services/useProfile'
 import { useLocalStorage } from '@hooks/useLocalStorage.hook'
@@ -16,7 +17,7 @@ import s from './change-password-stepper-form.module.scss'
 
 export const ChangePasswordStepperCheckMail = ({ onSubmit }) => {
 	const location = useLocation()
-	const { user } = useAuthContext()
+	const { user } = useAuthStateContext()
 	const [step, setStep] = useLocalStorage('change-password-stepper')
 	const { profile } = useProfile()
 	const [isLoading, setIsLoading] = useState(false)

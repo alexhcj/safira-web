@@ -3,7 +3,8 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useAuth } from '@hooks/services/useAuth'
+import { useAuthActionsContext } from '@context/AuthContext'
+
 import { useFormValidation } from '@hooks/useFormValidation'
 
 import { Preloader } from '@shared/components/common/Preloader/Preloader'
@@ -66,7 +67,7 @@ const privacyPolicyTransition = {
  * @constructor
  */
 export const RegisterForm = () => {
-	const { register, isLoading } = useAuth()
+	const { registerUser, isLoading } = useAuthActionsContext()
 	const navigate = useNavigate()
 	const initialFormState = {
 		email: '',
@@ -87,10 +88,10 @@ export const RegisterForm = () => {
 				isPrivacyConfirmed: form.isPrivacyConfirmed,
 			}
 
-			const res = await register(formData)
+			const res = await registerUser(formData)
 
 			if (res) {
-				if (res.success && res.user.accessToken) {
+				if (res.success && res.data.accessToken) {
 					setForm(initialFormState)
 					navigate('/verify-email', { state: { email: form.email, from: '/register' } })
 				}
