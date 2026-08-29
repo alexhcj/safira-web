@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom'
 
 import { slugToStr } from '@/utils'
 
-import { useCategories } from '@hooks/services/useCategories'
+import { useAppContext } from '@context/AppContext'
+
 import { useProductsNew } from '@hooks/services/useProductsNew'
 
 import { Badge } from '@shared/components/UI/Badge/Badge'
@@ -16,7 +17,8 @@ import { NAVIGATION_ITEMS } from '@shared/data/site-map'
 import s from './site-map.module.scss'
 
 // Flattens the prime -> sub -> basic tree into a list of basic categories,
-// each carrying the full breadcrumb trail for that branch.
+// each carrying the full breadcrumb trail for that branch. Default only
+// covers `undefined` — callers should still pass `[]`, never `null`.
 const flattenCategoryTree = (tree = []) =>
 	tree.flatMap((prime) =>
 		prime.subCategories.items.flatMap((sub) =>
@@ -33,23 +35,17 @@ const flattenCategoryTree = (tree = []) =>
 	)
 
 export const SiteMap = () => {
-	const { findTree } = useCategories()
-	const { findTopPopular, findTopByPrimeCategories, isLoading } = useProductsNew()
-	const [basicCategories, setBasicCategories] = useState([])
+	const { categories, isLoading: isCategoriesLoading } = useAppContext()
+	const { findTopPopular, findTopByPrimeCategories, isLoading: isProductsLoading } = useProductsNew()
 	const [top20Products, setTop20Products] = useState([])
 	const [primeCategories, setPrimeCategories] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const [categoryTreeRes, popularRes, primeCategoriesRes] = await Promise.all([
-				findTree(),
+			const [popularRes, primeCategoriesRes] = await Promise.all([
 				findTopPopular({ limit: 20 }),
 				findTopByPrimeCategories(),
 			])
-
-			if (categoryTreeRes?.success) {
-				setBasicCategories(flattenCategoryTree(categoryTreeRes.tree))
-			}
 
 			if (popularRes?.success) {
 				setTop20Products(popularRes.products)
@@ -64,8 +60,10 @@ export const SiteMap = () => {
 	}, [])
 
 	const sortedBasicCategories = useMemo(
-		() => [...basicCategories].sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
-		[basicCategories],
+		// `?? []` here is belt-and-suspenders in case AppContext's default
+		// ever changes back to null - flattenCategoryTree stays crash-proof.
+		() => flattenCategoryTree(categories ?? []).sort((a, b) => (b.name[0] < a.name[0] ? 1 : -1)),
+		[categories],
 	)
 
 	return (
@@ -90,7 +88,7 @@ export const SiteMap = () => {
 				<section className={s.section}>
 					<div className={s.group}>
 						<h3 className={s.title}>Product categories</h3>
-						{isLoading ? (
+						{isCategoriesLoading ? (
 							<ProductCategoriesSkeleton quantity={26} />
 						) : (
 							<ul className={s.list}>
@@ -111,7 +109,7 @@ export const SiteMap = () => {
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products top 20</h3>
-						{isLoading ? (
+						{isProductsLoading ? (
 							<ProductCategoriesSkeleton quantity={22} type='top-20' />
 						) : (
 							<ul className={cn(s.list, s.top_20)}>
@@ -130,7 +128,7 @@ export const SiteMap = () => {
 
 					<div className={s.group}>
 						<h3 className={s.title}>Products by category</h3>
-						{isLoading ? (
+						{isProductsLoading ? (
 							<ProductsByCategorySkeleton quantity={9} />
 						) : (
 							<div className={s.category_group}>

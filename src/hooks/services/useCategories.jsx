@@ -14,12 +14,9 @@ export const useCategories = () => {
 			clearErrors()
 			const res = await categoriesAPI.findTree()
 
-			return {
-				success: true,
-				tree: res,
-			}
+			return { success: true, tree: res }
 		} catch (err) {
-			return null
+			return { success: false, err }
 		} finally {
 			setIsLoading(false)
 		}
@@ -31,13 +28,9 @@ export const useCategories = () => {
 			clearErrors()
 			const res = await categoriesAPI.findAll(params)
 
-			return {
-				success: true,
-				categories: res.categories,
-				meta: res.meta,
-			}
+			return { success: true, categories: res.categories, meta: res.meta }
 		} catch (err) {
-			return null
+			return { success: false, err }
 		} finally {
 			setIsLoading(false)
 		}

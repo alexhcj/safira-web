@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-import { useCategories } from '@hooks/services/useCategories'
+import { useAppContext } from '@context/AppContext'
+
 import { useAccordion } from '@hooks/useAccordion'
 import { useIsBelow } from '@hooks/useIsBelow'
 
@@ -19,25 +20,12 @@ import s from './categories-dropdown.module.scss'
 
 export const CategoriesDropdown = ({ isSticky, isVisible }) => {
 	// Tablet + mobile
+	const { categories, isLoading } = useAppContext()
 	const isTablet = useIsBelow(BREAKPOINTS.tabletL)
 	const [popupToggle, setPopupToggle] = useState(false)
 	const [toggleNavSubCategory, setToggleNavSubCategory] = useState(null)
 	const navigate = useNavigate()
 	const ref = useRef(null)
-	const { findTree, isLoading } = useCategories()
-	const [categories, setCategories] = useState([])
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const res = await findTree()
-
-			if (res && res.success) {
-				setCategories(res.tree)
-			}
-		}
-
-		fetchData()
-	}, [])
 
 	useEffect(() => {
 		popupToggle && setPopupToggle(false)
@@ -140,6 +128,7 @@ export const CategoriesDropdown = ({ isSticky, isVisible }) => {
 				{isLoading ? (
 					<CategoriesDropdownSkeleton quantity={9} />
 				) : (
+					categories &&
 					categories
 						.sort((a, b) => (b.name < a.name ? 1 : -1))
 						.map(({ name, primeCategory, subCategories }) => {

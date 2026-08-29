@@ -2,7 +2,7 @@ import { Fragment, useState, useRef, useEffect, useLayoutEffect, useCallback } f
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useCategories } from '@hooks/services/useCategories'
+import { useAppContext } from '@context/AppContext'
 
 import { CategoryCardMini } from '@modules/Categories/CategoryCardMini/CategoryCardMini'
 import { SubCategoryPanel } from '@modules/Categories/SubCategoryPanel/SubCategoryPanel'
@@ -49,35 +49,12 @@ const getColCount = (gridEl) => {
 export const Categories = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const { findTree, isLoading } = useCategories()
+	const { categories, isLoading } = useAppContext()
 	const isCategoriesPage = location.pathname.slice(1) === 'brands'
 
-	const [categories, setCategories] = useState(null)
 	const [activePrimeCategory, setActivePrimeCategory] = useState(null)
 	const [cols, setCols] = useState(1) // live column count, measured from actual rendered card positions
 	const gridRef = useRef(null)
-
-	useEffect(() => {
-		let isCancelled = false
-
-		async function fetchData() {
-			setCategories(null)
-
-			const res = await findTree()
-
-			if (isCancelled) return
-
-			if (res && res.success) {
-				setCategories(res.tree)
-			}
-		}
-
-		fetchData()
-
-		return () => {
-			isCancelled = true
-		}
-	}, [])
 
 	const isReady = !isLoading && Boolean(categories)
 
